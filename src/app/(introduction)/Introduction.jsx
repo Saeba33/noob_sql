@@ -2,6 +2,7 @@
 
 import { PAGES_CONFIG } from "@/config/navigation";
 import Link from "next/link";
+import BeltIcon from "@/components/ui/BeltIcon";
 
 // Import des contenus de chaque ceinture pour les données complètes
 import { whiteBeltContent } from "@/data/sections/white";
@@ -78,20 +79,18 @@ Blabla
                       className={`
                         w-16 h-16 
                         ${colors.bg} 
-                        ${colors.text} 
                         ${colors.border} 
                         border-2 
                         rounded-full 
                         flex 
                         items-center 
                         justify-center 
-                        font-bold 
                         shadow-lg 
                         mr-4
                       `}
                       title={`Ceinture ${page.beltDisplayName}`}
                     >
-                      {page.beltBadge}
+                      <BeltIcon belt={page.key} size={32} />
                     </div>
                     <div>
                       <h3 className={`text-lg font-bold ${colors.text}`}>

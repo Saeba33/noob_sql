@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import HeaderSection from "@/components/HeaderSection";
 import DescriptionSection from "@/components/DescriptionSection";
-import AccordionSection from "@/components/AccordionSection";
+import AccordionList from "@/components/AccordionList";
 import SectionTopNavigation from "@/components/navigation/SectionTopNavigation";
 import SectionBottomNavigation from "@/components/navigation/SectionBottomNavigation";
 
@@ -54,7 +54,7 @@ export default async function BeltPage({ params }) {
           pageDescription={beltContent.pageDescription}
         />
         
-        <AccordionSection 
+        <AccordionList 
           accordions={beltContent.accordions}
         />
         

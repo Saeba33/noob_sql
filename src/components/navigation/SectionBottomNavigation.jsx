@@ -4,6 +4,7 @@ import { useNavigation } from "@/hooks/useNavigation";
 import { PAGES_CONFIG } from "@/config/navigation";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 
 export default function SectionBottomNavigation() {
   const { getSectionNavigation } = useNavigation();
@@ -36,10 +37,7 @@ export default function SectionBottomNavigation() {
           {/* Previous Link */}
           {previous && (
             <Link href={previous.href} className={buttonClasses}>
-              <ion-icon
-                name="chevron-back-outline"
-                class="w-5 h-5 mr-2"
-              ></ion-icon>
+              <MdChevronLeft className="w-5 h-5 mr-2" />
               {previous.title}
             </Link>
           )}
@@ -50,10 +48,7 @@ export default function SectionBottomNavigation() {
           {next && (
             <Link href={next.href} className={buttonClasses}>
               {next.title}
-              <ion-icon
-                name="chevron-forward-outline"
-                class="w-5 h-5 ml-2"
-              ></ion-icon>
+              <MdChevronRight className="w-5 h-5 ml-2" />
             </Link>
           )}
         </div>

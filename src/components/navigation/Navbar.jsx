@@ -23,12 +23,12 @@ export default function Navbar() {
           <Link
             key={item.key}
             href={item.href}
-            className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-200 text-sm font-medium ${
+            className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-200 text-sm font-medium border ${
               isPractice
-                ? "bg-gray-800 text-white shadow-lg hover:bg-gray-900"
+                ? "bg-green-600 text-white border-green-600 shadow-md hover:bg-green-700 hover:shadow-lg"
                 : isActive(item.href)
-                ? "bg-blue-600 text-white shadow-lg"
-                : "text-gray-700 hover:text-gray-900 hover:bg-gray-100"
+                ? "bg-blue-600 text-white border-blue-600 shadow-md hover:bg-blue-700"
+                : "text-gray-700 border-gray-200 hover:text-gray-900 hover:bg-gray-50 hover:border-gray-300"
             }`}
           >
             <span>
