@@ -7,6 +7,9 @@ import SqlSchemaBlock from "@/components/ui/sql/SqlSchemaBlock";
 import SqlTableBlock from "@/components/ui/sql/SqlTableBlock";
 import { useAccordionSection } from "@/hooks/useAccordionSection";
 import { MdExpandMore, MdCode, MdAccountTree, MdLibraryBooks, MdCheckCircle, MdGridOn, MdInfo } from "react-icons/md";
+import { FaCode } from "react-icons/fa6";
+import { usePathname } from "next/navigation";
+import { SECTION_DESC_COLORS } from "@/config/colors";
 
 export default function AccordionSection({
   title,
@@ -20,6 +23,11 @@ export default function AccordionSection({
   className = "",
 }) {
   const { isOpen, toggleOpen } = useAccordionSection();
+  const pathname = usePathname();
+  
+  // Determine current belt and get colors
+  const currentBelt = pathname?.split("/")[1];
+  const colors = SECTION_DESC_COLORS[currentBelt] || SECTION_DESC_COLORS.white;
 
   return (
     <div
@@ -28,11 +36,16 @@ export default function AccordionSection({
       {/* Accordion header */}
       <button
         onClick={toggleOpen}
-        className={`w-full text-left p-6 flex items-center justify-between bg-white hover:bg-gray-50 transition-colors duration-200 focus:outline-none ${
+        className={`w-full text-left p-6 flex items-center justify-between bg-white hover:bg-gray-50 transition-colors duration-200 focus:outline-none relative cursor-pointer ${
           isOpen ? "rounded-t-xl" : "rounded-xl"
         }`}
       >
-        <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
+        <div className="flex items-center space-x-3">
+          <div className={`p-2 rounded-lg ${colors.bg} transition-opacity duration-200`}>
+            <FaCode className={`w-4 h-4 ${colors.text}`} />
+          </div>
+          <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
+        </div>
         <MdExpandMore
           className={`w-6 h-6 text-gray-500 transition-transform duration-200 ${
             isOpen ? "rotate-180" : ""
@@ -42,10 +55,10 @@ export default function AccordionSection({
 
       {/* Accordion content */}
       {isOpen && (
-        <div className="p-6 bg-gray-50 space-y-6 rounded-b-xl">
+        <div className="p-6 bg-white space-y-6 rounded-b-xl border-t border-gray-200">
           {/* Description */}
-          <div className="prose prose-gray max-w-none">
-            <p className="text-gray-700 leading-relaxed">{content}</p>
+          <div className={`${colors.bg} ${colors.border} border-l-4 p-6 rounded-r-lg`}>
+            <p className={`${colors.text} leading-relaxed`}>{content}</p>
           </div>
 
           {/* SQL Code */}

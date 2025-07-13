@@ -38,10 +38,10 @@ export default function SectionTopNavigation() {
           {previous && (
             <Link
               href={previous.href}
-              className={`inline-flex items-center ${textColor} hover:opacity-70 transition-opacity focus:outline-none`}
+              className="inline-flex items-center px-4 py-2 bg-white rounded-lg shadow-sm focus:outline-none group"
             >
-              <MdChevronLeft className="w-5 h-5 mr-1" />
-              <span className="text-sm font-medium">{getPreviousLabel()}</span>
+              <MdChevronLeft className={`w-5 h-5 mr-1 ${textColor} group-hover:opacity-70 transition-opacity`} />
+              <span className={`text-sm font-medium ${textColor} group-hover:opacity-70 transition-opacity`}>{getPreviousLabel()}</span>
             </Link>
           )}
         </div>
@@ -51,10 +51,10 @@ export default function SectionTopNavigation() {
           {next && (
             <Link
               href={next.href}
-              className={`inline-flex items-center ${textColor} hover:opacity-70 transition-opacity focus:outline-none`}
+              className="inline-flex items-center px-4 py-2 bg-white rounded-lg shadow-sm focus:outline-none group"
             >
-              <span className="text-sm font-medium">{getNextLabel()}</span>
-              <MdChevronRight className="w-5 h-5 ml-1" />
+              <span className={`text-sm font-medium ${textColor} group-hover:opacity-70 transition-opacity`}>{getNextLabel()}</span>
+              <MdChevronRight className={`w-5 h-5 ml-1 ${textColor} group-hover:opacity-70 transition-opacity`} />
             </Link>
           )}
         </div>
