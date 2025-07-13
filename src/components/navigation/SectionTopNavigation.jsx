@@ -6,15 +6,15 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 
-// Couleurs de ceinture pour le texte
+// Couleurs de ceinture pour le texte avec meilleur contraste
 const BELT_TEXT_COLORS = {
-  white: "text-gray-600",
-  yellow: "text-yellow-600", 
-  orange: "text-orange-600",
-  green: "text-green-600",
-  blue: "text-blue-600",
-  brown: "text-yellow-800",
-  black: "text-gray-800",
+  white: "text-gray-700",
+  yellow: "text-yellow-700", 
+  orange: "text-orange-700",
+  green: "text-green-700",
+  blue: "text-blue-700",
+  brown: "text-yellow-900",
+  black: "text-white", // Blanc sur fond noir pour la lisibilité
 };
 
 export default function SectionTopNavigation() {
@@ -42,14 +42,14 @@ export default function SectionTopNavigation() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 py-4">
       <div className="flex justify-between items-center">
         <div className="flex-1">
           {/* Previous Link */}
           {previous && (
             <Link 
               href={previous.href} 
-              className={`inline-flex items-center ${textColor} hover:opacity-70 transition-opacity`}
+              className={`inline-flex items-center ${textColor} hover:opacity-70 transition-opacity focus:outline-none`}
             >
               <MdChevronLeft className="w-5 h-5 mr-1" />
               <span className="text-sm font-medium">{getPreviousLabel()}</span>
@@ -62,7 +62,7 @@ export default function SectionTopNavigation() {
           {next && (
             <Link 
               href={next.href} 
-              className={`inline-flex items-center ${textColor} hover:opacity-70 transition-opacity`}
+              className={`inline-flex items-center ${textColor} hover:opacity-70 transition-opacity focus:outline-none`}
             >
               <span className="text-sm font-medium">{getNextLabel()}</span>
               <MdChevronRight className="w-5 h-5 ml-1" />

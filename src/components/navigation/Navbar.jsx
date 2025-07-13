@@ -70,7 +70,7 @@ export default function Navbar() {
           <Link
             key={item.key}
             href={item.href}
-            className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-200 text-sm font-medium border ${
+            className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-200 text-sm font-medium border focus:outline-none ${
               isPractice
                 ? "bg-green-600 text-white border-green-600 shadow-md hover:bg-green-700 hover:shadow-lg"
                 : isActive(item.href)

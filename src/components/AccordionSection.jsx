@@ -28,7 +28,7 @@ export default function AccordionSection({
       {/* Accordion header */}
       <button
         onClick={toggleOpen}
-        className={`w-full text-left p-6 flex items-center justify-between bg-white hover:bg-gray-50 transition-colors duration-200 ${
+        className={`w-full text-left p-6 flex items-center justify-between bg-white hover:bg-gray-50 transition-colors duration-200 focus:outline-none ${
           isOpen ? "border-b border-gray-200 rounded-t-xl" : "rounded-xl"
         }`}
       >

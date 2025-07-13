@@ -18,7 +18,7 @@ export default function HeaderSection({ header, beltColors = null, currentBelt =
 
   return (
     <div className={`py-16 bg-white border-b-2 ${borderColor}`}>
-      <div className="container mx-auto px-4 text-center max-w-4xl space-y-4">
+      <div className="max-w-[1500px] mx-auto px-4 text-center space-y-4">
         <Title className={`${beltColors ? beltColors.text : 'text-gray-900'}`}>
           {header.title}
         </Title>
