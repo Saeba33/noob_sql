@@ -1,7 +1,7 @@
-export default function PracticePage() {
+export default function IntroductionPage() {
   return (
     <section className="flex-1 w-full max-w-[1500px] mx-auto px-4 py-8 bg-green-300/20">
-      <h1>Practice Page</h1>
+      <h1>Introduction Page</h1>
     </section>
   );
 }
