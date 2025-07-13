@@ -133,7 +133,7 @@ export const SECTION_NAV_COLORS = {
   green: "text-green-800",
   blue: "text-blue-800",
   brown: "text-yellow-950",
-  black: "text-gray-100"
+  black: "text-gray-800"
 };
 
 // === HOME NAVIGATION COLORS ===
