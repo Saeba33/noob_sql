@@ -10,8 +10,17 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="fr">
-      <body
-      >
+      <head>
+        <script
+          type="module"
+          src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"
+        ></script>
+        <script
+          noModule
+          src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"
+        ></script>
+      </head>
+      <body>
         <div className="min-h-screen flex flex-col">
           <Header />
           {children}
