@@ -49,9 +49,9 @@ export default function SqlResultBlock({
           className={`${styles.header} px-4 py-2 flex items-center space-x-2`}
         >
           <div className="flex space-x-1">
+            <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+            <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
             <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-            <div className="w-3 h-3 bg-emerald-500 rounded-full"></div>
-            <div className="w-3 h-3 bg-teal-500 rounded-full"></div>
           </div>
           <span className={`${styles.headerText} text-sm font-mono ml-3`}>
             {title} ({formattedData.rows.length} ligne

@@ -17,16 +17,18 @@ export default function SqlTableBlock({
             className={`${styles.header} px-4 py-2 flex items-center space-x-2`}
           >
             <div className="flex space-x-1">
-              <div className="w-3 h-3 bg-indigo-500 rounded-full"></div>
-              <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-              <div className="w-3 h-3 bg-purple-500 rounded-full"></div>
+              <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+              <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+              <div className="w-3 h-3 bg-green-500 rounded-full"></div>
             </div>
             <span className={`${styles.headerText} text-sm font-mono ml-3`}>
               {title}
             </span>
           </div>
           <div className="p-4">
-            <p className={`${styles.content} text-center italic`}>Table vide</p>
+            <p className={`${styles.content} text-center italic`}>
+              Empty table
+            </p>
           </div>
         </div>
       </div>
@@ -45,12 +47,12 @@ export default function SqlTableBlock({
           className={`${styles.header} px-4 py-2 flex items-center space-x-2`}
         >
           <div className="flex space-x-1">
-            <div className="w-3 h-3 bg-indigo-500 rounded-full"></div>
-            <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-            <div className="w-3 h-3 bg-purple-500 rounded-full"></div>
+            <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+            <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+            <div className="w-3 h-3 bg-green-500 rounded-full"></div>
           </div>
           <span className={`${styles.headerText} text-sm font-mono ml-3`}>
-            {title} ({data.length} enregistrement{data.length > 1 ? "s" : ""})
+            {title} ({data.length} record{data.length > 1 ? "s" : ""})
           </span>
         </div>
 
@@ -105,7 +107,7 @@ export default function SqlTableBlock({
               navigator.clipboard.writeText(JSON.stringify(data, null, 2))
             }
             className="bg-gray-700 hover:bg-gray-600 text-gray-300 hover:text-white p-2 rounded transition-colors duration-200"
-            title="Copier la table"
+            title="Copy table"
           >
             <ion-icon name="copy-outline" class="w-4 h-4"></ion-icon>
           </button>

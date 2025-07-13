@@ -1,6 +1,6 @@
 "use client";
 
-import { PAGES_CONFIG } from "@/lib/constants";
+import { PAGES_CONFIG } from "@/config/navigation";
 import { usePathname } from "next/navigation";
 import { useMemo } from "react";
 
