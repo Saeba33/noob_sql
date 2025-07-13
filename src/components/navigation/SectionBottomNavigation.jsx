@@ -42,13 +42,14 @@ export default function SectionBottomNavigation() {
   };
 
   return (
-    <div className="bg-white rounded-xl shadow-sm border border-gray-200 max-w-[1500px] mx-auto mt-8 p-6">
-      <div className="flex justify-between items-center">
+    <div className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 my-8">
+      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+        <div className="flex justify-between items-center">
         <div className="flex-1">
           {/* Previous Link */}
           {previous && (
-            <Link 
-              href={previous.href} 
+            <Link
+              href={previous.href}
               className={`inline-flex items-center ${textColor} hover:opacity-70 transition-opacity focus:outline-none`}
             >
               <MdChevronLeft className="w-5 h-5 mr-1" />
@@ -67,8 +68,8 @@ export default function SectionBottomNavigation() {
         <div className="flex-1 flex justify-end">
           {/* Next Link */}
           {next && (
-            <Link 
-              href={next.href} 
+            <Link
+              href={next.href}
               className={`inline-flex items-center ${textColor} hover:opacity-70 transition-opacity focus:outline-none`}
             >
               <span className="text-sm font-medium">{getNextLabel()}</span>
@@ -77,6 +78,7 @@ export default function SectionBottomNavigation() {
           )}
         </div>
       </div>
+    </div>
     </div>
   );
 }
