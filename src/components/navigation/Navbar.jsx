@@ -18,54 +18,62 @@ export default function Navbar() {
       hover: "hover:bg-gray-50",
       text: "text-gray-700",
       activeText: "text-gray-800",
-      activeBg: "bg-gray-50"
+      activeBg: "bg-gray-50",
+      hoverBorder: "hover:border-gray-400"
     },
     yellow: { 
       ring: "ring-yellow-400", 
       hover: "hover:bg-yellow-50",
       text: "text-yellow-700",
       activeText: "text-yellow-800",
-      activeBg: "bg-yellow-50"
+      activeBg: "bg-yellow-50",
+      hoverBorder: "hover:border-yellow-400"
     },
     orange: { 
       ring: "ring-orange-400", 
       hover: "hover:bg-orange-50",
       text: "text-orange-700",
       activeText: "text-orange-800",
-      activeBg: "bg-orange-50"
+      activeBg: "bg-orange-50",
+      hoverBorder: "hover:border-orange-400"
     },
     green: { 
       ring: "ring-green-400", 
       hover: "hover:bg-green-50",
       text: "text-green-700",
       activeText: "text-green-800",
-      activeBg: "bg-green-50"
+      activeBg: "bg-green-50",
+      hoverBorder: "hover:border-green-400"
     },
     blue: { 
       ring: "ring-blue-400", 
       hover: "hover:bg-blue-50",
       text: "text-blue-700",
       activeText: "text-blue-800",
-      activeBg: "bg-blue-50"
+      activeBg: "bg-blue-50",
+      hoverBorder: "hover:border-blue-400"
     },
     brown: { 
-      ring: "ring-amber-700", 
-      hover: "hover:bg-amber-50",
-      text: "text-amber-800",
-      activeText: "text-amber-900",
-      activeBg: "bg-amber-50"
+      ring: "ring-yellow-900", 
+      hover: "hover:bg-yellow-50",
+      text: "text-yellow-900",
+      activeText: "text-yellow-950",
+      activeBg: "bg-yellow-50",
+      hoverBorder: "hover:border-yellow-900"
     },
     black: { 
       ring: "ring-gray-800", 
       hover: "hover:bg-gray-50",
       text: "text-gray-800",
       activeText: "text-gray-900",
-      activeBg: "bg-gray-50"
+      activeBg: "bg-gray-50",
+      hoverBorder: "hover:border-gray-800"
     },
     practice: { 
       ring: "ring-purple-600", 
       hover: "hover:bg-purple-50",
-      text: "text-purple-700"
+      text: "text-purple-700",
+      hoverBorder: "hover:border-purple-600"
     }
   };
 
@@ -86,10 +94,10 @@ export default function Navbar() {
             href={item.href}
             className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-200 text-sm font-medium border focus:outline-none ${
               isPractice
-                ? "bg-purple-600 text-white border-purple-600 shadow-md hover:bg-purple-700 hover:shadow-lg"
+                ? "bg-purple-600 text-white border-purple-600 shadow-md hover:bg-purple-700 hover:shadow-lg hover:border-purple-700"
                 : isActive(item.href)
                 ? `${beltStyle.ring} ring-2 ${beltStyle.activeBg} border-transparent shadow-md ${beltStyle.activeText}`
-                : `text-gray-700 border-transparent ${beltStyle.hover} hover:border-gray-200`
+                : `text-gray-700 border-transparent ${beltStyle.hover} ${beltStyle.hoverBorder}`
             }`}
           >
             {!isPractice && (

@@ -6,14 +6,14 @@ export const brownBeltContent = {
   description: "Performance - Optimisez vos requêtes",
   topics: ["Index", "Plan d'exécution", "Optimisation", "EXPLAIN"],
   colors: {
-    bg: "bg-amber-50",
-    text: "text-amber-900",
-    border: "border-amber-300",
-    accent: "bg-amber-600",
-    headerBorder: "border-amber-400",
-    tagBg: "bg-amber-200",
-    tagText: "text-amber-800",
-    hover: "hover:bg-amber-100",
+    bg: "bg-yellow-50",
+    text: "text-yellow-950",
+    border: "border-yellow-300",
+    accent: "bg-yellow-800",
+    headerBorder: "border-yellow-400",
+    tagBg: "bg-yellow-200",
+    tagText: "text-yellow-900",
+    hover: "hover:bg-yellow-100",
   },
 
   // Content sections

@@ -4,7 +4,7 @@ import HomeNavigation from "@/components/navigation/HomeNavigation";
 
 export default function IntroductionPage() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
       {/* Introduction Section */}
       <div className="container mx-auto px-4 py-16">
         <div className="text-center mb-12">

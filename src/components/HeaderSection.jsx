@@ -9,7 +9,7 @@ const BELT_BORDER_COLORS = {
   orange: "border-orange-400",
   green: "border-green-400",
   blue: "border-blue-400",
-  brown: "border-amber-700",
+  brown: "border-yellow-900",
   black: "border-gray-800",
 };
 

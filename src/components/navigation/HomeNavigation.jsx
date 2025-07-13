@@ -32,7 +32,7 @@ const BELT_COLORS = {
   orange: { border: "border-l-orange-400", text: "text-orange-600", bg: "bg-white" },
   green: { border: "border-l-green-400", text: "text-green-600", bg: "bg-white" },
   blue: { border: "border-l-blue-400", text: "text-blue-600", bg: "bg-white" },
-  brown: { border: "border-l-amber-700", text: "text-amber-800", bg: "bg-white" },
+  brown: { border: "border-l-yellow-900", text: "text-yellow-900", bg: "bg-white" },
   black: { border: "border-l-gray-800", text: "text-gray-800", bg: "bg-white" },
 };
 
