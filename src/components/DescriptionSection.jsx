@@ -29,9 +29,9 @@ const BELT_COLORS = {
     border: "border-l-blue-400"
   },
   brown: { 
-    bg: "bg-yellow-50",
-    text: "text-yellow-800",
-    border: "border-l-yellow-800"
+    bg: "bg-amber-50",
+    text: "text-amber-900",
+    border: "border-l-amber-700"
   },
   black: { 
     bg: "bg-gray-50",

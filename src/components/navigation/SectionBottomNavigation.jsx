@@ -13,7 +13,7 @@ const BELT_TEXT_COLORS = {
   orange: "text-orange-700",
   green: "text-green-700",
   blue: "text-blue-700",
-  brown: "text-yellow-900",
+  brown: "text-amber-900",
   black: "text-gray-800", // Reste noir car sur fond blanc
 };
 

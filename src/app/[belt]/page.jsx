@@ -40,7 +40,7 @@ export default async function BeltPage({ params }) {
 
   return (
     <div className={`min-h-screen ${beltContent.colors.bg}`}>
-      <main className="max-w-[1500px] mx-auto px-4 py-8 space-y-8">
+      <main className="mx-auto space-y-8">
         <HeaderSection 
           header={beltContent.header}
           beltColors={beltContent.colors}

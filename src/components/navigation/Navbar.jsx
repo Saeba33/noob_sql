@@ -16,37 +16,51 @@ export default function Navbar() {
     white: { 
       ring: "ring-gray-400", 
       hover: "hover:bg-gray-50",
-      text: "text-gray-700"
+      text: "text-gray-700",
+      activeText: "text-gray-800",
+      activeBg: "bg-gray-50"
     },
     yellow: { 
       ring: "ring-yellow-400", 
       hover: "hover:bg-yellow-50",
-      text: "text-yellow-700"
+      text: "text-yellow-700",
+      activeText: "text-yellow-800",
+      activeBg: "bg-yellow-50"
     },
     orange: { 
       ring: "ring-orange-400", 
       hover: "hover:bg-orange-50",
-      text: "text-orange-700"
+      text: "text-orange-700",
+      activeText: "text-orange-800",
+      activeBg: "bg-orange-50"
     },
     green: { 
       ring: "ring-green-400", 
       hover: "hover:bg-green-50",
-      text: "text-green-700"
+      text: "text-green-700",
+      activeText: "text-green-800",
+      activeBg: "bg-green-50"
     },
     blue: { 
       ring: "ring-blue-400", 
       hover: "hover:bg-blue-50",
-      text: "text-blue-700"
+      text: "text-blue-700",
+      activeText: "text-blue-800",
+      activeBg: "bg-blue-50"
     },
     brown: { 
-      ring: "ring-yellow-800", 
-      hover: "hover:bg-yellow-50",
-      text: "text-yellow-800"
+      ring: "ring-amber-700", 
+      hover: "hover:bg-amber-50",
+      text: "text-amber-800",
+      activeText: "text-amber-900",
+      activeBg: "bg-amber-50"
     },
     black: { 
       ring: "ring-gray-800", 
       hover: "hover:bg-gray-50",
-      text: "text-gray-800"
+      text: "text-gray-800",
+      activeText: "text-gray-900",
+      activeBg: "bg-gray-50"
     },
     practice: { 
       ring: "ring-green-600", 
@@ -74,7 +88,7 @@ export default function Navbar() {
               isPractice
                 ? "bg-green-600 text-white border-green-600 shadow-md hover:bg-green-700 hover:shadow-lg"
                 : isActive(item.href)
-                ? `${beltStyle.ring} ring-2 bg-white border-transparent shadow-md ${beltStyle.text}`
+                ? `${beltStyle.ring} ring-2 ${beltStyle.activeBg} border-transparent shadow-md ${beltStyle.activeText}`
                 : `text-gray-700 border-transparent ${beltStyle.hover} hover:border-gray-200`
             }`}
           >

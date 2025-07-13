@@ -9,7 +9,7 @@ const BELT_BORDER_COLORS = {
   orange: "border-orange-400",
   green: "border-green-400",
   blue: "border-blue-400",
-  brown: "border-yellow-800",
+  brown: "border-amber-700",
   black: "border-gray-800",
 };
 
@@ -17,8 +17,8 @@ export default function HeaderSection({ header, beltColors = null, currentBelt =
   const borderColor = BELT_BORDER_COLORS[currentBelt] || "border-gray-400";
 
   return (
-    <div className={`py-16 bg-white border-b-2 ${borderColor}`}>
-      <div className="max-w-[1500px] mx-auto px-4 text-center space-y-4">
+    <div className={`py-16 bg-white border-b-3 ${borderColor}`}>
+      <div className="px-4 text-center space-y-4">
         <Title className={`${beltColors ? beltColors.text : 'text-gray-900'}`}>
           {header.title}
         </Title>

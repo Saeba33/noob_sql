@@ -2,6 +2,7 @@
 
 import { PAGES_CONFIG } from "@/config/navigation";
 import Link from "next/link";
+import { MdFitnessCenter } from "react-icons/md";
 import BeltIcon from "@/components/ui/BeltIcon";
 
 // Import des contenus de chaque ceinture pour les données complètes
@@ -31,7 +32,7 @@ const BELT_COLORS = {
   orange: { border: "border-l-orange-400", text: "text-orange-600", bg: "bg-white" },
   green: { border: "border-l-green-400", text: "text-green-600", bg: "bg-white" },
   blue: { border: "border-l-blue-400", text: "text-blue-600", bg: "bg-white" },
-  brown: { border: "border-l-yellow-800", text: "text-yellow-800", bg: "bg-white" },
+  brown: { border: "border-l-amber-700", text: "text-amber-800", bg: "bg-white" },
   black: { border: "border-l-gray-800", text: "text-gray-800", bg: "bg-white" },
 };
 
@@ -70,7 +71,6 @@ export default function HomeNavigation() {
                 hover:shadow-md 
                 transition-all 
                 duration-200 
-                group-hover:scale-105
                 h-48
                 flex
                 flex-col
@@ -78,7 +78,7 @@ export default function HomeNavigation() {
               >
                 <div className="flex items-center mb-3">
                   <BeltIcon belt={page.key} size={20} className="mr-3" />
-                  <h3 className={`text-base font-semibold ${colors.text}`}>
+                  <h3 className={`text-base font-semibold text-gray-700 group-hover:${colors.text.replace('text-', '')} transition-colors`}>
                     {page.title}
                   </h3>
                 </div>
@@ -109,10 +109,10 @@ export default function HomeNavigation() {
 
         {/* Practice Card */}
         <Link href="/practice" className="group">
-          <div className="bg-white border-l-green-600 border-l-4 border-gray-100 border rounded-lg p-4 shadow-sm hover:shadow-md transition-all duration-200 group-hover:scale-105 h-48 flex flex-col">
+          <div className="bg-white border-l-purple-600 border-l-4 border-gray-100 border rounded-lg p-4 shadow-sm hover:shadow-md transition-all duration-200 h-48 flex flex-col">
             <div className="flex items-center mb-3">
-              <span className="text-green-600 mr-3 text-xl">🏟️</span>
-              <h3 className="text-base font-semibold text-green-600">
+              <MdFitnessCenter className="text-purple-600 mr-3 w-5 h-5" />
+              <h3 className="text-base font-semibold text-gray-700 group-hover:text-purple-600 transition-colors">
                 Pratique
               </h3>
             </div>

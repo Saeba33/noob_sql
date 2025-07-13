@@ -6,7 +6,7 @@ const BELT_ICON_COLORS = {
   orange: "#FB923C", // orange-400
   green: "#4ADE80", // green-400
   blue: "#60A5FA", // blue-400
-  brown: "#92400E", // brown-700
+  brown: "#92400E", // amber-800
   black: "#111827", // gray-900 - plus foncé que gray-800
 };
 
