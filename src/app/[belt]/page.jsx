@@ -1,11 +1,11 @@
 import { notFound } from "next/navigation";
-import HeaderSection from "@/components/common/HeaderSection";
-import DescriptionSection from "@/components/common/DescriptionSection";
-import AccordionList from "@/components/common/AccordionList";
+import HeaderSection from "@/components/HeaderSection";
+import DescriptionSection from "@/components/DescriptionSection";
+import AccordionList from "@/components/AccordionList";
 import SectionTopNavigation from "@/components/navigation/SectionTopNavigation";
 import SectionBottomNavigation from "@/components/navigation/SectionBottomNavigation";
 
-// Import des contenus de chaque ceinture
+// Import belt content for each level
 import { whiteBeltContent } from "@/data/sections/white";
 import { yellowBeltContent } from "@/data/sections/yellow";
 import { orangeBeltContent } from "@/data/sections/orange";
@@ -14,7 +14,7 @@ import { blueBeltContent } from "@/data/sections/blue";
 import { brownBeltContent } from "@/data/sections/brown";
 import { blackBeltContent } from "@/data/sections/black";
 
-// Configuration des ceintures valides
+// Valid belt configuration
 const BELT_CONTENTS = {
   white: whiteBeltContent,
   yellow: yellowBeltContent,
@@ -30,12 +30,12 @@ const VALID_BELTS = Object.keys(BELT_CONTENTS);
 export default async function BeltPage({ params }) {
   const { belt } = await params;
 
-  // Vérifier si la ceinture est valide
+  // Check if belt is valid
   if (!VALID_BELTS.includes(belt)) {
     notFound();
   }
 
-  // Récupérer le contenu de la ceinture
+  // Get belt content
   const beltContent = BELT_CONTENTS[belt];
 
   return (
@@ -68,7 +68,7 @@ export default async function BeltPage({ params }) {
   );
 }
 
-// Génération statique pour toutes les ceintures valides
+// Static generation for all valid belts
 export async function generateStaticParams() {
   return VALID_BELTS.map((belt) => ({
     belt,

@@ -11,14 +11,14 @@ export default function SectionBottomNavigation() {
   const { previous, next, current } = getSectionNavigation();
   const pathname = usePathname();
 
-  // Déterminer la ceinture actuelle
+  // Determine current belt
   const currentBelt = pathname?.split("/")[1];
   const textColor = SECTION_NAV_COLORS[currentBelt] || SECTION_NAV_COLORS.white;
 
   // Show only if we have a previous or next link
   if (!previous && !next) return null;
 
-  // Déterminer les libellés des boutons
+  // Determine button labels
   const getPreviousLabel = () => {
     if (!previous) return "";
     if (previous.href === "/") return "Retour à l'accueil";

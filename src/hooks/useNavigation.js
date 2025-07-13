@@ -41,7 +41,7 @@ export const useNavigation = () => {
       (item) => item.href === pathname
     );
 
-    // Pour la première page (white), on ajoute un lien vers l'accueil
+    // For the first page (white), add a link to home
     const previous =
       currentIndex === 0
         ? { href: "/", title: "Accueil" }

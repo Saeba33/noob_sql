@@ -6,7 +6,7 @@ import Link from "next/link";
 import { MdFitnessCenter } from "react-icons/md";
 import { HOME_NAV_COLORS } from "@/config/colors";
 
-// Import des contenus de chaque ceinture pour les données complètes
+// Import belt content for complete data
 import { blackBeltContent } from "@/data/sections/black";
 import { blueBeltContent } from "@/data/sections/blue";
 import { brownBeltContent } from "@/data/sections/brown";
@@ -15,7 +15,7 @@ import { orangeBeltContent } from "@/data/sections/orange";
 import { whiteBeltContent } from "@/data/sections/white";
 import { yellowBeltContent } from "@/data/sections/yellow";
 
-// Mapping des contenus par ceinture
+// Belt content mapping
 const BELT_CONTENTS = {
   white: whiteBeltContent,
   yellow: yellowBeltContent,
@@ -27,9 +27,9 @@ const BELT_CONTENTS = {
 };
 
 export default function HomeNavigation() {
-  // Combiner les données de navigation avec les contenus détaillés
+  // Combine navigation data with detailed content
   const belts = Object.entries(PAGES_CONFIG)
-    .filter(([key, page]) => BELT_CONTENTS[key]) // Seulement les ceintures qui ont du contenu
+    .filter(([key, page]) => BELT_CONTENTS[key]) // Only belts that have content
     .map(([key, page]) => ({
       ...page,
       key,

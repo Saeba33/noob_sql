@@ -36,7 +36,7 @@ export const PAGES_CONFIG = {
   },
   practice: {
     order: 8,
-    title: "Pratique",
+    title: "Mise en pratique",
     href: "/practice",
   },
 };

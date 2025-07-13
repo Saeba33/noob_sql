@@ -1,19 +1,15 @@
-/**
- * 🎨 Configuration centralisée des couleurs - Système DRY Simple
- */
-
-// === COULEURS DES ICÔNES DE CEINTURES ===
+// === BELT ICON COLORS ===
 export const BELT_ICON_COLORS = {
-  white: "#E5E7EB",    // gray-200
-  yellow: "#EAB308",   // yellow-500
-  orange: "#F97316",   // orange-500
-  green: "#22C55E",    // green-500
-  blue: "#3B82F6",     // blue-500
-  brown: "#8B4513",    // saddle brown
-  black: "#1F2937"     // gray-800
+  white: "#E5E7EB",
+  yellow: "#EAB308",
+  orange: "#F97316",
+  green: "#22C55E",
+  blue: "#3B82F6",
+  brown: "#8B4513",
+  black: "#1F2937"
 };
 
-// === COULEURS POUR LA NAVBAR ===
+// === NAVBAR COLORS ===
 export const NAVBAR_COLORS = {
   white: {
     ring: "ring-gray-400",
@@ -79,7 +75,7 @@ export const NAVBAR_COLORS = {
   }
 };
 
-// === COULEURS POUR LES HEADERS DE SECTION ===
+// === SECTION HEADER COLORS ===
 export const SECTION_HEADER_COLORS = {
   white: "border-gray-400",
   yellow: "border-yellow-400",
@@ -90,7 +86,7 @@ export const SECTION_HEADER_COLORS = {
   black: "border-gray-800"
 };
 
-// === COULEURS POUR LES DESCRIPTIONS DE SECTION ===
+// === SECTION DESCRIPTION COLORS ===
 export const SECTION_DESC_COLORS = {
   white: {
     bg: "bg-gray-50",
@@ -129,7 +125,7 @@ export const SECTION_DESC_COLORS = {
   }
 };
 
-// === COULEURS POUR LA NAVIGATION DE SECTION ===
+// === SECTION NAVIGATION COLORS ===
 export const SECTION_NAV_COLORS = {
   white: "text-gray-800",
   yellow: "text-yellow-800",
@@ -140,7 +136,7 @@ export const SECTION_NAV_COLORS = {
   black: "text-gray-100"
 };
 
-// === COULEURS POUR LA NAVIGATION D'ACCUEIL ===
+// === HOME NAVIGATION COLORS ===
 export const HOME_NAV_COLORS = {
   white: { border: "border-l-gray-400", text: "text-gray-700", bg: "bg-white" },
   yellow: { border: "border-l-yellow-400", text: "text-yellow-700", bg: "bg-white" },
@@ -151,7 +147,7 @@ export const HOME_NAV_COLORS = {
   black: { border: "border-l-gray-800", text: "text-gray-800", bg: "bg-white" }
 };
 
-// === COULEURS COMPLÈTES POUR LES SECTIONS DE DONNÉES ===
+// === COMPLETE COLORS FOR DATA SECTIONS ===
 export const SECTION_DATA_COLORS = {
   white: {
     bg: "bg-gray-50",
