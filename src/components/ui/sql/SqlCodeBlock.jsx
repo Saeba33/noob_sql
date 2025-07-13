@@ -1,5 +1,4 @@
 import { analyzeSqlCode, sqlSyntaxConfig } from "../../../data/sqlSyntax.js";
-import { MdContentCopy } from "react-icons/md";
 
 export default function SqlCodeBlock({ children, className = "" }) {
   // Function to colorize SQL code using the configuration
@@ -75,17 +74,6 @@ export default function SqlCodeBlock({ children, className = "" }) {
           <pre className="text-sm font-mono leading-relaxed overflow-x-auto">
             <code>{renderColorizedCode(children)}</code>
           </pre>
-        </div>
-
-        {/* Copy Button */}
-        <div className="absolute top-2 right-2">
-          <button
-            onClick={() => navigator.clipboard.writeText(children)}
-            className="bg-gray-700 hover:bg-gray-600 text-gray-300 hover:text-white p-2 rounded transition-colors duration-200"
-            title="Copier le code"
-          >
-            <MdContentCopy className="w-4 h-4" />
-          </button>
         </div>
       </div>
     </div>

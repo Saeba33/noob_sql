@@ -6,6 +6,7 @@ import SqlResultBlock from "@/components/ui/sql/SqlResultBlock";
 import SqlSchemaBlock from "@/components/ui/sql/SqlSchemaBlock";
 import SqlTableBlock from "@/components/ui/sql/SqlTableBlock";
 import { useAccordionSection } from "@/hooks/useAccordionSection";
+import { MdExpandMore, MdCode, MdAccountTree, MdLibraryBooks, MdCheckCircle, MdGridOn, MdInfo } from "react-icons/md";
 
 export default function AccordionSection({
   title,
@@ -22,27 +23,26 @@ export default function AccordionSection({
 
   return (
     <div
-      className={`mb-6 border border-gray-200 rounded-lg shadow-sm ${className}`}
+      className={`mb-6 border border-gray-200 rounded-xl shadow-sm ${className}`}
     >
       {/* Accordion header */}
       <button
         onClick={toggleOpen}
         className={`w-full text-left p-6 flex items-center justify-between bg-white hover:bg-gray-50 transition-colors duration-200 ${
-          isOpen ? "border-b border-gray-200" : "rounded-lg"
+          isOpen ? "border-b border-gray-200 rounded-t-xl" : "rounded-xl"
         }`}
       >
         <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
-        <ion-icon
-          name="chevron-down-outline"
-          class={`w-5 h-5 text-gray-500 transition-transform duration-200 ${
+        <MdExpandMore
+          className={`w-6 h-6 text-gray-500 transition-transform duration-200 ${
             isOpen ? "rotate-180" : ""
           }`}
-        ></ion-icon>
+        />
       </button>
 
       {/* Accordion content */}
       {isOpen && (
-        <div className="p-6 bg-gray-50 space-y-6">
+        <div className="p-6 bg-gray-50 space-y-6 rounded-b-xl">
           {/* Description */}
           <div className="prose prose-gray max-w-none">
             <p className="text-gray-700 leading-relaxed">{content}</p>
@@ -52,10 +52,7 @@ export default function AccordionSection({
           {sqlCode && (
             <div>
               <h4 className="text-sm font-semibold text-gray-900 mb-3 flex items-center">
-                <ion-icon
-                  name="code-outline"
-                  class="w-4 h-4 mr-2 text-blue-600"
-                ></ion-icon>
+                <MdCode className="w-4 h-4 mr-2 text-blue-600" />
                 SQL Code
               </h4>
               <SqlCodeBlock>{sqlCode}</SqlCodeBlock>
@@ -66,10 +63,7 @@ export default function AccordionSection({
           {diagram && (
             <div>
               <h4 className="text-sm font-semibold text-gray-900 mb-3 flex items-center">
-                <ion-icon
-                  name="git-network-outline"
-                  class="w-4 h-4 mr-2 text-slate-600"
-                ></ion-icon>
+                <MdAccountTree className="w-4 h-4 mr-2 text-slate-600" />
                 Diagram
               </h4>
               <SqlDiagramBlock title="Database Diagram">
@@ -82,10 +76,7 @@ export default function AccordionSection({
           {schema && (
             <div>
               <h4 className="text-sm font-semibold text-gray-900 mb-3 flex items-center">
-                <ion-icon
-                  name="library-outline"
-                  class="w-4 h-4 mr-2 text-purple-600"
-                ></ion-icon>
+                <MdLibraryBooks className="w-4 h-4 mr-2 text-purple-600" />
                 Table Schema
               </h4>
               <SqlSchemaBlock tables={schema} title="Table Schema" />
@@ -96,10 +87,7 @@ export default function AccordionSection({
           {result && (
             <div>
               <h4 className="text-sm font-semibold text-gray-900 mb-3 flex items-center">
-                <ion-icon
-                  name="checkmark-circle-outline"
-                  class="w-4 h-4 mr-2 text-green-600"
-                ></ion-icon>
+                <MdCheckCircle className="w-4 h-4 mr-2 text-green-600" />
                 Query Result
               </h4>
               <SqlResultBlock data={result} title="Query Result" />
@@ -110,10 +98,7 @@ export default function AccordionSection({
           {table && (
             <div>
               <h4 className="text-sm font-semibold text-gray-900 mb-3 flex items-center">
-                <ion-icon
-                  name="grid-outline"
-                  class="w-4 h-4 mr-2 text-indigo-600"
-                ></ion-icon>
+                <MdGridOn className="w-4 h-4 mr-2 text-indigo-600" />
                 Table Data
               </h4>
               <SqlTableBlock data={table} title="Table Data" />
@@ -124,10 +109,7 @@ export default function AccordionSection({
           {explanation && (
             <div className="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-r-lg">
               <div className="flex items-start">
-                <ion-icon
-                  name="information-circle-outline"
-                  class="w-5 h-5 text-blue-600 mr-2 mt-0.5 flex-shrink-0"
-                ></ion-icon>
+                <MdInfo className="w-5 h-5 text-blue-600 mr-2 mt-0.5 flex-shrink-0" />
                 <div>
                   <h4 className="text-sm font-semibold text-blue-900 mb-1">
                     Explanation

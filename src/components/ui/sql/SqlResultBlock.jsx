@@ -1,5 +1,4 @@
 import { formatQueryResult, sqlSyntaxConfig } from "../../../data/sqlSyntax.js";
-import { MdContentCopy } from "react-icons/md";
 
 export default function SqlResultBlock({
   data,
@@ -104,19 +103,6 @@ export default function SqlResultBlock({
               ))}
             </tbody>
           </table>
-        </div>
-
-        {/* Copy Button */}
-        <div className="absolute top-2 right-2">
-          <button
-            onClick={() =>
-              navigator.clipboard.writeText(JSON.stringify(data, null, 2))
-            }
-            className="bg-gray-700 hover:bg-gray-600 text-gray-300 hover:text-white p-2 rounded transition-colors duration-200"
-            title="Copier les résultats"
-          >
-            <MdContentCopy className="w-4 h-4" />
-          </button>
         </div>
       </div>
     </div>

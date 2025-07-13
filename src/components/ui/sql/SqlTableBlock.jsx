@@ -1,5 +1,4 @@
 import { sqlSyntaxConfig } from "../../../data/sqlSyntax.js";
-import { MdContentCopy } from "react-icons/md";
 
 export default function SqlTableBlock({
   data,
@@ -99,19 +98,6 @@ export default function SqlTableBlock({
               ))}
             </tbody>
           </table>
-        </div>
-
-        {/* Copy button */}
-        <div className="absolute top-2 right-2">
-          <button
-            onClick={() =>
-              navigator.clipboard.writeText(JSON.stringify(data, null, 2))
-            }
-            className="bg-gray-700 hover:bg-gray-600 text-gray-300 hover:text-white p-2 rounded transition-colors duration-200"
-            title="Copy table"
-          >
-            <MdContentCopy className="w-4 h-4" />
-          </button>
         </div>
       </div>
     </div>

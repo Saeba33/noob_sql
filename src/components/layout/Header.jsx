@@ -9,7 +9,7 @@ export default function Header() {
           {/* Logo + Titre */}
           <Link 
             href="/" 
-            className="flex items-center space-x-3 group hover:opacity-80 transition-opacity"
+            className="flex items-center space-x-3 group hover:opacity-80 transition-opacity focus:outline-none"
           >
             <span className="text-2xl group-hover:scale-110 transition-transform">🥋</span>
             <span className="text-xl font-bold text-gray-900 tracking-tight">

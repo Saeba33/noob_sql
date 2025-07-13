@@ -6,36 +6,53 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 
+// Couleurs de ceinture pour le texte
+const BELT_TEXT_COLORS = {
+  white: "text-gray-600",
+  yellow: "text-yellow-600", 
+  orange: "text-orange-600",
+  green: "text-green-600",
+  blue: "text-blue-600",
+  brown: "text-yellow-800",
+  black: "text-gray-800",
+};
+
 export default function SectionTopNavigation() {
   const { getSectionNavigation } = useNavigation();
   const { previous, next } = getSectionNavigation();
   const pathname = usePathname();
-
-  // Get current belt colors
-  const currentPage = Object.values(PAGES_CONFIG).find(
-    (page) => page.href === pathname
-  );
-  const beltColors = currentPage?.colors || null;
+  
+  // Déterminer la ceinture actuelle
+  const currentBelt = pathname?.split('/')[1];
+  const textColor = BELT_TEXT_COLORS[currentBelt] || "text-gray-600";
 
   // Show only if we have a previous or next link
   if (!previous && !next) return null;
 
-  const buttonClasses = beltColors
-    ? `inline-flex items-center px-4 py-2 text-sm font-medium ${beltColors.text} bg-white border ${beltColors.border} rounded-md hover:${beltColors.bg} hover:${beltColors.text} transition-colors duration-200`
-    : "inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 hover:text-gray-900 transition-colors duration-200";
+  // Déterminer les libellés des boutons
+  const getPreviousLabel = () => {
+    if (!previous) return "";
+    if (previous.href === "/") return "Retour à l'accueil";
+    return `Précédent : ${previous.title}`;
+  };
+
+  const getNextLabel = () => {
+    if (!next) return "";
+    return `Suivant : ${next.title}`;
+  };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
       <div className="flex justify-between items-center">
         <div className="flex-1">
           {/* Previous Link */}
           {previous && (
             <Link 
               href={previous.href} 
-              className="inline-flex items-center px-5 py-3 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-gray-900 transition-all duration-200 shadow-sm hover:shadow-md"
+              className={`inline-flex items-center ${textColor} hover:opacity-70 transition-opacity`}
             >
-              <MdChevronLeft className="w-4 h-4 mr-2" />
-              {previous.title}
+              <MdChevronLeft className="w-5 h-5 mr-1" />
+              <span className="text-sm font-medium">{getPreviousLabel()}</span>
             </Link>
           )}
         </div>
@@ -45,10 +62,10 @@ export default function SectionTopNavigation() {
           {next && (
             <Link 
               href={next.href} 
-              className="inline-flex items-center px-5 py-3 text-sm font-medium text-white bg-blue-600 border border-blue-600 rounded-lg hover:bg-blue-700 hover:border-blue-700 transition-all duration-200 shadow-sm hover:shadow-md"
+              className={`inline-flex items-center ${textColor} hover:opacity-70 transition-opacity`}
             >
-              {next.title}
-              <MdChevronRight className="w-4 h-4 ml-2" />
+              <span className="text-sm font-medium">{getNextLabel()}</span>
+              <MdChevronRight className="w-5 h-5 ml-1" />
             </Link>
           )}
         </div>

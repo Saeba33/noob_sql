@@ -1,37 +1,37 @@
 export const PAGES_CONFIG = {
   white: {
     order: 1,
-    title: "Ceinture Blanche",
+    title: "DDL",
     href: "/white",
   },
   yellow: {
     order: 2,
-    title: "Ceinture Jaune", 
+    title: "CRUD", 
     href: "/yellow",
   },
   orange: {
     order: 3,
-    title: "Ceinture Orange",
+    title: "Filtres & tris",
     href: "/orange",
   },
   green: {
     order: 4,
-    title: "Ceinture Verte",
+    title: "Agrégations",
     href: "/green",
   },
   blue: {
     order: 5,
-    title: "Ceinture Bleue",
+    title: "Jointures",
     href: "/blue",
   },
   brown: {
     order: 6,
-    title: "Ceinture Marron",
+    title: "Sous requêtes & vues",
     href: "/brown",
   },
   black: {
     order: 7,
-    title: "Ceinture Noire",
+    title: "Optimisation & sécurité",
     href: "/black",
   },
   practice: {

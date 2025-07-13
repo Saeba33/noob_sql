@@ -40,10 +40,11 @@ export default async function BeltPage({ params }) {
 
   return (
     <div className={`min-h-screen ${beltContent.colors.bg}`}>
-      <main className="container mx-auto px-4 py-8 space-y-8">
+      <main className="max-w-[1500px] mx-auto px-4 py-8 space-y-8">
         <HeaderSection 
           header={beltContent.header}
           beltColors={beltContent.colors}
+          currentBelt={belt}
         />
         
         <SectionTopNavigation 
@@ -52,6 +53,7 @@ export default async function BeltPage({ params }) {
         
         <DescriptionSection 
           pageDescription={beltContent.pageDescription}
+          currentBelt={belt}
         />
         
         <AccordionList 
