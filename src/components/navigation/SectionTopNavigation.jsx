@@ -1,30 +1,19 @@
 "use client";
 
 import { useNavigation } from "@/hooks/useNavigation";
-import { PAGES_CONFIG } from "@/config/navigation";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
-
-// Couleurs de ceinture pour le texte avec meilleur contraste
-const BELT_TEXT_COLORS = {
-  white: "text-gray-700",
-  yellow: "text-yellow-700", 
-  orange: "text-orange-700",
-  green: "text-green-700",
-  blue: "text-blue-700",
-  brown: "text-yellow-950",
-  black: "text-white", // Blanc sur fond noir pour la lisibilité
-};
+import { SECTION_NAV_COLORS } from "@/config/colors";
 
 export default function SectionTopNavigation() {
   const { getSectionNavigation } = useNavigation();
   const { previous, next } = getSectionNavigation();
   const pathname = usePathname();
-  
+
   // Déterminer la ceinture actuelle
-  const currentBelt = pathname?.split('/')[1];
-  const textColor = BELT_TEXT_COLORS[currentBelt] || "text-gray-600";
+  const currentBelt = pathname?.split("/")[1];
+  const textColor = SECTION_NAV_COLORS[currentBelt] || SECTION_NAV_COLORS.white;
 
   // Show only if we have a previous or next link
   if (!previous && !next) return null;
@@ -47,8 +36,8 @@ export default function SectionTopNavigation() {
         <div className="flex-1">
           {/* Previous Link */}
           {previous && (
-            <Link 
-              href={previous.href} 
+            <Link
+              href={previous.href}
               className={`inline-flex items-center ${textColor} hover:opacity-70 transition-opacity focus:outline-none`}
             >
               <MdChevronLeft className="w-5 h-5 mr-1" />
@@ -60,8 +49,8 @@ export default function SectionTopNavigation() {
         <div className="flex-1 flex justify-end">
           {/* Next Link */}
           {next && (
-            <Link 
-              href={next.href} 
+            <Link
+              href={next.href}
               className={`inline-flex items-center ${textColor} hover:opacity-70 transition-opacity focus:outline-none`}
             >
               <span className="text-sm font-medium">{getNextLabel()}</span>

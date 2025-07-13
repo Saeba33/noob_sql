@@ -1,3 +1,5 @@
+import { SECTION_DATA_COLORS } from "@/config/colors";
+
 export const whiteBeltContent = {
   // Belt configuration
   belt: "white",
@@ -5,16 +7,7 @@ export const whiteBeltContent = {
   beltBadge: "⚪",
   description: "Langage de définition de données - Créez vos premières tables",
   topics: ["CREATE TABLE", "ALTER TABLE", "DROP TABLE", "Types de données", "Contraintes"],
-  colors: {
-    bg: "bg-gray-50",
-    text: "text-gray-900",
-    border: "border-gray-300",
-    accent: "bg-gray-600",
-    headerBorder: "border-gray-400",
-    tagBg: "bg-gray-200",
-    tagText: "text-gray-800",
-    hover: "hover:bg-gray-100",
-  },
+  colors: SECTION_DATA_COLORS.white,
   
   // Content sections
   header: {

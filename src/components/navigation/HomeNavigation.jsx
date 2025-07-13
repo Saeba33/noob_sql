@@ -1,18 +1,19 @@
 "use client";
 
+import BeltIcon from "@/components/ui/BeltIcon";
 import { PAGES_CONFIG } from "@/config/navigation";
 import Link from "next/link";
 import { MdFitnessCenter } from "react-icons/md";
-import BeltIcon from "@/components/ui/BeltIcon";
+import { HOME_NAV_COLORS } from "@/config/colors";
 
 // Import des contenus de chaque ceinture pour les données complètes
-import { whiteBeltContent } from "@/data/sections/white";
-import { yellowBeltContent } from "@/data/sections/yellow";
-import { orangeBeltContent } from "@/data/sections/orange";
-import { greenBeltContent } from "@/data/sections/green";
+import { blackBeltContent } from "@/data/sections/black";
 import { blueBeltContent } from "@/data/sections/blue";
 import { brownBeltContent } from "@/data/sections/brown";
-import { blackBeltContent } from "@/data/sections/black";
+import { greenBeltContent } from "@/data/sections/green";
+import { orangeBeltContent } from "@/data/sections/orange";
+import { whiteBeltContent } from "@/data/sections/white";
+import { yellowBeltContent } from "@/data/sections/yellow";
 
 // Mapping des contenus par ceinture
 const BELT_CONTENTS = {
@@ -23,17 +24,6 @@ const BELT_CONTENTS = {
   blue: blueBeltContent,
   brown: brownBeltContent,
   black: blackBeltContent,
-};
-
-// Couleurs simplifiées pour les bordures et titres
-const BELT_COLORS = {
-  white: { border: "border-l-gray-400", text: "text-gray-600", bg: "bg-white" },
-  yellow: { border: "border-l-yellow-400", text: "text-yellow-600", bg: "bg-white" },
-  orange: { border: "border-l-orange-400", text: "text-orange-600", bg: "bg-white" },
-  green: { border: "border-l-green-400", text: "text-green-600", bg: "bg-white" },
-  blue: { border: "border-l-blue-400", text: "text-blue-600", bg: "bg-white" },
-  brown: { border: "border-l-yellow-900", text: "text-yellow-900", bg: "bg-white" },
-  black: { border: "border-l-gray-800", text: "text-gray-800", bg: "bg-white" },
 };
 
 export default function HomeNavigation() {
@@ -54,7 +44,7 @@ export default function HomeNavigation() {
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {/* Belt Cards */}
         {belts.map((page) => {
-          const colors = BELT_COLORS[page.key];
+          const colors = HOME_NAV_COLORS[page.key];
 
           return (
             <Link key={page.key} href={page.href} className="group">
@@ -78,7 +68,12 @@ export default function HomeNavigation() {
               >
                 <div className="flex items-center mb-3">
                   <BeltIcon belt={page.key} size={20} className="mr-3" />
-                  <h3 className={`text-base font-semibold text-gray-700 group-hover:${colors.text.replace('text-', '')} transition-colors`}>
+                  <h3
+                    className={`text-base font-semibold text-gray-700 group-hover:${colors.text.replace(
+                      "text-",
+                      ""
+                    )} transition-colors`}
+                  >
                     {page.title}
                   </h3>
                 </div>
@@ -89,10 +84,7 @@ export default function HomeNavigation() {
 
                 <div className="space-y-1 mt-auto">
                   {page.topics.slice(0, 3).map((topic, index) => (
-                    <div
-                      key={index}
-                      className="text-xs text-gray-500"
-                    >
+                    <div key={index} className="text-xs text-gray-500">
                       • {topic}
                     </div>
                   ))}
@@ -122,12 +114,8 @@ export default function HomeNavigation() {
             </p>
 
             <div className="space-y-1 mt-auto">
-              <div className="text-xs text-gray-500">
-                • Exercices pratiques
-              </div>
-              <div className="text-xs text-gray-500">
-                • Tests de niveau
-              </div>
+              <div className="text-xs text-gray-500">• Exercices pratiques</div>
+              <div className="text-xs text-gray-500">• Tests de niveau</div>
               <div className="text-xs text-gray-500">
                 • Validation des acquis
               </div>

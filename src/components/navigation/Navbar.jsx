@@ -1,81 +1,17 @@
 "use client";
 
-import { useNavigation } from "@/hooks/useNavigation";
-import { PAGES_CONFIG } from "@/config/navigation";
 import BeltIcon from "@/components/ui/BeltIcon";
+import { PAGES_CONFIG } from "@/config/navigation";
+import { useNavigation } from "@/hooks/useNavigation";
+import { NAVBAR_COLORS } from "@/config/colors";
 import Link from "next/link";
 
 export default function Navbar() {
   const { getPageNavigation } = useNavigation();
   const { items, isActive } = getPageNavigation();
-  const navigationItems = Object.values(PAGES_CONFIG)
-    .sort((a, b) => a.order - b.order);
-
-  // Couleurs de ceintures pour les styles
-  const beltColors = {
-    white: { 
-      ring: "ring-gray-400", 
-      hover: "hover:bg-gray-50",
-      text: "text-gray-700",
-      activeText: "text-gray-800",
-      activeBg: "bg-gray-50",
-      hoverBorder: "hover:border-gray-400"
-    },
-    yellow: { 
-      ring: "ring-yellow-400", 
-      hover: "hover:bg-yellow-50",
-      text: "text-yellow-700",
-      activeText: "text-yellow-800",
-      activeBg: "bg-yellow-50",
-      hoverBorder: "hover:border-yellow-400"
-    },
-    orange: { 
-      ring: "ring-orange-400", 
-      hover: "hover:bg-orange-50",
-      text: "text-orange-700",
-      activeText: "text-orange-800",
-      activeBg: "bg-orange-50",
-      hoverBorder: "hover:border-orange-400"
-    },
-    green: { 
-      ring: "ring-green-400", 
-      hover: "hover:bg-green-50",
-      text: "text-green-700",
-      activeText: "text-green-800",
-      activeBg: "bg-green-50",
-      hoverBorder: "hover:border-green-400"
-    },
-    blue: { 
-      ring: "ring-blue-400", 
-      hover: "hover:bg-blue-50",
-      text: "text-blue-700",
-      activeText: "text-blue-800",
-      activeBg: "bg-blue-50",
-      hoverBorder: "hover:border-blue-400"
-    },
-    brown: { 
-      ring: "ring-yellow-900", 
-      hover: "hover:bg-yellow-50",
-      text: "text-yellow-900",
-      activeText: "text-yellow-950",
-      activeBg: "bg-yellow-50",
-      hoverBorder: "hover:border-yellow-900"
-    },
-    black: { 
-      ring: "ring-gray-800", 
-      hover: "hover:bg-gray-50",
-      text: "text-gray-800",
-      activeText: "text-gray-900",
-      activeBg: "bg-gray-50",
-      hoverBorder: "hover:border-gray-800"
-    },
-    practice: { 
-      ring: "ring-purple-600", 
-      hover: "hover:bg-purple-50",
-      text: "text-purple-700",
-      hoverBorder: "hover:border-purple-600"
-    }
-  };
+  const navigationItems = Object.values(PAGES_CONFIG).sort(
+    (a, b) => a.order - b.order
+  );
 
   return (
     <nav className="flex items-center space-x-4">
@@ -86,7 +22,7 @@ export default function Navbar() {
 
         const isPractice = item.href === "/practice";
         const beltKey = isPractice ? "practice" : item.href.replace("/", "");
-        const beltStyle = beltColors[beltKey] || beltColors.white;
+        const beltStyle = NAVBAR_COLORS[beltKey] || NAVBAR_COLORS.white;
 
         return (
           <Link
@@ -100,12 +36,8 @@ export default function Navbar() {
                 : `text-gray-700 border-transparent ${beltStyle.hover} ${beltStyle.hoverBorder}`
             }`}
           >
-            {!isPractice && (
-              <BeltIcon belt={beltKey} size={16} />
-            )}
-            <span>
-              {pageConfig?.title || item.title}
-            </span>
+            {!isPractice && <BeltIcon belt={beltKey} size={16} />}
+            <span>{pageConfig?.title || item.title}</span>
           </Link>
         );
       })}

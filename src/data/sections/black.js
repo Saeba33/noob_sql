@@ -1,3 +1,5 @@
+import { SECTION_DATA_COLORS } from "@/config/colors";
+
 export const blackBeltContent = {
   // Belt configuration
   belt: "black",
@@ -5,16 +7,7 @@ export const blackBeltContent = {
   beltBadge: "⚫",
   description: "Expert - Maîtrisez les concepts avancés",
   topics: ["Transactions", "Sécurité", "Procédures", "Triggers"],
-  colors: {
-    bg: "bg-gray-800",
-    text: "text-gray-100",
-    border: "border-gray-600",
-    accent: "bg-gray-700",
-    headerBorder: "border-gray-500",
-    tagBg: "bg-gray-700",
-    tagText: "text-gray-100",
-    hover: "hover:bg-gray-900",
-  },
+  colors: SECTION_DATA_COLORS.black,
 
   // Content sections
   header: {

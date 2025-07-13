@@ -1,3 +1,4 @@
+import { SECTION_DATA_COLORS } from "@/config/colors";
 export const yellowBeltContent = {
   // Belt configuration
   belt: "yellow",
@@ -5,16 +6,7 @@ export const yellowBeltContent = {
   beltBadge: "🟡",
   description: "Opérations de base - Créer, Lire, Modifier, Supprimer",
   topics: ["INSERT", "SELECT", "UPDATE", "DELETE", "WHERE"],
-  colors: {
-    bg: "bg-yellow-50",
-    text: "text-yellow-900",
-    border: "border-yellow-300",
-    accent: "bg-yellow-600",
-    headerBorder: "border-yellow-400",
-    tagBg: "bg-yellow-200",
-    tagText: "text-yellow-800",
-    hover: "hover:bg-yellow-100",
-  },
+  colors: SECTION_DATA_COLORS.yellow,
 
   // Content sections
   header: {

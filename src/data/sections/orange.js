@@ -1,3 +1,4 @@
+import { SECTION_DATA_COLORS } from "@/config/colors";
 export const orangeBeltContent = {
   // Belt configuration
   belt: "orange",
@@ -5,16 +6,7 @@ export const orangeBeltContent = {
   beltBadge: "🟠",
   description: "Jointures - Combinez des données de plusieurs tables",
   topics: ["INNER JOIN", "LEFT JOIN", "RIGHT JOIN", "FULL JOIN", "Sous-requêtes"],
-  colors: {
-    bg: "bg-orange-50",
-    text: "text-orange-900",
-    border: "border-orange-300",
-    accent: "bg-orange-600",
-    headerBorder: "border-orange-400",
-    tagBg: "bg-orange-200",
-    tagText: "text-orange-800",
-    hover: "hover:bg-orange-100",
-  },
+  colors: SECTION_DATA_COLORS.orange,
   
   // Content sections
   header: {

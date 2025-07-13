@@ -1,3 +1,4 @@
+import { SECTION_DATA_COLORS } from "@/config/colors";
 export const blueBeltContent = {
   // Belt configuration
   belt: "blue",
@@ -5,16 +6,7 @@ export const blueBeltContent = {
   beltBadge: "🔵",
   description: "Fonctions avancées - Explorez les requêtes complexes",
   topics: ["Fonctions de fenêtre", "CTE", "CASE WHEN", "Fonctions de date"],
-  colors: {
-    bg: "bg-blue-50",
-    text: "text-blue-900",
-    border: "border-blue-300",
-    accent: "bg-blue-600",
-    headerBorder: "border-blue-400",
-    tagBg: "bg-blue-200",
-    tagText: "text-blue-800",
-    hover: "hover:bg-blue-100",
-  },
+  colors: SECTION_DATA_COLORS.blue,
 
   // Content sections
   header: {

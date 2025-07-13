@@ -1,3 +1,5 @@
+import { SECTION_DATA_COLORS } from "@/config/colors";
+
 export const brownBeltContent = {
   // Belt configuration
   belt: "brown",
@@ -5,16 +7,7 @@ export const brownBeltContent = {
   beltBadge: "🟤",
   description: "Performance - Optimisez vos requêtes",
   topics: ["Index", "Plan d'exécution", "Optimisation", "EXPLAIN"],
-  colors: {
-    bg: "bg-yellow-50",
-    text: "text-yellow-950",
-    border: "border-yellow-300",
-    accent: "bg-yellow-800",
-    headerBorder: "border-yellow-400",
-    tagBg: "bg-yellow-200",
-    tagText: "text-yellow-900",
-    hover: "hover:bg-yellow-100",
-  },
+  colors: SECTION_DATA_COLORS.brown,
 
   // Content sections
   header: {

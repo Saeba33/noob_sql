@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
-import HeaderSection from "@/components/HeaderSection";
-import DescriptionSection from "@/components/DescriptionSection";
-import AccordionList from "@/components/AccordionList";
+import HeaderSection from "@/components/common/HeaderSection";
+import DescriptionSection from "@/components/common/DescriptionSection";
+import AccordionList from "@/components/common/AccordionList";
 import SectionTopNavigation from "@/components/navigation/SectionTopNavigation";
 import SectionBottomNavigation from "@/components/navigation/SectionBottomNavigation";
 

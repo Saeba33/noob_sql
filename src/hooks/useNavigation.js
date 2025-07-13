@@ -42,12 +42,13 @@ export const useNavigation = () => {
     );
 
     // Pour la première page (white), on ajoute un lien vers l'accueil
-    const previous = currentIndex === 0 
-      ? { href: "/", title: "Accueil" }
-      : currentIndex > 0 
-        ? allNavigationItems[currentIndex - 1] 
+    const previous =
+      currentIndex === 0
+        ? { href: "/", title: "Accueil" }
+        : currentIndex > 0
+        ? allNavigationItems[currentIndex - 1]
         : null;
-        
+
     const next =
       currentIndex < allNavigationItems.length - 1
         ? allNavigationItems[currentIndex + 1]

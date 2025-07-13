@@ -1,20 +1,10 @@
 import Description from "@/components/ui/page-header/Description";
 import Tag from "@/components/ui/page-header/Tag";
 import Title from "@/components/ui/page-header/Title";
-
-// Couleurs de bordure pour chaque ceinture
-const BELT_BORDER_COLORS = {
-  white: "border-gray-400",
-  yellow: "border-yellow-400", 
-  orange: "border-orange-400",
-  green: "border-green-400",
-  blue: "border-blue-400",
-  brown: "border-yellow-900",
-  black: "border-gray-800",
-};
+import { SECTION_HEADER_COLORS } from "@/config/colors";
 
 export default function HeaderSection({ header, beltColors = null, currentBelt = null }) {
-  const borderColor = BELT_BORDER_COLORS[currentBelt] || "border-gray-400";
+  const borderColor = SECTION_HEADER_COLORS[currentBelt] || SECTION_HEADER_COLORS.white;
 
   return (
     <div className={`py-16 bg-white border-b-3 ${borderColor}`}>

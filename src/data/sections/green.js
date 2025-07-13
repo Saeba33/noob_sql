@@ -1,3 +1,4 @@
+import { SECTION_DATA_COLORS } from "@/config/colors";
 export const greenBeltContent = {
   // Belt configuration
   belt: "green",
@@ -5,16 +6,7 @@ export const greenBeltContent = {
   beltBadge: "🟢",
   description: "Fonctions d'agrégation - Analysez vos données",
   topics: ["GROUP BY", "COUNT", "SUM", "AVG", "HAVING"],
-  colors: {
-    bg: "bg-green-50",
-    text: "text-green-900",
-    border: "border-green-300",
-    accent: "bg-green-600",
-    headerBorder: "border-green-400",
-    tagBg: "bg-green-200",
-    tagText: "text-green-800",
-    hover: "hover:bg-green-100",
-  },
+  colors: SECTION_DATA_COLORS.green,
 
   // Content sections
   header: {

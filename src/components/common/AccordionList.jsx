@@ -1,6 +1,6 @@
 "use client";
 
-import AccordionSection from "@/components/AccordionSection";
+import AccordionSection from "@/components/common/AccordionSection";
 
 export default function AccordionList({ accordions }) {
   if (!accordions || accordions.length === 0) {
