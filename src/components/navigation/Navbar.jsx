@@ -63,9 +63,9 @@ export default function Navbar() {
       activeBg: "bg-gray-50"
     },
     practice: { 
-      ring: "ring-green-600", 
-      hover: "hover:bg-green-50",
-      text: "text-green-700"
+      ring: "ring-purple-600", 
+      hover: "hover:bg-purple-50",
+      text: "text-purple-700"
     }
   };
 
@@ -86,7 +86,7 @@ export default function Navbar() {
             href={item.href}
             className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-200 text-sm font-medium border focus:outline-none ${
               isPractice
-                ? "bg-green-600 text-white border-green-600 shadow-md hover:bg-green-700 hover:shadow-lg"
+                ? "bg-purple-600 text-white border-purple-600 shadow-md hover:bg-purple-700 hover:shadow-lg"
                 : isActive(item.href)
                 ? `${beltStyle.ring} ring-2 ${beltStyle.activeBg} border-transparent shadow-md ${beltStyle.activeText}`
                 : `text-gray-700 border-transparent ${beltStyle.hover} hover:border-gray-200`
