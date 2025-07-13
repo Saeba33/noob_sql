@@ -3,8 +3,6 @@ import { SECTION_DATA_COLORS } from "@/config/colors";
 export const brownBeltContent = {
   // Belt configuration
   belt: "brown",
-  beltDisplayName: "marron",
-  beltBadge: "🟤",
   description: "Performance - Optimisez vos requêtes",
   topics: ["Index", "Plan d'exécution", "Optimisation", "EXPLAIN"],
   colors: SECTION_DATA_COLORS.brown,

@@ -2,8 +2,6 @@ import { SECTION_DATA_COLORS } from "@/config/colors";
 export const yellowBeltContent = {
   // Belt configuration
   belt: "yellow",
-  beltDisplayName: "jaune",
-  beltBadge: "🟡",
   description: "Opérations de base - Créer, Lire, Modifier, Supprimer",
   topics: ["INSERT", "SELECT", "UPDATE", "DELETE", "WHERE"],
   colors: SECTION_DATA_COLORS.yellow,

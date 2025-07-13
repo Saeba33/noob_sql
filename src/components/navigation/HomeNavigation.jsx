@@ -69,10 +69,16 @@ export default function HomeNavigation() {
                 <div className="flex items-center mb-3">
                   <BeltIcon belt={page.key} size={20} className="mr-3" />
                   <h3
-                    className={`text-base font-semibold text-gray-700 group-hover:${colors.text.replace(
-                      "text-",
-                      ""
-                    )} transition-colors`}
+                    className={`text-base font-semibold text-gray-700 transition-colors ${
+                      page.key === 'white' ? 'group-hover:text-gray-800' :
+                      page.key === 'yellow' ? 'group-hover:text-yellow-500' :
+                      page.key === 'orange' ? 'group-hover:text-orange-500' :
+                      page.key === 'green' ? 'group-hover:text-green-500' :
+                      page.key === 'blue' ? 'group-hover:text-blue-500' :
+                      page.key === 'brown' ? 'group-hover:text-amber-700' :
+                      page.key === 'black' ? 'group-hover:text-gray-800' :
+                      'group-hover:text-gray-800'
+                    }`}
                   >
                     {page.title}
                   </h3>

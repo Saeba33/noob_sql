@@ -13,7 +13,7 @@ export default function SectionBottomNavigation() {
 
   // Determine current belt
   const currentBelt = pathname?.split("/")[1];
-  const textColor = SECTION_NAV_COLORS[currentBelt] || SECTION_NAV_COLORS.white;
+  const textColor = currentBelt === 'black' ? 'text-black' : (SECTION_NAV_COLORS[currentBelt] || SECTION_NAV_COLORS.white);
 
   // Show only if we have a previous or next link
   if (!previous && !next) return null;
@@ -33,8 +33,8 @@ export default function SectionBottomNavigation() {
   return (
     <div className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 my-8">
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-        <div className="flex justify-between items-center">
-          <div className="flex-1">
+        <div className="flex justify-between items-center min-h-[48px]">
+          <div className="flex-1 flex items-center">
             {/* Previous Link */}
             {previous && (
               <Link
@@ -50,13 +50,13 @@ export default function SectionBottomNavigation() {
           </div>
 
           {/* Current Page Title */}
-          <div className="flex-1 text-center">
+          <div className="flex-1 flex items-center justify-center">
             <h3 className="text-lg font-semibold text-gray-900">
               {current?.title || ""}
             </h3>
           </div>
 
-          <div className="flex-1 flex justify-end">
+          <div className="flex-1 flex items-center justify-end">
             {/* Next Link */}
             {next && (
               <Link

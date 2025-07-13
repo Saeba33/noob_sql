@@ -3,8 +3,6 @@ import { SECTION_DATA_COLORS } from "@/config/colors";
 export const blackBeltContent = {
   // Belt configuration
   belt: "black",
-  beltDisplayName: "noire",
-  beltBadge: "⚫",
   description: "Expert - Maîtrisez les concepts avancés",
   topics: ["Transactions", "Sécurité", "Procédures", "Triggers"],
   colors: SECTION_DATA_COLORS.black,

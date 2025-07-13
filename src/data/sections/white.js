@@ -3,8 +3,6 @@ import { SECTION_DATA_COLORS } from "@/config/colors";
 export const whiteBeltContent = {
   // Belt configuration
   belt: "white",
-  beltDisplayName: "blanche",
-  beltBadge: "⚪",
   description: "Langage de définition de données - Créez vos premières tables",
   topics: ["CREATE TABLE", "ALTER TABLE", "DROP TABLE", "Types de données", "Contraintes"],
   colors: SECTION_DATA_COLORS.white,

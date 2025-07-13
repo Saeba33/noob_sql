@@ -2,8 +2,6 @@ import { SECTION_DATA_COLORS } from "@/config/colors";
 export const blueBeltContent = {
   // Belt configuration
   belt: "blue",
-  beltDisplayName: "bleue",
-  beltBadge: "🔵",
   description: "Fonctions avancées - Explorez les requêtes complexes",
   topics: ["Fonctions de fenêtre", "CTE", "CASE WHEN", "Fonctions de date"],
   colors: SECTION_DATA_COLORS.blue,
