@@ -1,4 +1,5 @@
 import {
+  BestPractices,
   DatabaseArchitecture,
   DataTypes,
   SGBDDiagram,
@@ -11,11 +12,9 @@ export const whiteBeltContent = {
   description: "Théorie et concepts fondamentaux",
   topics: [
     "SGBD",
-    "SGBDR",
     "Architecture BDD",
-    "Syntaxe SQL",
     "Types de données",
-    "Commentaires",
+    "Bonnes pratiques",
   ],
   colors: SECTION_DATA_COLORS.white,
 
@@ -41,34 +40,12 @@ export const whiteBeltContent = {
     },
 
     {
-      title: "Mots-clés, Indentation et Commentaires",
-      content:
-        "Maîtrisez les bonnes pratiques de formatage et de documentation du code SQL.",
-      sqlCode: `-- Commentaire sur une ligne
-
-/*
-   Commentaire 
-   sur plusieurs lignes
-*/
-
--- Bonnes pratiques d'indentation
-SELECT 
-    nom,
-    email,
-    age
-FROM utilisateurs
-WHERE 
-    age BETWEEN 18 AND 65
-    AND email IS NOT NULL
-ORDER BY 
-    nom ASC,
-    age DESC;`,
-      description:
-        "Un code SQL bien formaté et commenté améliore la lisibilité et la maintenance. Les mots-clés SQL ne sont pas sensibles à la casse.",
-    },
-    {
       title: "Types de Données",
       externalComponent: <DataTypes />,
+    },
+    {
+      title: "Bonnes Pratiques",
+      externalComponent: <BestPractices />,
     },
   ],
 };
