@@ -1,65 +1,45 @@
 import {
   MdCheckCircle,
-  MdDataset,
-  MdKey,
-  MdLightbulb,
-  MdLink,
-  MdSecurity,
-  MdSpeed,
-  MdTableChart,
   MdTextFormat,
+  MdFormatIndentIncrease,
+  MdSpellcheck,
+  MdCode,
   MdWarning,
 } from "react-icons/md";
 
 export default function BestPractices() {
-  const coreRules = [
+  const syntaxRules = [
     {
-      title: "Normalisation des tables",
-      icon: <MdTableChart className="w-5 h-5 text-gray-600" />,
-      rule: "Sépare les données en tables distinctes pour éviter la duplication. Chaque information ne doit apparaître qu'une seule fois dans la base.",
-      good: "Tables: utilisateurs, commandes, produits (séparées)",
-      bad: "Une table avec nom_client dupliqué dans chaque commande",
-      reason: "Évite les incohérences, facilite les mises à jour",
+      title: "Mots-clés en MAJUSCULES",
+      icon: <MdSpellcheck className="w-5 h-5 text-gray-600" />,
+      rule: "Écris tous les mots-clés SQL en lettres majuscules pour une meilleure lisibilité",
+      good: "SELECT nom FROM utilisateurs WHERE age > 25",
+      bad: "select nom from utilisateurs where age > 25",
+      reason: "Standard universel, distinction claire entre mots-clés et noms",
     },
     {
-      title: "Clés primaires simples",
-      icon: <MdKey className="w-5 h-5 text-gray-600" />,
-      rule: "Utilise des clés primaires simples et stables (id numérique)",
-      good: "id INTEGER PRIMARY KEY AUTO_INCREMENT",
-      bad: "Clés composées ou textuelles comme clé primaire",
-      reason: "Performance optimale, simplicité des relations",
+      title: "Indentation cohérente",
+      icon: <MdFormatIndentIncrease className="w-5 h-5 text-gray-600" />,
+      rule: "Indente les clauses SQL pour structurer visuellement tes requêtes",
+      good: "SELECT nom, email\nFROM utilisateurs\nWHERE age > 18\nORDER BY nom",
+      bad: "SELECT nom, email FROM utilisateurs WHERE age > 18 ORDER BY nom",
+      reason: "Code lisible, maintenance facilitée, moins d'erreurs",
     },
     {
-      title: "Clés étrangères",
-      icon: <MdLink className="w-5 h-5 text-gray-600" />,
-      rule: "Définis des clés étrangères pour assurer les relations",
-      good: "utilisateur_id INTEGER REFERENCES utilisateurs(id)",
-      bad: "Pas de contraintes, relations non déclarées",
-      reason: "Intégrité référentielle garantie",
-    },
-    {
-      title: "Convention snake_case",
+      title: "Nommage en snake_case",
       icon: <MdTextFormat className="w-5 h-5 text-gray-600" />,
-      rule: "Utilise le snake_case pour les noms",
+      rule: "Utilise le snake_case pour les noms de tables et colonnes",
       good: "nom_utilisateur, date_creation, prix_total",
       bad: "nomUtilisateur, dateCreation, prixTotal",
-      reason: "Standard universel, lisible dans tous les SGBD",
+      reason: "Convention standard, compatible avec tous les SGBD",
     },
     {
-      title: "Noms explicites",
-      icon: <MdDataset className="w-5 h-5 text-gray-600" />,
-      rule: "Privilégie des noms explicites pour tables et colonnes",
-      good: "utilisateurs, commande_id, prix_total",
-      bad: "usr, cmd, tot, t1, c_id",
-      reason: "Code auto-documenté, maintenance facilitée",
-    },
-    {
-      title: "Index stratégiques",
-      icon: <MdSpeed className="w-5 h-5 text-gray-600" />,
-      rule: "Crée des index sur les colonnes de filtrage et jointure",
-      good: "INDEX sur email, date_creation, statut",
-      bad: "Aucun index sur les colonnes WHERE/JOIN",
-      reason: "Performances optimales des requêtes",
+      title: "Alias explicites",
+      icon: <MdCode className="w-5 h-5 text-gray-600" />,
+      rule: "Utilise des alias clairs avec AS pour renommer les colonnes",
+      good: "SELECT COUNT(*) AS nombre_total",
+      bad: "SELECT COUNT(*) nombre_total",
+      reason: "Clarté du code, intention explicite",
     },
   ];
 
@@ -68,22 +48,21 @@ export default function BestPractices() {
       {/* Introduction */}
       <div className="mb-8 space-y-4 text-gray-700 leading-relaxed">
         <p>
-          Une base de données bien conçue facilite le développement et évite les
-          erreurs ! Les <strong>bonnes pratiques SQL</strong> essentielles pour
-          concevoir des bases de données maintenables et performantes. Suivez
-          ces règles fondamentales pour éviter les pièges courants.
+          Un code SQL bien formaté est plus facile à lire, déboguer et maintenir ! 
+          Voici les <strong>conventions de syntaxe</strong> essentielles pour écrire 
+          du SQL propre et professionnel.
         </p>
       </div>
 
-      {/* Règles fondamentales */}
+      {/* Règles de syntaxe */}
       <div className="border border-gray-300 rounded-lg bg-gray-50 p-6">
         <h2 className="text-lg font-bold text-gray-800 mb-6 flex items-center">
           <MdCheckCircle className="w-5 h-5 text-gray-600 mr-3" />
-          Bonnes Pratiques
+          Conventions de Syntaxe
         </h2>
 
         <div className="flex flex-wrap gap-4">
-          {coreRules.map((rule, index) => (
+          {syntaxRules.map((rule, index) => (
             <div
               key={index}
               className="flex-1 min-w-[300px] bg-white border border-gray-300 rounded-lg p-4 shadow-sm"
@@ -102,9 +81,9 @@ export default function BestPractices() {
                   <div>
                     <h4 className="font-semibold text-gray-900 mb-1 flex items-center text-sm">
                       <MdCheckCircle className="w-4 h-4 text-green-600 mr-1" />
-                      Bon
+                      Recommandé
                     </h4>
-                    <code className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded block">
+                    <code className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded block whitespace-pre-line">
                       {rule.good}
                     </code>
                   </div>
@@ -114,7 +93,7 @@ export default function BestPractices() {
                       <MdWarning className="w-4 h-4 text-red-600 mr-1" />À
                       éviter
                     </h4>
-                    <code className="text-xs bg-red-100 text-red-800 px-2 py-1 rounded block">
+                    <code className="text-xs bg-red-100 text-red-800 px-2 py-1 rounded block whitespace-pre-line">
                       {rule.bad}
                     </code>
                   </div>
@@ -135,47 +114,38 @@ export default function BestPractices() {
       {/* Exemple pratique */}
       <div className="mt-8 border border-gray-300 rounded-lg bg-gray-50 p-6">
         <h2 className="text-lg font-bold text-gray-800 mb-6 flex items-center">
-          <MdTableChart className="w-5 h-5 text-gray-600 mr-3" />
-          Exemple Concret
+          <MdCode className="w-5 h-5 text-gray-600 mr-3" />
+          Exemple Avant/Après
         </h2>
 
-        <div className="bg-white border border-gray-300 rounded-lg p-4 shadow-sm">
-          <h3 className="text-base font-bold text-gray-900 mb-4">
-            Structure recommandée pour un e-commerce :
-          </h3>
+        <div className="space-y-4">
+          <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+            <h4 className="font-semibold text-red-800 mb-2 flex items-center">
+              <MdWarning className="w-4 h-4 text-red-600 mr-2" />
+              Code mal formaté
+            </h4>
+            <code className="text-sm text-red-700 block bg-white p-3 rounded border whitespace-pre-line">
+{`select u.nom,u.email,c.total from utilisateurs u join commandes c on u.id=c.utilisateur_id where c.statut='validée' and u.age>18 order by c.total desc;`}
+            </code>
+          </div>
 
-          <div className="space-y-4">
-            <div className="bg-green-50 border border-green-200 rounded p-4">
-              <h4 className="font-semibold text-green-800 mb-2 flex items-center">
-                <MdCheckCircle className="w-4 h-4 text-green-600 mr-2" />
-                Tables bien normalisées
-              </h4>
-              <code className="text-sm text-green-700 block">
-                utilisateurs (id, nom_complet, email, date_creation)
-                <br />
-                commandes (id, utilisateur_id, date_commande, prix_total)
-                <br />
-                produits (id, nom_produit, prix_unitaire, stock_disponible)
-                <br />
-                commande_produits (commande_id, produit_id, quantite, prix)
-              </code>
-            </div>
-
-            <div className="bg-blue-50 border border-blue-200 rounded p-4">
-              <h4 className="font-semibold text-blue-800 mb-2 flex items-center">
-                <MdLink className="w-4 h-4 text-blue-600 mr-2" />
-                Contraintes et index
-              </h4>
-              <code className="text-sm text-blue-700 block">
-                PRIMARY KEY (id) sur chaque table
-                <br />
-                FOREIGN KEY (utilisateur_id) REFERENCES utilisateurs(id)
-                <br />
-                UNIQUE INDEX sur email des utilisateurs
-                <br />
-                INDEX sur date_commande, nom_produit (colonnes de recherche)
-              </code>
-            </div>
+          <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+            <h4 className="font-semibold text-green-800 mb-2 flex items-center">
+              <MdCheckCircle className="w-4 h-4 text-green-600 mr-2" />
+              Code bien formaté
+            </h4>
+            <code className="text-sm text-green-700 block bg-white p-3 rounded border whitespace-pre-line">
+{`SELECT 
+    u.nom AS nom_utilisateur,
+    u.email AS adresse_email,
+    c.total AS montant_commande
+FROM utilisateurs u
+JOIN commandes c ON u.id = c.utilisateur_id
+WHERE 
+    c.statut = 'validée' 
+    AND u.age > 18
+ORDER BY c.total DESC;`}
+            </code>
           </div>
         </div>
       </div>

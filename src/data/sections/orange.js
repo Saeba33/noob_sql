@@ -15,69 +15,11 @@ export const orangeBeltContent = {
     tag: "Ceinture Orange",
   },
   pageDescription: {
-    title: "Manipulez Vos Données avec les Opérations CRUD",
+    title: "Manipulez vos données avec les opérations CRUD",
     content:
-      "La ceinture orange vous apprend les quatre opérations fondamentales de manipulation de données : CREATE (INSERT), READ (SELECT), UPDATE et DELETE. Ces opérations forment l'épine dorsale de toute interaction avec une base de données. Vous apprendrez également la différence entre DELETE et TRUNCATE.",
+      "La ceinture orange vous apprend les quatre opérations fondamentales de manipulation de données : CREATE (commande INSERT), READ (commande SELECT), UPDATE et DELETE. Ces opérations forment l'épine dorsale de toute interaction avec une base de données.",
   },
   accordions: [
-    {
-      title: "SELECT - Lecture de Données",
-      content: "Récupérez et consultez les données stockées dans vos tables.",
-      sqlQueries: [
-        {
-          title: "Sélectionner toutes les colonnes",
-          sqlCode: `SELECT * FROM utilisateurs;`,
-          sqlResult: [
-            { id: 1, nom: "Alice Dupont", email: "alice@email.com", age: 28, statut: "actif" },
-            { id: 2, nom: "Bob Martin", email: "bob@email.com", age: 32, statut: "actif" },
-            { id: 3, nom: "Claire Durand", email: "claire@email.com", age: 25, statut: "inactif" },
-            { id: 4, nom: "David Moreau", email: "david@email.com", age: 45, statut: "actif" },
-            { id: 5, nom: "Emma Bernard", email: "emma@email.com", age: 30, statut: "actif" }
-          ]
-        },
-        {
-          title: "Sélectionner des colonnes spécifiques",
-          sqlCode: `SELECT nom, email FROM utilisateurs;`,
-          sqlResult: [
-            { nom: "Alice Dupont", email: "alice@email.com" },
-            { nom: "Bob Martin", email: "bob@email.com" },
-            { nom: "Claire Durand", email: "claire@email.com" },
-            { nom: "David Moreau", email: "david@email.com" },
-            { nom: "Emma Bernard", email: "emma@email.com" }
-          ]
-        },
-        {
-          title: "Sélectionner avec conditions",
-          sqlCode: `SELECT nom, age FROM utilisateurs WHERE age > 25;`,
-          sqlResult: [
-            { nom: "Alice Dupont", age: 28 },
-            { nom: "Bob Martin", age: 32 },
-            { nom: "David Moreau", age: 45 },
-            { nom: "Emma Bernard", age: 30 }
-          ]
-        },
-        {
-          title: "Ordonner les résultats",
-          sqlCode: `SELECT nom, email FROM utilisateurs ORDER BY nom ASC;`,
-          sqlResult: [
-            { nom: "Alice Dupont", email: "alice@email.com" },
-            { nom: "Bob Martin", email: "bob@email.com" },
-            { nom: "Claire Durand", email: "claire@email.com" },
-            { nom: "David Moreau", email: "david@email.com" },
-            { nom: "Emma Bernard", email: "emma@email.com" }
-          ]
-        },
-        {
-          title: "Compter les résultats",
-          sqlCode: `SELECT COUNT(*) as total_utilisateurs FROM utilisateurs;`,
-          sqlResult: [
-            { total_utilisateurs: 5 }
-          ]
-        }
-      ],
-      description:
-        "SELECT est la commande la plus utilisée en SQL. Elle vous permet de lire et extraire des données.",
-    },
     {
       title: "INSERT - Ajout de Données",
       content: "Insérez de nouvelles données dans vos tables.",
@@ -103,18 +45,73 @@ VALUES ('Alice Dupont', 'alice@email.com', 28);`,
           }
         },
         {
-          title: "Vérification des insertions",
-          sqlCode: `SELECT nom, email, age FROM utilisateurs 
-WHERE nom IN ('Alice Dupont', 'Bob Martin', 'Claire Durand');`,
+          title: "Insertion avec valeurs par défaut",
+          sqlCode: `INSERT INTO utilisateurs (nom, email) 
+VALUES ('Emma Bernard', 'emma@email.com');`,
+          sqlResult: { 
+            message: "1 ligne insérée avec succès (âge par défaut appliqué)",
+            type: "message"
+          }
+        }
+      ],
+      description:
+        "INSERT vous permet d'ajouter de nouvelles données dans vos tables. C'est la première étape du CRUD.",
+    },
+    {
+      title: "SELECT - Lecture de Données",
+      content: "Récupérez et consultez les données stockées dans vos tables.",
+      sqlQueries: [
+        {
+          title: "Sélectionner toutes les colonnes",
+          sqlCode: `SELECT * FROM utilisateurs;`,
           sqlResult: [
-            { nom: "Alice Dupont", email: "alice@email.com", age: 28 },
-            { nom: "Bob Martin", email: "bob@email.com", age: 32 },
-            { nom: "Claire Durand", email: "claire@email.com", age: 25 }
+            { id: 1, nom: "Alice Dupont", email: "alice@email.com", age: 28, statut: "actif" },
+            { id: 2, nom: "Bob Martin", email: "bob@email.com", age: 32, statut: "actif" },
+            { id: 3, nom: "Claire Durand", email: "claire@email.com", age: 25, statut: "actif" },
+            { id: 4, nom: "David Moreau", email: "david@email.com", age: 45, statut: "actif" },
+            { id: 5, nom: "Emma Bernard", email: "emma@email.com", age: 30, statut: "actif" }
+          ]
+        },
+        {
+          title: "Sélectionner des colonnes spécifiques",
+          sqlCode: `SELECT nom, email FROM utilisateurs;`,
+          sqlResult: [
+            { nom: "Alice Dupont", email: "alice@email.com" },
+            { nom: "Bob Martin", email: "bob@email.com" },
+            { nom: "Claire Durand", email: "claire@email.com" },
+            { nom: "David Moreau", email: "david@email.com" },
+            { nom: "Emma Bernard", email: "emma@email.com" }
+          ]
+        },
+        {
+          title: "Sélectionner avec conditions",
+          sqlCode: `SELECT nom, age FROM utilisateurs WHERE age > 30;`,
+          sqlResult: [
+            { nom: "Bob Martin", age: 32 },
+            { nom: "David Moreau", age: 45 }
+          ]
+        },
+        {
+          title: "Ordonner les résultats",
+          sqlCode: `SELECT nom, email FROM utilisateurs ORDER BY nom ASC;`,
+          sqlResult: [
+            { nom: "Alice Dupont", email: "alice@email.com" },
+            { nom: "Bob Martin", email: "bob@email.com" },
+            { nom: "Claire Durand", email: "claire@email.com" },
+            { nom: "David Moreau", email: "david@email.com" },
+            { nom: "Emma Bernard", email: "emma@email.com" }
+          ]
+        },
+        {
+          title: "Compter les résultats",
+          sqlCode: `SELECT COUNT(*) as total_utilisateurs FROM utilisateurs;`,
+          sqlResult: [
+            { total_utilisateurs: 5 }
           ]
         }
       ],
       description:
-        "INSERT vous permet d'ajouter de nouvelles données dans vos tables de différentes manières.",
+        "SELECT est la commande la plus utilisée en SQL. Elle vous permet de lire et extraire des données.",
     },
     {
       title: "UPDATE - Modification de Données",
@@ -131,39 +128,31 @@ WHERE nom = 'Alice Dupont';`,
           }
         },
         {
-          title: "Vérification de la mise à jour",
-          sqlCode: `SELECT nom, age FROM utilisateurs 
-WHERE nom = 'Alice Dupont';`,
-          sqlResult: [
-            { nom: "Alice Dupont", age: 29 }
-          ]
-        },
-        {
-          title: "Mise à jour multiple avec calcul",
-          sqlCode: `UPDATE produits 
-SET prix = prix * 1.05 
-WHERE categorie = 'electronique';`,
+          title: "Mise à jour multiple avec condition",
+          sqlCode: `UPDATE utilisateurs 
+SET statut = 'senior' 
+WHERE age >= 40;`,
           sqlResult: { 
-            message: "3 lignes mises à jour avec succès",
+            message: "1 ligne mise à jour avec succès",
             type: "message"
           }
         },
         {
-          title: "Résultats après mise à jour des prix",
-          sqlCode: `SELECT nom, prix, categorie FROM produits 
-WHERE categorie = 'electronique';`,
-          sqlResult: [
-            { nom: "Smartphone", prix: "525.00", categorie: "electronique" },
-            { nom: "Tablette", prix: "315.00", categorie: "electronique" },
-            { nom: "Ordinateur", prix: "1050.00", categorie: "electronique" }
-          ]
+          title: "Mise à jour avec calcul",
+          sqlCode: `UPDATE utilisateurs 
+SET age = age + 1 
+WHERE statut = 'actif';`,
+          sqlResult: { 
+            message: "4 lignes mises à jour avec succès",
+            type: "message"
+          }
         }
       ],
       description:
         "UPDATE modifie les données existantes. Toujours utiliser WHERE pour éviter de modifier toute la table !",
     },
     {
-      title: "DELETE vs TRUNCATE - Suppression de Données",
+      title: "DELETE - Suppression de Données",
       content:
         "Supprimez des données avec DELETE ou videz une table avec TRUNCATE.",
       sqlQueries: [
@@ -172,28 +161,16 @@ WHERE categorie = 'electronique';`,
           sqlCode: `DELETE FROM utilisateurs 
 WHERE age < 18;`,
           sqlResult: { 
-            message: "2 lignes supprimées avec succès",
+            message: "0 ligne supprimée (aucun utilisateur mineur)",
             type: "message"
           }
         },
         {
-          title: "Vérification après suppression",
-          sqlCode: `SELECT COUNT(*) as nb_utilisateurs, 
-       MIN(age) as age_minimum 
-FROM utilisateurs;`,
-          sqlResult: [
-            { nb_utilisateurs: 5, age_minimum: 25 }
-          ]
-        },
-        {
           title: "DELETE avec condition complexe",
-          sqlCode: `DELETE FROM commandes 
-WHERE utilisateur_id IN (
-    SELECT id FROM utilisateurs 
-    WHERE statut = 'inactif'
-);`,
+          sqlCode: `DELETE FROM utilisateurs 
+WHERE nom = 'Bob Martin' AND age > 30;`,
           sqlResult: { 
-            message: "8 commandes supprimées avec succès",
+            message: "1 ligne supprimée avec succès",
             type: "message"
           }
         },
@@ -202,6 +179,18 @@ WHERE utilisateur_id IN (
           sqlCode: `TRUNCATE TABLE sessions;`,
           sqlResult: { 
             message: "Table 'sessions' vidée complètement",
+            type: "message"
+          }
+        },
+        {
+          title: "Différence DELETE vs TRUNCATE",
+          sqlCode: `-- DELETE : suppression sélective, peut avoir WHERE
+DELETE FROM logs WHERE date_creation < '2024-01-01';
+
+-- TRUNCATE : vide toute la table, plus rapide
+TRUNCATE TABLE temp_data;`,
+          sqlResult: { 
+            message: "DELETE : 1500 lignes supprimées | TRUNCATE : table vidée",
             type: "message"
           }
         }
