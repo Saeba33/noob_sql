@@ -3,7 +3,7 @@
 import BeltIcon from "@/components/ui/BeltIcon";
 import { PAGES_CONFIG } from "@/config/navigation";
 import Link from "next/link";
-import { MdFitnessCenter } from "react-icons/md";
+import { LuMedal } from "react-icons/lu";
 import { HOME_NAV_COLORS } from "@/config/colors";
 
 // Import belt content for complete data
@@ -70,14 +70,21 @@ export default function HomeNavigation() {
                   <BeltIcon belt={page.key} size={20} className="mr-3" />
                   <h3
                     className={`text-base font-semibold text-gray-700 transition-colors ${
-                      page.key === 'white' ? 'group-hover:text-gray-800' :
-                      page.key === 'yellow' ? 'group-hover:text-yellow-500' :
-                      page.key === 'orange' ? 'group-hover:text-orange-500' :
-                      page.key === 'green' ? 'group-hover:text-green-500' :
-                      page.key === 'blue' ? 'group-hover:text-blue-500' :
-                      page.key === 'brown' ? 'group-hover:text-amber-700' :
-                      page.key === 'black' ? 'group-hover:text-gray-800' :
-                      'group-hover:text-gray-800'
+                      page.key === "white"
+                        ? "group-hover:text-gray-800"
+                        : page.key === "yellow"
+                        ? "group-hover:text-yellow-500"
+                        : page.key === "orange"
+                        ? "group-hover:text-orange-500"
+                        : page.key === "green"
+                        ? "group-hover:text-green-500"
+                        : page.key === "blue"
+                        ? "group-hover:text-blue-500"
+                        : page.key === "brown"
+                        ? "group-hover:text-amber-700"
+                        : page.key === "black"
+                        ? "group-hover:text-gray-800"
+                        : "group-hover:text-gray-800"
                     }`}
                   >
                     {page.title}
@@ -109,14 +116,14 @@ export default function HomeNavigation() {
         <Link href="/practice" className="group">
           <div className="bg-white border-l-purple-600 border-l-4 border-gray-100 border rounded-lg p-4 shadow-sm hover:shadow-md transition-all duration-200 h-48 flex flex-col">
             <div className="flex items-center mb-3">
-              <MdFitnessCenter className="text-purple-600 mr-3 w-5 h-5" />
+              <LuMedal className="text-purple-600 mr-3 w-5 h-5" />
               <h3 className="text-base font-semibold text-gray-700 group-hover:text-purple-600 transition-colors">
-                Pratique
+                Passez 1<sup className="text-[10px]">ère</sup> DAN
               </h3>
             </div>
 
             <p className="text-gray-600 mb-3 text-sm flex-1">
-              Testez vos compétences à travers tous les niveaux de ceinture
+              Testez vos connaissances au travers d'exercices
             </p>
 
             <div className="space-y-1 mt-auto">

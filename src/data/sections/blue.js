@@ -3,7 +3,7 @@ import { SECTION_DATA_COLORS } from "@/config/colors";
 export const blueBeltContent = {
   // Belt configuration
   belt: "blue",
-  description: "Agrégations - Calculs et regroupements",
+  description: "Calculs et regroupements",
   topics: ["COUNT, SUM, AVG, MIN, MAX", "GROUP BY", "HAVING"],
   colors: SECTION_DATA_COLORS.blue,
 

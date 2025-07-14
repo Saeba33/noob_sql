@@ -3,7 +3,7 @@ import { SECTION_DATA_COLORS } from "@/config/colors";
 export const yellowBeltContent = {
   // Belt configuration
   belt: "yellow",
-  description: "DDL - Langage de définition de données",
+  description: "Langage de définition de données",
   topics: ["CREATE TABLE", "ALTER TABLE", "DROP TABLE"],
   colors: SECTION_DATA_COLORS.yellow,
 

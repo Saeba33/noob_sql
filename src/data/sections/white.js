@@ -3,7 +3,7 @@ import { SECTION_DATA_COLORS } from "@/config/colors";
 export const whiteBeltContent = {
   // Belt configuration
   belt: "white",
-  description: "Base théorique et concepts fondamentaux",
+  description: "Théorie et concepts fondamentaux",
   topics: ["SGBD", "SGBDR", "Architecture BDD", "Syntaxe SQL", "Types de données", "Commentaires"],
   colors: SECTION_DATA_COLORS.white,
   

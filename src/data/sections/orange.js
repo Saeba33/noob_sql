@@ -3,7 +3,7 @@ import { SECTION_DATA_COLORS } from "@/config/colors";
 export const orangeBeltContent = {
   // Belt configuration
   belt: "orange",
-  description: "CRUD - Opérations de base sur les données",
+  description: "Opérations de base sur les données",
   topics: ["SELECT", "INSERT", "UPDATE", "DELETE", "TRUNCATE"],
   colors: SECTION_DATA_COLORS.orange,
 

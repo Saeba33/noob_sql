@@ -3,7 +3,7 @@ import { SECTION_DATA_COLORS } from "@/config/colors";
 export const blackBeltContent = {
   // Belt configuration
   belt: "black",
-  description: "Requêtes Avancées - Techniques avancées et optimisation",
+  description: "Techniques avancées et optimisation",
   topics: ["Sous-requêtes", "WITH (CTE)", "VIEW", "UNION", "INDEX", "Transactions"],
   colors: SECTION_DATA_COLORS.black,
 

@@ -3,7 +3,7 @@ import { SECTION_DATA_COLORS } from "@/config/colors";
 export const greenBeltContent = {
   // Belt configuration
   belt: "green",
-  description: "Filtres et Conditions - Contrôle et filtrage des données",
+  description: "Contrôle et filtrage des données",
   topics: ["WHERE", "Opérateurs de comparaison", "AND, OR, IN, LIKE", "ORDER BY", "NULL", "LIMIT, OFFSET"],
   colors: SECTION_DATA_COLORS.green,
 

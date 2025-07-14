@@ -3,7 +3,7 @@ import { SECTION_DATA_COLORS } from "@/config/colors";
 export const brownBeltContent = {
   // Belt configuration
   belt: "brown",
-  description: "Jointures - Relations entre les tables",
+  description: "Relations entre les tables",
   topics: ["Schéma jointures", "Clés primaires/étrangères", "INNER JOIN", "LEFT JOIN", "RIGHT JOIN", "FULL JOIN", "CROSS JOIN", "SELF JOIN"],
   colors: SECTION_DATA_COLORS.brown,
 
