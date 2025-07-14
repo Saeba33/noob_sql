@@ -21,213 +21,318 @@ export const greenBeltContent = {
   accordions: [
     {
       title: "WHERE - Clause Fondamentale",
-      content:
-        "Filtrez vos données avec la clause WHERE, base de toute requête précise.",
-      sqlCode: `-- WHERE basique
-SELECT nom, email, age 
+      content: "Filtrez vos données avec la clause WHERE, base de toute requête précise.",
+      sqlQueries: [
+        {
+          title: "Filtrage basique par âge",
+          sqlCode: `SELECT nom, email, age 
 FROM utilisateurs 
-WHERE age >= 18;
-
--- WHERE avec plusieurs conditions
-SELECT * 
+WHERE age >= 18;`,
+          sqlResult: [
+            { nom: "Alice Dupont", email: "alice@email.com", age: 28 },
+            { nom: "Bob Martin", email: "bob@email.com", age: 32 },
+            { nom: "David Moreau", email: "david@email.com", age: 45 }
+          ]
+        },
+        {
+          title: "Filtrage par prix et stock",
+          sqlCode: `SELECT nom, prix, stock 
 FROM produits 
-WHERE prix > 100 AND stock > 0;
-
--- WHERE avec différents types de données
-SELECT * 
+WHERE prix > 100 AND stock > 0;`,
+          sqlResult: [
+            { nom: "Ordinateur Portable", prix: 899, stock: 5 },
+            { nom: "Smartphone Pro", prix: 1299, stock: 3 },
+            { nom: "Tablette", prix: 299, stock: 8 }
+          ]
+        },
+        {
+          title: "Filtrage par date",
+          sqlCode: `SELECT numero_commande, client, date_commande 
 FROM commandes 
-WHERE date_commande = '2024-01-15';
-
--- WHERE avec calculs
-SELECT nom, age 
+WHERE date_commande = '2024-01-15';`,
+          sqlResult: [
+            { numero_commande: "CMD001", client: "Alice Dupont", date_commande: "2024-01-15" },
+            { numero_commande: "CMD015", client: "Bob Martin", date_commande: "2024-01-15" }
+          ]
+        },
+        {
+          title: "Filtrage avec calcul",
+          sqlCode: `SELECT nom, age, (age * 365) AS jours_vecu 
 FROM utilisateurs 
-WHERE age * 365 > 10000; -- Plus de 27 ans environ`,
-      sqlResult: `12 utilisateurs majeurs trouvés
-8 produits disponibles et chers
-5 commandes du 15 janvier
-15 utilisateurs de plus de 27 ans`,
-      description:
-        "WHERE est la clause la plus importante pour filtrer vos données. Sans elle, vous récupérez tout !",
+WHERE age * 365 > 10000;`,
+          sqlResult: [
+            { nom: "Alice Dupont", age: 28, jours_vecu: 10220 },
+            { nom: "Bob Martin", age: 32, jours_vecu: 11680 },
+            { nom: "David Moreau", age: 45, jours_vecu: 16425 }
+          ]
+        }
+      ],
+      description: "WHERE est la clause la plus importante pour filtrer vos données. Sans elle, vous récupérez tout !",
     },
     {
       title: "Opérateurs de Comparaison",
-      content:
-        "Utilisez les opérateurs pour comparer et filtrer vos données avec précision.",
-      sqlCode: `-- Égalité et inégalité
-SELECT * FROM utilisateurs WHERE age = 25;
-SELECT * FROM utilisateurs WHERE age != 25;
-SELECT * FROM utilisateurs WHERE age <> 25; -- Alternative à !=
-
--- Comparaisons numériques
-SELECT * FROM produits WHERE prix > 50;
-SELECT * FROM produits WHERE prix >= 100;
-SELECT * FROM produits WHERE prix < 200;
-SELECT * FROM produits WHERE prix <= 150;
-
--- Comparaisons de texte
-SELECT * FROM utilisateurs WHERE nom > 'M'; -- Noms après M
-SELECT * FROM produits WHERE nom >= 'A' AND nom < 'C';
-
--- Comparaisons de dates
-SELECT * FROM commandes WHERE date_commande > '2024-01-01';
-SELECT * FROM commandes WHERE date_commande <= CURRENT_DATE;`,
-      sqlResult: `3 utilisateurs de 25 ans
-22 utilisateurs qui n'ont pas 25 ans
-15 produits chers
-8 produits très chers
-12 commandes récentes`,
-      description:
-        "Les opérateurs de comparaison sont vos outils de précision pour extraire exactement ce que vous cherchez.",
+      content: "Utilisez les opérateurs pour comparer et filtrer vos données avec précision.",
+      sqlQueries: [
+        {
+          title: "Égalité exacte",
+          sqlCode: `SELECT nom, age 
+FROM utilisateurs 
+WHERE age = 25;`,
+          sqlResult: [
+            { nom: "Claire Durand", age: 25 }
+          ]
+        },
+        {
+          title: "Inégalité (différent de)",
+          sqlCode: `SELECT nom, age 
+FROM utilisateurs 
+WHERE age != 25;`,
+          sqlResult: [
+            { nom: "Alice Dupont", age: 28 },
+            { nom: "Bob Martin", age: 32 },
+            { nom: "David Moreau", age: 45 },
+            { nom: "Emma Bernard", age: 30 }
+          ]
+        },
+        {
+          title: "Supérieur et inférieur",
+          sqlCode: `SELECT nom, prix 
+FROM produits 
+WHERE prix > 200 AND prix < 1000;`,
+          sqlResult: [
+            { nom: "Ordinateur Portable", prix: 899 },
+            { nom: "Tablette", prix: 299 },
+            { nom: "Casque Audio", prix: 199 }
+          ]
+        },
+        {
+          title: "Comparaison de texte",
+          sqlCode: `SELECT nom, email 
+FROM utilisateurs 
+WHERE nom >= 'C' AND nom < 'E';`,
+          sqlResult: [
+            { nom: "Claire Durand", email: "claire@email.com" },
+            { nom: "David Moreau", email: "david@email.com" }
+          ]
+        }
+      ],
+      description: "Les opérateurs de comparaison sont vos outils de précision pour extraire exactement ce que vous cherchez.",
     },
     {
-      title: "Opérateurs Logiques (AND, OR, IN, LIKE, BETWEEN)",
-      content:
-        "Combinez et affinez vos conditions avec les opérateurs logiques.",
-      sqlCode: `-- AND : toutes les conditions doivent être vraies
-SELECT * FROM utilisateurs 
-WHERE age >= 18 AND age <= 65 AND email IS NOT NULL;
-
--- OR : au moins une condition doit être vraie
-SELECT * FROM produits 
-WHERE categorie = 'livre' OR categorie = 'dvd';
-
--- IN : valeur dans une liste
-SELECT * FROM utilisateurs 
-WHERE age IN (25, 30, 35, 40);
-
--- LIKE : correspondance de motif
-SELECT * FROM utilisateurs WHERE nom LIKE 'Jean%'; -- Commence par Jean
-SELECT * FROM utilisateurs WHERE email LIKE '%@gmail.com'; -- Finit par @gmail.com
-SELECT * FROM produits WHERE nom LIKE '%iphone%'; -- Contient iphone
-
--- BETWEEN : valeur dans un intervalle
-SELECT * FROM produits WHERE prix BETWEEN 50 AND 200;
-SELECT * FROM commandes WHERE date_commande BETWEEN '2024-01-01' AND '2024-12-31';`,
-      sqlResult: `18 utilisateurs actifs adultes
-25 articles média
-8 utilisateurs d'âges spécifiques
-5 utilisateurs prénommés Jean
-12 utilisateurs Gmail
-3 produits iPhone
-45 produits de prix moyen`,
-      description:
-        "Les opérateurs logiques vous permettent de créer des filtres complexes et précis.",
+      title: "Opérateurs Logiques",
+      content: "Combinez et affinez vos conditions avec AND, OR, IN, LIKE et BETWEEN.",
+      sqlQueries: [
+        {
+          title: "AND - Toutes les conditions",
+          sqlCode: `SELECT nom, age, email 
+FROM utilisateurs 
+WHERE age >= 25 AND age <= 35 AND email IS NOT NULL;`,
+          sqlResult: [
+            { nom: "Alice Dupont", age: 28, email: "alice@email.com" },
+            { nom: "Bob Martin", age: 32, email: "bob@email.com" },
+            { nom: "Claire Durand", age: 25, email: "claire@email.com" },
+            { nom: "Emma Bernard", age: 30, email: "emma@email.com" }
+          ]
+        },
+        {
+          title: "OR - Au moins une condition",
+          sqlCode: `SELECT nom, categorie, prix 
+FROM produits 
+WHERE categorie = 'electronique' OR prix < 100;`,
+          sqlResult: [
+            { nom: "Ordinateur Portable", categorie: "electronique", prix: 899 },
+            { nom: "Livre SQL", categorie: "livre", prix: 25 },
+            { nom: "Smartphone Pro", categorie: "electronique", prix: 1299 },
+            { nom: "Stylo", categorie: "bureau", prix: 5 }
+          ]
+        },
+        {
+          title: "IN - Valeurs dans une liste",
+          sqlCode: `SELECT nom, age 
+FROM utilisateurs 
+WHERE age IN (25, 30, 35, 40);`,
+          sqlResult: [
+            { nom: "Claire Durand", age: 25 },
+            { nom: "Emma Bernard", age: 30 }
+          ]
+        },
+        {
+          title: "LIKE - Correspondance de motif",
+          sqlCode: `SELECT nom, email 
+FROM utilisateurs 
+WHERE email LIKE '%@email.com';`,
+          sqlResult: [
+            { nom: "Alice Dupont", email: "alice@email.com" },
+            { nom: "Bob Martin", email: "bob@email.com" },
+            { nom: "Claire Durand", email: "claire@email.com" },
+            { nom: "David Moreau", email: "david@email.com" },
+            { nom: "Emma Bernard", email: "emma@email.com" }
+          ]
+        },
+        {
+          title: "BETWEEN - Intervalle de valeurs",
+          sqlCode: `SELECT nom, prix 
+FROM produits 
+WHERE prix BETWEEN 200 AND 800;`,
+          sqlResult: [
+            { nom: "Tablette", prix: 299 },
+            { nom: "Casque Audio", prix: 199 },
+            { nom: "Montre Connectée", prix: 249 }
+          ]
+        }
+      ],
+      description: "Les opérateurs logiques vous permettent de créer des filtres complexes et précis.",
     },
     {
       title: "ORDER BY - Tri des Résultats",
-      content:
-        "Triez vos résultats dans l'ordre qui vous convient.",
-      sqlCode: `-- Tri croissant (par défaut)
-SELECT nom, age FROM utilisateurs ORDER BY age;
-SELECT nom, age FROM utilisateurs ORDER BY age ASC; -- Explicit
-
--- Tri décroissant
-SELECT nom, prix FROM produits ORDER BY prix DESC;
-
--- Tri sur plusieurs colonnes
-SELECT nom, age, ville 
+      content: "Triez vos résultats dans l'ordre qui vous convient.",
+      sqlQueries: [
+        {
+          title: "Tri croissant par âge",
+          sqlCode: `SELECT nom, age 
 FROM utilisateurs 
-ORDER BY ville ASC, age DESC;
-
--- Tri avec NULL
-SELECT nom, telephone 
-FROM utilisateurs 
-ORDER BY telephone NULLS LAST; -- NULL à la fin
-
--- Tri sur calcul
-SELECT nom, prix, prix * 0.8 AS prix_reduit 
+ORDER BY age ASC;`,
+          sqlResult: [
+            { nom: "Claire Durand", age: 25 },
+            { nom: "Alice Dupont", age: 28 },
+            { nom: "Emma Bernard", age: 30 },
+            { nom: "Bob Martin", age: 32 },
+            { nom: "David Moreau", age: 45 }
+          ]
+        },
+        {
+          title: "Tri décroissant par prix",
+          sqlCode: `SELECT nom, prix 
 FROM produits 
-ORDER BY prix * 0.8 DESC;
-
--- Tri par position de colonne
-SELECT nom, age, email 
+ORDER BY prix DESC;`,
+          sqlResult: [
+            { nom: "Smartphone Pro", prix: 1299 },
+            { nom: "Ordinateur Portable", prix: 899 },
+            { nom: "Tablette", prix: 299 },
+            { nom: "Montre Connectée", prix: 249 },
+            { nom: "Casque Audio", prix: 199 }
+          ]
+        },
+        {
+          title: "Tri sur plusieurs colonnes",
+          sqlCode: `SELECT nom, age, ville 
 FROM utilisateurs 
-ORDER BY 2, 1; -- Trier par age (2e colonne), puis nom (1ere)`,
-      sqlResult: `Utilisateurs triés par âge croissant
-Produits triés par prix décroissant
-Utilisateurs triés par ville puis âge
-Utilisateurs avec téléphones en premier
-Produits triés par prix réduit
-Utilisateurs triés par âge puis nom`,
-      description:
-        "ORDER BY organise vos résultats. Indispensable pour une présentation claire des données.",
+ORDER BY ville ASC, age DESC;`,
+          sqlResult: [
+            { nom: "David Moreau", age: 45, ville: "Lyon" },
+            { nom: "Bob Martin", age: 32, ville: "Paris" },
+            { nom: "Alice Dupont", age: 28, ville: "Paris" },
+            { nom: "Emma Bernard", age: 30, ville: "Toulouse" },
+            { nom: "Claire Durand", age: 25, ville: "Toulouse" }
+          ]
+        }
+      ],
+      description: "ORDER BY organise vos résultats. Indispensable pour une présentation claire des données.",
     },
     {
-      title: "NULL et IS NULL - Gestion des Valeurs Nulles",
-      content:
-        "Gérez les valeurs manquantes avec NULL et IS NULL.",
-      sqlCode: `-- Rechercher les valeurs NULL
-SELECT nom, telephone 
+      title: "NULL - Gestion des Valeurs Nulles",
+      content: "Gérez les valeurs manquantes avec IS NULL et IS NOT NULL.",
+      sqlQueries: [
+        {
+          title: "Rechercher les valeurs NULL",
+          sqlCode: `SELECT nom, telephone 
 FROM utilisateurs 
-WHERE telephone IS NULL;
-
--- Rechercher les valeurs non NULL
-SELECT nom, telephone 
+WHERE telephone IS NULL;`,
+          sqlResult: [
+            { nom: "Claire Durand", telephone: null },
+            { nom: "Emma Bernard", telephone: null }
+          ]
+        },
+        {
+          title: "Rechercher les valeurs non NULL",
+          sqlCode: `SELECT nom, telephone 
 FROM utilisateurs 
-WHERE telephone IS NOT NULL;
-
--- NULL dans les conditions (attention aux pièges!)
-SELECT * FROM utilisateurs WHERE age = NULL; -- ❌ Ne marche PAS
-SELECT * FROM utilisateurs WHERE age IS NULL; -- ✅ Correct
-
--- Remplacer NULL par une valeur
-SELECT nom, COALESCE(telephone, 'Non renseigné') AS contact
-FROM utilisateurs;
-
--- Conditions avec NULL
-SELECT * FROM commandes 
-WHERE date_livraison IS NULL; -- Commandes non livrées
-
--- NULL et opérateurs logiques
-SELECT * FROM utilisateurs 
-WHERE age > 25 OR age IS NULL; -- Inclut les âges inconnus`,
-      sqlResult: `8 utilisateurs sans téléphone
-17 utilisateurs avec téléphone
-0 résultats (piège NULL!)
-25 utilisateurs (corrects)
-15 commandes non livrées
-20 utilisateurs (>25 ans ou âge inconnu)`,
-      description:
-        "NULL représente l'absence de valeur. Attention : NULL = NULL est toujours FALSE !",
+WHERE telephone IS NOT NULL;`,
+          sqlResult: [
+            { nom: "Alice Dupont", telephone: "06 12 34 56 78" },
+            { nom: "Bob Martin", telephone: "07 98 76 54 32" },
+            { nom: "David Moreau", telephone: "06 11 22 33 44" }
+          ]
+        },
+        {
+          title: "Remplacer NULL par une valeur",
+          sqlCode: `SELECT nom, COALESCE(telephone, 'Non renseigné') AS contact 
+FROM utilisateurs;`,
+          sqlResult: [
+            { nom: "Alice Dupont", contact: "06 12 34 56 78" },
+            { nom: "Bob Martin", contact: "07 98 76 54 32" },
+            { nom: "Claire Durand", contact: "Non renseigné" },
+            { nom: "David Moreau", contact: "06 11 22 33 44" },
+            { nom: "Emma Bernard", contact: "Non renseigné" }
+          ]
+        },
+        {
+          title: "Conditions avec NULL",
+          sqlCode: `SELECT nom, age 
+FROM utilisateurs 
+WHERE age > 25 OR age IS NULL;`,
+          sqlResult: [
+            { nom: "Alice Dupont", age: 28 },
+            { nom: "Bob Martin", age: 32 },
+            { nom: "David Moreau", age: 45 },
+            { nom: "Emma Bernard", age: 30 }
+          ]
+        }
+      ],
+      description: "NULL représente l'absence de valeur. Attention : NULL = NULL est toujours FALSE !",
     },
     {
       title: "LIMIT et OFFSET - Pagination",
-      content:
-        "Contrôlez le nombre de résultats et implémentez la pagination.",
-      sqlCode: `-- Limiter le nombre de résultats
-SELECT nom, email FROM utilisateurs LIMIT 5;
-
--- Pagination : ignorer les N premiers résultats
-SELECT nom, email FROM utilisateurs 
+      content: "Contrôlez le nombre de résultats et implémentez la pagination.",
+      sqlQueries: [
+        {
+          title: "Limiter le nombre de résultats",
+          sqlCode: `SELECT nom, email 
+FROM utilisateurs 
+LIMIT 3;`,
+          sqlResult: [
+            { nom: "Alice Dupont", email: "alice@email.com" },
+            { nom: "Bob Martin", email: "bob@email.com" },
+            { nom: "Claire Durand", email: "claire@email.com" }
+          ]
+        },
+        {
+          title: "Pagination - Page 2",
+          sqlCode: `SELECT nom, email 
+FROM utilisateurs 
 ORDER BY nom 
-LIMIT 10 OFFSET 20; -- Page 3 (10 par page)
-
--- Top N avec tri
-SELECT nom, prix FROM produits 
+LIMIT 2 OFFSET 2;`,
+          sqlResult: [
+            { nom: "Claire Durand", email: "claire@email.com" },
+            { nom: "David Moreau", email: "david@email.com" }
+          ]
+        },
+        {
+          title: "Top 3 des produits les plus chers",
+          sqlCode: `SELECT nom, prix 
+FROM produits 
 ORDER BY prix DESC 
-LIMIT 3; -- Les 3 produits les plus chers
-
--- Pagination efficace
-SELECT nom, age FROM utilisateurs 
-WHERE age > 18 
+LIMIT 3;`,
+          sqlResult: [
+            { nom: "Smartphone Pro", prix: 1299 },
+            { nom: "Ordinateur Portable", prix: 899 },
+            { nom: "Tablette", prix: 299 }
+          ]
+        },
+        {
+          title: "Pagination efficace",
+          sqlCode: `SELECT nom, age 
+FROM utilisateurs 
+WHERE age > 25 
 ORDER BY nom 
-LIMIT 10 OFFSET 0; -- Page 1
-
-SELECT nom, age FROM utilisateurs 
-WHERE age > 18 
-ORDER BY nom 
-LIMIT 10 OFFSET 10; -- Page 2
-
--- LIMIT sans ORDER BY (résultats aléatoires)
-SELECT * FROM logs LIMIT 100; -- Attention : ordre non garanti`,
-      sqlResult: `5 premiers utilisateurs
-10 utilisateurs de la page 3
-3 produits les plus chers
-Page 1 : 10 utilisateurs
-Page 2 : 10 utilisateurs suivants
-100 logs (ordre aléatoire)`,
-      description:
-        "LIMIT et OFFSET sont essentiels pour la pagination et l'optimisation des performances sur grandes tables.",
+LIMIT 2 OFFSET 0;`,
+          sqlResult: [
+            { nom: "Alice Dupont", age: 28 },
+            { nom: "Bob Martin", age: 32 }
+          ]
+        }
+      ],
+      description: "LIMIT et OFFSET sont essentiels pour la pagination et l'optimisation des performances sur grandes tables.",
     }
   ],
 };
