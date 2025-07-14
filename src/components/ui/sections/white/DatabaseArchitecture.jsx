@@ -18,15 +18,19 @@ export default function DatabaseArchitecture() {
 
         <div className="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-r-lg">
           <p>
-            🏛️ <strong>La bibliothèque</strong> = la{" "}
+            <MdTableChart className="w-5 h-5 text-blue-600 inline mr-2" />
+            <strong>La bibliothèque</strong> = la{" "}
             <strong>base de données</strong>
             <br />
-            📁 <strong>Chaque étagère</strong> = une <strong>table</strong>
+            <MdTableChart className="w-5 h-5 text-blue-600 inline mr-2" />
+            <strong>Chaque étagère</strong> = une <strong>table</strong>
             <br />
-            📚 <strong>Chaque livre sur l'étagère</strong> = une{" "}
+            <MdTableRows className="w-5 h-5 text-blue-600 inline mr-2" />
+            <strong>Chaque livre sur l'étagère</strong> = une{" "}
             <strong>ligne</strong> (aussi appelée "enregistrement")
             <br />
-            📄 <strong>Les infos sur la couverture du livre</strong> (titre,
+            <MdViewColumn className="w-5 h-5 text-blue-600 inline mr-2" />
+            <strong>Les infos sur la couverture du livre</strong> (titre,
             auteur, ISBN) = les <strong>colonnes</strong>
           </p>
         </div>
@@ -44,14 +48,14 @@ export default function DatabaseArchitecture() {
       </div>
 
       {/* Représentation visuelle - Base de données */}
-      <div className="border border-gray-300 rounded-lg p-6">
+      <div className="border border-gray-300 rounded-lg bg-gray-50 p-6">
         <div className="max-w-7xl mx-auto">
           {/* Tables */}
           <div className="space-y-8">
             {/* Table Utilisateurs */}
-            <div className="bg-gray-50 border-2 border-gray-300 rounded-lg p-6 shadow-sm">
-              <div className="flex items-center space-x-3 mb-6">
-                <MdTableChart className="w-6 h-6 text-gray-600" />
+            <div className="bg-white border border-gray-300 rounded-lg p-4 shadow-sm">
+              <div className="flex items-center space-x-3 mb-4">
+                <MdTableChart className="w-5 h-5 text-gray-600" />
                 <h3 className="text-lg font-bold text-gray-800">
                   Table "utilisateurs"
                 </h3>
@@ -60,7 +64,7 @@ export default function DatabaseArchitecture() {
               {/* En-tête des colonnes */}
               <div className="bg-gray-100 border border-gray-300 rounded-t-lg overflow-x-auto">
                 <div className="grid grid-cols-4 min-w-[600px]">
-                  <div className="p-3 text-center font-semibold text-gray-900 bg-yellow-100 border-r border-b border-gray-300">
+                  <div className="p-3 text-center font-semibold text-yellow-900 bg-yellow-100 border-r border-b border-gray-300">
                     <div className="flex items-center justify-center space-x-1">
                       <MdKey className="w-4 h-4 text-yellow-600" />
                       <span>id</span>
@@ -118,9 +122,9 @@ export default function DatabaseArchitecture() {
                           }`}
                         >
                           {cellIndex === 0 && (
-                            <div className="flex items-center justify-center space-x-1 bg-yellow-50 py-1 px-2 rounded">
+                            <div className="flex items-center justify-center space-x-1 bg-yellow-100 py-1 px-2 rounded w-full h-full">
                               <MdKey className="w-3 h-3 text-yellow-600" />
-                              <span className="font-semibold">{cell}</span>
+                              <span className="font-semibold text-yellow-900">{cell}</span>
                             </div>
                           )}
                           {cellIndex > 0 && (
@@ -144,9 +148,9 @@ export default function DatabaseArchitecture() {
             </div>
 
             {/* Table Livres */}
-            <div className="bg-gray-50 border-2 border-gray-300 rounded-lg p-6 shadow-sm">
-              <div className="flex items-center space-x-3 mb-6">
-                <MdTableChart className="w-6 h-6 text-gray-600" />
+            <div className="bg-white border border-gray-300 rounded-lg p-4 shadow-sm">
+              <div className="flex items-center space-x-3 mb-4">
+                <MdTableChart className="w-5 h-5 text-gray-600" />
                 <h3 className="text-lg font-bold text-gray-800">
                   Table "livres"
                 </h3>
@@ -155,7 +159,7 @@ export default function DatabaseArchitecture() {
               {/* En-tête des colonnes */}
               <div className="bg-gray-100 border border-gray-300 rounded-t-lg overflow-x-auto">
                 <div className="grid grid-cols-5 min-w-[800px]">
-                  <div className="p-3 text-center font-semibold text-gray-900 bg-yellow-100 border-r border-b border-gray-300">
+                  <div className="p-3 text-center font-semibold text-yellow-900 bg-yellow-100 border-r border-b border-gray-300">
                     <div className="flex items-center justify-center space-x-1">
                       <MdKey className="w-4 h-4 text-yellow-600" />
                       <span>id</span>
@@ -221,9 +225,9 @@ export default function DatabaseArchitecture() {
                           }`}
                         >
                           {cellIndex === 0 && (
-                            <div className="flex items-center justify-center space-x-1 bg-yellow-50 py-1 px-2 rounded">
+                            <div className="flex items-center justify-center space-x-1 bg-yellow-100 py-1 px-2 rounded w-full h-full">
                               <MdKey className="w-3 h-3 text-yellow-600" />
-                              <span className="font-semibold">{cell}</span>
+                              <span className="font-semibold text-yellow-900">{cell}</span>
                             </div>
                           )}
                           {cellIndex > 0 && (
@@ -247,9 +251,9 @@ export default function DatabaseArchitecture() {
             </div>
 
             {/* Table Emprunts */}
-            <div className="bg-gray-50 border-2 border-gray-300 rounded-lg p-6 shadow-sm">
-              <div className="flex items-center space-x-3 mb-6">
-                <MdTableChart className="w-6 h-6 text-gray-600" />
+            <div className="bg-white border border-gray-300 rounded-lg p-4 shadow-sm">
+              <div className="flex items-center space-x-3 mb-4">
+                <MdTableChart className="w-5 h-5 text-gray-600" />
                 <h3 className="text-lg font-bold text-gray-800">
                   Table "emprunts"
                 </h3>
@@ -258,7 +262,7 @@ export default function DatabaseArchitecture() {
               {/* En-tête des colonnes */}
               <div className="bg-gray-100 border border-gray-300 rounded-t-lg overflow-x-auto">
                 <div className="grid grid-cols-6 min-w-[900px]">
-                  <div className="p-3 text-center font-semibold text-gray-900 bg-yellow-100 border-r border-b border-gray-300">
+                  <div className="p-3 text-center font-semibold text-yellow-900 bg-yellow-100 border-r border-b border-gray-300">
                     <div className="flex items-center justify-center space-x-1">
                       <MdKey className="w-4 h-4 text-yellow-600" />
                       <span>id</span>
@@ -267,7 +271,7 @@ export default function DatabaseArchitecture() {
                       Clé Primaire
                     </div>
                   </div>
-                  <div className="p-3 text-center font-semibold text-gray-900 bg-red-100 border-r border-b border-gray-300">
+                  <div className="p-3 text-center font-semibold text-red-900 bg-red-100 border-r border-b border-gray-300">
                     <div className="flex items-center justify-center space-x-1">
                       <MdLink className="w-4 h-4 text-red-600" />
                       <span>utilisateur_id</span>
@@ -276,7 +280,7 @@ export default function DatabaseArchitecture() {
                       Clé Étrangère
                     </div>
                   </div>
-                  <div className="p-3 text-center font-semibold text-gray-900 bg-red-100 border-r border-b border-gray-300">
+                  <div className="p-3 text-center font-semibold text-red-900 bg-red-100 border-r border-b border-gray-300">
                     <div className="flex items-center justify-center space-x-1">
                       <MdLink className="w-4 h-4 text-red-600" />
                       <span>livre_id</span>
@@ -329,15 +333,15 @@ export default function DatabaseArchitecture() {
                           }`}
                         >
                           {cellIndex === 0 && (
-                            <div className="flex items-center justify-center space-x-1 bg-yellow-50 py-1 px-2 rounded">
+                            <div className="flex items-center justify-center space-x-1 bg-yellow-100 py-1 px-2 rounded w-full h-full">
                               <MdKey className="w-3 h-3 text-yellow-600" />
-                              <span className="font-semibold">{cell}</span>
+                              <span className="font-semibold text-yellow-900">{cell}</span>
                             </div>
                           )}
                           {(cellIndex === 1 || cellIndex === 2) && (
-                            <div className="flex items-center justify-center space-x-1 bg-red-50 py-1 px-2 rounded">
+                            <div className="flex items-center justify-center space-x-1 bg-red-100 py-1 px-2 rounded w-full h-full">
                               <MdLink className="w-3 h-3 text-red-600" />
-                              <span className="font-semibold">{cell}</span>
+                              <span className="font-semibold text-red-900">{cell}</span>
                             </div>
                           )}
                           {cellIndex > 2 && (
@@ -363,18 +367,18 @@ export default function DatabaseArchitecture() {
 
           {/* Lexique */}
           <div className="mt-8 grid md:grid-cols-2 gap-4">
-            <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+            <div className="p-4 bg-yellow-100 border border-yellow-200 rounded-lg">
               <h4 className="font-bold text-yellow-900 mb-2 flex items-center">
-                <MdKey className="w-4 h-4 mr-2" />
+                <MdKey className="w-4 h-4 mr-2 text-yellow-600" />
                 Clé Primaire
               </h4>
               <p className="text-yellow-800 text-sm">
                 Identifiant unique de chaque ligne dans une table
               </p>
             </div>
-            <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
+            <div className="p-4 bg-red-100 border border-red-200 rounded-lg">
               <h4 className="font-bold text-red-900 mb-2 flex items-center">
-                <MdLink className="w-4 h-4 mr-2" />
+                <MdLink className="w-4 h-4 mr-2 text-red-600" />
                 Clé Étrangère
               </h4>
               <p className="text-red-800 text-sm">
@@ -384,18 +388,18 @@ export default function DatabaseArchitecture() {
           </div>
 
           {/* Explication des relations */}
-          <div className="mt-8 p-6 bg-gray-50 border-l-4 border-gray-400 rounded-r-lg">
+          <div className="mt-8 p-4 bg-white border border-gray-300 rounded-lg shadow-sm">
             <div className="flex items-center space-x-2 mb-3">
               <MdLink className="w-5 h-5 text-gray-600" />
-              <h4 className="font-bold text-gray-900">
-                Relations entre tables
+              <h4 className="text-lg font-bold text-gray-900">
+                Relations entre les tables
               </h4>
             </div>
-            <p className="text-gray-800 leading-relaxed">
+            <p className="text-gray-800 leading-relaxed mb-3">
               Les <strong>clés étrangères</strong> créent des liens entre les
               tables. Dans notre exemple :
             </p>
-            <ul className="text-gray-800 mt-2 space-y-1">
+            <ul className="text-gray-800 mb-4 space-y-1">
               <li>
                 • <strong>utilisateur_id</strong> dans "emprunts" →{" "}
                 <strong>id</strong> dans "utilisateurs"
@@ -405,8 +409,8 @@ export default function DatabaseArchitecture() {
                 <strong>id</strong> dans "livres"
               </li>
             </ul>
-            <div className="bg-gray-100 border border-gray-200 p-4 rounded-lg mt-4">
-              <p className="text-gray-800">
+            <div className="bg-gray-50 border border-gray-200 p-4 rounded-lg">
+              <p className="text-gray-800 text-sm">
                 En regardant la première ligne de la table "emprunts" (id 201),
                 on peut voir que :
                 <br />• <strong>utilisateur_id = 1</strong> → ce qui correspond

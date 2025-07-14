@@ -11,7 +11,7 @@ export default function SGBDDiagram() {
   return (
     <div className="bg-white flex flex-col gap-8">
       {/* Texte explicatif */}
-      <div className=" text-gray-700 leading-relaxed px-4 flex flex-col gap-3">
+      <div className="text-gray-700 leading-relaxed px-4 flex flex-col gap-3">
         <p>
           Un <strong>Système de Gestion de Base de Données (SGBD)</strong> est
           un logiciel permettant de créer, gérer et manipuler des bases de
@@ -46,42 +46,42 @@ export default function SGBDDiagram() {
       </div>
 
       {/* Diagramme hiérarchique */}
-      <div className=" border border-gray-200 rounded-lg mx-2">
+      <div className="border border-gray-300 rounded-lg bg-gray-50 p-6">
         {/* Niveau racine - SGBD */}
-        <div className="flex justify-center my-12">
-          <div className="flex items-center space-x-3 px-8 py-4 bg-slate-100 border-2 border-slate-300 rounded-lg ">
-            <MdStorage className="w-8 h-8 text-slate-700" />
-            <span className="text-xl font-bold text-slate-800">SGBD</span>
+        <div className="flex justify-center mb-12">
+          <div className="flex items-center space-x-3 px-8 py-4 bg-white border-2 border-gray-300 rounded-lg shadow-sm">
+            <MdStorage className="w-7 h-7 text-gray-600" />
+            <span className="text-xl font-bold text-gray-800">SGBD</span>
           </div>
         </div>
 
         {/* Niveau catégories */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-8">
           {/* SGBDR */}
           <div className="flex flex-col items-center">
             {/* Nœud catégorie SGBDR */}
-            <div className="flex items-center space-x-3 px-6 py-4 bg-blue-100 border-2 border-blue-200 rounded-lg mb-8 shadow-sm">
-              <MdStorage className="w-7 h-7 text-blue-600" />
+            <div className="flex items-center space-x-3 px-6 py-4 bg-white border-2 border-blue-400 rounded-lg mb-8 shadow-sm">
+              <MdStorage className="w-6 h-6 text-blue-600" />
               <span className="font-bold text-blue-800 text-lg">SGBDR</span>
             </div>
 
             {/* Bases de données SGBDR */}
-            <div className="space-y-3">
-              <div className="flex items-center space-x-3 p-4 bg-blue-50 rounded-lg border border-blue-100 shadow-sm min-w-[200px]">
-                <SiMysql className="w-6 h-6 text-orange-600 flex-shrink-0" />
-                <span className="font-semibold text-blue-900">MySQL</span>
+            <div className="space-y-4 w-full max-w-[240px]">
+              <div className="flex items-center space-x-3 p-4 bg-white rounded-lg border-2 border-blue-200 shadow-sm">
+                <SiMysql className="w-5 h-5 text-orange-600 flex-shrink-0" />
+                <span className="font-semibold text-gray-900">MySQL</span>
               </div>
-              <div className="flex items-center space-x-3 p-4 bg-blue-50 rounded-lg border border-blue-100 shadow-sm min-w-[200px]">
-                <SiPostgresql className="w-6 h-6 text-blue-700 flex-shrink-0" />
-                <span className="font-semibold text-blue-900">PostgreSQL</span>
+              <div className="flex items-center space-x-3 p-4 bg-white rounded-lg border-2 border-blue-200 shadow-sm">
+                <SiPostgresql className="w-5 h-5 text-blue-700 flex-shrink-0" />
+                <span className="font-semibold text-gray-900">PostgreSQL</span>
               </div>
-              <div className="flex items-center space-x-3 p-4 bg-blue-50 rounded-lg border border-blue-100 shadow-sm min-w-[200px]">
-                <SiSqlite className="w-6 h-6 text-blue-500 flex-shrink-0" />
-                <span className="font-semibold text-blue-900">SQLite</span>
+              <div className="flex items-center space-x-3 p-4 bg-white rounded-lg border-2 border-blue-200 shadow-sm">
+                <SiSqlite className="w-5 h-5 text-blue-500 flex-shrink-0" />
+                <span className="font-semibold text-gray-900">SQLite</span>
               </div>
-              <div className="flex items-center space-x-3 p-4 bg-blue-50 rounded-lg border border-blue-100 shadow-sm min-w-[200px]">
-                <MdStorage className="w-6 h-6 text-red-600 flex-shrink-0" />
-                <span className="font-semibold text-blue-900">SQL Server</span>
+              <div className="flex items-center space-x-3 p-4 bg-white rounded-lg border-2 border-blue-200 shadow-sm">
+                <MdStorage className="w-5 h-5 text-red-600 flex-shrink-0" />
+                <span className="font-semibold text-gray-900">SQL Server</span>
               </div>
             </div>
           </div>
@@ -89,40 +89,40 @@ export default function SGBDDiagram() {
           {/* NoSQL */}
           <div className="flex flex-col items-center">
             {/* Nœud catégorie NoSQL */}
-            <div className="flex items-center space-x-3 px-6 py-4 bg-emerald-100 border-2 border-emerald-200 rounded-lg mb-8 shadow-sm">
-              <MdAccountTree className="w-7 h-7 text-emerald-600" />
+            <div className="flex items-center space-x-3 px-6 py-4 bg-white border-2 border-emerald-400 rounded-lg mb-8 shadow-sm">
+              <MdAccountTree className="w-6 h-6 text-emerald-600" />
               <span className="font-bold text-emerald-800 text-lg">NoSQL</span>
             </div>
 
             {/* Bases de données NoSQL */}
-            <div className="space-y-3">
-              <div className="flex items-center space-x-3 p-4 bg-emerald-50 rounded-lg border border-emerald-100 shadow-sm min-w-[200px]">
-                <SiMongodb className="w-6 h-6 text-green-600 flex-shrink-0" />
+            <div className="space-y-4 w-full max-w-[240px]">
+              <div className="flex items-center space-x-3 p-4 bg-white rounded-lg border-2 border-emerald-200 shadow-sm">
+                <SiMongodb className="w-5 h-5 text-green-600 flex-shrink-0" />
                 <div className="min-w-0">
-                  <div className="font-semibold text-emerald-900">MongoDB</div>
+                  <div className="font-semibold text-gray-900">MongoDB</div>
                   <div className="text-xs text-emerald-600">Documents JSON</div>
                 </div>
               </div>
-              <div className="flex items-center space-x-3 p-4 bg-emerald-50 rounded-lg border border-emerald-100 shadow-sm min-w-[200px]">
-                <SiRedis className="w-6 h-6 text-red-500 flex-shrink-0" />
+              <div className="flex items-center space-x-3 p-4 bg-white rounded-lg border-2 border-emerald-200 shadow-sm">
+                <SiRedis className="w-5 h-5 text-red-500 flex-shrink-0" />
                 <div className="min-w-0">
-                  <div className="font-semibold text-emerald-900">Redis</div>
+                  <div className="font-semibold text-gray-900">Redis</div>
                   <div className="text-xs text-emerald-600">Clé-Valeur</div>
                 </div>
               </div>
-              <div className="flex items-center space-x-3 p-4 bg-emerald-50 rounded-lg border border-emerald-100 shadow-sm min-w-[200px]">
-                <MdDataObject className="w-6 h-6 text-purple-600 flex-shrink-0" />
+              <div className="flex items-center space-x-3 p-4 bg-white rounded-lg border-2 border-emerald-200 shadow-sm">
+                <MdDataObject className="w-5 h-5 text-purple-600 flex-shrink-0" />
                 <div className="min-w-0">
-                  <div className="font-semibold text-emerald-900">
+                  <div className="font-semibold text-gray-900">
                     Cassandra
                   </div>
                   <div className="text-xs text-emerald-600">Colonnes</div>
                 </div>
               </div>
-              <div className="flex items-center space-x-3 p-4 bg-emerald-50 rounded-lg border border-emerald-100 shadow-sm min-w-[200px]">
-                <MdHub className="w-6 h-6 text-blue-600 flex-shrink-0" />
+              <div className="flex items-center space-x-3 p-4 bg-white rounded-lg border-2 border-emerald-200 shadow-sm">
+                <MdHub className="w-5 h-5 text-blue-600 flex-shrink-0" />
                 <div className="min-w-0">
-                  <div className="font-semibold text-emerald-900">Neo4j</div>
+                  <div className="font-semibold text-gray-900">Neo4j</div>
                   <div className="text-xs text-emerald-600">Graphes</div>
                 </div>
               </div>

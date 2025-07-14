@@ -220,24 +220,6 @@ export default function DataTypes() {
     },
   ];
 
-  const getColorClasses = (color) => {
-    const colors = {
-      gray: {
-        bg: "bg-gray-50",
-        border: "border-gray-300",
-        text: "text-gray-900",
-        accent: "bg-gray-100",
-      },
-      lightgray: {
-        bg: "bg-gray-50",
-        border: "border-gray-200",
-        text: "text-gray-800",
-        accent: "bg-gray-100",
-      },
-    };
-    return colors[color];
-  };
-
   return (
     <div>
       {/* Introduction */}
@@ -253,8 +235,6 @@ export default function DataTypes() {
           <p className="flex items-start">
             <MdLightbulb className="w-5 h-5 text-blue-600 mr-2 mt-0.5 flex-shrink-0" />
             <span>
-              <strong>Analogie :</strong> C'est comme des boîtes étiquetées avec des règles !
-              <br />
               <MdInventory className="w-4 h-4 text-blue-600 inline mr-2 mt-1" />
               <strong>Type de données</strong> = le format autorisé (nombres,
               texte, dates...)
@@ -275,195 +255,181 @@ export default function DataTypes() {
       </div>
 
       {/* Types de données courants */}
-      <div className="border border-gray-300 rounded-lg bg-gray-50">
-        <div className="p-6">
-          <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
-            <MdStorage className="w-7 h-7 text-gray-600 mr-3" />
-            Types de données courantes
-          </h2>
+      <div className="border border-gray-300 rounded-lg bg-gray-50 p-6">
+        <h2 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
+          <MdStorage className="w-6 h-6 text-gray-600 mr-3" />
+          Types de données courantes
+        </h2>
 
-          <div className="grid gap-6">
-            {commonDataTypes.map((category, categoryIndex) => {
-              const colors = getColorClasses(category.color);
-              return (
-                <div
-                  key={categoryIndex}
-                  className={`${colors.bg} border-2 ${colors.border} rounded-lg p-6 shadow-sm`}
-                >
-                  {/* En-tête de catégorie */}
-                  <div className="flex items-center space-x-3 mb-6">
-                    {category.icon}
-                    <h3 className={`text-xl font-bold ${colors.text}`}>
-                      {category.category}
-                    </h3>
-                  </div>
+        <div className="grid gap-6">
+          {commonDataTypes.map((category, categoryIndex) => (
+            <div
+              key={categoryIndex}
+              className="bg-white border border-gray-300 rounded-lg p-4 shadow-sm"
+            >
+              {/* En-tête de catégorie */}
+              <div className="flex items-center space-x-3 mb-4">
+                {category.icon}
+                <h3 className="text-lg font-bold text-gray-800">
+                  {category.category}
+                </h3>
+              </div>
 
-                  {/* Types dans la catégorie */}
-                  <div className="space-y-4">
-                    {category.types.map((type, typeIndex) => (
-                      <div
-                        key={typeIndex}
-                        className="bg-white border border-gray-300 rounded-lg p-4"
-                      >
-                        <div className="grid lg:grid-cols-5 gap-4 items-start">
-                          {/* Nom du type */}
-                          <div className="flex items-center">
-                            <div
-                              className={`${colors.accent} px-3 py-2 rounded-lg inline-block`}
-                            >
-                              <code className={`font-bold ${colors.text}`}>
-                                {type.name}
-                              </code>
-                            </div>
-                          </div>
-
-                          {/* Description */}
-                          <div>
-                            <p className="text-gray-800 text-sm font-medium mb-1">
-                              Description
-                            </p>
-                            <p className="text-gray-700 text-sm">
-                              {type.description}
-                            </p>
-                          </div>
-
-                          {/* Exemples */}
-                          <div>
-                            <p className="text-gray-800 text-sm font-medium mb-1">
-                              Exemples
-                            </p>
-                            <div className="flex flex-wrap gap-1">
-                              {type.examples.map((example, exampleIndex) => (
-                                <code
-                                  key={exampleIndex}
-                                  className="bg-gray-100 px-2 py-1 rounded text-xs text-gray-800"
-                                >
-                                  {example}
-                                </code>
-                              ))}
-                            </div>
-                          </div>
-
-                          {/* Utilisation */}
-                          <div>
-                            <p className="text-gray-800 text-sm font-medium mb-1">
-                              Utilisation
-                            </p>
-                            <p className="text-gray-700 text-sm">
-                              {type.usage}
-                            </p>
-                          </div>
-
-                          {/* Bonne pratique */}
-                          {type.bestPractice && (
-                            <div>
-                              <p className="text-gray-800 text-sm font-medium mb-1">
-                                Bonne pratique
-                              </p>
-                              <p className="text-gray-700 text-sm font-semibold">
-                                {type.bestPractice}
-                              </p>
-                            </div>
-                          )}
+              {/* Types dans la catégorie */}
+              <div className="space-y-4">
+                {category.types.map((type, typeIndex) => (
+                  <div
+                    key={typeIndex}
+                    className="bg-gray-50 border border-gray-200 rounded-lg p-4"
+                  >
+                    <div className="grid lg:grid-cols-5 gap-4 items-start">
+                      {/* Nom du type */}
+                      <div className="flex items-center">
+                        <div className="bg-gray-100 px-3 py-2 rounded-lg inline-block">
+                          <code className="font-bold text-gray-800">
+                            {type.name}
+                          </code>
                         </div>
                       </div>
-                    ))}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
 
+                      {/* Description */}
+                      <div>
+                        <p className="text-gray-800 text-sm font-medium mb-1">
+                          Description
+                        </p>
+                        <p className="text-gray-700 text-sm">
+                          {type.description}
+                        </p>
+                      </div>
+
+                      {/* Exemples */}
+                      <div>
+                        <p className="text-gray-800 text-sm font-medium mb-1">
+                          Exemples
+                        </p>
+                        <div className="flex flex-wrap gap-1">
+                          {type.examples.map((example, exampleIndex) => (
+                            <code
+                              key={exampleIndex}
+                              className="bg-gray-100 px-2 py-1 rounded text-xs text-gray-800"
+                            >
+                              {example}
+                            </code>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Utilisation */}
+                      <div>
+                        <p className="text-gray-800 text-sm font-medium mb-1">
+                          Utilisation
+                        </p>
+                        <p className="text-gray-700 text-sm">
+                          {type.usage}
+                        </p>
+                      </div>
+
+                      {/* Bonne pratique */}
+                      {type.bestPractice && (
+                        <div>
+                          <p className="text-gray-800 text-sm font-medium mb-1">
+                            Bonne pratique
+                          </p>
+                          <p className="text-gray-700 text-sm font-semibold">
+                            {type.bestPractice}
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+        
         {/* Types moins courants */}
-        <div className="p-6">
-          <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
-            <MdStorage className="w-7 h-7 text-gray-400 mr-3" />
+        <div className="mt-8">
+          <h2 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
+            <MdStorage className="w-6 h-6 text-gray-400 mr-3" />
             Types de données moins courantes
           </h2>
 
           <div className="grid gap-6">
-            {lessCommonDataTypes.map((category, categoryIndex) => {
-              const colors = getColorClasses(category.color);
-              return (
-                <div
-                  key={categoryIndex}
-                  className={`${colors.bg} border ${colors.border} rounded-lg p-6 opacity-90`}
-                >
-                  {/* En-tête de catégorie */}
-                  <div className="flex items-center space-x-3 mb-6">
-                    {category.icon}
-                    <h3 className={`text-lg font-bold ${colors.text}`}>
-                      {category.category}
-                    </h3>
-                  </div>
+            {lessCommonDataTypes.map((category, categoryIndex) => (
+              <div
+                key={categoryIndex}
+                className="bg-white border border-gray-300 rounded-lg p-4 shadow-sm opacity-90"
+              >
+                {/* En-tête de catégorie */}
+                <div className="flex items-center space-x-3 mb-4">
+                  {category.icon}
+                  <h3 className="text-lg font-bold text-gray-800">
+                    {category.category}
+                  </h3>
+                </div>
 
-                  {/* Types dans la catégorie */}
-                  <div className="space-y-3">
-                    {category.types.map((type, typeIndex) => (
-                      <div
-                        key={typeIndex}
-                        className="bg-white border border-gray-300 rounded-lg p-3"
-                      >
-                        <div className="grid md:grid-cols-4 gap-3 items-start">
-                          {/* Nom du type */}
-                          <div className="flex items-center">
-                            <div
-                              className={`${colors.accent} px-2 py-1 rounded inline-block`}
-                            >
-                              <code
-                                className={`font-semibold text-sm ${colors.text}`}
-                              >
-                                {type.name}
-                              </code>
-                            </div>
-                          </div>
-
-                          {/* Description */}
-                          <div>
-                            <p className="text-gray-700 text-sm">
-                              {type.description}
-                            </p>
-                          </div>
-
-                          {/* Exemples */}
-                          <div>
-                            <div className="flex flex-wrap gap-1">
-                              {type.examples.map((example, exampleIndex) => (
-                                <code
-                                  key={exampleIndex}
-                                  className="bg-gray-100 px-1 py-0.5 rounded text-xs text-gray-800"
-                                >
-                                  {example}
-                                </code>
-                              ))}
-                            </div>
-                          </div>
-
-                          {/* Utilisation */}
-                          <div>
-                            <p className="text-gray-600 text-sm">
-                              {type.usage}
-                            </p>
+                {/* Types dans la catégorie */}
+                <div className="space-y-3">
+                  {category.types.map((type, typeIndex) => (
+                    <div
+                      key={typeIndex}
+                      className="bg-gray-50 border border-gray-200 rounded-lg p-3"
+                    >
+                      <div className="grid md:grid-cols-4 gap-3 items-start">
+                        {/* Nom du type */}
+                        <div className="flex items-center">
+                          <div className="bg-gray-100 px-2 py-1 rounded inline-block">
+                            <code className="font-semibold text-sm text-gray-800">
+                              {type.name}
+                            </code>
                           </div>
                         </div>
+
+                        {/* Description */}
+                        <div>
+                          <p className="text-gray-700 text-sm">
+                            {type.description}
+                          </p>
+                        </div>
+
+                        {/* Exemples */}
+                        <div>
+                          <div className="flex flex-wrap gap-1">
+                            {type.examples.map((example, exampleIndex) => (
+                              <code
+                                key={exampleIndex}
+                                className="bg-gray-100 px-1 py-0.5 rounded text-xs text-gray-800"
+                              >
+                                {example}
+                              </code>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Utilisation */}
+                        <div>
+                          <p className="text-gray-600 text-sm">
+                            {type.usage}
+                          </p>
+                        </div>
                       </div>
-                    ))}
-                  </div>
+                    </div>
+                  ))}
                 </div>
-              );
-            })}
+              </div>
+            ))}
           </div>
         </div>
 
         {/* Section Contraintes */}
-        <div className="p-6 mt-12">
-          <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
-            <MdSecurity className="w-7 h-7 text-gray-600 mr-3" />
+        <div className="mt-8">
+          <h2 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
+            <MdSecurity className="w-6 h-6 text-gray-600 mr-3" />
             Contraintes et Options
           </h2>
 
-          <div className="bg-gray-100 border-2 border-gray-400 rounded-lg p-6">
+          <div className="bg-white border border-gray-300 rounded-lg p-4 shadow-sm">
             <p className="text-gray-700 mb-6">
               Les <strong>contraintes</strong> définissent des règles que les
               données doivent respecter pour garantir l'intégrité et la
@@ -474,7 +440,7 @@ export default function DataTypes() {
               {constraints.map((constraint, index) => (
                 <div
                   key={index}
-                  className="bg-white border border-gray-300 rounded-lg p-4"
+                  className="bg-gray-50 border border-gray-200 rounded-lg p-4"
                 >
                   <div className="flex items-start space-x-3">
                     <div className="flex-shrink-0 mt-1">{constraint.icon}</div>
@@ -485,7 +451,7 @@ export default function DataTypes() {
                       <p className="text-gray-700 text-sm mb-2">
                         {constraint.description}
                       </p>
-                      <div className="bg-gray-50 border border-gray-200 rounded p-2 mb-2">
+                      <div className="bg-gray-100 border border-gray-200 rounded p-2 mb-2">
                         <code className="text-xs text-gray-800">
                           {constraint.example}
                         </code>
@@ -502,15 +468,15 @@ export default function DataTypes() {
         </div>
 
         {/* Conseils pratiques améliorés */}
-        <div className="p-6">
-          <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
-            <MdLightbulb className="w-7 h-7 text-gray-600 mr-3" />
-            Bonnes Pratiques pour les Types de Données
+        <div className="mt-8">
+          <h2 className="text-lg font-bold text-gray-800 mb-6 flex items-center">
+            <MdLightbulb className="w-5 h-5 text-gray-600 mr-3" />
+            Bonnes Pratiques
           </h2>
           
           <div className="grid md:grid-cols-2 gap-6">
             {/* Carte Recommandations */}
-            <div className="bg-white border border-gray-300 rounded-lg p-6">
+            <div className="bg-white border border-gray-300 rounded-lg p-4 shadow-sm">
               <div className="flex items-center space-x-2 mb-4">
                 <MdCheckCircle className="w-5 h-5 text-green-600" />
                 <h3 className="font-bold text-gray-900">Recommandations</h3>
@@ -544,7 +510,7 @@ export default function DataTypes() {
             </div>
 
             {/* Carte À éviter */}
-            <div className="bg-white border border-gray-300 rounded-lg p-6">
+            <div className="bg-white border border-gray-300 rounded-lg p-4 shadow-sm">
               <div className="flex items-center space-x-2 mb-4">
                 <MdWarning className="w-5 h-5 text-red-600" />
                 <h3 className="font-bold text-gray-900">À éviter</h3>
@@ -580,32 +546,32 @@ export default function DataTypes() {
         </div>
 
         {/* Exemple pratique complet */}
-        <div className="p-6 mt-8">
-          <div className="p-6 bg-gray-100 border border-gray-300 rounded-lg">
+        <div className="mt-8">
+          <div className="bg-white border border-gray-300 rounded-lg p-4 shadow-sm">
             <div className="flex items-center space-x-2 mb-4">
               <MdStorage className="w-5 h-5 text-gray-600" />
               <h4 className="font-bold text-gray-900">
-                Exemple d'une table "utilisateurs" avec contraintes :
+                Exemple d'une table "utilisateurs" avec contraintes
               </h4>
             </div>
 
-            <div className="bg-white border border-gray-300 rounded-lg overflow-hidden">
+            <div className="bg-gray-50 border border-gray-200 rounded-lg overflow-hidden">
               <table className="w-full">
                 <thead>
-                  <tr className="bg-gray-200">
-                    <th className="border border-gray-300 p-3 text-left font-semibold text-gray-900 text-sm">
+                  <tr className="bg-gray-100 border-b border-gray-300">
+                    <th className="p-3 text-left font-semibold text-gray-900 text-sm">
                       Colonne
                     </th>
-                    <th className="border border-gray-300 p-3 text-left font-semibold text-gray-900 text-sm">
+                    <th className="p-3 text-left font-semibold text-gray-900 text-sm">
                       Type + Contraintes
                     </th>
-                    <th className="border border-gray-300 p-3 text-left font-semibold text-gray-900 text-sm">
+                    <th className="p-3 text-left font-semibold text-gray-900 text-sm">
                       Pourquoi ce choix ?
                     </th>
-                    <th className="border border-gray-300 p-3 text-left font-semibold text-gray-900 text-sm">
+                    <th className="p-3 text-left font-semibold text-gray-900 text-sm">
                       Valeur exemple
                     </th>
-                    <th className="border border-gray-300 p-3 text-left font-semibold text-gray-900 text-sm">
+                    <th className="p-3 text-left font-semibold text-gray-900 text-sm">
                       Avantages
                     </th>
                   </tr>
@@ -676,24 +642,24 @@ export default function DataTypes() {
                       benefit: "Extensibilité",
                     },
                   ].map((row, index) => (
-                    <tr key={index} className="hover:bg-gray-50">
-                      <td className="border border-gray-300 p-3 font-medium text-gray-900 text-sm">
+                    <tr key={index} className="hover:bg-gray-50 border-b border-gray-200">
+                      <td className="p-3 font-medium text-gray-900 text-sm">
                         {row.column}
                       </td>
-                      <td className="border border-gray-300 p-3 text-sm">
+                      <td className="p-3 text-sm">
                         <code className="bg-blue-100 px-2 py-1 rounded text-blue-800 text-xs">
                           {row.type}
                         </code>
                       </td>
-                      <td className="border border-gray-300 p-3 text-gray-700 text-sm">
+                      <td className="p-3 text-gray-700 text-sm">
                         {row.reason}
                       </td>
-                      <td className="border border-gray-300 p-3 text-sm">
+                      <td className="p-3 text-sm">
                         <code className="bg-gray-100 px-2 py-1 rounded text-gray-800 text-xs">
                           {row.example}
                         </code>
                       </td>
-                      <td className="border border-gray-300 p-3 text-gray-600 text-sm">
+                      <td className="p-3 text-gray-600 text-sm">
                         {row.benefit}
                       </td>
                     </tr>
