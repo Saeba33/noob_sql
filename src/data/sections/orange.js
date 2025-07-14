@@ -1,5 +1,5 @@
 import { SECTION_DATA_COLORS } from "@/config/colors";
-import { BestPractices } from "@/components/ui/sections/orange";
+import BestPractices from "@/components/ui/sections/orange/BestPractices";
 
 export const orangeBeltContent = {
   // Belt configuration
