@@ -68,7 +68,7 @@ export default function AccordionSection({
           {/* External Component */}
           {externalComponent && (
             <div>
-              <div className="bg-gray-50 rounded-lg p-1">
+              <div>
                 {externalComponent}
               </div>
             </div>

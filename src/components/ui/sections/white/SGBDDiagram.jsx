@@ -9,9 +9,9 @@ import {
 
 export default function SGBDDiagram() {
   return (
-    <div className="bg-white border border-gray-200 rounded-lg p-6">
+    <div className="bg-white flex flex-col gap-8">
       {/* Texte explicatif */}
-      <div className="mb-8 space-y-4 text-gray-700 leading-relaxed">
+      <div className=" text-gray-700 leading-relaxed px-4 flex flex-col gap-3">
         <p>
           Un <strong>Système de Gestion de Base de Données (SGBD)</strong> est
           un logiciel permettant de créer, gérer et manipuler des bases de
@@ -46,9 +46,9 @@ export default function SGBDDiagram() {
       </div>
 
       {/* Diagramme hiérarchique */}
-      <div className="max-w-5xl mx-auto">
+      <div className=" border border-gray-200 rounded-lg mx-2">
         {/* Niveau racine - SGBD */}
-        <div className="flex justify-center mb-12">
+        <div className="flex justify-center my-12">
           <div className="flex items-center space-x-3 px-8 py-4 bg-slate-100 border-2 border-slate-300 rounded-lg ">
             <MdStorage className="w-8 h-8 text-slate-700" />
             <span className="text-xl font-bold text-slate-800">SGBD</span>
