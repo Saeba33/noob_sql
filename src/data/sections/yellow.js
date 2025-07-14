@@ -14,7 +14,7 @@ export const yellowBeltContent = {
     tag: "Ceinture Jaune",
   },
   pageDescription: {
-    title: "Maîtrisez la Structure de vos Bases de Données",
+    title: "Maîtrisez la structure de vos bases de données",
     content:
       "La ceinture jaune vous enseigne le DDL (Data Definition Language), le langage pour définir et modifier la structure de vos bases de données. Apprenez à créer des tables, les modifier et les supprimer. Ces compétences sont essentielles pour concevoir et faire évoluer vos schémas de base de données.",
   },

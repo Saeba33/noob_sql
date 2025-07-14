@@ -1,16 +1,30 @@
 export const sqlSyntaxConfig = {
   // Style definitions for each token type
   styles: {
-    keyword: "text-blue-300 font-semibold",
-    table: "text-green-400",
-    column: "text-cyan-300",
-    string: "text-yellow-300",
+    // Mots-clés SQL (bleu vif mais équilibré)
+    keyword: "text-blue-400 font-semibold",
+    // Types de données (sky vif)
+    datatype: "text-sky-400 font-medium",
+    // Contraintes (violet vif)
+    constraint: "text-violet-400 font-medium",
+    // Noms de tables (vert vif)
+    tableName: "text-emerald-400 font-medium",
+    // Noms de colonnes (cyan visible)
+    columnName: "text-cyan-300",
+    // Chaînes de caractères (ambre vif)
+    string: "text-amber-300",
+    // Nombres (orange vif)
     number: "text-orange-400",
-    operator: "text-purple-300",
-    comment: "text-gray-500 italic",
-    function: "text-pink-300",
-    punctuation: "text-gray-400",
-    default: "text-gray-100",
+    // Opérateurs (violet moyen)
+    operator: "text-violet-300",
+    // Commentaires (gris visible)
+    comment: "text-gray-400 italic",
+    // Fonctions (rose vif)
+    function: "text-pink-300 font-medium",
+    // Ponctuation (même couleur que les mots-clés pour cohérence syntaxique)
+    punctuation: "text-blue-400",
+    // Par défaut (blanc cassé mais visible)
+    default: "text-gray-200",
   },
 
   // Specific styles for different components
@@ -58,63 +72,26 @@ export const sqlSyntaxConfig = {
   },
 };
 
-// Function to analyze and colorize SQL code
+// Function to analyze and colorize SQL code with improved logic
 export function analyzeSqlCode(code) {
   if (!code) return null;
 
   let parts = [];
 
-  // 1. SQL Keywords
-  const keywords =
-    /\b(SELECT|FROM|WHERE|INSERT|INTO|VALUES|UPDATE|SET|DELETE|CREATE|TABLE|ALTER|DROP|COLUMN|ADD|PRIMARY|KEY|FOREIGN|REFERENCES|UNIQUE|NOT|NULL|DEFAULT|CURRENT_TIMESTAMP|INTEGER|VARCHAR|DECIMAL|TIMESTAMP|DATE|CHECK|IF|EXISTS|ORDER|BY|LIMIT|DESC|ASC|AND|OR|IN|IS|LIKE|BETWEEN|GROUP|HAVING|DISTINCT|AS|JOIN|INNER|LEFT|RIGHT|FULL|OUTER|ON|UNION|ALL|CASE|WHEN|THEN|ELSE|END|WITH|RECURSIVE|OVER|PARTITION|INDEX|VIEW)\b/gi;
-
+  // 1. Commentaires (priorité haute pour éviter la coloration dans les commentaires)
+  const comments = /(--.*$)/gm;
   let match;
-  while ((match = keywords.exec(code)) !== null) {
+  while ((match = comments.exec(code)) !== null) {
     parts.push({
       start: match.index,
       end: match.index + match[0].length,
       text: match[0],
-      type: "keyword",
+      type: "comment",
+      priority: 1,
     });
   }
 
-  // 2. SQL Functions
-  const functions =
-    /\b(COUNT|SUM|AVG|MAX|MIN|COALESCE|ROW_NUMBER|RANK|DENSE_RANK|LAG|LEAD|SUBSTRING|CONCAT|UPPER|LOWER)\b/gi;
-  while ((match = functions.exec(code)) !== null) {
-    parts.push({
-      start: match.index,
-      end: match.index + match[0].length,
-      text: match[0],
-      type: "function",
-    });
-  }
-
-  // 3 Common tables
-  const tables =
-    /\b(users|orders|products|employees|customers|order_items|categories|departments|employee_summary|employee_hierarchy)\b/g;
-  while ((match = tables.exec(code)) !== null) {
-    parts.push({
-      start: match.index,
-      end: match.index + match[0].length,
-      text: match[0],
-      type: "table",
-    });
-  }
-
-  // 4. Common columns (after keywords to avoid conflicts)
-  const columns =
-    /\b(id|name|email|password|created_at|updated_at|age|salary|department|title|price|quantity|total)\b/g;
-  while ((match = columns.exec(code)) !== null) {
-    parts.push({
-      start: match.index,
-      end: match.index + match[0].length,
-      text: match[0],
-      type: "column",
-    });
-  }
-
-  // 5. Character strings
+  // 2. Chaînes de caractères (priorité haute)
   const strings = /'([^']*)'/g;
   while ((match = strings.exec(code)) !== null) {
     parts.push({
@@ -122,10 +99,59 @@ export function analyzeSqlCode(code) {
       end: match.index + match[0].length,
       text: match[0],
       type: "string",
+      priority: 2,
     });
   }
 
-  // 6. Numbers
+  // 3. Mots-clés SQL principaux (CREATE, TABLE, etc.)
+  const keywords = /\b(CREATE|TABLE|ALTER|DROP|SELECT|FROM|WHERE|INSERT|INTO|VALUES|UPDATE|SET|DELETE)\b/gi;
+  while ((match = keywords.exec(code)) !== null) {
+    parts.push({
+      start: match.index,
+      end: match.index + match[0].length,
+      text: match[0],
+      type: "keyword",
+      priority: 3,
+    });
+  }
+
+  // 4. Types de données SQL
+  const datatypes = /\b(INTEGER|VARCHAR|DECIMAL|TIMESTAMP|DATE|TEXT|CHAR|BOOLEAN|TINYINT|BIGINT|FLOAT|DOUBLE|TIME|DATETIME|BLOB|JSON)\b/gi;
+  while ((match = datatypes.exec(code)) !== null) {
+    parts.push({
+      start: match.index,
+      end: match.index + match[0].length,
+      text: match[0],
+      type: "datatype",
+      priority: 4,
+    });
+  }
+
+  // 5. Contraintes et mots-clés spéciaux
+  const constraints = /\b(PRIMARY|KEY|FOREIGN|REFERENCES|UNIQUE|NOT|NULL|DEFAULT|CURRENT_TIMESTAMP|AUTO_INCREMENT|CHECK|IF|EXISTS|UNSIGNED|CONSTRAINT)\b/gi;
+  while ((match = constraints.exec(code)) !== null) {
+    parts.push({
+      start: match.index,
+      end: match.index + match[0].length,
+      text: match[0],
+      type: "constraint",
+      priority: 5,
+    });
+  }
+
+  // 6. Fonctions SQL
+  const functions = /\b(COUNT|SUM|AVG|MAX|MIN|COALESCE|ROW_NUMBER|RANK|DENSE_RANK|LAG|LEAD|SUBSTRING|CONCAT|UPPER|LOWER|NOW|CURDATE|CURTIME)\b/gi;
+  while ((match = functions.exec(code)) !== null) {
+    parts.push({
+      start: match.index,
+      end: match.index + match[0].length,
+      text: match[0],
+      type: "function",
+      priority: 6,
+    });
+  }
+
+  // 7. Nombres (y compris dans les parenthèses comme VARCHAR(255))
   const numbers = /\b(\d+(?:\.\d+)?)\b/g;
   while ((match = numbers.exec(code)) !== null) {
     parts.push({
@@ -133,10 +159,25 @@ export function analyzeSqlCode(code) {
       end: match.index + match[0].length,
       text: match[0],
       type: "number",
+      priority: 7,
     });
   }
 
-  // 7. Operators
+  // 8. Noms de tables reconnus (après CREATE TABLE ou références)
+  const tablePattern = /(?:CREATE\s+TABLE\s+|REFERENCES\s+)(\w+)/gi;
+  while ((match = tablePattern.exec(code)) !== null) {
+    const tableName = match[1];
+    const tableStart = match.index + match[0].length - tableName.length;
+    parts.push({
+      start: tableStart,
+      end: tableStart + tableName.length,
+      text: tableName,
+      type: "tableName",
+      priority: 8,
+    });
+  }
+
+  // 9. Opérateurs
   const operators = /([=!<>]+|[+\-*/%])/g;
   while ((match = operators.exec(code)) !== null) {
     parts.push({
@@ -144,10 +185,11 @@ export function analyzeSqlCode(code) {
       end: match.index + match[0].length,
       text: match[0],
       type: "operator",
+      priority: 9,
     });
   }
 
-  // 8. Punctuation
+  // 10. Ponctuation
   const punctuation = /([(),.;])/g;
   while ((match = punctuation.exec(code)) !== null) {
     parts.push({
@@ -155,32 +197,27 @@ export function analyzeSqlCode(code) {
       end: match.index + match[0].length,
       text: match[0],
       type: "punctuation",
+      priority: 10,
     });
   }
 
-  // 9. Comments
-  const comments = /(--.*)/g;
-  while ((match = comments.exec(code)) !== null) {
-    parts.push({
-      start: match.index,
-      end: match.index + match[0].length,
-      text: match[0],
-      type: "comment",
-    });
-  }
-  // Sort by position and filter overlaps
-  parts.sort((a, b) => a.start - b.start);
+  // Tri par position puis par priorité (priorité plus faible = plus important)
+  parts.sort((a, b) => {
+    if (a.start !== b.start) return a.start - b.start;
+    return a.priority - b.priority;
+  });
 
+  // Filtrage des chevauchements en gardant la priorité la plus élevée
   let filteredParts = [];
   for (let part of parts) {
-    let overlaps = false;
+    let hasOverlap = false;
     for (let existing of filteredParts) {
       if (part.start < existing.end && part.end > existing.start) {
-        overlaps = true;
+        hasOverlap = true;
         break;
       }
     }
-    if (!overlaps) {
+    if (!hasOverlap) {
       filteredParts.push(part);
     }
   }
