@@ -3,362 +3,317 @@ import { SECTION_DATA_COLORS } from "@/config/colors";
 export const brownBeltContent = {
   // Belt configuration
   belt: "brown",
-  description: "Performance - Optimisez vos requêtes",
-  topics: ["Index", "Plan d'exécution", "Optimisation", "EXPLAIN"],
+  description: "Jointures - Relations entre les tables",
+  topics: ["Schéma jointures", "Clés primaires/étrangères", "INNER JOIN", "LEFT JOIN", "RIGHT JOIN", "FULL JOIN", "CROSS JOIN", "SELF JOIN"],
   colors: SECTION_DATA_COLORS.brown,
 
   // Content sections
   header: {
-    title: "Requêtes Avancées - Sous-requêtes et Vues",
-    description: "Explorez les sous-requêtes, vues et transactions",
+    title: "Jointures",
+    description: "Maîtrisez les relations entre tables avec les jointures",
     tag: "Ceinture Marron",
   },
   pageDescription: {
-    title: "Maîtrisez les Techniques SQL Avancées",
+    title: "Connectez vos Tables avec les Jointures",
     content:
-      "La ceinture marron vous élève vers l'expertise SQL avec des techniques sophistiquées. Apprenez les sous-requêtes pour des requêtes imbriquées puissantes, créez des vues pour simplifier des requêtes complexes, maîtrisez les transactions pour garantir l'intégrité des données, et découvrez les CTE et fonctions de fenêtre pour des analyses avancées.",
+      "La ceinture marron vous enseigne l'art des jointures, permettant de relier les données de plusieurs tables. Comprenez les clés primaires et étrangères, explorez tous les types de jointures (INNER, LEFT, RIGHT, FULL, CROSS, SELF) et apprenez à construire des requêtes complexes sur plusieurs tables.",
   },
   accordions: [
     {
-      title: "Sous-requêtes - Requêtes Imbriquées",
+      title: "Schéma Récapitulatif des Types de Jointures",
       content:
-        "Utilisez des requêtes à l'intérieur d'autres requêtes pour des analyses sophistiquées.",
-      sqlCode: `-- Sous-requête dans WHERE
-SELECT name, email, age
-FROM users 
-WHERE age > (
-    SELECT AVG(age) 
-    FROM users
+        "Vue d'ensemble visuelle des différents types de jointures et leurs résultats.",
+      sqlDiagram: `Types de Jointures - Vue d'ensemble
+
+Table A          Table B
+┌─────┐         ┌─────┐
+│ 1,2,│         │ 2,3,│
+│ 3,4 │         │ 4,5 │
+└─────┘         └─────┘
+
+INNER JOIN       LEFT JOIN        RIGHT JOIN       FULL JOIN
+┌─────┐         ┌─────┐           ┌─────┐         ┌─────┐
+│ 2,3,│         │ 1,2,│           │ 2,3,│         │ 1,2,│
+│  4  │         │ 3,4 │           │ 4,5 │         │ 3,4,│
+└─────┘         └─────┘           └─────┘         │  5  │
+                                                  └─────┘
+
+CROSS JOIN : Produit cartésien (A × B)
+SELF JOIN : Table jointe avec elle-même`,
+      description:
+        "Chaque type de jointure a un usage spécifique selon les données que vous voulez récupérer.",
+    },
+    {
+      title: "Clés Primaires et Étrangères - Conditions Nécessaires aux Jointures",
+      content:
+        "Comprenez les relations qui permettent de lier vos tables.",
+      sqlSchema: `-- Structure avec clés primaires et étrangères
+CREATE TABLE utilisateurs (
+    id INTEGER PRIMARY KEY,    -- Clé primaire
+    nom VARCHAR(100),
+    email VARCHAR(255)
 );
 
--- Sous-requête avec IN
-SELECT product_name, price
-FROM products 
-WHERE category_id IN (
-    SELECT id 
-    FROM categories 
-    WHERE name IN ('Electronics', 'Books')
+CREATE TABLE commandes (
+    id INTEGER PRIMARY KEY,    -- Clé primaire
+    utilisateur_id INTEGER,   -- Clé étrangère
+    produit VARCHAR(200),
+    prix DECIMAL(10,2),
+    FOREIGN KEY (utilisateur_id) REFERENCES utilisateurs(id)
 );
 
--- Sous-requête avec EXISTS
-SELECT u.name, u.email
-FROM users u
-WHERE EXISTS (
-    SELECT 1 
-    FROM orders o 
-    WHERE o.user_id = u.id 
-    AND o.order_date >= '2024-01-01'
-);
+CREATE TABLE details_commande (
+    id INTEGER PRIMARY KEY,
+    commande_id INTEGER,      -- Clé étrangère vers commandes
+    produit_id INTEGER,       -- Clé étrangère vers produits
+    quantite INTEGER,
+    FOREIGN KEY (commande_id) REFERENCES commandes(id),
+    FOREIGN KEY (produit_id) REFERENCES produits(id)
+);`,
+      description:
+        "Les clés primaires identifient de manière unique chaque ligne. Les clés étrangères créent les relations entre tables.",
+    },
+    {
+      title: "JOIN (INNER JOIN) - Jointure Interne",
+      content:
+        "Récupérez uniquement les lignes qui ont une correspondance dans les deux tables.",
+      sqlCode: `-- INNER JOIN basique
+SELECT u.nom, c.produit, c.prix
+FROM utilisateurs u
+INNER JOIN commandes c ON u.id = c.utilisateur_id;
 
--- Sous-requête dans SELECT
+-- INNER JOIN avec alias
 SELECT 
-    u.name,
+    u.nom AS client,
+    c.produit,
+    c.prix,
+    c.date_commande
+FROM utilisateurs u
+JOIN commandes c ON u.id = c.utilisateur_id -- INNER optionnel
+WHERE c.prix > 100;
+
+-- Jointure sur plusieurs tables
+SELECT 
+    u.nom,
+    c.numero_commande,
+    p.nom AS produit,
+    dc.quantite,
+    p.prix
+FROM utilisateurs u
+JOIN commandes c ON u.id = c.utilisateur_id
+JOIN details_commande dc ON c.id = dc.commande_id
+JOIN produits p ON dc.produit_id = p.id;`,
+      sqlResult: `15 commandes avec clients trouvées
+8 commandes > 100€ avec clients
+42 détails de commandes complets`,
+      description:
+        "INNER JOIN ne retourne que les lignes qui existent dans les deux tables. C'est la jointure la plus courante.",
+    },
+    {
+      title: "LEFT JOIN (LEFT OUTER JOIN) - Jointure Externe Gauche",
+      content:
+        "Récupérez toutes les lignes de la table de gauche, même sans correspondance à droite.",
+      sqlCode: `-- LEFT JOIN : tous les utilisateurs, avec ou sans commandes
+SELECT 
+    u.nom,
     u.email,
-    (SELECT COUNT(*) FROM orders WHERE user_id = u.id) as total_orders,
-    (SELECT MAX(order_date) FROM orders WHERE user_id = u.id) as last_order
-FROM users u;`,
-      sqlResult: `Alice Dupont | alice@email.com | 28
-David Moreau | david@email.com | 45
-...
+    c.produit,
+    c.prix
+FROM utilisateurs u
+LEFT JOIN commandes c ON u.id = c.utilisateur_id;
 
-Laptop Dell | 899.99
-Smartphone Samsung | 699.99
-...`,
-      description:
-        "Les sous-requêtes permettent de créer des conditions et calculs dynamiques basés sur d'autres données.",
-    },
-    {
-      title: "CTE - Common Table Expressions",
-      content:
-        "Créez des tables temporaires nommées pour des requêtes plus lisibles et réutilisables.",
-      sqlCode: `-- CTE simple
-WITH high_value_customers AS (
-    SELECT 
-        user_id,
-        SUM(total_amount) as total_spent
-    FROM orders 
-    GROUP BY user_id
-    HAVING SUM(total_amount) > 1000
-)
+-- Trouver les utilisateurs sans commandes
 SELECT 
-    u.name,
+    u.nom,
+    u.email
+FROM utilisateurs u
+LEFT JOIN commandes c ON u.id = c.utilisateur_id
+WHERE c.id IS NULL;
+
+-- LEFT JOIN avec agrégation
+SELECT 
+    u.nom,
     u.email,
-    hvc.total_spent
-FROM users u
-INNER JOIN high_value_customers hvc ON u.id = hvc.user_id
-ORDER BY hvc.total_spent DESC;
-
--- CTE multiple
-WITH monthly_sales AS (
-    SELECT 
-        DATE_FORMAT(order_date, '%Y-%m') as month,
-        SUM(total_amount) as sales
-    FROM orders 
-    GROUP BY DATE_FORMAT(order_date, '%Y-%m')
-),
-avg_monthly_sales AS (
-    SELECT AVG(sales) as avg_sales
-    FROM monthly_sales
-)
-SELECT 
-    ms.month,
-    ms.sales,
-    ams.avg_sales,
-    ms.sales - ams.avg_sales as difference
-FROM monthly_sales ms
-CROSS JOIN avg_monthly_sales ams
-ORDER BY ms.month;
-
--- CTE récursive (hiérarchies)
-WITH RECURSIVE employee_hierarchy AS (
-    -- Cas de base : les managers de niveau supérieur
-    SELECT id, name, manager_id, 0 as level
-    FROM employees 
-    WHERE manager_id IS NULL
-    
-    UNION ALL
-    
-    -- Cas récursif : les employés sous les managers
-    SELECT e.id, e.name, e.manager_id, eh.level + 1
-    FROM employees e
-    INNER JOIN employee_hierarchy eh ON e.manager_id = eh.id
-)
-SELECT * FROM employee_hierarchy
-ORDER BY level, name;`,
+    COUNT(c.id) AS nombre_commandes,
+    COALESCE(SUM(c.prix), 0) AS total_depense
+FROM utilisateurs u
+LEFT JOIN commandes c ON u.id = c.utilisateur_id
+GROUP BY u.id, u.nom, u.email
+ORDER BY total_depense DESC;`,
+      sqlResult: `25 utilisateurs (certains sans commandes)
+3 utilisateurs sans commandes trouvés
+Statistiques complètes par utilisateur`,
       description:
-        "Les CTE rendent vos requêtes complexes plus lisibles et permettent la récursion pour les hiérarchies.",
+        "LEFT JOIN garde toutes les lignes de la table de gauche. Parfait pour trouver les éléments sans relation.",
     },
     {
-      title: "Fonctions de Fenêtre",
+      title: "RIGHT JOIN (RIGHT OUTER JOIN) - Jointure Externe Droite",
       content:
-        "Effectuez des calculs sur des ensembles de lignes liées sans regroupement.",
-      sqlCode: `-- ROW_NUMBER et RANK
+        "Récupérez toutes les lignes de la table de droite, même sans correspondance à gauche.",
+      sqlCode: `-- RIGHT JOIN : toutes les commandes, avec ou sans utilisateur valide
 SELECT 
-    name,
-    salary,
-    department,
-    ROW_NUMBER() OVER (PARTITION BY department ORDER BY salary DESC) as row_num,
-    RANK() OVER (PARTITION BY department ORDER BY salary DESC) as rank,
-    DENSE_RANK() OVER (PARTITION BY department ORDER BY salary DESC) as dense_rank
-FROM employees;
+    u.nom,
+    c.produit,
+    c.prix,
+    c.date_commande
+FROM utilisateurs u
+RIGHT JOIN commandes c ON u.id = c.utilisateur_id;
 
--- Fonctions de décalage
+-- Équivalent avec LEFT JOIN (plus lisible)
 SELECT 
-    product_name,
-    price,
-    category_id,
-    LAG(price, 1) OVER (PARTITION BY category_id ORDER BY price) as prev_price,
-    LEAD(price, 1) OVER (PARTITION BY category_id ORDER BY price) as next_price,
-    price - LAG(price, 1) OVER (PARTITION BY category_id ORDER BY price) as price_diff
-FROM products;
+    u.nom,
+    c.produit,
+    c.prix,
+    c.date_commande
+FROM commandes c
+LEFT JOIN utilisateurs u ON c.utilisateur_id = u.id;
 
--- Agrégations mobiles
+-- Trouver les commandes orphelines
 SELECT 
-    order_date,
-    daily_sales,
-    AVG(daily_sales) OVER (
-        ORDER BY order_date 
-        ROWS BETWEEN 6 PRECEDING AND CURRENT ROW
-    ) as moving_avg_7_days,
-    SUM(daily_sales) OVER (
-        ORDER BY order_date 
-        ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
-    ) as cumulative_sales
-FROM (
-    SELECT 
-        order_date,
-        SUM(total_amount) as daily_sales
-    FROM orders 
-    GROUP BY order_date
-) daily_totals;
-
--- Percentiles
-SELECT 
-    name,
-    salary,
-    department,
-    NTILE(4) OVER (ORDER BY salary) as quartile,
-    PERCENT_RANK() OVER (ORDER BY salary) as percent_rank,
-    CUME_DIST() OVER (ORDER BY salary) as cumulative_dist
-FROM employees;`,
+    c.id,
+    c.produit,
+    c.prix,
+    c.utilisateur_id
+FROM utilisateurs u
+RIGHT JOIN commandes c ON u.id = c.utilisateur_id
+WHERE u.id IS NULL;`,
+      sqlResult: `18 commandes (certaines sans utilisateur)
+Même résultat avec LEFT JOIN
+2 commandes orphelines trouvées`,
       description:
-        "Les fonctions de fenêtre permettent des analyses sophistiquées tout en conservant le détail de chaque ligne.",
+        "RIGHT JOIN est moins utilisé que LEFT JOIN. La plupart des développeurs préfèrent réorganiser avec LEFT JOIN.",
     },
     {
-      title: "Vues - Requêtes Réutilisables",
+      title: "FULL JOIN (FULL OUTER JOIN) - Jointure Externe Complète",
       content:
-        "Créez des vues pour simplifier l'accès à des requêtes complexes fréquemment utilisées.",
-      sqlCode: `-- Vue simple
-CREATE VIEW active_customers AS
+        "Récupérez toutes les lignes des deux tables, avec ou sans correspondance.",
+      sqlCode: `-- FULL JOIN : tous les utilisateurs ET toutes les commandes
 SELECT 
-    u.id,
-    u.name,
+    u.nom,
     u.email,
-    COUNT(o.id) as order_count,
-    MAX(o.order_date) as last_order_date
-FROM users u
-INNER JOIN orders o ON u.id = o.user_id
-WHERE o.order_date >= DATE('now', '-1 year')
-GROUP BY u.id, u.name, u.email;
+    c.produit,
+    c.prix
+FROM utilisateurs u
+FULL OUTER JOIN commandes c ON u.id = c.utilisateur_id;
 
--- Utilisation de la vue
-SELECT * FROM active_customers
-WHERE order_count >= 5
-ORDER BY last_order_date DESC;
-
--- Vue avec calculs complexes
-CREATE VIEW product_analytics AS
+-- Équivalent avec UNION (pour SQLite qui ne supporte pas FULL JOIN)
 SELECT 
-    p.id,
-    p.product_name,
-    p.price,
-    c.category_name,
-    COUNT(oi.id) as times_ordered,
-    SUM(oi.quantity) as total_quantity_sold,
-    SUM(oi.quantity * oi.unit_price) as total_revenue,
-    AVG(oi.unit_price) as avg_selling_price,
-    (p.price - AVG(oi.unit_price)) as avg_discount
-FROM products p
-LEFT JOIN order_items oi ON p.id = oi.product_id
-LEFT JOIN categories c ON p.category_id = c.id
-GROUP BY p.id, p.product_name, p.price, c.category_name;
+    u.nom,
+    u.email,
+    c.produit,
+    c.prix
+FROM utilisateurs u
+LEFT JOIN commandes c ON u.id = c.utilisateur_id
 
--- Vue matérialisée (si supportée)
-CREATE MATERIALIZED VIEW monthly_revenue AS
+UNION
+
 SELECT 
-    DATE_FORMAT(order_date, '%Y-%m') as month,
-    SUM(total_amount) as revenue,
-    COUNT(*) as order_count,
-    AVG(total_amount) as avg_order_value
-FROM orders 
-GROUP BY DATE_FORMAT(order_date, '%Y-%m');
+    u.nom,
+    u.email,
+    c.produit,
+    c.prix
+FROM utilisateurs u
+RIGHT JOIN commandes c ON u.id = c.utilisateur_id;
 
--- Rafraîchir la vue matérialisée
-REFRESH MATERIALIZED VIEW monthly_revenue;`,
+-- Analyse complète des relations
+SELECT 
+    u.nom,
+    c.produit,
+    CASE 
+        WHEN u.id IS NULL THEN 'Commande orpheline'
+        WHEN c.id IS NULL THEN 'Utilisateur sans commande'
+        ELSE 'Relation normale'
+    END AS statut_relation
+FROM utilisateurs u
+FULL OUTER JOIN commandes c ON u.id = c.utilisateur_id;`,
+      sqlResult: `Toutes les données des deux tables
+Même résultat avec UNION
+Analyse complète des relations`,
       description:
-        "Les vues encapsulent des requêtes complexes et offrent une interface simplifiée pour vos données.",
+        "FULL JOIN combine LEFT et RIGHT JOIN. Utile pour l'analyse complète de relations entre tables.",
     },
     {
-      title: "Transactions Avancées",
+      title: "CROSS JOIN - Produit Cartésien",
       content:
-        "Maîtrisez les transactions pour garantir la cohérence et l'intégrité de vos données.",
-      sqlCode: `-- Transaction avec gestion d'erreur
-BEGIN TRANSACTION;
+        "Créez toutes les combinaisons possibles entre deux tables.",
+      sqlCode: `-- CROSS JOIN : toutes les combinaisons
+SELECT 
+    u.nom AS utilisateur,
+    p.nom AS produit,
+    p.prix
+FROM utilisateurs u
+CROSS JOIN produits p;
 
-DECLARE @error_count INT = 0;
+-- Cas d'usage : matrice de compatibilité
+SELECT 
+    t.nom AS taille,
+    c.nom AS couleur,
+    CONCAT(t.nom, ' - ', c.nom) AS variante
+FROM tailles t
+CROSS JOIN couleurs c
+ORDER BY t.ordre, c.ordre;
 
--- Première opération
-UPDATE accounts 
-SET balance = balance - 500 
-WHERE account_id = 1001;
+-- CROSS JOIN avec condition (équivalent à INNER JOIN)
+SELECT u.nom, p.nom
+FROM utilisateurs u
+CROSS JOIN produits p
+WHERE u.id = p.createur_id; -- Évitez ceci, utilisez JOIN
 
-IF @@ROWCOUNT = 0
-    SET @error_count = @error_count + 1;
-
--- Deuxième opération
-UPDATE accounts 
-SET balance = balance + 500 
-WHERE account_id = 1002;
-
-IF @@ROWCOUNT = 0
-    SET @error_count = @error_count + 1;
-
--- Vérification et validation
-IF @error_count = 0
-    COMMIT TRANSACTION;
-ELSE
-    ROLLBACK TRANSACTION;
-
--- Points de sauvegarde (Savepoints)
-BEGIN TRANSACTION;
-
-INSERT INTO orders (user_id, total_amount) 
-VALUES (123, 150.00);
-
-SAVEPOINT after_order;
-
-INSERT INTO order_items (order_id, product_id, quantity)
-VALUES (LAST_INSERT_ID(), 456, 2);
-
--- En cas de problème avec les items
-IF @@ERROR <> 0
-BEGIN
-    ROLLBACK TO after_order;
-    -- Mais garder la commande
-END
-
-COMMIT TRANSACTION;
-
--- Niveaux d'isolation
-SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
--- ou READ COMMITTED, REPEATABLE READ, SERIALIZABLE
-
--- Transaction avec verrous explicites
-BEGIN TRANSACTION;
-
-SELECT * FROM inventory 
-WHERE product_id = 123
-FOR UPDATE;  -- Verrouille la ligne
-
--- Traitement...
-
-UPDATE inventory 
-SET quantity = quantity - 1 
-WHERE product_id = 123;
-
-COMMIT;`,
+-- Génération de données de test
+SELECT 
+    d.date,
+    h.heure,
+    DATETIME(d.date || ' ' || h.heure) AS creneau
+FROM dates_semaine d
+CROSS JOIN heures_ouverture h;`,
+      sqlResult: `500 combinaisons utilisateur-produit
+24 variantes de produit
+Créneaux de rendez-vous générés`,
       description:
-        "Les transactions avancées avec savepoints et verrous garantissent l'intégrité même dans des scénarios complexes.",
+        "CROSS JOIN crée le produit cartésien. Attention à la taille du résultat : n × m lignes !",
     },
     {
-      title: "Optimisation et Analyse",
+      title: "SELF JOIN - Auto-jointure",
       content:
-        "Analysez et optimisez vos requêtes pour de meilleures performances.",
-      sqlCode: `-- EXPLAIN pour analyser le plan d'exécution
-EXPLAIN QUERY PLAN
-SELECT 
-    u.name,
-    COUNT(o.id) as order_count
-FROM users u
-LEFT JOIN orders o ON u.id = o.user_id
-WHERE u.created_at >= '2024-01-01'
-GROUP BY u.id, u.name
-HAVING COUNT(o.id) >= 2;
-
--- Analyse des performances avec ANALYZE
-EXPLAIN (ANALYZE, BUFFERS) 
-SELECT * FROM products 
-WHERE price BETWEEN 100 AND 500
-AND category_id IN (1, 2, 3);
-
--- Index pour optimiser
-CREATE INDEX idx_products_price_category 
-ON products(category_id, price);
-
--- Réécriture de requête pour optimisation
--- AVANT (lent)
-SELECT * FROM users 
-WHERE id IN (
-    SELECT user_id FROM orders 
-    WHERE order_date >= '2024-01-01'
+        "Joignez une table avec elle-même pour analyser les relations hiérarchiques.",
+      sqlCode: `-- Structure hiérarchique : employés et managers
+CREATE TABLE employes (
+    id INTEGER PRIMARY KEY,
+    nom VARCHAR(100),
+    manager_id INTEGER, -- Référence vers un autre employé
+    FOREIGN KEY (manager_id) REFERENCES employes(id)
 );
 
--- APRÈS (plus rapide)
-SELECT DISTINCT u.* FROM users u
-INNER JOIN orders o ON u.id = o.user_id
-WHERE o.order_date >= '2024-01-01';
+-- SELF JOIN : employés avec leur manager
+SELECT 
+    e.nom AS employe,
+    m.nom AS manager
+FROM employes e
+LEFT JOIN employes m ON e.manager_id = m.id;
 
--- Utilisation d'hints (spécifique à la DB)
-SELECT /*+ USE_INDEX(users, idx_users_email) */
-    name, email 
-FROM users 
-WHERE email LIKE '%@gmail.com';
+-- Trouver les collègues (même manager)
+SELECT 
+    e1.nom AS employe1,
+    e2.nom AS employe2,
+    m.nom AS manager_commun
+FROM employes e1
+JOIN employes e2 ON e1.manager_id = e2.manager_id AND e1.id != e2.id
+JOIN employes m ON e1.manager_id = m.id
+WHERE e1.id < e2.id; -- Éviter les doublons
 
--- Statistiques sur les requêtes
-SHOW PROFILE FOR QUERY 1;
-SELECT * FROM information_schema.PROCESSLIST;`,
+-- Hiérarchie complète (employé -> manager -> grand-manager)
+SELECT 
+    e.nom AS employe,
+    m1.nom AS manager_direct,
+    m2.nom AS grand_manager
+FROM employes e
+LEFT JOIN employes m1 ON e.manager_id = m1.id
+LEFT JOIN employes m2 ON m1.manager_id = m2.id;`,
+      sqlResult: `15 employés avec leurs managers
+8 paires de collègues trouvées
+Hiérarchie sur 3 niveaux affichée`,
       description:
-        "L'analyse et l'optimisation sont cruciales pour maintenir de bonnes performances sur de gros volumes de données.",
-    },
+        "SELF JOIN permet d'analyser les relations au sein d'une même table. Très utile pour les hiérarchies.",
+    }
   ],
 };

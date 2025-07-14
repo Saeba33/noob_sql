@@ -145,3 +145,72 @@ NULL        -- Valeur absente/inconnue`,
     }
   ],
 };
+        "Modifiez la structure de vos tables existantes sans perdre de données.",
+      sqlCode: `-- Ajouter une nouvelle colonne
+ALTER TABLE users 
+ADD COLUMN phone VARCHAR(20);
+
+-- Modifier une colonne existante
+ALTER TABLE users 
+ALTER COLUMN email SET NOT NULL;
+
+-- Ajouter une contrainte
+ALTER TABLE users 
+ADD CONSTRAINT check_age CHECK (age >= 0 AND age <= 120);
+
+-- Renommer une colonne
+ALTER TABLE users 
+RENAME COLUMN name TO full_name;
+
+-- Supprimer une colonne
+ALTER TABLE users 
+DROP COLUMN phone;`,
+      description:
+        "ALTER TABLE vous permet de faire évoluer votre schéma de base de données au fil du temps.",
+    },
+    {
+      title: "DROP - Suppression d'Objets",
+      content:
+        "Supprimez des tables, colonnes ou contraintes de manière sécurisée.",
+      sqlCode: `-- Supprimer une table (attention : irréversible!)
+DROP TABLE old_table;
+
+-- Supprimer une table seulement si elle existe
+DROP TABLE IF EXISTS temp_table;
+
+-- Supprimer une contrainte
+ALTER TABLE users 
+DROP CONSTRAINT check_age;
+
+-- Supprimer un index
+DROP INDEX idx_user_email;
+
+-- Vider une table (garder la structure)
+TRUNCATE TABLE logs;`,
+      description:
+        "Utilisez DROP avec précaution - ces opérations sont généralement irréversibles.",
+    },
+    {
+      title: "Index - Optimisation des Requêtes",
+      content:
+        "Créez des index pour accélérer vos requêtes les plus fréquentes.",
+      sqlCode: `-- Index simple sur une colonne
+CREATE INDEX idx_user_email ON users(email);
+
+-- Index composé sur plusieurs colonnes
+CREATE INDEX idx_order_user_date ON orders(user_id, created_at);
+
+-- Index unique
+CREATE UNIQUE INDEX idx_product_sku ON products(sku);
+
+-- Index partiel avec condition
+CREATE INDEX idx_active_users ON users(email) 
+WHERE is_active = true;
+
+-- Voir les index d'une table
+PRAGMA index_list(users);`,
+      description:
+        "Les index améliorent drastiquement les performances de recherche au prix d'un peu d'espace de stockage.",
+    },
+  ],
+};

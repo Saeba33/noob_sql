@@ -1,42 +1,42 @@
 export const PAGES_CONFIG = {
   white: {
     order: 1,
-    title: "DDL",
+    title: "Généralités",
     href: "/white",
   },
   yellow: {
     order: 2,
-    title: "CRUD", 
+    title: "DDL", 
     href: "/yellow",
   },
   orange: {
     order: 3,
-    title: "Filtres & tris",
+    title: "CRUD",
     href: "/orange",
   },
   green: {
     order: 4,
-    title: "Agrégations",
+    title: "Filtres & Conditions",
     href: "/green",
   },
   blue: {
     order: 5,
-    title: "Jointures",
+    title: "Agrégations",
     href: "/blue",
   },
   brown: {
     order: 6,
-    title: "Sous requêtes & vues",
+    title: "Jointures",
     href: "/brown",
   },
   black: {
     order: 7,
-    title: "Optimisation & sécurité",
+    title: "Requêtes Avancées",
     href: "/black",
   },
   practice: {
     order: 8,
-    title: "Mise en pratique",
+    title: "1ère DAN",
     href: "/practice",
   },
 };

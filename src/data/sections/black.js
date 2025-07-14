@@ -3,180 +3,221 @@ import { SECTION_DATA_COLORS } from "@/config/colors";
 export const blackBeltContent = {
   // Belt configuration
   belt: "black",
-  description: "Expert - Maîtrisez les concepts avancés",
-  topics: ["Transactions", "Sécurité", "Procédures", "Triggers"],
+  description: "Requêtes Avancées - Techniques avancées et optimisation",
+  topics: ["Sous-requêtes", "WITH (CTE)", "VIEW", "UNION", "INDEX", "Transactions"],
   colors: SECTION_DATA_COLORS.black,
 
   // Content sections
   header: {
-    title: "Optimisation et Sécurité",
-    description:
-      "Maîtrisez l'optimisation des performances, les index et la sécurité",
+    title: "Requêtes Avancées",
+    description: "Maîtrisez les techniques avancées et l'optimisation SQL",
     tag: "Ceinture Noire",
   },
   pageDescription: {
-    title: "Maîtrisez l'Optimisation et la Sécurité des Bases de Données",
+    title: "Excellez dans les Techniques SQL Avancées",
     content:
-      "La ceinture noire représente le plus haut niveau de maîtrise SQL. Apprenez les techniques avancées d'optimisation des performances de base de données, les stratégies d'indexation, les meilleures pratiques de sécurité et l'administration de base de données. Ce niveau se concentre non seulement sur l'écriture de requêtes, mais sur l'optimisation et la sécurisation de systèmes de base de données entiers.",
+      "La ceinture noire vous enseigne les techniques SQL les plus sophistiquées. Maîtrisez les sous-requêtes complexes, les CTE (Common Table Expressions), les vues, les opérations d'union, l'optimisation avec les index et la gestion des transactions. Ces compétences vous permettront de résoudre les problèmes les plus complexes.",
   },
   accordions: [
     {
-      title: "Database Indexes",
-      content: "Create and manage indexes for optimal query performance.",
-      sqlCode: `-- Create a simple index
-CREATE INDEX idx_user_email ON users(email);
+      title: "Sous-requêtes dans WHERE, SELECT, IN, EXISTS",
+      content:
+        "Utilisez des requêtes imbriquées pour des analyses complexes.",
+      sqlCode: `-- Sous-requête dans WHERE
+SELECT nom, age 
+FROM utilisateurs 
+WHERE age > (SELECT AVG(age) FROM utilisateurs);
 
--- Composite index for multi-column queries
-CREATE INDEX idx_order_date_status ON orders(order_date, status);
+-- Sous-requête dans SELECT
+SELECT 
+    nom,
+    age,
+    (SELECT COUNT(*) FROM commandes WHERE utilisateur_id = u.id) AS nb_commandes
+FROM utilisateurs u;
 
--- Unique index to enforce uniqueness
-CREATE UNIQUE INDEX idx_product_sku ON products(sku);
+-- Sous-requête avec IN
+SELECT nom, email 
+FROM utilisateurs 
+WHERE id IN (
+    SELECT utilisateur_id 
+    FROM commandes 
+    WHERE montant > 100
+);
 
--- Partial index with condition
-CREATE INDEX idx_active_users ON users(last_login) 
-WHERE active = true;
-
--- Drop an index
-DROP INDEX idx_user_email;`,
-      explanation:
-        "Indexes are data structures that improve query performance by creating shortcuts to data. They speed up SELECT operations but slow down INSERT/UPDATE/DELETE. Choose indexes based on your query patterns and measure their impact.",
+-- Sous-requête avec EXISTS
+SELECT nom, email 
+FROM utilisateurs u
+WHERE EXISTS (
+    SELECT 1 
+    FROM commandes c 
+    WHERE c.utilisateur_id = u.id 
+    AND c.date_commande > '2024-01-01'
+);`,
+      sqlResult: `12 utilisateurs au-dessus de la moyenne
+Utilisateurs avec compte de commandes
+8 utilisateurs avec commandes > 100€
+15 utilisateurs actifs en 2024`,
+      description:
+        "Les sous-requêtes permettent des analyses sophistiquées en combinant plusieurs niveaux de données.",
     },
     {
-      title: "Query Optimization",
-      content: "Analyze and optimize query performance using execution plans.",
-      sqlCode: `-- Analyze query execution plan
-EXPLAIN ANALYZE SELECT u.name, COUNT(o.id) as order_count
-FROM users u
-LEFT JOIN orders o ON u.id = o.user_id
-WHERE u.created_at > '2024-01-01'
-GROUP BY u.id, u.name;
-
--- Optimized query with proper indexing
-SELECT u.name, COUNT(o.id) as order_count
-FROM users u
-LEFT JOIN orders o ON u.id = o.user_id
-WHERE u.active = true 
-  AND u.created_at > '2024-01-01'
-GROUP BY u.id, u.name
-HAVING COUNT(o.id) > 0;`,
-      explanation:
-        "Use EXPLAIN ANALYZE to understand query execution plans. Look for table scans, join algorithms, and cost estimates. Optimize by adding proper indexes, rewriting queries, and using efficient WHERE clauses.",
-    },
-    {
-      title: "Stored Procedures",
-      content: "Create reusable stored procedures for complex business logic.",
-      sqlCode: `-- Create a stored procedure
-DELIMITER //
-CREATE PROCEDURE GetUserOrderSummary(
-    IN user_id INT,
-    IN start_date DATE,
-    OUT total_orders INT,
-    OUT total_amount DECIMAL(10,2)
+      title: "WITH (CTE - Common Table Expression) Version Simple",
+      content:
+        "Organisez vos requêtes complexes avec des expressions de table commune.",
+      sqlCode: `-- CTE simple
+WITH utilisateurs_actifs AS (
+    SELECT id, nom, email 
+    FROM utilisateurs 
+    WHERE derniere_connexion > '2024-01-01'
 )
-BEGIN
-    SELECT COUNT(*), COALESCE(SUM(total), 0)
-    INTO total_orders, total_amount
-    FROM orders 
-    WHERE user_id = user_id 
-      AND order_date >= start_date;
-END //
-DELIMITER ;
+SELECT * FROM utilisateurs_actifs;
 
--- Call the procedure
-CALL GetUserOrderSummary(123, '2024-01-01', @orders, @amount);
-SELECT @orders, @amount;`,
-      explanation:
-        "Stored procedures encapsulate complex business logic in the database. They improve performance by reducing network traffic and enable code reuse across applications.",
-    },
-    {
-      title: "Database Security",
-      content: "Implement security best practices and user access control.",
-      sqlCode: `-- Create users with specific roles
-CREATE USER 'app_read'@'%' IDENTIFIED BY 'secure_password_123!';
-CREATE USER 'app_write'@'%' IDENTIFIED BY 'another_secure_pass_456!';
-
--- Grant minimal necessary permissions
-GRANT SELECT ON myapp.users TO 'app_read'@'%';
-GRANT SELECT ON myapp.products TO 'app_read'@'%';
-
-GRANT SELECT, INSERT, UPDATE ON myapp.orders TO 'app_write'@'%';
-GRANT SELECT ON myapp.users TO 'app_write'@'%';
-
--- Revoke permissions
-REVOKE DELETE ON myapp.* FROM 'app_write'@'%';
-
--- View user permissions
-SHOW GRANTS FOR 'app_read'@'%';`,
-      explanation:
-        "Follow the principle of least privilege. Create specific users for different application components and grant only the minimum permissions needed. Regularly audit and review user permissions.",
-    },
-    {
-      title: "Database Triggers",
-      content: "Automate actions with database triggers for data integrity.",
-      sqlCode: `-- Audit trigger for tracking changes
-CREATE TRIGGER user_audit_trigger
-AFTER UPDATE ON users
-FOR EACH ROW
-BEGIN
-    INSERT INTO user_audit_log (
-        user_id, 
-        old_email, 
-        new_email, 
-        changed_by, 
-        changed_at
-    ) VALUES (
-        NEW.id, 
-        OLD.email, 
-        NEW.email, 
-        USER(), 
-        NOW()
-    );
-END;
-
--- Before insert trigger for validation
-CREATE TRIGGER validate_user_email
-BEFORE INSERT ON users
-FOR EACH ROW
-BEGIN
-    IF NEW.email NOT REGEXP '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$' THEN
-        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Invalid email format';
-    END IF;
-END;`,
-      explanation:
-        "Triggers automatically execute code in response to database events. Use them for auditing, validation, and maintaining data integrity. Be careful not to create complex trigger chains that are hard to debug.",
-    },
-    {
-      title: "Performance Monitoring",
-      content: "Monitor and analyze database performance metrics.",
-      sqlCode: `-- Find slow queries
+-- CTE avec calculs
+WITH statistiques_commandes AS (
+    SELECT 
+        utilisateur_id,
+        COUNT(*) AS nb_commandes,
+        SUM(montant) AS total_depense,
+        AVG(montant) AS panier_moyen
+    FROM commandes
+    GROUP BY utilisateur_id
+)
 SELECT 
-    query_time,
-    lock_time,
-    rows_sent,
-    rows_examined,
-    sql_text
-FROM mysql.slow_log 
-WHERE query_time > 1.0
-ORDER BY query_time DESC;
-
--- Check index usage
-SELECT 
-    table_name,
-    index_name,
-    cardinality,
-    index_type
-FROM information_schema.statistics 
-WHERE table_schema = 'myapp'
-ORDER BY table_name, seq_in_index;
-
--- Monitor connection and query statistics
-SHOW GLOBAL STATUS LIKE 'Connections';
-SHOW GLOBAL STATUS LIKE 'Questions';
-SHOW GLOBAL STATUS LIKE 'Slow_queries';`,
-      explanation:
-        "Regular performance monitoring helps identify bottlenecks before they become critical. Monitor slow queries, index usage, and database statistics to maintain optimal performance.",
+    u.nom,
+    s.nb_commandes,
+    s.total_depense,
+    s.panier_moyen
+FROM utilisateurs u
+JOIN statistiques_commandes s ON u.id = s.utilisateur_id
+WHERE s.total_depense > 1000;`,
+      sqlResult: `Utilisateurs actifs sélectionnés
+Gros clients identifiés`,
+      description:
+        "Les CTE rendent les requêtes complexes plus lisibles et réutilisables.",
     },
+    {
+      title: "Création et Utilisation de VIEW",
+      content:
+        "Créez des vues pour simplifier et sécuriser l'accès aux données.",
+      sqlCode: `-- Création d'une vue simple
+CREATE VIEW vue_utilisateurs_actifs AS
+SELECT id, nom, email, age
+FROM utilisateurs 
+WHERE statut = 'actif' AND derniere_connexion > '2024-01-01';
+
+-- Vue avec jointures
+CREATE VIEW vue_commandes_detaillees AS
+SELECT 
+    c.id,
+    c.numero_commande,
+    u.nom AS client,
+    u.email,
+    c.montant,
+    c.date_commande,
+    c.statut
+FROM commandes c
+JOIN utilisateurs u ON c.utilisateur_id = u.id;
+
+-- Utilisation des vues
+SELECT * FROM vue_utilisateurs_actifs;
+SELECT * FROM vue_commandes_detaillees WHERE montant > 100;
+
+-- Supprimer une vue
+DROP VIEW vue_utilisateurs_actifs;`,
+      sqlResult: `Vue créée avec succès
+Vue avec jointures créée
+Données récupérées des vues
+Vue supprimée`,
+      description:
+        "Les vues simplifient les requêtes complexes et fournissent une couche d'abstraction sécurisée.",
+    },
+    {
+      title: "Opérations de Combinaison avec UNION, UNION ALL",
+      content:
+        "Combinez les résultats de plusieurs requêtes avec UNION.",
+      sqlCode: `-- UNION : combine et élimine les doublons
+SELECT nom, email FROM utilisateurs WHERE age < 25
+UNION
+SELECT nom, email FROM clients WHERE statut = 'prospect';
+
+-- UNION ALL : combine sans éliminer les doublons (plus rapide)
+SELECT 'utilisateur' AS type, nom, email FROM utilisateurs
+UNION ALL
+SELECT 'admin' AS type, nom, email FROM administrateurs;
+
+-- UNION avec ORDER BY
+SELECT nom, email, age FROM utilisateurs WHERE ville = 'Paris'
+UNION
+SELECT nom, email, age FROM utilisateurs WHERE ville = 'Lyon'
+ORDER BY age DESC;`,
+      sqlResult: `Jeunes utilisateurs et prospects combinés
+Tous les utilisateurs avec leur type
+Utilisateurs Paris/Lyon triés par âge`,
+      description:
+        "UNION combine les résultats de plusieurs requêtes. UNION élimine les doublons, UNION ALL les conserve.",
+    },
+    {
+      title: "INDEX - Optimisation des Performances",
+      content:
+        "Optimisez vos requêtes avec des index stratégiquement placés.",
+      sqlCode: `-- Index simple sur une colonne
+CREATE INDEX idx_utilisateurs_email ON utilisateurs(email);
+
+-- Index composé sur plusieurs colonnes
+CREATE INDEX idx_commandes_user_date ON commandes(utilisateur_id, date_commande);
+
+-- Index unique
+CREATE UNIQUE INDEX idx_produits_sku ON produits(sku);
+
+-- Index partiel avec condition
+CREATE INDEX idx_commandes_actives 
+ON commandes(date_commande) 
+WHERE statut = 'en_cours';
+
+-- Analyser l'utilisation des index
+EXPLAIN QUERY PLAN 
+SELECT * FROM utilisateurs WHERE email = 'test@email.com';
+
+-- Supprimer un index
+DROP INDEX idx_utilisateurs_email;`,
+      sqlResult: `Index créés avec succès
+Plan d'exécution affiché
+Index supprimé`,
+      description:
+        "Les index accélèrent drastiquement les requêtes de lecture au prix d'un ralentissement des écritures.",
+    },
+    {
+      title: "Transactions - BEGIN, COMMIT, ROLLBACK",
+      content:
+        "Gérez l'intégrité des données avec les transactions.",
+      sqlCode: `-- Transaction simple
+BEGIN TRANSACTION;
+    INSERT INTO utilisateurs (nom, email) VALUES ('Test User', 'test@email.com');
+    INSERT INTO commandes (utilisateur_id, montant) VALUES (LAST_INSERT_ROWID(), 99.99);
+COMMIT;
+
+-- Transaction avec gestion d'erreur
+BEGIN TRANSACTION;
+    UPDATE comptes SET solde = solde - 100 WHERE id = 1;
+    UPDATE comptes SET solde = solde + 100 WHERE id = 2;
+    
+    -- Vérifier que les soldes restent positifs
+    SELECT CASE 
+        WHEN EXISTS(SELECT 1 FROM comptes WHERE id IN (1,2) AND solde < 0) 
+        THEN RAISE(ABORT, 'Solde insuffisant')
+    END;
+COMMIT;
+
+-- Transaction avec ROLLBACK
+BEGIN TRANSACTION;
+    DELETE FROM logs WHERE date_creation < '2024-01-01';
+    -- Si on change d'avis...
+ROLLBACK;`,
+      sqlResult: `Transaction validée
+Virement bancaire sécurisé
+Suppression annulée`,
+      description:
+        "Les transactions garantissent la cohérence des données : tout réussit ou tout échoue.",
+    }
   ],
 };
-
-export default blackBeltContent;

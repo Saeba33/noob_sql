@@ -1,270 +1,233 @@
 import { SECTION_DATA_COLORS } from "@/config/colors";
+
 export const greenBeltContent = {
   // Belt configuration
   belt: "green",
-  description: "Fonctions d'agrégation - Analysez vos données",
-  topics: ["GROUP BY", "COUNT", "SUM", "AVG", "HAVING"],
+  description: "Filtres et Conditions - Contrôle et filtrage des données",
+  topics: ["WHERE", "Opérateurs de comparaison", "AND, OR, IN, LIKE", "ORDER BY", "NULL", "LIMIT, OFFSET"],
   colors: SECTION_DATA_COLORS.green,
 
   // Content sections
   header: {
-    title: "Agrégation - Analyse de Données",
-    description: "Maîtrisez les fonctions d'agrégation et l'analyse de données",
+    title: "Filtres et Conditions",
+    description: "Contrôlez et filtrez vos données avec précision",
     tag: "Ceinture Verte",
   },
   pageDescription: {
-    title: "Analysez et Résumez Vos Données",
+    title: "Maîtrisez le Filtrage et le Tri de vos Données",
     content:
-      "La ceinture verte vous initie au monde puissant de l'agrégation de données. Apprenez à utiliser GROUP BY pour regrouper vos données, maîtrisez les fonctions d'agrégation comme COUNT, SUM, AVG, MIN et MAX, et découvrez comment HAVING vous permet de filtrer vos groupes. Ces compétences transforment des données brutes en informations analytiques précieuses.",
+      "La ceinture verte vous enseigne l'art du filtrage et du contrôle des données. Apprenez à utiliser WHERE pour filtrer, les opérateurs pour comparer, ORDER BY pour trier, et gérez les valeurs NULL. Ces compétences vous permettront d'extraire exactement les données dont vous avez besoin.",
   },
   accordions: [
     {
-      title: "GROUP BY - Regroupement de Données",
+      title: "WHERE - Clause Fondamentale",
       content:
-        "Organisez vos données en groupes pour des analyses plus profondes.",
-      sqlCode: `-- Regroupement simple
-SELECT category, COUNT(*) as nombre_produits
-FROM products 
-GROUP BY category;
+        "Filtrez vos données avec la clause WHERE, base de toute requête précise.",
+      sqlCode: `-- WHERE basique
+SELECT nom, email, age 
+FROM utilisateurs 
+WHERE age >= 18;
 
--- Regroupement par plusieurs colonnes
-SELECT 
-    category,
-    brand,
-    COUNT(*) as nombre_produits,
-    AVG(price) as prix_moyen
-FROM products 
-GROUP BY category, brand
-ORDER BY category, brand;
+-- WHERE avec plusieurs conditions
+SELECT * 
+FROM produits 
+WHERE prix > 100 AND stock > 0;
 
--- Regroupement avec expressions
-SELECT 
-    EXTRACT(YEAR FROM order_date) as annee,
-    EXTRACT(MONTH FROM order_date) as mois,
-    COUNT(*) as nombre_commandes
-FROM orders 
-GROUP BY 
-    EXTRACT(YEAR FROM order_date),
-    EXTRACT(MONTH FROM order_date)
-ORDER BY annee, mois;`,
-      sqlResult: `Electronics | 45
-Clothing | 32
-Books | 28
+-- WHERE avec différents types de données
+SELECT * 
+FROM commandes 
+WHERE date_commande = '2024-01-15';
 
-Electronics | Apple | 12 | 899.50
-Electronics | Samsung | 15 | 650.25
-...`,
+-- WHERE avec calculs
+SELECT nom, age 
+FROM utilisateurs 
+WHERE age * 365 > 10000; -- Plus de 27 ans environ`,
+      sqlResult: `12 utilisateurs majeurs trouvés
+8 produits disponibles et chers
+5 commandes du 15 janvier
+15 utilisateurs de plus de 27 ans`,
       description:
-        "GROUP BY transforme vos lignes individuelles en groupes significatifs pour l'analyse.",
+        "WHERE est la clause la plus importante pour filtrer vos données. Sans elle, vous récupérez tout !",
     },
     {
-      title: "COUNT - Comptage d'Enregistrements",
+      title: "Opérateurs de Comparaison",
       content:
-        "Comptez vos données de différentes manières avec la fonction COUNT.",
-      sqlCode: `-- Compter toutes les lignes
-SELECT COUNT(*) as total_users FROM users;
+        "Utilisez les opérateurs pour comparer et filtrer vos données avec précision.",
+      sqlCode: `-- Égalité et inégalité
+SELECT * FROM utilisateurs WHERE age = 25;
+SELECT * FROM utilisateurs WHERE age != 25;
+SELECT * FROM utilisateurs WHERE age <> 25; -- Alternative à !=
 
--- Compter les valeurs non-nulles
-SELECT COUNT(email) as users_avec_email FROM users;
+-- Comparaisons numériques
+SELECT * FROM produits WHERE prix > 50;
+SELECT * FROM produits WHERE prix >= 100;
+SELECT * FROM produits WHERE prix < 200;
+SELECT * FROM produits WHERE prix <= 150;
 
--- Compter les valeurs distinctes
-SELECT COUNT(DISTINCT city) as nombre_villes FROM users;
+-- Comparaisons de texte
+SELECT * FROM utilisateurs WHERE nom > 'M'; -- Noms après M
+SELECT * FROM produits WHERE nom >= 'A' AND nom < 'C';
 
--- Compter par groupe
-SELECT 
-    department,
-    COUNT(*) as nombre_employes,
-    COUNT(DISTINCT manager_id) as nombre_managers
-FROM employees 
-GROUP BY department;
-
--- Compter avec conditions
-SELECT 
-    COUNT(*) as total,
-    COUNT(CASE WHEN age >= 18 THEN 1 END) as adultes,
-    COUNT(CASE WHEN age < 18 THEN 1 END) as mineurs
-FROM users;`,
-      sqlResult: `Total users: 1,247
-Users avec email: 1,198
-Nombre de villes: 89
-
-IT | 25 | 3
-Sales | 18 | 2
-...`,
+-- Comparaisons de dates
+SELECT * FROM commandes WHERE date_commande > '2024-01-01';
+SELECT * FROM commandes WHERE date_commande <= CURRENT_DATE;`,
+      sqlResult: `3 utilisateurs de 25 ans
+22 utilisateurs qui n'ont pas 25 ans
+15 produits chers
+8 produits très chers
+12 commandes récentes`,
       description:
-        "COUNT est votre fonction de base pour quantifier vos données sous tous leurs aspects.",
+        "Les opérateurs de comparaison sont vos outils de précision pour extraire exactement ce que vous cherchez.",
     },
     {
-      title: "SUM et AVG - Calculs Numériques",
+      title: "Opérateurs Logiques (AND, OR, IN, LIKE, BETWEEN)",
       content:
-        "Calculez des totaux et des moyennes pour analyser vos données numériques.",
-      sqlCode: `-- Somme et moyenne simples
-SELECT 
-    SUM(price) as chiffre_affaires_total,
-    AVG(price) as prix_moyen,
-    COUNT(*) as nombre_ventes
-FROM sales;
+        "Combinez et affinez vos conditions avec les opérateurs logiques.",
+      sqlCode: `-- AND : toutes les conditions doivent être vraies
+SELECT * FROM utilisateurs 
+WHERE age >= 18 AND age <= 65 AND email IS NOT NULL;
 
--- Calculs par groupe
-SELECT 
-    sales_person,
-    SUM(amount) as total_ventes,
-    AVG(amount) as vente_moyenne,
-    COUNT(*) as nombre_transactions
-FROM sales 
-GROUP BY sales_person
-ORDER BY total_ventes DESC;
+-- OR : au moins une condition doit être vraie
+SELECT * FROM produits 
+WHERE categorie = 'livre' OR categorie = 'dvd';
 
--- Calculs avec conditions
-SELECT 
-    product_category,
-    SUM(CASE WHEN status = 'completed' THEN amount ELSE 0 END) as ventes_confirmees,
-    SUM(CASE WHEN status = 'pending' THEN amount ELSE 0 END) as ventes_en_attente,
-    AVG(CASE WHEN status = 'completed' THEN amount END) as panier_moyen
-FROM orders 
-GROUP BY product_category;`,
-      sqlResult: `Chiffre d'affaires: 1,245,680.50
-Prix moyen: 67.89
-Nombre de ventes: 18,345
+-- IN : valeur dans une liste
+SELECT * FROM utilisateurs 
+WHERE age IN (25, 30, 35, 40);
 
-Alice Martin | 89,450.25 | 1,247.92 | 72
-Bob Durand | 76,230.15 | 1,058.75 | 72
-...`,
+-- LIKE : correspondance de motif
+SELECT * FROM utilisateurs WHERE nom LIKE 'Jean%'; -- Commence par Jean
+SELECT * FROM utilisateurs WHERE email LIKE '%@gmail.com'; -- Finit par @gmail.com
+SELECT * FROM produits WHERE nom LIKE '%iphone%'; -- Contient iphone
+
+-- BETWEEN : valeur dans un intervalle
+SELECT * FROM produits WHERE prix BETWEEN 50 AND 200;
+SELECT * FROM commandes WHERE date_commande BETWEEN '2024-01-01' AND '2024-12-31';`,
+      sqlResult: `18 utilisateurs actifs adultes
+25 articles média
+8 utilisateurs d'âges spécifiques
+5 utilisateurs prénommés Jean
+12 utilisateurs Gmail
+3 produits iPhone
+45 produits de prix moyen`,
       description:
-        "SUM et AVG vous donnent les totaux et moyennes essentiels pour l'analyse financière et statistique.",
+        "Les opérateurs logiques vous permettent de créer des filtres complexes et précis.",
     },
     {
-      title: "MIN et MAX - Valeurs Extrêmes",
-      content: "Trouvez les valeurs minimales et maximales dans vos données.",
-      sqlCode: `-- Min et Max simples
-SELECT 
-    MIN(price) as prix_minimum,
-    MAX(price) as prix_maximum,
-    MAX(price) - MIN(price) as ecart_prix
-FROM products;
-
--- Min et Max par groupe
-SELECT 
-    category,
-    MIN(price) as prix_min,
-    MAX(price) as prix_max,
-    MAX(created_at) as dernier_ajout
-FROM products 
-GROUP BY category;
-
--- Trouver les enregistrements avec valeurs extrêmes
-SELECT p1.*
-FROM products p1
-WHERE p1.price = (SELECT MAX(price) FROM products p2 WHERE p2.category = p1.category);
-
--- Dates min/max utiles
-SELECT 
-    MIN(order_date) as premiere_commande,
-    MAX(order_date) as derniere_commande,
-    MAX(order_date) - MIN(order_date) as periode_activite
-FROM orders;`,
-      sqlResult: `Prix min: 5.99
-Prix max: 1,299.00
-Écart: 1,293.01
-
-Electronics | 29.99 | 1,299.00 | 2024-01-15
-Books | 5.99 | 89.95 | 2024-01-14
-...`,
-      description:
-        "MIN et MAX révèlent les limites de vos données et vous aident à identifier les valeurs exceptionnelles.",
-    },
-    {
-      title: "HAVING - Filtrage des Groupes",
-      content: "Filtrez vos groupes après agrégation avec la clause HAVING.",
-      sqlCode: `-- HAVING avec COUNT
-SELECT 
-    city,
-    COUNT(*) as nombre_clients
-FROM customers 
-GROUP BY city
-HAVING COUNT(*) >= 10
-ORDER BY nombre_clients DESC;
-
--- HAVING avec SUM
-SELECT 
-    customer_id,
-    SUM(amount) as total_achats
-FROM orders 
-GROUP BY customer_id
-HAVING SUM(amount) > 1000
-ORDER BY total_achats DESC;
-
--- HAVING avec conditions multiples
-SELECT 
-    product_category,
-    COUNT(*) as nombre_produits,
-    AVG(price) as prix_moyen
-FROM products 
-GROUP BY product_category
-HAVING 
-    COUNT(*) >= 5 
-    AND AVG(price) > 50
-ORDER BY prix_moyen DESC;
-
--- HAVING vs WHERE
-SELECT 
-    department,
-    COUNT(*) as employes_actifs
-FROM employees 
-WHERE status = 'active'  -- Filtre AVANT regroupement
-GROUP BY department
-HAVING COUNT(*) > 3;     -- Filtre APRÈS regroupement`,
-      sqlResult: `Paris | 45
-Lyon | 23
-Marseille | 18
-...
-
-Customer #1234 | 2,456.78
-Customer #5678 | 1,890.45
-...`,
-      description:
-        "HAVING filtre les groupes après agrégation, contrairement à WHERE qui filtre avant regroupement.",
-    },
-    {
-      title: "Fonctions d'Agrégation Avancées",
+      title: "ORDER BY - Tri des Résultats",
       content:
-        "Découvrez des fonctions d'agrégation plus sophistiquées pour des analyses poussées.",
-      sqlCode: `-- Fonctions statistiques avancées
-SELECT 
-    product_category,
-    COUNT(*) as count,
-    AVG(price) as moyenne,
-    STDDEV(price) as ecart_type,
-    VARIANCE(price) as variance,
-    MEDIAN(price) as mediane
-FROM products 
-GROUP BY product_category;
+        "Triez vos résultats dans l'ordre qui vous convient.",
+      sqlCode: `-- Tri croissant (par défaut)
+SELECT nom, age FROM utilisateurs ORDER BY age;
+SELECT nom, age FROM utilisateurs ORDER BY age ASC; -- Explicit
 
--- Agrégation de chaînes
-SELECT 
-    customer_id,
-    GROUP_CONCAT(product_name, ', ') as produits_achetes,
-    COUNT(*) as nombre_achats
-FROM order_items 
-GROUP BY customer_id;
+-- Tri décroissant
+SELECT nom, prix FROM produits ORDER BY prix DESC;
 
--- Percentiles et quartiles
-SELECT 
-    department,
-    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY salary) as Q1,
-    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY salary) as mediane,
-    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY salary) as Q3
-FROM employees 
-GROUP BY department;
+-- Tri sur plusieurs colonnes
+SELECT nom, age, ville 
+FROM utilisateurs 
+ORDER BY ville ASC, age DESC;
 
--- Premiers et derniers par groupe
-SELECT 
-    category,
-    FIRST_VALUE(product_name) OVER (PARTITION BY category ORDER BY created_at) as premier_produit,
-    LAST_VALUE(product_name) OVER (PARTITION BY category ORDER BY created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) as dernier_produit
-FROM products;`,
+-- Tri avec NULL
+SELECT nom, telephone 
+FROM utilisateurs 
+ORDER BY telephone NULLS LAST; -- NULL à la fin
+
+-- Tri sur calcul
+SELECT nom, prix, prix * 0.8 AS prix_reduit 
+FROM produits 
+ORDER BY prix * 0.8 DESC;
+
+-- Tri par position de colonne
+SELECT nom, age, email 
+FROM utilisateurs 
+ORDER BY 2, 1; -- Trier par age (2e colonne), puis nom (1ere)`,
+      sqlResult: `Utilisateurs triés par âge croissant
+Produits triés par prix décroissant
+Utilisateurs triés par ville puis âge
+Utilisateurs avec téléphones en premier
+Produits triés par prix réduit
+Utilisateurs triés par âge puis nom`,
       description:
-        "Les fonctions avancées offrent des analyses statistiques et des manipulations de données sophistiquées.",
+        "ORDER BY organise vos résultats. Indispensable pour une présentation claire des données.",
     },
+    {
+      title: "NULL et IS NULL - Gestion des Valeurs Nulles",
+      content:
+        "Gérez les valeurs manquantes avec NULL et IS NULL.",
+      sqlCode: `-- Rechercher les valeurs NULL
+SELECT nom, telephone 
+FROM utilisateurs 
+WHERE telephone IS NULL;
+
+-- Rechercher les valeurs non NULL
+SELECT nom, telephone 
+FROM utilisateurs 
+WHERE telephone IS NOT NULL;
+
+-- NULL dans les conditions (attention aux pièges!)
+SELECT * FROM utilisateurs WHERE age = NULL; -- ❌ Ne marche PAS
+SELECT * FROM utilisateurs WHERE age IS NULL; -- ✅ Correct
+
+-- Remplacer NULL par une valeur
+SELECT nom, COALESCE(telephone, 'Non renseigné') AS contact
+FROM utilisateurs;
+
+-- Conditions avec NULL
+SELECT * FROM commandes 
+WHERE date_livraison IS NULL; -- Commandes non livrées
+
+-- NULL et opérateurs logiques
+SELECT * FROM utilisateurs 
+WHERE age > 25 OR age IS NULL; -- Inclut les âges inconnus`,
+      sqlResult: `8 utilisateurs sans téléphone
+17 utilisateurs avec téléphone
+0 résultats (piège NULL!)
+25 utilisateurs (corrects)
+15 commandes non livrées
+20 utilisateurs (>25 ans ou âge inconnu)`,
+      description:
+        "NULL représente l'absence de valeur. Attention : NULL = NULL est toujours FALSE !",
+    },
+    {
+      title: "LIMIT et OFFSET - Pagination",
+      content:
+        "Contrôlez le nombre de résultats et implémentez la pagination.",
+      sqlCode: `-- Limiter le nombre de résultats
+SELECT nom, email FROM utilisateurs LIMIT 5;
+
+-- Pagination : ignorer les N premiers résultats
+SELECT nom, email FROM utilisateurs 
+ORDER BY nom 
+LIMIT 10 OFFSET 20; -- Page 3 (10 par page)
+
+-- Top N avec tri
+SELECT nom, prix FROM produits 
+ORDER BY prix DESC 
+LIMIT 3; -- Les 3 produits les plus chers
+
+-- Pagination efficace
+SELECT nom, age FROM utilisateurs 
+WHERE age > 18 
+ORDER BY nom 
+LIMIT 10 OFFSET 0; -- Page 1
+
+SELECT nom, age FROM utilisateurs 
+WHERE age > 18 
+ORDER BY nom 
+LIMIT 10 OFFSET 10; -- Page 2
+
+-- LIMIT sans ORDER BY (résultats aléatoires)
+SELECT * FROM logs LIMIT 100; -- Attention : ordre non garanti`,
+      sqlResult: `5 premiers utilisateurs
+10 utilisateurs de la page 3
+3 produits les plus chers
+Page 1 : 10 utilisateurs
+Page 2 : 10 utilisateurs suivants
+100 logs (ordre aléatoire)`,
+      description:
+        "LIMIT et OFFSET sont essentiels pour la pagination et l'optimisation des performances sur grandes tables.",
+    }
   ],
 };

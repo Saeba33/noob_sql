@@ -1,219 +1,125 @@
 import { SECTION_DATA_COLORS } from "@/config/colors";
+
 export const yellowBeltContent = {
   // Belt configuration
   belt: "yellow",
-  description: "Opérations de base - Créer, Lire, Modifier, Supprimer",
-  topics: ["INSERT", "SELECT", "UPDATE", "DELETE", "WHERE"],
+  description: "DDL - Langage de définition de données",
+  topics: ["CREATE TABLE", "ALTER TABLE", "DROP TABLE"],
   colors: SECTION_DATA_COLORS.yellow,
 
   // Content sections
   header: {
-    title: "CRUD - Opérations de Base",
-    description: "Maîtrisez les opérations Créer, Lire, Modifier, Supprimer",
+    title: "DDL - Langage de Définition de Données",
+    description: "Créez et gérez la structure de vos bases de données",
     tag: "Ceinture Jaune",
   },
   pageDescription: {
-    title: "Manipulez Vos Données avec les Opérations CRUD",
+    title: "Maîtrisez la Structure de vos Bases de Données",
     content:
-      "La ceinture jaune vous apprend les quatre opérations fondamentales de manipulation de données : CREATE (INSERT), READ (SELECT), UPDATE et DELETE. Ces opérations forment l'épine dorsale de toute interaction avec une base de données. Vous apprendrez à insérer de nouvelles données, récupérer des informations, mettre à jour des enregistrements existants et supprimer des données obsolètes.",
+      "La ceinture jaune vous enseigne le DDL (Data Definition Language), le langage pour définir et modifier la structure de vos bases de données. Apprenez à créer des tables, les modifier et les supprimer. Ces compétences sont essentielles pour concevoir et faire évoluer vos schémas de base de données.",
   },
   accordions: [
     {
-      title: "INSERT - Ajouter des Données",
+      title: "CREATE TABLE - Création de Tables",
       content:
-        "Insérez de nouvelles données dans vos tables avec différentes méthodes.",
-      sqlCode: `-- Insertion simple
-INSERT INTO users (name, email, age) 
-VALUES ('Alice Dupont', 'alice@email.com', 28);
-
--- Insertion multiple
-INSERT INTO users (name, email, age) VALUES 
-('Bob Martin', 'bob@email.com', 32),
-('Claire Durand', 'claire@email.com', 25),
-('David Moreau', 'david@email.com', 45);
-
--- Insertion avec toutes les colonnes
-INSERT INTO users VALUES 
-(5, 'Emma Bernard', 'emma@email.com', 30, '2024-01-15 10:30:00');
-
--- Insertion sélective (colonnes avec DEFAULT)
-INSERT INTO users (name, email) 
-VALUES ('François Petit', 'francois@email.com');`,
-      sqlResult: `1 ligne insérée
-3 lignes insérées
-1 ligne insérée
-1 ligne insérée`,
-      description:
-        "INSERT vous permet d'ajouter de nouvelles données dans vos tables de différentes manières.",
-    },
-    {
-      title: "SELECT - Lire des Données",
-      content:
-        "Récupérez des données avec des requêtes SELECT de base à avancées.",
-      sqlCode: `-- Sélection de toutes les colonnes
-SELECT * FROM users;
-
--- Sélection de colonnes spécifiques
-SELECT name, email FROM users;
-
--- Sélection avec alias
-SELECT 
-    name AS nom_complet,
-    email AS adresse_email,
-    age AS âge
-FROM users;
-
--- Sélection avec calculs
-SELECT 
-    name,
-    age,
-    age + 10 AS age_dans_10_ans,
-    CASE 
-        WHEN age < 30 THEN 'Jeune'
-        WHEN age < 50 THEN 'Adulte'
-        ELSE 'Senior'
-    END AS catégorie
-FROM users;`,
-      sqlResult: `5 lignes retournées
-Alice Dupont | alice@email.com
-Bob Martin | bob@email.com
-...`,
-      description:
-        "SELECT est votre outil principal pour extraire et transformer des informations de votre base de données.",
-    },
-    {
-      title: "UPDATE - Modifier des Données",
-      content:
-        "Mettez à jour des enregistrements existants avec précision et sécurité.",
-      sqlCode: `-- Mise à jour simple
-UPDATE users 
-SET age = 29 
-WHERE name = 'Alice Dupont';
-
--- Mise à jour multiple colonnes
-UPDATE users 
-SET 
-    email = 'nouveau.email@domain.com',
-    age = age + 1
-WHERE id = 1;
-
--- Mise à jour conditionnelle
-UPDATE users 
-SET age = age + 1 
-WHERE age < 50;
-
--- Mise à jour avec calculs
-UPDATE products 
-SET 
-    price = price * 1.1,
-    updated_at = CURRENT_TIMESTAMP
-WHERE category = 'electronics';
-
--- Attention : UPDATE sans WHERE modifie TOUTES les lignes!
--- UPDATE users SET age = 25;  -- DANGEREUX!`,
-      sqlResult: `1 ligne mise à jour
-1 ligne mise à jour
-3 lignes mises à jour
-25 lignes mises à jour`,
-      description:
-        "UPDATE modifie des données existantes. Utilisez toujours WHERE sauf si vous voulez vraiment modifier toutes les lignes.",
-    },
-    {
-      title: "DELETE - Supprimer des Données",
-      content:
-        "Supprimez des enregistrements de manière sélective et sécurisée.",
-      sqlCode: `-- Suppression conditionnelle
-DELETE FROM users 
-WHERE age > 65;
-
--- Suppression par ID
-DELETE FROM users 
-WHERE id = 3;
-
--- Suppression avec conditions multiples
-DELETE FROM orders 
-WHERE status = 'cancelled' 
-AND created_at < '2023-01-01';
-
--- Suppression basée sur une sous-requête
-DELETE FROM users 
-WHERE id IN (
-    SELECT user_id FROM inactive_accounts
+        "Créez vos premières tables avec différents types de données et contraintes.",
+      sqlCode: `-- Création d'une table simple
+CREATE TABLE utilisateurs (
+    id INTEGER PRIMARY KEY,
+    nom VARCHAR(100) NOT NULL,
+    email VARCHAR(255) UNIQUE,
+    age INTEGER,
+    date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Attention : DELETE sans WHERE supprime TOUTES les lignes!
--- DELETE FROM users;  -- TRÈS DANGEREUX!
+-- Table avec clés étrangères
+CREATE TABLE commandes (
+    id INTEGER PRIMARY KEY,
+    utilisateur_id INTEGER,
+    produit VARCHAR(200),
+    quantite INTEGER DEFAULT 1,
+    prix DECIMAL(10,2),
+    FOREIGN KEY (utilisateur_id) REFERENCES utilisateurs(id)
+);
 
--- Alternative sûre : vider une table
-TRUNCATE TABLE temp_data;`,
-      sqlResult: `2 lignes supprimées
-1 ligne supprimée
-45 lignes supprimées
-8 lignes supprimées`,
+-- Table avec contraintes avancées
+CREATE TABLE produits (
+    id INTEGER PRIMARY KEY,
+    nom VARCHAR(100) NOT NULL,
+    prix DECIMAL(10,2) CHECK (prix > 0),
+    stock INTEGER DEFAULT 0 CHECK (stock >= 0),
+    sku VARCHAR(50) UNIQUE NOT NULL
+);`,
+      sqlResult: `Table "utilisateurs" créée avec succès
+Table "commandes" créée avec succès  
+Table "produits" créée avec succès`,
       description:
-        "DELETE supprime définitivement des données. Toujours utiliser WHERE sauf pour vider complètement une table.",
+        "CREATE TABLE est la fondation de votre base de données. Définissez la structure une fois, utilisez-la partout.",
     },
     {
-      title: "Transactions - Sécurité des Opérations",
+      title: "ALTER TABLE - Modification de Structure",
       content:
-        "Groupez vos opérations CRUD dans des transactions pour maintenir la cohérence.",
-      sqlCode: `-- Transaction simple
-BEGIN TRANSACTION;
+        "Modifiez la structure de vos tables existantes sans perdre de données.",
+      sqlCode: `-- Ajouter une nouvelle colonne
+ALTER TABLE utilisateurs 
+ADD COLUMN telephone VARCHAR(20);
 
-INSERT INTO users (name, email, age) 
-VALUES ('Test User', 'test@email.com', 25);
+-- Ajouter une colonne avec contrainte
+ALTER TABLE utilisateurs 
+ADD COLUMN statut VARCHAR(20) DEFAULT 'actif' NOT NULL;
 
-UPDATE users 
-SET age = 26 
-WHERE email = 'test@email.com';
+-- Modifier une colonne existante
+ALTER TABLE utilisateurs 
+ALTER COLUMN email SET NOT NULL;
 
--- Valider les changements
-COMMIT;
+-- Ajouter une contrainte
+ALTER TABLE utilisateurs 
+ADD CONSTRAINT check_age CHECK (age >= 0 AND age <= 120);
 
--- Transaction avec gestion d'erreur
-BEGIN TRANSACTION;
+-- Renommer une colonne
+ALTER TABLE utilisateurs 
+RENAME COLUMN nom TO nom_complet;
 
-UPDATE accounts SET balance = balance - 100 WHERE id = 1;
-UPDATE accounts SET balance = balance + 100 WHERE id = 2;
-
--- Si tout va bien
-COMMIT;
-
--- En cas de problème
--- ROLLBACK;`,
+-- Supprimer une colonne
+ALTER TABLE utilisateurs 
+DROP COLUMN telephone;`,
+      sqlResult: `Table modifiée avec succès
+Colonne ajoutée avec succès
+Contrainte ajoutée avec succès
+Colonne renommée avec succès
+Colonne supprimée avec succès`,
       description:
-        "Les transactions garantissent que vos opérations multiples sont traitées comme un bloc atomique.",
+        "ALTER TABLE permet de faire évoluer votre schéma au fil du temps sans recréer vos tables.",
     },
     {
-      title: "Requêtes avec RETURNING/OUTPUT",
+      title: "DROP TABLE - Suppression de Tables",
       content:
-        "Récupérez les données modifiées directement après vos opérations.",
-      sqlCode: `-- INSERT avec RETURNING (PostgreSQL/SQLite)
-INSERT INTO users (name, email, age) 
-VALUES ('Nouveau User', 'nouveau@email.com', 27)
-RETURNING id, name, created_at;
+        "Supprimez des tables de manière sécurisée avec les bonnes pratiques.",
+      sqlCode: `-- Supprimer une table (attention : irréversible!)
+DROP TABLE ancienne_table;
 
--- UPDATE avec RETURNING
-UPDATE users 
-SET age = age + 1 
-WHERE name LIKE 'Alice%'
-RETURNING id, name, age;
+-- Suppression conditionnelle
+DROP TABLE IF EXISTS table_temporaire;
 
--- DELETE avec RETURNING
-DELETE FROM users 
-WHERE age > 70
-RETURNING id, name, email;
+-- Supprimer avec CASCADE (supprime les dépendances)
+DROP TABLE commandes CASCADE;
 
--- Insérer et récupérer l'ID généré
-INSERT INTO products (name, price) 
-VALUES ('Nouveau Produit', 29.99)
-RETURNING id;`,
-      sqlResult: `ID: 6, Name: Nouveau User, Created: 2024-01-15 10:45:30
-ID: 1, Name: Alice Dupont, Age: 30
-2 utilisateurs supprimés
-Nouveau produit ID: 156`,
+-- Vider une table sans la supprimer
+TRUNCATE TABLE logs;
+
+-- Alternative : supprimer toutes les données
+DELETE FROM sessions;
+
+-- Voir les tables existantes
+SELECT name FROM sqlite_master 
+WHERE type='table';`,
+      sqlResult: `Table supprimée avec succès
+Table supprimée avec succès (si elle existait)
+Table et dépendances supprimées
+Table vidée avec succès
+Toutes les lignes supprimées`,
       description:
-        "RETURNING vous permet de récupérer immédiatement les données affectées par vos opérations.",
-    },
+        "DROP TABLE est une opération irréversible. Toujours sauvegarder avant de supprimer !",
+    }
   ],
 };

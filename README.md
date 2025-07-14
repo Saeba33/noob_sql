@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Noob SQL
 
-## Getting Started
+## 🥋 Organisation des Ceintures
 
-First, run the development server:
+### 🤍 Ceinture Blanche - Généralités
+**Base théorique et concepts fondamentaux**
+- Définition d'un SGBD avec schéma de ramification (SGBD vs NoSQL, etc.)
+- Présentation du SGBDR (relationnel)
+- Architecture d'une base de données (table, colonne, ligne)
+- Syntaxe de base d'une requête SQL
+- Mots-clés, indentation, casse et commentaires SQL
+- Types de données (INTEGER, TEXT, etc.)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### 🟡 Ceinture Jaune - DDL (Data Definition Language)
+**Structure et définition des données**
+- CREATE : Création de tables
+- ALTER : Modification de structure
+- DROP : Suppression de tables
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 🟠 Ceinture Orange - CRUD (Create, Read, Update, Delete)
+**Opérations de base sur les données**
+- SELECT : Lecture de données
+- INSERT : Ajout de données
+- UPDATE : Modification de données
+- DELETE/TRUNCATE : Suppression de données
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### 🟢 Ceinture Verte - Filtres et Conditions
+**Contrôle et filtrage des données**
+- Clause WHERE
+- Opérateurs de comparaison (=, !=, <, >, etc.)
+- Opérateurs logiques (AND, OR, IN, LIKE, BETWEEN)
+- ORDER BY : Tri des résultats
+- NULL et IS NULL : Gestion des valeurs nulles
+- LIMIT et OFFSET : Pagination
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 🔵 Ceinture Bleue - Agrégations
+**Calculs et regroupements**
+- Fonctions d'agrégation (COUNT, SUM, AVG, MIN, MAX)
+- GROUP BY et HAVING : Regroupement et filtrage des groupes
 
-## Learn More
+### 🟤 Ceinture Marron - Jointures
+**Relations entre les tables**
+- Schéma récapitulatif visuel des types de jointures
+- Clés primaires et étrangères : Conditions nécessaires aux jointures
+- JOIN (INNER JOIN) : Jointure interne
+- LEFT JOIN (LEFT OUTER JOIN) : Jointure externe gauche
+- RIGHT JOIN (RIGHT OUTER JOIN) : Jointure externe droite
+- FULL JOIN (FULL OUTER JOIN) : Jointure externe complète
+- CROSS JOIN : Produit cartésien
+- SELF JOIN : Auto-jointure
 
-To learn more about Next.js, take a look at the following resources:
+### ⚫ Ceinture Noire - Requêtes Avancées
+**Techniques avancées et optimisation**
+- Sous-requêtes dans WHERE, SELECT, IN, EXISTS
+- WITH (CTE – Common Table Expression) version simple
+- Création et utilisation de VIEW
+- Opérations de combinaison avec UNION, UNION ALL
+- INDEX : Optimisation des performances
+- Transactions : BEGIN, COMMIT, ROLLBACK
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 🟣 1ère DAN - Mise en Pratique
+**Application pratique des connaissances acquises**
+*(Développement ultérieur)*
