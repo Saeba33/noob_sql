@@ -16,10 +16,11 @@ export default function AccordionSection({
   content,
   sqlCode,
   explanation,
-  diagram,
-  schema,
-  result,
-  table,
+  sqlDiagram,
+  sqlSchema,
+  sqlResult,
+  sqlTable,
+  description,
   className = "",
 }) {
   const { isOpen, toggleOpen } = useAccordionSection();
@@ -73,62 +74,62 @@ export default function AccordionSection({
           )}
 
           {/* Diagram */}
-          {diagram && (
+          {sqlDiagram && (
             <div>
               <h4 className="text-sm font-semibold text-gray-900 mb-3 flex items-center">
                 <MdAccountTree className="w-4 h-4 mr-2 text-slate-600" />
                 Diagram
               </h4>
               <SqlDiagramBlock title="Database Diagram">
-                {diagram}
+                {sqlDiagram}
               </SqlDiagramBlock>
             </div>
           )}
 
           {/* Schema */}
-          {schema && (
+          {sqlSchema && (
             <div>
               <h4 className="text-sm font-semibold text-gray-900 mb-3 flex items-center">
                 <MdLibraryBooks className="w-4 h-4 mr-2 text-purple-600" />
                 Table Schema
               </h4>
-              <SqlSchemaBlock tables={schema} title="Table Schema" />
+              <SqlSchemaBlock tables={sqlSchema} title="Table Schema" />
             </div>
           )}
 
           {/* Results */}
-          {result && (
+          {sqlResult && (
             <div>
               <h4 className="text-sm font-semibold text-gray-900 mb-3 flex items-center">
                 <MdCheckCircle className="w-4 h-4 mr-2 text-green-600" />
                 Query Result
               </h4>
-              <SqlResultBlock data={result} title="Query Result" />
+              <SqlResultBlock data={sqlResult} title="Query Result" />
             </div>
           )}
 
           {/* Data Table */}
-          {table && (
+          {sqlTable && (
             <div>
               <h4 className="text-sm font-semibold text-gray-900 mb-3 flex items-center">
                 <MdGridOn className="w-4 h-4 mr-2 text-indigo-600" />
                 Table Data
               </h4>
-              <SqlTableBlock data={table} title="Table Data" />
+              <SqlTableBlock data={sqlTable} title="Table Data" />
             </div>
           )}
 
-          {/* Explanation */}
-          {explanation && (
+          {/* Explanation or Description */}
+          {(explanation || description) && (
             <div className="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-r-lg">
               <div className="flex items-start">
                 <MdInfo className="w-5 h-5 text-blue-600 mr-2 mt-0.5 flex-shrink-0" />
                 <div>
                   <h4 className="text-sm font-semibold text-blue-900 mb-1">
-                    Explanation
+                    {explanation ? "Explanation" : "Description"}
                   </h4>
                   <p className="text-blue-800 text-sm leading-relaxed">
-                    {explanation}
+                    {explanation || description}
                   </p>
                 </div>
               </div>

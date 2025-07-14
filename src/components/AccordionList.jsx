@@ -17,10 +17,11 @@ export default function AccordionList({ accordions }) {
             content={accordion.content}
             sqlCode={accordion.sqlCode}
             explanation={accordion.explanation}
-            diagram={accordion.diagram}
-            schema={accordion.schema}
-            result={accordion.result}
-            table={accordion.table}
+            sqlDiagram={accordion.sqlDiagram}
+            sqlSchema={accordion.sqlSchema}
+            sqlResult={accordion.sqlResult}
+            sqlTable={accordion.sqlTable}
+            description={accordion.description}
             className="bg-white rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition-shadow"
           />
         ))}

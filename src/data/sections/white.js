@@ -9,12 +9,12 @@ export const whiteBeltContent = {
   
   // Content sections
   header: {
-    title: "Généralités - Concepts Fondamentaux",
+    title: "Généralités & Concepts",
     description: "Base théorique et concepts fondamentaux du SQL",
     tag: "Ceinture Blanche",
   },
   pageDescription: {
-    title: "Découvrez les Fondamentaux des Bases de Données",
+    title: "Découvrez les fondamentaux des Bases De Données (BDD)",
     content:
       "La ceinture blanche vous introduit aux concepts théoriques essentiels des bases de données. Comprenez ce qu'est un SGBD, explorez l'architecture relationnelle, découvrez la syntaxe SQL de base et familiarisez-vous avec les types de données. Cette base solide vous permettra d'aborder sereinement la pratique du SQL.",
   },
