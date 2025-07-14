@@ -3,6 +3,7 @@ import {
   MdCheckCircle,
   MdInventory,
   MdKey,
+  MdLightbulb,
   MdLink,
   MdLock,
   MdNumbers,
@@ -164,56 +165,56 @@ export default function DataTypes() {
     {
       name: "PRIMARY KEY",
       description: "Identifiant unique de la table",
-      icon: <MdKey className="w-5 h-5 text-yellow-600" />,
+      icon: <MdKey className="w-5 h-5 text-gray-600" />,
       example: "id INTEGER PRIMARY KEY AUTO_INCREMENT",
       usage: "Une seule par table, jamais NULL, unique",
     },
     {
       name: "FOREIGN KEY",
       description: "Référence vers une autre table",
-      icon: <MdLink className="w-5 h-5 text-red-600" />,
+      icon: <MdLink className="w-5 h-5 text-gray-600" />,
       example: "utilisateur_id INTEGER REFERENCES utilisateurs(id)",
       usage: "Maintient l'intégrité référentielle",
     },
     {
       name: "UNIQUE",
       description: "Valeur unique dans la table",
-      icon: <MdVerified className="w-5 h-5 text-green-600" />,
+      icon: <MdVerified className="w-5 h-5 text-gray-600" />,
       example: "email VARCHAR(255) UNIQUE",
       usage: "Emails, noms d'utilisateurs uniques",
     },
     {
       name: "NOT NULL",
       description: "Valeur obligatoire",
-      icon: <MdSecurity className="w-5 h-5 text-blue-600" />,
+      icon: <MdSecurity className="w-5 h-5 text-gray-600" />,
       example: "nom VARCHAR(100) NOT NULL",
       usage: "Champs obligatoires",
     },
     {
       name: "DEFAULT",
       description: "Valeur par défaut",
-      icon: <MdSettings className="w-5 h-5 text-purple-600" />,
+      icon: <MdSettings className="w-5 h-5 text-gray-600" />,
       example: "statut VARCHAR(20) DEFAULT 'actif'",
       usage: "Valeurs automatiques à l'insertion",
     },
     {
       name: "CHECK",
       description: "Contrainte de validation",
-      icon: <MdVerified className="w-5 h-5 text-orange-600" />,
+      icon: <MdVerified className="w-5 h-5 text-gray-600" />,
       example: "age INTEGER CHECK (age >= 0 AND age <= 120)",
       usage: "Validation des données",
     },
     {
       name: "AUTO_INCREMENT",
       description: "Incrémentation automatique",
-      icon: <MdNumbers className="w-5 h-5 text-indigo-600" />,
+      icon: <MdNumbers className="w-5 h-5 text-gray-600" />,
       example: "id INTEGER AUTO_INCREMENT",
       usage: "IDs automatiques, commence à 1",
     },
     {
       name: "UNSIGNED",
       description: "Nombres positifs uniquement",
-      icon: <MdNumbers className="w-5 h-5 text-cyan-600" />,
+      icon: <MdNumbers className="w-5 h-5 text-gray-600" />,
       example: "age INTEGER UNSIGNED",
       usage: "Étend la plage de 0 à 4 milliards (au lieu de -2 à +2 milliards)",
     },
@@ -249,14 +250,19 @@ export default function DataTypes() {
         </p>
 
         <div className="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-r-lg">
-          <p>
-            <MdInventory className="w-4 h-4 text-blue-600 inline mr-2" />
-            <strong>Type de données</strong> = le format autorisé (nombres,
-            texte, dates...)
-            <br />
-            <MdLock className="w-4 h-4 text-blue-600 inline mr-2" />
-            <strong>Contraintes</strong> = les règles à respecter (obligatoire,
-            unique, valeur par défaut...)
+          <p className="flex items-start">
+            <MdLightbulb className="w-5 h-5 text-blue-600 mr-2 mt-0.5 flex-shrink-0" />
+            <span>
+              <strong>Analogie :</strong> C'est comme des boîtes étiquetées avec des règles !
+              <br />
+              <MdInventory className="w-4 h-4 text-blue-600 inline mr-2 mt-1" />
+              <strong>Type de données</strong> = le format autorisé (nombres,
+              texte, dates...)
+              <br />
+              <MdLock className="w-4 h-4 text-blue-600 inline mr-2 mt-1" />
+              <strong>Contraintes</strong> = les règles à respecter (obligatoire,
+              unique, valeur par défaut...)
+            </span>
           </p>
         </div>
 
@@ -497,58 +503,78 @@ export default function DataTypes() {
 
         {/* Conseils pratiques améliorés */}
         <div className="p-6">
-          <div className="p-6 bg-yellow-50 border-l-4 border-yellow-400 rounded-r-lg">
-            <div className="flex items-center space-x-2 mb-4">
-              <MdStorage className="w-5 h-5 text-yellow-600" />
-              <h4 className="font-bold text-yellow-900">
-                Bonnes Pratiques pour les Types de Données
-              </h4>
+          <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+            <MdLightbulb className="w-7 h-7 text-gray-600 mr-3" />
+            Bonnes Pratiques pour les Types de Données
+          </h2>
+          
+          <div className="grid md:grid-cols-2 gap-6">
+            {/* Carte Recommandations */}
+            <div className="bg-white border border-gray-300 rounded-lg p-6">
+              <div className="flex items-center space-x-2 mb-4">
+                <MdCheckCircle className="w-5 h-5 text-green-600" />
+                <h3 className="font-bold text-gray-900">Recommandations</h3>
+              </div>
+              <ul className="space-y-3 text-gray-700">
+                <li className="flex items-start space-x-2">
+                  <span className="text-green-600 mt-1">•</span>
+                  <span><strong>VARCHAR(255)</strong> : Standard optimal pour MySQL</span>
+                </li>
+                <li className="flex items-start space-x-2">
+                  <span className="text-green-600 mt-1">•</span>
+                  <span><strong>INTEGER AUTO_INCREMENT</strong> pour les IDs</span>
+                </li>
+                <li className="flex items-start space-x-2">
+                  <span className="text-green-600 mt-1">•</span>
+                  <span><strong>DECIMAL(10,2)</strong> pour les montants financiers</span>
+                </li>
+                <li className="flex items-start space-x-2">
+                  <span className="text-green-600 mt-1">•</span>
+                  <span><strong>TIMESTAMP DEFAULT CURRENT_TIMESTAMP</strong> pour les logs</span>
+                </li>
+                <li className="flex items-start space-x-2">
+                  <span className="text-green-600 mt-1">•</span>
+                  <span><strong>NOT NULL</strong> sur les champs essentiels</span>
+                </li>
+                <li className="flex items-start space-x-2">
+                  <span className="text-green-600 mt-1">•</span>
+                  <span><strong>UNSIGNED</strong> pour les valeurs toujours positives</span>
+                </li>
+              </ul>
             </div>
-            <div className="grid md:grid-cols-2 gap-6 text-yellow-800">
-              <div>
-                <p className="font-semibold mb-3 flex items-center">
-                  <MdCheckCircle className="w-4 h-4 text-green-600 mr-2" />
-                  Recommandations :
-                </p>
-                <ul className="space-y-2 text-sm">
-                  <li>
-                    • <strong>VARCHAR(255)</strong> : Standard optimal pour
-                    MySQL
-                  </li>
-                  <li>
-                    • <strong>INTEGER AUTO_INCREMENT</strong> pour les IDs
-                  </li>
-                  <li>
-                    • <strong>DECIMAL(10,2)</strong> pour les montants
-                    financiers
-                  </li>
-                  <li>
-                    • <strong>TIMESTAMP DEFAULT CURRENT_TIMESTAMP</strong> pour
-                    les logs
-                  </li>
-                  <li>
-                    • <strong>NOT NULL</strong> sur les champs essentiels
-                  </li>
-                  <li>
-                    • <strong>UNSIGNED</strong> pour les valeurs toujours
-                    positives
-                  </li>
-                </ul>
+
+            {/* Carte À éviter */}
+            <div className="bg-white border border-gray-300 rounded-lg p-6">
+              <div className="flex items-center space-x-2 mb-4">
+                <MdWarning className="w-5 h-5 text-red-600" />
+                <h3 className="font-bold text-gray-900">À éviter</h3>
               </div>
-              <div>
-                <p className="font-semibold mb-3 flex items-center">
-                  <MdWarning className="w-4 h-4 text-orange-600 mr-2" />À éviter
-                  :
-                </p>
-                <ul className="space-y-2 text-sm">
-                  <li>• VARCHAR trop long = gaspillage mémoire</li>
-                  <li>• FLOAT/DOUBLE pour les montants = erreurs d'arrondi</li>
-                  <li>• TEXT pour des données courtes</li>
-                  <li>• Stocker des dates en VARCHAR</li>
-                  <li>• Oublier les contraintes de validation</li>
-                  <li>• Trop de colonnes NULL sans raison</li>
-                </ul>
-              </div>
+              <ul className="space-y-3 text-gray-700">
+                <li className="flex items-start space-x-2">
+                  <span className="text-red-600 mt-1">•</span>
+                  <span>VARCHAR trop long = gaspillage mémoire</span>
+                </li>
+                <li className="flex items-start space-x-2">
+                  <span className="text-red-600 mt-1">•</span>
+                  <span>FLOAT/DOUBLE pour les montants = erreurs d'arrondi</span>
+                </li>
+                <li className="flex items-start space-x-2">
+                  <span className="text-red-600 mt-1">•</span>
+                  <span>TEXT pour des données courtes</span>
+                </li>
+                <li className="flex items-start space-x-2">
+                  <span className="text-red-600 mt-1">•</span>
+                  <span>Stocker des dates en VARCHAR</span>
+                </li>
+                <li className="flex items-start space-x-2">
+                  <span className="text-red-600 mt-1">•</span>
+                  <span>Oublier les contraintes de validation</span>
+                </li>
+                <li className="flex items-start space-x-2">
+                  <span className="text-red-600 mt-1">•</span>
+                  <span>Trop de colonnes NULL sans raison</span>
+                </li>
+              </ul>
             </div>
           </div>
         </div>

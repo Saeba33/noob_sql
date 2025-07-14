@@ -1,9 +1,9 @@
 import {
   MdCheckCircle,
-  MdClose,
   MdDataset,
   MdKey,
   MdLightbulb,
+  MdLink,
   MdSecurity,
   MdSpeed,
   MdTableChart,
@@ -15,7 +15,7 @@ export default function BestPractices() {
   const coreRules = [
     {
       title: "Normalisation des tables",
-      icon: <MdTableChart className="w-5 h-5 text-blue-600" />,
+      icon: <MdTableChart className="w-5 h-5 text-gray-600" />,
       rule: "Sépare les données en tables distinctes pour éviter la duplication. Chaque information ne doit apparaître qu'une seule fois dans la base.",
       good: "Tables: utilisateurs, commandes, produits (séparées)",
       bad: "Une table avec nom_client dupliqué dans chaque commande",
@@ -23,7 +23,7 @@ export default function BestPractices() {
     },
     {
       title: "Clés primaires simples",
-      icon: <MdKey className="w-5 h-5 text-yellow-600" />,
+      icon: <MdKey className="w-5 h-5 text-gray-600" />,
       rule: "Utilise des clés primaires simples et stables (id numérique)",
       good: "id INTEGER PRIMARY KEY AUTO_INCREMENT",
       bad: "Clés composées ou textuelles comme clé primaire",
@@ -31,7 +31,7 @@ export default function BestPractices() {
     },
     {
       title: "Clés étrangères",
-      icon: <MdSecurity className="w-5 h-5 text-red-600" />,
+      icon: <MdLink className="w-5 h-5 text-gray-600" />,
       rule: "Définis des clés étrangères pour assurer les relations",
       good: "utilisateur_id INTEGER REFERENCES utilisateurs(id)",
       bad: "Pas de contraintes, relations non déclarées",
@@ -39,7 +39,7 @@ export default function BestPractices() {
     },
     {
       title: "Convention snake_case",
-      icon: <MdTextFormat className="w-5 h-5 text-green-600" />,
+      icon: <MdTextFormat className="w-5 h-5 text-gray-600" />,
       rule: "Utilise le snake_case pour les noms",
       good: "nom_utilisateur, date_creation, prix_total",
       bad: "nomUtilisateur, dateCreation, prixTotal",
@@ -47,7 +47,7 @@ export default function BestPractices() {
     },
     {
       title: "Noms explicites",
-      icon: <MdDataset className="w-5 h-5 text-purple-600" />,
+      icon: <MdDataset className="w-5 h-5 text-gray-600" />,
       rule: "Privilégie des noms explicites pour tables et colonnes",
       good: "utilisateurs, commande_id, prix_total",
       bad: "usr, cmd, tot, t1, c_id",
@@ -55,7 +55,7 @@ export default function BestPractices() {
     },
     {
       title: "Index stratégiques",
-      icon: <MdSpeed className="w-5 h-5 text-orange-600" />,
+      icon: <MdSpeed className="w-5 h-5 text-gray-600" />,
       rule: "Crée des index sur les colonnes de filtrage et jointure",
       good: "INDEX sur email, date_creation, statut",
       bad: "Aucun index sur les colonnes WHERE/JOIN",
@@ -121,7 +121,7 @@ export default function BestPractices() {
                     
                     <div>
                       <h4 className="font-semibold text-gray-900 mb-1 flex items-center text-sm">
-                        <MdClose className="w-4 h-4 text-red-600 mr-1" />
+                        <MdWarning className="w-4 h-4 text-red-600 mr-1" />
                         À éviter
                       </h4>
                       <code className="text-xs bg-red-100 text-red-800 px-2 py-1 rounded block">
@@ -175,7 +175,7 @@ export default function BestPractices() {
 
               <div className="bg-blue-50 border border-blue-200 rounded p-4">
                 <h4 className="font-semibold text-blue-800 mb-2 flex items-center">
-                  <MdKey className="w-4 h-4 text-blue-600 mr-2" />
+                  <MdLink className="w-4 h-4 text-blue-600 mr-2" />
                   Contraintes et index
                 </h4>
                 <code className="text-sm text-blue-700 block">
