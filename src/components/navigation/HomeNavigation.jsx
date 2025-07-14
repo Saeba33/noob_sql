@@ -96,14 +96,14 @@ export default function HomeNavigation() {
                 </p>
 
                 <div className="space-y-1 mt-auto">
-                  {page.topics.slice(0, 3).map((topic, index) => (
+                  {page.topics.slice(0, 4).map((topic, index) => (
                     <div key={index} className="text-xs text-gray-500">
                       • {topic}
                     </div>
                   ))}
-                  {page.topics.length > 3 && (
+                  {page.topics.length > 4 && (
                     <div className="text-xs text-gray-400">
-                      + {page.topics.length - 3} autres...
+                      + {page.topics.length - 4} autres...
                     </div>
                   )}
                 </div>

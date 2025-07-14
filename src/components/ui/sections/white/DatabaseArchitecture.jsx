@@ -124,7 +124,9 @@ export default function DatabaseArchitecture() {
                           {cellIndex === 0 && (
                             <div className="flex items-center justify-center space-x-1 bg-yellow-100 py-1 px-2 rounded w-full h-full">
                               <MdKey className="w-3 h-3 text-yellow-600" />
-                              <span className="font-semibold text-yellow-900">{cell}</span>
+                              <span className="font-semibold text-yellow-900">
+                                {cell}
+                              </span>
                             </div>
                           )}
                           {cellIndex > 0 && (
@@ -227,7 +229,9 @@ export default function DatabaseArchitecture() {
                           {cellIndex === 0 && (
                             <div className="flex items-center justify-center space-x-1 bg-yellow-100 py-1 px-2 rounded w-full h-full">
                               <MdKey className="w-3 h-3 text-yellow-600" />
-                              <span className="font-semibold text-yellow-900">{cell}</span>
+                              <span className="font-semibold text-yellow-900">
+                                {cell}
+                              </span>
                             </div>
                           )}
                           {cellIndex > 0 && (
@@ -335,13 +339,17 @@ export default function DatabaseArchitecture() {
                           {cellIndex === 0 && (
                             <div className="flex items-center justify-center space-x-1 bg-yellow-100 py-1 px-2 rounded w-full h-full">
                               <MdKey className="w-3 h-3 text-yellow-600" />
-                              <span className="font-semibold text-yellow-900">{cell}</span>
+                              <span className="font-semibold text-yellow-900">
+                                {cell}
+                              </span>
                             </div>
                           )}
                           {(cellIndex === 1 || cellIndex === 2) && (
                             <div className="flex items-center justify-center space-x-1 bg-red-100 py-1 px-2 rounded w-full h-full">
                               <MdLink className="w-3 h-3 text-red-600" />
-                              <span className="font-semibold text-red-900">{cell}</span>
+                              <span className="font-semibold text-red-900">
+                                {cell}
+                              </span>
                             </div>
                           )}
                           {cellIndex > 2 && (

@@ -232,16 +232,15 @@ export default function DataTypes() {
         </p>
 
         <div className="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-r-lg">
-          <p className="flex items-start">
-            <MdLightbulb className="w-5 h-5 text-blue-600 mr-2 mt-0.5 flex-shrink-0" />
+          <p className="flex justifyitems-center">
             <span>
-              <MdInventory className="w-4 h-4 text-blue-600 inline mr-2 mt-1" />
+              <MdInventory className="w-4 h-4 text-blue-600 inline mr-2" />
               <strong>Type de données</strong> = le format autorisé (nombres,
               texte, dates...)
               <br />
-              <MdLock className="w-4 h-4 text-blue-600 inline mr-2 mt-1" />
-              <strong>Contraintes</strong> = les règles à respecter (obligatoire,
-              unique, valeur par défaut...)
+              <MdLock className="w-4 h-4 text-blue-600 inline mr-2" />
+              <strong>Contraintes</strong> = les règles à respecter
+              (obligatoire, unique, valeur par défaut...)
             </span>
           </p>
         </div>
@@ -324,9 +323,7 @@ export default function DataTypes() {
                         <p className="text-gray-800 text-sm font-medium mb-1">
                           Utilisation
                         </p>
-                        <p className="text-gray-700 text-sm">
-                          {type.usage}
-                        </p>
+                        <p className="text-gray-700 text-sm">{type.usage}</p>
                       </div>
 
                       {/* Bonne pratique */}
@@ -347,7 +344,7 @@ export default function DataTypes() {
             </div>
           ))}
         </div>
-        
+
         {/* Types moins courants */}
         <div className="mt-8">
           <h2 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
@@ -409,9 +406,7 @@ export default function DataTypes() {
 
                         {/* Utilisation */}
                         <div>
-                          <p className="text-gray-600 text-sm">
-                            {type.usage}
-                          </p>
+                          <p className="text-gray-600 text-sm">{type.usage}</p>
                         </div>
                       </div>
                     </div>
@@ -473,7 +468,7 @@ export default function DataTypes() {
             <MdLightbulb className="w-5 h-5 text-gray-600 mr-3" />
             Bonnes Pratiques
           </h2>
-          
+
           <div className="grid md:grid-cols-2 gap-6">
             {/* Carte Recommandations */}
             <div className="bg-white border border-gray-300 rounded-lg p-4 shadow-sm">
@@ -484,27 +479,41 @@ export default function DataTypes() {
               <ul className="space-y-3 text-gray-700">
                 <li className="flex items-start space-x-2">
                   <span className="text-green-600 mt-1">•</span>
-                  <span><strong>VARCHAR(255)</strong> : Standard optimal pour MySQL</span>
+                  <span>
+                    <strong>VARCHAR(255)</strong> : Standard optimal pour MySQL
+                  </span>
                 </li>
                 <li className="flex items-start space-x-2">
                   <span className="text-green-600 mt-1">•</span>
-                  <span><strong>INTEGER AUTO_INCREMENT</strong> pour les IDs</span>
+                  <span>
+                    <strong>INTEGER AUTO_INCREMENT</strong> pour les IDs
+                  </span>
                 </li>
                 <li className="flex items-start space-x-2">
                   <span className="text-green-600 mt-1">•</span>
-                  <span><strong>DECIMAL(10,2)</strong> pour les montants financiers</span>
+                  <span>
+                    <strong>DECIMAL(10,2)</strong> pour les montants financiers
+                  </span>
                 </li>
                 <li className="flex items-start space-x-2">
                   <span className="text-green-600 mt-1">•</span>
-                  <span><strong>TIMESTAMP DEFAULT CURRENT_TIMESTAMP</strong> pour les logs</span>
+                  <span>
+                    <strong>TIMESTAMP DEFAULT CURRENT_TIMESTAMP</strong> pour
+                    les logs
+                  </span>
                 </li>
                 <li className="flex items-start space-x-2">
                   <span className="text-green-600 mt-1">•</span>
-                  <span><strong>NOT NULL</strong> sur les champs essentiels</span>
+                  <span>
+                    <strong>NOT NULL</strong> sur les champs essentiels
+                  </span>
                 </li>
                 <li className="flex items-start space-x-2">
                   <span className="text-green-600 mt-1">•</span>
-                  <span><strong>UNSIGNED</strong> pour les valeurs toujours positives</span>
+                  <span>
+                    <strong>UNSIGNED</strong> pour les valeurs toujours
+                    positives
+                  </span>
                 </li>
               </ul>
             </div>
@@ -522,7 +531,9 @@ export default function DataTypes() {
                 </li>
                 <li className="flex items-start space-x-2">
                   <span className="text-red-600 mt-1">•</span>
-                  <span>FLOAT/DOUBLE pour les montants = erreurs d'arrondi</span>
+                  <span>
+                    FLOAT/DOUBLE pour les montants = erreurs d'arrondi
+                  </span>
                 </li>
                 <li className="flex items-start space-x-2">
                   <span className="text-red-600 mt-1">•</span>
@@ -642,7 +653,10 @@ export default function DataTypes() {
                       benefit: "Extensibilité",
                     },
                   ].map((row, index) => (
-                    <tr key={index} className="hover:bg-gray-50 border-b border-gray-200">
+                    <tr
+                      key={index}
+                      className="hover:bg-gray-50 border-b border-gray-200"
+                    >
                       <td className="p-3 font-medium text-gray-900 text-sm">
                         {row.column}
                       </td>
