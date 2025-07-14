@@ -104,8 +104,6 @@ WHERE type='table';`,
     },
     {
       title: "Bonnes Pratiques DDL",
-      content:
-        "Découvrez les bonnes pratiques essentielles pour créer des structures de base de données robustes et maintenables.",
       externalComponent: <BestPractices />,
     },
   ],

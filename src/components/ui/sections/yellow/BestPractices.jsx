@@ -156,14 +156,10 @@ export default function BestPractices() {
       <div className="mt-8 border border-yellow-300 rounded-lg bg-yellow-50 p-6">
         <h2 className="text-lg font-bold text-yellow-800 mb-6 flex items-center">
           <MdTableChart className="w-5 h-5 text-yellow-600 mr-3" />
-          Exemple de Création de Table Optimisée
+          Exemple de création de table optimisée
         </h2>
 
         <div className="bg-white border border-yellow-300 rounded-lg p-4 shadow-sm">
-          <h3 className="text-base font-bold text-gray-900 mb-4">
-            Table utilisateur suivant les bonnes pratiques :
-          </h3>
-
           <div className="space-y-4">
             <div className="bg-green-50 border border-green-200 rounded p-4">
               <h4 className="font-semibold text-green-800 mb-2 flex items-center">
@@ -197,36 +193,11 @@ CREATE INDEX idx_statut ON utilisateur(statut);`}
         </div>
       </div>
 
-      {/* Conseils supplémentaires */}
-      <div className="mt-8 border border-yellow-300 rounded-lg bg-yellow-50 p-6">
-        <h2 className="text-lg font-bold text-yellow-800 mb-6 flex items-center">
-          <MdLightbulb className="w-5 h-5 text-yellow-600 mr-3" />
-          Conseils Pro
-        </h2>
-
-        <div className="grid gap-4 md:grid-cols-3">
-          {ddlTips.map((tip, index) => (
-            <div
-              key={index}
-              className="bg-white border border-yellow-300 rounded-lg p-4 shadow-sm"
-            >
-              <h3 className="text-base font-bold text-gray-900 mb-2">
-                {tip.title}
-              </h3>
-              <p className="text-gray-700 text-sm mb-3">{tip.tip}</p>
-              <code className="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded block">
-                {tip.example}
-              </code>
-            </div>
-          ))}
-        </div>
-      </div>
-
       {/* Erreurs courantes */}
       <div className="mt-8 border border-red-300 rounded-lg bg-red-50 p-6">
         <h2 className="text-lg font-bold text-red-800 mb-6 flex items-center">
           <MdWarning className="w-5 h-5 text-red-600 mr-3" />
-          Erreurs Courantes à Éviter
+          Erreurs à éviter
         </h2>
 
         <div className="space-y-4">
