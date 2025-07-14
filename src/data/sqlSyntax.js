@@ -274,7 +274,7 @@ export function colorizeText(text, targetType = "default") {
   return result;
 }
 
-// Function to parse database schemas
+// Function to parse database schemas with enhanced structure for diagrams
 export function parseSchema(schemaText) {
   const tables = [];
   const lines = schemaText.split("\n");
@@ -289,22 +289,70 @@ export function parseSchema(schemaText) {
       currentTable = {
         name: tableName,
         columns: [],
+        relationships: [],
       };
       tables.push(currentTable);
     }
     // Detect a column
     else if (currentTable && line.match(/^\w+\s+\w+/)) {
-      const parts = line.split(/\s+/);
+      const parts = line.replace(/[,;]/g, '').split(/\s+/);
+      const columnName = parts[0];
+      const columnType = parts[1];
+      const constraints = parts.slice(2).join(" ");
+      
       const column = {
-        name: parts[0],
-        type: parts[1],
-        constraints: parts.slice(2).join(" "),
+        name: columnName,
+        type: columnType,
+        constraints: constraints,
+        isPrimary: /PRIMARY\s+KEY/i.test(constraints),
+        isForeign: /FOREIGN\s+KEY/i.test(line) || /REFERENCES/i.test(constraints),
+        isUnique: /UNIQUE/i.test(constraints),
+        isNotNull: /NOT\s+NULL/i.test(constraints),
       };
+      
       currentTable.columns.push(column);
+    }
+    // Detect foreign key relationships
+    else if (currentTable && line.match(/FOREIGN KEY\s*\((\w+)\)\s*REFERENCES\s+(\w+)\s*\((\w+)\)/i)) {
+      const match = line.match(/FOREIGN KEY\s*\((\w+)\)\s*REFERENCES\s+(\w+)\s*\((\w+)\)/i);
+      const relationship = {
+        column: match[1],
+        referencedTable: match[2],
+        referencedColumn: match[3],
+      };
+      currentTable.relationships.push(relationship);
+    }
+    // Detect inline references
+    else if (currentTable && line.match(/(\w+)\s+\w+.*REFERENCES\s+(\w+)\s*\((\w+)\)/i)) {
+      const match = line.match(/(\w+)\s+\w+.*REFERENCES\s+(\w+)\s*\((\w+)\)/i);
+      const relationship = {
+        column: match[1],
+        referencedTable: match[2],
+        referencedColumn: match[3],
+      };
+      currentTable.relationships.push(relationship);
     }
   }
 
   return tables;
+}
+
+// Function to convert SQL CREATE TABLE statements to diagram data
+export function sqlToTableDiagram(sqlCode) {
+  if (!sqlCode) return [];
+  
+  // Parse the SQL to extract table structure
+  const tables = parseSchema(sqlCode);
+  
+  // Enhance with visual information
+  return tables.map(table => ({
+    ...table,
+    // Add visual metadata
+    totalColumns: table.columns.length,
+    primaryKeys: table.columns.filter(col => col.isPrimary).length,
+    foreignKeys: table.columns.filter(col => col.isForeign).length,
+    uniqueConstraints: table.columns.filter(col => col.isUnique).length,
+  }));
 }
 
 // Function to format query results

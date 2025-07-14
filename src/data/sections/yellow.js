@@ -50,11 +50,6 @@ CREATE TABLE produits (
     stock INTEGER DEFAULT 0 CHECK (stock >= 0),
     sku VARCHAR(50) UNIQUE NOT NULL
 );`,
-      sqlResult: `Table "utilisateurs" créée avec succès
-Table "commandes" créée avec succès  
-Table "produits" créée avec succès`,
-      description:
-        "CREATE TABLE est la fondation de votre base de données. Définissez la structure une fois, utilisez-la partout.",
     },
     {
       title: "ALTER TABLE - Modification de Structure",
@@ -83,13 +78,6 @@ RENAME COLUMN nom TO nom_complet;
 -- Supprimer une colonne
 ALTER TABLE utilisateurs 
 DROP COLUMN telephone;`,
-      sqlResult: `Table modifiée avec succès
-Colonne ajoutée avec succès
-Contrainte ajoutée avec succès
-Colonne renommée avec succès
-Colonne supprimée avec succès`,
-      description:
-        "ALTER TABLE permet de faire évoluer votre schéma au fil du temps sans recréer vos tables.",
     },
     {
       title: "DROP TABLE - Suppression de Tables",
@@ -113,13 +101,6 @@ DELETE FROM sessions;
 -- Voir les tables existantes
 SELECT name FROM sqlite_master 
 WHERE type='table';`,
-      sqlResult: `Table supprimée avec succès
-Table supprimée avec succès (si elle existait)
-Table et dépendances supprimées
-Table vidée avec succès
-Toutes les lignes supprimées`,
-      description:
-        "DROP TABLE est une opération irréversible. Toujours sauvegarder avant de supprimer !",
-    }
+    },
   ],
 };

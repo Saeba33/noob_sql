@@ -3,15 +3,20 @@ import { formatQueryResult, sqlSyntaxConfig } from "../../../data/sqlSyntax.js";
 export default function SqlResultBlock({
   data,
   headers,
+  message,
   title = "Résultat de la requête",
   className = "",
+  type = "auto", // "table", "message", ou "auto" pour détection automatique
 }) {
   const styles = sqlSyntaxConfig.componentStyles.result;
 
-  // Format data
-  const formattedData = formatQueryResult(data, headers);
+  // Détermine le type de contenu à afficher
+  const contentType = type === "auto" 
+    ? (message ? "message" : (data && data.length > 0 ? "table" : "empty"))
+    : type;
 
-  if (!formattedData || !formattedData.rows.length) {
+  // Rendu pour les messages
+  if (contentType === "message" && message) {
     return (
       <div className={`relative ${className}`}>
         <div
@@ -21,9 +26,41 @@ export default function SqlResultBlock({
             className={`${styles.header} px-4 py-2 flex items-center space-x-2`}
           >
             <div className="flex space-x-1">
-              <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-              <div className="w-3 h-3 bg-emerald-500 rounded-full"></div>
+              <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+              <div className="w-3 h-3 bg-cyan-500 rounded-full"></div>
               <div className="w-3 h-3 bg-teal-500 rounded-full"></div>
+            </div>
+            <span className={`${styles.headerText} text-sm font-mono ml-3`}>
+              {title}
+            </span>
+          </div>
+          <div className="p-4">
+            <p className={`${styles.content} font-mono text-sm`}>
+              {message}
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Format data pour les tableaux
+  const formattedData = data ? formatQueryResult(data, headers) : null;
+
+  // Rendu pour résultats vides
+  if (contentType === "empty" || !formattedData || !formattedData.rows.length) {
+    return (
+      <div className={`relative ${className}`}>
+        <div
+          className={`${styles.background} ${styles.border} border rounded-lg overflow-hidden shadow-lg`}
+        >
+          <div
+            className={`${styles.header} px-4 py-2 flex items-center space-x-2`}
+          >
+            <div className="flex space-x-1">
+              <div className="w-3 h-3 bg-gray-500 rounded-full"></div>
+              <div className="w-3 h-3 bg-gray-400 rounded-full"></div>
+              <div className="w-3 h-3 bg-gray-300 rounded-full"></div>
             </div>
             <span className={`${styles.headerText} text-sm font-mono ml-3`}>
               {title}
@@ -39,6 +76,7 @@ export default function SqlResultBlock({
     );
   }
 
+  // Rendu pour les tableaux de résultats
   return (
     <div className={`relative ${className}`}>
       <div
