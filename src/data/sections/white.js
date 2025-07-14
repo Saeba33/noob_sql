@@ -31,33 +31,9 @@ export const whiteBeltContent = {
       title: "Qu'est-ce qu'un SGBD ?",
       externalComponent: <SGBDDiagram />,
     },
-    {
-      title: "Le SGBDR (Relationnel)",
-      content:
-        "Comprenez les principes des bases de données relationnelles et leur organisation.",
-      sqlDiagram: `Base de Données Relationnelle
-├── Tables (Relations)
-├── Lignes (Tuples/Enregistrements)  
-├── Colonnes (Attributs/Champs)
-├── Clés Primaires
-├── Clés Étrangères
-└── Relations entre tables`,
-      description:
-        "Les SGBDR organisent les données en tables liées entre elles par des relations, garantissant l'intégrité et la cohérence.",
-    },
-    {
-      title: "Architecture d'une Base de Données",
-      content:
-        "Explorez la structure fondamentale : tables, colonnes et lignes.",
+       {
+      title: "Architecture d'une Base De Données Relationnelles",
       externalComponent: <DatabaseArchitecture />,
-      sqlSchema: `CREATE TABLE utilisateurs (
-    id INTEGER PRIMARY KEY,
-    nom VARCHAR(50),
-    email VARCHAR(100),
-    age INTEGER
-);`,
-      description:
-        "Une table est composée de colonnes (structure) et de lignes (données). Chaque ligne représente un enregistrement unique.",
     },
     {
       title: "Syntaxe de Base d'une Requête SQL",
