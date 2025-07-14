@@ -20,6 +20,7 @@ export default function AccordionSection({
   sqlSchema,
   sqlResult,
   sqlTable,
+  externalComponent,
   description,
   className = "",
 }) {
@@ -116,6 +117,19 @@ export default function AccordionSection({
                 Table Data
               </h4>
               <SqlTableBlock data={sqlTable} title="Table Data" />
+            </div>
+          )}
+
+          {/* External Component */}
+          {externalComponent && (
+            <div>
+              <h4 className="text-sm font-semibold text-gray-900 mb-3 flex items-center">
+                <MdAccountTree className="w-4 h-4 mr-2 text-indigo-600" />
+                Composant Interactif
+              </h4>
+              <div className="bg-gray-50 rounded-lg p-1">
+                {externalComponent}
+              </div>
             </div>
           )}
 

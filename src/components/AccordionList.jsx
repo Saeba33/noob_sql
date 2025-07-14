@@ -21,6 +21,7 @@ export default function AccordionList({ accordions }) {
             sqlSchema={accordion.sqlSchema}
             sqlResult={accordion.sqlResult}
             sqlTable={accordion.sqlTable}
+            externalComponent={accordion.externalComponent}
             description={accordion.description}
             className="bg-white rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition-shadow"
           />

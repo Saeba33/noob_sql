@@ -1,4 +1,5 @@
 import { SECTION_DATA_COLORS } from "@/config/colors";
+import { SGBDDiagram, DatabaseArchitecture } from "@/components/ui/sections/white";
 
 export const whiteBeltContent = {
   // Belt configuration
@@ -23,17 +24,7 @@ export const whiteBeltContent = {
       title: "Qu'est-ce qu'un SGBD ?",
       content:
         "Découvrez les différents types de systèmes de gestion de base de données et leurs caractéristiques.",
-      sqlDiagram: `SGBD (Système de Gestion de Base de Données)
-├── Relationnels (SGBDR)
-│   ├── MySQL
-│   ├── PostgreSQL
-│   ├── SQLite
-│   └── SQL Server
-└── Non-Relationnels (NoSQL)
-    ├── Documents (MongoDB)
-    ├── Clé-Valeur (Redis)
-    ├── Colonnes (Cassandra)
-    └── Graphes (Neo4j)`,
+      externalComponent: <SGBDDiagram />,
       description:
         "Un SGBD est un logiciel qui permet de stocker, organiser et récupérer des données de manière efficace et sécurisée.",
     },
@@ -55,20 +46,13 @@ export const whiteBeltContent = {
       title: "Architecture d'une Base de Données",
       content:
         "Explorez la structure fondamentale : tables, colonnes et lignes.",
+      externalComponent: <DatabaseArchitecture />,
       sqlSchema: `CREATE TABLE utilisateurs (
     id INTEGER PRIMARY KEY,
     nom VARCHAR(50),
     email VARCHAR(100),
     age INTEGER
 );`,
-      sqlTable: {
-        headers: ["id", "nom", "email", "age"],
-        rows: [
-          [1, "Alice", "alice@example.com", 28],
-          [2, "Bob", "bob@example.com", 35],
-          [3, "Charlie", "charlie@example.com", 22]
-        ]
-      },
       description:
         "Une table est composée de colonnes (structure) et de lignes (données). Chaque ligne représente un enregistrement unique.",
     },
