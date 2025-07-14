@@ -58,10 +58,21 @@ export default function AccordionSection({
       {/* Accordion content */}
       {isOpen && (
         <div className="p-6 bg-white space-y-6 rounded-b-xl border-t border-gray-200">
-          {/* Description */}
-          <div className={`${colors.bg} ${colors.border} border-l-4 p-6 rounded-r-lg`}>
-            <p className={`${colors.text} leading-relaxed`}>{content}</p>
-          </div>
+          {/* Description - only show if content exists */}
+          {content && (
+            <div className={`${colors.bg} ${colors.border} border-l-4 p-6 rounded-r-lg`}>
+              <p className={`${colors.text} leading-relaxed`}>{content}</p>
+            </div>
+          )}
+
+          {/* External Component */}
+          {externalComponent && (
+            <div>
+              <div className="bg-gray-50 rounded-lg p-1">
+                {externalComponent}
+              </div>
+            </div>
+          )}
 
           {/* SQL Code */}
           {sqlCode && (
@@ -117,19 +128,6 @@ export default function AccordionSection({
                 Table Data
               </h4>
               <SqlTableBlock data={sqlTable} title="Table Data" />
-            </div>
-          )}
-
-          {/* External Component */}
-          {externalComponent && (
-            <div>
-              <h4 className="text-sm font-semibold text-gray-900 mb-3 flex items-center">
-                <MdAccountTree className="w-4 h-4 mr-2 text-indigo-600" />
-                Composant Interactif
-              </h4>
-              <div className="bg-gray-50 rounded-lg p-1">
-                {externalComponent}
-              </div>
             </div>
           )}
 

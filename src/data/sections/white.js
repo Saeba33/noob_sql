@@ -5,9 +5,16 @@ export const whiteBeltContent = {
   // Belt configuration
   belt: "white",
   description: "Théorie et concepts fondamentaux",
-  topics: ["SGBD", "SGBDR", "Architecture BDD", "Syntaxe SQL", "Types de données", "Commentaires"],
+  topics: [
+    "SGBD",
+    "SGBDR",
+    "Architecture BDD",
+    "Syntaxe SQL",
+    "Types de données",
+    "Commentaires",
+  ],
   colors: SECTION_DATA_COLORS.white,
-  
+
   // Content sections
   header: {
     title: "Généralités & Concepts",
@@ -22,11 +29,7 @@ export const whiteBeltContent = {
   accordions: [
     {
       title: "Qu'est-ce qu'un SGBD ?",
-      content:
-        "Découvrez les différents types de systèmes de gestion de base de données et leurs caractéristiques.",
       externalComponent: <SGBDDiagram />,
-      description:
-        "Un SGBD est un logiciel qui permet de stocker, organiser et récupérer des données de manière efficace et sécurisée.",
     },
     {
       title: "Le SGBDR (Relationnel)",
@@ -58,8 +61,7 @@ export const whiteBeltContent = {
     },
     {
       title: "Syntaxe de Base d'une Requête SQL",
-      content:
-        "Apprenez la structure fondamentale d'une requête SQL.",
+      content: "Apprenez la structure fondamentale d'une requête SQL.",
       sqlCode: `-- Structure de base d'une requête SQL
 SELECT colonne1, colonne2
 FROM nom_table
@@ -102,8 +104,7 @@ ORDER BY
     },
     {
       title: "Types de Données",
-      content:
-        "Comprenez les différents types de données disponibles en SQL.",
+      content: "Comprenez les différents types de données disponibles en SQL.",
       sqlCode: `-- Types de données courants
 
 -- NOMBRES
@@ -126,6 +127,6 @@ BOOLEAN     -- Vrai/Faux : TRUE, FALSE
 NULL        -- Valeur absente/inconnue`,
       description:
         "Chaque type de données a ses spécificités. Bien les choisir optimise les performances et l'intégrité des données.",
-    }
+    },
   ],
 };
