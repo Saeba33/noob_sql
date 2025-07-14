@@ -1,7 +1,10 @@
 import {
   MdCheckBox,
+  MdCheckCircle,
+  MdInventory,
   MdKey,
   MdLink,
+  MdLock,
   MdNumbers,
   MdSchedule,
   MdSecurity,
@@ -9,6 +12,7 @@ import {
   MdStorage,
   MdTextFields,
   MdVerified,
+  MdWarning,
 } from "react-icons/md";
 
 export default function DataTypes() {
@@ -246,12 +250,13 @@ export default function DataTypes() {
 
         <div className="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-r-lg">
           <p>
-
-            📦 <strong>Type de données</strong> = le format autorisé (nombres,
+            <MdInventory className="w-4 h-4 text-blue-600 inline mr-2" />
+            <strong>Type de données</strong> = le format autorisé (nombres,
             texte, dates...)
             <br />
-            🔒 <strong>Contraintes</strong> = les règles à respecter
-            (obligatoire, unique, valeur par défaut...)
+            <MdLock className="w-4 h-4 text-blue-600 inline mr-2" />
+            <strong>Contraintes</strong> = les règles à respecter (obligatoire,
+            unique, valeur par défaut...)
           </p>
         </div>
 
@@ -368,7 +373,7 @@ export default function DataTypes() {
         <div className="p-6">
           <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
             <MdStorage className="w-7 h-7 text-gray-400 mr-3" />
-            Types de Données Moins Courants
+            Types de données moins courantes
           </h2>
 
           <div className="grid gap-6">
@@ -501,7 +506,10 @@ export default function DataTypes() {
             </div>
             <div className="grid md:grid-cols-2 gap-6 text-yellow-800">
               <div>
-                <p className="font-semibold mb-3">✅ Recommandations :</p>
+                <p className="font-semibold mb-3 flex items-center">
+                  <MdCheckCircle className="w-4 h-4 text-green-600 mr-2" />
+                  Recommandations :
+                </p>
                 <ul className="space-y-2 text-sm">
                   <li>
                     • <strong>VARCHAR(255)</strong> : Standard optimal pour
@@ -528,7 +536,10 @@ export default function DataTypes() {
                 </ul>
               </div>
               <div>
-                <p className="font-semibold mb-3">⚠️ À éviter :</p>
+                <p className="font-semibold mb-3 flex items-center">
+                  <MdWarning className="w-4 h-4 text-orange-600 mr-2" />À éviter
+                  :
+                </p>
                 <ul className="space-y-2 text-sm">
                   <li>• VARCHAR trop long = gaspillage mémoire</li>
                   <li>• FLOAT/DOUBLE pour les montants = erreurs d'arrondi</li>
@@ -553,97 +564,116 @@ export default function DataTypes() {
             </div>
 
             <div className="bg-white border border-gray-300 rounded-lg overflow-hidden">
-              <div className="bg-gray-200 p-3 grid grid-cols-5 gap-2 font-semibold text-gray-900 text-sm">
-                <div>Colonne</div>
-                <div>Type + Contraintes</div>
-                <div>Pourquoi ce choix ?</div>
-                <div>Valeur exemple</div>
-                <div>Avantages</div>
-              </div>
-              {[
-                {
-                  column: "id",
-                  type: "INTEGER PRIMARY KEY AUTO_INCREMENT",
-                  reason: "Clé primaire automatique",
-                  example: "1, 2, 3...",
-                  benefit: "Unique, incrémental, performant",
-                },
-                {
-                  column: "nom",
-                  type: "VARCHAR(100) NOT NULL",
-                  reason: "Noms rarement > 100 caractères",
-                  example: "'Marie Dubois'",
-                  benefit: "Obligatoire, taille optimale",
-                },
-                {
-                  column: "email",
-                  type: "VARCHAR(255) UNIQUE NOT NULL",
-                  reason: "Standard email + unicité",
-                  example: "'marie@site.com'",
-                  benefit: "Pas de doublons, connexion unique",
-                },
-                {
-                  column: "age",
-                  type: "INTEGER UNSIGNED CHECK(...)",
-                  reason: "Âge toujours positif + validation",
-                  example: "30",
-                  benefit: "Données cohérentes",
-                },
-                {
-                  column: "salaire",
-                  type: "DECIMAL(10,2) DEFAULT 0.00",
-                  reason: "Précision financière + défaut",
-                  example: "3500.50",
-                  benefit: "Calculs exacts",
-                },
-                {
-                  column: "actif",
-                  type: "BOOLEAN DEFAULT TRUE",
-                  reason: "État actif par défaut",
-                  example: "TRUE",
-                  benefit: "Gestion des comptes",
-                },
-                {
-                  column: "date_creation",
-                  type: "TIMESTAMP DEFAULT CURRENT_TIMESTAMP",
-                  reason: "Auto-remplissage à la création",
-                  example: "2025-01-15 14:30:00",
-                  benefit: "Traçabilité automatique",
-                },
-                {
-                  column: "date_naissance",
-                  type: "DATE NULL",
-                  reason: "Info optionnelle",
-                  example: "1990-05-20",
-                  benefit: "Flexibilité",
-                },
-                {
-                  column: "preferences",
-                  type: "JSON NULL",
-                  reason: "Données structurées flexibles",
-                  example: "{'theme': 'dark'}",
-                  benefit: "Extensibilité",
-                },
-              ].map((row, index) => (
-                <div
-                  key={index}
-                  className="p-3 grid grid-cols-5 gap-2 border-b border-gray-200 last:border-b-0 text-sm"
-                >
-                  <div className="font-medium text-gray-900">{row.column}</div>
-                  <div>
-                    <code className="bg-blue-100 px-2 py-1 rounded text-blue-800 text-xs">
-                      {row.type}
-                    </code>
-                  </div>
-                  <div className="text-gray-700">{row.reason}</div>
-                  <div>
-                    <code className="bg-gray-100 px-2 py-1 rounded text-gray-800 text-xs">
-                      {row.example}
-                    </code>
-                  </div>
-                  <div className="text-gray-600">{row.benefit}</div>
-                </div>
-              ))}
+              <table className="w-full">
+                <thead>
+                  <tr className="bg-gray-200">
+                    <th className="border border-gray-300 p-3 text-left font-semibold text-gray-900 text-sm">
+                      Colonne
+                    </th>
+                    <th className="border border-gray-300 p-3 text-left font-semibold text-gray-900 text-sm">
+                      Type + Contraintes
+                    </th>
+                    <th className="border border-gray-300 p-3 text-left font-semibold text-gray-900 text-sm">
+                      Pourquoi ce choix ?
+                    </th>
+                    <th className="border border-gray-300 p-3 text-left font-semibold text-gray-900 text-sm">
+                      Valeur exemple
+                    </th>
+                    <th className="border border-gray-300 p-3 text-left font-semibold text-gray-900 text-sm">
+                      Avantages
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    {
+                      column: "id",
+                      type: "INTEGER PRIMARY KEY AUTO_INCREMENT",
+                      reason: "Clé primaire automatique",
+                      example: "1, 2, 3...",
+                      benefit: "Unique, incrémental, performant",
+                    },
+                    {
+                      column: "nom",
+                      type: "VARCHAR(100) NOT NULL",
+                      reason: "Noms rarement > 100 caractères",
+                      example: "'Marie Dubois'",
+                      benefit: "Obligatoire, taille optimale",
+                    },
+                    {
+                      column: "email",
+                      type: "VARCHAR(255) UNIQUE NOT NULL",
+                      reason: "Standard email + unicité",
+                      example: "'marie@site.com'",
+                      benefit: "Pas de doublons, connexion unique",
+                    },
+                    {
+                      column: "age",
+                      type: "INTEGER UNSIGNED CHECK(...)",
+                      reason: "Âge toujours positif + validation",
+                      example: "30",
+                      benefit: "Données cohérentes",
+                    },
+                    {
+                      column: "salaire",
+                      type: "DECIMAL(10,2) DEFAULT 0.00",
+                      reason: "Précision financière + défaut",
+                      example: "3500.50",
+                      benefit: "Calculs exacts",
+                    },
+                    {
+                      column: "actif",
+                      type: "BOOLEAN DEFAULT TRUE",
+                      reason: "État actif par défaut",
+                      example: "TRUE",
+                      benefit: "Gestion des comptes",
+                    },
+                    {
+                      column: "date_creation",
+                      type: "TIMESTAMP DEFAULT CURRENT_TIMESTAMP",
+                      reason: "Auto-remplissage à la création",
+                      example: "2025-01-15 14:30:00",
+                      benefit: "Traçabilité automatique",
+                    },
+                    {
+                      column: "date_naissance",
+                      type: "DATE NULL",
+                      reason: "Info optionnelle",
+                      example: "1990-05-20",
+                      benefit: "Flexibilité",
+                    },
+                    {
+                      column: "preferences",
+                      type: "JSON NULL",
+                      reason: "Données structurées flexibles",
+                      example: "{'theme': 'dark'}",
+                      benefit: "Extensibilité",
+                    },
+                  ].map((row, index) => (
+                    <tr key={index} className="hover:bg-gray-50">
+                      <td className="border border-gray-300 p-3 font-medium text-gray-900 text-sm">
+                        {row.column}
+                      </td>
+                      <td className="border border-gray-300 p-3 text-sm">
+                        <code className="bg-blue-100 px-2 py-1 rounded text-blue-800 text-xs">
+                          {row.type}
+                        </code>
+                      </td>
+                      <td className="border border-gray-300 p-3 text-gray-700 text-sm">
+                        {row.reason}
+                      </td>
+                      <td className="border border-gray-300 p-3 text-sm">
+                        <code className="bg-gray-100 px-2 py-1 rounded text-gray-800 text-xs">
+                          {row.example}
+                        </code>
+                      </td>
+                      <td className="border border-gray-300 p-3 text-gray-600 text-sm">
+                        {row.benefit}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
