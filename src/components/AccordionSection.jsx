@@ -14,6 +14,7 @@ export default function AccordionSection({
   title,
   content,
   sqlCode,
+  sqlQueries,
   explanation,
   sqlDiagram,
   sqlSchema,
@@ -85,7 +86,53 @@ export default function AccordionSection({
             </div>
           )}
 
-          {/* SQL Code */}
+          {/* SQL Queries - Nouvelle structure avec requêtes individuelles */}
+          {sqlQueries && sqlQueries.length > 0 && (
+            <div className="space-y-6">
+              <h4 className="text-sm font-semibold text-gray-900 mb-3 flex items-center">
+                <MdCode className="w-4 h-4 mr-2 text-blue-600" />
+                Requêtes SQL et Résultats
+              </h4>
+              {sqlQueries.map((query, index) => (
+                <div key={index} className="space-y-4 border border-gray-200 rounded-lg p-4">
+                  {/* Titre de la requête */}
+                  <h5 className="text-sm font-medium text-gray-800 border-l-4 border-blue-500 pl-3">
+                    {query.title}
+                  </h5>
+                  
+                  {/* Code SQL */}
+                  <SqlCodeBlock>{query.sqlCode}</SqlCodeBlock>
+                  
+                  {/* Résultat de la requête */}
+                  <div className="mt-3">
+                    <h6 className="text-xs font-semibold text-gray-700 mb-2 flex items-center">
+                      <MdCheckCircle className="w-3 h-3 mr-1 text-green-600" />
+                      Résultat
+                    </h6>
+                    {Array.isArray(query.sqlResult) ? (
+                      <SqlResultBlock 
+                        data={query.sqlResult} 
+                        title={`Résultat - ${query.title}`} 
+                      />
+                    ) : query.sqlResult?.message ? (
+                      <SqlResultBlock 
+                        message={query.sqlResult.message} 
+                        title={`Résultat - ${query.title}`} 
+                        type="message"
+                      />
+                    ) : (
+                      <SqlResultBlock 
+                        data={query.sqlResult} 
+                        title={`Résultat - ${query.title}`} 
+                      />
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* SQL Code - structure originale maintenue pour compatibilité */}
           {sqlCode && (
             <div>
               <h4 className="text-sm font-semibold text-gray-900 mb-3 flex items-center">
@@ -206,9 +253,20 @@ export default function AccordionSection({
             <div>
               <h4 className="text-sm font-semibold text-gray-900 mb-3 flex items-center">
                 <MdCheckCircle className="w-4 h-4 mr-2 text-green-600" />
-                Query Result
+                Résultat de la Requête
               </h4>
-              <SqlResultBlock data={sqlResult} title="Query Result" />
+              {/* Gestion des différents formats de sqlResult */}
+              {Array.isArray(sqlResult) ? (
+                <SqlResultBlock data={sqlResult} title="Résultat de la Requête" />
+              ) : sqlResult.message ? (
+                <SqlResultBlock 
+                  message={sqlResult.message} 
+                  title="Résultat de la Requête" 
+                  type="message"
+                />
+              ) : (
+                <SqlResultBlock data={sqlResult} title="Résultat de la Requête" />
+              )}
             </div>
           )}
 

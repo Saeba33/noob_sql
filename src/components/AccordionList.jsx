@@ -16,6 +16,7 @@ export default function AccordionList({ accordions }) {
             title={accordion.title}
             content={accordion.content}
             sqlCode={accordion.sqlCode}
+            sqlQueries={accordion.sqlQueries}
             explanation={accordion.explanation}
             sqlDiagram={accordion.sqlDiagram}
             sqlSchema={accordion.sqlSchema}

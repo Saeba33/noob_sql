@@ -5,7 +5,7 @@ export function useAccordionSection(initialState = false) {
   const [isOpen, setIsOpen] = useState(initialState);
 
   const toggleOpen = () => {
-    setIsOpen(prev => !prev);
+    setIsOpen((prev) => !prev);
   };
 
   const open = () => {
