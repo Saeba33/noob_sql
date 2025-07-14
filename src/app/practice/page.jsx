@@ -1,7 +1,7 @@
 export default function PracticePage() {
   return (
-    <section className="flex-1 w-full max-w-[1500px] mx-auto px-4 py-8 bg-green-300/20">
-      <h1>Practice Page</h1>
+    <section className="flex items-center justify-center w-full h-screen bg-green-300/20">
+      <h1 className="text-4xl">Développement en cours, arrivée prochaine 👊🏻</h1>
     </section>
   );
 }
