@@ -1,22 +1,22 @@
 import {
-  MdNumbers,
-  MdTextFields,
-  MdSchedule,
   MdCheckBox,
-  MdSecurity,
-  MdStorage,
   MdKey,
   MdLink,
-  MdVerified,
+  MdNumbers,
+  MdSchedule,
+  MdSecurity,
   MdSettings,
+  MdStorage,
+  MdTextFields,
+  MdVerified,
 } from "react-icons/md";
 
 export default function DataTypes() {
   const commonDataTypes = [
     {
       category: "Nombres",
-      icon: <MdNumbers className="w-6 h-6 text-blue-600" />,
-      color: "blue",
+      icon: <MdNumbers className="w-6 h-6 text-gray-600" />,
+      color: "gray",
       types: [
         {
           name: "INTEGER",
@@ -36,8 +36,8 @@ export default function DataTypes() {
     },
     {
       category: "Texte",
-      icon: <MdTextFields className="w-6 h-6 text-green-600" />,
-      color: "green",
+      icon: <MdTextFields className="w-6 h-6 text-gray-600" />,
+      color: "gray",
       types: [
         {
           name: "VARCHAR(255)",
@@ -57,8 +57,8 @@ export default function DataTypes() {
     },
     {
       category: "Dates & Heures",
-      icon: <MdSchedule className="w-6 h-6 text-purple-600" />,
-      color: "purple",
+      icon: <MdSchedule className="w-6 h-6 text-gray-600" />,
+      color: "gray",
       types: [
         {
           name: "DATE",
@@ -81,8 +81,8 @@ export default function DataTypes() {
   const lessCommonDataTypes = [
     {
       category: "Nombres",
-      icon: <MdNumbers className="w-6 h-6 text-blue-400" />,
-      color: "blue",
+      icon: <MdNumbers className="w-6 h-6 text-gray-400" />,
+      color: "lightgray",
       types: [
         {
           name: "BIGINT",
@@ -106,8 +106,8 @@ export default function DataTypes() {
     },
     {
       category: "Texte",
-      icon: <MdTextFields className="w-6 h-6 text-green-400" />,
-      color: "green",
+      icon: <MdTextFields className="w-6 h-6 text-gray-400" />,
+      color: "lightgray",
       types: [
         {
           name: "CHAR(10)",
@@ -131,8 +131,8 @@ export default function DataTypes() {
     },
     {
       category: "Autres Types",
-      icon: <MdCheckBox className="w-6 h-6 text-orange-600" />,
-      color: "orange",
+      icon: <MdCheckBox className="w-6 h-6 text-gray-400" />,
+      color: "lightgray",
       types: [
         {
           name: "BOOLEAN / TINYINT(1)",
@@ -149,7 +149,7 @@ export default function DataTypes() {
         {
           name: "JSON",
           description: "Données structurées JSON",
-          examples: ["'{\"nom\": \"Marie\", \"age\": 30}'"],
+          examples: ['\'{"nom": "Marie", "age": 30}\''],
           usage: "Configurations, métadonnées flexibles",
         },
       ],
@@ -211,35 +211,23 @@ export default function DataTypes() {
       description: "Nombres positifs uniquement",
       icon: <MdNumbers className="w-5 h-5 text-cyan-600" />,
       example: "age INTEGER UNSIGNED",
-      usage: "Double la capacité positive",
+      usage: "Étend la plage de 0 à 4 milliards (au lieu de -2 à +2 milliards)",
     },
   ];
 
   const getColorClasses = (color) => {
     const colors = {
-      blue: {
-        bg: "bg-blue-50",
-        border: "border-blue-200",
-        text: "text-blue-900",
-        accent: "bg-blue-100",
+      gray: {
+        bg: "bg-gray-50",
+        border: "border-gray-300",
+        text: "text-gray-900",
+        accent: "bg-gray-100",
       },
-      green: {
-        bg: "bg-green-50",
-        border: "border-green-200",
-        text: "text-green-900",
-        accent: "bg-green-100",
-      },
-      purple: {
-        bg: "bg-purple-50",
-        border: "border-purple-200",
-        text: "text-purple-900",
-        accent: "bg-purple-100",
-      },
-      orange: {
-        bg: "bg-orange-50",
-        border: "border-orange-200",
-        text: "text-orange-900",
-        accent: "bg-orange-100",
+      lightgray: {
+        bg: "bg-gray-50",
+        border: "border-gray-200",
+        text: "text-gray-800",
+        accent: "bg-gray-100",
       },
     };
     return colors[color];
@@ -258,16 +246,20 @@ export default function DataTypes() {
 
         <div className="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-r-lg">
           <p>
-            📦 <strong>Type de données</strong> = le format autorisé (nombres, texte, dates...)
+
+            📦 <strong>Type de données</strong> = le format autorisé (nombres,
+            texte, dates...)
             <br />
-            � <strong>Contraintes</strong> = les règles à respecter (obligatoire, unique, valeur par défaut...)
+            🔒 <strong>Contraintes</strong> = les règles à respecter
+            (obligatoire, unique, valeur par défaut...)
           </p>
         </div>
 
         <p>
           Bien choisir les types et contraintes est crucial pour{" "}
-          <strong>garantir la qualité</strong>, <strong>optimiser les performances</strong> et{" "}
-          <strong>maintenir l'intégrité</strong> de vos données.
+          <strong>garantir la qualité</strong>,{" "}
+          <strong>optimiser les performances</strong> et{" "}
+          <strong>maintenir l'intégrité</strong> des données.
         </p>
       </div>
 
@@ -278,7 +270,7 @@ export default function DataTypes() {
             <MdStorage className="w-7 h-7 text-gray-600 mr-3" />
             Types de données courantes
           </h2>
-          
+
           <div className="grid gap-6">
             {commonDataTypes.map((category, categoryIndex) => {
               const colors = getColorClasses(category.color);
@@ -302,10 +294,12 @@ export default function DataTypes() {
                         key={typeIndex}
                         className="bg-white border border-gray-300 rounded-lg p-4"
                       >
-                        <div className="grid lg:grid-cols-5 gap-4">
+                        <div className="grid lg:grid-cols-5 gap-4 items-start">
                           {/* Nom du type */}
-                          <div>
-                            <div className={`${colors.accent} px-3 py-2 rounded-lg inline-block`}>
+                          <div className="flex items-center">
+                            <div
+                              className={`${colors.accent} px-3 py-2 rounded-lg inline-block`}
+                            >
                               <code className={`font-bold ${colors.text}`}>
                                 {type.name}
                               </code>
@@ -353,7 +347,7 @@ export default function DataTypes() {
                           {type.bestPractice && (
                             <div>
                               <p className="text-gray-800 text-sm font-medium mb-1">
-                                💡 Bonne pratique
+                                Bonne pratique
                               </p>
                               <p className="text-gray-700 text-sm font-semibold">
                                 {type.bestPractice}
@@ -376,7 +370,7 @@ export default function DataTypes() {
             <MdStorage className="w-7 h-7 text-gray-400 mr-3" />
             Types de Données Moins Courants
           </h2>
-          
+
           <div className="grid gap-6">
             {lessCommonDataTypes.map((category, categoryIndex) => {
               const colors = getColorClasses(category.color);
@@ -400,11 +394,15 @@ export default function DataTypes() {
                         key={typeIndex}
                         className="bg-white border border-gray-300 rounded-lg p-3"
                       >
-                        <div className="grid md:grid-cols-4 gap-3">
+                        <div className="grid md:grid-cols-4 gap-3 items-start">
                           {/* Nom du type */}
-                          <div>
-                            <div className={`${colors.accent} px-2 py-1 rounded inline-block`}>
-                              <code className={`font-semibold text-sm ${colors.text}`}>
+                          <div className="flex items-center">
+                            <div
+                              className={`${colors.accent} px-2 py-1 rounded inline-block`}
+                            >
+                              <code
+                                className={`font-semibold text-sm ${colors.text}`}
+                              >
                                 {type.name}
                               </code>
                             </div>
@@ -453,13 +451,14 @@ export default function DataTypes() {
             <MdSecurity className="w-7 h-7 text-gray-600 mr-3" />
             Contraintes et Options
           </h2>
-          
+
           <div className="bg-gray-100 border-2 border-gray-400 rounded-lg p-6">
             <p className="text-gray-700 mb-6">
-              Les <strong>contraintes</strong> définissent des règles que les données doivent respecter 
-              pour garantir l'intégrité et la cohérence de votre base de données.
+              Les <strong>contraintes</strong> définissent des règles que les
+              données doivent respecter pour garantir l'intégrité et la
+              cohérence de votre base de données.
             </p>
-            
+
             <div className="grid md:grid-cols-2 gap-4">
               {constraints.map((constraint, index) => (
                 <div
@@ -467,9 +466,7 @@ export default function DataTypes() {
                   className="bg-white border border-gray-300 rounded-lg p-4"
                 >
                   <div className="flex items-start space-x-3">
-                    <div className="flex-shrink-0 mt-1">
-                      {constraint.icon}
-                    </div>
+                    <div className="flex-shrink-0 mt-1">{constraint.icon}</div>
                     <div className="flex-1">
                       <h4 className="font-bold text-gray-900 mb-1">
                         {constraint.name}
@@ -499,19 +496,35 @@ export default function DataTypes() {
             <div className="flex items-center space-x-2 mb-4">
               <MdStorage className="w-5 h-5 text-yellow-600" />
               <h4 className="font-bold text-yellow-900">
-                💡 Bonnes Pratiques pour les Types de Données
+                Bonnes Pratiques pour les Types de Données
               </h4>
             </div>
             <div className="grid md:grid-cols-2 gap-6 text-yellow-800">
               <div>
                 <p className="font-semibold mb-3">✅ Recommandations :</p>
                 <ul className="space-y-2 text-sm">
-                  <li>• <strong>VARCHAR(255)</strong> : Standard optimal pour MySQL</li>
-                  <li>• <strong>INTEGER AUTO_INCREMENT</strong> pour les IDs</li>
-                  <li>• <strong>DECIMAL(10,2)</strong> pour les montants financiers</li>
-                  <li>• <strong>TIMESTAMP DEFAULT CURRENT_TIMESTAMP</strong> pour les logs</li>
-                  <li>• <strong>NOT NULL</strong> sur les champs essentiels</li>
-                  <li>• <strong>UNSIGNED</strong> pour les valeurs toujours positives</li>
+                  <li>
+                    • <strong>VARCHAR(255)</strong> : Standard optimal pour
+                    MySQL
+                  </li>
+                  <li>
+                    • <strong>INTEGER AUTO_INCREMENT</strong> pour les IDs
+                  </li>
+                  <li>
+                    • <strong>DECIMAL(10,2)</strong> pour les montants
+                    financiers
+                  </li>
+                  <li>
+                    • <strong>TIMESTAMP DEFAULT CURRENT_TIMESTAMP</strong> pour
+                    les logs
+                  </li>
+                  <li>
+                    • <strong>NOT NULL</strong> sur les champs essentiels
+                  </li>
+                  <li>
+                    • <strong>UNSIGNED</strong> pour les valeurs toujours
+                    positives
+                  </li>
                 </ul>
               </div>
               <div>
@@ -535,24 +548,8 @@ export default function DataTypes() {
             <div className="flex items-center space-x-2 mb-4">
               <MdStorage className="w-5 h-5 text-gray-600" />
               <h4 className="font-bold text-gray-900">
-                📋 Exemple Complet : Table "utilisateurs" avec contraintes
+                Exemple d'une table "utilisateurs" avec contraintes :
               </h4>
-            </div>
-
-            <div className="bg-gray-800 text-green-400 p-4 rounded-lg mb-4 overflow-x-auto">
-              <pre className="text-sm">
-{`CREATE TABLE utilisateurs (
-    id              INTEGER         PRIMARY KEY AUTO_INCREMENT,
-    nom             VARCHAR(100)    NOT NULL,
-    email           VARCHAR(255)    UNIQUE NOT NULL,
-    age             INTEGER         UNSIGNED CHECK (age >= 0 AND age <= 120),
-    salaire         DECIMAL(10,2)   DEFAULT 0.00,
-    actif           BOOLEAN         DEFAULT TRUE,
-    date_creation   TIMESTAMP       DEFAULT CURRENT_TIMESTAMP,
-    date_naissance  DATE            NULL,
-    preferences     JSON            NULL
-);`}
-              </pre>
             </div>
 
             <div className="bg-white border border-gray-300 rounded-lg overflow-hidden">
