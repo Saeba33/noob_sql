@@ -1,4 +1,5 @@
 import { SECTION_DATA_COLORS } from "@/config/colors";
+import { BestPractices } from "@/components/ui/sections/yellow";
 
 export const yellowBeltContent = {
   // Belt configuration
@@ -20,7 +21,7 @@ export const yellowBeltContent = {
   },
   accordions: [
     {
-      title: "CREATE TABLE - Création de Tables",
+      title: "CREATE TABLE - Création de tables",
       content:
         "Créez vos premières tables avec différents types de données et contraintes.",
       sqlCode: `-- Création d'une table simple
@@ -52,7 +53,7 @@ CREATE TABLE produits (
 );`,
     },
     {
-      title: "ALTER TABLE - Modification de Structure",
+      title: "ALTER TABLE - Modification de dtructure",
       content:
         "Modifiez la structure de vos tables existantes sans perdre de données.",
       sqlCode: `-- Ajouter une nouvelle colonne
@@ -80,9 +81,8 @@ ALTER TABLE utilisateurs
 DROP COLUMN telephone;`,
     },
     {
-      title: "DROP TABLE - Suppression de Tables",
-      content:
-        "Supprimez des tables de manière sécurisée avec les bonnes pratiques.",
+      title: "DROP TABLE - Suppression de tables",
+      content: `Supprimez des tables de manière sécurisée avec les bonnes pratiques. Attention l'exécution d'une commande "DROP" est <strong>irréversible</strong> ! Soyez vigilant !`,
       sqlCode: `-- Supprimer une table (attention : irréversible!)
 DROP TABLE ancienne_table;
 
@@ -101,6 +101,12 @@ DELETE FROM sessions;
 -- Voir les tables existantes
 SELECT name FROM sqlite_master 
 WHERE type='table';`,
+    },
+    {
+      title: "Bonnes Pratiques DDL",
+      content:
+        "Découvrez les bonnes pratiques essentielles pour créer des structures de base de données robustes et maintenables.",
+      externalComponent: <BestPractices />,
     },
   ],
 };
