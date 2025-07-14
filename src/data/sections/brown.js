@@ -77,35 +77,52 @@ CREATE TABLE details_commande (
       title: "JOIN (INNER JOIN) - Jointure Interne",
       content:
         "Récupérez uniquement les lignes qui ont une correspondance dans les deux tables.",
-      sqlCode: `-- INNER JOIN basique
-SELECT u.nom, c.produit, c.prix
+      sqlQueries: [
+        {
+          title: "INNER JOIN basique",
+          sqlCode: `SELECT u.nom, c.produit, c.prix
 FROM utilisateurs u
-INNER JOIN commandes c ON u.id = c.utilisateur_id;
-
--- INNER JOIN avec alias
-SELECT 
+INNER JOIN commandes c ON u.id = c.utilisateur_id;`,
+          sqlResult: [
+            { nom: "Alice Dupont", produit: "Laptop Pro", prix: 1299 },
+            { nom: "Bob Martin", produit: "Souris Gaming", prix: 89 },
+            { nom: "Claire Durand", produit: "Livre SQL", prix: 25 },
+            { nom: "David Moreau", produit: "Smartphone", prix: 799 }
+          ]
+        },
+        {
+          title: "INNER JOIN avec alias et condition",
+          sqlCode: `SELECT 
     u.nom AS client,
     c.produit,
     c.prix,
     c.date_commande
 FROM utilisateurs u
-JOIN commandes c ON u.id = c.utilisateur_id -- INNER optionnel
-WHERE c.prix > 100;
-
--- Jointure sur plusieurs tables
-SELECT 
-    u.nom,
-    c.numero_commande,
+JOIN commandes c ON u.id = c.utilisateur_id
+WHERE c.prix > 100;`,
+          sqlResult: [
+            { client: "Alice Dupont", produit: "Laptop Pro", prix: 1299, date_commande: "2024-01-15" },
+            { client: "David Moreau", produit: "Smartphone", prix: 799, date_commande: "2024-02-20" }
+          ]
+        },
+        {
+          title: "Jointure sur trois tables",
+          sqlCode: `SELECT 
+    u.nom AS client,
     p.nom AS produit,
-    dc.quantite,
-    p.prix
+    c.quantite,
+    p.prix,
+    (c.quantite * p.prix) AS total
 FROM utilisateurs u
 JOIN commandes c ON u.id = c.utilisateur_id
-JOIN details_commande dc ON c.id = dc.commande_id
-JOIN produits p ON dc.produit_id = p.id;`,
-      sqlResult: `15 commandes avec clients trouvées
-8 commandes > 100€ avec clients
-42 détails de commandes complets`,
+JOIN produits p ON c.produit_id = p.id;`,
+          sqlResult: [
+            { client: "Alice Dupont", produit: "Laptop Pro", quantite: 1, prix: 1299, total: 1299 },
+            { client: "Bob Martin", produit: "Souris Gaming", quantite: 2, prix: 89, total: 178 },
+            { client: "Claire Durand", produit: "Livre SQL", quantite: 1, prix: 25, total: 25 }
+          ]
+        }
+      ],
       description:
         "INNER JOIN ne retourne que les lignes qui existent dans les deux tables. C'est la jointure la plus courante.",
     },
@@ -113,25 +130,40 @@ JOIN produits p ON dc.produit_id = p.id;`,
       title: "LEFT JOIN (LEFT OUTER JOIN) - Jointure Externe Gauche",
       content:
         "Récupérez toutes les lignes de la table de gauche, même sans correspondance à droite.",
-      sqlCode: `-- LEFT JOIN : tous les utilisateurs, avec ou sans commandes
-SELECT 
+      sqlQueries: [
+        {
+          title: "LEFT JOIN - Tous les utilisateurs",
+          sqlCode: `SELECT 
     u.nom,
     u.email,
     c.produit,
     c.prix
 FROM utilisateurs u
-LEFT JOIN commandes c ON u.id = c.utilisateur_id;
-
--- Trouver les utilisateurs sans commandes
-SELECT 
+LEFT JOIN commandes c ON u.id = c.utilisateur_id;`,
+          sqlResult: [
+            { nom: "Alice Dupont", email: "alice@email.com", produit: "Laptop Pro", prix: 1299 },
+            { nom: "Bob Martin", email: "bob@email.com", produit: "Souris Gaming", prix: 89 },
+            { nom: "Claire Durand", email: "claire@email.com", produit: "Livre SQL", prix: 25 },
+            { nom: "David Moreau", email: "david@email.com", produit: "Smartphone", prix: 799 },
+            { nom: "Emma Bernard", email: "emma@email.com", produit: null, prix: null }
+          ]
+        },
+        {
+          title: "Trouver les utilisateurs sans commandes",
+          sqlCode: `SELECT 
     u.nom,
-    u.email
+    u.email,
+    u.age
 FROM utilisateurs u
 LEFT JOIN commandes c ON u.id = c.utilisateur_id
-WHERE c.id IS NULL;
-
--- LEFT JOIN avec agrégation
-SELECT 
+WHERE c.id IS NULL;`,
+          sqlResult: [
+            { nom: "Emma Bernard", email: "emma@email.com", age: 30 }
+          ]
+        },
+        {
+          title: "LEFT JOIN avec agrégation",
+          sqlCode: `SELECT 
     u.nom,
     u.email,
     COUNT(c.id) AS nombre_commandes,
@@ -140,9 +172,15 @@ FROM utilisateurs u
 LEFT JOIN commandes c ON u.id = c.utilisateur_id
 GROUP BY u.id, u.nom, u.email
 ORDER BY total_depense DESC;`,
-      sqlResult: `25 utilisateurs (certains sans commandes)
-3 utilisateurs sans commandes trouvés
-Statistiques complètes par utilisateur`,
+          sqlResult: [
+            { nom: "Alice Dupont", email: "alice@email.com", nombre_commandes: 1, total_depense: 1299 },
+            { nom: "David Moreau", email: "david@email.com", nombre_commandes: 1, total_depense: 799 },
+            { nom: "Bob Martin", email: "bob@email.com", nombre_commandes: 1, total_depense: 89 },
+            { nom: "Claire Durand", email: "claire@email.com", nombre_commandes: 1, total_depense: 25 },
+            { nom: "Emma Bernard", email: "emma@email.com", nombre_commandes: 0, total_depense: 0 }
+          ]
+        }
+      ],
       description:
         "LEFT JOIN garde toutes les lignes de la table de gauche. Parfait pour trouver les éléments sans relation.",
     },
@@ -150,26 +188,44 @@ Statistiques complètes par utilisateur`,
       title: "RIGHT JOIN (RIGHT OUTER JOIN) - Jointure Externe Droite",
       content:
         "Récupérez toutes les lignes de la table de droite, même sans correspondance à gauche.",
-      sqlCode: `-- RIGHT JOIN : toutes les commandes, avec ou sans utilisateur valide
-SELECT 
+      sqlQueries: [
+        {
+          title: "RIGHT JOIN - Toutes les commandes",
+          sqlCode: `SELECT 
     u.nom,
     c.produit,
     c.prix,
     c.date_commande
 FROM utilisateurs u
-RIGHT JOIN commandes c ON u.id = c.utilisateur_id;
-
--- Équivalent avec LEFT JOIN (plus lisible)
-SELECT 
+RIGHT JOIN commandes c ON u.id = c.utilisateur_id;`,
+          sqlResult: [
+            { nom: "Alice Dupont", produit: "Laptop Pro", prix: 1299, date_commande: "2024-01-15" },
+            { nom: "Bob Martin", produit: "Souris Gaming", prix: 89, date_commande: "2024-01-18" },
+            { nom: "Claire Durand", produit: "Livre SQL", prix: 25, date_commande: "2024-02-05" },
+            { nom: "David Moreau", produit: "Smartphone", prix: 799, date_commande: "2024-02-20" },
+            { nom: null, produit: "Commande Orpheline", prix: 150, date_commande: "2024-03-01" }
+          ]
+        },
+        {
+          title: "Équivalent avec LEFT JOIN (plus lisible)",
+          sqlCode: `SELECT 
     u.nom,
     c.produit,
     c.prix,
     c.date_commande
 FROM commandes c
-LEFT JOIN utilisateurs u ON c.utilisateur_id = u.id;
-
--- Trouver les commandes orphelines
-SELECT 
+LEFT JOIN utilisateurs u ON c.utilisateur_id = u.id;`,
+          sqlResult: [
+            { nom: "Alice Dupont", produit: "Laptop Pro", prix: 1299, date_commande: "2024-01-15" },
+            { nom: "Bob Martin", produit: "Souris Gaming", prix: 89, date_commande: "2024-01-18" },
+            { nom: "Claire Durand", produit: "Livre SQL", prix: 25, date_commande: "2024-02-05" },
+            { nom: "David Moreau", produit: "Smartphone", prix: 799, date_commande: "2024-02-20" },
+            { nom: null, produit: "Commande Orpheline", prix: 150, date_commande: "2024-03-01" }
+          ]
+        },
+        {
+          title: "Trouver les commandes orphelines",
+          sqlCode: `SELECT 
     c.id,
     c.produit,
     c.prix,
@@ -177,9 +233,11 @@ SELECT
 FROM utilisateurs u
 RIGHT JOIN commandes c ON u.id = c.utilisateur_id
 WHERE u.id IS NULL;`,
-      sqlResult: `18 commandes (certaines sans utilisateur)
-Même résultat avec LEFT JOIN
-2 commandes orphelines trouvées`,
+          sqlResult: [
+            { id: 5, produit: "Commande Orpheline", prix: 150, utilisateur_id: 999 }
+          ]
+        }
+      ],
       description:
         "RIGHT JOIN est moins utilisé que LEFT JOIN. La plupart des développeurs préfèrent réorganiser avec LEFT JOIN.",
     },
@@ -187,17 +245,28 @@ Même résultat avec LEFT JOIN
       title: "FULL JOIN (FULL OUTER JOIN) - Jointure Externe Complète",
       content:
         "Récupérez toutes les lignes des deux tables, avec ou sans correspondance.",
-      sqlCode: `-- FULL JOIN : tous les utilisateurs ET toutes les commandes
-SELECT 
+      sqlQueries: [
+        {
+          title: "FULL JOIN - Toutes les données",
+          sqlCode: `SELECT 
     u.nom,
     u.email,
     c.produit,
     c.prix
 FROM utilisateurs u
-FULL OUTER JOIN commandes c ON u.id = c.utilisateur_id;
-
--- Équivalent avec UNION (pour SQLite qui ne supporte pas FULL JOIN)
-SELECT 
+FULL OUTER JOIN commandes c ON u.id = c.utilisateur_id;`,
+          sqlResult: [
+            { nom: "Alice Dupont", email: "alice@email.com", produit: "Laptop Pro", prix: 1299 },
+            { nom: "Bob Martin", email: "bob@email.com", produit: "Souris Gaming", prix: 89 },
+            { nom: "Claire Durand", email: "claire@email.com", produit: "Livre SQL", prix: 25 },
+            { nom: "David Moreau", email: "david@email.com", produit: "Smartphone", prix: 799 },
+            { nom: "Emma Bernard", email: "emma@email.com", produit: null, prix: null },
+            { nom: null, email: null, produit: "Commande Orpheline", prix: 150 }
+          ]
+        },
+        {
+          title: "Équivalent avec UNION (pour SQLite)",
+          sqlCode: `SELECT 
     u.nom,
     u.email,
     c.produit,
@@ -212,11 +281,21 @@ SELECT
     u.email,
     c.produit,
     c.prix
-FROM utilisateurs u
-RIGHT JOIN commandes c ON u.id = c.utilisateur_id;
-
--- Analyse complète des relations
-SELECT 
+FROM commandes c
+LEFT JOIN utilisateurs u ON c.utilisateur_id = u.id
+WHERE u.id IS NULL;`,
+          sqlResult: [
+            { nom: "Alice Dupont", email: "alice@email.com", produit: "Laptop Pro", prix: 1299 },
+            { nom: "Bob Martin", email: "bob@email.com", produit: "Souris Gaming", prix: 89 },
+            { nom: "Claire Durand", email: "claire@email.com", produit: "Livre SQL", prix: 25 },
+            { nom: "David Moreau", email: "david@email.com", produit: "Smartphone", prix: 799 },
+            { nom: "Emma Bernard", email: "emma@email.com", produit: null, prix: null },
+            { nom: null, email: null, produit: "Commande Orpheline", prix: 150 }
+          ]
+        },
+        {
+          title: "Analyse complète des relations",
+          sqlCode: `SELECT 
     u.nom,
     c.produit,
     CASE 
@@ -226,9 +305,16 @@ SELECT
     END AS statut_relation
 FROM utilisateurs u
 FULL OUTER JOIN commandes c ON u.id = c.utilisateur_id;`,
-      sqlResult: `Toutes les données des deux tables
-Même résultat avec UNION
-Analyse complète des relations`,
+          sqlResult: [
+            { nom: "Alice Dupont", produit: "Laptop Pro", statut_relation: "Relation normale" },
+            { nom: "Bob Martin", produit: "Souris Gaming", statut_relation: "Relation normale" },
+            { nom: "Claire Durand", produit: "Livre SQL", statut_relation: "Relation normale" },
+            { nom: "David Moreau", produit: "Smartphone", statut_relation: "Relation normale" },
+            { nom: "Emma Bernard", produit: null, statut_relation: "Utilisateur sans commande" },
+            { nom: null, produit: "Commande Orpheline", statut_relation: "Commande orpheline" }
+          ]
+        }
+      ],
       description:
         "FULL JOIN combine LEFT et RIGHT JOIN. Utile pour l'analyse complète de relations entre tables.",
     },
@@ -236,39 +322,72 @@ Analyse complète des relations`,
       title: "CROSS JOIN - Produit Cartésien",
       content:
         "Créez toutes les combinaisons possibles entre deux tables.",
-      sqlCode: `-- CROSS JOIN : toutes les combinaisons
-SELECT 
+      sqlQueries: [
+        {
+          title: "CROSS JOIN - Toutes les combinaisons",
+          sqlCode: `SELECT 
     u.nom AS utilisateur,
     p.nom AS produit,
     p.prix
 FROM utilisateurs u
-CROSS JOIN produits p;
-
--- Cas d'usage : matrice de compatibilité
-SELECT 
+CROSS JOIN produits p
+LIMIT 10;`,
+          sqlResult: [
+            { utilisateur: "Alice Dupont", produit: "Laptop Pro", prix: 1299 },
+            { utilisateur: "Alice Dupont", produit: "Souris Gaming", prix: 89 },
+            { utilisateur: "Alice Dupont", produit: "Livre SQL", prix: 25 },
+            { utilisateur: "Alice Dupont", produit: "Smartphone", prix: 799 },
+            { utilisateur: "Alice Dupont", produit: "Stylo Bureau", prix: 5 },
+            { utilisateur: "Bob Martin", produit: "Laptop Pro", prix: 1299 },
+            { utilisateur: "Bob Martin", produit: "Souris Gaming", prix: 89 },
+            { utilisateur: "Bob Martin", produit: "Livre SQL", prix: 25 },
+            { utilisateur: "Bob Martin", produit: "Smartphone", prix: 799 },
+            { utilisateur: "Bob Martin", produit: "Stylo Bureau", prix: 5 }
+          ]
+        },
+        {
+          title: "Matrice de compatibilité",
+          sqlCode: `SELECT 
     t.nom AS taille,
     c.nom AS couleur,
     CONCAT(t.nom, ' - ', c.nom) AS variante
 FROM tailles t
 CROSS JOIN couleurs c
-ORDER BY t.ordre, c.ordre;
-
--- CROSS JOIN avec condition (équivalent à INNER JOIN)
-SELECT u.nom, p.nom
-FROM utilisateurs u
-CROSS JOIN produits p
-WHERE u.id = p.createur_id; -- Évitez ceci, utilisez JOIN
-
--- Génération de données de test
-SELECT 
+ORDER BY t.ordre, c.ordre;`,
+          sqlResult: [
+            { taille: "S", couleur: "Rouge", variante: "S - Rouge" },
+            { taille: "S", couleur: "Bleu", variante: "S - Bleu" },
+            { taille: "S", couleur: "Vert", variante: "S - Vert" },
+            { taille: "M", couleur: "Rouge", variante: "M - Rouge" },
+            { taille: "M", couleur: "Bleu", variante: "M - Bleu" },
+            { taille: "M", couleur: "Vert", variante: "M - Vert" },
+            { taille: "L", couleur: "Rouge", variante: "L - Rouge" },
+            { taille: "L", couleur: "Bleu", variante: "L - Bleu" },
+            { taille: "L", couleur: "Vert", variante: "L - Vert" }
+          ]
+        },
+        {
+          title: "Génération de créneaux",
+          sqlCode: `SELECT 
     d.date,
     h.heure,
     DATETIME(d.date || ' ' || h.heure) AS creneau
 FROM dates_semaine d
-CROSS JOIN heures_ouverture h;`,
-      sqlResult: `500 combinaisons utilisateur-produit
-24 variantes de produit
-Créneaux de rendez-vous générés`,
+CROSS JOIN heures_ouverture h
+WHERE d.jour_semaine NOT IN ('samedi', 'dimanche')
+LIMIT 8;`,
+          sqlResult: [
+            { date: "2024-07-15", heure: "09:00", creneau: "2024-07-15 09:00" },
+            { date: "2024-07-15", heure: "10:00", creneau: "2024-07-15 10:00" },
+            { date: "2024-07-15", heure: "11:00", creneau: "2024-07-15 11:00" },
+            { date: "2024-07-15", heure: "14:00", creneau: "2024-07-15 14:00" },
+            { date: "2024-07-16", heure: "09:00", creneau: "2024-07-16 09:00" },
+            { date: "2024-07-16", heure: "10:00", creneau: "2024-07-16 10:00" },
+            { date: "2024-07-16", heure: "11:00", creneau: "2024-07-16 11:00" },
+            { date: "2024-07-16", heure: "14:00", creneau: "2024-07-16 14:00" }
+          ]
+        }
+      ],
       description:
         "CROSS JOIN crée le produit cartésien. Attention à la taille du résultat : n × m lignes !",
     },
@@ -276,42 +395,72 @@ Créneaux de rendez-vous générés`,
       title: "SELF JOIN - Auto-jointure",
       content:
         "Joignez une table avec elle-même pour analyser les relations hiérarchiques.",
-      sqlCode: `-- Structure hiérarchique : employés et managers
+      sqlQueries: [
+        {
+          title: "Structure hiérarchique des employés",
+          sqlCode: `-- Structure hiérarchique : employés et managers
 CREATE TABLE employes (
     id INTEGER PRIMARY KEY,
     nom VARCHAR(100),
-    manager_id INTEGER, -- Référence vers un autre employé
+    manager_id INTEGER,
     FOREIGN KEY (manager_id) REFERENCES employes(id)
-);
-
--- SELF JOIN : employés avec leur manager
-SELECT 
+);`,
+          sqlResult: {
+            message: "Table employés créée avec structure hiérarchique",
+            type: "message"
+          }
+        },
+        {
+          title: "SELF JOIN - Employés avec leur manager",
+          sqlCode: `SELECT 
     e.nom AS employe,
+    e.poste,
     m.nom AS manager
 FROM employes e
-LEFT JOIN employes m ON e.manager_id = m.id;
-
--- Trouver les collègues (même manager)
-SELECT 
+LEFT JOIN employes m ON e.manager_id = m.id;`,
+          sqlResult: [
+            { employe: "Alice Dupont", poste: "PDG", manager: null },
+            { employe: "Bob Martin", poste: "Directeur IT", manager: "Alice Dupont" },
+            { employe: "Claire Durand", poste: "Développeuse", manager: "Bob Martin" },
+            { employe: "David Moreau", poste: "Développeur", manager: "Bob Martin" },
+            { employe: "Emma Bernard", poste: "Designer", manager: "Bob Martin" }
+          ]
+        },
+        {
+          title: "Trouver les collègues (même manager)",
+          sqlCode: `SELECT 
     e1.nom AS employe1,
     e2.nom AS employe2,
     m.nom AS manager_commun
 FROM employes e1
 JOIN employes e2 ON e1.manager_id = e2.manager_id AND e1.id != e2.id
 JOIN employes m ON e1.manager_id = m.id
-WHERE e1.id < e2.id; -- Éviter les doublons
-
--- Hiérarchie complète (employé -> manager -> grand-manager)
-SELECT 
+WHERE e1.id < e2.id;`,
+          sqlResult: [
+            { employe1: "Claire Durand", employe2: "David Moreau", manager_commun: "Bob Martin" },
+            { employe1: "Claire Durand", employe2: "Emma Bernard", manager_commun: "Bob Martin" },
+            { employe1: "David Moreau", employe2: "Emma Bernard", manager_commun: "Bob Martin" }
+          ]
+        },
+        {
+          title: "Hiérarchie complète sur 3 niveaux",
+          sqlCode: `SELECT 
     e.nom AS employe,
+    e.poste,
     m1.nom AS manager_direct,
     m2.nom AS grand_manager
 FROM employes e
 LEFT JOIN employes m1 ON e.manager_id = m1.id
 LEFT JOIN employes m2 ON m1.manager_id = m2.id;`,
-      sqlResult: `15 employés avec leurs managers
-8 paires de collègues trouvées
-Hiérarchie sur 3 niveaux affichée`,
+          sqlResult: [
+            { employe: "Alice Dupont", poste: "PDG", manager_direct: null, grand_manager: null },
+            { employe: "Bob Martin", poste: "Directeur IT", manager_direct: "Alice Dupont", grand_manager: null },
+            { employe: "Claire Durand", poste: "Développeuse", manager_direct: "Bob Martin", grand_manager: "Alice Dupont" },
+            { employe: "David Moreau", poste: "Développeur", manager_direct: "Bob Martin", grand_manager: "Alice Dupont" },
+            { employe: "Emma Bernard", poste: "Designer", manager_direct: "Bob Martin", grand_manager: "Alice Dupont" }
+          ]
+        }
+      ],
       description:
         "SELF JOIN permet d'analyser les relations au sein d'une même table. Très utile pour les hiérarchies.",
     }
