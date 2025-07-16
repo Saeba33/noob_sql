@@ -4,14 +4,14 @@ import {
   DataTypes,
   SGBDDiagram,
 } from "@/components/ui/sections/white";
-import { SECTION_DATA_COLORS } from "@/config/colors";
+import { BELT_COLORS } from "@/config/colors";
 
 export const whiteBeltContent = {
   // Belt configuration
   belt: "white",
   description: "Théorie et concepts fondamentaux",
   topics: ["SGBD", "Architecture BDD", "Types de données", "Bonnes pratiques"],
-  colors: SECTION_DATA_COLORS.white,
+  colors: BELT_COLORS.white,
 
   // Content sections
   header: {

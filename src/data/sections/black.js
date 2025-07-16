@@ -1,4 +1,4 @@
-import { SECTION_DATA_COLORS } from "@/config/colors";
+import { BELT_COLORS } from "@/config/colors";
 
 export const blackBeltContent = {
   // Belt configuration
@@ -12,7 +12,7 @@ export const blackBeltContent = {
     "INDEX",
     "Transactions",
   ],
-  colors: SECTION_DATA_COLORS.black,
+  colors: BELT_COLORS.black,
 
   // Content sections
   header: {

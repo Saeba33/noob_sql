@@ -4,7 +4,7 @@ import BeltIcon from "@/components/ui/BeltIcon";
 import { PAGES_CONFIG } from "@/config/navigation";
 import Link from "next/link";
 import { LuMedal } from "react-icons/lu";
-import { HOME_NAV_COLORS } from "@/config/colors";
+import { BELT_COLORS } from "@/config/colors";
 
 // Import belt content for complete data
 import { blackBeltContent } from "@/data/sections/black";
@@ -49,7 +49,7 @@ export default function HomeNavigation() {
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {/* Belt Cards */}
         {belts.map((page) => {
-          const colors = HOME_NAV_COLORS[page.key];
+          const colors = BELT_COLORS[page.key];
 
           return (
             <Link key={page.key} href={page.href} className="group">

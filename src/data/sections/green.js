@@ -1,4 +1,4 @@
-import { SECTION_DATA_COLORS } from "@/config/colors";
+import { BELT_COLORS } from "@/config/colors";
 
 export const greenBeltContent = {
   // Belt configuration
@@ -12,7 +12,7 @@ export const greenBeltContent = {
     "NULL",
     "LIMIT, OFFSET",
   ],
-  colors: SECTION_DATA_COLORS.green,
+  colors: BELT_COLORS.green,
 
   // Content sections
   header: {

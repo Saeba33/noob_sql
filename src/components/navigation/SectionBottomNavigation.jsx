@@ -1,6 +1,6 @@
 "use client";
 
-import { SECTION_NAV_COLORS } from "@/config/colors";
+import { BELT_COLORS } from "@/config/colors";
 import { useNavigation } from "@/hooks/useNavigation";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -13,10 +13,9 @@ export default function SectionBottomNavigation() {
 
   // Determine current belt
   const currentBelt = pathname?.split("/")[1];
-  const textColor =
-    currentBelt === "black"
-      ? "text-black"
-      : SECTION_NAV_COLORS[currentBelt] || SECTION_NAV_COLORS.white;
+  const colors = currentBelt === "black"
+    ? BELT_COLORS.black
+    : BELT_COLORS[currentBelt] || BELT_COLORS.white;
 
   // Show only if we have a previous or next link
   if (!previous && !next) return null;
@@ -42,7 +41,7 @@ export default function SectionBottomNavigation() {
             {previous && (
               <Link
                 href={previous.href}
-                className={`inline-flex items-center ${textColor} hover:opacity-70 transition-opacity focus:outline-none`}
+                className={`inline-flex items-center ${colors.text} hover:opacity-70 transition-opacity focus:outline-none`}
               >
                 <MdChevronLeft className="w-5 h-5 mr-1" />
                 <span className="text-sm font-medium">
@@ -64,7 +63,7 @@ export default function SectionBottomNavigation() {
             {next && (
               <Link
                 href={next.href}
-                className={`inline-flex items-center ${textColor} hover:opacity-70 transition-opacity focus:outline-none`}
+                className={`inline-flex items-center ${colors.text} hover:opacity-70 transition-opacity focus:outline-none`}
               >
                 <span className="text-sm font-medium">{getNextLabel()}</span>
                 <MdChevronRight className="w-5 h-5 ml-1" />

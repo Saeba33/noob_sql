@@ -1,12 +1,12 @@
 import { BestPractices } from "@/components/ui/sections/yellow";
-import { SECTION_DATA_COLORS } from "@/config/colors";
+import { BELT_COLORS } from "@/config/colors";
 
 export const yellowBeltContent = {
   // Belt configuration
   belt: "yellow",
   description: "Langage de définition de données",
   topics: ["CREATE TABLE", "ALTER TABLE", "DROP TABLE"],
-  colors: SECTION_DATA_COLORS.yellow,
+  colors: BELT_COLORS.yellow,
 
   // Content sections
   header: {

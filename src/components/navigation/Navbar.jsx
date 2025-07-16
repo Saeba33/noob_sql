@@ -5,7 +5,7 @@ import Link from "next/link";
 import BeltIcon from "@/components/ui/BeltIcon";
 import { FaFistRaised } from "react-icons/fa";
 import { PAGES_CONFIG } from "@/config/navigation";
-import { NAVBAR_BUTTON_STYLES } from "@/config/colors";
+import { BELT_COLORS } from "@/config/colors";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -19,17 +19,17 @@ export default function Navbar() {
       {/* Navigation Items */}
       {navigationItems.map((item, index) => {
         const beltKey = item.href.replace("/", "") || "white";
-        const buttonStyles = NAVBAR_BUTTON_STYLES[beltKey] || NAVBAR_BUTTON_STYLES.white;
+        const colors = BELT_COLORS[beltKey] || BELT_COLORS.white;
 
         return (
           <Link
             key={`${beltKey}-${index}`}
             href={item.href}
             className={`border-pop ${isActive(item.href) ? "active" : ""} ${
-              buttonStyles.bg
-            } ${buttonStyles.border} ${buttonStyles.text} hover:bg-opacity-80 transition-colors rounded-lg px-4 py-2 flex items-center border-2`}
+              colors.bg
+            } border-2 border-gray-300 ${colors.text} hover:bg-opacity-80 transition-colors rounded-lg px-4 py-2 flex items-center`}
           >
-            <div className={`flex items-center justify-center w-8 h-8 rounded-full ${buttonStyles.iconBg} shadow-sm`}>
+            <div className={`flex items-center justify-center w-8 h-8 rounded-full ${colors.bg} shadow-sm`}>
               {item.iconType === "belt" ? (
                 <BeltIcon belt={beltKey} size={16} />
               ) : (

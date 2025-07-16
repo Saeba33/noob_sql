@@ -1,4 +1,4 @@
-import { SECTION_DATA_COLORS } from "@/config/colors";
+import { BELT_COLORS } from "@/config/colors";
 
 export const brownBeltContent = {
   // Belt configuration
@@ -14,7 +14,7 @@ export const brownBeltContent = {
     "CROSS JOIN",
     "SELF JOIN",
   ],
-  colors: SECTION_DATA_COLORS.brown,
+  colors: BELT_COLORS.brown,
 
   // Content sections
   header: {

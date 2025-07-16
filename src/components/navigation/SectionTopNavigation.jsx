@@ -1,6 +1,6 @@
 "use client";
 
-import { SECTION_NAV_COLORS } from "@/config/colors";
+import { BELT_COLORS } from "@/config/colors";
 import { useNavigation } from "@/hooks/useNavigation";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -13,7 +13,7 @@ export default function SectionTopNavigation() {
 
   // Determine current belt
   const currentBelt = pathname?.split("/")[1];
-  const textColor = SECTION_NAV_COLORS[currentBelt] || SECTION_NAV_COLORS.white;
+  const colors = BELT_COLORS[currentBelt] || BELT_COLORS.white;
 
   // Show only if we have a previous or next link
   if (!previous && !next) return null;
@@ -41,10 +41,10 @@ export default function SectionTopNavigation() {
               className="inline-flex items-center px-4 py-2 bg-white rounded-lg shadow-sm focus:outline-none group"
             >
               <MdChevronLeft
-                className={`w-5 h-5 mr-1 ${textColor} group-hover:opacity-70 transition-opacity`}
+                className={`w-5 h-5 mr-1 ${colors.text} group-hover:opacity-70 transition-opacity`}
               />
               <span
-                className={`text-sm font-medium ${textColor} group-hover:opacity-70 transition-opacity`}
+                className={`text-sm font-medium ${colors.text} group-hover:opacity-70 transition-opacity`}
               >
                 {getPreviousLabel()}
               </span>
@@ -60,12 +60,12 @@ export default function SectionTopNavigation() {
               className="inline-flex items-center px-4 py-2 bg-white rounded-lg shadow-sm focus:outline-none group"
             >
               <span
-                className={`text-sm font-medium ${textColor} group-hover:opacity-70 transition-opacity`}
+                className={`text-sm font-medium ${colors.text} group-hover:opacity-70 transition-opacity`}
               >
                 {getNextLabel()}
               </span>
               <MdChevronRight
-                className={`w-5 h-5 ml-1 ${textColor} group-hover:opacity-70 transition-opacity`}
+                className={`w-5 h-5 ml-1 ${colors.text} group-hover:opacity-70 transition-opacity`}
               />
             </Link>
           )}
