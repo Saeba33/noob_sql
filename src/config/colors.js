@@ -459,6 +459,3 @@ export const SECTION_DATA_COLORS = Object.fromEntries(
   Object.entries(BELT_COLORS).map(([belt, colors]) => [belt, colors.data])
 );
 
-export const NAVBAR_COLORS = Object.fromEntries(
-  Object.entries(BELT_COLORS).map(([belt, colors]) => [belt, colors.navbar])
-);

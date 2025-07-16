@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation";
-import HeaderSection from "@/components/HeaderSection";
-import DescriptionSection from "@/components/DescriptionSection";
+import SectionHeader from "@/components/ui/SectionHeader";
 import AccordionList from "@/components/AccordionList";
 import SectionTopNavigation from "@/components/navigation/SectionTopNavigation";
 import SectionBottomNavigation from "@/components/navigation/SectionBottomNavigation";
@@ -41,19 +40,17 @@ export default async function BeltPage({ params }) {
   return (
     <div className={`min-h-screen ${beltContent.colors.bg}`}>
       <main className="mx-auto space-y-8">
-        <HeaderSection 
-          header={beltContent.header}
-          beltColors={beltContent.colors}
-          currentBelt={belt}
+        <SectionHeader 
+          title={beltContent.header.title}
+          description={beltContent.pageDescription.content}
+          tag={beltContent.header.tag}
+          tagProps={{ beltColors: beltContent.colors }}
+          descriptionClassName={`${beltContent.colors.text} leading-relaxed`}
+          className="mb-6"
         />
         
         <SectionTopNavigation 
           currentLevel={belt}
-        />
-        
-        <DescriptionSection 
-          pageDescription={beltContent.pageDescription}
-          currentBelt={belt}
         />
         
         <AccordionList 
