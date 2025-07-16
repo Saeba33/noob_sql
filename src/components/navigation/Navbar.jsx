@@ -27,7 +27,7 @@ export default function Navbar() {
             href={item.href}
             className={`border-pop ${isActive(item.href) ? "active" : ""} ${
               colors.bg
-            } border-2 border-gray-300 ${
+            } border-2 ${colors.border} ${
               colors.text
             } hover:bg-opacity-80 transition-colors rounded-lg px-3 py-2 lg:px-4 lg:py-2 flex items-center text-sm lg:text-base`}
           >
