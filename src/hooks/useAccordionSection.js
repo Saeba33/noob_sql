@@ -4,7 +4,7 @@ import { useState } from "react";
 export function useAccordionSection(initialState = false) {
   const [isOpen, setIsOpen] = useState(initialState);
 
-  const toggleOpen = () => {
+  const toggleSection = () => {
     setIsOpen((prev) => !prev);
   };
 
@@ -18,7 +18,7 @@ export function useAccordionSection(initialState = false) {
 
   return {
     isOpen,
-    toggleOpen,
+    toggleSection,
     open,
     close,
   };

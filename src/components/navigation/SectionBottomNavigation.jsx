@@ -1,10 +1,10 @@
 "use client";
 
+import { SECTION_NAV_COLORS } from "@/config/colors";
 import { useNavigation } from "@/hooks/useNavigation";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
-import { SECTION_NAV_COLORS } from "@/config/colors";
 
 export default function SectionBottomNavigation() {
   const { getSectionNavigation } = useNavigation();
@@ -13,7 +13,10 @@ export default function SectionBottomNavigation() {
 
   // Determine current belt
   const currentBelt = pathname?.split("/")[1];
-  const textColor = currentBelt === 'black' ? 'text-black' : (SECTION_NAV_COLORS[currentBelt] || SECTION_NAV_COLORS.white);
+  const textColor =
+    currentBelt === "black"
+      ? "text-black"
+      : SECTION_NAV_COLORS[currentBelt] || SECTION_NAV_COLORS.white;
 
   // Show only if we have a previous or next link
   if (!previous && !next) return null;

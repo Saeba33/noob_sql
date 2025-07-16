@@ -28,16 +28,21 @@ const BELT_CONTENTS = {
 
 export default function HomeNavigation() {
   // Combine navigation data with detailed content
-  const belts = Object.entries(PAGES_CONFIG)
-    .filter(([key, page]) => BELT_CONTENTS[key]) // Only belts that have content
-    .map(([key, page]) => ({
-      ...page,
-      key,
-      content: BELT_CONTENTS[key],
-      description: BELT_CONTENTS[key].description,
-      topics: BELT_CONTENTS[key].topics,
-    }))
-    .sort((a, b) => a.order - b.order);
+  const belts = PAGES_CONFIG
+    .filter((page) => {
+      const key = page.href.replace("/", "");
+      return BELT_CONTENTS[key]; // Only belts that have content
+    })
+    .map((page) => {
+      const key = page.href.replace("/", "");
+      return {
+        ...page,
+        key,
+        content: BELT_CONTENTS[key],
+        description: BELT_CONTENTS[key].description,
+        topics: BELT_CONTENTS[key].topics,
+      };
+    });
 
   return (
     <div className="container mx-auto px-4 py-8">

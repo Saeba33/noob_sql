@@ -1,5 +1,5 @@
-import { SECTION_DATA_COLORS } from "@/config/colors";
 import { BestPractices } from "@/components/ui/sections/yellow";
+import { SECTION_DATA_COLORS } from "@/config/colors";
 
 export const yellowBeltContent = {
   // Belt configuration

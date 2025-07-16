@@ -4,7 +4,16 @@ export const brownBeltContent = {
   // Belt configuration
   belt: "brown",
   description: "Relations entre les tables",
-  topics: ["Schéma jointures", "Clés primaires/étrangères", "INNER JOIN", "LEFT JOIN", "RIGHT JOIN", "FULL JOIN", "CROSS JOIN", "SELF JOIN"],
+  topics: [
+    "Schéma jointures",
+    "Clés primaires/étrangères",
+    "INNER JOIN",
+    "LEFT JOIN",
+    "RIGHT JOIN",
+    "FULL JOIN",
+    "CROSS JOIN",
+    "SELF JOIN",
+  ],
   colors: SECTION_DATA_COLORS.brown,
 
   // Content sections
@@ -44,9 +53,9 @@ SELF JOIN : Table jointe avec elle-même`,
         "Chaque type de jointure a un usage spécifique selon les données que vous voulez récupérer.",
     },
     {
-      title: "Clés Primaires et Étrangères - Conditions Nécessaires aux Jointures",
-      content:
-        "Comprenez les relations qui permettent de lier vos tables.",
+      title:
+        "Clés Primaires et Étrangères - Conditions Nécessaires aux Jointures",
+      content: "Comprenez les relations qui permettent de lier vos tables.",
       sqlSchema: `-- Structure avec clés primaires et étrangères
 CREATE TABLE utilisateurs (
     id INTEGER PRIMARY KEY,    -- Clé primaire
@@ -87,8 +96,8 @@ INNER JOIN commandes c ON u.id = c.utilisateur_id;`,
             { nom: "Alice Dupont", produit: "Laptop Pro", prix: 1299 },
             { nom: "Bob Martin", produit: "Souris Gaming", prix: 89 },
             { nom: "Claire Durand", produit: "Livre SQL", prix: 25 },
-            { nom: "David Moreau", produit: "Smartphone", prix: 799 }
-          ]
+            { nom: "David Moreau", produit: "Smartphone", prix: 799 },
+          ],
         },
         {
           title: "INNER JOIN avec alias et condition",
@@ -101,9 +110,19 @@ FROM utilisateurs u
 JOIN commandes c ON u.id = c.utilisateur_id
 WHERE c.prix > 100;`,
           sqlResult: [
-            { client: "Alice Dupont", produit: "Laptop Pro", prix: 1299, date_commande: "2024-01-15" },
-            { client: "David Moreau", produit: "Smartphone", prix: 799, date_commande: "2024-02-20" }
-          ]
+            {
+              client: "Alice Dupont",
+              produit: "Laptop Pro",
+              prix: 1299,
+              date_commande: "2024-01-15",
+            },
+            {
+              client: "David Moreau",
+              produit: "Smartphone",
+              prix: 799,
+              date_commande: "2024-02-20",
+            },
+          ],
         },
         {
           title: "Jointure sur trois tables",
@@ -117,11 +136,29 @@ FROM utilisateurs u
 JOIN commandes c ON u.id = c.utilisateur_id
 JOIN produits p ON c.produit_id = p.id;`,
           sqlResult: [
-            { client: "Alice Dupont", produit: "Laptop Pro", quantite: 1, prix: 1299, total: 1299 },
-            { client: "Bob Martin", produit: "Souris Gaming", quantite: 2, prix: 89, total: 178 },
-            { client: "Claire Durand", produit: "Livre SQL", quantite: 1, prix: 25, total: 25 }
-          ]
-        }
+            {
+              client: "Alice Dupont",
+              produit: "Laptop Pro",
+              quantite: 1,
+              prix: 1299,
+              total: 1299,
+            },
+            {
+              client: "Bob Martin",
+              produit: "Souris Gaming",
+              quantite: 2,
+              prix: 89,
+              total: 178,
+            },
+            {
+              client: "Claire Durand",
+              produit: "Livre SQL",
+              quantite: 1,
+              prix: 25,
+              total: 25,
+            },
+          ],
+        },
       ],
       description:
         "INNER JOIN ne retourne que les lignes qui existent dans les deux tables. C'est la jointure la plus courante.",
@@ -141,12 +178,37 @@ JOIN produits p ON c.produit_id = p.id;`,
 FROM utilisateurs u
 LEFT JOIN commandes c ON u.id = c.utilisateur_id;`,
           sqlResult: [
-            { nom: "Alice Dupont", email: "alice@email.com", produit: "Laptop Pro", prix: 1299 },
-            { nom: "Bob Martin", email: "bob@email.com", produit: "Souris Gaming", prix: 89 },
-            { nom: "Claire Durand", email: "claire@email.com", produit: "Livre SQL", prix: 25 },
-            { nom: "David Moreau", email: "david@email.com", produit: "Smartphone", prix: 799 },
-            { nom: "Emma Bernard", email: "emma@email.com", produit: null, prix: null }
-          ]
+            {
+              nom: "Alice Dupont",
+              email: "alice@email.com",
+              produit: "Laptop Pro",
+              prix: 1299,
+            },
+            {
+              nom: "Bob Martin",
+              email: "bob@email.com",
+              produit: "Souris Gaming",
+              prix: 89,
+            },
+            {
+              nom: "Claire Durand",
+              email: "claire@email.com",
+              produit: "Livre SQL",
+              prix: 25,
+            },
+            {
+              nom: "David Moreau",
+              email: "david@email.com",
+              produit: "Smartphone",
+              prix: 799,
+            },
+            {
+              nom: "Emma Bernard",
+              email: "emma@email.com",
+              produit: null,
+              prix: null,
+            },
+          ],
         },
         {
           title: "Trouver les utilisateurs sans commandes",
@@ -158,8 +220,8 @@ FROM utilisateurs u
 LEFT JOIN commandes c ON u.id = c.utilisateur_id
 WHERE c.id IS NULL;`,
           sqlResult: [
-            { nom: "Emma Bernard", email: "emma@email.com", age: 30 }
-          ]
+            { nom: "Emma Bernard", email: "emma@email.com", age: 30 },
+          ],
         },
         {
           title: "LEFT JOIN avec agrégation",
@@ -173,13 +235,38 @@ LEFT JOIN commandes c ON u.id = c.utilisateur_id
 GROUP BY u.id, u.nom, u.email
 ORDER BY total_depense DESC;`,
           sqlResult: [
-            { nom: "Alice Dupont", email: "alice@email.com", nombre_commandes: 1, total_depense: 1299 },
-            { nom: "David Moreau", email: "david@email.com", nombre_commandes: 1, total_depense: 799 },
-            { nom: "Bob Martin", email: "bob@email.com", nombre_commandes: 1, total_depense: 89 },
-            { nom: "Claire Durand", email: "claire@email.com", nombre_commandes: 1, total_depense: 25 },
-            { nom: "Emma Bernard", email: "emma@email.com", nombre_commandes: 0, total_depense: 0 }
-          ]
-        }
+            {
+              nom: "Alice Dupont",
+              email: "alice@email.com",
+              nombre_commandes: 1,
+              total_depense: 1299,
+            },
+            {
+              nom: "David Moreau",
+              email: "david@email.com",
+              nombre_commandes: 1,
+              total_depense: 799,
+            },
+            {
+              nom: "Bob Martin",
+              email: "bob@email.com",
+              nombre_commandes: 1,
+              total_depense: 89,
+            },
+            {
+              nom: "Claire Durand",
+              email: "claire@email.com",
+              nombre_commandes: 1,
+              total_depense: 25,
+            },
+            {
+              nom: "Emma Bernard",
+              email: "emma@email.com",
+              nombre_commandes: 0,
+              total_depense: 0,
+            },
+          ],
+        },
       ],
       description:
         "LEFT JOIN garde toutes les lignes de la table de gauche. Parfait pour trouver les éléments sans relation.",
@@ -199,12 +286,37 @@ ORDER BY total_depense DESC;`,
 FROM utilisateurs u
 RIGHT JOIN commandes c ON u.id = c.utilisateur_id;`,
           sqlResult: [
-            { nom: "Alice Dupont", produit: "Laptop Pro", prix: 1299, date_commande: "2024-01-15" },
-            { nom: "Bob Martin", produit: "Souris Gaming", prix: 89, date_commande: "2024-01-18" },
-            { nom: "Claire Durand", produit: "Livre SQL", prix: 25, date_commande: "2024-02-05" },
-            { nom: "David Moreau", produit: "Smartphone", prix: 799, date_commande: "2024-02-20" },
-            { nom: null, produit: "Commande Orpheline", prix: 150, date_commande: "2024-03-01" }
-          ]
+            {
+              nom: "Alice Dupont",
+              produit: "Laptop Pro",
+              prix: 1299,
+              date_commande: "2024-01-15",
+            },
+            {
+              nom: "Bob Martin",
+              produit: "Souris Gaming",
+              prix: 89,
+              date_commande: "2024-01-18",
+            },
+            {
+              nom: "Claire Durand",
+              produit: "Livre SQL",
+              prix: 25,
+              date_commande: "2024-02-05",
+            },
+            {
+              nom: "David Moreau",
+              produit: "Smartphone",
+              prix: 799,
+              date_commande: "2024-02-20",
+            },
+            {
+              nom: null,
+              produit: "Commande Orpheline",
+              prix: 150,
+              date_commande: "2024-03-01",
+            },
+          ],
         },
         {
           title: "Équivalent avec LEFT JOIN (plus lisible)",
@@ -216,12 +328,37 @@ RIGHT JOIN commandes c ON u.id = c.utilisateur_id;`,
 FROM commandes c
 LEFT JOIN utilisateurs u ON c.utilisateur_id = u.id;`,
           sqlResult: [
-            { nom: "Alice Dupont", produit: "Laptop Pro", prix: 1299, date_commande: "2024-01-15" },
-            { nom: "Bob Martin", produit: "Souris Gaming", prix: 89, date_commande: "2024-01-18" },
-            { nom: "Claire Durand", produit: "Livre SQL", prix: 25, date_commande: "2024-02-05" },
-            { nom: "David Moreau", produit: "Smartphone", prix: 799, date_commande: "2024-02-20" },
-            { nom: null, produit: "Commande Orpheline", prix: 150, date_commande: "2024-03-01" }
-          ]
+            {
+              nom: "Alice Dupont",
+              produit: "Laptop Pro",
+              prix: 1299,
+              date_commande: "2024-01-15",
+            },
+            {
+              nom: "Bob Martin",
+              produit: "Souris Gaming",
+              prix: 89,
+              date_commande: "2024-01-18",
+            },
+            {
+              nom: "Claire Durand",
+              produit: "Livre SQL",
+              prix: 25,
+              date_commande: "2024-02-05",
+            },
+            {
+              nom: "David Moreau",
+              produit: "Smartphone",
+              prix: 799,
+              date_commande: "2024-02-20",
+            },
+            {
+              nom: null,
+              produit: "Commande Orpheline",
+              prix: 150,
+              date_commande: "2024-03-01",
+            },
+          ],
         },
         {
           title: "Trouver les commandes orphelines",
@@ -234,9 +371,14 @@ FROM utilisateurs u
 RIGHT JOIN commandes c ON u.id = c.utilisateur_id
 WHERE u.id IS NULL;`,
           sqlResult: [
-            { id: 5, produit: "Commande Orpheline", prix: 150, utilisateur_id: 999 }
-          ]
-        }
+            {
+              id: 5,
+              produit: "Commande Orpheline",
+              prix: 150,
+              utilisateur_id: 999,
+            },
+          ],
+        },
       ],
       description:
         "RIGHT JOIN est moins utilisé que LEFT JOIN. La plupart des développeurs préfèrent réorganiser avec LEFT JOIN.",
@@ -256,13 +398,43 @@ WHERE u.id IS NULL;`,
 FROM utilisateurs u
 FULL OUTER JOIN commandes c ON u.id = c.utilisateur_id;`,
           sqlResult: [
-            { nom: "Alice Dupont", email: "alice@email.com", produit: "Laptop Pro", prix: 1299 },
-            { nom: "Bob Martin", email: "bob@email.com", produit: "Souris Gaming", prix: 89 },
-            { nom: "Claire Durand", email: "claire@email.com", produit: "Livre SQL", prix: 25 },
-            { nom: "David Moreau", email: "david@email.com", produit: "Smartphone", prix: 799 },
-            { nom: "Emma Bernard", email: "emma@email.com", produit: null, prix: null },
-            { nom: null, email: null, produit: "Commande Orpheline", prix: 150 }
-          ]
+            {
+              nom: "Alice Dupont",
+              email: "alice@email.com",
+              produit: "Laptop Pro",
+              prix: 1299,
+            },
+            {
+              nom: "Bob Martin",
+              email: "bob@email.com",
+              produit: "Souris Gaming",
+              prix: 89,
+            },
+            {
+              nom: "Claire Durand",
+              email: "claire@email.com",
+              produit: "Livre SQL",
+              prix: 25,
+            },
+            {
+              nom: "David Moreau",
+              email: "david@email.com",
+              produit: "Smartphone",
+              prix: 799,
+            },
+            {
+              nom: "Emma Bernard",
+              email: "emma@email.com",
+              produit: null,
+              prix: null,
+            },
+            {
+              nom: null,
+              email: null,
+              produit: "Commande Orpheline",
+              prix: 150,
+            },
+          ],
         },
         {
           title: "Équivalent avec UNION (pour SQLite)",
@@ -285,13 +457,43 @@ FROM commandes c
 LEFT JOIN utilisateurs u ON c.utilisateur_id = u.id
 WHERE u.id IS NULL;`,
           sqlResult: [
-            { nom: "Alice Dupont", email: "alice@email.com", produit: "Laptop Pro", prix: 1299 },
-            { nom: "Bob Martin", email: "bob@email.com", produit: "Souris Gaming", prix: 89 },
-            { nom: "Claire Durand", email: "claire@email.com", produit: "Livre SQL", prix: 25 },
-            { nom: "David Moreau", email: "david@email.com", produit: "Smartphone", prix: 799 },
-            { nom: "Emma Bernard", email: "emma@email.com", produit: null, prix: null },
-            { nom: null, email: null, produit: "Commande Orpheline", prix: 150 }
-          ]
+            {
+              nom: "Alice Dupont",
+              email: "alice@email.com",
+              produit: "Laptop Pro",
+              prix: 1299,
+            },
+            {
+              nom: "Bob Martin",
+              email: "bob@email.com",
+              produit: "Souris Gaming",
+              prix: 89,
+            },
+            {
+              nom: "Claire Durand",
+              email: "claire@email.com",
+              produit: "Livre SQL",
+              prix: 25,
+            },
+            {
+              nom: "David Moreau",
+              email: "david@email.com",
+              produit: "Smartphone",
+              prix: 799,
+            },
+            {
+              nom: "Emma Bernard",
+              email: "emma@email.com",
+              produit: null,
+              prix: null,
+            },
+            {
+              nom: null,
+              email: null,
+              produit: "Commande Orpheline",
+              prix: 150,
+            },
+          ],
         },
         {
           title: "Analyse complète des relations",
@@ -306,22 +508,45 @@ WHERE u.id IS NULL;`,
 FROM utilisateurs u
 FULL OUTER JOIN commandes c ON u.id = c.utilisateur_id;`,
           sqlResult: [
-            { nom: "Alice Dupont", produit: "Laptop Pro", statut_relation: "Relation normale" },
-            { nom: "Bob Martin", produit: "Souris Gaming", statut_relation: "Relation normale" },
-            { nom: "Claire Durand", produit: "Livre SQL", statut_relation: "Relation normale" },
-            { nom: "David Moreau", produit: "Smartphone", statut_relation: "Relation normale" },
-            { nom: "Emma Bernard", produit: null, statut_relation: "Utilisateur sans commande" },
-            { nom: null, produit: "Commande Orpheline", statut_relation: "Commande orpheline" }
-          ]
-        }
+            {
+              nom: "Alice Dupont",
+              produit: "Laptop Pro",
+              statut_relation: "Relation normale",
+            },
+            {
+              nom: "Bob Martin",
+              produit: "Souris Gaming",
+              statut_relation: "Relation normale",
+            },
+            {
+              nom: "Claire Durand",
+              produit: "Livre SQL",
+              statut_relation: "Relation normale",
+            },
+            {
+              nom: "David Moreau",
+              produit: "Smartphone",
+              statut_relation: "Relation normale",
+            },
+            {
+              nom: "Emma Bernard",
+              produit: null,
+              statut_relation: "Utilisateur sans commande",
+            },
+            {
+              nom: null,
+              produit: "Commande Orpheline",
+              statut_relation: "Commande orpheline",
+            },
+          ],
+        },
       ],
       description:
         "FULL JOIN combine LEFT et RIGHT JOIN. Utile pour l'analyse complète de relations entre tables.",
     },
     {
       title: "CROSS JOIN - Produit Cartésien",
-      content:
-        "Créez toutes les combinaisons possibles entre deux tables.",
+      content: "Créez toutes les combinaisons possibles entre deux tables.",
       sqlQueries: [
         {
           title: "CROSS JOIN - Toutes les combinaisons",
@@ -342,8 +567,8 @@ LIMIT 10;`,
             { utilisateur: "Bob Martin", produit: "Souris Gaming", prix: 89 },
             { utilisateur: "Bob Martin", produit: "Livre SQL", prix: 25 },
             { utilisateur: "Bob Martin", produit: "Smartphone", prix: 799 },
-            { utilisateur: "Bob Martin", produit: "Stylo Bureau", prix: 5 }
-          ]
+            { utilisateur: "Bob Martin", produit: "Stylo Bureau", prix: 5 },
+          ],
         },
         {
           title: "Matrice de compatibilité",
@@ -363,8 +588,8 @@ ORDER BY t.ordre, c.ordre;`,
             { taille: "M", couleur: "Vert", variante: "M - Vert" },
             { taille: "L", couleur: "Rouge", variante: "L - Rouge" },
             { taille: "L", couleur: "Bleu", variante: "L - Bleu" },
-            { taille: "L", couleur: "Vert", variante: "L - Vert" }
-          ]
+            { taille: "L", couleur: "Vert", variante: "L - Vert" },
+          ],
         },
         {
           title: "Génération de créneaux",
@@ -384,9 +609,9 @@ LIMIT 8;`,
             { date: "2024-07-16", heure: "09:00", creneau: "2024-07-16 09:00" },
             { date: "2024-07-16", heure: "10:00", creneau: "2024-07-16 10:00" },
             { date: "2024-07-16", heure: "11:00", creneau: "2024-07-16 11:00" },
-            { date: "2024-07-16", heure: "14:00", creneau: "2024-07-16 14:00" }
-          ]
-        }
+            { date: "2024-07-16", heure: "14:00", creneau: "2024-07-16 14:00" },
+          ],
+        },
       ],
       description:
         "CROSS JOIN crée le produit cartésien. Attention à la taille du résultat : n × m lignes !",
@@ -407,8 +632,8 @@ CREATE TABLE employes (
 );`,
           sqlResult: {
             message: "Table employés créée avec structure hiérarchique",
-            type: "message"
-          }
+            type: "message",
+          },
         },
         {
           title: "SELF JOIN - Employés avec leur manager",
@@ -420,11 +645,27 @@ FROM employes e
 LEFT JOIN employes m ON e.manager_id = m.id;`,
           sqlResult: [
             { employe: "Alice Dupont", poste: "PDG", manager: null },
-            { employe: "Bob Martin", poste: "Directeur IT", manager: "Alice Dupont" },
-            { employe: "Claire Durand", poste: "Développeuse", manager: "Bob Martin" },
-            { employe: "David Moreau", poste: "Développeur", manager: "Bob Martin" },
-            { employe: "Emma Bernard", poste: "Designer", manager: "Bob Martin" }
-          ]
+            {
+              employe: "Bob Martin",
+              poste: "Directeur IT",
+              manager: "Alice Dupont",
+            },
+            {
+              employe: "Claire Durand",
+              poste: "Développeuse",
+              manager: "Bob Martin",
+            },
+            {
+              employe: "David Moreau",
+              poste: "Développeur",
+              manager: "Bob Martin",
+            },
+            {
+              employe: "Emma Bernard",
+              poste: "Designer",
+              manager: "Bob Martin",
+            },
+          ],
         },
         {
           title: "Trouver les collègues (même manager)",
@@ -437,10 +678,22 @@ JOIN employes e2 ON e1.manager_id = e2.manager_id AND e1.id != e2.id
 JOIN employes m ON e1.manager_id = m.id
 WHERE e1.id < e2.id;`,
           sqlResult: [
-            { employe1: "Claire Durand", employe2: "David Moreau", manager_commun: "Bob Martin" },
-            { employe1: "Claire Durand", employe2: "Emma Bernard", manager_commun: "Bob Martin" },
-            { employe1: "David Moreau", employe2: "Emma Bernard", manager_commun: "Bob Martin" }
-          ]
+            {
+              employe1: "Claire Durand",
+              employe2: "David Moreau",
+              manager_commun: "Bob Martin",
+            },
+            {
+              employe1: "Claire Durand",
+              employe2: "Emma Bernard",
+              manager_commun: "Bob Martin",
+            },
+            {
+              employe1: "David Moreau",
+              employe2: "Emma Bernard",
+              manager_commun: "Bob Martin",
+            },
+          ],
         },
         {
           title: "Hiérarchie complète sur 3 niveaux",
@@ -453,16 +706,41 @@ FROM employes e
 LEFT JOIN employes m1 ON e.manager_id = m1.id
 LEFT JOIN employes m2 ON m1.manager_id = m2.id;`,
           sqlResult: [
-            { employe: "Alice Dupont", poste: "PDG", manager_direct: null, grand_manager: null },
-            { employe: "Bob Martin", poste: "Directeur IT", manager_direct: "Alice Dupont", grand_manager: null },
-            { employe: "Claire Durand", poste: "Développeuse", manager_direct: "Bob Martin", grand_manager: "Alice Dupont" },
-            { employe: "David Moreau", poste: "Développeur", manager_direct: "Bob Martin", grand_manager: "Alice Dupont" },
-            { employe: "Emma Bernard", poste: "Designer", manager_direct: "Bob Martin", grand_manager: "Alice Dupont" }
-          ]
-        }
+            {
+              employe: "Alice Dupont",
+              poste: "PDG",
+              manager_direct: null,
+              grand_manager: null,
+            },
+            {
+              employe: "Bob Martin",
+              poste: "Directeur IT",
+              manager_direct: "Alice Dupont",
+              grand_manager: null,
+            },
+            {
+              employe: "Claire Durand",
+              poste: "Développeuse",
+              manager_direct: "Bob Martin",
+              grand_manager: "Alice Dupont",
+            },
+            {
+              employe: "David Moreau",
+              poste: "Développeur",
+              manager_direct: "Bob Martin",
+              grand_manager: "Alice Dupont",
+            },
+            {
+              employe: "Emma Bernard",
+              poste: "Designer",
+              manager_direct: "Bob Martin",
+              grand_manager: "Alice Dupont",
+            },
+          ],
+        },
       ],
       description:
         "SELF JOIN permet d'analyser les relations au sein d'une même table. Très utile pour les hiérarchies.",
-    }
+    },
   ],
 };

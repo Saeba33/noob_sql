@@ -1,74 +1,27 @@
 "use client";
 
-import { PAGES_CONFIG } from "@/config/navigation";
 import { usePathname } from "next/navigation";
 import { useMemo } from "react";
+import { PAGES_CONFIG } from "@/config/navigation";
 
+// Hook ultra-simplifié - plus de sort, plus de Object.values
 export const useNavigation = () => {
   const pathname = usePathname();
 
-  // Ordering pages
-  const allNavigationItems = useMemo(() => {
-    return Object.entries(PAGES_CONFIG)
-      .map(([key, config]) => ({
-        key,
-        ...config,
-      }))
-      .sort((a, b) => a.order - b.order);
-  }, []);
-
-  // Determine the active page
-  const activeItem = useMemo(() => {
-    return allNavigationItems.find((item) => item.href === pathname) || null;
-  }, [pathname, allNavigationItems]);
-
-  const isActive = (href) => pathname === href;
-
-  // FUNCTION 1: Navigation for Header/Introduction (same logic : return all pages except the homepage (handled by the logo))
-  const getPageNavigation = () => {
-    const items = allNavigationItems.filter((item) => item.key !== "home");
-
-    return {
-      items,
-      isActive,
-      pathname,
-    };
-  };
-
-  // FUNCTION 2: Navigation in Sections (top/bottom - same logic)
-  const getSectionNavigation = () => {
-    const currentIndex = allNavigationItems.findIndex(
-      (item) => item.href === pathname
-    );
-
-    // For the first page (white), add a link to home
-    const previous =
-      currentIndex === 0
-        ? { href: "/", title: "Accueil" }
-        : currentIndex > 0
-        ? allNavigationItems[currentIndex - 1]
-        : null;
-
-    const next =
-      currentIndex < allNavigationItems.length - 1
-        ? allNavigationItems[currentIndex + 1]
-        : null;
-
-    return {
-      previous,
-      next,
-      current: activeItem,
-      isActive,
-      pathname,
-    };
-  };
+  const currentIndex = useMemo(() => 
+    PAGES_CONFIG.findIndex(item => item.href === pathname), [pathname]
+  );
 
   return {
-    allNavigationItems,
-    activeItem,
-    pathname,
-    isActive,
-    getPageNavigation, // Specialized function for Header and Introduction components
-    getSectionNavigation, // Specialized function for Top and Bottom Section Navigation
+    items: PAGES_CONFIG,
+    current: PAGES_CONFIG[currentIndex] || null,
+    isActive: (href) => pathname === href,
+    // Navigation pour les sections
+    getSectionNavigation: () => ({
+      previous: currentIndex === 0 
+        ? { href: "/", title: "Accueil" }
+        : currentIndex > 0 ? PAGES_CONFIG[currentIndex - 1] : null,
+      next: currentIndex < PAGES_CONFIG.length - 1 ? PAGES_CONFIG[currentIndex + 1] : null
+    })
   };
 };

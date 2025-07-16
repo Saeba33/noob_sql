@@ -1,5 +1,5 @@
-import { SECTION_DATA_COLORS } from "@/config/colors";
 import BestPractices from "@/components/ui/sections/orange/BestPractices";
+import { SECTION_DATA_COLORS } from "@/config/colors";
 
 export const orangeBeltContent = {
   // Belt configuration
@@ -28,10 +28,10 @@ export const orangeBeltContent = {
           title: "Insertion simple",
           sqlCode: `INSERT INTO utilisateurs (nom, email, age) 
 VALUES ('Alice Dupont', 'alice@email.com', 28);`,
-          sqlResult: { 
+          sqlResult: {
             message: "1 ligne insérée avec succès",
-            type: "message"
-          }
+            type: "message",
+          },
         },
         {
           title: "Insertion multiple",
@@ -39,20 +39,20 @@ VALUES ('Alice Dupont', 'alice@email.com', 28);`,
 ('Bob Martin', 'bob@email.com', 32),
 ('Claire Durand', 'claire@email.com', 25),
 ('David Moreau', 'david@email.com', 45);`,
-          sqlResult: { 
+          sqlResult: {
             message: "3 lignes insérées avec succès",
-            type: "message"
-          }
+            type: "message",
+          },
         },
         {
           title: "Insertion avec valeurs par défaut",
           sqlCode: `INSERT INTO utilisateurs (nom, email) 
 VALUES ('Emma Bernard', 'emma@email.com');`,
-          sqlResult: { 
+          sqlResult: {
             message: "1 ligne insérée avec succès (âge par défaut appliqué)",
-            type: "message"
-          }
-        }
+            type: "message",
+          },
+        },
       ],
       description:
         "INSERT vous permet d'ajouter de nouvelles données dans vos tables. C'est la première étape du CRUD.",
@@ -65,12 +65,42 @@ VALUES ('Emma Bernard', 'emma@email.com');`,
           title: "Sélectionner toutes les colonnes",
           sqlCode: `SELECT * FROM utilisateurs;`,
           sqlResult: [
-            { id: 1, nom: "Alice Dupont", email: "alice@email.com", age: 28, statut: "actif" },
-            { id: 2, nom: "Bob Martin", email: "bob@email.com", age: 32, statut: "actif" },
-            { id: 3, nom: "Claire Durand", email: "claire@email.com", age: 25, statut: "actif" },
-            { id: 4, nom: "David Moreau", email: "david@email.com", age: 45, statut: "actif" },
-            { id: 5, nom: "Emma Bernard", email: "emma@email.com", age: 30, statut: "actif" }
-          ]
+            {
+              id: 1,
+              nom: "Alice Dupont",
+              email: "alice@email.com",
+              age: 28,
+              statut: "actif",
+            },
+            {
+              id: 2,
+              nom: "Bob Martin",
+              email: "bob@email.com",
+              age: 32,
+              statut: "actif",
+            },
+            {
+              id: 3,
+              nom: "Claire Durand",
+              email: "claire@email.com",
+              age: 25,
+              statut: "actif",
+            },
+            {
+              id: 4,
+              nom: "David Moreau",
+              email: "david@email.com",
+              age: 45,
+              statut: "actif",
+            },
+            {
+              id: 5,
+              nom: "Emma Bernard",
+              email: "emma@email.com",
+              age: 30,
+              statut: "actif",
+            },
+          ],
         },
         {
           title: "Sélectionner des colonnes spécifiques",
@@ -80,16 +110,16 @@ VALUES ('Emma Bernard', 'emma@email.com');`,
             { nom: "Bob Martin", email: "bob@email.com" },
             { nom: "Claire Durand", email: "claire@email.com" },
             { nom: "David Moreau", email: "david@email.com" },
-            { nom: "Emma Bernard", email: "emma@email.com" }
-          ]
+            { nom: "Emma Bernard", email: "emma@email.com" },
+          ],
         },
         {
           title: "Sélectionner avec conditions",
           sqlCode: `SELECT nom, age FROM utilisateurs WHERE age > 30;`,
           sqlResult: [
             { nom: "Bob Martin", age: 32 },
-            { nom: "David Moreau", age: 45 }
-          ]
+            { nom: "David Moreau", age: 45 },
+          ],
         },
         {
           title: "Ordonner les résultats",
@@ -99,16 +129,14 @@ VALUES ('Emma Bernard', 'emma@email.com');`,
             { nom: "Bob Martin", email: "bob@email.com" },
             { nom: "Claire Durand", email: "claire@email.com" },
             { nom: "David Moreau", email: "david@email.com" },
-            { nom: "Emma Bernard", email: "emma@email.com" }
-          ]
+            { nom: "Emma Bernard", email: "emma@email.com" },
+          ],
         },
         {
           title: "Compter les résultats",
           sqlCode: `SELECT COUNT(*) as total_utilisateurs FROM utilisateurs;`,
-          sqlResult: [
-            { total_utilisateurs: 5 }
-          ]
-        }
+          sqlResult: [{ total_utilisateurs: 5 }],
+        },
       ],
       description:
         "SELECT est la commande la plus utilisée en SQL. Elle vous permet de lire et extraire des données.",
@@ -122,31 +150,31 @@ VALUES ('Emma Bernard', 'emma@email.com');`,
           sqlCode: `UPDATE utilisateurs 
 SET age = 29 
 WHERE nom = 'Alice Dupont';`,
-          sqlResult: { 
+          sqlResult: {
             message: "1 ligne mise à jour avec succès",
-            type: "message"
-          }
+            type: "message",
+          },
         },
         {
           title: "Mise à jour multiple avec condition",
           sqlCode: `UPDATE utilisateurs 
 SET statut = 'senior' 
 WHERE age >= 40;`,
-          sqlResult: { 
+          sqlResult: {
             message: "1 ligne mise à jour avec succès",
-            type: "message"
-          }
+            type: "message",
+          },
         },
         {
           title: "Mise à jour avec calcul",
           sqlCode: `UPDATE utilisateurs 
 SET age = age + 1 
 WHERE statut = 'actif';`,
-          sqlResult: { 
+          sqlResult: {
             message: "4 lignes mises à jour avec succès",
-            type: "message"
-          }
-        }
+            type: "message",
+          },
+        },
       ],
       description:
         "UPDATE modifie les données existantes. Toujours utiliser WHERE pour éviter de modifier toute la table !",
@@ -160,27 +188,27 @@ WHERE statut = 'actif';`,
           title: "DELETE sélectif",
           sqlCode: `DELETE FROM utilisateurs 
 WHERE age < 18;`,
-          sqlResult: { 
+          sqlResult: {
             message: "0 ligne supprimée (aucun utilisateur mineur)",
-            type: "message"
-          }
+            type: "message",
+          },
         },
         {
           title: "DELETE avec condition complexe",
           sqlCode: `DELETE FROM utilisateurs 
 WHERE nom = 'Bob Martin' AND age > 30;`,
-          sqlResult: { 
+          sqlResult: {
             message: "1 ligne supprimée avec succès",
-            type: "message"
-          }
+            type: "message",
+          },
         },
         {
           title: "TRUNCATE - Vider complètement une table",
           sqlCode: `TRUNCATE TABLE sessions;`,
-          sqlResult: { 
+          sqlResult: {
             message: "Table 'sessions' vidée complètement",
-            type: "message"
-          }
+            type: "message",
+          },
         },
         {
           title: "Différence DELETE vs TRUNCATE",
@@ -189,11 +217,11 @@ DELETE FROM logs WHERE date_creation < '2024-01-01';
 
 -- TRUNCATE : vide toute la table, plus rapide
 TRUNCATE TABLE temp_data;`,
-          sqlResult: { 
+          sqlResult: {
             message: "DELETE : 1500 lignes supprimées | TRUNCATE : table vidée",
-            type: "message"
-          }
-        }
+            type: "message",
+          },
+        },
       ],
       description:
         "DELETE pour une suppression sélective, TRUNCATE pour vider complètement une table rapidement.",

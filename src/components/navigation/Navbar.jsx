@@ -10,9 +10,7 @@ import { NAVBAR_BUTTON_STYLES } from "@/config/colors";
 export default function Navbar() {
   const pathname = usePathname();
 
-  const navigationItems = Object.values(PAGES_CONFIG).sort(
-    (a, b) => a.order - b.order
-  );
+  const navigationItems = PAGES_CONFIG;
 
   const isActive = (href) => pathname === href;
 
@@ -20,12 +18,12 @@ export default function Navbar() {
     <nav className="flex items-center space-x-4">
       {/* Navigation Items */}
       {navigationItems.map((item, index) => {
-        const beltKey = item.key;
+        const beltKey = item.href.replace("/", "") || "white";
         const buttonStyles = NAVBAR_BUTTON_STYLES[beltKey] || NAVBAR_BUTTON_STYLES.white;
 
         return (
           <Link
-            key={`${item.key}-${index}`}
+            key={`${beltKey}-${index}`}
             href={item.href}
             className={`border-pop ${isActive(item.href) ? "active" : ""} ${
               buttonStyles.bg

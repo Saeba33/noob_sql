@@ -4,7 +4,14 @@ export const greenBeltContent = {
   // Belt configuration
   belt: "green",
   description: "Contrôle et filtrage des données",
-  topics: ["WHERE", "Opérateurs de comparaison", "AND, OR, IN, LIKE", "ORDER BY", "NULL", "LIMIT, OFFSET"],
+  topics: [
+    "WHERE",
+    "Opérateurs de comparaison",
+    "AND, OR, IN, LIKE",
+    "ORDER BY",
+    "NULL",
+    "LIMIT, OFFSET",
+  ],
   colors: SECTION_DATA_COLORS.green,
 
   // Content sections
@@ -21,7 +28,8 @@ export const greenBeltContent = {
   accordions: [
     {
       title: "WHERE - Clause Fondamentale",
-      content: "Filtrez vos données avec la clause WHERE, base de toute requête précise.",
+      content:
+        "Filtrez vos données avec la clause WHERE, base de toute requête précise.",
       sqlQueries: [
         {
           title: "Filtrage basique par âge",
@@ -31,8 +39,8 @@ WHERE age >= 18;`,
           sqlResult: [
             { nom: "Alice Dupont", email: "alice@email.com", age: 28 },
             { nom: "Bob Martin", email: "bob@email.com", age: 32 },
-            { nom: "David Moreau", email: "david@email.com", age: 45 }
-          ]
+            { nom: "David Moreau", email: "david@email.com", age: 45 },
+          ],
         },
         {
           title: "Filtrage par prix et stock",
@@ -42,8 +50,8 @@ WHERE prix > 100 AND stock > 0;`,
           sqlResult: [
             { nom: "Ordinateur Portable", prix: 899, stock: 5 },
             { nom: "Smartphone Pro", prix: 1299, stock: 3 },
-            { nom: "Tablette", prix: 299, stock: 8 }
-          ]
+            { nom: "Tablette", prix: 299, stock: 8 },
+          ],
         },
         {
           title: "Filtrage par date",
@@ -51,9 +59,17 @@ WHERE prix > 100 AND stock > 0;`,
 FROM commandes 
 WHERE date_commande = '2024-01-15';`,
           sqlResult: [
-            { numero_commande: "CMD001", client: "Alice Dupont", date_commande: "2024-01-15" },
-            { numero_commande: "CMD015", client: "Bob Martin", date_commande: "2024-01-15" }
-          ]
+            {
+              numero_commande: "CMD001",
+              client: "Alice Dupont",
+              date_commande: "2024-01-15",
+            },
+            {
+              numero_commande: "CMD015",
+              client: "Bob Martin",
+              date_commande: "2024-01-15",
+            },
+          ],
         },
         {
           title: "Filtrage avec calcul",
@@ -63,24 +79,24 @@ WHERE age * 365 > 10000;`,
           sqlResult: [
             { nom: "Alice Dupont", age: 28, jours_vecu: 10220 },
             { nom: "Bob Martin", age: 32, jours_vecu: 11680 },
-            { nom: "David Moreau", age: 45, jours_vecu: 16425 }
-          ]
-        }
+            { nom: "David Moreau", age: 45, jours_vecu: 16425 },
+          ],
+        },
       ],
-      description: "WHERE est la clause la plus importante pour filtrer vos données. Sans elle, vous récupérez tout !",
+      description:
+        "WHERE est la clause la plus importante pour filtrer vos données. Sans elle, vous récupérez tout !",
     },
     {
       title: "Opérateurs de Comparaison",
-      content: "Utilisez les opérateurs pour comparer et filtrer vos données avec précision.",
+      content:
+        "Utilisez les opérateurs pour comparer et filtrer vos données avec précision.",
       sqlQueries: [
         {
           title: "Égalité exacte",
           sqlCode: `SELECT nom, age 
 FROM utilisateurs 
 WHERE age = 25;`,
-          sqlResult: [
-            { nom: "Claire Durand", age: 25 }
-          ]
+          sqlResult: [{ nom: "Claire Durand", age: 25 }],
         },
         {
           title: "Inégalité (différent de)",
@@ -91,8 +107,8 @@ WHERE age != 25;`,
             { nom: "Alice Dupont", age: 28 },
             { nom: "Bob Martin", age: 32 },
             { nom: "David Moreau", age: 45 },
-            { nom: "Emma Bernard", age: 30 }
-          ]
+            { nom: "Emma Bernard", age: 30 },
+          ],
         },
         {
           title: "Supérieur et inférieur",
@@ -102,8 +118,8 @@ WHERE prix > 200 AND prix < 1000;`,
           sqlResult: [
             { nom: "Ordinateur Portable", prix: 899 },
             { nom: "Tablette", prix: 299 },
-            { nom: "Casque Audio", prix: 199 }
-          ]
+            { nom: "Casque Audio", prix: 199 },
+          ],
         },
         {
           title: "Comparaison de texte",
@@ -112,15 +128,17 @@ FROM utilisateurs
 WHERE nom >= 'C' AND nom < 'E';`,
           sqlResult: [
             { nom: "Claire Durand", email: "claire@email.com" },
-            { nom: "David Moreau", email: "david@email.com" }
-          ]
-        }
+            { nom: "David Moreau", email: "david@email.com" },
+          ],
+        },
       ],
-      description: "Les opérateurs de comparaison sont vos outils de précision pour extraire exactement ce que vous cherchez.",
+      description:
+        "Les opérateurs de comparaison sont vos outils de précision pour extraire exactement ce que vous cherchez.",
     },
     {
       title: "Opérateurs Logiques",
-      content: "Combinez et affinez vos conditions avec AND, OR, IN, LIKE et BETWEEN.",
+      content:
+        "Combinez et affinez vos conditions avec AND, OR, IN, LIKE et BETWEEN.",
       sqlQueries: [
         {
           title: "AND - Toutes les conditions",
@@ -131,8 +149,8 @@ WHERE age >= 25 AND age <= 35 AND email IS NOT NULL;`,
             { nom: "Alice Dupont", age: 28, email: "alice@email.com" },
             { nom: "Bob Martin", age: 32, email: "bob@email.com" },
             { nom: "Claire Durand", age: 25, email: "claire@email.com" },
-            { nom: "Emma Bernard", age: 30, email: "emma@email.com" }
-          ]
+            { nom: "Emma Bernard", age: 30, email: "emma@email.com" },
+          ],
         },
         {
           title: "OR - Au moins une condition",
@@ -140,11 +158,15 @@ WHERE age >= 25 AND age <= 35 AND email IS NOT NULL;`,
 FROM produits 
 WHERE categorie = 'electronique' OR prix < 100;`,
           sqlResult: [
-            { nom: "Ordinateur Portable", categorie: "electronique", prix: 899 },
+            {
+              nom: "Ordinateur Portable",
+              categorie: "electronique",
+              prix: 899,
+            },
             { nom: "Livre SQL", categorie: "livre", prix: 25 },
             { nom: "Smartphone Pro", categorie: "electronique", prix: 1299 },
-            { nom: "Stylo", categorie: "bureau", prix: 5 }
-          ]
+            { nom: "Stylo", categorie: "bureau", prix: 5 },
+          ],
         },
         {
           title: "IN - Valeurs dans une liste",
@@ -153,8 +175,8 @@ FROM utilisateurs
 WHERE age IN (25, 30, 35, 40);`,
           sqlResult: [
             { nom: "Claire Durand", age: 25 },
-            { nom: "Emma Bernard", age: 30 }
-          ]
+            { nom: "Emma Bernard", age: 30 },
+          ],
         },
         {
           title: "LIKE - Correspondance de motif",
@@ -166,8 +188,8 @@ WHERE email LIKE '%@email.com';`,
             { nom: "Bob Martin", email: "bob@email.com" },
             { nom: "Claire Durand", email: "claire@email.com" },
             { nom: "David Moreau", email: "david@email.com" },
-            { nom: "Emma Bernard", email: "emma@email.com" }
-          ]
+            { nom: "Emma Bernard", email: "emma@email.com" },
+          ],
         },
         {
           title: "BETWEEN - Intervalle de valeurs",
@@ -177,11 +199,12 @@ WHERE prix BETWEEN 200 AND 800;`,
           sqlResult: [
             { nom: "Tablette", prix: 299 },
             { nom: "Casque Audio", prix: 199 },
-            { nom: "Montre Connectée", prix: 249 }
-          ]
-        }
+            { nom: "Montre Connectée", prix: 249 },
+          ],
+        },
       ],
-      description: "Les opérateurs logiques vous permettent de créer des filtres complexes et précis.",
+      description:
+        "Les opérateurs logiques vous permettent de créer des filtres complexes et précis.",
     },
     {
       title: "ORDER BY - Tri des Résultats",
@@ -197,8 +220,8 @@ ORDER BY age ASC;`,
             { nom: "Alice Dupont", age: 28 },
             { nom: "Emma Bernard", age: 30 },
             { nom: "Bob Martin", age: 32 },
-            { nom: "David Moreau", age: 45 }
-          ]
+            { nom: "David Moreau", age: 45 },
+          ],
         },
         {
           title: "Tri décroissant par prix",
@@ -210,8 +233,8 @@ ORDER BY prix DESC;`,
             { nom: "Ordinateur Portable", prix: 899 },
             { nom: "Tablette", prix: 299 },
             { nom: "Montre Connectée", prix: 249 },
-            { nom: "Casque Audio", prix: 199 }
-          ]
+            { nom: "Casque Audio", prix: 199 },
+          ],
         },
         {
           title: "Tri sur plusieurs colonnes",
@@ -223,11 +246,12 @@ ORDER BY ville ASC, age DESC;`,
             { nom: "Bob Martin", age: 32, ville: "Paris" },
             { nom: "Alice Dupont", age: 28, ville: "Paris" },
             { nom: "Emma Bernard", age: 30, ville: "Toulouse" },
-            { nom: "Claire Durand", age: 25, ville: "Toulouse" }
-          ]
-        }
+            { nom: "Claire Durand", age: 25, ville: "Toulouse" },
+          ],
+        },
       ],
-      description: "ORDER BY organise vos résultats. Indispensable pour une présentation claire des données.",
+      description:
+        "ORDER BY organise vos résultats. Indispensable pour une présentation claire des données.",
     },
     {
       title: "NULL - Gestion des Valeurs Nulles",
@@ -240,8 +264,8 @@ FROM utilisateurs
 WHERE telephone IS NULL;`,
           sqlResult: [
             { nom: "Claire Durand", telephone: null },
-            { nom: "Emma Bernard", telephone: null }
-          ]
+            { nom: "Emma Bernard", telephone: null },
+          ],
         },
         {
           title: "Rechercher les valeurs non NULL",
@@ -251,8 +275,8 @@ WHERE telephone IS NOT NULL;`,
           sqlResult: [
             { nom: "Alice Dupont", telephone: "06 12 34 56 78" },
             { nom: "Bob Martin", telephone: "07 98 76 54 32" },
-            { nom: "David Moreau", telephone: "06 11 22 33 44" }
-          ]
+            { nom: "David Moreau", telephone: "06 11 22 33 44" },
+          ],
         },
         {
           title: "Remplacer NULL par une valeur",
@@ -263,8 +287,8 @@ FROM utilisateurs;`,
             { nom: "Bob Martin", contact: "07 98 76 54 32" },
             { nom: "Claire Durand", contact: "Non renseigné" },
             { nom: "David Moreau", contact: "06 11 22 33 44" },
-            { nom: "Emma Bernard", contact: "Non renseigné" }
-          ]
+            { nom: "Emma Bernard", contact: "Non renseigné" },
+          ],
         },
         {
           title: "Conditions avec NULL",
@@ -275,11 +299,12 @@ WHERE age > 25 OR age IS NULL;`,
             { nom: "Alice Dupont", age: 28 },
             { nom: "Bob Martin", age: 32 },
             { nom: "David Moreau", age: 45 },
-            { nom: "Emma Bernard", age: 30 }
-          ]
-        }
+            { nom: "Emma Bernard", age: 30 },
+          ],
+        },
       ],
-      description: "NULL représente l'absence de valeur. Attention : NULL = NULL est toujours FALSE !",
+      description:
+        "NULL représente l'absence de valeur. Attention : NULL = NULL est toujours FALSE !",
     },
     {
       title: "LIMIT et OFFSET - Pagination",
@@ -293,8 +318,8 @@ LIMIT 3;`,
           sqlResult: [
             { nom: "Alice Dupont", email: "alice@email.com" },
             { nom: "Bob Martin", email: "bob@email.com" },
-            { nom: "Claire Durand", email: "claire@email.com" }
-          ]
+            { nom: "Claire Durand", email: "claire@email.com" },
+          ],
         },
         {
           title: "Pagination - Page 2",
@@ -304,8 +329,8 @@ ORDER BY nom
 LIMIT 2 OFFSET 2;`,
           sqlResult: [
             { nom: "Claire Durand", email: "claire@email.com" },
-            { nom: "David Moreau", email: "david@email.com" }
-          ]
+            { nom: "David Moreau", email: "david@email.com" },
+          ],
         },
         {
           title: "Top 3 des produits les plus chers",
@@ -316,8 +341,8 @@ LIMIT 3;`,
           sqlResult: [
             { nom: "Smartphone Pro", prix: 1299 },
             { nom: "Ordinateur Portable", prix: 899 },
-            { nom: "Tablette", prix: 299 }
-          ]
+            { nom: "Tablette", prix: 299 },
+          ],
         },
         {
           title: "Pagination efficace",
@@ -328,11 +353,12 @@ ORDER BY nom
 LIMIT 2 OFFSET 0;`,
           sqlResult: [
             { nom: "Alice Dupont", age: 28 },
-            { nom: "Bob Martin", age: 32 }
-          ]
-        }
+            { nom: "Bob Martin", age: 32 },
+          ],
+        },
       ],
-      description: "LIMIT et OFFSET sont essentiels pour la pagination et l'optimisation des performances sur grandes tables.",
-    }
+      description:
+        "LIMIT et OFFSET sont essentiels pour la pagination et l'optimisation des performances sur grandes tables.",
+    },
   ],
 };

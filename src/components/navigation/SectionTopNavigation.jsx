@@ -1,10 +1,10 @@
 "use client";
 
+import { SECTION_NAV_COLORS } from "@/config/colors";
 import { useNavigation } from "@/hooks/useNavigation";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
-import { SECTION_NAV_COLORS } from "@/config/colors";
 
 export default function SectionTopNavigation() {
   const { getSectionNavigation } = useNavigation();
@@ -40,8 +40,14 @@ export default function SectionTopNavigation() {
               href={previous.href}
               className="inline-flex items-center px-4 py-2 bg-white rounded-lg shadow-sm focus:outline-none group"
             >
-              <MdChevronLeft className={`w-5 h-5 mr-1 ${textColor} group-hover:opacity-70 transition-opacity`} />
-              <span className={`text-sm font-medium ${textColor} group-hover:opacity-70 transition-opacity`}>{getPreviousLabel()}</span>
+              <MdChevronLeft
+                className={`w-5 h-5 mr-1 ${textColor} group-hover:opacity-70 transition-opacity`}
+              />
+              <span
+                className={`text-sm font-medium ${textColor} group-hover:opacity-70 transition-opacity`}
+              >
+                {getPreviousLabel()}
+              </span>
             </Link>
           )}
         </div>
@@ -53,8 +59,14 @@ export default function SectionTopNavigation() {
               href={next.href}
               className="inline-flex items-center px-4 py-2 bg-white rounded-lg shadow-sm focus:outline-none group"
             >
-              <span className={`text-sm font-medium ${textColor} group-hover:opacity-70 transition-opacity`}>{getNextLabel()}</span>
-              <MdChevronRight className={`w-5 h-5 ml-1 ${textColor} group-hover:opacity-70 transition-opacity`} />
+              <span
+                className={`text-sm font-medium ${textColor} group-hover:opacity-70 transition-opacity`}
+              >
+                {getNextLabel()}
+              </span>
+              <MdChevronRight
+                className={`w-5 h-5 ml-1 ${textColor} group-hover:opacity-70 transition-opacity`}
+              />
             </Link>
           )}
         </div>
