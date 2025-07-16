@@ -1,11 +1,11 @@
 "use client";
 
-import { usePathname } from "next/navigation";
-import Link from "next/link";
 import BeltIcon from "@/components/ui/BeltIcon";
-import { FaFistRaised } from "react-icons/fa";
-import { PAGES_CONFIG } from "@/config/navigation";
 import { BELT_COLORS } from "@/config/colors";
+import { PAGES_CONFIG } from "@/config/navigation";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { FaFistRaised } from "react-icons/fa";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -27,18 +27,20 @@ export default function Navbar() {
             href={item.href}
             className={`border-pop ${isActive(item.href) ? "active" : ""} ${
               colors.bg
-            } border-2 border-gray-300 ${colors.text} hover:bg-opacity-80 transition-colors rounded-lg px-3 py-2 lg:px-4 lg:py-2 flex items-center text-sm lg:text-base`}
+            } border-2 border-gray-300 ${
+              colors.text
+            } hover:bg-opacity-80 transition-colors rounded-lg px-3 py-2 lg:px-4 lg:py-2 flex items-center text-sm lg:text-base`}
           >
-            <div className={`flex items-center justify-center w-7 h-7 lg:w-8 lg:h-8 rounded-full ${colors.bg} shadow-sm`}>
+            <div
+              className={`flex items-center justify-center w-7 h-7 lg:w-8 lg:h-8 rounded-full ${colors.bg} shadow-sm`}
+            >
               {item.iconType === "belt" ? (
                 <BeltIcon belt={beltKey} size={14} className="lg:w-4 lg:h-4" />
               ) : (
                 <FaFistRaised size={14} className="lg:w-4 lg:h-4" />
               )}
             </div>
-            <span className="ml-2 font-medium">
-              {item.title}
-            </span>
+            <span className="ml-2 font-medium">{item.title}</span>
           </Link>
         );
       })}

@@ -3,13 +3,13 @@ import Link from "next/link";
 
 export default function Header() {
   return (
-    <header className="z-50 sticky top-0 w-full bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-sm">
+    <header className="z-50 sticky top-0 w-full bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-sm ">
       <div className=" mx-auto px-8">
-        <div className="flex justify-between items-center h-24 lg:h-28">
+        <div className="flex justify-between items-center h-24 lg:h-28 gap-4">
           {/* Logo + Title */}
-          <Link 
-            href="/" 
-            className="flex items-center gap-3 hover:opacity-80 transition-opacity duration-200 border-2 border-gray-300 rounded-lg p-2 hover:border-gray-600"
+          <Link
+            href="/"
+            className="flex items-center gap-3 transition-border duration-500 border-2 border-gray-300 rounded-lg p-2 hover:border-gray-600"
           >
             <span className="text-3xl lg:text-3xl">🥋</span>
             <div className="flex flex-col">
