@@ -1,8 +1,8 @@
 import { GiBlackBelt } from "react-icons/gi";
-import { BELT_ICON_COLORS } from "@/config/colors";
+import { BELT_COLORS } from "@/config/colors";
 
 export default function BeltIcon({ belt, className = "", size = 64 }) {
-  const color = BELT_ICON_COLORS[belt] || BELT_ICON_COLORS.white;
+  const color = BELT_COLORS[belt]?.icon || BELT_COLORS.white.icon;
   
   return (
     <GiBlackBelt 

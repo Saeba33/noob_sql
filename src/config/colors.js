@@ -1,4 +1,3 @@
-// Configuration simplifiée des couleurs par ceinture
 export const BELT_COLORS = {
   white: {
     icon: "#6B7280",
@@ -41,9 +40,4 @@ export const BELT_COLORS = {
     text: "text-red-800",
   },
 };
-
-// Export simplifié pour compatibilité
-export const BELT_ICON_COLORS = Object.fromEntries(
-  Object.entries(BELT_COLORS).map(([belt, colors]) => [belt, colors.icon])
-);
 
