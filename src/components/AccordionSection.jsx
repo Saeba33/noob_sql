@@ -33,7 +33,7 @@ export default function AccordionSection({
   description,
   className = "",
 }) {
-  const { isOpen, toggleSection } = useAccordionSection();
+  const { isOpen, toggle } = useAccordionSection();
   const pathname = usePathname();
 
   // Determine current belt and get colors
@@ -59,7 +59,7 @@ export default function AccordionSection({
     >
       {/* Accordion header */}
       <button
-        onClick={toggleSection}
+        onClick={toggle}
         className={`w-full text-left p-6 flex items-center justify-between bg-white hover:bg-gray-50 transition-colors duration-200 focus:outline-none relative cursor-pointer ${
           isOpen ? "rounded-t-xl" : "rounded-xl"
         }`}

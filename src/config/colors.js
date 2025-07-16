@@ -28,7 +28,6 @@ const s = (belt, tw, isBlack = belt === 'black', isPractice = belt === 'practice
 // Exports générés automatiquement
 export const BELT_ICON_COLORS = Object.fromEntries(BELTS.map(([k, c]) => [k, c]));
 export const NAVBAR_BUTTON_STYLES = Object.fromEntries(BELTS.map(([k, _, tw]) => [k, s(k, tw).button]));
-export const getBeltStyles = (belt) => { const [_, __, tw] = BELTS.find(([k]) => k === belt) || BELTS[0]; return s(belt, tw); };
 
 // Compatibilité (génération automatique)
 export const SECTION_HEADER_COLORS = Object.fromEntries(BELTS.map(([k, _, tw]) => [k, s(k, tw).section.headerBorder]));

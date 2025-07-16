@@ -1,25 +1,11 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 
-// Manages the open/close state and provides toggle functionality
 export function useAccordionSection(initialState = false) {
   const [isOpen, setIsOpen] = useState(initialState);
 
-  const toggleSection = () => {
-    setIsOpen((prev) => !prev);
-  };
+  const toggle = useCallback(() => setIsOpen((open) => !open), []);
+  const open = useCallback(() => setIsOpen(true), []);
+  const close = useCallback(() => setIsOpen(false), []);
 
-  const open = () => {
-    setIsOpen(true);
-  };
-
-  const close = () => {
-    setIsOpen(false);
-  };
-
-  return {
-    isOpen,
-    toggleSection,
-    open,
-    close,
-  };
+  return { isOpen, toggle, open, close };
 }
