@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 
 const VALID_BELTS = new Set([
   "white",
-  "yellow", 
+  "yellow",
   "orange",
   "green",
   "blue",
@@ -23,17 +23,14 @@ async function getBeltContent(belt) {
   }
 }
 
-export async function useBeltData(belt) {
+export async function getBeltData(belt) {
   const beltContent = await getBeltContent(belt);
-  
+
   if (!beltContent) {
     notFound();
   }
 
-  return {
-    beltContent,
-    validBelts: VALID_BELTS,
-  };
+  return { beltContent };
 }
 
 export { VALID_BELTS };

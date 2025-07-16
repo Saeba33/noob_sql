@@ -2,11 +2,11 @@ import AccordionList from "@/components/AccordionList";
 import SectionBottomNavigation from "@/components/navigation/SectionBottomNavigation";
 import SectionTopNavigation from "@/components/navigation/SectionTopNavigation";
 import SectionHeader from "@/components/ui/SectionHeader";
-import { useBeltData, VALID_BELTS } from "@/hooks/useBeltData";
+import { getBeltData, VALID_BELTS } from "@/lib/getBeltData";
 
 export default async function BeltPage({ params }) {
-  const { belt } = params;
-  const { beltContent } = await useBeltData(belt);
+  const { belt } = await params;
+  const { beltContent } = await getBeltData(belt);
 
   return (
     <div className={`min-h-screen ${beltContent.colors.bg}`}>
@@ -19,7 +19,6 @@ export default async function BeltPage({ params }) {
           descriptionClassName={`${beltContent.colors.text} leading-relaxed`}
           className="mb-6"
         />
-
         <SectionTopNavigation currentLevel={belt} />
         <AccordionList accordions={beltContent.accordions} />
         <SectionBottomNavigation currentLevel={belt} />
