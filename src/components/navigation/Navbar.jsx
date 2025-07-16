@@ -15,7 +15,7 @@ export default function Navbar() {
   const isActive = (href) => pathname === href;
 
   return (
-    <nav className="flex items-center space-x-4">
+    <nav className="flex items-center space-x-3 lg:space-x-4">
       {/* Navigation Items */}
       {navigationItems.map((item, index) => {
         const beltKey = item.href.replace("/", "") || "white";
@@ -27,16 +27,16 @@ export default function Navbar() {
             href={item.href}
             className={`border-pop ${isActive(item.href) ? "active" : ""} ${
               colors.bg
-            } border-2 border-gray-300 ${colors.text} hover:bg-opacity-80 transition-colors rounded-lg px-4 py-2 flex items-center`}
+            } border-2 border-gray-300 ${colors.text} hover:bg-opacity-80 transition-colors rounded-lg px-3 py-2 lg:px-4 lg:py-2 flex items-center text-sm lg:text-base`}
           >
-            <div className={`flex items-center justify-center w-8 h-8 rounded-full ${colors.bg} shadow-sm`}>
+            <div className={`flex items-center justify-center w-7 h-7 lg:w-8 lg:h-8 rounded-full ${colors.bg} shadow-sm`}>
               {item.iconType === "belt" ? (
-                <BeltIcon belt={beltKey} size={16} />
+                <BeltIcon belt={beltKey} size={14} className="lg:w-4 lg:h-4" />
               ) : (
-                <FaFistRaised size={16} />
+                <FaFistRaised size={14} className="lg:w-4 lg:h-4" />
               )}
             </div>
-            <span className="ml-2">
+            <span className="ml-2 font-medium">
               {item.title}
             </span>
           </Link>

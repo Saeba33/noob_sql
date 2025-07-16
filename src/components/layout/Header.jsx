@@ -4,19 +4,25 @@ import Link from "next/link";
 export default function Header() {
   return (
     <header className="z-50 sticky top-0 w-full bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-sm">
-      <div className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
+      <div className=" mx-auto px-8">
+        <div className="flex justify-between items-center h-24 lg:h-28">
           {/* Logo + Title */}
           <Link 
             href="/" 
-            className="flex items-center justify-center gap-2 space-y-3"
+            className="flex items-center gap-3 hover:opacity-80 transition-opacity duration-200 border-2 border-gray-300 rounded-lg p-2 hover:border-gray-600"
           >
-            <span className="text-2xl">🥋</span>
-            <span className="text-lg tracking-tight">NoobSQL</span>
+            <span className="text-3xl lg:text-3xl">🥋</span>
+            <div className="flex flex-col">
+              <span className="text-xl font-bold tracking-tight leading-none">
+                NoobSQL
+              </span>
+            </div>
           </Link>
 
           {/* Navigation */}
-          <Navbar />
+          <div className="flex items-center">
+            <Navbar />
+          </div>
         </div>
       </div>
     </header>
