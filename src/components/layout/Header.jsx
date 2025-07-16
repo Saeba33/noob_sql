@@ -9,12 +9,10 @@ export default function Header() {
           {/* Logo + Titre */}
           <Link 
             href="/" 
-            className="flex items-center space-x-3 py-2 px-3 my-3 mx-2 border-2 border-gray-300 rounded-lg hover:border-gray-400 transition-colors focus:outline-none"
+            className="flex items-center space-x-3 py-2 px-3 my-3 mx-2 border-2 border-gray-300 rounded-lg bg-indigo-500 text-gray-900 font-bold border-pop hover:border-gray-400 hover:bg-indigo-600 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500"
           >
             <span className="text-2xl">🥋</span>
-            <span className="text-xl font-bold text-gray-900 tracking-tight">
-              NoobSQL
-            </span>
+            <span className="text-xl tracking-tight">NoobSQL</span>
           </Link>
 
           {/* Navigation */}
