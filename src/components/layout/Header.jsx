@@ -9,9 +9,9 @@ export default function Header() {
           {/* Logo + Title */}
           <Link 
             href="/" 
-            className="flex items-center space-x-3 py-2 px-4 rounded-lg bg-black text-white font-bold hover:bg-gray-800 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 h-[44px]"
+            className="flex items-center justify-center gap-2 space-y-3"
           >
-            <span className="text-xl">🥋</span>
+            <span className="text-2xl">🥋</span>
             <span className="text-lg tracking-tight">NoobSQL</span>
           </Link>
 
