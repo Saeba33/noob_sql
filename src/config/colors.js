@@ -1,222 +1,190 @@
-// === BELT ICON COLORS ===
-export const BELT_ICON_COLORS = {
-  white: "#E5E7EB",
-  yellow: "#EAB308",
-  orange: "#F97316",
-  green: "#22C55E",
-  blue: "#3B82F6",
-  brown: "#8B4513",
-  black: "#1F2937"
-};
-
-// === NAVBAR COLORS ===
-export const NAVBAR_COLORS = {
+// === BASE COLORS ===
+const BASE_COLORS = {
   white: {
-    ring: "ring-gray-400",
-    hover: "hover:bg-gray-50",
-    text: "text-gray-700",
-    activeText: "text-gray-800",
-    activeBg: "bg-gray-50",
-    hoverBorder: "hover:border-gray-400"
+    primary: "#E5E7EB",
+    bg50: "bg-gray-50",
+    bg100: "bg-gray-100",
+    bg200: "bg-gray-200",
+    border300: "border-gray-300",
+    border400: "border-gray-400",
+    border800: "border-gray-800",
+    text700: "text-gray-700",
+    text800: "text-gray-800",
+    text900: "text-gray-900",
+    iconBg: "bg-gray-700"
   },
   yellow: {
-    ring: "ring-yellow-400",
-    hover: "hover:bg-yellow-50",
-    text: "text-yellow-700",
-    activeText: "text-yellow-800",
-    activeBg: "bg-yellow-50",
-    hoverBorder: "hover:border-yellow-400"
+    primary: "#EAB308",
+    bg50: "bg-yellow-50",
+    bg100: "bg-yellow-100",
+    bg200: "bg-yellow-200",
+    border300: "border-yellow-300",
+    border400: "border-yellow-400",
+    border900: "border-yellow-900",
+    text700: "text-yellow-700",
+    text800: "text-yellow-800",
+    text900: "text-yellow-900",
+    text950: "text-yellow-950",
+    iconBg: "bg-white"
   },
   orange: {
-    ring: "ring-orange-400",
-    hover: "hover:bg-orange-50",
-    text: "text-orange-700",
-    activeText: "text-orange-800",
-    activeBg: "bg-orange-50",
-    hoverBorder: "hover:border-orange-400"
+    primary: "#F97316",
+    bg50: "bg-orange-50",
+    bg100: "bg-orange-100",
+    bg200: "bg-orange-200",
+    border300: "border-orange-300",
+    border400: "border-orange-400",
+    text700: "text-orange-700",
+    text800: "text-orange-800",
+    text900: "text-orange-900",
+    iconBg: "bg-white"
   },
   green: {
-    ring: "ring-green-400",
-    hover: "hover:bg-green-50",
-    text: "text-green-700",
-    activeText: "text-green-800",
-    activeBg: "bg-green-50",
-    hoverBorder: "hover:border-green-400"
+    primary: "#22C55E",
+    bg50: "bg-green-50",
+    bg100: "bg-green-100",
+    bg200: "bg-green-200",
+    border300: "border-green-300",
+    border400: "border-green-400",
+    text700: "text-green-700",
+    text800: "text-green-800",
+    text900: "text-green-900",
+    iconBg: "bg-white"
   },
   blue: {
-    ring: "ring-blue-400",
-    hover: "hover:bg-blue-50",
-    text: "text-blue-700",
-    activeText: "text-blue-800",
-    activeBg: "bg-blue-50",
-    hoverBorder: "hover:border-blue-400"
+    primary: "#3B82F6",
+    bg50: "bg-blue-50",
+    bg100: "bg-blue-100",
+    bg200: "bg-blue-200",
+    border300: "border-blue-300",
+    border400: "border-blue-400",
+    text700: "text-blue-700",
+    text800: "text-blue-800",
+    text900: "text-blue-900",
+    iconBg: "bg-white"
   },
   brown: {
-    ring: "ring-yellow-900",
-    hover: "hover:bg-yellow-50",
-    text: "text-yellow-900",
-    activeText: "text-yellow-950",
-    activeBg: "bg-yellow-50",
-    hoverBorder: "hover:border-yellow-900"
+    primary: "#8B4513",
+    bg50: "bg-amber-50", // Note: utilise amber au lieu de brown
+    bg100: "bg-yellow-100",
+    bg200: "bg-yellow-200",
+    border300: "border-yellow-300",
+    border400: "border-yellow-400",
+    border600: "border-amber-600",
+    border900: "border-yellow-900",
+    text700: "text-yellow-700",
+    text800: "text-amber-800",
+    text900: "text-yellow-900",
+    text950: "text-yellow-950",
+    iconBg: "bg-white"
   },
   black: {
-    ring: "ring-gray-800",
-    hover: "hover:bg-gray-50",
-    text: "text-gray-800",
-    activeText: "text-gray-900",
-    activeBg: "bg-gray-50",
-    hoverBorder: "hover:border-gray-800"
+    primary: "#1F2937",
+    bg50: "bg-gray-50",
+    bg100: "bg-gray-100",
+    bg700: "bg-gray-700",
+    bg800: "bg-gray-800",
+    bg900: "bg-gray-900",
+    border500: "border-gray-500",
+    border600: "border-gray-600",
+    border800: "border-gray-800",
+    border900: "border-gray-900",
+    text100: "text-gray-100",
+    text800: "text-gray-800",
+    text900: "text-gray-900",
+    iconBg: "bg-white"
   },
   practice: {
-    ring: "ring-purple-600",
-    hover: "hover:bg-purple-50",
-    text: "text-purple-700",
-    hoverBorder: "hover:border-purple-600"
+    primary: "#DC2626",
+    bg50: "bg-red-50",
+    border500: "border-red-500",
+    text800: "text-red-800",
+    iconBg: "bg-white"
   }
 };
 
-// === SECTION HEADER COLORS ===
-export const SECTION_HEADER_COLORS = {
-  white: "border-gray-400",
-  yellow: "border-yellow-400",
-  orange: "border-orange-400",
-  green: "border-green-400",
-  blue: "border-blue-400",
-  brown: "border-yellow-900",
-  black: "border-gray-800"
-};
+// === BELT ICON COLORS ===
+export const BELT_ICON_COLORS = Object.fromEntries(
+  Object.entries(BASE_COLORS).map(([key, colors]) => [key, colors.primary])
+);
 
-// === SECTION DESCRIPTION COLORS ===
-export const SECTION_DESC_COLORS = {
-  white: {
-    bg: "bg-gray-50",
-    text: "text-gray-800",
-    border: "border-l-gray-400"
-  },
-  yellow: {
-    bg: "bg-yellow-50",
-    text: "text-yellow-800",
-    border: "border-l-yellow-400"
-  },
-  orange: {
-    bg: "bg-orange-50",
-    text: "text-orange-800",
-    border: "border-l-orange-400"
-  },
-  green: {
-    bg: "bg-green-50",
-    text: "text-green-800",
-    border: "border-l-green-400"
-  },
-  blue: {
-    bg: "bg-blue-50",
-    text: "text-blue-800",
-    border: "border-l-blue-400"
-  },
-  brown: {
-    bg: "bg-yellow-50",
-    text: "text-yellow-950",
-    border: "border-l-yellow-900"
-  },
-  black: {
-    bg: "bg-gray-50",
-    text: "text-gray-900",
-    border: "border-l-gray-800"
-  }
-};
+// === NAVBAR BUTTON STYLES ===
+export const NAVBAR_BUTTON_STYLES = Object.fromEntries(
+  Object.entries(BASE_COLORS).map(([key, colors]) => [
+    key,
+    {
+      bg: colors.bg50 || colors.bg100,
+      border: colors.border400 || colors.border500 || colors.border600,
+      text: colors.text800,
+      iconBg: colors.iconBg
+    }
+  ])
+);
 
-// === SECTION NAVIGATION COLORS ===
-export const SECTION_NAV_COLORS = {
-  white: "text-gray-800",
-  yellow: "text-yellow-800",
-  orange: "text-orange-800",
-  green: "text-green-800",
-  blue: "text-blue-800",
-  brown: "text-yellow-950",
-  black: "text-gray-800"
-};
+// === SECTION STYLES (Générés automatiquement) ===
+export const SECTION_HEADER_COLORS = Object.fromEntries(
+  Object.entries(BASE_COLORS).map(([key, colors]) => [
+    key,
+    colors.border400 || colors.border800
+  ])
+);
 
-// === HOME NAVIGATION COLORS ===
-export const HOME_NAV_COLORS = {
-  white: { border: "border-l-gray-400", text: "text-gray-700", bg: "bg-white" },
-  yellow: { border: "border-l-yellow-400", text: "text-yellow-700", bg: "bg-white" },
-  orange: { border: "border-l-orange-400", text: "text-orange-700", bg: "bg-white" },
-  green: { border: "border-l-green-400", text: "text-green-700", bg: "bg-white" },
-  blue: { border: "border-l-blue-400", text: "text-blue-700", bg: "bg-white" },
-  brown: { border: "border-l-yellow-900", text: "text-yellow-900", bg: "bg-white" },
-  black: { border: "border-l-gray-800", text: "text-gray-800", bg: "bg-white" }
-};
+export const SECTION_DESC_COLORS = Object.fromEntries(
+  Object.entries(BASE_COLORS).map(([key, colors]) => [
+    key,
+    {
+      bg: colors.bg50,
+      text: colors.text800 || colors.text900,
+      border: colors.border400?.replace('border-', 'border-l-') || `border-l-gray-400`
+    }
+  ])
+);
 
-// === COMPLETE COLORS FOR DATA SECTIONS ===
-export const SECTION_DATA_COLORS = {
-  white: {
-    bg: "bg-gray-50",
-    text: "text-gray-900",
-    border: "border-gray-300",
-    accent: "bg-gray-600",
-    headerBorder: "border-gray-400",
-    tagBg: "bg-gray-200",
-    tagText: "text-gray-800",
-    hover: "hover:bg-gray-100"
-  },
-  yellow: {
-    bg: "bg-yellow-50",
-    text: "text-yellow-900",
-    border: "border-yellow-300",
-    accent: "bg-yellow-600",
-    headerBorder: "border-yellow-400",
-    tagBg: "bg-yellow-200",
-    tagText: "text-yellow-800",
-    hover: "hover:bg-yellow-100"
-  },
-  orange: {
-    bg: "bg-orange-50",
-    text: "text-orange-900",
-    border: "border-orange-300",
-    accent: "bg-orange-600",
-    headerBorder: "border-orange-400",
-    tagBg: "bg-orange-200",
-    tagText: "text-orange-800",
-    hover: "hover:bg-orange-100"
-  },
-  green: {
-    bg: "bg-green-50",
-    text: "text-green-900",
-    border: "border-green-300",
-    accent: "bg-green-600",
-    headerBorder: "border-green-400",
-    tagBg: "bg-green-200",
-    tagText: "text-green-800",
-    hover: "hover:bg-green-100"
-  },
-  blue: {
-    bg: "bg-blue-50",
-    text: "text-blue-900",
-    border: "border-blue-300",
-    accent: "bg-blue-600",
-    headerBorder: "border-blue-400",
-    tagBg: "bg-blue-200",
-    tagText: "text-blue-800",
-    hover: "hover:bg-blue-100"
-  },
-  brown: {
-    bg: "bg-yellow-50",
-    text: "text-yellow-950",
-    border: "border-yellow-300",
-    accent: "bg-yellow-800",
-    headerBorder: "border-yellow-400",
-    tagBg: "bg-yellow-200",
-    tagText: "text-yellow-900",
-    hover: "hover:bg-yellow-100"
-  },
-  black: {
-    bg: "bg-gray-800",
-    text: "text-gray-100",
-    border: "border-gray-600",
-    accent: "bg-gray-900",
-    headerBorder: "border-gray-500",
-    tagBg: "bg-gray-700",
-    tagText: "text-gray-100",
-    hover: "hover:bg-gray-900"
-  }
-};
+export const SECTION_NAV_COLORS = Object.fromEntries(
+  Object.entries(BASE_COLORS).map(([key, colors]) => [
+    key,
+    colors.text800 || colors.text900
+  ])
+);
+
+export const HOME_NAV_COLORS = Object.fromEntries(
+  Object.entries(BASE_COLORS).map(([key, colors]) => [
+    key,
+    {
+      border: colors.border400?.replace('border-', 'border-l-') || `border-l-gray-400`,
+      text: colors.text700 || colors.text800,
+      bg: "bg-white"
+    }
+  ])
+);
+
+export const SECTION_DATA_COLORS = Object.fromEntries(
+  Object.entries(BASE_COLORS).map(([key, colors]) => [
+    key,
+    {
+      bg: colors.bg50,
+      text: colors.text900,
+      border: colors.border300,
+      accent: key === 'black' ? 'bg-gray-600' : `bg-${key}-600`,
+      headerBorder: colors.border400,
+      tagBg: colors.bg200,
+      tagText: colors.text800,
+      hover: colors.bg100?.replace('bg-', 'hover:bg-') || 'hover:bg-gray-100'
+    }
+  ])
+);
+
+// === NAVBAR_COLORS pour compatibilité avec useBeltTheme.js ===
+export const NAVBAR_COLORS = Object.fromEntries(
+  Object.entries(BASE_COLORS).map(([key, colors]) => [
+    key,
+    {
+      ring: key === 'practice' ? 'ring-red-600' : `ring-${key}-400`,
+      hover: colors.bg50?.replace('bg-', 'hover:bg-') || 'hover:bg-gray-50',
+      text: colors.text700 || colors.text800,
+      activeText: colors.text800 || colors.text900,
+      activeBg: colors.bg50,
+      hoverBorder: colors.border400?.replace('border-', 'hover:border-') || 'hover:border-gray-400'
+    }
+  ])
+);

@@ -3,8 +3,9 @@
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import BeltIcon from "@/components/ui/BeltIcon";
+import { FaFistRaised } from "react-icons/fa";
 import { PAGES_CONFIG } from "@/config/navigation";
-import { NAVBAR_COLORS } from "@/config/colors";
+import { NAVBAR_BUTTON_STYLES } from "@/config/colors";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -19,28 +20,27 @@ export default function Navbar() {
     <nav className="flex items-center space-x-4">
       {/* Navigation Items */}
       {navigationItems.map((item, index) => {
-        const beltKey =
-          item.href === "/practice" ? "practice" : item.href.replace("/", "");
-        const beltStyle = NAVBAR_COLORS[beltKey] || NAVBAR_COLORS.white;
-
-        const customStyles = {
-          "/general": "bg-blue-100 border-blue-500",
-          "/advanced-query": "bg-green-100 border-green-500",
-          "/practice": "bg-indigo-100 border-indigo-500 border-dashed",
-        };
-
-        const buttonStyle = customStyles[item.href] || "bg-gray-100 border-gray-300";
+        const beltKey = item.key;
+        const buttonStyles = NAVBAR_BUTTON_STYLES[beltKey] || NAVBAR_BUTTON_STYLES.white;
 
         return (
           <Link
             key={`${item.key}-${index}`}
             href={item.href}
             className={`border-pop ${isActive(item.href) ? "active" : ""} ${
-              beltStyle.activeText
-            } ${beltStyle.activeBg} ${buttonStyle} hover:bg-opacity-80 transition-colors rounded-lg px-4 py-2`}
+              buttonStyles.bg
+            } ${buttonStyles.border} ${buttonStyles.text} hover:bg-opacity-80 transition-colors rounded-lg px-4 py-2 flex items-center border-2`}
           >
-            {item.href !== "/practice" && <BeltIcon belt={beltKey} size={16} />}
-            <span className="ml-2">{item.title}</span>
+            <div className={`flex items-center justify-center w-8 h-8 rounded-full ${buttonStyles.iconBg} shadow-sm`}>
+              {item.iconType === "belt" ? (
+                <BeltIcon belt={beltKey} size={16} />
+              ) : (
+                <FaFistRaised size={16} />
+              )}
+            </div>
+            <span className="ml-2">
+              {item.title}
+            </span>
           </Link>
         );
       })}
