@@ -1,5 +1,8 @@
-import BestPractices from "@/components/ui/sections/orange/BestPractices";
+import { lazy } from "react";
 import { BELT_COLORS } from "@/config/colors";
+
+// Lazy load du composant
+const BestPractices = lazy(() => import("@/components/ui/sections/orange/BestPractices"));
 
 export const orangeBeltContent = {
   // Belt configuration

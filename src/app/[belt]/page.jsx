@@ -4,27 +4,19 @@ import SectionTopNavigation from "@/components/navigation/SectionTopNavigation";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { notFound } from "next/navigation";
 
-// Import belt content for each level
-import { blackBeltContent } from "@/data/sections/black";
-import { blueBeltContent } from "@/data/sections/blue";
-import { brownBeltContent } from "@/data/sections/brown";
-import { greenBeltContent } from "@/data/sections/green";
-import { orangeBeltContent } from "@/data/sections/orange";
-import { whiteBeltContent } from "@/data/sections/white";
-import { yellowBeltContent } from "@/data/sections/yellow";
-
 // Valid belt configuration
-const BELT_CONTENTS = {
-  white: whiteBeltContent,
-  yellow: yellowBeltContent,
-  orange: orangeBeltContent,
-  green: greenBeltContent,
-  blue: blueBeltContent,
-  brown: brownBeltContent,
-  black: blackBeltContent,
-};
+const VALID_BELTS = ["white", "yellow", "orange", "green", "blue", "brown", "black"];
 
-const VALID_BELTS = Object.keys(BELT_CONTENTS);
+// Dynamic import function for belt content
+async function getBeltContent(belt) {
+  try {
+    const module = await import(`@/data/sections/${belt}`);
+    return module[`${belt}BeltContent`];
+  } catch (error) {
+    console.error(`Failed to load content for belt: ${belt}`, error);
+    return null;
+  }
+}
 
 export default async function BeltPage({ params }) {
   const { belt } = await params;
@@ -34,8 +26,12 @@ export default async function BeltPage({ params }) {
     notFound();
   }
 
-  // Get belt content
-  const beltContent = BELT_CONTENTS[belt];
+  // Get belt content dynamically
+  const beltContent = await getBeltContent(belt);
+  
+  if (!beltContent) {
+    notFound();
+  }
 
   return (
     <div className={`min-h-screen ${beltContent.colors.bg}`}>

@@ -3,6 +3,7 @@
 import SqlCodeBlock from "@/components/ui/sql/SqlCodeBlock";
 import SqlResultBlock from "@/components/ui/sql/SqlResultBlock";
 import SqlTableBlock from "@/components/ui/sql/SqlTableBlock";
+import LazyWrapper from "@/components/ui/LazyWrapper";
 import { BELT_COLORS } from "@/config/colors";
 import { sqlToTableDiagram } from "@/data/sqlSyntax";
 import { usePathname } from "next/navigation";
@@ -94,7 +95,11 @@ export default function Accordion({
           )}
 
           {/* External Component */}
-          {externalComponent && <div>{externalComponent}</div>}
+          {externalComponent && (
+            <LazyWrapper>
+              <div>{externalComponent}</div>
+            </LazyWrapper>
+          )}
 
           {/* SQL Queries - Nouvelle structure avec requêtes individuelles */}
           {sqlQueries && sqlQueries.length > 0 && (
