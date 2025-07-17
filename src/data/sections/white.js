@@ -1,7 +1,7 @@
 import { lazy } from "react";
 import { BELT_COLORS } from "@/config/colors";
 
-// Lazy load des composants pour améliorer les performances
+// Lazy load of components
 const SGBDDiagram = lazy(() => import("@/components/ui/sections/white/SGBDDiagram"));
 const DatabaseArchitecture = lazy(() => import("@/components/ui/sections/white/DatabaseArchitecture"));
 const DataTypes = lazy(() => import("@/components/ui/sections/white/DataTypes"));

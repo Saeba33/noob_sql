@@ -404,17 +404,17 @@ export default function DatabaseArchitecture() {
               </h4>
             </div>
             <p className="text-gray-800 leading-relaxed mb-3">
-              Les <strong>clés étrangères</strong> créent des liens entre les
-              tables. Dans notre exemple :
+              Les clés étrangères (<strong>FOREIGN KEY</strong>) créent des
+              liens entre les tables. Dans notre exemple :
             </p>
             <ul className="text-gray-800 mb-4 space-y-1">
               <li>
-                • <strong>utilisateur_id</strong> dans "emprunts" →{" "}
-                <strong>id</strong> dans "utilisateurs"
+                • <strong>utilisateur_id</strong> dans la table "emprunts" fait référence à
+                <strong>id</strong> dans la table "utilisateurs".
               </li>
               <li>
-                • <strong>livre_id</strong> dans "emprunts" →{" "}
-                <strong>id</strong> dans "livres"
+                • <strong>livre_id</strong> dans la table "emprunts" fait référence à
+                <strong>id</strong> dans la table "livres".
               </li>
             </ul>
             <div className="bg-gray-50 border border-gray-200 p-4 rounded-lg">

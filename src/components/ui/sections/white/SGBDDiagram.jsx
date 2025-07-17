@@ -49,14 +49,14 @@ export default function SGBDDiagram() {
       <div className="border border-gray-300 rounded-lg bg-gray-50 p-6">
         {/* Niveau racine - SGBD */}
         <div className="flex justify-center mb-12">
-          <div className="flex items-center space-x-3 px-8 py-4 bg-white border-2 border-gray-300 rounded-lg shadow-sm">
-            <MdStorage className="w-7 h-7 text-gray-600" />
-            <span className="text-xl font-bold text-gray-800">SGBD</span>
+          <div className="flex items-center space-x-3 px-8 py-4 bg-gray-500 border-2 border-gray-300 rounded-lg shadow-sm">
+            <MdStorage className="w-7 h-7 text-white" />
+            <span className="text-xl font-bold text-white">SGBD</span>
           </div>
         </div>
 
         {/* Niveau catégories */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 mb-8">
           {/* SGBDR */}
           <div className="flex flex-col items-center">
             {/* Nœud catégorie SGBDR */}
