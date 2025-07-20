@@ -1,20 +1,20 @@
 export const BELT_COLORS = {
   white: {
-    icon: "#9CA3AF", // Plus gris que #6B7280
+    icon: "#9CA3AF",
     bg: "bg-gray-50",
-    text: "text-gray-600", // Plus clair que text-gray-800
-    border: "border-gray-200", // Plus clair que border-gray-300
+    text: "text-gray-500",
+    border: "border-gray-100",
   },
   yellow: {
     icon: "#EAB308",
     bg: "bg-yellow-50",
-    text: "text-yellow-600", // Plus jaune, moins marron
-    border: "border-yellow-400", // Plus jaune, moins marron
+    text: "text-yellow-600",
+    border: "border-yellow-400",
   },
   orange: {
     icon: "#F97316",
-    bg: "bg-orange-100", // Plus orange
-    text: "text-orange-700", // Moins rouge, plus orange
+    bg: "bg-orange-100",
+    text: "text-orange-700",
     border: "border-orange-300",
   },
   green: {
@@ -31,9 +31,9 @@ export const BELT_COLORS = {
   },
   brown: {
     icon: "#8B4513",
-    bg: "bg-yellow-100", // Background plus marron que l'amber
-    text: "text-yellow-800", // Les anciennes couleurs jaune qui tirent vers le marron
-    border: "border-yellow-600", // Plus foncé pour un meilleur contraste marron
+    bg: "bg-yellow-100",
+    text: "text-yellow-800",
+    border: "border-yellow-600",
   },
   black: {
     icon: "#1F2937",
