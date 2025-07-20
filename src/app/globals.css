@@ -1,42 +1,14 @@
 @import "tailwindcss";
 
-/* 
-  DESIGN SYSTEM - UX/UI Guidelines
-  
-  .border-pop : UNIQUEMENT pour les éléments CLIQUABLES inline
-  - Boutons de navigation
-  - Tags liens
-  - Petits éléments cliquables
-  
-  .border-accordion : Pour les headers d'accordéon cliquables
-  - Headers d'accordéon 
-  - Éléments cliquables en full-width
-  - Boutons larges
-  
-  .border-simple : Pour les éléments informatifs avec bordure
-  - Tags non-cliquables
-  - Labels 
-  - Badges informatifs
-  
-  .border-accent : Pour les contenus avec bordure colorée
-  - Descriptions de sections
-  - Cadres de navigation
-  - Contenus mis en valeur
-  
-  Style alternatif pour éléments NON-CLIQUABLES :
-  - bg-gray-50 border border-gray-200 : Contenus informatifs
-  - bg-white border border-gray-200 : Contenus neutres
-*/
-
 .border-pop {
   display: inline-flex;
   align-items: center;
   padding: 0.5rem 0.75rem;
   font-size: 0.875rem;
   font-weight: 500;
-  border: 3px solid currentColor;
+  border: 2px solid currentColor;
   border-radius: 0.375rem;
-  box-shadow: 3px 3px 0 0 currentColor;
+  box-shadow: 2px 2px 0 0 currentColor;
   transition: all 0.2s ease-in-out;
   cursor: pointer;
 }
@@ -57,13 +29,13 @@
   padding: 0.5rem 0.75rem;
   font-size: 0.875rem;
   font-weight: 500;
-  border: 2px solid currentColor;
+  border: 1px solid currentColor;
   border-radius: 0.375rem;
   background-color: white;
 }
 
 .border-accent {
-  border: 2px solid currentColor;
+  border: 1px solid currentColor;
   border-radius: 0.5rem;
   background-color: white;
 }
@@ -71,9 +43,9 @@
 .border-accordion {
   display: block;
   width: 100%;
-  border: 3px solid currentColor;
+  border: 2px solid currentColor;
   border-radius: 0.375rem;
-  box-shadow: 3px 3px 0 0 currentColor;
+  box-shadow: 2px 2px 0 0 currentColor;
   transition: all 0.2s ease-in-out;
   cursor: pointer;
 }
