@@ -13,7 +13,7 @@ export default function IntroductionPage() {
           </h2>
           <p className="text-gray-600 text-lg max-w-3xl mx-auto">
             Maîtrisez les bases du langage SQL à travers différents niveaux de difficulté, 
-            représentés par les ceintures du judo. Commencez par la ceinture blanche et 
+            représentés par les ceintures des arts martiaux. Commencez par la ceinture blanche et 
             progressez jusqu'à la ceinture noire en apprenant les concepts essentiels 
             des bases de données. Vous pourrez ensuite confronter vos connaissances 
             au travers d'exercices pratiques en passant votre 1ère DAN dans la partie FIGHT.
