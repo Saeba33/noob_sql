@@ -34,14 +34,18 @@ export default function SectionBottomNavigation() {
 
   return (
     <div className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 my-8">
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+      <div className={`border-accent p-6 shadow-sm ${
+        colors.text || "text-gray-700"
+      }`}>
         <div className="flex justify-between items-center min-h-[48px]">
           <div className="flex-1 flex items-center">
             {/* Previous Link */}
             {previous && (
               <Link
                 href={previous.href}
-                className={`inline-flex items-center ${colors.text} hover:opacity-70 transition-opacity focus:outline-none`}
+                className={`border-pop inline-flex items-center px-4 py-2 bg-white rounded-lg shadow-sm focus:outline-none ${
+                  colors.text || "text-gray-700"
+                } hover:opacity-70 transition-opacity`}
               >
                 <MdChevronLeft className="w-5 h-5 mr-1" />
                 <span className="text-sm font-medium">
@@ -53,9 +57,13 @@ export default function SectionBottomNavigation() {
 
           {/* Current Page Title */}
           <div className="flex-1 flex items-center justify-center">
-            <h3 className="text-lg font-semibold text-gray-900">
-              {current?.title || ""}
-            </h3>
+            <div className={`bg-white border border-gray-200 rounded-lg shadow-sm px-6 py-3 ${
+              colors.text || "text-gray-700"
+            }`}>
+              <h3 className="text-lg font-semibold">
+                {current?.title || ""}
+              </h3>
+            </div>
           </div>
 
           <div className="flex-1 flex items-center justify-end">
@@ -63,7 +71,9 @@ export default function SectionBottomNavigation() {
             {next && (
               <Link
                 href={next.href}
-                className={`inline-flex items-center ${colors.text} hover:opacity-70 transition-opacity focus:outline-none`}
+                className={`border-pop inline-flex items-center px-4 py-2 bg-white rounded-lg shadow-sm focus:outline-none ${
+                  colors.text || "text-gray-700"
+                } hover:opacity-70 transition-opacity`}
               >
                 <span className="text-sm font-medium">{getNextLabel()}</span>
                 <MdChevronRight className="w-5 h-5 ml-1" />

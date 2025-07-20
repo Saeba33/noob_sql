@@ -38,13 +38,15 @@ export default function SectionTopNavigation() {
           {previous && (
             <Link
               href={previous.href}
-              className="inline-flex items-center px-4 py-2 bg-white rounded-lg shadow-sm focus:outline-none group border-pop"
+              className={`border-pop inline-flex items-center px-4 py-2 bg-white rounded-lg shadow-sm focus:outline-none group ${
+                colors.text || "text-gray-700"
+              } hover:opacity-70 transition-opacity`}
             >
               <MdChevronLeft
-                className={`w-5 h-5 mr-1 ${colors.text} group-hover:opacity-70 transition-opacity`}
+                className={`w-5 h-5 mr-1 transition-opacity`}
               />
               <span
-                className={`text-sm font-medium ${colors.text} group-hover:opacity-70 transition-opacity`}
+                className={`text-sm font-medium transition-opacity`}
               >
                 {getPreviousLabel()}
               </span>
@@ -57,15 +59,17 @@ export default function SectionTopNavigation() {
           {next && (
             <Link
               href={next.href}
-              className="inline-flex items-center px-4 py-2 bg-white rounded-lg shadow-sm focus:outline-none group border-pop"
+              className={`border-pop inline-flex items-center px-4 py-2 bg-white rounded-lg shadow-sm focus:outline-none group ${
+                colors.text || "text-gray-700"
+              } hover:opacity-70 transition-opacity`}
             >
               <span
-                className={`text-sm font-medium ${colors.text} group-hover:opacity-70 transition-opacity`}
+                className={`text-sm font-medium transition-opacity`}
               >
                 {getNextLabel()}
               </span>
               <MdChevronRight
-                className={`w-5 h-5 ml-1 ${colors.text} group-hover:opacity-70 transition-opacity`}
+                className={`w-5 h-5 ml-1 transition-opacity`}
               />
             </Link>
           )}

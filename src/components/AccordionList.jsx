@@ -8,8 +8,8 @@ export default function AccordionList({ accordions }) {
   }
 
   return (
-    <div className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div className="space-y-6">
+    <div className="max-w-[1500px]  mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="space-y-6 flex flex-col">
         {accordions.map((accordion, index) => (
           <Accordion
             key={index}
@@ -24,7 +24,6 @@ export default function AccordionList({ accordions }) {
             sqlTable={accordion.sqlTable}
             externalComponent={accordion.externalComponent}
             description={accordion.description}
-            className="bg-white rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition-shadow"
           />
         ))}
       </div>

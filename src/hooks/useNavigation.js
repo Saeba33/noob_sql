@@ -18,6 +18,7 @@ export const useNavigation = () => {
         currentIndex >= 0 && currentIndex < PAGES_CONFIG.length - 1
           ? PAGES_CONFIG[currentIndex + 1]
           : null,
+      current: currentIndex >= 0 ? PAGES_CONFIG[currentIndex] : null,
     }),
   };
 };

@@ -58,21 +58,25 @@ export default function Accordion({
 
   return (
     <div
-      className={`mb-6 border border-gray-200 rounded-xl shadow-sm ${className}`}
+      className={`border-accordion bg-white rounded-lg shadow-sm ${
+        colors.text || "text-gray-700"
+      } ${className}`}
     >
       {/* Accordion header */}
       <button
         onClick={toggle}
-        className={`w-full text-left p-6 flex items-center justify-between bg-white hover:bg-gray-50 transition-colors duration-200 focus:outline-none relative cursor-pointer ${
-          isOpen ? "rounded-t-xl" : "rounded-xl"
+        className={`w-full text-left p-6 bg-white hover:opacity-70 transition-opacity duration-200 focus:outline-none relative ${
+          isOpen ? "rounded-t-lg" : "rounded-lg"
         }`}
       >
-        <div className="flex items-center space-x-3">
-          <FaCode className={`w-5 h-5 ${colors.text}`} />
-          <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
+        <div className="flex flex-col space-y-2 flex-1">
+          <div className="flex items-center space-x-3">
+            <FaCode className={`w-5 h-5 ${colors.text || "text-gray-700"}`} />
+            <h3 className="text-lg font-semibold">{title}</h3>
+          </div>
         </div>
         <MdExpandMore
-          className={`w-6 h-6 text-gray-500 transition-transform duration-200 ${
+          className={`w-6 h-6 text-gray-500 transition-transform duration-200 absolute top-6 right-6 ${
             isOpen ? "rotate-180" : ""
           }`}
         />
@@ -80,13 +84,15 @@ export default function Accordion({
 
       {/* Accordion content */}
       {isOpen && (
-        <div className="p-6 bg-white space-y-6 rounded-b-xl border-t border-gray-200">
+        <div className="p-6 bg-white flex flex-col space-y-6 rounded-b-lg border-t border-gray-200">
           {/* Description - only show if content exists */}
           {content && (
             <div
-              className={`${colors.bg} border-l-4 border-blue-400 p-6 rounded-r-lg`}
+              className={`bg-gray-50 border border-gray-200 rounded-lg p-4 ${
+                colors.text || "text-gray-700"
+              }`}
             >
-              <p className={`${colors.text} leading-relaxed`}>{content}</p>
+              <p className="leading-relaxed">{content}</p>
             </div>
           )}
 
