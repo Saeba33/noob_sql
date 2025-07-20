@@ -38,7 +38,7 @@ export default function SectionTopNavigation() {
           {previous && (
             <Link
               href={previous.href}
-              className="inline-flex items-center px-4 py-2 bg-white rounded-lg shadow-sm focus:outline-none group"
+              className="inline-flex items-center px-4 py-2 bg-white rounded-lg shadow-sm focus:outline-none group border-pop"
             >
               <MdChevronLeft
                 className={`w-5 h-5 mr-1 ${colors.text} group-hover:opacity-70 transition-opacity`}
@@ -57,7 +57,7 @@ export default function SectionTopNavigation() {
           {next && (
             <Link
               href={next.href}
-              className="inline-flex items-center px-4 py-2 bg-white rounded-lg shadow-sm focus:outline-none group"
+              className="inline-flex items-center px-4 py-2 bg-white rounded-lg shadow-sm focus:outline-none group border-pop"
             >
               <span
                 className={`text-sm font-medium ${colors.text} group-hover:opacity-70 transition-opacity`}

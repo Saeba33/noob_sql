@@ -1,9 +1,9 @@
 "use client";
 
+import LazyWrapper from "@/components/ui/LazyWrapper";
 import SqlCodeBlock from "@/components/ui/sql/SqlCodeBlock";
 import SqlResultBlock from "@/components/ui/sql/SqlResultBlock";
 import SqlTableBlock from "@/components/ui/sql/SqlTableBlock";
-import LazyWrapper from "@/components/ui/LazyWrapper";
 import { BELT_COLORS } from "@/config/colors";
 import { sqlToTableDiagram } from "@/data/sqlSyntax";
 import { usePathname } from "next/navigation";
@@ -68,11 +68,7 @@ export default function Accordion({
         }`}
       >
         <div className="flex items-center space-x-3">
-          <div
-            className={`p-2 rounded-lg ${colors.bg} transition-opacity duration-200`}
-          >
-            <FaCode className={`w-4 h-4 ${colors.text}`} />
-          </div>
+          <FaCode className={`w-5 h-5 ${colors.text}`} />
           <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
         </div>
         <MdExpandMore
