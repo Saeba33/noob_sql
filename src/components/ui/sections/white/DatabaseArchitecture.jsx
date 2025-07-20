@@ -48,8 +48,8 @@ export default function DatabaseArchitecture() {
       </div>
 
       {/* Représentation visuelle - Base de données */}
-      <div className="border border-gray-300 rounded-lg bg-gray-50 p-6">
-        <div className="max-w-7xl mx-auto">
+
+        <div className="mx-auto">
           {/* Tables */}
           <div className="space-y-8">
             {/* Table Utilisateurs */}
@@ -64,7 +64,7 @@ export default function DatabaseArchitecture() {
               {/* En-tête des colonnes */}
               <div className="bg-gray-100 border border-gray-300 rounded-t-lg overflow-x-auto">
                 <div className="grid grid-cols-4 min-w-[600px]">
-                  <div className="p-3 text-center font-semibold text-yellow-900 bg-yellow-100 border-r border-b border-gray-300">
+                  <div className="p-3 text-center font-semibold text-yellow-900 border-r border-b border-gray-300">
                     <div className="flex items-center justify-center space-x-1">
                       <MdKey className="w-4 h-4 text-yellow-600" />
                       <span>id</span>
@@ -161,7 +161,7 @@ export default function DatabaseArchitecture() {
               {/* En-tête des colonnes */}
               <div className="bg-gray-100 border border-gray-300 rounded-t-lg overflow-x-auto">
                 <div className="grid grid-cols-5 min-w-[800px]">
-                  <div className="p-3 text-center font-semibold text-yellow-900 bg-yellow-100 border-r border-b border-gray-300">
+                  <div className="p-3 text-center font-semibold text-yellow-900 border-r border-b border-gray-300">
                     <div className="flex items-center justify-center space-x-1">
                       <MdKey className="w-4 h-4 text-yellow-600" />
                       <span>id</span>
@@ -266,7 +266,7 @@ export default function DatabaseArchitecture() {
               {/* En-tête des colonnes */}
               <div className="bg-gray-100 border border-gray-300 rounded-t-lg overflow-x-auto">
                 <div className="grid grid-cols-6 min-w-[900px]">
-                  <div className="p-3 text-center font-semibold text-yellow-900 bg-yellow-100 border-r border-b border-gray-300">
+                  <div className="p-3 text-center font-semibold text-yellow-900 border-r border-b border-gray-300">
                     <div className="flex items-center justify-center space-x-1">
                       <MdKey className="w-4 h-4 text-yellow-600" />
                       <span>id</span>
@@ -410,11 +410,11 @@ export default function DatabaseArchitecture() {
             <ul className="text-gray-800 mb-4 space-y-1">
               <li>
                 • <strong>utilisateur_id</strong> dans la table "emprunts" fait référence à
-                <strong>id</strong> dans la table "utilisateurs".
+                <strong> id</strong> dans la table "utilisateurs".
               </li>
               <li>
                 • <strong>livre_id</strong> dans la table "emprunts" fait référence à
-                <strong>id</strong> dans la table "livres".
+                <strong> id</strong> dans la table "livres".
               </li>
             </ul>
             <div className="bg-gray-50 border border-gray-200 p-4 rounded-lg">
@@ -434,6 +434,5 @@ export default function DatabaseArchitecture() {
           </div>
         </div>
       </div>
-    </div>
   );
 }
