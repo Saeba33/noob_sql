@@ -57,7 +57,7 @@ export default function SectionBottomNavigation() {
 
           {/* Current Page Title */}
           <div className="flex-1 flex items-center justify-center">
-            <div className={`bg-white border border-gray-200 rounded-lg shadow-sm px-6 py-3 ${
+            <div className={` ${
               colors.text || "text-gray-700"
             }`}>
               <h3 className="text-lg font-semibold">
