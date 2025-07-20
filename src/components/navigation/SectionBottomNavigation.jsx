@@ -45,7 +45,7 @@ export default function SectionBottomNavigation() {
                 href={previous.href}
                 className={`border-pop inline-flex items-center px-4 py-2 bg-white rounded-lg shadow-sm focus:outline-none ${
                   colors.text || "text-gray-700"
-                } hover:opacity-70 transition-opacity`}
+                } transition-opacity`}
               >
                 <MdChevronLeft className="w-5 h-5 mr-1" />
                 <span className="text-sm font-medium">
@@ -73,7 +73,7 @@ export default function SectionBottomNavigation() {
                 href={next.href}
                 className={`border-pop inline-flex items-center px-4 py-2 bg-white rounded-lg shadow-sm focus:outline-none ${
                   colors.text || "text-gray-700"
-                } hover:opacity-70 transition-opacity`}
+                } transition-opacity`}
               >
                 <span className="text-sm font-medium">{getNextLabel()}</span>
                 <MdChevronRight className="w-5 h-5 ml-1" />

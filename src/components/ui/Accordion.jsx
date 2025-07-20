@@ -65,7 +65,7 @@ export default function Accordion({
       {/* Accordion header */}
       <button
         onClick={toggle}
-        className={`w-full text-left p-6 bg-white hover:opacity-70 transition-opacity duration-200 focus:outline-none relative ${
+        className={`w-full text-left p-6 bg-white transition-opacity duration-200 focus:outline-none relative ${
           isOpen ? "rounded-t-lg" : "rounded-lg"
         }`}
       >
@@ -84,7 +84,7 @@ export default function Accordion({
 
       {/* Accordion content */}
       {isOpen && (
-        <div className="p-6 bg-white flex flex-col space-y-6 rounded-b-lg border-t border-gray-200">
+        <div className="p-6 bg-white flex flex-col space-y-6 rounded-b-lg border-t" style={{ borderTopColor: 'currentColor' }}>
           {/* Description - only show if content exists */}
           {content && (
             <div
