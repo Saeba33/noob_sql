@@ -15,7 +15,7 @@ export function NavbarMobileButton({ isMenuOpen, toggleMenu }) {
 	return (
 		<button
 			onClick={toggleMenu}
-			className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+			className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
 			aria-label={isMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
 		>
 			{isMenuOpen ? (
@@ -36,7 +36,7 @@ export function NavbarMobileContent({ closeMenu }) {
 	const isActive = (href) => pathname === href;
 
 	return (
-		<div className="md:hidden border-t border-gray-200/50 bg-white rounded-b-2xl">
+		<div className=" border-t border-gray-200/50 bg-white rounded-b-2xl">
 			<div className="px-4 lg:px-6 py-4">
 				<nav className="flex flex-col gap-2">
 					{navigationItems.map((item, index) => {

@@ -10,7 +10,7 @@ import Link from "next/link";
 
 export default function Header() {
 	// Hook personnalisé pour gérer la navbar (breakpoint à 768px par défaut = md)
-	const { isMenuOpen, isMobile, toggleMenu, closeMenu } = useNavbar(768);
+	const { isMenuOpen, isMobile, toggleMenu, closeMenu } = useNavbar(1400);
 
 	return (
 		<header className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-full max-w-[1500px] px-4">

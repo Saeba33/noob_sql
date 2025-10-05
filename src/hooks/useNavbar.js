@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
  * @param {number} breakpoint - Taille de l'écran en pixels à partir de laquelle le menu mobile s'applique (default: 768px = md breakpoint)
  * @returns {object} - État et méthodes pour gérer la navbar
  */
-export function useNavbar(breakpoint = 768) {
+export function useNavbar(breakpoint = 1400) {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const [isMobile, setIsMobile] = useState(false);
 
