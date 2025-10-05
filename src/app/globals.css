@@ -2,105 +2,118 @@
 
 /* Reset pour éliminer les scrolls indésirables */
 * {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
-html, body {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
+html,
+body {
+	margin: 0;
+	padding: 0;
+	overflow-x: hidden;
 }
 
 .border-pop {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.5rem 0.75rem;
-  font-size: 0.875rem;
-  font-weight: 500;
-  border: 2px solid currentColor;
-  border-radius: 0.375rem;
-  box-shadow: 2px 2px 0 0 currentColor;
-  transition: all 0.2s ease-in-out;
-  cursor: pointer;
+	display: inline-flex;
+	align-items: center;
+	padding: 0.5rem 0.75rem;
+	font-size: 0.875rem;
+	font-weight: 500;
+	border: 2px solid currentColor;
+	border-radius: 0.375rem;
+	box-shadow: 2px 2px 0 0 currentColor;
+	transition: all 0.2s ease-in-out;
+	cursor: pointer;
 }
 
 .border-pop:hover {
-  box-shadow: 1px 1px 0 0 currentColor;
-  transform: translate(2px, 2px);
+	box-shadow: 1px 1px 0 0 currentColor;
+	transform: translate(2px, 2px);
 }
 
 .border-pop.active {
-  box-shadow: 1px 1px 0 0 currentColor;
-  transform: translate(2px, 2px);
+	box-shadow: 1px 1px 0 0 currentColor;
+	transform: translate(2px, 2px);
 }
 
 .border-simple {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.5rem 0.75rem;
-  font-size: 0.875rem;
-  font-weight: 500;
-  border: 1px solid currentColor;
-  border-radius: 0.375rem;
-  background-color: white;
+	display: inline-flex;
+	align-items: center;
+	padding: 0.5rem 0.75rem;
+	font-size: 0.875rem;
+	font-weight: 500;
+	border: 1px solid currentColor;
+	border-radius: 0.375rem;
+	background-color: white;
 }
 
 .border-accent {
-  border: 1px solid currentColor;
-  border-radius: 0.5rem;
-  background-color: white;
+	border: 1px solid currentColor;
+	border-radius: 0.5rem;
+	background-color: white;
 }
 
 .border-accordion {
-  display: block;
-  width: 100%;
-  border: 2px solid currentColor;
-  border-radius: 0.375rem;
-  box-shadow: 2px 2px 0 0 currentColor;
-  transition: all 0.2s ease-in-out;
-  cursor: pointer;
+	display: block;
+	width: 100%;
+	border: 2px solid currentColor;
+	border-radius: 0.375rem;
+	box-shadow: 2px 2px 0 0 currentColor;
+	transition: all 0.2s ease-in-out;
+	cursor: pointer;
 }
 
-.border-accordion:hover {
-  box-shadow: 1px 1px 0 0 currentColor;
-  transform: translate(2px, 2px);
+/* Animation hover uniquement quand fermé (pas de classe open) */
+.border-accordion:not(.open):hover {
+	box-shadow: 1px 1px 0 0 currentColor;
+	transform: translate(2px, 2px);
 }
 
+/* État actif (pour d'autres composants) */
 .border-accordion.active {
-  box-shadow: 1px 1px 0 0 currentColor;
-  transform: translate(2px, 2px);
+	box-shadow: 1px 1px 0 0 currentColor;
+	transform: translate(2px, 2px);
+}
+
+.border-accordion.active:hover {
+	transform: none;
+}
+
+/* Pas d'animation quand ouvert */
+.border-accordion.open:hover {
+	box-shadow: 2px 2px 0 0 currentColor;
+	transform: none;
 }
 
 .nav-card {
-  display: block;
-  width: 100%;
-  padding: 1.5rem;
-  border: 2px solid currentColor;
-  border-radius: 0.75rem;
-  background-color: white;
-  box-shadow: 3px 3px 0 0 currentColor;
-  transition: all 0.2s ease-in-out;
-  text-decoration: none;
-  cursor: pointer;
+	display: block;
+	width: 100%;
+	padding: 1.5rem;
+	border: 2px solid currentColor;
+	border-radius: 0.75rem;
+	background-color: white;
+	box-shadow: 3px 3px 0 0 currentColor;
+	transition: all 0.2s ease-in-out;
+	text-decoration: none;
+	cursor: pointer;
 }
 
 .nav-card:hover {
-  box-shadow: 1px 1px 0 0 currentColor;
-  transform: translate(2px, 2px);
+	box-shadow: 1px 1px 0 0 currentColor;
+	transform: translate(2px, 2px);
 }
 
 .home-card {
-  display: block;
-  width: 100%;
-  padding: 1.5rem;
-  border: 2px solid currentColor;
-  border-radius: 0.75rem;
-  background-color: white;
-  transition: transform 0.2s ease-in-out;
-  text-decoration: none;
-  cursor: pointer;
+	display: block;
+	width: 100%;
+	padding: 1.5rem;
+	border: 2px solid currentColor;
+	border-radius: 0.75rem;
+	background-color: white;
+	transition: transform 0.2s ease-in-out;
+	text-decoration: none;
+	cursor: pointer;
 }
 
 .home-card:hover {
-  transform: translateY(-2px);
+	transform: translateY(-2px);
 }

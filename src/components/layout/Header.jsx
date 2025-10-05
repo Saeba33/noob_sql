@@ -1,7 +1,17 @@
-import Navbar from "@/components/navigation/Navbar";
+"use client";
+
+import NavbarDesktop from "@/components/navigation/NavbarDesktop";
+import {
+	NavbarMobileButton,
+	NavbarMobileContent,
+} from "@/components/navigation/NavbarMobile";
+import { useNavbar } from "@/hooks/useNavbar";
 import Link from "next/link";
 
 export default function Header() {
+	// Hook personnalisé pour gérer la navbar (breakpoint à 768px par défaut = md)
+	const { isMenuOpen, isMobile, toggleMenu, closeMenu } = useNavbar(768);
+
 	return (
 		<header className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-full max-w-[1500px] px-4">
 			<div className="bg-white/70 backdrop-blur-md border border-gray-200/50 shadow-lg rounded-2xl">
@@ -20,12 +30,24 @@ export default function Header() {
 							</div>
 						</Link>
 
-						{/* Navigation */}
+						{/* Navigation - Desktop ou Mobile selon le hook */}
 						<div className="flex items-center">
-							<Navbar />
+							{isMobile ? (
+								<NavbarMobileButton
+									isMenuOpen={isMenuOpen}
+									toggleMenu={toggleMenu}
+								/>
+							) : (
+								<NavbarDesktop />
+							)}
 						</div>
 					</div>
 				</div>
+
+				{/* Mobile Menu Dropdown */}
+				{isMobile && isMenuOpen && (
+					<NavbarMobileContent closeMenu={closeMenu} />
+				)}
 			</div>
 		</header>
 	);

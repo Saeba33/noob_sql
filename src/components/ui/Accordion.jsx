@@ -58,7 +58,7 @@ export default function Accordion({
 
   return (
     <div
-      className={`border-accordion bg-white rounded-lg shadow-sm ${
+      className={`border-accordion ${isOpen ? 'open' : ''} bg-white rounded-lg shadow-sm ${
         colors.text || "text-gray-700"
       } ${className}`}
     >
