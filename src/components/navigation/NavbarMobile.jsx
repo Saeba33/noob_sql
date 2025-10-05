@@ -37,7 +37,7 @@ export function NavbarMobileContent({ closeMenu }) {
 
 	return (
 		<div className=" border-t border-gray-200/50 bg-white rounded-b-2xl">
-			<div className="px-4 lg:px-6 py-4">
+			<div className="px-4 py-4">
 				<nav className="flex flex-col gap-2">
 					{navigationItems.map((item, index) => {
 						const beltKey = item.href.replace("/", "") || "white";
