@@ -7,8 +7,8 @@ export default function IntroductionPage() {
 	return (
 		<div className="bg-gradient-to-br from-gray-50 to-blue-50 flex-1 pt-28 lg:pt-32 flex flex-col">
 			{/* Introduction Section */}
-			<div className="container mx-auto px-4 py-10">
-				<div className="text-center mb-1">
+			<div className="py-10">
+				<div className="text-center mb-1 px-4">
 					<h2 className="text-4xl font-bold text-gray-900 mb-6">
 						Apprenez le SQL par Niveaux
 					</h2>
