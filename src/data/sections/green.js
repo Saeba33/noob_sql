@@ -1,5 +1,3 @@
-import { BELT_COLORS } from "@/config/belts-config";
-
 export const greenBeltContent = {
 	// Belt configuration
 	belt: "green",
@@ -12,7 +10,6 @@ export const greenBeltContent = {
 		"NULL",
 		"LIMIT, OFFSET",
 	],
-	colors: BELT_COLORS.green,
 
 	// Content sections
 	header: {

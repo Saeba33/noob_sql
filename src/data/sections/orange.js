@@ -1,9 +1,14 @@
-import { BELT_COLORS } from "@/config/belts-config";
 import { lazy } from "react";
+import {
+	MdCode,
+	MdFormatIndentIncrease,
+	MdSpellcheck,
+	MdTextFormat,
+} from "react-icons/md";
 
 // Lazy load du composant
 const BestPractices = lazy(() =>
-	import("@/components/ui/sections/orange/BestPractices")
+	import("@/components/ui/sections/BestPractices")
 );
 
 export const orangeBeltContent = {
@@ -11,7 +16,6 @@ export const orangeBeltContent = {
 	belt: "orange",
 	description: "Opérations de base sur les données",
 	topics: ["SELECT", "INSERT", "UPDATE", "DELETE", "TRUNCATE"],
-	colors: BELT_COLORS.orange,
 
 	// Content sections
 	header: {
@@ -235,7 +239,49 @@ TRUNCATE TABLE temp_data;`,
 			title: "Bonnes Pratiques CRUD",
 			content:
 				"Découvrez les bonnes pratiques essentielles pour manipuler vos données en toute sécurité et avec performance.",
-			externalComponent: <BestPractices />,
+			externalComponent: (
+				<BestPractices
+					title="Conventions de Syntaxe"
+					introduction="Un code SQL bien formaté est plus facile à lire, déboguer et maintenir ! Voici les conventions de syntaxe essentielles pour écrire du SQL propre et professionnel."
+					rules={[
+						{
+							title: "Mots-clés en MAJUSCULES",
+							icon: <MdSpellcheck className="w-5 h-5 text-gray-600" />,
+							rule: "Écris tous les mots-clés SQL en lettres majuscules pour une meilleure lisibilité",
+							good: "SELECT nom FROM utilisateurs WHERE age > 25",
+							bad: "select nom from utilisateurs where age > 25",
+							reason:
+								"Standard universel, distinction claire entre mots-clés et noms",
+						},
+						{
+							title: "Indentation cohérente",
+							icon: (
+								<MdFormatIndentIncrease className="w-5 h-5 text-gray-600" />
+							),
+							rule: "Indente les clauses SQL pour structurer visuellement tes requêtes",
+							good: "SELECT nom, email\\nFROM utilisateurs\\nWHERE age > 18\\nORDER BY nom",
+							bad: "SELECT nom, email FROM utilisateurs WHERE age > 18 ORDER BY nom",
+							reason: "Code lisible, maintenance facilitée, moins d'erreurs",
+						},
+						{
+							title: "Nommage en snake_case",
+							icon: <MdTextFormat className="w-5 h-5 text-gray-600" />,
+							rule: "Utilise le snake_case pour les noms de tables et colonnes",
+							good: "nom_utilisateur, date_creation, prix_total",
+							bad: "nomUtilisateur, dateCreation, prixTotal",
+							reason: "Convention standard, compatible avec tous les SGBD",
+						},
+						{
+							title: "Alias explicites",
+							icon: <MdCode className="w-5 h-5 text-gray-600" />,
+							rule: "Utilise des alias clairs avec AS pour renommer les colonnes",
+							good: "SELECT COUNT(*) AS nombre_total",
+							bad: "SELECT COUNT(*) nombre_total",
+							reason: "Clarté du code, intention explicite",
+						},
+					]}
+				/>
+			),
 		},
 	],
 };

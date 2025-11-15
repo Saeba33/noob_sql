@@ -1,9 +1,16 @@
-import { BELT_COLORS } from "@/config/belts-config";
 import { lazy } from "react";
+import {
+	MdBuild,
+	MdDataset,
+	MdKey,
+	MdSecurity,
+	MdSpeed,
+	MdTableChart,
+} from "react-icons/md";
 
 // Lazy load du composant
 const BestPractices = lazy(() =>
-	import("@/components/ui/sections/yellow/BestPractices")
+	import("@/components/ui/sections/BestPractices")
 );
 
 export const yellowBeltContent = {
@@ -11,7 +18,6 @@ export const yellowBeltContent = {
 	belt: "yellow",
 	description: "Langage de définition de données",
 	topics: ["CREATE TABLE", "ALTER TABLE", "DROP TABLE"],
-	colors: BELT_COLORS.yellow,
 
 	// Content sections
 	header: {
@@ -109,7 +115,82 @@ WHERE type='table';`,
 		},
 		{
 			title: "Bonnes Pratiques DDL",
-			externalComponent: <BestPractices />,
+			externalComponent: (
+				<BestPractices
+					title="Bonnes Pratiques DDL"
+					accentColor="yellow-600"
+					introduction="Le Data Definition Language (DDL) est la fondation de votre base de données. Une structure bien pensée dès le départ vous évitera des heures de refactoring plus tard ! Voici les bonnes pratiques essentielles pour créer des tables robustes et maintenables."
+					rules={[
+						{
+							title: "Nommage des Tables",
+							icon: <MdTableChart className="w-5 h-5 text-yellow-600" />,
+							rule: "Utilise des noms explicites au singulier pour les tables",
+							good: "utilisateur, commande, produit",
+							bad: "user, cmd, t1, data_table",
+							reason: "Clarity et cohérence dans le schéma de base",
+						},
+						{
+							title: "Clés Primaires",
+							icon: <MdKey className="w-5 h-5 text-yellow-600" />,
+							rule: "Toujours définir une clé primaire auto-incrémentée",
+							good: "id INTEGER PRIMARY KEY AUTO_INCREMENT",
+							bad: "Pas de clé primaire ou clé composite complexe",
+							reason: "Performance et simplicité des relations",
+						},
+						{
+							title: "Types de Données",
+							icon: <MdDataset className="w-5 h-5 text-yellow-600" />,
+							rule: "Choisis le type de données le plus approprié et restrictif",
+							good: "age INTEGER CHECK (age >= 0), email VARCHAR(255)",
+							bad: "age TEXT, email TEXT",
+							reason: "Optimisation de l'espace et validation automatique",
+						},
+						{
+							title: "Contraintes NOT NULL",
+							icon: <MdSecurity className="w-5 h-5 text-yellow-600" />,
+							rule: "Applique NOT NULL aux colonnes obligatoires",
+							good: "nom VARCHAR(100) NOT NULL, email VARCHAR(255) NOT NULL",
+							bad: "Laisser des colonnes critiques sans contrainte",
+							reason: "Garantit l'intégrité des données essentielles",
+						},
+						{
+							title: "Valeurs par Défaut",
+							icon: <MdBuild className="w-5 h-5 text-yellow-600" />,
+							rule: "Définis des valeurs par défaut logiques",
+							good: "statut VARCHAR(20) DEFAULT 'actif', date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP",
+							bad: "Laisser les colonnes sans valeur par défaut",
+							reason: "Simplifie les insertions et évite les erreurs",
+						},
+						{
+							title: "Index Stratégiques",
+							icon: <MdSpeed className="w-5 h-5 text-yellow-600" />,
+							rule: "Crée des index sur les colonnes de recherche fréquente",
+							good: "CREATE INDEX idx_email ON utilisateur(email)",
+							bad: "Aucun index sur les colonnes WHERE/JOIN",
+							reason: "Améliore drastiquement les performances",
+						},
+					]}
+					tips={[
+						{
+							title: "Documentation",
+							tip: "Ajoute des commentaires aux tables et colonnes complexes",
+							example:
+								"COMMENT 'Stocke les informations des utilisateurs actifs'",
+						},
+						{
+							title: "Migration",
+							tip: "Utilise ALTER TABLE pour les modifications en production",
+							example:
+								"ALTER TABLE utilisateur ADD COLUMN telephone VARCHAR(20)",
+						},
+						{
+							title: "Sauvegarde",
+							tip: "Toujours sauvegarder avant les modifications DDL",
+							example: "mysqldump database > backup_before_alter.sql",
+						},
+					]}
+				/>
+			),
 		},
 	],
 };

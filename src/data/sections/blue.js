@@ -1,11 +1,8 @@
-import { BELT_COLORS } from "@/config/belts-config";
-
 export const blueBeltContent = {
 	// Belt configuration
 	belt: "blue",
 	description: "Calculs et regroupements",
 	topics: ["COUNT, SUM, AVG, MIN, MAX", "GROUP BY", "HAVING"],
-	colors: BELT_COLORS.blue,
 
 	// Content sections
 	header: {

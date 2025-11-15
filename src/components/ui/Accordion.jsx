@@ -5,8 +5,8 @@ import SqlCodeBlock from "@/components/ui/sql/SqlCodeBlock";
 import SqlResultBlock from "@/components/ui/sql/SqlResultBlock";
 import SqlTableBlock from "@/components/ui/sql/SqlTableBlock";
 import { BELT_COLORS } from "@/config/belts-config";
-import { sqlToTableDiagram } from "@/data/sqlSyntax";
-import { usePathname } from "next/navigation";
+import { sqlToTableDiagram } from "@/config/sql-syntax";
+import { useNavigation } from "@/hooks/useNavigation";
 import { useState } from "react";
 import { FaCode } from "react-icons/fa6";
 import {
@@ -35,10 +35,10 @@ export default function Accordion({
 	className = "",
 }) {
 	const [isOpen, setIsOpen] = useState(false);
-	const pathname = usePathname();
+	const { current } = useNavigation();
 
 	// Determine current belt and get colors
-	const currentBelt = pathname?.split("/")[1];
+	const currentBelt = current?.href?.split("/")[1];
 	const colors = BELT_COLORS[currentBelt] || BELT_COLORS.white;
 
 	// Auto-generate table diagram from SQL code if it contains CREATE TABLE

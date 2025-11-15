@@ -1,6 +1,6 @@
-import AccordionList from "@/components/AccordionList";
 import Footer from "@/components/layout/Footer";
 import SectionNavigation from "@/components/navigation/SectionNavigation";
+import AccordionList from "@/components/ui/AccordionList";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { BELTS_CONFIG, getBeltData } from "@/config/belts-config";
 

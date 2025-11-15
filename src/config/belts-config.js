@@ -109,7 +109,15 @@ export async function getBeltData(belt) {
 			notFound();
 		}
 
-		return { beltContent };
+		// Inject colors from BELTS_CONFIG
+		const colors = BELTS_CONFIG[belt]?.colors;
+
+		return {
+			beltContent: {
+				...beltContent,
+				colors,
+			},
+		};
 	} catch (error) {
 		console.error(`Failed to load content for belt: ${belt}`, error);
 		notFound();
