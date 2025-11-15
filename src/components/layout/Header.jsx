@@ -18,7 +18,7 @@ export default function Header() {
 				ref={menuRef}
 				className="bg-white/70 backdrop-blur-md border border-gray-200/50 shadow-lg rounded-2xl w-full"
 			>
-				<div className="px-4 lg:px-6">
+				<div className="px-4 py-2">
 					<div className="flex justify-between items-center h-22 gap-4">
 						{/* Logo + Title */}
 						<Link

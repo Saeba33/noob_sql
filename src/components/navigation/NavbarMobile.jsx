@@ -53,12 +53,10 @@ export function NavbarMobileContent({ closeMenu, isOpen }) {
 								onClick={closeMenu}
 								className={`mobile-menu-item mobile-menu-${beltKey} ${
 									active
-										? isPractice
-											? `${colors.text} font-bold border-2 ${colors.border}`
-											: `${colors.bg} ${colors.text} font-bold border-2 ${colors.border}`
+										? `${colors.bg} ${colors.text} font-bold border-2 ${colors.border}`
 										: isPractice
-										? colors.text
-										: "text-gray-600"
+											? colors.text
+											: "text-gray-600"
 								}`}
 							>
 								{beltKey === "practice" ? (
