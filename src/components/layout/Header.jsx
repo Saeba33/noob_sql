@@ -16,9 +16,9 @@ export default function Header() {
 		<header className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-full max-w-[1500px] px-4">
 			<div
 				ref={menuRef}
-				className="bg-white/70 backdrop-blur-md border border-gray-200/50 shadow-lg rounded-2xl"
+				className="bg-white/70 backdrop-blur-md border border-gray-200/50 shadow-lg rounded-2xl w-full"
 			>
-				<div className="mx-auto px-4 lg:px-6">
+				<div className="px-4 lg:px-6">
 					<div className="flex justify-between items-center h-22 gap-4">
 						{/* Logo + Title */}
 						<Link
@@ -48,8 +48,8 @@ export default function Header() {
 				</div>
 
 				{/* Mobile Menu Dropdown */}
-				{isMobile && isMenuOpen && (
-					<NavbarMobileContent closeMenu={closeMenu} />
+				{isMobile && (
+					<NavbarMobileContent closeMenu={closeMenu} isOpen={isMenuOpen} />
 				)}
 			</div>
 		</header>

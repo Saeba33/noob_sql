@@ -126,9 +126,10 @@ body {
 	padding: 0.75rem;
 	border-radius: 0.5rem;
 	transition: all 0.3s;
-	border: 2px solid transparent;
+	/* Pas de border par défaut, sera ajouté via Tailwind */
 }
 
+/* Pas de border au hover, seulement au active */
 .mobile-menu-item.mobile-menu-white:hover {
 	background-color: rgb(249 250 251);
 	color: rgb(107 114 128);

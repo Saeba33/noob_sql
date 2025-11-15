@@ -1,6 +1,7 @@
 import {
   MdKey,
   MdLink,
+  MdStorage,
   MdTableChart,
   MdTableRows,
   MdViewColumn,
@@ -18,7 +19,7 @@ export default function DatabaseArchitecture() {
 
         <div className="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-r-lg">
           <p>
-            <MdTableChart className="w-5 h-5 text-blue-600 inline mr-2" />
+            <MdStorage className="w-5 h-5 text-blue-600 inline mr-2" />
             <strong>La bibliothèque</strong> = la{" "}
             <strong>base de données</strong>
             <br />

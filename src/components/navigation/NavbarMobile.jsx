@@ -29,17 +29,22 @@ export function NavbarMobileButton({ isMenuOpen, toggleMenu }) {
 /**
  * Composant NavbarMobileContent - Contenu déroulant du menu mobile
  */
-export function NavbarMobileContent({ closeMenu }) {
+export function NavbarMobileContent({ closeMenu, isOpen }) {
 	const { isActive } = useNavigation();
 
 	return (
-		<div className=" border-t border-gray-200/50 bg-white rounded-b-2xl">
+		<div
+			className={`border-t border-gray-200/50 bg-white rounded-b-2xl overflow-hidden transition-all duration-500 ease-in-out ${
+				isOpen ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"
+			}`}
+		>
 			<div className="px-4 py-4">
 				<nav className="flex flex-col gap-2">
 					{PAGES_CONFIG.map((item, index) => {
 						const beltKey = item.href.replace("/", "") || "white";
 						const colors = BELT_COLORS[beltKey];
 						const active = isActive(item.href);
+						const isPractice = beltKey === "practice";
 
 						return (
 							<Link
@@ -48,8 +53,12 @@ export function NavbarMobileContent({ closeMenu }) {
 								onClick={closeMenu}
 								className={`mobile-menu-item mobile-menu-${beltKey} ${
 									active
-										? `${colors.bg} ${colors.text} font-bold shadow-sm ${colors.border}`
-										: "text-gray-600"
+										? isPractice
+											? `${colors.text} font-bold border-2 ${colors.border}`
+											: `${colors.bg} ${colors.text} font-bold border-2 ${colors.border}`
+										: isPractice
+											? colors.text
+											: "text-gray-600"
 								}`}
 							>
 								{beltKey === "practice" ? (

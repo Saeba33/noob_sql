@@ -10,7 +10,7 @@ export default async function BeltPage({ params }) {
 
 	return (
 		<div className={`min-h-screen ${beltContent.colors.bg} flex flex-col`}>
-			<main className="w-full mx-auto mt-20 mb-12 flex-1">
+			<main className="w-full max-w-[1500px] mx-auto mt-20 mb-12 px-4 flex-1">
 				<SectionHeader
 					title={beltContent.header.title}
 					description={beltContent.pageDescription.content}

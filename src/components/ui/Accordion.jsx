@@ -1,13 +1,12 @@
 "use client";
 
-import LazyWrapper from "@/components/ui/LazyWrapper";
 import SqlCodeBlock from "@/components/ui/sql/SqlCodeBlock";
 import SqlResultBlock from "@/components/ui/sql/SqlResultBlock";
 import SqlTableBlock from "@/components/ui/sql/SqlTableBlock";
 import { BELT_COLORS } from "@/config/belts-config";
 import { sqlToTableDiagram } from "@/config/sql-syntax";
 import { useNavigation } from "@/hooks/useNavigation";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { FaCode } from "react-icons/fa6";
 import {
 	MdAccountTree,
@@ -85,7 +84,11 @@ export default function Accordion({
 			</button>
 
 			{/* Accordion content */}
-			{isOpen && (
+			<div
+				className={`overflow-hidden transition-all duration-300 ease-in-out ${
+					isOpen ? "max-h-[10000px] opacity-100" : "max-h-0 opacity-0"
+				}`}
+			>
 				<div
 					className="p-6 bg-white flex flex-col space-y-6 rounded-b-lg border-t"
 					style={{ borderTopColor: "currentColor" }}
@@ -103,9 +106,16 @@ export default function Accordion({
 
 					{/* External Component */}
 					{externalComponent && (
-						<LazyWrapper>
+						<Suspense
+							fallback={
+								<div className="flex items-center justify-center p-8">
+									<div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+									<span className="ml-3 text-gray-600">Chargement...</span>
+								</div>
+							}
+						>
 							<div>{externalComponent}</div>
-						</LazyWrapper>
+						</Suspense>
 					)}
 
 					{/* SQL Queries - Nouvelle structure avec requêtes individuelles */}
@@ -288,7 +298,7 @@ export default function Accordion({
 						</div>
 					)}
 				</div>
-			)}
+			</div>
 		</div>
 	);
 }
