@@ -38,7 +38,7 @@ export default function HomeNavigation() {
 
 	return (
 		<div className="w-full lg:max-w-[1500px] lg:mx-auto px-4 py-8">
-			<div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+			<div className="flex flex-wrap justify-center gap-6">
 				{/* Belt Cards */}
 				{belts.map((page) => {
 					return (

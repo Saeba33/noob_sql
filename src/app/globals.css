@@ -104,7 +104,6 @@ body {
 
 .home-card {
 	display: block;
-	width: 100%;
 	padding: 1.5rem;
 	border: 2px solid currentColor;
 	border-radius: 0.75rem;
@@ -112,6 +111,25 @@ body {
 	transition: transform 0.2s ease-in-out;
 	text-decoration: none;
 	cursor: pointer;
+	width: 100%;
+}
+
+@media (min-width: 768px) {
+	.home-card {
+		width: calc(50% - 0.75rem);
+	}
+}
+
+@media (min-width: 1024px) {
+	.home-card {
+		width: calc(33.333% - 1rem);
+	}
+}
+
+@media (min-width: 1280px) {
+	.home-card {
+		width: calc(25% - 1.125rem);
+	}
 }
 
 .home-card:hover {
