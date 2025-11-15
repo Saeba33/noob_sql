@@ -17,7 +17,7 @@ export default function Header() {
 			<div className="w-full max-w-[1500px]">
 				<div
 					ref={menuRef}
-					className="bg-white/70 backdrop-blur-md border border-gray-200/50 shadow-lg rounded-2xl"
+					className="bg-white/50 backdrop-blur-lg border border-gray-200/50 shadow-lg rounded-2xl"
 				>
 					<div className="py-2 px-4">
 						<div className="flex justify-between items-center h-22 gap-4">
