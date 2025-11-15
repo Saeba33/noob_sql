@@ -13,7 +13,7 @@ export default function SectionHeader({
 
 	return (
 		<header
-			className={`relative py-12 sm:py-16 lg:py-20 overflow-hidden ${className}`}
+			className={`relative py-20 overflow-hidden ${className}`}
 		>
 			<div className="relative">
 				<div className="text-center space-y-8">
