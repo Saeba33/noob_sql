@@ -4,6 +4,9 @@ import "./globals.css";
 export const metadata = {
 	title: "NoobSQL",
 	description: "Apprenez SQL avec le système de ceintures",
+	icons: {
+		icon: "/favicon.ico",
+	},
 };
 
 export default function RootLayout({ children }) {
