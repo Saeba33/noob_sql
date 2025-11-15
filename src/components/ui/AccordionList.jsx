@@ -8,7 +8,7 @@ export default function AccordionList({ accordions }) {
 	}
 
 	return (
-		<div className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+		<div className="py-8">
 			<div className="space-y-8 flex flex-col">
 				{accordions.map((accordion, index) => (
 					<Accordion

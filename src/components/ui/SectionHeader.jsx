@@ -15,7 +15,7 @@ export default function SectionHeader({
 		<header
 			className={`relative py-12 sm:py-16 lg:py-20 overflow-hidden ${className}`}
 		>
-			<div className="relative max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8">
+			<div className="relative">
 				<div className="text-center space-y-8">
 					{/* Tag badge - sans bordure, plus moderne */}
 					{tag && (

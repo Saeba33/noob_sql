@@ -55,8 +55,8 @@ export function NavbarMobileContent({ closeMenu, isOpen }) {
 									active
 										? `${colors.bg} ${colors.text} font-bold border-2 ${colors.border}`
 										: isPractice
-											? colors.text
-											: "text-gray-600"
+										? colors.text
+										: "text-gray-600"
 								}`}
 							>
 								{beltKey === "practice" ? (
