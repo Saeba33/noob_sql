@@ -1,10 +1,9 @@
 "use client";
 
 import BeltIcon from "@/components/ui/BeltIcon";
-import { BELT_COLORS } from "@/config/colors";
-import { PAGES_CONFIG } from "@/config/navigation";
+import { BELT_COLORS, PAGES_CONFIG } from "@/config/belts-config";
+import { useNavigation } from "@/hooks/useNavigation";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { FaFistRaised } from "react-icons/fa";
 import { HiMenu, HiX } from "react-icons/hi";
 
@@ -31,17 +30,15 @@ export function NavbarMobileButton({ isMenuOpen, toggleMenu }) {
  * Composant NavbarMobileContent - Contenu déroulant du menu mobile
  */
 export function NavbarMobileContent({ closeMenu }) {
-	const pathname = usePathname();
-	const navigationItems = PAGES_CONFIG;
-	const isActive = (href) => pathname === href;
+	const { isActive } = useNavigation();
 
 	return (
 		<div className=" border-t border-gray-200/50 bg-white rounded-b-2xl">
 			<div className="px-4 py-4">
 				<nav className="flex flex-col gap-2">
-					{navigationItems.map((item, index) => {
+					{PAGES_CONFIG.map((item, index) => {
 						const beltKey = item.href.replace("/", "") || "white";
-						const colors = BELT_COLORS[beltKey] || BELT_COLORS.white;
+						const colors = BELT_COLORS[beltKey];
 						const active = isActive(item.href);
 
 						return (
@@ -49,16 +46,16 @@ export function NavbarMobileContent({ closeMenu }) {
 								key={`${beltKey}-${index}`}
 								href={item.href}
 								onClick={closeMenu}
-								className={`flex items-center gap-3 p-3 rounded-lg transition-all duration-300 ${
+								className={`mobile-menu-item mobile-menu-${beltKey} ${
 									active
-										? `${colors.bg} ${colors.text} font-bold shadow-sm border-2 ${colors.border}`
-										: `text-gray-600 hover:bg-gray-50 border-2 border-transparent`
+										? `${colors.bg} ${colors.text} font-bold shadow-sm ${colors.border}`
+										: "text-gray-600"
 								}`}
 							>
-								{item.iconType === "belt" ? (
-									<BeltIcon belt={beltKey} size={20} />
-								) : (
+								{beltKey === "practice" ? (
 									<FaFistRaised size={20} />
+								) : (
+									<BeltIcon belt={beltKey} size={20} />
 								)}
 								<span className="font-medium">{item.title}</span>
 							</Link>

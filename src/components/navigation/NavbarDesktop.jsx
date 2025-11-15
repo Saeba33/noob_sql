@@ -1,24 +1,19 @@
 "use client";
 
 import BeltIcon from "@/components/ui/BeltIcon";
-import { BELT_COLORS } from "@/config/colors";
-import { PAGES_CONFIG } from "@/config/navigation";
+import { BELT_COLORS, PAGES_CONFIG } from "@/config/belts-config";
+import { useNavigation } from "@/hooks/useNavigation";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { FaFistRaised } from "react-icons/fa";
 
 export default function NavbarDesktop() {
-	const pathname = usePathname();
-
-	const navigationItems = PAGES_CONFIG;
-
-	const isActive = (href) => pathname === href;
+	const { isActive } = useNavigation();
 
 	return (
 		<nav className="hidden md:flex items-center space-x-2 lg:space-x-4">
-			{navigationItems.map((item, index) => {
+			{PAGES_CONFIG.map((item, index) => {
 				const beltKey = item.href.replace("/", "") || "white";
-				const colors = BELT_COLORS[beltKey] || BELT_COLORS.white;
+				const colors = BELT_COLORS[beltKey];
 				const isPractice = beltKey === "practice";
 
 				return (
@@ -33,14 +28,14 @@ export default function NavbarDesktop() {
 							colors.text
 						} hover:bg-opacity-80 transition-colors rounded-lg px-3 py-2 lg:px-4 lg:py-2 flex items-center text-sm lg:text-base`}
 					>
-						{item.iconType === "belt" ? (
+						{beltKey === "practice" ? (
+							<FaFistRaised size={14} className="lg:w-4 lg:h-4 mr-2" />
+						) : (
 							<BeltIcon
 								belt={beltKey}
 								size={14}
 								className="lg:w-4 lg:h-4 mr-2"
 							/>
-						) : (
-							<FaFistRaised size={14} className="lg:w-4 lg:h-4 mr-2" />
 						)}
 						<span className="font-medium">{item.title}</span>
 					</Link>

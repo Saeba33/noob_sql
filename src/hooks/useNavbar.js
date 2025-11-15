@@ -1,38 +1,54 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-/**
- * Hook personnalisé pour gérer l'état et le comportement de la navbar
- * @param {number} breakpoint - Taille de l'écran en pixels à partir de laquelle le menu mobile s'applique (default: 768px = md breakpoint)
- * @returns {object} - État et méthodes pour gérer la navbar
- */
-export function useNavbar(breakpoint = 1400) {
+// Default breakpoint for mobile/desktop detection
+const DEFAULT_BREAKPOINT = 1400;
+
+export function useNavbar(breakpoint = DEFAULT_BREAKPOINT) {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const [isMobile, setIsMobile] = useState(false);
+	const menuRef = useRef(null);
 
+	// Check screen size and update mobile state
 	useEffect(() => {
-		// Fonction pour vérifier la taille de l'écran
 		const checkScreenSize = () => {
 			setIsMobile(window.innerWidth < breakpoint);
 		};
 
-		// Vérification initiale
 		checkScreenSize();
-
-		// Écouter les changements de taille d'écran
 		window.addEventListener("resize", checkScreenSize);
 
-		// Nettoyage
 		return () => window.removeEventListener("resize", checkScreenSize);
 	}, [breakpoint]);
 
-	// Fermer le menu si on passe en mode desktop
+	// Close menu when switching to desktop mode
 	useEffect(() => {
 		if (!isMobile && isMenuOpen) {
 			setIsMenuOpen(false);
 		}
 	}, [isMobile, isMenuOpen]);
+
+	// Close menu when clicking outside
+	useEffect(() => {
+		const handleClickOutside = (event) => {
+			if (
+				isMenuOpen &&
+				menuRef.current &&
+				!menuRef.current.contains(event.target)
+			) {
+				setIsMenuOpen(false);
+			}
+		};
+
+		if (isMenuOpen) {
+			document.addEventListener("mousedown", handleClickOutside);
+		}
+
+		return () => {
+			document.removeEventListener("mousedown", handleClickOutside);
+		};
+	}, [isMenuOpen]);
 
 	const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 	const openMenu = () => setIsMenuOpen(true);
@@ -45,5 +61,6 @@ export function useNavbar(breakpoint = 1400) {
 		openMenu,
 		closeMenu,
 		setIsMenuOpen,
+		menuRef,
 	};
 }

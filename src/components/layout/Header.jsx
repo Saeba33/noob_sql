@@ -9,12 +9,15 @@ import { useNavbar } from "@/hooks/useNavbar";
 import Link from "next/link";
 
 export default function Header() {
-	// Hook personnalisé pour gérer la navbar (breakpoint à 768px par défaut = md)
-	const { isMenuOpen, isMobile, toggleMenu, closeMenu } = useNavbar(1400);
+	const { isMenuOpen, isMobile, toggleMenu, closeMenu, menuRef } =
+		useNavbar(1400);
 
 	return (
 		<header className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-full max-w-[1500px] px-4">
-			<div className="bg-white/70 backdrop-blur-md border border-gray-200/50 shadow-lg rounded-2xl">
+			<div
+				ref={menuRef}
+				className="bg-white/70 backdrop-blur-md border border-gray-200/50 shadow-lg rounded-2xl"
+			>
 				<div className="mx-auto px-4 lg:px-6">
 					<div className="flex justify-between items-center h-22 gap-4">
 						{/* Logo + Title */}
@@ -30,7 +33,7 @@ export default function Header() {
 							</div>
 						</Link>
 
-						{/* Navigation - Desktop ou Mobile selon le hook */}
+						{/* Navigation - Desktop ou Mobile */}
 						<div className="flex items-center">
 							{isMobile ? (
 								<NavbarMobileButton

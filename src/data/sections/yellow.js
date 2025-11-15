@@ -1,33 +1,35 @@
+import { BELT_COLORS } from "@/config/belts-config";
 import { lazy } from "react";
-import { BELT_COLORS } from "@/config/colors";
 
 // Lazy load du composant
-const BestPractices = lazy(() => import("@/components/ui/sections/yellow/BestPractices"));
+const BestPractices = lazy(() =>
+	import("@/components/ui/sections/yellow/BestPractices")
+);
 
 export const yellowBeltContent = {
-  // Belt configuration
-  belt: "yellow",
-  description: "Langage de définition de données",
-  topics: ["CREATE TABLE", "ALTER TABLE", "DROP TABLE"],
-  colors: BELT_COLORS.yellow,
+	// Belt configuration
+	belt: "yellow",
+	description: "Langage de définition de données",
+	topics: ["CREATE TABLE", "ALTER TABLE", "DROP TABLE"],
+	colors: BELT_COLORS.yellow,
 
-  // Content sections
-  header: {
-    title: "DDL - Langage de Définition de Données",
-    description: "Créez et gérez la structure de vos bases de données",
-    tag: "Ceinture Jaune",
-  },
-  pageDescription: {
-    title: "Maîtrisez la structure de vos bases de données",
-    content:
-      "La ceinture jaune vous enseigne le DDL (Data Definition Language), le langage pour définir et modifier la structure de vos bases de données. Apprenez à créer des tables, les modifier et les supprimer. Ces compétences sont essentielles pour concevoir et faire évoluer vos schémas de base de données.",
-  },
-  accordions: [
-    {
-      title: "CREATE TABLE - Création de tables",
-      content:
-        "Créez vos premières tables avec différents types de données et contraintes.",
-      sqlCode: `-- Création d'une table simple
+	// Content sections
+	header: {
+		title: "DDL - Langage de Définition de Données",
+		description: "Créez et gérez la structure de vos bases de données",
+		tag: "Ceinture Jaune",
+	},
+	pageDescription: {
+		title: "Maîtrisez la structure de vos bases de données",
+		content:
+			"La ceinture jaune vous enseigne le DDL (Data Definition Language), le langage pour définir et modifier la structure de vos bases de données. Apprenez à créer des tables, les modifier et les supprimer. Ces compétences sont essentielles pour concevoir et faire évoluer vos schémas de base de données.",
+	},
+	accordions: [
+		{
+			title: "CREATE TABLE - Création de tables",
+			content:
+				"Créez vos premières tables avec différents types de données et contraintes.",
+			sqlCode: `-- Création d'une table simple
 CREATE TABLE utilisateurs (
     id INTEGER PRIMARY KEY,
     nom VARCHAR(100) NOT NULL,
@@ -54,12 +56,12 @@ CREATE TABLE produits (
     stock INTEGER DEFAULT 0 CHECK (stock >= 0),
     sku VARCHAR(50) UNIQUE NOT NULL
 );`,
-    },
-    {
-      title: "ALTER TABLE - Modification de dtructure",
-      content:
-        "Modifiez la structure de vos tables existantes sans perdre de données.",
-      sqlCode: `-- Ajouter une nouvelle colonne
+		},
+		{
+			title: "ALTER TABLE - Modification de dtructure",
+			content:
+				"Modifiez la structure de vos tables existantes sans perdre de données.",
+			sqlCode: `-- Ajouter une nouvelle colonne
 ALTER TABLE utilisateurs 
 ADD COLUMN telephone VARCHAR(20);
 
@@ -82,11 +84,11 @@ RENAME COLUMN nom TO nom_complet;
 -- Supprimer une colonne
 ALTER TABLE utilisateurs 
 DROP COLUMN telephone;`,
-    },
-    {
-      title: "DROP TABLE - Suppression de tables",
-      content: `Supprimez des tables de manière sécurisée avec les bonnes pratiques. Attention l'exécution d'une commande "DROP" est <strong>irréversible</strong> ! Soyez vigilant !`,
-      sqlCode: `-- Supprimer une table (attention : irréversible!)
+		},
+		{
+			title: "DROP TABLE - Suppression de tables",
+			content: `Supprimez des tables de manière sécurisée avec les bonnes pratiques. Attention l'exécution d'une commande "DROP" est <strong>irréversible</strong> ! Soyez vigilant !`,
+			sqlCode: `-- Supprimer une table (attention : irréversible!)
 DROP TABLE ancienne_table;
 
 -- Suppression conditionnelle
@@ -104,10 +106,10 @@ DELETE FROM sessions;
 -- Voir les tables existantes
 SELECT name FROM sqlite_master 
 WHERE type='table';`,
-    },
-    {
-      title: "Bonnes Pratiques DDL",
-      externalComponent: <BestPractices />,
-    },
-  ],
+		},
+		{
+			title: "Bonnes Pratiques DDL",
+			externalComponent: <BestPractices />,
+		},
+	],
 };

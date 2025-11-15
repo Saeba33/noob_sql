@@ -2,7 +2,7 @@ import AccordionList from "@/components/AccordionList";
 import Footer from "@/components/layout/Footer";
 import SectionNavigation from "@/components/navigation/SectionNavigation";
 import SectionHeader from "@/components/ui/SectionHeader";
-import { getBeltData, VALID_BELTS } from "@/lib/getBeltData";
+import { BELTS_CONFIG, getBeltData } from "@/config/belts-config";
 
 export default async function BeltPage({ params }) {
 	const { belt } = await params;
@@ -34,5 +34,7 @@ export default async function BeltPage({ params }) {
 }
 
 export async function generateStaticParams() {
-	return Array.from(VALID_BELTS, (belt) => ({ belt }));
+	return Object.keys(BELTS_CONFIG)
+		.filter((key) => key !== "practice")
+		.map((belt) => ({ belt }));
 }
