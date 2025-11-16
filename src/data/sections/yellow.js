@@ -1,12 +1,5 @@
 import { lazy } from "react";
-import {
-	MdBuild,
-	MdDataset,
-	MdKey,
-	MdSecurity,
-	MdSpeed,
-	MdTableChart,
-} from "react-icons/md";
+import { MdBuild, MdKey, MdSecurity } from "react-icons/md";
 
 // Lazy load du composant
 const BestPractices = lazy(() =>
@@ -46,12 +39,12 @@ CREATE TABLE utilisateurs (
 
 -- Table avec clés étrangères
 CREATE TABLE commandes (
-    id INTEGER PRIMARY KEY,
-    utilisateur_id INTEGER,
-    produit VARCHAR(200),
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    utilisateur_id INTEGER NOT NULL REFERENCES utilisateurs(id),
+    produit VARCHAR(200) NOT NULL,
     quantite INTEGER DEFAULT 1,
-    prix DECIMAL(10,2),
-    FOREIGN KEY (utilisateur_id) REFERENCES utilisateurs(id)
+    prix DECIMAL(10,2) NOT NULL,
+    date_commande TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Table avec contraintes
@@ -115,75 +108,56 @@ DELETE FROM logs;`,
 				<BestPractices
 					title="Bonnes pratiques DDL"
 					accentColor="yellow-600"
-					introduction="Le Data Definition Language (DDL) est la fondation de votre base de données. Une structure bien pensée dès le départ vous évitera des heures de refactoring plus tard ! Voici les bonnes pratiques essentielles pour créer des tables robustes et maintenables."
+					introduction="Le DDL définit la structure de votre base. Une conception rigoureuse dès le départ vous évitera des migrations complexes ! Voici les pratiques essentielles pour CREATE, ALTER et DROP."
 					rules={[
 						{
-							title: "Nommage des tables",
-							icon: <MdTableChart className="w-5 h-5 text-yellow-600" />,
-							rule: "Utiliser des noms explicites au pluriel pour les tables",
-							good: "utilisateurs, commandes, produits",
-							bad: "user, cmd, t1, data_table",
-							reason:
-								"Cohérence et clarté : une table contient plusieurs enregistrements",
-						},
-						{
-							title: "Clés primaires",
+							title: "Clés primaires auto-incrémentées",
 							icon: <MdKey className="w-5 h-5 text-yellow-600" />,
-							rule: "Toujours définir une clé primaire auto-incrémentée",
+							rule: "Toujours définir une clé primaire auto-incrémentée avec PRIMARY KEY",
 							good: "id INTEGER PRIMARY KEY AUTO_INCREMENT",
-							bad: "Pas de clé primaire ou clé composite complexe",
-							reason: "Performance et simplicité des relations",
-						},
-						{
-							title: "Types de données",
-							icon: <MdDataset className="w-5 h-5 text-yellow-600" />,
-							rule: "Choisir le type de données le plus approprié et restrictif",
-							good: "age INTEGER CHECK (age >= 0), email VARCHAR(255)",
-							bad: "age TEXT, email TEXT",
-							reason: "Optimisation de l'espace et validation automatique",
-						},
-						{
-							title: "Contraintes NOT NULL",
-							icon: <MdSecurity className="w-5 h-5 text-yellow-600" />,
-							rule: "Applique NOT NULL aux colonnes obligatoires",
-							good: "nom VARCHAR(100) NOT NULL, email VARCHAR(255) NOT NULL",
-							bad: "Laisser des colonnes critiques sans contrainte",
-							reason: "Garantit l'intégrité des données essentielles",
+							bad: "Table sans clé primaire ou clé composite complexe",
+							reason:
+								"Garantit l'unicité et simplifie les relations entre tables",
 						},
 						{
 							title: "Valeurs par défaut",
 							icon: <MdBuild className="w-5 h-5 text-yellow-600" />,
-							rule: "Définir des valeurs par défaut logiques",
-							good: "statut VARCHAR(20) DEFAULT 'actif', date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP",
-							bad: "Laisser les colonnes sans valeur par défaut",
-							reason: "Simplifie les insertions et évite les erreurs",
+							rule: "Utiliser DEFAULT pour les colonnes avec valeurs récurrentes",
+							good: "statut VARCHAR(20) DEFAULT 'actif', created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP",
+							bad: "Forcer l'utilisateur à spécifier chaque valeur",
+							reason: "Simplifie les INSERT et garantit la cohérence",
 						},
 						{
-							title: "Index stratégiques",
-							icon: <MdSpeed className="w-5 h-5 text-yellow-600" />,
-							rule: "Créer des index sur les colonnes de recherche fréquente",
-							good: "CREATE INDEX idx_email ON utilisateur(email)",
-							bad: "Aucun index sur les colonnes WHERE/JOIN",
-							reason: "Améliore drastiquement les performances",
-						},
-					]}
-					tips={[
-						{
-							title: "Documentation",
-							tip: "Ajoute des commentaires aux tables et colonnes complexes",
-							example:
-								"COMMENT 'Stocke les informations des utilisateurs actifs'",
+							title: "Documentation des tables",
+							icon: <MdBuild className="w-5 h-5 text-yellow-600" />,
+							rule: "Ajouter des commentaires sur les tables et colonnes complexes",
+							good: "CREATE TABLE utilisateurs (...) COMMENT 'Stocke les utilisateurs actifs de l'application'",
+							bad: "Tables sans documentation, logique métier non expliquée",
+							reason: "Facilite la maintenance et la compréhension du schéma",
 						},
 						{
-							title: "Migration",
-							tip: "Utilise ALTER TABLE pour les modifications en production",
-							example:
-								"ALTER TABLE utilisateur ADD COLUMN telephone VARCHAR(20)",
+							title: "Migrations ALTER TABLE",
+							icon: <MdBuild className="w-5 h-5 text-yellow-600" />,
+							rule: "Privilégier ALTER TABLE plutôt que la séquence DROP/CREATE",
+							good: "ALTER TABLE utilisateurs ADD COLUMN telephone VARCHAR(20)",
+							bad: "DROP TABLE puis CREATE TABLE (perte de données)",
+							reason: "Préserve les données existantes lors des modifications",
 						},
 						{
-							title: "Sauvegarde",
-							tip: "Toujours sauvegarder avant les modifications DDL",
-							example: "mysqldump database > backup_before_alter.sql",
+							title: "Sauvegardes avant DDL",
+							icon: <MdSecurity className="w-5 h-5 text-yellow-600" />,
+							rule: "Toujours sauvegarder avant les opérations DDL critiques",
+							good: "mysqldump database > backup.sql avant ALTER/DROP",
+							bad: "Modifier la structure sans backup",
+							reason: "Les opérations DDL sont souvent irréversibles",
+						},
+						{
+							title: "DROP TABLE avec précaution",
+							icon: <MdSecurity className="w-5 h-5 text-yellow-600" />,
+							rule: "Utiliser DROP TABLE IF EXISTS pour éviter les erreurs",
+							good: "DROP TABLE IF EXISTS table_temporaire; -- Vérifier avant!",
+							bad: "DROP TABLE sans vérification ni backup",
+							reason: "Évite les erreurs et la perte accidentelle de données.",
 						},
 					]}
 				/>

@@ -4,7 +4,7 @@ import { sqlSyntaxConfig } from "../../../config/sql-syntax.js";
 export default function SqlTableBlock({
 	children,
 	tables,
-	title = "Structure des Tables",
+	title = "Structure des tables",
 	className = "",
 	type = "text", // "text" pour du texte simple, "tables" pour des tables visuelles
 }) {
@@ -69,11 +69,11 @@ export default function SqlTableBlock({
 
 				{/* Tables Diagram */}
 				<div className="p-6 overflow-auto">
-					<div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+					<div className="flex flex-wrap gap-6">
 						{tables.map((table, tableIndex) => (
 							<div
 								key={tableIndex}
-								className="bg-white border border-gray-300 rounded-lg overflow-hidden shadow-sm"
+								className="bg-white border border-gray-300 rounded-lg overflow-hidden shadow-sm flex-shrink-0 w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]"
 							>
 								{/* Table Header */}
 								<div className="bg-gray-50 px-4 py-3 border-b border-gray-200">
@@ -84,36 +84,39 @@ export default function SqlTableBlock({
 								</div>
 
 								{/* Columns */}
-								<div className="divide-y divide-gray-200">
+								<div>
 									{table.columns?.map((column, colIndex) => (
 										<div
 											key={colIndex}
-											className={`px-4 py-2 text-sm font-mono flex items-center justify-between hover:bg-gray-50 transition-colors ${
+											className={`px-4 py-2 text-sm font-mono flex items-center gap-3 border-b border-gray-200 last:border-b-0 hover:bg-gray-50 transition-colors ${
 												column.isPrimary ? "bg-blue-50" : ""
 											} ${column.isForeign ? "bg-purple-50" : ""}`}
 										>
-											<div className="flex items-center space-x-2">
-												{/* Icône de clé */}
+											{/* Icône de clé */}
+											<div className="flex-shrink-0 w-5 flex items-center justify-center">
 												{column.isPrimary && (
 													<MdKey className="w-3 h-3 text-blue-600" />
 												)}
 												{column.isForeign && (
 													<MdLink className="w-3 h-3 text-purple-600" />
 												)}
-
-												{/* Nom de la colonne */}
-												<span className="text-gray-800 font-medium">
-													{column.name}
-												</span>
 											</div>
 
+											{/* Nom de la colonne */}
+											<span className="text-gray-800 font-medium flex-shrink-0">
+												{column.name}
+											</span>
+
+											{/* Spacer */}
+											<div className="flex-grow min-w-[20px]"></div>
+
 											{/* Type de données */}
-											<div className="text-right">
-												<span className="text-blue-600 text-xs font-medium">
+											<div className="flex-shrink-0 text-right">
+												<div className="text-blue-600 text-xs font-medium whitespace-nowrap">
 													{column.type}
-												</span>
+												</div>
 												{column.constraints && (
-													<div className="text-violet-600 text-xs mt-1">
+													<div className="text-violet-600 text-xs mt-0.5 whitespace-nowrap">
 														{column.constraints}
 													</div>
 												)}
@@ -133,9 +136,11 @@ export default function SqlTableBlock({
 												key={relIndex}
 												className="text-xs text-purple-700 flex items-center font-mono"
 											>
-												<MdLink className="w-3 h-3 mr-1" />
-												{rel.column} → {rel.referencedTable}.
-												{rel.referencedColumn}
+												<MdLink className="w-3 h-3 mr-1 flex-shrink-0" />
+												<span className="break-all">
+													{rel.column} → {rel.referencedTable}.
+													{rel.referencedColumn}
+												</span>
 											</div>
 										))}
 									</div>

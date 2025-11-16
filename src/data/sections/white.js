@@ -1,10 +1,5 @@
 import { lazy } from "react";
-import {
-	MdDataset,
-	MdSpeed,
-	MdTableChart,
-	MdTextFormat,
-} from "react-icons/md";
+import { MdDataset, MdSpeed, MdTableChart, MdTextFormat } from "react-icons/md";
 
 // Lazy load of components
 const SGBDDiagram = lazy(() =>
@@ -93,30 +88,30 @@ export const whiteBeltContent = {
 							bad: "usr, cmd, tot, t1, c_id",
 							reason: "Maintenance facilitée",
 						},
-					{
-						title: "Index stratégiques",
-						icon: <MdSpeed className="w-5 h-5 text-gray-600" />,
-						rule: "Créer des index sur les colonnes de filtrage et jointure (détails en Ceinture Noire)",
-						good: "INDEX sur email, date_creation, statut",
-						bad: "Aucun index sur les colonnes WHERE/JOIN",
-						reason: "Performances optimales des requêtes",
-					},
-					{
-						title: "Types de données appropriés",
-						icon: <MdTextFormat className="w-5 h-5 text-gray-600" />,
-						rule: "Choisir le type de données adapté à chaque colonne",
-						good: "VARCHAR(255) pour emails, DECIMAL(10,2) pour prix, INTEGER AUTO_INCREMENT pour IDs",
-						bad: "VARCHAR trop long, FLOAT pour montants, TEXT pour données courtes",
-						reason: "Optimise la mémoire, garantit la précision des calculs",
-					},
-					{
-						title: "Contraintes de validation",
-						icon: <MdDataset className="w-5 h-5 text-gray-600" />,
-						rule: "Utiliser NOT NULL, UNIQUE, CHECK pour garantir la qualité des données",
-						good: "email VARCHAR(255) UNIQUE NOT NULL, age INTEGER CHECK(age >= 0)",
-						bad: "Colonnes sans contraintes, données incohérentes possibles",
-						reason: "Intégrité des données, évite les erreurs en amont",
-					},
+						{
+							title: "Index stratégiques",
+							icon: <MdSpeed className="w-5 h-5 text-gray-600" />,
+							rule: "Créer des index sur les colonnes de filtrage et jointure (détails en Ceinture Noire)",
+							good: "INDEX sur email, date_creation, statut",
+							bad: "Aucun index sur les colonnes WHERE/JOIN",
+							reason: "Performances optimales des requêtes",
+						},
+						{
+							title: "Types de données appropriés",
+							icon: <MdTextFormat className="w-5 h-5 text-gray-600" />,
+							rule: "Choisir le type de données adapté à chaque colonne",
+							good: "VARCHAR(255) pour emails, DECIMAL(10,2) pour prix, INTEGER AUTO_INCREMENT pour IDs",
+							bad: "VARCHAR trop long, FLOAT pour montants, TEXT pour données courtes",
+							reason: "Optimise la mémoire, garantit la précision des calculs",
+						},
+						{
+							title: "Contraintes de validation",
+							icon: <MdDataset className="w-5 h-5 text-gray-600" />,
+							rule: "Utiliser NOT NULL, UNIQUE, CHECK pour garantir la qualité des données",
+							good: "email VARCHAR(255) UNIQUE NOT NULL, age INTEGER CHECK(age >= 0)",
+							bad: "Colonnes sans contraintes, données incohérentes possibles",
+							reason: "Intégrité des données, évite les erreurs en amont",
+						},
 					]}
 				/>
 			),
