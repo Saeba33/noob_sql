@@ -11,10 +11,20 @@ import ScrollableTable from "../../ScrollableTable";
 export default function DatabaseArchitecture() {
 	// Configuration des tableaux
 	const utilisateursColumns = [
-		{ label: "id", icon: <MdKey className="w-4 h-4 text-yellow-600" />, className: "text-yellow-900" },
+		{
+			label: "id",
+			icon: <MdKey className="w-4 h-4 text-yellow-600" />,
+			className: "text-yellow-900",
+		},
 		{ label: "nom", icon: <MdViewColumn className="w-4 h-4 text-gray-600" /> },
-		{ label: "email", icon: <MdViewColumn className="w-4 h-4 text-gray-600" /> },
-		{ label: "date_inscription", icon: <MdViewColumn className="w-4 h-4 text-gray-600" /> },
+		{
+			label: "email",
+			icon: <MdViewColumn className="w-4 h-4 text-gray-600" />,
+		},
+		{
+			label: "date_inscription",
+			icon: <MdViewColumn className="w-4 h-4 text-gray-600" />,
+		},
 	];
 
 	const utilisateursData = [
@@ -24,11 +34,24 @@ export default function DatabaseArchitecture() {
 	];
 
 	const livresColumns = [
-		{ label: "id", icon: <MdKey className="w-4 h-4 text-yellow-600" />, className: "text-yellow-900" },
-		{ label: "titre", icon: <MdViewColumn className="w-4 h-4 text-gray-600" /> },
-		{ label: "auteur", icon: <MdViewColumn className="w-4 h-4 text-gray-600" /> },
+		{
+			label: "id",
+			icon: <MdKey className="w-4 h-4 text-yellow-600" />,
+			className: "text-yellow-900",
+		},
+		{
+			label: "titre",
+			icon: <MdViewColumn className="w-4 h-4 text-gray-600" />,
+		},
+		{
+			label: "auteur",
+			icon: <MdViewColumn className="w-4 h-4 text-gray-600" />,
+		},
 		{ label: "isbn", icon: <MdViewColumn className="w-4 h-4 text-gray-600" /> },
-		{ label: "annee", icon: <MdViewColumn className="w-4 h-4 text-gray-600" /> },
+		{
+			label: "annee",
+			icon: <MdViewColumn className="w-4 h-4 text-gray-600" />,
+		},
 	];
 
 	const livresData = [
@@ -38,12 +61,33 @@ export default function DatabaseArchitecture() {
 	];
 
 	const empruntsColumns = [
-		{ label: "id", icon: <MdKey className="w-4 h-4 text-yellow-600" />, className: "text-yellow-900" },
-		{ label: "utilisateur_id", icon: <MdLink className="w-4 h-4 text-red-600" />, className: "text-red-900 bg-red-100" },
-		{ label: "livre_id", icon: <MdLink className="w-4 h-4 text-red-600" />, className: "text-red-900 bg-red-100" },
-		{ label: "date_emprunt", icon: <MdViewColumn className="w-4 h-4 text-gray-600" /> },
-		{ label: "date_retour", icon: <MdViewColumn className="w-4 h-4 text-gray-600" /> },
-		{ label: "statut", icon: <MdViewColumn className="w-4 h-4 text-gray-600" /> },
+		{
+			label: "id",
+			icon: <MdKey className="w-4 h-4 text-yellow-600" />,
+			className: "text-yellow-900",
+		},
+		{
+			label: "utilisateur_id",
+			icon: <MdLink className="w-4 h-4 text-red-600" />,
+			className: "text-red-900",
+		},
+		{
+			label: "livre_id",
+			icon: <MdLink className="w-4 h-4 text-red-600" />,
+			className: "text-red-900",
+		},
+		{
+			label: "date_emprunt",
+			icon: <MdViewColumn className="w-4 h-4 text-gray-600" />,
+		},
+		{
+			label: "date_retour",
+			icon: <MdViewColumn className="w-4 h-4 text-gray-600" />,
+		},
+		{
+			label: "statut",
+			icon: <MdViewColumn className="w-4 h-4 text-gray-600" />,
+		},
 	];
 
 	const empruntsData = [
@@ -116,7 +160,7 @@ export default function DatabaseArchitecture() {
 					Tout comme une bibliothèque organise ses livres par sections (une
 					étagère pour la fiction, une pour l'histoire), une base de données
 					organise les informations en <strong>tables</strong> thématiques.
-					Chaque <strong>table</strong> contient des <strong>colonnes</strong>{" "}
+					Chaque table contient des <strong>colonnes</strong>{" "}
 					(les types d'informations) et des <strong>lignes</strong> (les données
 					réelles). Une bibliothèque peut même contenir des livres liés entre
 					eux (séries ou collections), comme les{" "}

@@ -29,10 +29,10 @@ export const whiteBeltContent = {
 	description: "Théorie et concepts fondamentaux",
 	topics: [
 		"SGBD",
-		"Architecture BDD Relationnelles",
-		"Types de Données",
+		"Architecture BDD relationnelles",
+		"Types de données",
 		"Relations entre les tables",
-		"Bonnes Pratiques",
+		"Bonnes pratiques",
 	],
 
 	// Content sections
@@ -52,7 +52,7 @@ export const whiteBeltContent = {
 			externalComponent: <SGBDDiagram />,
 		},
 		{
-			title: "Architecture d'une Base De Données Relationnelles",
+			title: "Architecture d'une base de données relationnelles",
 			externalComponent: <DatabaseArchitecture />,
 		},
 		{
@@ -60,11 +60,11 @@ export const whiteBeltContent = {
 			externalComponent: <PrimaryForeignKeys />,
 		},
 		{
-			title: "Types de Données",
+			title: "Types de données",
 			externalComponent: <DataTypes />,
 		},
 		{
-			title: "Bonnes Pratiques",
+			title: "Bonnes pratiques",
 			externalComponent: (
 				<BestPractices
 					introduction="Une base de données bien conçue facilite le développement et évite les erreurs ! Les bonnes pratiques SQL essentielles pour concevoir des bases de données maintenables et performantes. Suivez ces règles fondamentales pour éviter les pièges courants."
@@ -72,7 +72,7 @@ export const whiteBeltContent = {
 						{
 							title: "Normalisation des tables",
 							icon: <MdTableChart className="w-5 h-5 text-gray-600" />,
-							rule: "Sépare les données en tables distinctes pour éviter la duplication. Chaque information ne doit apparaître qu'une seule fois dans la base.",
+							rule: "Séparer les données en tables distinctes pour éviter la duplication. Chaque information ne doit apparaître qu'une seule fois dans la base.",
 							good: "Tables: utilisateurs, commandes, produits (séparées)",
 							bad: "Une table avec nom_client dupliqué dans chaque commande",
 							reason: "Évite les incohérences, facilite les mises à jour",
@@ -80,23 +80,23 @@ export const whiteBeltContent = {
 						{
 							title: "Convention snake_case",
 							icon: <MdTextFormat className="w-5 h-5 text-gray-600" />,
-							rule: "Utilise le snake_case pour les noms",
+							rule: "Utiliser le snake_case pour les noms",
 							good: "nom_utilisateur, date_creation, prix_total",
 							bad: "nomUtilisateur, dateCreation, prixTotal",
-							reason: "Standard universel, lisible dans tous les SGBD",
+							reason: "Standard universel de nommage",
 						},
 						{
 							title: "Noms explicites",
 							icon: <MdDataset className="w-5 h-5 text-gray-600" />,
-							rule: "Privilégie des noms explicites pour tables et colonnes",
+							rule: "Privilégier des noms explicites pour tables et colonnes",
 							good: "utilisateurs, commande_id, prix_total",
 							bad: "usr, cmd, tot, t1, c_id",
-							reason: "Code auto-documenté, maintenance facilitée",
+							reason: "Maintenance facilitée",
 						},
 					{
 						title: "Index stratégiques",
 						icon: <MdSpeed className="w-5 h-5 text-gray-600" />,
-						rule: "Crée des index sur les colonnes de filtrage et jointure (détails en Ceinture Noire)",
+						rule: "Créer des index sur les colonnes de filtrage et jointure (détails en Ceinture Noire)",
 						good: "INDEX sur email, date_creation, statut",
 						bad: "Aucun index sur les colonnes WHERE/JOIN",
 						reason: "Performances optimales des requêtes",
@@ -104,7 +104,7 @@ export const whiteBeltContent = {
 					{
 						title: "Types de données appropriés",
 						icon: <MdTextFormat className="w-5 h-5 text-gray-600" />,
-						rule: "Choisis le type de données adapté à chaque colonne",
+						rule: "Choisir le type de données adapté à chaque colonne",
 						good: "VARCHAR(255) pour emails, DECIMAL(10,2) pour prix, INTEGER AUTO_INCREMENT pour IDs",
 						bad: "VARCHAR trop long, FLOAT pour montants, TEXT pour données courtes",
 						reason: "Optimise la mémoire, garantit la précision des calculs",
@@ -112,7 +112,7 @@ export const whiteBeltContent = {
 					{
 						title: "Contraintes de validation",
 						icon: <MdDataset className="w-5 h-5 text-gray-600" />,
-						rule: "Utilise NOT NULL, UNIQUE, CHECK pour garantir la qualité des données",
+						rule: "Utiliser NOT NULL, UNIQUE, CHECK pour garantir la qualité des données",
 						good: "email VARCHAR(255) UNIQUE NOT NULL, age INTEGER CHECK(age >= 0)",
 						bad: "Colonnes sans contraintes, données incohérentes possibles",
 						reason: "Intégrité des données, évite les erreurs en amont",
