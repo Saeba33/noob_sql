@@ -123,38 +123,29 @@ export default function Accordion({
 						<div className="space-y-6">
 							<h4 className="text-sm font-semibold text-gray-900 mb-3 flex items-center">
 								<MdCode className="w-4 h-4 mr-2 text-blue-600" />
-								Requêtes SQL et Résultats
+								SQL code et résultats
 							</h4>
 							{sqlQueries.map((query, index) => (
 								<div
 									key={index}
 									className="space-y-4 border border-gray-200 rounded-lg p-4"
 								>
-									<h5 className="text-sm font-medium text-gray-800 border-l-4 border-blue-500 pl-3">
-										{query.title}
-									</h5>
+									{query.title && (
+										<h5 className="text-sm font-medium text-gray-800 border-l-4 border-blue-500 pl-3 mb-3">
+											{query.title}
+										</h5>
+									)}
 									<SqlCodeBlock>{query.sqlCode}</SqlCodeBlock>
 									<div className="mt-3">
-										<h6 className="text-xs font-semibold text-gray-700 mb-2 flex items-center">
-											<MdCheckCircle className="w-3 h-3 mr-1 text-green-600" />
-											Résultat
-										</h6>
 										{Array.isArray(query.sqlResult) ? (
-											<SqlResultBlock
-												data={query.sqlResult}
-												title={`Résultat - ${query.title}`}
-											/>
+											<SqlResultBlock data={query.sqlResult} />
 										) : query.sqlResult?.message ? (
 											<SqlResultBlock
 												message={query.sqlResult.message}
-												title={`Résultat - ${query.title}`}
 												type="message"
 											/>
 										) : (
-											<SqlResultBlock
-												data={query.sqlResult}
-												title={`Résultat - ${query.title}`}
-											/>
+											<SqlResultBlock data={query.sqlResult} />
 										)}
 									</div>
 								</div>
