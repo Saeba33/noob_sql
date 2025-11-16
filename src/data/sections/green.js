@@ -19,18 +19,18 @@ export const greenBeltContent = {
 
 	// Content sections
 	header: {
-		title: "CRUD - Opérations de Base",
+		title: "CRUD - Opérations de base",
 		description: "Maîtrisez les opérations Créer, Lire, Modifier, Supprimer",
 		tag: "Ceinture Verte",
 	},
 	pageDescription: {
 		title: "Manipulez vos données avec les opérations CRUD",
 		content:
-			"La ceinture verte vous apprend les quatre opérations fondamentales de manipulation de données : CREATE (commande INSERT), READ (commande SELECT), UPDATE et DELETE. Ces opérations forment l'épine dorsale de toute interaction avec une base de données.",
+			"La ceinture verte vous apprend les quatre opérations fondamentales de manipulation de données : Create (commande INSERT), Read (commande SELECT), Update et Delete. Ces opérations forment l'épine dorsale de toute interaction avec une base de données.",
 	},
 	accordions: [
 		{
-			title: "INSERT - Ajout de Données",
+			title: "INSERT - Ajout de données",
 			content: "Insérez de nouvelles données dans vos tables.",
 			sqlQueries: [
 				{
@@ -67,7 +67,7 @@ VALUES ('Emma Bernard', 'emma@email.com');`,
 				"INSERT vous permet d'ajouter de nouvelles données dans vos tables. C'est la première étape du CRUD.",
 		},
 		{
-			title: "SELECT - Lecture de Données",
+			title: "SELECT - Lecture de données",
 			content: "Récupérez et consultez les données stockées dans vos tables.",
 			sqlQueries: [
 				{
@@ -141,17 +141,12 @@ VALUES ('Emma Bernard', 'emma@email.com');`,
 						{ nom: "Emma Bernard", email: "emma@email.com" },
 					],
 				},
-				{
-					title: "Compter les résultats",
-					sqlCode: `SELECT COUNT(*) as total_utilisateurs FROM utilisateurs;`,
-					sqlResult: [{ total_utilisateurs: 5 }],
-				},
 			],
 			description:
 				"SELECT est la commande la plus utilisée en SQL. Elle vous permet de lire et extraire des données.",
 		},
 		{
-			title: "UPDATE - Modification de Données",
+			title: "UPDATE - Modification de données",
 			content: "Modifiez les données existantes dans vos tables.",
 			sqlQueries: [
 				{
@@ -189,7 +184,7 @@ WHERE statut = 'actif';`,
 				"UPDATE modifie les données existantes. Toujours utiliser WHERE pour éviter de modifier toute la table !",
 		},
 		{
-			title: "DELETE - Suppression de Données",
+			title: "DELETE - Suppression de données",
 			content:
 				"Supprimez des données avec DELETE ou videz une table avec TRUNCATE.",
 			sqlQueries: [
