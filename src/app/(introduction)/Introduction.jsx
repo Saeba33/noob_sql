@@ -10,7 +10,7 @@ export default function IntroductionPage() {
 			<div className="py-10">
 				<div className="text-center mb-1 px-4">
 					<h2 className="text-4xl font-bold text-gray-900 mb-6">
-						Apprenez le SQL par Niveaux
+						Apprenez le SQL par niveaux
 					</h2>
 					<p className="text-gray-600 text-lg max-w-3xl mx-auto">
 						Maîtrisez les bases du langage SQL à travers différents niveaux de
