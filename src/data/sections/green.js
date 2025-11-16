@@ -26,7 +26,7 @@ export const greenBeltContent = {
 	pageDescription: {
 		title: "Manipulez vos données avec les opérations CRUD",
 		content:
-			"La ceinture orange vous apprend les quatre opérations fondamentales de manipulation de données : CREATE (commande INSERT), READ (commande SELECT), UPDATE et DELETE. Ces opérations forment l'épine dorsale de toute interaction avec une base de données.",
+			"La ceinture verte vous apprend les quatre opérations fondamentales de manipulation de données : CREATE (commande INSERT), READ (commande SELECT), UPDATE et DELETE. Ces opérations forment l'épine dorsale de toute interaction avec une base de données.",
 	},
 	accordions: [
 		{
