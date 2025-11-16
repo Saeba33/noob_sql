@@ -34,135 +34,142 @@ export const greenBeltContent = {
 			content: "Insérez de nouvelles données dans vos tables.",
 			sqlQueries: [
 				{
-					title: "Insertion simple",
-					sqlCode: `INSERT INTO utilisateurs (nom, email, age) 
-VALUES ('Alice Dupont', 'alice@email.com', 28);`,
+					sqlCode: `-- Insertion d'un seul utilisateur
+INSERT INTO utilisateurs (prenom, nom, email, age) VALUES 
+('Alice', 'Dupont', 'alice@email.com', 28);`,
 					sqlResult: {
 						message: "1 ligne insérée avec succès",
 						type: "message",
 					},
 				},
 				{
-					title: "Insertion multiple",
-					sqlCode: `INSERT INTO utilisateurs (nom, email, age) VALUES 
-('Bob Martin', 'bob@email.com', 32),
-('Claire Durand', 'claire@email.com', 25),
-('David Moreau', 'david@email.com', 45);`,
+					sqlCode: `-- Insertion de plusieurs utilisateurs en une seule requête
+INSERT INTO utilisateurs (prenom, nom, email, age) VALUES 
+('Bob', 'Martin', 'bob@email.com', 32),
+('Claire', 'Durand', 'claire@email.com', 25),
+('David', 'Moreau', 'david@email.com', 45);`,
 					sqlResult: {
 						message: "3 lignes insérées avec succès",
 						type: "message",
 					},
 				},
 				{
-					title: "Insertion avec valeurs par défaut",
-					sqlCode: `INSERT INTO utilisateurs (nom, email) 
-VALUES ('Emma Bernard', 'emma@email.com');`,
+					sqlCode: `-- Insertion sans spécifier l'âge (valeur par défaut ou NULL)
+INSERT INTO utilisateurs (prenom, nom, email) VALUES 
+('Emma', 'Bernard', 'emma@email.com');`,
 					sqlResult: {
 						message: "1 ligne insérée avec succès (âge par défaut appliqué)",
 						type: "message",
 					},
 				},
 			],
-			description:
-				"INSERT vous permet d'ajouter de nouvelles données dans vos tables. C'est la première étape du CRUD.",
 		},
 		{
 			title: "SELECT - Lecture de données",
 			content: "Récupérez et consultez les données stockées dans vos tables.",
 			sqlQueries: [
 				{
-					title: "Sélectionner toutes les colonnes",
-					sqlCode: `SELECT * FROM utilisateurs;`,
+					sqlCode: `-- Sélectionner toutes les colonnes de tous les utilisateurs
+SELECT * 
+FROM utilisateurs;`,
 					sqlResult: [
 						{
 							id: 1,
-							nom: "Alice Dupont",
+							prenom: "Alice",
+							nom: "Dupont",
 							email: "alice@email.com",
 							age: 28,
-							statut: "actif",
+							ville: "Paris",
 						},
 						{
 							id: 2,
-							nom: "Bob Martin",
+							prenom: "Bob",
+							nom: "Martin",
 							email: "bob@email.com",
 							age: 32,
-							statut: "actif",
+							ville: "Paris",
 						},
 						{
 							id: 3,
-							nom: "Claire Durand",
+							prenom: "Claire",
+							nom: "Durand",
 							email: "claire@email.com",
 							age: 25,
-							statut: "actif",
+							ville: "Toulouse",
 						},
 						{
 							id: 4,
-							nom: "David Moreau",
+							prenom: "David",
+							nom: "Moreau",
 							email: "david@email.com",
 							age: 45,
-							statut: "actif",
+							ville: "Lyon",
 						},
 						{
 							id: 5,
-							nom: "Emma Bernard",
+							prenom: "Emma",
+							nom: "Bernard",
 							email: "emma@email.com",
 							age: 30,
-							statut: "actif",
+							ville: "Toulouse",
 						},
 					],
 				},
 				{
-					title: "Sélectionner des colonnes spécifiques",
-					sqlCode: `SELECT nom, email FROM utilisateurs;`,
+					sqlCode: `-- Sélectionner uniquement le prénom, nom et email
+SELECT prenom, nom, email 
+FROM utilisateurs;`,
 					sqlResult: [
-						{ nom: "Alice Dupont", email: "alice@email.com" },
-						{ nom: "Bob Martin", email: "bob@email.com" },
-						{ nom: "Claire Durand", email: "claire@email.com" },
-						{ nom: "David Moreau", email: "david@email.com" },
-						{ nom: "Emma Bernard", email: "emma@email.com" },
+						{ prenom: "Alice", nom: "Dupont", email: "alice@email.com" },
+						{ prenom: "Bob", nom: "Martin", email: "bob@email.com" },
+						{ prenom: "Claire", nom: "Durand", email: "claire@email.com" },
+						{ prenom: "David", nom: "Moreau", email: "david@email.com" },
+						{ prenom: "Emma", nom: "Bernard", email: "emma@email.com" },
 					],
 				},
 				{
-					title: "Sélectionner avec conditions",
-					sqlCode: `SELECT nom, age FROM utilisateurs WHERE age > 30;`,
+					sqlCode: `-- Sélectionner les utilisateurs de plus de 30 ans
+SELECT prenom, nom, age 
+FROM utilisateurs 
+WHERE age > 30;`,
 					sqlResult: [
-						{ nom: "Bob Martin", age: 32 },
-						{ nom: "David Moreau", age: 45 },
+						{ prenom: "Bob", nom: "Martin", age: 32 },
+						{ prenom: "David", nom: "Moreau", age: 45 },
 					],
 				},
 				{
-					title: "Ordonner les résultats",
-					sqlCode: `SELECT nom, email FROM utilisateurs ORDER BY nom ASC;`,
+					sqlCode: `-- Sélectionner tous les utilisateurs triés par nom de famille
+SELECT prenom, nom, email 
+FROM utilisateurs 
+ORDER BY nom ASC;`,
 					sqlResult: [
-						{ nom: "Alice Dupont", email: "alice@email.com" },
-						{ nom: "Bob Martin", email: "bob@email.com" },
-						{ nom: "Claire Durand", email: "claire@email.com" },
-						{ nom: "David Moreau", email: "david@email.com" },
-						{ nom: "Emma Bernard", email: "emma@email.com" },
+						{ prenom: "Emma", nom: "Bernard", email: "emma@email.com" },
+						{ prenom: "Alice", nom: "Dupont", email: "alice@email.com" },
+						{ prenom: "Claire", nom: "Durand", email: "claire@email.com" },
+						{ prenom: "Bob", nom: "Martin", email: "bob@email.com" },
+						{ prenom: "David", nom: "Moreau", email: "david@email.com" },
 					],
 				},
 			],
-			description:
-				"SELECT est la commande la plus utilisée en SQL. Elle vous permet de lire et extraire des données.",
 		},
 		{
 			title: "UPDATE - Modification de données",
 			content: "Modifiez les données existantes dans vos tables.",
 			sqlQueries: [
 				{
-					title: "Mise à jour simple",
-					sqlCode: `UPDATE utilisateurs 
+					sqlCode: `-- Modifier l'âge d'un utilisateur spécifique
+UPDATE utilisateurs 
 SET age = 29 
-WHERE nom = 'Alice Dupont';`,
+WHERE prenom = 'Alice' AND nom = 'Dupont';`,
 					sqlResult: {
 						message: "1 ligne mise à jour avec succès",
 						type: "message",
 					},
 				},
 				{
-					title: "Mise à jour multiple avec condition",
-					sqlCode: `UPDATE utilisateurs 
-SET statut = 'senior' 
+					sqlCode: `-- Changer la ville de tous les utilisateurs de plus de 40 ans
+UPDATE utilisateurs 
+SET ville = 'Nice' 
 WHERE age >= 40;`,
 					sqlResult: {
 						message: "1 ligne mise à jour avec succès",
@@ -170,18 +177,15 @@ WHERE age >= 40;`,
 					},
 				},
 				{
-					title: "Mise à jour avec calcul",
-					sqlCode: `UPDATE utilisateurs 
-SET age = age + 1 
-WHERE statut = 'actif';`,
+					sqlCode: `-- Augmenter l'âge de tous les utilisateurs d'un an
+UPDATE utilisateurs 
+SET age = age + 1;`,
 					sqlResult: {
-						message: "4 lignes mises à jour avec succès",
+						message: "5 lignes mises à jour avec succès",
 						type: "message",
 					},
 				},
 			],
-			description:
-				"UPDATE modifie les données existantes. Toujours utiliser WHERE pour éviter de modifier toute la table !",
 		},
 		{
 			title: "DELETE - Suppression de données",
@@ -189,8 +193,8 @@ WHERE statut = 'actif';`,
 				"Supprimez des données avec DELETE ou videz une table avec TRUNCATE.",
 			sqlQueries: [
 				{
-					title: "DELETE sélectif",
-					sqlCode: `DELETE FROM utilisateurs 
+					sqlCode: `-- Supprimer les utilisateurs de moins de 18 ans
+DELETE FROM utilisateurs 
 WHERE age < 18;`,
 					sqlResult: {
 						message: "0 ligne supprimée (aucun utilisateur mineur)",
@@ -198,28 +202,30 @@ WHERE age < 18;`,
 					},
 				},
 				{
-					title: "DELETE avec condition complexe",
-					sqlCode: `DELETE FROM utilisateurs 
-WHERE nom = 'Bob Martin' AND age > 30;`,
+					sqlCode: `-- Supprimer un utilisateur spécifique avec plusieurs conditions
+DELETE FROM utilisateurs 
+WHERE prenom = 'Bob' 
+  AND nom = 'Martin' 
+  AND age > 30;`,
 					sqlResult: {
 						message: "1 ligne supprimée avec succès",
 						type: "message",
 					},
 				},
 				{
-					title: "TRUNCATE - Vider complètement une table",
-					sqlCode: `TRUNCATE TABLE sessions;`,
+					sqlCode: `-- Vider complètement une table (plus rapide que DELETE)
+TRUNCATE TABLE sessions;`,
 					sqlResult: {
 						message: "Table 'sessions' vidée complètement",
 						type: "message",
 					},
 				},
 				{
-					title: "Différence DELETE vs TRUNCATE",
-					sqlCode: `-- DELETE : suppression sélective, peut avoir WHERE
-DELETE FROM logs WHERE date_creation < '2024-01-01';
+					sqlCode: `-- DELETE : suppression sélective avec WHERE
+DELETE FROM logs 
+WHERE date_creation < '2024-01-01';
 
--- TRUNCATE : vide toute la table, plus rapide
+-- TRUNCATE : vide toute la table, plus rapide, sans WHERE
 TRUNCATE TABLE temp_data;`,
 					sqlResult: {
 						message: "DELETE : 1500 lignes supprimées | TRUNCATE : table vidée",
@@ -227,8 +233,6 @@ TRUNCATE TABLE temp_data;`,
 					},
 				},
 			],
-			description:
-				"DELETE pour une suppression sélective, TRUNCATE pour vider complètement une table rapidement.",
 		},
 		{
 			title: "Bonnes Pratiques CRUD",
@@ -237,38 +241,39 @@ TRUNCATE TABLE temp_data;`,
 			externalComponent: (
 				<BestPractices
 					title="Conventions de Syntaxe"
+					accentColor="green-600"
 					introduction="Un code SQL bien formaté est plus facile à lire, déboguer et maintenir ! Voici les conventions de syntaxe essentielles pour écrire du SQL propre et professionnel."
 					rules={[
 						{
-							title: "Mots-clés en MAJUSCULES",
-							icon: <MdSpellcheck className="w-5 h-5 text-gray-600" />,
-							rule: "Écris tous les mots-clés SQL en lettres majuscules pour une meilleure lisibilité",
-							good: "SELECT nom FROM utilisateurs WHERE age > 25",
-							bad: "select nom from utilisateurs where age > 25",
+						title: "Mots-clés en MAJUSCULES",
+						icon: <MdSpellcheck className="w-5 h-5 text-green-600" />,
+						rule: "Écris tous les mots-clés SQL en lettres majuscules pour une meilleure lisibilité",
+						good: "SELECT nom\nFROM utilisateurs\nWHERE age > 25",
+						bad: "select nom\nfrom utilisateurs\nwhere age > 25",
 							reason:
 								"Standard universel, distinction claire entre mots-clés et noms",
 						},
 						{
 							title: "Indentation cohérente",
 							icon: (
-								<MdFormatIndentIncrease className="w-5 h-5 text-gray-600" />
+								<MdFormatIndentIncrease className="w-5 h-5 text-green-600" />
 							),
 							rule: "Indente les clauses SQL pour structurer visuellement tes requêtes",
-							good: "SELECT nom, email\\nFROM utilisateurs\\nWHERE age > 18\\nORDER BY nom",
+							good: "SELECT nom, email\nFROM utilisateurs\nWHERE age > 18\nORDER BY nom",
 							bad: "SELECT nom, email FROM utilisateurs WHERE age > 18 ORDER BY nom",
 							reason: "Code lisible, maintenance facilitée, moins d'erreurs",
 						},
 						{
-							title: "Nommage en snake_case",
-							icon: <MdTextFormat className="w-5 h-5 text-gray-600" />,
-							rule: "Utilise le snake_case pour les noms de tables et colonnes",
-							good: "nom_utilisateur, date_creation, prix_total",
-							bad: "nomUtilisateur, dateCreation, prixTotal",
-							reason: "Convention standard, compatible avec tous les SGBD",
+							title: "Ponctuation : partie de la syntaxe",
+							icon: <MdTextFormat className="w-5 h-5 text-green-600" />,
+							rule: "La ponctuation n'est pas optionnelle : point-virgule en fin de requête, virgules entre colonnes (sauf la dernière)",
+							good: "SELECT nom, prenom, email\nFROM utilisateurs;",
+							bad: "SELECT nom prenom email\nFROM utilisateurs",
+							reason: "Sans ponctuation = erreur de syntaxe, requête non exécutable",
 						},
 						{
-							title: "Alias explicites",
-							icon: <MdCode className="w-5 h-5 text-gray-600" />,
+							title: "Alias explicites avec AS",
+							icon: <MdCode className="w-5 h-5 text-green-600" />,
 							rule: "Utilise des alias clairs avec AS pour renommer les colonnes",
 							good: "SELECT COUNT(*) AS nombre_total",
 							bad: "SELECT COUNT(*) nombre_total",

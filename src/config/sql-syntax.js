@@ -91,8 +91,9 @@ export function analyzeSqlCode(code) {
 		});
 	}
 
-	// 2. Chaînes de caractères (priorité haute)
-	const strings = /'([^']*)'/g;
+	// 2. Chaînes de caractères (priorité haute) - inclut les apostrophes
+	// [^'\n] empêche le regex de matcher au-delà d'un retour à la ligne
+	const strings = /'[^'\n]*'/g;
 	while ((match = strings.exec(code)) !== null) {
 		parts.push({
 			start: match.index,
