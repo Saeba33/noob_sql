@@ -17,7 +17,7 @@ export const yellowBeltContent = {
 	// Belt configuration
 	belt: "yellow",
 	description: "Langage de définition de données",
-	topics: ["CREATE TABLE", "ALTER TABLE", "DROP TABLE", "Bonnes Pratiques"],
+	topics: ["CREATE TABLE", "ALTER TABLE", "DROP TABLE", "Bonnes pratiques"],
 
 	// Content sections
 	header: {
@@ -54,7 +54,7 @@ CREATE TABLE commandes (
     FOREIGN KEY (utilisateur_id) REFERENCES utilisateurs(id)
 );
 
--- Table avec contraintes avancées
+-- Table avec contraintes
 CREATE TABLE produits (
     id INTEGER PRIMARY KEY,
     nom VARCHAR(100) NOT NULL,
@@ -64,7 +64,7 @@ CREATE TABLE produits (
 );`,
 		},
 		{
-			title: "ALTER TABLE - Modification de dtructure",
+			title: "ALTER TABLE - Modification de structure",
 			content:
 				"Modifiez la structure de vos tables existantes sans perdre de données.",
 			sqlCode: `-- Ajouter une nouvelle colonne
@@ -93,7 +93,7 @@ DROP COLUMN telephone;`,
 		},
 		{
 			title: "DROP TABLE - Suppression de tables",
-			content: `Supprimez des tables de manière sécurisée avec les bonnes pratiques. Attention l'exécution d'une commande "DROP" est <strong>irréversible</strong> ! Soyez vigilant !`,
+			content: `Supprimez des tables de manière sécurisée avec les bonnes pratiques. Attention l'exécution d'une commande "DROP" est irréversible ! Soyez vigilant !`,
 			sqlCode: `-- Supprimer une table (attention : irréversible!)
 DROP TABLE ancienne_table;
 
@@ -107,29 +107,27 @@ DROP TABLE commandes CASCADE;
 TRUNCATE TABLE logs;
 
 -- Alternative : supprimer toutes les données
-DELETE FROM sessions;
-
--- Voir les tables existantes (commande spécifique SQLite)
-SELECT name FROM sqlite_master;`,
+DELETE FROM logs;`,
 		},
 		{
-			title: "Bonnes Pratiques DDL",
+			title: "Bonnes pratiques DDL",
 			externalComponent: (
 				<BestPractices
-					title="Bonnes Pratiques DDL"
+					title="Bonnes pratiques DDL"
 					accentColor="yellow-600"
 					introduction="Le Data Definition Language (DDL) est la fondation de votre base de données. Une structure bien pensée dès le départ vous évitera des heures de refactoring plus tard ! Voici les bonnes pratiques essentielles pour créer des tables robustes et maintenables."
 					rules={[
 						{
-							title: "Nommage des Tables",
+							title: "Nommage des tables",
 							icon: <MdTableChart className="w-5 h-5 text-yellow-600" />,
-							rule: "Utilise des noms explicites au singulier pour les tables",
-							good: "utilisateur, commande, produit",
+							rule: "Utiliser des noms explicites au pluriel pour les tables",
+							good: "utilisateurs, commandes, produits",
 							bad: "user, cmd, t1, data_table",
-							reason: "Clarity et cohérence dans le schéma de base",
+							reason:
+								"Cohérence et clarté : une table contient plusieurs enregistrements",
 						},
 						{
-							title: "Clés Primaires",
+							title: "Clés primaires",
 							icon: <MdKey className="w-5 h-5 text-yellow-600" />,
 							rule: "Toujours définir une clé primaire auto-incrémentée",
 							good: "id INTEGER PRIMARY KEY AUTO_INCREMENT",
@@ -137,9 +135,9 @@ SELECT name FROM sqlite_master;`,
 							reason: "Performance et simplicité des relations",
 						},
 						{
-							title: "Types de Données",
+							title: "Types de données",
 							icon: <MdDataset className="w-5 h-5 text-yellow-600" />,
-							rule: "Choisis le type de données le plus approprié et restrictif",
+							rule: "Choisir le type de données le plus approprié et restrictif",
 							good: "age INTEGER CHECK (age >= 0), email VARCHAR(255)",
 							bad: "age TEXT, email TEXT",
 							reason: "Optimisation de l'espace et validation automatique",
@@ -153,17 +151,17 @@ SELECT name FROM sqlite_master;`,
 							reason: "Garantit l'intégrité des données essentielles",
 						},
 						{
-							title: "Valeurs par Défaut",
+							title: "Valeurs par défaut",
 							icon: <MdBuild className="w-5 h-5 text-yellow-600" />,
-							rule: "Définis des valeurs par défaut logiques",
+							rule: "Définir des valeurs par défaut logiques",
 							good: "statut VARCHAR(20) DEFAULT 'actif', date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP",
 							bad: "Laisser les colonnes sans valeur par défaut",
 							reason: "Simplifie les insertions et évite les erreurs",
 						},
 						{
-							title: "Index Stratégiques",
+							title: "Index stratégiques",
 							icon: <MdSpeed className="w-5 h-5 text-yellow-600" />,
-							rule: "Crée des index sur les colonnes de recherche fréquente",
+							rule: "Créer des index sur les colonnes de recherche fréquente",
 							good: "CREATE INDEX idx_email ON utilisateur(email)",
 							bad: "Aucun index sur les colonnes WHERE/JOIN",
 							reason: "Améliore drastiquement les performances",
