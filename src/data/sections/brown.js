@@ -82,7 +82,7 @@ CREATE TABLE details_commande (
 		{
 			title: "JOIN (INNER JOIN) - Jointure Interne",
 			content:
-				"Récupérez uniquement les lignes qui ont une correspondance dans les deux tables.",
+				"Récupérez uniquement les lignes qui ont une correspondance dans les deux tables. 💡 Rappel : Les jointures reposent sur les clés primaires (PK) et étrangères (FK) vues en Ceinture Blanche - la PK identifie uniquement chaque ligne, la FK référence une PK d'une autre table pour créer la relation.",
 			sqlQueries: [
 				{
 					title: "INNER JOIN basique",

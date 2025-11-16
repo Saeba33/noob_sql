@@ -1,9 +1,7 @@
 import {
   MdCheckBox,
-  MdCheckCircle,
   MdInventory,
   MdKey,
-  MdLightbulb,
   MdLink,
   MdLock,
   MdNumbers,
@@ -13,8 +11,9 @@ import {
   MdStorage,
   MdTextFields,
   MdVerified,
-  MdWarning,
 } from "react-icons/md";
+import { IoMdCheckmarkCircleOutline, IoMdInformation } from "react-icons/io";
+import { BiSolidErrorAlt } from "react-icons/bi";
 
 export default function DataTypes() {
   const commonDataTypes = [
@@ -264,82 +263,59 @@ export default function DataTypes() {
           {commonDataTypes.map((category, categoryIndex) => (
             <div
               key={categoryIndex}
-              className="bg-white border border-gray-300 rounded-lg p-4 shadow-sm"
+              className="bg-white border border-gray-300 rounded-lg shadow-sm overflow-hidden"
             >
               {/* En-tête de catégorie */}
-              <div className="flex items-center space-x-3 mb-4">
+              <div className="flex items-center space-x-3 mb-4 p-4 pb-0">
                 {category.icon}
                 <h3 className="text-lg font-bold text-gray-800">
                   {category.category}
                 </h3>
               </div>
 
-              {/* Types dans la catégorie */}
-              <div className="space-y-4">
+              {/* Wrapper avec scroll horizontal */}
+              <div className="overflow-x-auto">
+                <table className="w-full min-w-[800px] border-collapse">
+                  <thead>
+                    <tr className="bg-gray-100">
+                      <th className="text-xs font-semibold text-gray-600 uppercase p-3 text-left border-b border-gray-300">Type</th>
+                      <th className="text-xs font-semibold text-gray-600 uppercase p-3 text-left border-b border-gray-300">Description</th>
+                      <th className="text-xs font-semibold text-gray-600 uppercase p-3 text-left border-b border-gray-300">Exemples</th>
+                      <th className="text-xs font-semibold text-gray-600 uppercase p-3 text-left border-b border-gray-300">Utilisation</th>
+                    </tr>
+                  </thead>
+                  <tbody>
                 {category.types.map((type, typeIndex) => (
-                  <div
-                    key={typeIndex}
-                    className="bg-gray-50 border border-gray-200 rounded-lg p-4"
-                  >
-                    <div className="grid lg:grid-cols-5 gap-4 items-start">
-                      {/* Nom du type */}
-                      <div className="flex items-center">
-                        <div className="bg-gray-100 px-3 py-2 rounded-lg inline-block">
-                          <code className="font-bold text-gray-800">
-                            {type.name}
+                  <tr key={typeIndex} className="border-b border-gray-200 hover:bg-gray-50">
+                    <td className="p-3">
+                      <div className="bg-gray-100 px-2 py-1 rounded inline-block">
+                        <code className="font-semibold text-sm text-gray-800">
+                          {type.name}
+                        </code>
+                      </div>
+                    </td>
+                    <td className="p-3 text-gray-700 text-sm">
+                      {type.description}
+                    </td>
+                    <td className="p-3">
+                      <div className="flex flex-wrap gap-1">
+                        {type.examples.map((example, exampleIndex) => (
+                          <code
+                            key={exampleIndex}
+                            className="bg-gray-100 px-1 py-0.5 rounded text-xs text-gray-800"
+                          >
+                            {example}
                           </code>
-                        </div>
+                        ))}
                       </div>
-
-                      {/* Description */}
-                      <div>
-                        <p className="text-gray-800 text-sm font-medium mb-1">
-                          Description
-                        </p>
-                        <p className="text-gray-700 text-sm">
-                          {type.description}
-                        </p>
-                      </div>
-
-                      {/* Exemples */}
-                      <div>
-                        <p className="text-gray-800 text-sm font-medium mb-1">
-                          Exemples
-                        </p>
-                        <div className="flex flex-wrap gap-1">
-                          {type.examples.map((example, exampleIndex) => (
-                            <code
-                              key={exampleIndex}
-                              className="bg-gray-100 px-2 py-1 rounded text-xs text-gray-800"
-                            >
-                              {example}
-                            </code>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Utilisation */}
-                      <div>
-                        <p className="text-gray-800 text-sm font-medium mb-1">
-                          Utilisation
-                        </p>
-                        <p className="text-gray-700 text-sm">{type.usage}</p>
-                      </div>
-
-                      {/* Bonne pratique */}
-                      {type.bestPractice && (
-                        <div>
-                          <p className="text-gray-800 text-sm font-medium mb-1">
-                            Bonne pratique
-                          </p>
-                          <p className="text-gray-700 text-sm font-semibold">
-                            {type.bestPractice}
-                          </p>
-                        </div>
-                      )}
-                    </div>
-                  </div>
+                    </td>
+                    <td className="p-3 text-gray-600 text-sm">
+                      {type.usage}
+                    </td>
+                  </tr>
                 ))}
+              </tbody>
+                </table>
               </div>
             </div>
           ))}
@@ -356,61 +332,59 @@ export default function DataTypes() {
             {lessCommonDataTypes.map((category, categoryIndex) => (
               <div
                 key={categoryIndex}
-                className="bg-white border border-gray-300 rounded-lg p-4 shadow-sm opacity-90"
+                className="bg-white border border-gray-300 rounded-lg shadow-sm overflow-hidden"
               >
                 {/* En-tête de catégorie */}
-                <div className="flex items-center space-x-3 mb-4">
+                <div className="flex items-center space-x-3 mb-4 p-4 pb-0">
                   {category.icon}
                   <h3 className="text-lg font-bold text-gray-800">
                     {category.category}
                   </h3>
                 </div>
 
-                {/* Types dans la catégorie */}
-                <div className="space-y-3">
+                {/* Wrapper avec scroll horizontal */}
+                <div className="overflow-x-auto">
+                  <table className="w-full min-w-[800px] border-collapse">
+                    <thead>
+                      <tr className="bg-gray-100">
+                        <th className="text-xs font-semibold text-gray-600 uppercase p-3 text-left border-b border-gray-300">Type</th>
+                        <th className="text-xs font-semibold text-gray-600 uppercase p-3 text-left border-b border-gray-300">Description</th>
+                        <th className="text-xs font-semibold text-gray-600 uppercase p-3 text-left border-b border-gray-300">Exemples</th>
+                        <th className="text-xs font-semibold text-gray-600 uppercase p-3 text-left border-b border-gray-300">Utilisation</th>
+                      </tr>
+                    </thead>
+                    <tbody>
                   {category.types.map((type, typeIndex) => (
-                    <div
-                      key={typeIndex}
-                      className="bg-gray-50 border border-gray-200 rounded-lg p-3"
-                    >
-                      <div className="grid md:grid-cols-4 gap-3 items-start">
-                        {/* Nom du type */}
-                        <div className="flex items-center">
-                          <div className="bg-gray-100 px-2 py-1 rounded inline-block">
-                            <code className="font-semibold text-sm text-gray-800">
-                              {type.name}
+                    <tr key={typeIndex} className="border-b border-gray-200 hover:bg-gray-50">
+                      <td className="p-3">
+                        <div className="bg-gray-100 px-2 py-1 rounded inline-block">
+                          <code className="font-semibold text-sm text-gray-800">
+                            {type.name}
+                          </code>
+                        </div>
+                      </td>
+                      <td className="p-3 text-gray-700 text-sm">
+                        {type.description}
+                      </td>
+                      <td className="p-3">
+                        <div className="flex flex-wrap gap-1">
+                          {type.examples.map((example, exampleIndex) => (
+                            <code
+                              key={exampleIndex}
+                              className="bg-gray-100 px-1 py-0.5 rounded text-xs text-gray-800"
+                            >
+                              {example}
                             </code>
-                          </div>
+                          ))}
                         </div>
-
-                        {/* Description */}
-                        <div>
-                          <p className="text-gray-700 text-sm">
-                            {type.description}
-                          </p>
-                        </div>
-
-                        {/* Exemples */}
-                        <div>
-                          <div className="flex flex-wrap gap-1">
-                            {type.examples.map((example, exampleIndex) => (
-                              <code
-                                key={exampleIndex}
-                                className="bg-gray-100 px-1 py-0.5 rounded text-xs text-gray-800"
-                              >
-                                {example}
-                              </code>
-                            ))}
-                          </div>
-                        </div>
-
-                        {/* Utilisation */}
-                        <div>
-                          <p className="text-gray-600 text-sm">{type.usage}</p>
-                        </div>
-                      </div>
-                    </div>
+                      </td>
+                      <td className="p-3 text-gray-600 text-sm">
+                        {type.usage}
+                      </td>
+                    </tr>
                   ))}
+                </tbody>
+                  </table>
                 </div>
               </div>
             ))}
@@ -462,112 +436,18 @@ export default function DataTypes() {
           </div>
         </div>
 
-        {/* Conseils pratiques améliorés */}
-        <div className="mt-8">
-          <h2 className="text-lg font-bold text-gray-800 mb-6 flex items-center">
-            <MdLightbulb className="w-5 h-5 text-gray-600 mr-3" />
-            Bonnes Pratiques
-          </h2>
-
-          <div className="grid md:grid-cols-2 gap-6">
-            {/* Carte Recommandations */}
-            <div className="bg-white border border-gray-300 rounded-lg p-4 shadow-sm">
-              <div className="flex items-center space-x-2 mb-4">
-                <MdCheckCircle className="w-5 h-5 text-green-600" />
-                <h3 className="font-bold text-gray-900">Recommandations</h3>
-              </div>
-              <ul className="space-y-3 text-gray-700">
-                <li className="flex items-start space-x-2">
-                  <span className="text-green-600 mt-1">•</span>
-                  <span>
-                    <strong>VARCHAR(255)</strong> : Standard optimal pour MySQL
-                  </span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <span className="text-green-600 mt-1">•</span>
-                  <span>
-                    <strong>INTEGER AUTO_INCREMENT</strong> pour les IDs
-                  </span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <span className="text-green-600 mt-1">•</span>
-                  <span>
-                    <strong>DECIMAL(10,2)</strong> pour les montants financiers
-                  </span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <span className="text-green-600 mt-1">•</span>
-                  <span>
-                    <strong>TIMESTAMP DEFAULT CURRENT_TIMESTAMP</strong> pour
-                    les logs
-                  </span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <span className="text-green-600 mt-1">•</span>
-                  <span>
-                    <strong>NOT NULL</strong> sur les champs essentiels
-                  </span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <span className="text-green-600 mt-1">•</span>
-                  <span>
-                    <strong>UNSIGNED</strong> pour les valeurs toujours
-                    positives
-                  </span>
-                </li>
-              </ul>
-            </div>
-
-            {/* Carte À éviter */}
-            <div className="bg-white border border-gray-300 rounded-lg p-4 shadow-sm">
-              <div className="flex items-center space-x-2 mb-4">
-                <MdWarning className="w-5 h-5 text-red-600" />
-                <h3 className="font-bold text-gray-900">À éviter</h3>
-              </div>
-              <ul className="space-y-3 text-gray-700">
-                <li className="flex items-start space-x-2">
-                  <span className="text-red-600 mt-1">•</span>
-                  <span>VARCHAR trop long = gaspillage mémoire</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <span className="text-red-600 mt-1">•</span>
-                  <span>
-                    FLOAT/DOUBLE pour les montants = erreurs d'arrondi
-                  </span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <span className="text-red-600 mt-1">•</span>
-                  <span>TEXT pour des données courtes</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <span className="text-red-600 mt-1">•</span>
-                  <span>Stocker des dates en VARCHAR</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <span className="text-red-600 mt-1">•</span>
-                  <span>Oublier les contraintes de validation</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <span className="text-red-600 mt-1">•</span>
-                  <span>Trop de colonnes NULL sans raison</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
         {/* Exemple pratique complet */}
         <div className="mt-8">
-          <div className="bg-white border border-gray-300 rounded-lg p-4 shadow-sm">
-            <div className="flex items-center space-x-2 mb-4">
+          <div className="bg-white border border-gray-300 rounded-lg shadow-sm overflow-hidden">
+            <div className="flex items-center space-x-2 mb-4 p-4 pb-0">
               <MdStorage className="w-5 h-5 text-gray-600" />
               <h4 className="font-bold text-gray-900">
                 Exemple d'une table "utilisateurs" avec contraintes
               </h4>
             </div>
 
-            <div className="bg-gray-50 border border-gray-200 rounded-lg overflow-hidden">
-              <table className="w-full">
+            <div className="bg-gray-50 border border-gray-200 rounded-lg overflow-x-auto m-4 mt-4">
+              <table className="w-full min-w-[900px]">
                 <thead>
                   <tr className="bg-gray-100 border-b border-gray-300">
                     <th className="p-3 text-left font-semibold text-gray-900 text-sm">

@@ -1,8 +1,6 @@
 import { lazy } from "react";
 import {
 	MdDataset,
-	MdKey,
-	MdLink,
 	MdSpeed,
 	MdTableChart,
 	MdTextFormat,
@@ -18,6 +16,9 @@ const DatabaseArchitecture = lazy(() =>
 const DataTypes = lazy(() =>
 	import("@/components/ui/sections/white/DataTypes")
 );
+const PrimaryForeignKeys = lazy(() =>
+	import("@/components/ui/sections/white/PrimaryForeignKeys")
+);
 const BestPractices = lazy(() =>
 	import("@/components/ui/sections/BestPractices")
 );
@@ -26,7 +27,13 @@ export const whiteBeltContent = {
 	// Belt configuration
 	belt: "white",
 	description: "Théorie et concepts fondamentaux",
-	topics: ["SGBD", "Architecture BDD", "Types de données", "Bonnes pratiques"],
+	topics: [
+		"SGBD",
+		"Architecture BDD Relationnelles",
+		"Types de Données",
+		"Relations entre les tables",
+		"Bonnes Pratiques",
+	],
 
 	// Content sections
 	header: {
@@ -48,7 +55,10 @@ export const whiteBeltContent = {
 			title: "Architecture d'une Base De Données Relationnelles",
 			externalComponent: <DatabaseArchitecture />,
 		},
-
+		{
+			title: "Relations entre les tables",
+			externalComponent: <PrimaryForeignKeys />,
+		},
 		{
 			title: "Types de Données",
 			externalComponent: <DataTypes />,
@@ -68,22 +78,6 @@ export const whiteBeltContent = {
 							reason: "Évite les incohérences, facilite les mises à jour",
 						},
 						{
-							title: "Clés primaires simples",
-							icon: <MdKey className="w-5 h-5 text-gray-600" />,
-							rule: "Utilise des clés primaires simples et stables (id numérique)",
-							good: "id INTEGER PRIMARY KEY AUTO_INCREMENT",
-							bad: "Clés composées ou textuelles comme clé primaire",
-							reason: "Performance optimale, simplicité des relations",
-						},
-						{
-							title: "Clés étrangères",
-							icon: <MdLink className="w-5 h-5 text-gray-600" />,
-							rule: "Définis des clés étrangères pour assurer les relations",
-							good: "utilisateur_id INTEGER REFERENCES utilisateurs(id)",
-							bad: "Pas de contraintes, relations non déclarées",
-							reason: "Intégrité référentielle garantie",
-						},
-						{
 							title: "Convention snake_case",
 							icon: <MdTextFormat className="w-5 h-5 text-gray-600" />,
 							rule: "Utilise le snake_case pour les noms",
@@ -99,14 +93,30 @@ export const whiteBeltContent = {
 							bad: "usr, cmd, tot, t1, c_id",
 							reason: "Code auto-documenté, maintenance facilitée",
 						},
-						{
-							title: "Index stratégiques",
-							icon: <MdSpeed className="w-5 h-5 text-gray-600" />,
-							rule: "Crée des index sur les colonnes de filtrage et jointure",
-							good: "INDEX sur email, date_creation, statut",
-							bad: "Aucun index sur les colonnes WHERE/JOIN",
-							reason: "Performances optimales des requêtes",
-						},
+					{
+						title: "Index stratégiques",
+						icon: <MdSpeed className="w-5 h-5 text-gray-600" />,
+						rule: "Crée des index sur les colonnes de filtrage et jointure (détails en Ceinture Noire)",
+						good: "INDEX sur email, date_creation, statut",
+						bad: "Aucun index sur les colonnes WHERE/JOIN",
+						reason: "Performances optimales des requêtes",
+					},
+					{
+						title: "Types de données appropriés",
+						icon: <MdTextFormat className="w-5 h-5 text-gray-600" />,
+						rule: "Choisis le type de données adapté à chaque colonne",
+						good: "VARCHAR(255) pour emails, DECIMAL(10,2) pour prix, INTEGER AUTO_INCREMENT pour IDs",
+						bad: "VARCHAR trop long, FLOAT pour montants, TEXT pour données courtes",
+						reason: "Optimise la mémoire, garantit la précision des calculs",
+					},
+					{
+						title: "Contraintes de validation",
+						icon: <MdDataset className="w-5 h-5 text-gray-600" />,
+						rule: "Utilise NOT NULL, UNIQUE, CHECK pour garantir la qualité des données",
+						good: "email VARCHAR(255) UNIQUE NOT NULL, age INTEGER CHECK(age >= 0)",
+						bad: "Colonnes sans contraintes, données incohérentes possibles",
+						reason: "Intégrité des données, évite les erreurs en amont",
+					},
 					]}
 				/>
 			),

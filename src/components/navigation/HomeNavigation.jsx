@@ -54,7 +54,7 @@ export default function HomeNavigation() {
 							</p>
 
 							<div className="space-y-2">
-								{page.topics.slice(0, 4).map((topic, index) => (
+								{page.topics.slice(0, 3).map((topic, index) => (
 									<div
 										key={index}
 										className="text-sm text-gray-700 flex items-start"
@@ -63,9 +63,11 @@ export default function HomeNavigation() {
 										<span>{topic}</span>
 									</div>
 								))}
-								{page.topics.length > 4 && (
+								{page.topics.length > 3 && (
 									<div className="text-sm text-gray-500">
-										+ {page.topics.length - 4} autres sujets
+										+ {page.topics.length - 3} autre
+										{page.topics.length - 3 > 1 ? "s" : ""} sujet
+										{page.topics.length - 3 > 1 ? "s" : ""}
 									</div>
 								)}
 							</div>

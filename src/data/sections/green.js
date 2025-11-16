@@ -1,185 +1,119 @@
+import { lazy } from "react";
+import {
+	MdCode,
+	MdFormatIndentIncrease,
+	MdSpellcheck,
+	MdTextFormat,
+} from "react-icons/md";
+
+// Lazy load du composant
+const BestPractices = lazy(() =>
+	import("@/components/ui/sections/BestPractices")
+);
+
 export const greenBeltContent = {
 	// Belt configuration
 	belt: "green",
-	description: "Contrôle et filtrage des données",
-	topics: [
-		"WHERE",
-		"Opérateurs de comparaison",
-		"AND, OR, IN, LIKE",
-		"ORDER BY",
-		"NULL",
-		"LIMIT, OFFSET",
-	],
+	description: "Opérations de base sur les données",
+	topics: ["INSERT", "SELECT", "UPDATE", "DELETE", "TRUNCATE", "Bonnes Pratiques"],
 
 	// Content sections
 	header: {
-		title: "Filtres et Conditions",
-		description: "Contrôlez et filtrez vos données avec précision",
+		title: "CRUD - Opérations de Base",
+		description: "Maîtrisez les opérations Créer, Lire, Modifier, Supprimer",
 		tag: "Ceinture Verte",
 	},
 	pageDescription: {
-		title: "Maîtrisez le Filtrage et le Tri de vos Données",
+		title: "Manipulez vos données avec les opérations CRUD",
 		content:
-			"La ceinture verte vous enseigne l'art du filtrage et du contrôle des données. Apprenez à utiliser WHERE pour filtrer, les opérateurs pour comparer, ORDER BY pour trier, et gérez les valeurs NULL. Ces compétences vous permettront d'extraire exactement les données dont vous avez besoin.",
+			"La ceinture orange vous apprend les quatre opérations fondamentales de manipulation de données : CREATE (commande INSERT), READ (commande SELECT), UPDATE et DELETE. Ces opérations forment l'épine dorsale de toute interaction avec une base de données.",
 	},
 	accordions: [
 		{
-			title: "WHERE - Clause Fondamentale",
-			content:
-				"Filtrez vos données avec la clause WHERE, base de toute requête précise.",
+			title: "INSERT - Ajout de Données",
+			content: "Insérez de nouvelles données dans vos tables.",
 			sqlQueries: [
 				{
-					title: "Filtrage basique par âge",
-					sqlCode: `SELECT nom, email, age 
-FROM utilisateurs 
-WHERE age >= 18;`,
-					sqlResult: [
-						{ nom: "Alice Dupont", email: "alice@email.com", age: 28 },
-						{ nom: "Bob Martin", email: "bob@email.com", age: 32 },
-						{ nom: "David Moreau", email: "david@email.com", age: 45 },
-					],
+					title: "Insertion simple",
+					sqlCode: `INSERT INTO utilisateurs (nom, email, age) 
+VALUES ('Alice Dupont', 'alice@email.com', 28);`,
+					sqlResult: {
+						message: "1 ligne insérée avec succès",
+						type: "message",
+					},
 				},
 				{
-					title: "Filtrage par prix et stock",
-					sqlCode: `SELECT nom, prix, stock 
-FROM produits 
-WHERE prix > 100 AND stock > 0;`,
-					sqlResult: [
-						{ nom: "Ordinateur Portable", prix: 899, stock: 5 },
-						{ nom: "Smartphone Pro", prix: 1299, stock: 3 },
-						{ nom: "Tablette", prix: 299, stock: 8 },
-					],
+					title: "Insertion multiple",
+					sqlCode: `INSERT INTO utilisateurs (nom, email, age) VALUES 
+('Bob Martin', 'bob@email.com', 32),
+('Claire Durand', 'claire@email.com', 25),
+('David Moreau', 'david@email.com', 45);`,
+					sqlResult: {
+						message: "3 lignes insérées avec succès",
+						type: "message",
+					},
 				},
 				{
-					title: "Filtrage par date",
-					sqlCode: `SELECT numero_commande, client, date_commande 
-FROM commandes 
-WHERE date_commande = '2024-01-15';`,
-					sqlResult: [
-						{
-							numero_commande: "CMD001",
-							client: "Alice Dupont",
-							date_commande: "2024-01-15",
-						},
-						{
-							numero_commande: "CMD015",
-							client: "Bob Martin",
-							date_commande: "2024-01-15",
-						},
-					],
-				},
-				{
-					title: "Filtrage avec calcul",
-					sqlCode: `SELECT nom, age, (age * 365) AS jours_vecu 
-FROM utilisateurs 
-WHERE age * 365 > 10000;`,
-					sqlResult: [
-						{ nom: "Alice Dupont", age: 28, jours_vecu: 10220 },
-						{ nom: "Bob Martin", age: 32, jours_vecu: 11680 },
-						{ nom: "David Moreau", age: 45, jours_vecu: 16425 },
-					],
+					title: "Insertion avec valeurs par défaut",
+					sqlCode: `INSERT INTO utilisateurs (nom, email) 
+VALUES ('Emma Bernard', 'emma@email.com');`,
+					sqlResult: {
+						message: "1 ligne insérée avec succès (âge par défaut appliqué)",
+						type: "message",
+					},
 				},
 			],
 			description:
-				"WHERE est la clause la plus importante pour filtrer vos données. Sans elle, vous récupérez tout !",
+				"INSERT vous permet d'ajouter de nouvelles données dans vos tables. C'est la première étape du CRUD.",
 		},
 		{
-			title: "Opérateurs de Comparaison",
-			content:
-				"Utilisez les opérateurs pour comparer et filtrer vos données avec précision.",
+			title: "SELECT - Lecture de Données",
+			content: "Récupérez et consultez les données stockées dans vos tables.",
 			sqlQueries: [
 				{
-					title: "Égalité exacte",
-					sqlCode: `SELECT nom, age 
-FROM utilisateurs 
-WHERE age = 25;`,
-					sqlResult: [{ nom: "Claire Durand", age: 25 }],
-				},
-				{
-					title: "Inégalité (différent de)",
-					sqlCode: `SELECT nom, age 
-FROM utilisateurs 
-WHERE age != 25;`,
-					sqlResult: [
-						{ nom: "Alice Dupont", age: 28 },
-						{ nom: "Bob Martin", age: 32 },
-						{ nom: "David Moreau", age: 45 },
-						{ nom: "Emma Bernard", age: 30 },
-					],
-				},
-				{
-					title: "Supérieur et inférieur",
-					sqlCode: `SELECT nom, prix 
-FROM produits 
-WHERE prix > 200 AND prix < 1000;`,
-					sqlResult: [
-						{ nom: "Ordinateur Portable", prix: 899 },
-						{ nom: "Tablette", prix: 299 },
-						{ nom: "Casque Audio", prix: 199 },
-					],
-				},
-				{
-					title: "Comparaison de texte",
-					sqlCode: `SELECT nom, email 
-FROM utilisateurs 
-WHERE nom >= 'C' AND nom < 'E';`,
-					sqlResult: [
-						{ nom: "Claire Durand", email: "claire@email.com" },
-						{ nom: "David Moreau", email: "david@email.com" },
-					],
-				},
-			],
-			description:
-				"Les opérateurs de comparaison sont vos outils de précision pour extraire exactement ce que vous cherchez.",
-		},
-		{
-			title: "Opérateurs Logiques",
-			content:
-				"Combinez et affinez vos conditions avec AND, OR, IN, LIKE et BETWEEN.",
-			sqlQueries: [
-				{
-					title: "AND - Toutes les conditions",
-					sqlCode: `SELECT nom, age, email 
-FROM utilisateurs 
-WHERE age >= 25 AND age <= 35 AND email IS NOT NULL;`,
-					sqlResult: [
-						{ nom: "Alice Dupont", age: 28, email: "alice@email.com" },
-						{ nom: "Bob Martin", age: 32, email: "bob@email.com" },
-						{ nom: "Claire Durand", age: 25, email: "claire@email.com" },
-						{ nom: "Emma Bernard", age: 30, email: "emma@email.com" },
-					],
-				},
-				{
-					title: "OR - Au moins une condition",
-					sqlCode: `SELECT nom, categorie, prix 
-FROM produits 
-WHERE categorie = 'electronique' OR prix < 100;`,
+					title: "Sélectionner toutes les colonnes",
+					sqlCode: `SELECT * FROM utilisateurs;`,
 					sqlResult: [
 						{
-							nom: "Ordinateur Portable",
-							categorie: "electronique",
-							prix: 899,
+							id: 1,
+							nom: "Alice Dupont",
+							email: "alice@email.com",
+							age: 28,
+							statut: "actif",
 						},
-						{ nom: "Livre SQL", categorie: "livre", prix: 25 },
-						{ nom: "Smartphone Pro", categorie: "electronique", prix: 1299 },
-						{ nom: "Stylo", categorie: "bureau", prix: 5 },
+						{
+							id: 2,
+							nom: "Bob Martin",
+							email: "bob@email.com",
+							age: 32,
+							statut: "actif",
+						},
+						{
+							id: 3,
+							nom: "Claire Durand",
+							email: "claire@email.com",
+							age: 25,
+							statut: "actif",
+						},
+						{
+							id: 4,
+							nom: "David Moreau",
+							email: "david@email.com",
+							age: 45,
+							statut: "actif",
+						},
+						{
+							id: 5,
+							nom: "Emma Bernard",
+							email: "emma@email.com",
+							age: 30,
+							statut: "actif",
+						},
 					],
 				},
 				{
-					title: "IN - Valeurs dans une liste",
-					sqlCode: `SELECT nom, age 
-FROM utilisateurs 
-WHERE age IN (25, 30, 35, 40);`,
-					sqlResult: [
-						{ nom: "Claire Durand", age: 25 },
-						{ nom: "Emma Bernard", age: 30 },
-					],
-				},
-				{
-					title: "LIKE - Correspondance de motif",
-					sqlCode: `SELECT nom, email 
-FROM utilisateurs 
-WHERE email LIKE '%@email.com';`,
+					title: "Sélectionner des colonnes spécifiques",
+					sqlCode: `SELECT nom, email FROM utilisateurs;`,
 					sqlResult: [
 						{ nom: "Alice Dupont", email: "alice@email.com" },
 						{ nom: "Bob Martin", email: "bob@email.com" },
@@ -189,173 +123,165 @@ WHERE email LIKE '%@email.com';`,
 					],
 				},
 				{
-					title: "BETWEEN - Intervalle de valeurs",
-					sqlCode: `SELECT nom, prix 
-FROM produits 
-WHERE prix BETWEEN 200 AND 800;`,
+					title: "Sélectionner avec conditions",
+					sqlCode: `SELECT nom, age FROM utilisateurs WHERE age > 30;`,
 					sqlResult: [
-						{ nom: "Tablette", prix: 299 },
-						{ nom: "Casque Audio", prix: 199 },
-						{ nom: "Montre Connectée", prix: 249 },
-					],
-				},
-			],
-			description:
-				"Les opérateurs logiques vous permettent de créer des filtres complexes et précis.",
-		},
-		{
-			title: "ORDER BY - Tri des Résultats",
-			content: "Triez vos résultats dans l'ordre qui vous convient.",
-			sqlQueries: [
-				{
-					title: "Tri croissant par âge",
-					sqlCode: `SELECT nom, age 
-FROM utilisateurs 
-ORDER BY age ASC;`,
-					sqlResult: [
-						{ nom: "Claire Durand", age: 25 },
-						{ nom: "Alice Dupont", age: 28 },
-						{ nom: "Emma Bernard", age: 30 },
 						{ nom: "Bob Martin", age: 32 },
 						{ nom: "David Moreau", age: 45 },
 					],
 				},
 				{
-					title: "Tri décroissant par prix",
-					sqlCode: `SELECT nom, prix 
-FROM produits 
-ORDER BY prix DESC;`,
-					sqlResult: [
-						{ nom: "Smartphone Pro", prix: 1299 },
-						{ nom: "Ordinateur Portable", prix: 899 },
-						{ nom: "Tablette", prix: 299 },
-						{ nom: "Montre Connectée", prix: 249 },
-						{ nom: "Casque Audio", prix: 199 },
-					],
-				},
-				{
-					title: "Tri sur plusieurs colonnes",
-					sqlCode: `SELECT nom, age, ville 
-FROM utilisateurs 
-ORDER BY ville ASC, age DESC;`,
-					sqlResult: [
-						{ nom: "David Moreau", age: 45, ville: "Lyon" },
-						{ nom: "Bob Martin", age: 32, ville: "Paris" },
-						{ nom: "Alice Dupont", age: 28, ville: "Paris" },
-						{ nom: "Emma Bernard", age: 30, ville: "Toulouse" },
-						{ nom: "Claire Durand", age: 25, ville: "Toulouse" },
-					],
-				},
-			],
-			description:
-				"ORDER BY organise vos résultats. Indispensable pour une présentation claire des données.",
-		},
-		{
-			title: "NULL - Gestion des Valeurs Nulles",
-			content: "Gérez les valeurs manquantes avec IS NULL et IS NOT NULL.",
-			sqlQueries: [
-				{
-					title: "Rechercher les valeurs NULL",
-					sqlCode: `SELECT nom, telephone 
-FROM utilisateurs 
-WHERE telephone IS NULL;`,
-					sqlResult: [
-						{ nom: "Claire Durand", telephone: null },
-						{ nom: "Emma Bernard", telephone: null },
-					],
-				},
-				{
-					title: "Rechercher les valeurs non NULL",
-					sqlCode: `SELECT nom, telephone 
-FROM utilisateurs 
-WHERE telephone IS NOT NULL;`,
-					sqlResult: [
-						{ nom: "Alice Dupont", telephone: "06 12 34 56 78" },
-						{ nom: "Bob Martin", telephone: "07 98 76 54 32" },
-						{ nom: "David Moreau", telephone: "06 11 22 33 44" },
-					],
-				},
-				{
-					title: "Remplacer NULL par une valeur",
-					sqlCode: `SELECT nom, COALESCE(telephone, 'Non renseigné') AS contact 
-FROM utilisateurs;`,
-					sqlResult: [
-						{ nom: "Alice Dupont", contact: "06 12 34 56 78" },
-						{ nom: "Bob Martin", contact: "07 98 76 54 32" },
-						{ nom: "Claire Durand", contact: "Non renseigné" },
-						{ nom: "David Moreau", contact: "06 11 22 33 44" },
-						{ nom: "Emma Bernard", contact: "Non renseigné" },
-					],
-				},
-				{
-					title: "Conditions avec NULL",
-					sqlCode: `SELECT nom, age 
-FROM utilisateurs 
-WHERE age > 25 OR age IS NULL;`,
-					sqlResult: [
-						{ nom: "Alice Dupont", age: 28 },
-						{ nom: "Bob Martin", age: 32 },
-						{ nom: "David Moreau", age: 45 },
-						{ nom: "Emma Bernard", age: 30 },
-					],
-				},
-			],
-			description:
-				"NULL représente l'absence de valeur. Attention : NULL = NULL est toujours FALSE !",
-		},
-		{
-			title: "LIMIT et OFFSET - Pagination",
-			content: "Contrôlez le nombre de résultats et implémentez la pagination.",
-			sqlQueries: [
-				{
-					title: "Limiter le nombre de résultats",
-					sqlCode: `SELECT nom, email 
-FROM utilisateurs 
-LIMIT 3;`,
+					title: "Ordonner les résultats",
+					sqlCode: `SELECT nom, email FROM utilisateurs ORDER BY nom ASC;`,
 					sqlResult: [
 						{ nom: "Alice Dupont", email: "alice@email.com" },
 						{ nom: "Bob Martin", email: "bob@email.com" },
 						{ nom: "Claire Durand", email: "claire@email.com" },
-					],
-				},
-				{
-					title: "Pagination - Page 2",
-					sqlCode: `SELECT nom, email 
-FROM utilisateurs 
-ORDER BY nom 
-LIMIT 2 OFFSET 2;`,
-					sqlResult: [
-						{ nom: "Claire Durand", email: "claire@email.com" },
 						{ nom: "David Moreau", email: "david@email.com" },
+						{ nom: "Emma Bernard", email: "emma@email.com" },
 					],
 				},
 				{
-					title: "Top 3 des produits les plus chers",
-					sqlCode: `SELECT nom, prix 
-FROM produits 
-ORDER BY prix DESC 
-LIMIT 3;`,
-					sqlResult: [
-						{ nom: "Smartphone Pro", prix: 1299 },
-						{ nom: "Ordinateur Portable", prix: 899 },
-						{ nom: "Tablette", prix: 299 },
-					],
-				},
-				{
-					title: "Pagination efficace",
-					sqlCode: `SELECT nom, age 
-FROM utilisateurs 
-WHERE age > 25 
-ORDER BY nom 
-LIMIT 2 OFFSET 0;`,
-					sqlResult: [
-						{ nom: "Alice Dupont", age: 28 },
-						{ nom: "Bob Martin", age: 32 },
-					],
+					title: "Compter les résultats",
+					sqlCode: `SELECT COUNT(*) as total_utilisateurs FROM utilisateurs;`,
+					sqlResult: [{ total_utilisateurs: 5 }],
 				},
 			],
 			description:
-				"LIMIT et OFFSET sont essentiels pour la pagination et l'optimisation des performances sur grandes tables.",
+				"SELECT est la commande la plus utilisée en SQL. Elle vous permet de lire et extraire des données.",
+		},
+		{
+			title: "UPDATE - Modification de Données",
+			content: "Modifiez les données existantes dans vos tables.",
+			sqlQueries: [
+				{
+					title: "Mise à jour simple",
+					sqlCode: `UPDATE utilisateurs 
+SET age = 29 
+WHERE nom = 'Alice Dupont';`,
+					sqlResult: {
+						message: "1 ligne mise à jour avec succès",
+						type: "message",
+					},
+				},
+				{
+					title: "Mise à jour multiple avec condition",
+					sqlCode: `UPDATE utilisateurs 
+SET statut = 'senior' 
+WHERE age >= 40;`,
+					sqlResult: {
+						message: "1 ligne mise à jour avec succès",
+						type: "message",
+					},
+				},
+				{
+					title: "Mise à jour avec calcul",
+					sqlCode: `UPDATE utilisateurs 
+SET age = age + 1 
+WHERE statut = 'actif';`,
+					sqlResult: {
+						message: "4 lignes mises à jour avec succès",
+						type: "message",
+					},
+				},
+			],
+			description:
+				"UPDATE modifie les données existantes. Toujours utiliser WHERE pour éviter de modifier toute la table !",
+		},
+		{
+			title: "DELETE - Suppression de Données",
+			content:
+				"Supprimez des données avec DELETE ou videz une table avec TRUNCATE.",
+			sqlQueries: [
+				{
+					title: "DELETE sélectif",
+					sqlCode: `DELETE FROM utilisateurs 
+WHERE age < 18;`,
+					sqlResult: {
+						message: "0 ligne supprimée (aucun utilisateur mineur)",
+						type: "message",
+					},
+				},
+				{
+					title: "DELETE avec condition complexe",
+					sqlCode: `DELETE FROM utilisateurs 
+WHERE nom = 'Bob Martin' AND age > 30;`,
+					sqlResult: {
+						message: "1 ligne supprimée avec succès",
+						type: "message",
+					},
+				},
+				{
+					title: "TRUNCATE - Vider complètement une table",
+					sqlCode: `TRUNCATE TABLE sessions;`,
+					sqlResult: {
+						message: "Table 'sessions' vidée complètement",
+						type: "message",
+					},
+				},
+				{
+					title: "Différence DELETE vs TRUNCATE",
+					sqlCode: `-- DELETE : suppression sélective, peut avoir WHERE
+DELETE FROM logs WHERE date_creation < '2024-01-01';
+
+-- TRUNCATE : vide toute la table, plus rapide
+TRUNCATE TABLE temp_data;`,
+					sqlResult: {
+						message: "DELETE : 1500 lignes supprimées | TRUNCATE : table vidée",
+						type: "message",
+					},
+				},
+			],
+			description:
+				"DELETE pour une suppression sélective, TRUNCATE pour vider complètement une table rapidement.",
+		},
+		{
+			title: "Bonnes Pratiques CRUD",
+			content:
+				"Découvrez les bonnes pratiques essentielles pour manipuler vos données en toute sécurité et avec performance.",
+			externalComponent: (
+				<BestPractices
+					title="Conventions de Syntaxe"
+					introduction="Un code SQL bien formaté est plus facile à lire, déboguer et maintenir ! Voici les conventions de syntaxe essentielles pour écrire du SQL propre et professionnel."
+					rules={[
+						{
+							title: "Mots-clés en MAJUSCULES",
+							icon: <MdSpellcheck className="w-5 h-5 text-gray-600" />,
+							rule: "Écris tous les mots-clés SQL en lettres majuscules pour une meilleure lisibilité",
+							good: "SELECT nom FROM utilisateurs WHERE age > 25",
+							bad: "select nom from utilisateurs where age > 25",
+							reason:
+								"Standard universel, distinction claire entre mots-clés et noms",
+						},
+						{
+							title: "Indentation cohérente",
+							icon: (
+								<MdFormatIndentIncrease className="w-5 h-5 text-gray-600" />
+							),
+							rule: "Indente les clauses SQL pour structurer visuellement tes requêtes",
+							good: "SELECT nom, email\\nFROM utilisateurs\\nWHERE age > 18\\nORDER BY nom",
+							bad: "SELECT nom, email FROM utilisateurs WHERE age > 18 ORDER BY nom",
+							reason: "Code lisible, maintenance facilitée, moins d'erreurs",
+						},
+						{
+							title: "Nommage en snake_case",
+							icon: <MdTextFormat className="w-5 h-5 text-gray-600" />,
+							rule: "Utilise le snake_case pour les noms de tables et colonnes",
+							good: "nom_utilisateur, date_creation, prix_total",
+							bad: "nomUtilisateur, dateCreation, prixTotal",
+							reason: "Convention standard, compatible avec tous les SGBD",
+						},
+						{
+							title: "Alias explicites",
+							icon: <MdCode className="w-5 h-5 text-gray-600" />,
+							rule: "Utilise des alias clairs avec AS pour renommer les colonnes",
+							good: "SELECT COUNT(*) AS nombre_total",
+							bad: "SELECT COUNT(*) nombre_total",
+							reason: "Clarté du code, intention explicite",
+						},
+					]}
+				/>
+			),
 		},
 	],
 };

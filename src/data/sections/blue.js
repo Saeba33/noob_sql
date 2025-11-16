@@ -182,7 +182,7 @@ ORDER BY mois;`,
 		{
 			title: "HAVING - Filtrage des Groupes",
 			content:
-				"Filtrez les résultats des regroupements avec HAVING (WHERE pour les groupes).",
+				"Filtrez les résultats des regroupements avec HAVING (WHERE pour les groupes). ⚠️ Note : ORDER BY est optionnel avec GROUP BY/HAVING - utilisez-le uniquement pour trier les résultats finaux.",
 			sqlQueries: [
 				{
 					title: "Différence WHERE vs HAVING",

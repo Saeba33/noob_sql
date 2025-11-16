@@ -17,7 +17,7 @@ export const yellowBeltContent = {
 	// Belt configuration
 	belt: "yellow",
 	description: "Langage de définition de données",
-	topics: ["CREATE TABLE", "ALTER TABLE", "DROP TABLE"],
+	topics: ["CREATE TABLE", "ALTER TABLE", "DROP TABLE", "Bonnes Pratiques"],
 
 	// Content sections
 	header: {
@@ -109,9 +109,8 @@ TRUNCATE TABLE logs;
 -- Alternative : supprimer toutes les données
 DELETE FROM sessions;
 
--- Voir les tables existantes
-SELECT name FROM sqlite_master 
-WHERE type='table';`,
+-- Voir les tables existantes (commande spécifique SQLite)
+SELECT name FROM sqlite_master;`,
 		},
 		{
 			title: "Bonnes Pratiques DDL",

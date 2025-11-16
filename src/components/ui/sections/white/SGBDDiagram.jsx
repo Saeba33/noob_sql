@@ -49,18 +49,18 @@ export default function SGBDDiagram() {
       <div className="border border-gray-300 rounded-lg bg-gray-50 p-6">
         {/* Niveau racine - SGBD */}
         <div className="flex justify-center mb-12">
-          <div className="flex items-center space-x-3 px-8 py-4 bg-gray-500 border-2 border-gray-300 rounded-lg shadow-sm">
-            <MdStorage className="w-7 h-7 text-white" />
-            <span className="text-xl font-bold text-white">SGBD</span>
+          <div className="flex items-center justify-center space-x-4 w-full max-w-2xl px-12 py-8 bg-gradient-to-r from-gray-600 to-gray-500 border-4 border-gray-700 rounded-xl shadow-lg">
+            <MdStorage className="w-10 h-10 text-white" />
+            <span className="text-3xl font-bold text-white">SGBD</span>
           </div>
         </div>
 
         {/* Niveau catégories */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 mb-8 gap-8">
           {/* SGBDR */}
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center bg-blue-50 p-6 rounded-xl border-2 border-blue-300">
             {/* Nœud catégorie SGBDR */}
-            <div className="flex items-center space-x-3 px-6 py-4 bg-white border-2 border-blue-400 rounded-lg mb-8 shadow-sm">
+            <div className="flex items-center space-x-3 px-6 py-4 bg-white border-3 border-blue-500 rounded-lg mb-8 shadow-md">
               <MdStorage className="w-6 h-6 text-blue-600" />
               <span className="font-bold text-blue-800 text-lg">SGBDR</span>
             </div>
@@ -87,9 +87,9 @@ export default function SGBDDiagram() {
           </div>
 
           {/* NoSQL */}
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center bg-emerald-50 p-6 rounded-xl border-2 border-emerald-300">
             {/* Nœud catégorie NoSQL */}
-            <div className="flex items-center space-x-3 px-6 py-4 bg-white border-2 border-emerald-400 rounded-lg mb-8 shadow-sm">
+            <div className="flex items-center space-x-3 px-6 py-4 bg-white border-3 border-emerald-500 rounded-lg mb-8 shadow-md">
               <MdAccountTree className="w-6 h-6 text-emerald-600" />
               <span className="font-bold text-emerald-800 text-lg">NoSQL</span>
             </div>
