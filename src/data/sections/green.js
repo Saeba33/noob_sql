@@ -15,7 +15,14 @@ export const greenBeltContent = {
 	// Belt configuration
 	belt: "green",
 	description: "Opérations de base sur les données",
-	topics: ["INSERT", "SELECT", "UPDATE", "DELETE", "TRUNCATE", "Bonnes Pratiques"],
+	topics: [
+		"INSERT",
+		"SELECT",
+		"UPDATE",
+		"DELETE",
+		"TRUNCATE",
+		"Bonnes Pratiques",
+	],
 
 	// Content sections
 	header: {
@@ -245,11 +252,11 @@ TRUNCATE TABLE temp_data;`,
 					introduction="Un code SQL bien formaté est plus facile à lire, déboguer et maintenir ! Voici les conventions de syntaxe essentielles pour écrire du SQL propre et professionnel."
 					rules={[
 						{
-						title: "Mots-clés en MAJUSCULES",
-						icon: <MdSpellcheck className="w-5 h-5 text-green-600" />,
-						rule: "Écris tous les mots-clés SQL en lettres majuscules pour une meilleure lisibilité",
-						good: "SELECT nom\nFROM utilisateurs\nWHERE age > 25",
-						bad: "select nom\nfrom utilisateurs\nwhere age > 25",
+							title: "Mots-clés en MAJUSCULES",
+							icon: <MdSpellcheck className="w-5 h-5 text-green-600" />,
+							rule: "Écris tous les mots-clés SQL en lettres majuscules pour une meilleure lisibilité",
+							good: "SELECT nom\nFROM utilisateurs\nWHERE age > 25",
+							bad: "select nom\nfrom utilisateurs\nwhere age > 25",
 							reason:
 								"Standard universel, distinction claire entre mots-clés et noms",
 						},
@@ -269,7 +276,8 @@ TRUNCATE TABLE temp_data;`,
 							rule: "La ponctuation n'est pas optionnelle : point-virgule en fin de requête, virgules entre colonnes (sauf la dernière)",
 							good: "SELECT nom, prenom, email\nFROM utilisateurs;",
 							bad: "SELECT nom prenom email\nFROM utilisateurs",
-							reason: "Sans ponctuation = erreur de syntaxe, requête non exécutable",
+							reason:
+								"Sans ponctuation = erreur de syntaxe, requête non exécutable",
 						},
 						{
 							title: "Alias explicites avec AS",

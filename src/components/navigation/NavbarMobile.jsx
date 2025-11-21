@@ -7,9 +7,8 @@ import Link from "next/link";
 import { FaFistRaised } from "react-icons/fa";
 import { HiMenu, HiX } from "react-icons/hi";
 
-/**
- * Composant NavbarMobile - Bouton burger pour le menu mobile
- */
+
+// Burger button
 export function NavbarMobileButton({ isMenuOpen, toggleMenu }) {
 	return (
 		<button
@@ -26,9 +25,7 @@ export function NavbarMobileButton({ isMenuOpen, toggleMenu }) {
 	);
 }
 
-/**
- * Composant NavbarMobileContent - Contenu déroulant du menu mobile
- */
+// Content menu
 export function NavbarMobileContent({ closeMenu, isOpen }) {
 	const { isActive } = useNavigation();
 

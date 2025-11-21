@@ -4,7 +4,7 @@ import { BELTS_CONFIG } from "@/config/belts-config";
 import Link from "next/link";
 import { FaFistRaised } from "react-icons/fa";
 
-// Import belt content for complete data
+// Import belt content
 import { blackBeltContent } from "@/data/sections/black";
 import { blueBeltContent } from "@/data/sections/blue";
 import { brownBeltContent } from "@/data/sections/brown";
@@ -25,9 +25,9 @@ const BELT_CONTENTS = {
 };
 
 export default function HomeNavigation() {
-	// Combine navigation data with detailed content
+	// Navigation data
 	const belts = Object.entries(BELTS_CONFIG)
-		.filter(([key]) => BELT_CONTENTS[key]) // Only belts that have content
+		.filter(([key]) => BELT_CONTENTS[key])
 		.map(([key, config]) => ({
 			...config,
 			key,

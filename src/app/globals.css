@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* Reset pour éliminer les scrolls indésirables */
+/* #region - reset default styles */
 * {
 	box-sizing: border-box;
 }
@@ -11,7 +11,10 @@ body {
 	padding: 0;
 	overflow-x: hidden;
 }
+/* #endregion */
 
+
+/* #region - borders (buttons & generic borders) */
 .border-pop {
 	display: inline-flex;
 	align-items: center;
@@ -51,7 +54,10 @@ body {
 	border-radius: 0.5rem;
 	background-color: white;
 }
+/* #endregion */
 
+
+/* #region - Accordion */
 .border-accordion {
 	display: block;
 	width: 100%;
@@ -62,13 +68,19 @@ body {
 	cursor: pointer;
 }
 
-/* Animation hover uniquement quand fermé (pas de classe open) */
+/* Hover animation (closed only) */
 .border-accordion:not(.open):hover {
 	box-shadow: 1px 1px 0 0 currentColor;
 	transform: translate(2px, 2px);
 }
 
-/* État actif (pour d'autres composants) */
+/* No animation when open */
+.border-accordion.open:hover {
+	box-shadow: 2px 2px 0 0 currentColor;
+	transform: none;
+}
+
+/* Active state */
 .border-accordion.active {
 	box-shadow: 1px 1px 0 0 currentColor;
 	transform: translate(2px, 2px);
@@ -77,13 +89,10 @@ body {
 .border-accordion.active:hover {
 	transform: none;
 }
+/* #endregion */
 
-/* Pas d'animation quand ouvert */
-.border-accordion.open:hover {
-	box-shadow: 2px 2px 0 0 currentColor;
-	transform: none;
-}
 
+/* #region Cards */
 .nav-card {
 	display: block;
 	width: 100%;
@@ -135,8 +144,10 @@ body {
 .home-card:hover {
 	transform: translateY(-2px);
 }
+/* #endregion */
 
-/* Mobile menu hover states by belt color */
+
+/* #region Mobile Menu */
 .mobile-menu-item {
 	display: flex;
 	align-items: center;
@@ -144,10 +155,9 @@ body {
 	padding: 0.75rem;
 	border-radius: 0.5rem;
 	transition: all 0.3s;
-	/* Pas de border par défaut, sera ajouté via Tailwind */
 }
 
-/* Pas de border au hover, seulement au active */
+/* Color hover states */
 .mobile-menu-item.mobile-menu-white:hover {
 	background-color: rgb(249 250 251);
 	color: rgb(107 114 128);
@@ -187,3 +197,4 @@ body {
 	background-color: rgb(254 242 242);
 	color: rgb(153 27 27);
 }
+/* #endregion */

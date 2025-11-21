@@ -6,11 +6,11 @@ export default function SqlTableBlock({
 	tables,
 	title = "Structure des tables",
 	className = "",
-	type = "text", // "text" pour du texte simple, "tables" pour des tables visuelles
+	type = "text",
 }) {
 	const styles = sqlSyntaxConfig.componentStyles.diagram;
 
-	// Rendu pour diagramme textuel simple
+	// Rendering for simple text diagram
 	if (type === "text" || !tables) {
 		return (
 			<div className={`relative ${className}`}>
@@ -44,7 +44,7 @@ export default function SqlTableBlock({
 		);
 	}
 
-	// Rendu pour diagramme de tables visuelles
+	// Rendering for visual table diagrams
 	return (
 		<div className={`relative ${className}`}>
 			<div
@@ -92,7 +92,7 @@ export default function SqlTableBlock({
 												column.isPrimary ? "bg-blue-50" : ""
 											} ${column.isForeign ? "bg-purple-50" : ""}`}
 										>
-											{/* Icône de clé */}
+											{/* Icon */}
 											<div className="flex-shrink-0 w-5 flex items-center justify-center">
 												{column.isPrimary && (
 													<MdKey className="w-3 h-3 text-blue-600" />
@@ -102,7 +102,7 @@ export default function SqlTableBlock({
 												)}
 											</div>
 
-											{/* Nom de la colonne */}
+											{/* Column */}
 											<span className="text-gray-800 font-medium flex-shrink-0">
 												{column.name}
 											</span>
@@ -110,7 +110,7 @@ export default function SqlTableBlock({
 											{/* Spacer */}
 											<div className="flex-grow min-w-[20px]"></div>
 
-											{/* Type de données */}
+											{/* Data types */}
 											<div className="flex-shrink-0 text-right">
 												<div className="text-blue-600 text-xs font-medium whitespace-nowrap">
 													{column.type}

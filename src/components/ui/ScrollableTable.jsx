@@ -6,7 +6,7 @@ export default function ScrollableTable({ columns, data, minWidth = "600px", ren
 					className="grid"
 					style={{ gridTemplateColumns: `repeat(${columns.length}, 1fr)` }}
 				>
-					{/* En-têtes */}
+					{/* Header */}
 					{columns.map((col, index) => (
 						<div
 							key={`header-${index}`}
@@ -21,7 +21,7 @@ export default function ScrollableTable({ columns, data, minWidth = "600px", ren
 						</div>
 					))}
 
-					{/* Données */}
+					{/* Data */}
 					{data.map((row, rowIndex) => (
 						row.map((cell, cellIndex) => (
 							<div

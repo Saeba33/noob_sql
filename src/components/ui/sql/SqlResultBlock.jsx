@@ -7,9 +7,9 @@ export default function SqlResultBlock({
 	message,
 	title = "Résultat de la requête",
 	className = "",
-	type = "auto", // "table", "message", ou "auto" pour détection automatique
+	type = "auto",
 }) {
-	// Détermine le type de contenu à afficher
+	// Determines the type of content to display
 	const contentType =
 		type === "auto"
 			? message
@@ -19,7 +19,7 @@ export default function SqlResultBlock({
 				: "empty"
 			: type;
 
-	// Rendu pour les messages
+	// Rendering for messages
 	if (contentType === "message" && message) {
 		return (
 			<div className={`${className}`}>
@@ -41,10 +41,10 @@ export default function SqlResultBlock({
 		);
 	}
 
-	// Format data pour les tableaux
+	// Format data for tables
 	const formattedData = data ? formatQueryResult(data, headers) : null;
 
-	// Rendu pour résultats vides
+	// Rendering for empty result
 	if (contentType === "empty" || !formattedData || !formattedData.rows.length) {
 		return (
 			<div className={`${className}`}>
@@ -68,7 +68,7 @@ export default function SqlResultBlock({
 		);
 	}
 
-	// Rendu pour les tableaux de résultats
+	// Rendu for tables results
 	return (
 		<div className={`${className}`}>
 			<div className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm">

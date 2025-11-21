@@ -17,7 +17,7 @@ export default function SectionHeader({
 		>
 			<div className="relative">
 				<div className="text-center space-y-8">
-					{/* Tag badge - sans bordure, plus moderne */}
+					{/* Tag badge */}
 					{tag && (
 						<div className="inline-flex items-center justify-center">
 							<span
@@ -30,7 +30,7 @@ export default function SectionHeader({
 						</div>
 					)}
 
-					{/* Titre principal - plus imposant */}
+					{/* Title */}
 					{title && (
 						<div className="space-y-3">
 							<h1
@@ -43,7 +43,7 @@ export default function SectionHeader({
 						</div>
 					)}
 
-					{/* Sous-titre */}
+					{/* Subtitle */}
 					{subtitle && (
 						<h2
 							className={`text-xl sm:text-2xl font-medium text-gray-600 max-w-3xl mx-auto ${subtitleClassName}`}
@@ -52,7 +52,7 @@ export default function SectionHeader({
 						</h2>
 					)}
 
-					{/* Description - sans encadré, plus aérée */}
+					{/* Description */}
 					{description && (
 						<div className="max-w-3xl mx-auto mt-6">
 							<p

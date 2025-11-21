@@ -24,13 +24,10 @@ export default function Accordion({
 	content,
 	sqlCode,
 	sqlQueries,
-	explanation,
 	sqlDiagram,
-	sqlSchema,
 	sqlResult,
 	sqlTable,
 	externalComponent,
-	description,
 	className = "",
 }) {
 	const [isOpen, setIsOpen] = useState(false);
@@ -118,7 +115,7 @@ export default function Accordion({
 						</Suspense>
 					)}
 
-					{/* SQL Queries - Nouvelle structure avec requêtes individuelles */}
+					{/* SQL Queries */}
 					{sqlQueries && sqlQueries.length > 0 && (
 						<div className="space-y-6">
 							<h4 className="text-sm font-semibold text-gray-900 mb-3 flex items-center">
@@ -153,7 +150,7 @@ export default function Accordion({
 						</div>
 					)}
 
-					{/* SQL Code - structure originale maintenue pour compatibilité */}
+					{/* SQL Code */}
 					{sqlCode && (
 						<div>
 							<h4 className="text-sm font-semibold text-gray-900 mb-3 flex items-center">
@@ -255,7 +252,7 @@ export default function Accordion({
 						</div>
 					)}
 
-					{/* Results - SEULEMENT pour non-DDL */}
+					{/* Results */}
 					{sqlResult && !isDDL && (
 						<div>
 							<h4 className="text-sm font-semibold text-gray-900 mb-3 flex items-center">

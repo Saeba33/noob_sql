@@ -9,7 +9,7 @@ export default function Footer({
 					<p
 						className={`text-center text-xs sm:text-sm ${textColor} font-light tracking-wide`}
 					>
-						&copy; 2025 NoobSQL · Tous droits réservés
+						&copy; 2025 NoobSQL (by Saeba33) · Tous droits réservés
 					</p>
 				</div>
 			</div>

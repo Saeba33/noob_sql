@@ -1,29 +1,17 @@
 export const sqlSyntaxConfig = {
 	// Style definitions for each token type
 	styles: {
-		// Mots-clés SQL (bleu vif mais équilibré)
 		keyword: "text-blue-400 font-semibold",
-		// Types de données (sky vif)
 		datatype: "text-sky-400 font-medium",
-		// Contraintes (violet vif)
 		constraint: "text-violet-400 font-medium",
-		// Noms de tables (vert vif)
 		tableName: "text-emerald-400 font-medium",
-		// Noms de colonnes (cyan visible)
 		columnName: "text-cyan-300",
-		// Chaînes de caractères (ambre vif)
 		string: "text-amber-300",
-		// Nombres (orange vif)
 		number: "text-orange-400",
-		// Opérateurs (violet moyen)
 		operator: "text-violet-300",
-		// Commentaires (gris visible)
 		comment: "text-gray-400 italic",
-		// Fonctions (rose vif)
 		function: "text-pink-300 font-medium",
-		// Ponctuation (même couleur que les mots-clés pour cohérence syntaxique)
 		punctuation: "text-blue-400",
-		// Par défaut (blanc cassé mais visible)
 		default: "text-gray-200",
 	},
 
@@ -78,7 +66,7 @@ export function analyzeSqlCode(code) {
 
 	let parts = [];
 
-	// 1. Commentaires (priorité haute pour éviter la coloration dans les commentaires)
+	// 1. Comments (high priority to avoid highlighting inside comments)
 	const comments = /(--.*$)/gm;
 	let match;
 	while ((match = comments.exec(code)) !== null) {
@@ -91,8 +79,8 @@ export function analyzeSqlCode(code) {
 		});
 	}
 
-	// 2. Chaînes de caractères (priorité haute) - inclut les apostrophes
-	// [^'\n] empêche le regex de matcher au-delà d'un retour à la ligne
+	// 2. Strings (high priority) - includes apostrophes
+	// [^'\n] prevents the regex from matching past a newline
 	const strings = /'[^'\n]*'/g;
 	while ((match = strings.exec(code)) !== null) {
 		parts.push({
@@ -104,7 +92,7 @@ export function analyzeSqlCode(code) {
 		});
 	}
 
-	// 3. Expressions SQL multi-mots (priorité avant mots-clés simples)
+	// 3. Multi-word SQL expressions (prioritized before single-word keywords)
 	const multiWordKeywords =
 		/\b(GROUP\s+BY|ORDER\s+BY|LEFT\s+OUTER\s+JOIN|RIGHT\s+OUTER\s+JOIN|FULL\s+OUTER\s+JOIN|LEFT\s+JOIN|RIGHT\s+JOIN|INNER\s+JOIN|FULL\s+JOIN|CROSS\s+JOIN|UNION\s+ALL|NOT\s+NULL|IS\s+NOT\s+NULL|IS\s+NOT|IS\s+NULL|ADD\s+COLUMN|DROP\s+COLUMN|RENAME\s+COLUMN|ALTER\s+COLUMN|EXPLAIN\s+QUERY\s+PLAN|ADD\s+CONSTRAINT|DROP\s+CONSTRAINT|ON\s+CONFLICT|ON\s+DELETE|ON\s+UPDATE)\b/gi;
 	while ((match = multiWordKeywords.exec(code)) !== null) {
@@ -117,7 +105,7 @@ export function analyzeSqlCode(code) {
 		});
 	}
 
-	// 4. Mots-clés SQL principaux
+	// 4. Main SQL keywords
 	const keywords =
 		/\b(CREATE|TABLE|DATABASE|SCHEMA|TRIGGER|PROCEDURE|FUNCTION|ALTER|DROP|RENAME|ADD|MODIFY|CHANGE|COLUMN|SELECT|DISTINCT|FROM|WHERE|JOIN|INNER|LEFT|RIGHT|FULL|OUTER|CROSS|SELF|ON|INSERT|INTO|VALUES|UPDATE|SET|DELETE|TRUNCATE|UNION|ALL|WITH|AS|USING|HAVING|ASC|DESC|LIMIT|OFFSET|CASE|WHEN|THEN|ELSE|END|INDEX|VIEW|BEGIN|COMMIT|ROLLBACK|TRANSACTION|SAVEPOINT|RELEASE|AND|OR|NOT|IN|BETWEEN|LIKE|IS|EXISTS|ANY|SOME|EXPLAIN|ANALYZE|DESCRIBE|DESC|SHOW|USE|GRANT|REVOKE|CASCADE|RESTRICT|RETURNING|CONFLICT|IGNORE|REPLACE|ABORT|FAIL|RAISE|PRAGMA|ATTACH|DETACH|VACUUM)\b/gi;
 	while ((match = keywords.exec(code)) !== null) {
@@ -130,7 +118,7 @@ export function analyzeSqlCode(code) {
 		});
 	}
 
-	// 5. Types de données SQL
+	// 5. SQL data types
 	const datatypes =
 		/\b(INTEGER|VARCHAR|DECIMAL|TIMESTAMP|DATE|TEXT|CHAR|BOOLEAN|TINYINT|BIGINT|FLOAT|DOUBLE|TIME|DATETIME|BLOB|JSON)\b/gi;
 	while ((match = datatypes.exec(code)) !== null) {
@@ -143,7 +131,7 @@ export function analyzeSqlCode(code) {
 		});
 	}
 
-	// 6. Contraintes et mots-clés spéciaux
+	// 6. Constraints and special keywords
 	const constraints =
 		/\b(PRIMARY|KEY|FOREIGN|REFERENCES|UNIQUE|NULL|DEFAULT|CURRENT_TIMESTAMP|CURRENT_DATE|CURRENT_TIME|AUTO_INCREMENT|AUTOINCREMENT|CHECK|IF|EXISTS|UNSIGNED|SIGNED|ZEROFILL|CONSTRAINT|CASCADE|RESTRICT|NO\s+ACTION|SET\s+NULL|SET\s+DEFAULT)\b/gi;
 	while ((match = constraints.exec(code)) !== null) {
@@ -156,7 +144,7 @@ export function analyzeSqlCode(code) {
 		});
 	}
 
-	// 7. Fonctions SQL et agrégations
+	// 7. SQL functions and aggregations
 	const functions =
 		/\b(COUNT|SUM|AVG|MAX|MIN|COALESCE|NULLIF|IFNULL|ROW_NUMBER|RANK|DENSE_RANK|NTILE|LAG|LEAD|FIRST_VALUE|LAST_VALUE|SUBSTRING|SUBSTR|CONCAT|CONCAT_WS|UPPER|LOWER|TRIM|LTRIM|RTRIM|LENGTH|REPLACE|REVERSE|NOW|CURDATE|CURTIME|DATE|TIME|DATETIME|STRFTIME|DATE_FORMAT|YEAR|MONTH|DAY|HOUR|MINUTE|SECOND|DATEDIFF|DATEADD|TIMESTAMPDIFF|ABS|CEIL|CEILING|FLOOR|ROUND|MOD|POWER|SQRT|RAND|RANDOM|CAST|CONVERT|GROUP_CONCAT|STRING_AGG)\b/gi;
 	while ((match = functions.exec(code)) !== null) {
@@ -169,7 +157,7 @@ export function analyzeSqlCode(code) {
 		});
 	}
 
-	// 8. Nombres (y compris dans les parenthèses comme VARCHAR(255))
+	// 8. Numbers (including in parentheses like VARCHAR(255))
 	const numbers = /\b(\d+(?:\.\d+)?)\b/g;
 	while ((match = numbers.exec(code)) !== null) {
 		parts.push({
@@ -181,7 +169,7 @@ export function analyzeSqlCode(code) {
 		});
 	}
 
-	// 9. Noms de tables reconnus (après CREATE TABLE ou références)
+	// 9. Recognized table names (after CREATE TABLE or REFERENCES)
 	const tablePattern = /(?:CREATE\s+TABLE\s+|REFERENCES\s+)(\w+)/gi;
 	while ((match = tablePattern.exec(code)) !== null) {
 		const tableName = match[1];
@@ -195,7 +183,7 @@ export function analyzeSqlCode(code) {
 		});
 	}
 
-	// 10. Opérateurs
+	// 10. Operators
 	const operators = /([=!<>]+|[+\-*/%])/g;
 	while ((match = operators.exec(code)) !== null) {
 		parts.push({
@@ -207,7 +195,7 @@ export function analyzeSqlCode(code) {
 		});
 	}
 
-	// 11. Ponctuation
+	// 11. Punctuation
 	const punctuation = /([(),.;])/g;
 	while ((match = punctuation.exec(code)) !== null) {
 		parts.push({
@@ -219,13 +207,13 @@ export function analyzeSqlCode(code) {
 		});
 	}
 
-	// Tri par position puis par priorité (priorité plus faible = plus important)
+	// Sort by position then by priority (lower numeric value = higher importance)
 	parts.sort((a, b) => {
 		if (a.start !== b.start) return a.start - b.start;
 		return a.priority - b.priority;
 	});
 
-	// Filtrage des chevauchements en gardant la priorité la plus élevée
+	// Filter overlaps, keeping the highest-priority token
 	let filteredParts = [];
 	for (let part of parts) {
 		let hasOverlap = false;
