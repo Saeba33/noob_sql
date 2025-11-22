@@ -160,11 +160,11 @@ export default function DatabaseArchitecture() {
 					Tout comme une bibliothèque organise ses livres par sections (une
 					étagère pour la fiction, une pour l'histoire), une base de données
 					organise les informations en <strong>tables</strong> thématiques.
-					Chaque table contient des <strong>colonnes</strong>{" "}
-					(les types d'informations) et des <strong>lignes</strong> (les données
-					réelles). Une bibliothèque peut même contenir des livres liés entre
-					eux (séries ou collections), comme les{" "}
-					<strong>clés étrangères</strong> relient des tables entre elles.
+					Chaque table contient des <strong>colonnes</strong> (les types
+					d'informations) et des <strong>lignes</strong> (les données réelles).
+					Une bibliothèque peut même contenir des livres liés entre eux (séries
+					ou collections), comme les <strong>clés étrangères</strong> relient
+					des tables entre elles.
 				</p>
 			</div>
 
@@ -191,9 +191,7 @@ export default function DatabaseArchitecture() {
 
 						<div className="mt-2 flex items-center space-x-2 text-sm text-gray-600">
 							<MdTableRows className="w-4 h-4" />
-							<span>
-								3 <strong>lignes</strong> (utilisateurs) dans cette table
-							</span>
+							<span>3 lignes dans cette table (utilisateurs)</span>
 						</div>
 					</div>
 
@@ -215,9 +213,7 @@ export default function DatabaseArchitecture() {
 
 						<div className="mt-2 flex items-center space-x-2 text-sm text-gray-600">
 							<MdTableRows className="w-4 h-4" />
-							<span>
-								3 <strong>lignes</strong> (livres) dans cette table
-							</span>
+							<span>3 lignes dans cette table (livres)</span>
 						</div>
 					</div>
 
@@ -239,9 +235,7 @@ export default function DatabaseArchitecture() {
 
 						<div className="mt-2 flex items-center space-x-2 text-sm text-gray-600">
 							<MdTableRows className="w-4 h-4" />
-							<span>
-								3 <strong>lignes</strong> (emprunts) dans cette table
-							</span>
+							<span>3 lignes dans cette table (emprunts)</span>
 						</div>
 					</div>
 				</div>

@@ -68,28 +68,28 @@ export default function PrimaryForeignKeys() {
 					Comment les relations fonctionnent ?
 				</h3>
 
-				<p className="text-gray-700 mb-4">
+				<p className="text-gray-700 mb-2">
 					En prenant pour exemple les tables vues dans la section précédente :
 				</p>
 
-				<div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg mb-4">
+				<div className="mb-8">
 					<ul className="space-y-2 text-gray-800">
 						<li>
-							<code className="bg-white px-2 py-1 rounded font-mono text-sm">
+							<code className="bg-gray-100 px-2 py-1 rounded font-mono text-sm">
 								utilisateur_id
 							</code>{" "}
 							dans la table <strong>emprunts</strong> fait référence à{" "}
-							<code className="bg-white px-2 py-1 rounded font-mono text-sm">
+							<code className="bg-gray-100 px-2 py-1 rounded font-mono text-sm">
 								id
 							</code>{" "}
 							de la table <strong>utilisateurs</strong>
 						</li>
 						<li>
-							<code className="bg-white px-2 py-1 rounded font-mono text-sm">
+							<code className="bg-gray-100 px-2 py-1 rounded font-mono text-sm">
 								livre_id
 							</code>{" "}
 							dans la table <strong>emprunts</strong> fait référence à{" "}
-							<code className="bg-white px-2 py-1 rounded font-mono text-sm">
+							<code className="bg-gray-100 px-2 py-1 rounded font-mono text-sm">
 								id
 							</code>{" "}
 							de la table <strong>livres</strong>
@@ -122,10 +122,10 @@ export default function PrimaryForeignKeys() {
 						</p>
 						<div className="mt-3 pt-3 border-t border-gray-300">
 							<div className="text-gray-900 font-medium italic flex items-center gap-2">
-								<div className="bg-blue-100 rounded-full flex-shrink-0">
+								<div className="bg-white rounded-full flex-shrink-0">
 									<IoMdInformation className="w-7 h-7 text-blue-600" />
 								</div>
-								<span>
+								<span className="text-gray-800">
 									Ainsi, on sait que Marie Dubois a emprunté "Le Petit Prince"
 									le 10 janvier 2025 et l'a rendu le 24 janvier.
 								</span>

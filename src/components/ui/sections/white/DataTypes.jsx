@@ -31,7 +31,7 @@ export default function DataTypes() {
 					name: "DECIMAL(10,2)",
 					description: "Nombres décimaux précis (10 chiffres, 2 après virgule)",
 					examples: ["19.99", "1500.00", "-25.50"],
-					usage: "Prix, salaires, mesures précises",
+					usage: "Prix, salaires, mesures",
 					bestPractice: "Toujours pour les montants financiers",
 				},
 			],
@@ -226,7 +226,7 @@ export default function DataTypes() {
 					<strong>type de données</strong> qui définit le format des
 					informations qu'elle peut contenir, ainsi que des{" "}
 					<strong>contraintes</strong> qui garantissent l'intégrité des données.
-					<br />Bien choisir les types et contraintes est crucial pour garantir la
+					Bien choisir les types et contraintes est crucial pour garantir la
 					qualité, optimiser les performances et maintenir l'intégrité des
 					données.
 				</p>
@@ -249,7 +249,7 @@ export default function DataTypes() {
 			{/* Types de données courants */}
 			<div className="border border-gray-300 rounded-lg bg-gray-50 p-6">
 				<h2 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
-					<MdStorage className="w-6 h-6 text-gray-600 mr-3" />
+					<MdInventory className="w-6 h-6 text-gray-600 mr-3" />
 					Types de données courantes
 				</h2>
 
@@ -329,7 +329,7 @@ export default function DataTypes() {
 				{/* Types moins courants */}
 				<div className="mt-8">
 					<h2 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
-						<MdStorage className="w-6 h-6 text-gray-400 mr-3" />
+						<MdInventory className="w-6 h-6 text-gray-600 mr-3" />
 						Types de données moins courantes
 					</h2>
 
@@ -410,7 +410,7 @@ export default function DataTypes() {
 				{/* Section Contraintes */}
 				<div className="mt-8">
 					<h2 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
-						<MdSecurity className="w-6 h-6 text-gray-600 mr-3" />
+						<MdLock className="w-6 h-6 text-gray-600 mr-3" />
 						Contraintes et options
 					</h2>
 
