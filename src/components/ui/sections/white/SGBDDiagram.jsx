@@ -17,15 +17,17 @@ export default function SGBDDiagram() {
 					<span className="font-extrabold">
 						Système de Gestion de Base de Données (SGBD)
 					</span>{" "}
-					est un logiciel permettant de créer, gérer et manipuler des bases de
+					est une infrastructure logicielle permettant de créer, gérer et manipuler des bases de
 					données. Il facilite le stockage, la modification, la sécurité et la
 					récupération des données. Il existe deux grandes catégories de SGBD :
 				</p>
 
 				<p>
 					•{" "}
-					<span className="font-bold text-blue-600">
-						Systèmes de Gestion de Bases de Données Relationnelles (SGBDR)
+					<span className="font-extrabold">
+						Systèmes de Gestion de Bases de Données Relationnelles (
+						<span className="text-blue-600">SGBDR</span>
+						<span>)</span>
 					</span>
 					: ils organisent les données sous forme de tables liées entre elles.
 					Ils utilisent le langage SQL (Structured Query Language), un standard
@@ -35,8 +37,10 @@ export default function SGBDDiagram() {
 
 				<p>
 					•{" "}
-					<span className="font-bold text-emerald-600">
-						Not Only SQL (NoSQL)
+					<span className="font-extrabold">
+						Not Only SQL (
+						<span className="text-emerald-600">NoSQL</span>
+						<span>)</span>
 					</span>
 					: adaptés aux données non structurées ou semi-structurées, ils offrent
 					plus de flexibilité que les SGBDR. Contrairement au SQL, chaque base
