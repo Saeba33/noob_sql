@@ -11,7 +11,7 @@ export default function SGBDDiagram() {
 	return (
 		<div className="bg-white flex flex-col gap-8">
 			{/* Texte explicatif */}
-			<div className="text-gray-700 leading-relaxed px-4 flex flex-col gap-3">
+			<div className="text-gray-700 leading-relaxed  flex flex-col gap-3">
 				<p>
 					Un{" "}
 					<span className="font-extrabold">
@@ -52,13 +52,16 @@ export default function SGBDDiagram() {
 				<p>
 					En résumé, les SGBDR utilisent SQL comme langage standardisé, tandis
 					que les bases NoSQL utilisent des langages ou des modèles de requête
-					qui varient selon la technologie. Elles sont souvent choisies pour
-					la performance et la scalabilité.
+					qui varient selon la technologie. Elles sont souvent choisies pour la
+					performance et la scalabilité.
 				</p>
 			</div>
 
 			{/* Diagramme hiérarchique */}
-			<div className="border border-gray-300 rounded-lg bg-gray-50 py-6 px-6">
+			<span className="text-xs italic -mb-6 pl-1 mt-3">
+				Exemples de SGBD (liste non exhaustive) :
+			</span>
+			<div className="border border-gray-300 rounded-lg bg-gray-50 py-6 px-4">
 				{/* Niveau racine - SGBD */}
 				<div className="flex justify-center mb-6">
 					<div className="flex items-center justify-center space-x-4 w-full max-w-2xl px-12 py-8 bg-gradient-to-r from-gray-600 to-gray-500 border-4 border-gray-700 rounded-xl shadow-lg">
