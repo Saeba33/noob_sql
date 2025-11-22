@@ -17,9 +17,10 @@ export default function SGBDDiagram() {
 					<span className="font-extrabold">
 						Système de Gestion de Base de Données (SGBD)
 					</span>{" "}
-					est une infrastructure logicielle permettant de créer, gérer et manipuler des bases de
-					données. Il facilite le stockage, la modification, la sécurité et la
-					récupération des données. Il existe deux grandes catégories de SGBD :
+					est une infrastructure logicielle permettant de créer, gérer et
+					manipuler des bases de données. Il facilite le stockage, la
+					modification, la sécurité et la récupération des données. Il existe
+					deux grandes catégories de SGBD :
 				</p>
 
 				<p>
@@ -38,21 +39,21 @@ export default function SGBDDiagram() {
 				<p>
 					•{" "}
 					<span className="font-extrabold">
-						Not Only SQL (
-						<span className="text-emerald-600">NoSQL</span>
+						Not Only SQL (<span className="text-emerald-600">NoSQL</span>
 						<span>)</span>
 					</span>
-					: adaptés aux données non structurées ou semi-structurées, ils offrent
-					plus de flexibilité que les SGBDR. Contrairement au SQL, chaque base
-					NoSQL a son propre langage de requête spécifique. Il en existe
-					plusieurs types : documents JSON (MongoDB), clés-valeurs (Redis),
-					graphes (Neo4j), colonnes (Cassandra) ...
+					: conçus pour des données moins structurées ou très volumineuses. Ils
+					sont plus flexibles que les SGBDR. Chaque technologie NoSQL a son
+					propre langage de requête. On en trouve plusieurs types : bases de
+					documents (MongoDB), clés-valeurs (Redis), graphes (Neo4j), colonnes
+					(Cassandra)…
 				</p>
 
 				<p>
-					En résumé, les SGBDR utilisent SQL de manière standardisée, tandis que
-					les bases NoSQL varient selon l'implémentation et sont souvent
-					utilisées pour des besoins de performance et de scalabilité.
+					En résumé, les SGBDR utilisent SQL comme langage standardisé, tandis
+					que les bases NoSQL utilisent des langages ou des modèles de requête
+					qui varient selon la technologie. Elles sont souvent choisies pour
+					la performance et la scalabilité.
 				</p>
 			</div>
 
