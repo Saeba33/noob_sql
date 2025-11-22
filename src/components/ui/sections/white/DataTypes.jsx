@@ -22,14 +22,15 @@ export default function DataTypes() {
 			types: [
 				{
 					name: "INTEGER",
-					description: "Nombres entiers (-2 milliards à +2 milliards)",
+					description: "Nombres entiers",
 					examples: ["1", "42", "-15", "0"],
 					usage: "Identifiants, compteurs, âges",
 					bestPractice: "Utilisez AUTO_INCREMENT pour les clés primaires",
 				},
 				{
 					name: "DECIMAL(10,2)",
-					description: "Nombres décimaux précis (10 chiffres, 2 après virgule)",
+					description:
+						"Nombre décimal précis. Dans cet exemple, on indique un nombre maximal de  10 chiffres au total dont 2 après la virgule.",
 					examples: ["19.99", "1500.00", "-25.50"],
 					usage: "Prix, salaires, mesures",
 					bestPractice: "Toujours pour les montants financiers",
@@ -43,7 +44,7 @@ export default function DataTypes() {
 			types: [
 				{
 					name: "VARCHAR(255)",
-					description: "Texte variable (recommandé : max 255 caractères)",
+					description: "Texte variable. La valeur entre parenthèses représente le nombre de caractères maximum autorisé. Par convention, il est souvent défini à 255 caractères.",
 					examples: ["'Marie Dubois'", "'contact@site.com'"],
 					usage: "Noms, emails, titres, descriptions courtes",
 					bestPractice: "255 = optimisation MySQL, très courante",
@@ -64,7 +65,7 @@ export default function DataTypes() {
 			types: [
 				{
 					name: "DATE",
-					description: "Date uniquement (YYYY-MM-DD)",
+					description: "Date uniquement (format : YYYY-MM-DD)",
 					examples: ["2025-01-15", "1990-05-20"],
 					usage: "Dates de naissance, échéances",
 					bestPractice: "Pour les dates sans notion d'heure",
@@ -113,7 +114,8 @@ export default function DataTypes() {
 			types: [
 				{
 					name: "CHAR(10)",
-					description: "Texte de longueur fixe (complété par des espaces)",
+					description:
+						"Texte de longueur fixe (complété par des espaces). Dans cet exemple, si je tape FR, l'enregistrement sera complété par 8 espaces ",
 					examples: ["'FR        '", "'0123456789'"],
 					usage: "Codes pays, hash fixes, IDs formatés",
 				},
@@ -138,7 +140,8 @@ export default function DataTypes() {
 			types: [
 				{
 					name: "BOOLEAN / TINYINT(1)",
-					description: "Vrai ou Faux",
+					description:
+						`Vrai ou Faux. Par convention, on utilise la valeur 1, ce qui signifie que l’enregistrement peut avoir soit une valeur "false" (0), soit "true" (1)`,
 					examples: ["TRUE", "FALSE", "1", "0"],
 					usage: "États, validations, options actives/inactives",
 				},
@@ -252,6 +255,7 @@ export default function DataTypes() {
 					<MdInventory className="w-6 h-6 text-gray-600 mr-3" />
 					Types de données courantes
 				</h2>
+				<p className="italic text-sm mb-4">* Les valeurs entre parenthèses sont données à titre d'exemple, elles sont configurables selon vos besoins.</p>
 
 				<div className="grid gap-6">
 					{commonDataTypes.map((category, categoryIndex) => (
