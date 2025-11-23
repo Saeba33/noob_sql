@@ -2,7 +2,7 @@ import { constraints, dataTypes, exampleTypes } from "@/data/sections/white";
 import { MdInventory, MdLocalOffer, MdLock, MdStorage } from "react-icons/md";
 
 export default function DataTypes() {
-	// Flatten lists for rendering 
+	// #region  Table's types
 	const flatCommon = dataTypes
 		.filter((cat) => cat.type === "common")
 		.flatMap((cat) =>
@@ -26,8 +26,9 @@ export default function DataTypes() {
 				type: cat.type,
 			}))
 		);
+		//#endregion
 
-	// Types Section
+	// #region Types Section
 	const renderTypesSection = (title, rows) => {
 		return (
 			<div className="border border-gray-300 rounded-lg bg-gray-50 p-6 mt-8">
@@ -129,8 +130,9 @@ export default function DataTypes() {
 			</div>
 		);
 	};
+	//#endregion
 
-	// Constraints Section
+	// #region Constraints Section
 	const renderConstraintsSection = () => {
 		return (
 			<div className="mt-8">
@@ -178,8 +180,9 @@ export default function DataTypes() {
 			</div>
 		);
 	};
+	//#endregion
 
-	// Example table
+	// #region Example table
 	const renderExampleSection = () => {
 		return (
 			<div className="mt-8">
@@ -261,6 +264,8 @@ export default function DataTypes() {
 			</div>
 		);
 	};
+	//#endregion
+
 	return (
 		<div>
 			{/* Introductory section */}
