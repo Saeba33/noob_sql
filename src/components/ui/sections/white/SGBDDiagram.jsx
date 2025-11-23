@@ -10,7 +10,7 @@ import {
 export default function SGBDDiagram() {
 	return (
 		<div className="bg-white flex flex-col gap-8">
-			{/* Texte explicatif */}
+			{/* Introductory text */}
 			<div className="text-gray-700 leading-relaxed  flex flex-col gap-3">
 				<p>
 					Un{" "}
@@ -57,12 +57,12 @@ export default function SGBDDiagram() {
 				</p>
 			</div>
 
-			{/* Diagramme hiérarchique */}
+			{/* Hierarchy diagram */}
 			<span className="text-xs italic -mb-6 pl-1 mt-3">
 				Exemples de SGBD (liste non exhaustive) :
 			</span>
 			<div className="border border-gray-300 rounded-lg bg-gray-50 py-6 px-4">
-				{/* Niveau racine - SGBD */}
+				{/* Root level - SGBD */}
 				<div className="flex justify-center mb-6">
 					<div className="flex items-center justify-center space-x-4 w-full max-w-2xl px-12 py-8 bg-gradient-to-r from-gray-600 to-gray-500 border-4 border-gray-700 rounded-xl shadow-lg">
 						<MdStorage className="w-10 h-10 text-white" />
@@ -70,17 +70,17 @@ export default function SGBDDiagram() {
 					</div>
 				</div>
 
-				{/* Niveau catégories */}
+				{/* Category level */}
 				<div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
 					{/* SGBDR */}
 					<div className="flex flex-col items-center bg-blue-50 p-6 rounded-xl border-2 border-blue-300">
-						{/* Nœud catégorie SGBDR */}
+						{/* SGBDR category node */}
 						<div className="flex items-center space-x-3 px-6 py-4 bg-white border-3 border-blue-500 rounded-lg mb-8 shadow-md">
 							<MdStorage className="w-6 h-6 text-blue-600" />
 							<span className="font-bold text-blue-800 text-lg">SGBDR</span>
 						</div>
 
-						{/* Bases de données SGBDR */}
+						{/* SGBDR databases */}
 						<div className="space-y-4 w-full max-w-[240px]">
 							<div className="flex items-center space-x-3 p-4 bg-white rounded-lg border-2 border-blue-200 shadow-sm">
 								<SiMysql className="w-5 h-5 text-orange-600 flex-shrink-0" />
@@ -103,13 +103,13 @@ export default function SGBDDiagram() {
 
 					{/* NoSQL */}
 					<div className="flex flex-col items-center bg-emerald-50 p-6 rounded-xl border-2 border-emerald-300">
-						{/* Nœud catégorie NoSQL */}
+						{/* NoSQL category node */}
 						<div className="flex items-center space-x-3 px-6 py-4 bg-white border-3 border-emerald-500 rounded-lg mb-8 shadow-md">
 							<MdAccountTree className="w-6 h-6 text-emerald-600" />
 							<span className="font-bold text-emerald-800 text-lg">NoSQL</span>
 						</div>
 
-						{/* Bases de données NoSQL */}
+						{/* NoSQL databases */}
 						<div className="space-y-4 w-full max-w-[240px]">
 							<div className="flex items-center space-x-3 p-4 bg-white rounded-lg border-2 border-emerald-200 shadow-sm">
 								<SiMongodb className="w-5 h-5 text-green-600 flex-shrink-0" />

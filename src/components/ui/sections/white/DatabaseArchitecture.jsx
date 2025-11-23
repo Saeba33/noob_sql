@@ -10,13 +10,20 @@ import ScrollableTable from "../../ScrollableTable";
 
 export default function DatabaseArchitecture() {
 	// Configuration des tableaux
-	const utilisateursColumns = [
+	const usersColumns = [
 		{
 			label: "id",
 			icon: <MdKey className="w-4 h-4 text-yellow-600" />,
 			className: "text-yellow-900",
 		},
-		{ label: "nom", icon: <MdViewColumn className="w-4 h-4 text-gray-600" /> },
+		{
+			label: "prenom",
+			icon: <MdViewColumn className="w-4 h-4 text-gray-600" />,
+		},
+		{
+			label: "nom",
+			icon: <MdViewColumn className="w-4 h-4 text-gray-600" />,
+		},
 		{
 			label: "email",
 			icon: <MdViewColumn className="w-4 h-4 text-gray-600" />,
@@ -27,13 +34,13 @@ export default function DatabaseArchitecture() {
 		},
 	];
 
-	const utilisateursData = [
-		[1, "Marie Dubois", "marie.dubois@email.com", "2024-01-15"],
-		[2, "Pierre Martin", "pierre.martin@email.com", "2024-02-20"],
-		[3, "Sophie Leroy", "sophie.leroy@email.com", "2024-03-10"],
+	const usersData = [
+		[1, "Marie", "Dubois", "marie.dubois@email.com", "2024-01-15"],
+		[2, "Pierre", "Martin","pierre.martin@email.com", "2024-02-20"],
+		[3, "Sophie", "Leroy", "sophie.leroy@email.com", "2024-03-10"],
 	];
 
-	const livresColumns = [
+	const booksColumns = [
 		{
 			label: "id",
 			icon: <MdKey className="w-4 h-4 text-yellow-600" />,
@@ -54,13 +61,13 @@ export default function DatabaseArchitecture() {
 		},
 	];
 
-	const livresData = [
+	const booksData = [
 		[1, "Le Petit Prince", "Antoine de Saint-Exupéry", "978-2070408504", 1943],
 		[2, "1984", "George Orwell", "978-0451524935", 1949],
 		[3, "L'Étranger", "Albert Camus", "978-2070360024", 1942],
 	];
 
-	const empruntsColumns = [
+	const borrowingColumns = [
 		{
 			label: "id",
 			icon: <MdKey className="w-4 h-4 text-yellow-600" />,
@@ -90,7 +97,7 @@ export default function DatabaseArchitecture() {
 		},
 	];
 
-	const empruntsData = [
+	const borrowingData = [
 		[201, 1, 1, "2025-01-10", "2025-01-24", "Rendu"],
 		[202, 2, 2, "2025-01-12", null, "En cours"],
 		[203, 3, 1, "2025-01-15", null, "En cours"],
@@ -183,8 +190,8 @@ export default function DatabaseArchitecture() {
 						</div>
 
 						<ScrollableTable
-							columns={utilisateursColumns}
-							data={utilisateursData}
+							columns={usersColumns}
+							data={usersData}
 							minWidth="600px"
 							renderCell={renderUtilisateursCell}
 						/>
@@ -205,8 +212,8 @@ export default function DatabaseArchitecture() {
 						</div>
 
 						<ScrollableTable
-							columns={livresColumns}
-							data={livresData}
+							columns={booksColumns}
+							data={booksData}
 							minWidth="800px"
 							renderCell={renderUtilisateursCell}
 						/>
@@ -227,8 +234,8 @@ export default function DatabaseArchitecture() {
 						</div>
 
 						<ScrollableTable
-							columns={empruntsColumns}
-							data={empruntsData}
+							columns={borrowingColumns}
+							data={borrowingData}
 							minWidth="900px"
 							renderCell={renderEmpruntsCell}
 						/>
