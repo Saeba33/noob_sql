@@ -1,4 +1,3 @@
-import { lazy } from "react";
 import {
 	MdCode,
 	MdFormatIndentIncrease,
@@ -6,10 +5,7 @@ import {
 	MdTextFormat,
 } from "react-icons/md";
 
-// Lazy load du composant
-const BestPractices = lazy(() =>
-	import("@/components/ui/sections/BestPractices")
-);
+import BestPractices from "@/components/ui/sections/BestPractices";
 
 export const greenBeltContent = {
 	// Belt configuration
