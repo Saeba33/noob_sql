@@ -161,7 +161,7 @@ export default function DataTypes() {
 										<p className="text-gray-700 text-sm mb-2">
 											{constraint.description}
 										</p>
-										<div className="block bg-gray-100 border border-gray-200 rounded px-2 py-1 mb-2 max-w-full overflow-auto">
+										<div className="inline-block bg-gray-100 border border-gray-200 rounded px-2 py-1 mb-2 max-w-full">
 											<code className="text-xs text-gray-800 whitespace-pre-wrap break-words block">
 												{constraint.example}
 											</code>
