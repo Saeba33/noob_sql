@@ -36,12 +36,11 @@ export default function DataTypes() {
 					{title}
 				</h2>
 
-				{showLegend && (
-					<p className="italic text-sm mb-2">
-						* Les valeurs entre parenthèses sont données à titre d'exemple,
-						elles sont configurables selon vos besoins.
-					</p>
-				)}
+				<p className="italic text-sm mb-2">
+					* Les valeurs entre parenthèses sont données à titre d'exemple, elles
+					sont configurables selon vos besoins. La liste suivante n'est pas
+					exhaustive.
+				</p>
 
 				<div className="bg-white border border-gray-300 rounded-lg shadow-sm overflow-hidden">
 					<div className="overflow-x-auto">
@@ -52,7 +51,7 @@ export default function DataTypes() {
 										Type
 									</th>
 									<th className="text-xs font-semibold text-gray-600 uppercase p-3 text-left border-b border-r border-gray-300 bg-gray-100">
-										Category
+										Catégorie
 									</th>
 									<th className="text-xs font-semibold text-gray-600 uppercase p-3 text-left border-b border-r  border-gray-300 bg-gray-100">
 										Description
@@ -86,7 +85,7 @@ export default function DataTypes() {
 											</td>
 											<td className={`p-3 border-r border-gray-300`}>
 												<span
-													className={`inline-flex items-center text-xs font-semibold ${type.categoryTagColorClass} px-2 py-0.5 rounded-full border`}
+													className={`inline-flex items-center text-xs font-semibold ${type.categoryTagColorClass} px-2 py-0.5 rounded-md border`}
 												>
 													<span className="mr-1">
 														<MdLocalOffer className="w-3 h-3 text-current inline" />
@@ -135,12 +134,12 @@ export default function DataTypes() {
 	const renderConstraints = () => {
 		return (
 			<div className="mt-8">
-				<h2 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
-					<MdLock className="w-6 h-6 text-gray-600 mr-3" />
-					Contraintes et options
-				</h2>
+				<div className="border border-gray-300 rounded-lg bg-gray-50 p-6">
+					<h2 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
+						<MdLock className="w-6 h-6 text-gray-600 mr-3" />
+						Contraintes et options
+					</h2>
 
-				<div className="bg-white border border-gray-300 rounded-lg p-4 shadow-sm">
 					<p className="text-gray-700 mb-6">
 						Les <strong>contraintes</strong> définissent des règles que les
 						données doivent respecter pour garantir l'intégrité et la cohérence
@@ -151,7 +150,7 @@ export default function DataTypes() {
 						{constraints.map((constraint, index) => (
 							<div
 								key={index}
-								className="bg-gray-50 border border-gray-200 rounded-lg p-4"
+								className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm"
 							>
 								<div className="flex items-start space-x-3">
 									<div className="flex-shrink-0 mt-1">{constraint.icon}</div>
@@ -162,8 +161,8 @@ export default function DataTypes() {
 										<p className="text-gray-700 text-sm mb-2">
 											{constraint.description}
 										</p>
-										<div className="bg-gray-100 border border-gray-200 rounded p-2 mb-2">
-											<code className="text-xs text-gray-800">
+										<div className="inline-block bg-gray-100 border border-gray-200 rounded px-2 py-1 mb-2">
+											<code className="text-xs text-gray-800 whitespace-pre">
 												{constraint.example}
 											</code>
 										</div>
@@ -184,66 +183,84 @@ export default function DataTypes() {
 	const renderExampleTable = () => {
 		return (
 			<div className="mt-8">
-				<div className="bg-white border border-gray-300 rounded-lg shadow-sm overflow-hidden">
-					<div className="flex items-center space-x-2 mb-4 p-4 pb-0">
-						<MdStorage className="w-5 h-5 text-gray-600" />
-						<h4 className="font-bold text-gray-900">
-							Exemple d'une table "utilisateurs" avec contraintes
-						</h4>
-					</div>
+				<div className="border border-gray-300 rounded-lg bg-gray-50 p-6">
+					<h2 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
+						<MdStorage className="w-6 h-6 text-gray-600 mr-3" />
+						Exemple d'une table "utilisateurs" avec contraintes
+					</h2>
 
-					<div className="bg-gray-50 border border-gray-200 rounded-lg overflow-x-auto m-4 mt-4">
-						<table className="w-full min-w-[900px]">
-							<thead>
-								<tr className="bg-gray-100 border-b border-gray-300">
-									<th className="p-3 text-left font-semibold text-gray-900 text-sm">
-										Colonne
-									</th>
-									<th className="p-3 text-left font-semibold text-gray-900 text-sm">
-										Type + Contraintes
-									</th>
-									<th className="p-3 text-left font-semibold text-gray-900 text-sm">
-										Pourquoi ce choix ?
-									</th>
-									<th className="p-3 text-left font-semibold text-gray-900 text-sm">
-										Valeur exemple
-									</th>
-									<th className="p-3 text-left font-semibold text-gray-900 text-sm">
-										Avantages
-									</th>
-								</tr>
-							</thead>
-							<tbody>
-								{exampleRows.map((row, index) => (
-									<tr
-										key={index}
-										className="hover:bg-gray-50 border-b border-gray-200"
-									>
-										<td className="p-3 font-medium text-gray-900 text-sm">
-											{row.column}
-										</td>
-										<td className="p-3 text-sm">
-											<code className="bg-blue-100 px-2 py-1 rounded text-blue-800 text-xs">
-												{row.type}
-											</code>
-										</td>
-										<td className="p-3 text-gray-700 text-sm">{row.reason}</td>
-										<td className="p-3 text-sm">
-											<code className="bg-gray-100 px-2 py-1 rounded text-gray-800 text-xs">
-												{row.example}
-											</code>
-										</td>
-										<td className="p-3 text-gray-600 text-sm">{row.benefit}</td>
+					<div className="bg-white border border-gray-300 rounded-lg shadow-sm overflow-hidden">
+						<div className="overflow-x-auto">
+							<table className="w-full min-w-[900px] border-collapse bg-white rounded-lg shadow-sm overflow-hidden">
+								<thead>
+									<tr>
+										<th className="text-xs font-semibold text-gray-600 uppercase p-3 text-left border-b  border-r border-gray-300 bg-gray-100 rounded-tl-lg">
+											Nom de la colonne
+										</th>
+										<th className="text-xs font-semibold text-gray-600 uppercase p-3 text-left border-b border-r border-gray-300 bg-gray-100">
+											Type + Contraintes
+										</th>
+										<th className="text-xs font-semibold text-gray-600 uppercase p-3 text-left border-b border-r  border-gray-300 bg-gray-100">
+											Pourquoi ce choix ?
+										</th>
+										<th className="text-xs font-semibold text-gray-600 uppercase p-3 text-left border-b border-r  border-gray-300 bg-gray-100">
+											Valeur exemple
+										</th>
+										<th className="text-xs font-semibold text-gray-600 uppercase p-3 text-left border-b border-gray-300 bg-gray-100 rounded-tr-lg">
+											Avantages
+										</th>
 									</tr>
-								))}
-							</tbody>
-						</table>
+								</thead>
+								<tbody>
+									{exampleRows.map((row, index) => {
+										const isLast = index === exampleRows.length - 1;
+										return (
+											<tr
+												key={index}
+												className="border-b border-gray-200 hover:bg-gray-50"
+											>
+												<td
+													className={`p-3 border-r border-gray-300 ${
+														isLast ? "rounded-bl-lg" : ""
+													}`}
+												>
+													<div className="font-medium text-gray-900 text-sm">
+														{row.column}
+													</div>
+												</td>
+												<td className={`p-3 border-r border-gray-300`}>
+													<code className="bg-blue-100 px-2 py-1 rounded text-blue-800 text-xs">
+														{row.type}
+													</code>
+												</td>
+												<td
+													className={`p-3 text-gray-700 text-sm border-r border-gray-300`}
+												>
+													{row.reason}
+												</td>
+												<td className="p-3">
+													<code className="bg-gray-100 px-2 py-1 rounded text-gray-800 text-xs">
+														{row.example}
+													</code>
+												</td>
+												<td
+													className={`p-3 text-gray-600 text-sm border-l border-gray-300 ${
+														isLast ? "rounded-br-lg" : ""
+													}`}
+												>
+													{row.benefit}
+												</td>
+											</tr>
+										);
+									})}
+								</tbody>
+							</table>
+						</div>
 					</div>
 				</div>
 			</div>
 		);
 	};
-
 	return (
 		<div>
 			{/* Introductory section */}

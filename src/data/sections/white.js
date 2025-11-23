@@ -164,7 +164,7 @@ export const dataTypes = [
 	},
 	{
 		type: "common",
-		category: "Dates & Heures",
+		category: "Dates & heures",
 		tagColorClass: "bg-purple-50 text-purple-800 border-purple-100",
 		color: "gray",
 		types: [
