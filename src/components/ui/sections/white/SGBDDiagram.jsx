@@ -11,23 +11,25 @@ export default function SGBDDiagram() {
 	return (
 		<div className="bg-white flex flex-col gap-8">
 			{/* Introductory text */}
-			<div className="text-gray-700 leading-relaxed  flex flex-col gap-3">
+			<div className="text-gray-700 leading-relaxed flex flex-col gap-6 ">
 				<p>
-					Un{" "}
-					<span className="font-bold">
-						Système de Gestion de Base de Données (SGBD)
-					</span>{" "}
+					Un
+					<span className="font-semibold text-gray-900">
+						{" "}
+						Système de Gestion de Base de Données (SGBD){" "}
+					</span>
 					est une infrastructure logicielle permettant de créer, gérer et
 					manipuler des bases de données. Il facilite le stockage, la
 					modification, la sécurité et la récupération des données. Il existe
 					deux grandes catégories de SGBD :
 				</p>
 
-				<p>
-					•{" "}
-					<span className="font-semibold">
+				<p className="text-gray-700">
+					<span className="text-lg md:text-xl text-gray-800 mr-2 align-middle">
+						•
+					</span>
+					<span className="font-semibold text-blue-800">
 						Systèmes de Gestion de Bases de Données Relationnelles (SGBDR)
-						
 					</span>
 					: ils organisent les données sous forme de tables liées entre elles.
 					Ils utilisent le langage SQL (Structured Query Language), un standard
@@ -35,9 +37,11 @@ export default function SGBDDiagram() {
 					PostgreSQL, Oracle, SQL Server.
 				</p>
 
-				<p>
-					•{" "}
-					<span className="font-semibold">
+				<p className="text-gray-700">
+					<span className="text-lg md:text-xl text-gray-800 mr-2 align-middle">
+						•
+					</span>
+					<span className="font-semibold text-emerald-800">
 						Not Only SQL (NoSQL)
 					</span>
 					: conçus pour des données moins structurées ou très volumineuses. Ils
@@ -47,7 +51,7 @@ export default function SGBDDiagram() {
 					(Cassandra)…
 				</p>
 
-				<p>
+				<p className="text-gray-600 mb-6">
 					En résumé, les SGBDR utilisent SQL comme langage standardisé, tandis
 					que les bases NoSQL utilisent des langages ou des modèles de requête
 					qui varient selon la technologie. Elles sont souvent choisies pour la
