@@ -91,16 +91,12 @@ export default function DatabaseArchitecture() {
 			label: "date_retour",
 			icon: <MdViewColumn className="w-4 h-4 text-gray-600" />,
 		},
-		{
-			label: "statut",
-			icon: <MdViewColumn className="w-4 h-4 text-gray-600" />,
-		},
 	];
 
 	const borrowingData = [
-		[201, 1, 1, "2025-01-10", "2025-01-24", "Rendu"],
-		[202, 2, 2, "2025-01-12", null, "En cours"],
-		[203, 3, 1, "2025-01-15", null, "En cours"],
+		[201, 1, 1, "2025-01-10", "2025-01-24"],
+		[202, 2, 2, "2025-01-12", null],
+		[203, 3, 1, "2025-01-15", null],
 	];
 
 	const renderUsersCell = (cell, cellIndex) => {
@@ -123,11 +119,11 @@ export default function DatabaseArchitecture() {
 			);
 		}
 		if (cellIndex === 1 || cellIndex === 2) {
-				return (
-					<div className="flex items-center justify-center space-x-1 bg-red-100 py-1 px-2 rounded">
-						<span className="font-semibold text-red-900 text-sm">{cell}</span>
-					</div>
-				);
+			return (
+				<div className="flex items-center justify-center space-x-1 bg-red-100 py-1 px-2 rounded">
+					<span className="font-semibold text-red-900 text-sm">{cell}</span>
+				</div>
+			);
 		}
 		return <span className="text-gray-900 text-sm">{cell || "—"}</span>;
 	};

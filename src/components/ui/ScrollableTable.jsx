@@ -1,10 +1,18 @@
-export default function ScrollableTable({ columns, data, minWidth = "600px", renderCell }) {
+export default function ScrollableTable({
+	columns,
+	data,
+	renderCell,
+}) {
+
+
 	return (
 		<div className="border border-gray-300 rounded-lg overflow-x-auto">
-			<div style={{ minWidth }}>
-				<div 
+			<div>
+				<div
 					className="grid"
-					style={{ gridTemplateColumns: `repeat(${columns.length}, 1fr)` }}
+					style={{
+						gridTemplateColumns: `repeat(${columns.length}, minmax(200px, 1fr))`,
+					}}
 				>
 					{/* Header */}
 					{columns.map((col, index) => (
@@ -16,28 +24,34 @@ export default function ScrollableTable({ columns, data, minWidth = "600px", ren
 						>
 							<div className="flex items-center justify-center space-x-1">
 								{col.icon}
-								<span className={col.className || "text-gray-900"}>{col.label}</span>
+								<span className={col.className || "text-gray-900"}>
+									{col.label}
+								</span>
 							</div>
 						</div>
 					))}
 
 					{/* Data */}
-					{data.map((row, rowIndex) => (
+					{data.map((row, rowIndex) =>
 						row.map((cell, cellIndex) => (
 							<div
 								key={`cell-${rowIndex}-${cellIndex}`}
 								className={`p-3 text-center bg-white break-words ${
 									rowIndex < data.length - 1 ? "border-b border-gray-300" : ""
 								} ${
-									cellIndex < columns.length - 1 ? "border-r border-gray-300" : ""
+									cellIndex < columns.length - 1
+										? "border-r border-gray-300"
+										: ""
 								}`}
 							>
-								{renderCell ? renderCell(cell, cellIndex, rowIndex) : (
+								{renderCell ? (
+									renderCell(cell, cellIndex, rowIndex)
+								) : (
 									<span className="text-gray-900 text-sm">{cell}</span>
 								)}
 							</div>
 						))
-					))}
+					)}
 				</div>
 			</div>
 		</div>
