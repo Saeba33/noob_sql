@@ -124,7 +124,7 @@ export default function PrimaryForeignKeys() {
 							<p className="text-gray-800 italic flex items-center gap-2 pl-1">
 								Par conséquent, on peut déterminer que Marie Dubois a emprunté
 								"Le Petit Prince" le 10 janvier 2025 et l'a rendu le 24 janvier
-								20252.
+								2025.
 							</p>
 						</div>
 					</div>
