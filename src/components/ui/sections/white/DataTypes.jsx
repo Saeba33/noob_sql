@@ -85,7 +85,7 @@ export default function DataTypes() {
 											</td>
 											<td className={`p-3 border-r border-gray-300`}>
 												<span
-													className={`inline-flex items-center text-xs font-semibold ${type.categoryTagColorClass} px-2 py-0.5 rounded-md border`}
+													className={`inline-flex items-center text-xs ${type.categoryTagColorClass} px-2 py-0.5 rounded-md border`}
 												>
 													<span className="mr-1">
 														<MdLocalOffer className="w-3 h-3 text-current inline" />
