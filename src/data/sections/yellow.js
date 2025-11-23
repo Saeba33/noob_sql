@@ -1,5 +1,5 @@
-import { MdBuild, MdKey, MdSecurity } from "react-icons/md";
 import BestPractices from "@/components/ui/sections/BestPractices";
+import { MdBuild, MdKey, MdSecurity } from "react-icons/md";
 
 export const yellowBeltContent = {
 	// Belt configuration
