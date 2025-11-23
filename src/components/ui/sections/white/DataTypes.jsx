@@ -1,23 +1,23 @@
 import {
-	MdCheckBox,
 	MdInventory,
 	MdKey,
 	MdLink,
+	MdLocalOffer,
 	MdLock,
 	MdNumbers,
-	MdSchedule,
 	MdSecurity,
 	MdSettings,
 	MdStorage,
-	MdTextFields,
 	MdVerified,
 } from "react-icons/md";
-
 export default function DataTypes() {
-	const commonDataTypes = [
+	// Tags will be rendered inline inside the table rows (no helper)
+
+	const dataTypes = [
 		{
+			type: "common",
 			category: "Nombres",
-			icon: <MdNumbers className="w-6 h-6 text-gray-600" />,
+			tagColorClass: "bg-yellow-50 text-yellow-800 border-yellow-100",
 			color: "gray",
 			types: [
 				{
@@ -25,21 +25,20 @@ export default function DataTypes() {
 					description: "Nombres entiers",
 					examples: ["1", "42", "-15", "0"],
 					usage: "Identifiants, compteurs, âges",
-					bestPractice: "Utilisez AUTO_INCREMENT pour les clés primaires",
 				},
 				{
 					name: "DECIMAL(10,2)",
 					description:
-						"Nombre décimal précis. Dans cet exemple, on indique un nombre maximal de  10 chiffres au total, dont 2 après la virgule.",
+						"Nombre décimal précis. Dans cet exemple, on indique un nombre maximal de 10 chiffres au total, dont 2 après la virgule.",
 					examples: ["19.99", "1500.00", "-25.50"],
 					usage: "Prix, salaires, mesures",
-					bestPractice: "Toujours pour les montants financiers",
 				},
 			],
 		},
 		{
+			type: "common",
 			category: "Texte",
-			icon: <MdTextFields className="w-6 h-6 text-gray-600" />,
+			tagColorClass: "bg-green-50 text-green-800 border-green-100",
 			color: "gray",
 			types: [
 				{
@@ -48,20 +47,19 @@ export default function DataTypes() {
 						"Texte variable. La valeur entre parenthèses représente le nombre de caractères maximum autorisé. Par convention, il est souvent défini à 255 caractères.",
 					examples: ["'Marie Dubois'", "'contact@site.com'"],
 					usage: "Noms, emails, titres, descriptions courtes",
-					bestPractice: "255 = optimisation MySQL, très courante",
 				},
 				{
 					name: "TEXT",
 					description: "Texte long (jusqu'à 65 000 caractères)",
 					examples: ["'Description longue...'", "'Article complet...'"],
 					usage: "Articles, commentaires, descriptions détaillées",
-					bestPractice: "Uniquement si vraiment nécessaire",
 				},
 			],
 		},
 		{
+			type: "common",
 			category: "Dates & Heures",
-			icon: <MdSchedule className="w-6 h-6 text-gray-600" />,
+			tagColorClass: "bg-purple-50 text-purple-800 border-purple-100",
 			color: "gray",
 			types: [
 				{
@@ -69,23 +67,35 @@ export default function DataTypes() {
 					description: "Date uniquement (format : YYYY-MM-DD)",
 					examples: ["2025-01-15", "1990-05-20"],
 					usage: "Dates de naissance, échéances",
-					bestPractice: "Pour les dates sans notion d'heure",
 				},
 				{
 					name: "TIMESTAMP",
-					description: "Date et heure avec fuseau horaire",
+					description: "Date et heure (format : YYYY-MM-DD HH:MM:SS)",
 					examples: ["2025-01-15 14:30:00"],
 					usage: "Logs, créations, modifications",
-					bestPractice: "DEFAULT CURRENT_TIMESTAMP très utile",
 				},
 			],
 		},
-	];
-
-	const lessCommonDataTypes = [
 		{
+			type: "common",
+			category: "Autres",
+			tagColorClass: "bg-blue-50 text-blue-800 border-blue-100",
+			color: "gray",
+			types: [
+				{
+					name: "BOOLEAN",
+					description:
+						"True/False. Conventionally stored as 1 (true) or 0 (false).",
+					examples: ["TRUE", "FALSE", "1", "0"],
+					usage: "States, toggles, flags",
+				},
+			],
+		},
+
+		{
+			type: "uncommon",
 			category: "Nombres",
-			icon: <MdNumbers className="w-6 h-6 text-gray-400" />,
+			tagColorClass: "bg-yellow-50 text-yellow-800 border-yellow-100",
 			color: "lightgray",
 			types: [
 				{
@@ -109,8 +119,9 @@ export default function DataTypes() {
 			],
 		},
 		{
+			type: "uncommon",
 			category: "Texte",
-			icon: <MdTextFields className="w-6 h-6 text-gray-400" />,
+			tagColorClass: "bg-green-50 text-green-800 border-green-100",
 			color: "lightgray",
 			types: [
 				{
@@ -135,16 +146,11 @@ export default function DataTypes() {
 			],
 		},
 		{
-			category: "Autres Types",
-			icon: <MdCheckBox className="w-6 h-6 text-gray-400" />,
+			type: "uncommon",
+			category: "Autres",
+			tagColorClass: "bg-blue-50 text-blue-800 border-blue-100",
 			color: "lightgray",
 			types: [
-				{
-					name: "BOOLEAN / TINYINT(1)",
-					description: `Vrai ou Faux. Par convention, on utilise la valeur 1, ce qui signifie que l’enregistrement peut avoir soit une valeur "false" (0), soit "true" (1)`,
-					examples: ["TRUE", "FALSE", "1", "0"],
-					usage: "États, validations, options actives/inactives",
-				},
 				{
 					name: "ENUM('val1','val2')",
 					description: "Liste de valeurs prédéfinies",
@@ -160,6 +166,31 @@ export default function DataTypes() {
 			],
 		},
 	];
+
+	// Flatten lists for rendering (keeps original arrays intact)
+	const flatCommon = dataTypes
+		.filter((cat) => cat.type === "common")
+		.flatMap((cat) =>
+			cat.types.map((t) => ({
+				...t,
+				category: cat.category,
+				categoryTagColorClass:
+					cat.tagColorClass || "bg-gray-50 text-gray-800 border-gray-100",
+				type: cat.type,
+			}))
+		);
+
+	const flatLess = dataTypes
+		.filter((cat) => cat.type === "uncommon")
+		.flatMap((cat) =>
+			cat.types.map((t) => ({
+				...t,
+				category: cat.category,
+				categoryTagColorClass:
+					cat.tagColorClass || "bg-gray-50 text-gray-800 border-gray-100",
+				type: cat.type,
+			}))
+		);
 
 	const constraints = [
 		{
@@ -260,57 +291,156 @@ export default function DataTypes() {
 					sont configurables selon vos besoins.
 				</p>
 
-				<div className="grid gap-6">
-					{commonDataTypes.map((category, categoryIndex) => (
-						<div
-							key={categoryIndex}
-							className="bg-white border border-gray-300 rounded-lg shadow-sm overflow-hidden"
-						>
-							{/* Category header */}
-							<div className="flex items-center space-x-3 mb-4 p-4 pb-0">
-								{category.icon}
-								<h3 className="text-lg font-bold text-gray-800">
-									{category.category}
-								</h3>
-							</div>
-
-							{/* Horizontal scroll wrapper */}
-							<div className="overflow-x-auto">
-								<table className="w-full min-w-[800px] border-collapse">
-									<thead>
-										<tr className="bg-gray-100">
-											<th className="text-xs font-semibold text-gray-600 uppercase p-3 pl-5 text-left border-b border-t border-r border-gray-300">
-												Type
-											</th>
-											<th className="text-xs font-semibold text-gray-600 uppercase p-3 text-left border border-gray-300">
-												Description
-											</th>
-											<th className="text-xs font-semibold text-gray-600 uppercase p-3 text-left border  border-gray-300">
-												Exemples
-											</th>
-											<th className="text-xs font-semibold text-gray-600 uppercase p-3 text-left border-b border-t border-gray-300">
-												Utilisation
-											</th>
+				<div className="bg-white border border-gray-300 rounded-lg shadow-sm overflow-hidden">
+					<div className="overflow-x-auto">
+						<table className="w-full min-w-[800px] border-collapse bg-white rounded-lg shadow-sm overflow-hidden">
+							<thead>
+								<tr>
+									<th className="text-xs font-semibold text-gray-600 uppercase p-3 pl-5 text-left border-b  border-r border-gray-300 bg-gray-100 rounded-tl-lg">
+										Type
+									</th>
+									<th className="text-xs font-semibold text-gray-600 uppercase p-3 text-left border-b border-r border-gray-300 bg-gray-100">
+										Category
+									</th>
+									<th className="text-xs font-semibold text-gray-600 uppercase p-3 text-left border-b border-r  border-gray-300 bg-gray-100">
+										Description
+									</th>
+									<th className="text-xs font-semibold text-gray-600 uppercase p-3 text-left border-b border-r  border-gray-300 bg-gray-100">
+										Exemples
+									</th>
+									<th className="text-xs font-semibold text-gray-600 uppercase p-3 text-left border-b border-gray-300 bg-gray-100 rounded-tr-lg">
+										Utilisation
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								{flatCommon.map((type, typeIndex) => {
+									const isLast = typeIndex === flatCommon.length - 1;
+									return (
+										<tr
+											key={typeIndex}
+											className="border-b border-gray-200 hover:bg-gray-50"
+										>
+											<td
+												className={`p-3 border-r border-gray-300 ${
+													isLast ? "rounded-bl-lg" : ""
+												}`}
+											>
+												<div className="bg-gray-100 px-2 py-1 rounded inline-block">
+													<code className="font-semibold text-sm text-gray-800">
+														{type.name}
+													</code>
+												</div>
+											</td>
+											<td className={`p-3 border-r border-gray-300`}>
+												<span
+													className={`inline-flex items-center text-xs font-semibold ${type.categoryTagColorClass} px-2 py-0.5 rounded-full border`}
+												>
+													<span className="mr-1">
+														<MdLocalOffer className="w-3 h-3 text-current inline" />
+													</span>
+													<span className="whitespace-nowrap">
+														{type.category}
+													</span>
+												</span>
+											</td>
+											<td
+												className={`p-3 text-gray-700 text-sm border-r border-gray-300`}
+											>
+												{type.description}
+											</td>
+											<td className="p-3">
+												<div className="flex flex-wrap gap-1 border-gray-300">
+													{type.examples.map((example, exampleIndex) => (
+														<code
+															key={exampleIndex}
+															className="bg-gray-100 px-1 py-0.5 rounded text-xs text-gray-800"
+														>
+															{example}
+														</code>
+													))}
+												</div>
+											</td>
+											<td
+												className={`p-3 text-gray-600 text-sm border-l border-gray-300 ${
+													isLast ? "rounded-br-lg" : ""
+												}`}
+											>
+												{type.usage}
+											</td>
 										</tr>
-									</thead>
-									<tbody>
-										{category.types.map((type, typeIndex) => (
+									);
+								})}
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+				{/* Less common data types */}
+				<div className="mt-8">
+					<h2 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
+						<MdInventory className="w-6 h-6 text-gray-600 mr-3" />
+						Types de données moins courantes
+					</h2>
+
+					<div className="bg-white border border-gray-300 rounded-lg shadow-sm overflow-hidden">
+						<div className="overflow-x-auto">
+							<table className="w-full min-w-[800px] border-collapse bg-white rounded-lg shadow-sm overflow-hidden">
+								<thead>
+									<tr>
+										<th className="text-xs font-semibold text-gray-600 uppercase p-3 pl-5 text-left border-b border-r border-gray-300 bg-gray-100 rounded-tl-lg">
+											Type
+										</th>
+										<th className="text-xs font-semibold text-gray-600 uppercase p-3 text-left border-b border-r border-gray-300 bg-gray-100">
+											Category
+										</th>
+										<th className="text-xs font-semibold text-gray-600 uppercase p-3 text-left border-b border-r border-gray-300 bg-gray-100">
+											Description
+										</th>
+										<th className="text-xs font-semibold text-gray-600 uppercase p-3 text-left border-b border-r border-gray-300 bg-gray-100">
+											Exemples
+										</th>
+										<th className="text-xs font-semibold text-gray-600 uppercase p-3 text-left border-b border-gray-300 bg-gray-100 rounded-tr-lg">
+											Utilisation
+										</th>
+									</tr>
+								</thead>
+								<tbody>
+									{flatLess.map((type, typeIndex) => {
+										const isLast = typeIndex === flatLess.length - 1;
+										return (
 											<tr
 												key={typeIndex}
-												className="border-b border-r border-gray-200 hover:bg-gray-50"
+												className="border-b border-gray-200 hover:bg-gray-50"
 											>
-												<td className="p-3 border-r border-gray-300">
+												<td
+													className={`p-3 border-r border-gray-300 ${
+														isLast ? "rounded-bl-lg" : ""
+													}`}
+												>
 													<div className="bg-gray-100 px-2 py-1 rounded inline-block">
 														<code className="font-semibold text-sm text-gray-800">
 															{type.name}
 														</code>
 													</div>
 												</td>
+												<td className="p-3 border-r border-gray-300">
+													<span
+														className={`inline-flex items-center text-xs font-semibold ${type.categoryTagColorClass} px-2 py-0.5 rounded-full border`}
+													>
+														<span className="mr-1">
+															<MdLocalOffer className="w-3 h-3 text-current inline" />
+														</span>
+														<span className="whitespace-nowrap">
+															{type.category}
+														</span>
+													</span>
+												</td>
 												<td className="p-3 text-gray-700 text-sm border-r border-gray-300">
 													{type.description}
 												</td>
 												<td className="p-3">
-													<div className="flex flex-wrap gap-1 border-gray-300">
+													<div className="flex flex-wrap gap-1">
 														{type.examples.map((example, exampleIndex) => (
 															<code
 																key={exampleIndex}
@@ -321,96 +451,19 @@ export default function DataTypes() {
 														))}
 													</div>
 												</td>
-												<td className="p-3 text-gray-600 text-sm border-l border-gray-300">
+												<td
+													className={`p-3 text-gray-600 text-sm border-l border-gray-300 ${
+														isLast ? "rounded-br-lg" : ""
+													}`}
+												>
 													{type.usage}
 												</td>
 											</tr>
-										))}
-									</tbody>
-								</table>
-							</div>
+										);
+									})}
+								</tbody>
+							</table>
 						</div>
-					))}
-				</div>
-
-				{/* Less common data types */}
-				<div className="mt-8">
-					<h2 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
-						<MdInventory className="w-6 h-6 text-gray-600 mr-3" />
-						Types de données moins courantes
-					</h2>
-
-					<div className="grid gap-6">
-						{lessCommonDataTypes.map((category, categoryIndex) => (
-							<div
-								key={categoryIndex}
-								className="bg-white border border-gray-300 rounded-lg shadow-sm overflow-hidden"
-							>
-								{/* Category header */}
-								<div className="flex items-center space-x-3 mb-4 p-4 pb-0">
-									{category.icon}
-									<h3 className="text-lg font-bold text-gray-800">
-										{category.category}
-									</h3>
-								</div>
-
-								{/* Horizontal scroll wrapper */}
-								<div className="overflow-x-auto">
-									<table className="w-full min-w-[800px] border-collapse">
-										<thead>
-											<tr className="bg-gray-100">
-												<th className="text-xs font-semibold text-gray-600 uppercase p-3 pl-5 text-left border-b border-r border-gray-300">
-													Type
-												</th>
-												<th className="text-xs font-semibold text-gray-600 uppercase p-3 text-left border-b border-gray-300">
-													Description
-												</th>
-												<th className="text-xs font-semibold text-gray-600 uppercase p-3 text-left border-b border-gray-300">
-													Exemples
-												</th>
-												<th className="text-xs font-semibold text-gray-600 uppercase p-3 text-left border-b border-gray-300">
-													Utilisation
-												</th>
-											</tr>
-										</thead>
-										<tbody>
-											{category.types.map((type, typeIndex) => (
-												<tr
-													key={typeIndex}
-													className="border-b border-r border-gray-200 hover:bg-gray-50"
-												>
-													<td className="p-3">
-														<div className="bg-gray-100 px-2 py-1 rounded inline-block">
-															<code className="font-semibold text-sm text-gray-800">
-																{type.name}
-															</code>
-														</div>
-													</td>
-													<td className="p-3 text-gray-700 text-sm">
-														{type.description}
-													</td>
-													<td className="p-3">
-														<div className="flex flex-wrap gap-1">
-															{type.examples.map((example, exampleIndex) => (
-																<code
-																	key={exampleIndex}
-																	className="bg-gray-100 px-1 py-0.5 rounded text-xs text-gray-800"
-																>
-																	{example}
-																</code>
-															))}
-														</div>
-													</td>
-													<td className="p-3 text-gray-600 text-sm">
-														{type.usage}
-													</td>
-												</tr>
-											))}
-										</tbody>
-									</table>
-								</div>
-							</div>
-						))}
 					</div>
 				</div>
 
