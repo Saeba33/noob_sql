@@ -44,7 +44,8 @@ export default function DataTypes() {
 			types: [
 				{
 					name: "VARCHAR(255)",
-					description: "Texte variable. La valeur entre parenthèses représente le nombre de caractères maximum autorisé. Par convention, il est souvent défini à 255 caractères.",
+					description:
+						"Texte variable. La valeur entre parenthèses représente le nombre de caractères maximum autorisé. Par convention, il est souvent défini à 255 caractères.",
 					examples: ["'Marie Dubois'", "'contact@site.com'"],
 					usage: "Noms, emails, titres, descriptions courtes",
 					bestPractice: "255 = optimisation MySQL, très courante",
@@ -140,8 +141,7 @@ export default function DataTypes() {
 			types: [
 				{
 					name: "BOOLEAN / TINYINT(1)",
-					description:
-						`Vrai ou Faux. Par convention, on utilise la valeur 1, ce qui signifie que l’enregistrement peut avoir soit une valeur "false" (0), soit "true" (1)`,
+					description: `Vrai ou Faux. Par convention, on utilise la valeur 1, ce qui signifie que l’enregistrement peut avoir soit une valeur "false" (0), soit "true" (1)`,
 					examples: ["TRUE", "FALSE", "1", "0"],
 					usage: "États, validations, options actives/inactives",
 				},
@@ -222,7 +222,7 @@ export default function DataTypes() {
 
 	return (
 		<div>
-			{/* Introduction */}
+			{/* Introductory section */}
 			<div className="mb-8 space-y-4 text-gray-700 leading-relaxed">
 				<p>
 					En SQL, chaque colonne d'une table doit avoir un{" "}
@@ -249,7 +249,7 @@ export default function DataTypes() {
 				</div>
 			</div>
 
-			{/* Types de données courants */}
+			{/* Common data types */}
 			<div className="border border-gray-300 rounded-lg bg-gray-50 p-6">
 				<h2 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
 					<MdInventory className="w-6 h-6 text-gray-600 mr-3" />
@@ -266,7 +266,7 @@ export default function DataTypes() {
 							key={categoryIndex}
 							className="bg-white border border-gray-300 rounded-lg shadow-sm overflow-hidden"
 						>
-							{/* En-tête de catégorie */}
+							{/* Category header */}
 							<div className="flex items-center space-x-3 mb-4 p-4 pb-0">
 								{category.icon}
 								<h3 className="text-lg font-bold text-gray-800">
@@ -274,7 +274,7 @@ export default function DataTypes() {
 								</h3>
 							</div>
 
-							{/* Wrapper avec scroll horizontal */}
+							{/* Horizontal scroll wrapper */}
 							<div className="overflow-x-auto">
 								<table className="w-full min-w-[800px] border-collapse">
 									<thead>
@@ -333,7 +333,7 @@ export default function DataTypes() {
 					))}
 				</div>
 
-				{/* Types moins courants */}
+				{/* Less common data types */}
 				<div className="mt-8">
 					<h2 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
 						<MdInventory className="w-6 h-6 text-gray-600 mr-3" />
@@ -346,7 +346,7 @@ export default function DataTypes() {
 								key={categoryIndex}
 								className="bg-white border border-gray-300 rounded-lg shadow-sm overflow-hidden"
 							>
-								{/* En-tête de catégorie */}
+								{/* Category header */}
 								<div className="flex items-center space-x-3 mb-4 p-4 pb-0">
 									{category.icon}
 									<h3 className="text-lg font-bold text-gray-800">
@@ -354,7 +354,7 @@ export default function DataTypes() {
 									</h3>
 								</div>
 
-								{/* Wrapper avec scroll horizontal */}
+								{/* Horizontal scroll wrapper */}
 								<div className="overflow-x-auto">
 									<table className="w-full min-w-[800px] border-collapse">
 										<thead>
@@ -414,7 +414,7 @@ export default function DataTypes() {
 					</div>
 				</div>
 
-				{/* Section Contraintes */}
+				{/* Constraints and options */}
 				<div className="mt-8">
 					<h2 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
 						<MdLock className="w-6 h-6 text-gray-600 mr-3" />
@@ -459,7 +459,7 @@ export default function DataTypes() {
 					</div>
 				</div>
 
-				{/* Exemple pratique complet */}
+				{/* Complete practical example */}
 				<div className="mt-8">
 					<div className="bg-white border border-gray-300 rounded-lg shadow-sm overflow-hidden">
 						<div className="flex items-center space-x-2 mb-4 p-4 pb-0">
