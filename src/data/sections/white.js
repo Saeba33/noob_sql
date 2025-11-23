@@ -191,9 +191,9 @@ export const dataTypes = [
 			{
 				name: "BOOLEAN",
 				description:
-					"True/False. Conventionally stored as 1 (true) or 0 (false).",
-				examples: ["TRUE", "FALSE"],
-				usage: "States, toggles, flags",
+					"True / False. Souvent stocké comme 1 (true) ou 0 (false).",
+				examples: ["TRUE", "FALSE", "1", "0"],
+				usage: "États, bascules, indicateurs",
 			},
 		],
 	},
@@ -219,7 +219,7 @@ export const dataTypes = [
 				name: "TINYINT",
 				description: "Petits entiers (-128 à 127, ou 0 à 255 si UNSIGNED)",
 				examples: ["1", "0", "255"],
-				usage: "Flags, petits compteurs, booléens",
+				usage: "Indicateurs, petits compteurs, booléens",
 			},
 		],
 	},
@@ -331,7 +331,7 @@ export const constraints = [
 	},
 ];
 
-export const exampleRows = [
+export const exampleTypes = [
 	{
 		column: "id",
 		type: "INTEGER PRIMARY KEY AUTO_INCREMENT",
@@ -357,7 +357,7 @@ export const exampleRows = [
 		column: "age",
 		type: "INTEGER UNSIGNED CHECK(...)",
 		reason: "Âge toujours positif + validation",
-		example: "30",
+		example: "18",
 		benefit: "Données cohérentes",
 	},
 	{

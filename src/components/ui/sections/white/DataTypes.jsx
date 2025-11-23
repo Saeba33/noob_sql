@@ -1,8 +1,8 @@
-import { constraints, dataTypes, exampleRows } from "@/data/sections/white";
+import { constraints, dataTypes, exampleTypes } from "@/data/sections/white";
 import { MdInventory, MdLocalOffer, MdLock, MdStorage } from "react-icons/md";
 
 export default function DataTypes() {
-	// Flatten lists for rendering (keeps original arrays intact)
+	// Flatten lists for rendering 
 	const flatCommon = dataTypes
 		.filter((cat) => cat.type === "common")
 		.flatMap((cat) =>
@@ -27,10 +27,10 @@ export default function DataTypes() {
 			}))
 		);
 
-	// Helper: render a types table (used for common and uncommon)
-	const renderTypesSection = (title, rows, { showLegend } = {}) => {
+	// Types Section
+	const renderTypesSection = (title, rows) => {
 		return (
-			<div className="border border-gray-300 rounded-lg bg-gray-50 p-6">
+			<div className="border border-gray-300 rounded-lg bg-gray-50 p-6 mt-8">
 				<h2 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
 					<MdInventory className="w-6 h-6 text-gray-600 mr-3" />
 					{title}
@@ -47,7 +47,7 @@ export default function DataTypes() {
 						<table className="w-full min-w-[800px] border-collapse bg-white rounded-lg shadow-sm overflow-hidden">
 							<thead>
 								<tr>
-									<th className="text-xs font-semibold text-gray-600 uppercase p-3 pl-5 text-left border-b  border-r border-gray-300 bg-gray-100 rounded-tl-lg">
+									<th className="text-xs font-semibold text-gray-600 uppercase p-3 pl-4 text-left border-b  border-r border-gray-300 bg-gray-100 rounded-tl-lg">
 										Type
 									</th>
 									<th className="text-xs font-semibold text-gray-600 uppercase p-3 text-left border-b border-r border-gray-300 bg-gray-100">
@@ -130,8 +130,8 @@ export default function DataTypes() {
 		);
 	};
 
-	// Helper: render constraints grid
-	const renderConstraints = () => {
+	// Constraints Section
+	const renderConstraintsSection = () => {
 		return (
 			<div className="mt-8">
 				<div className="border border-gray-300 rounded-lg bg-gray-50 p-6">
@@ -179,8 +179,8 @@ export default function DataTypes() {
 		);
 	};
 
-	// Helper: render example table
-	const renderExampleTable = () => {
+	// Example table
+	const renderExampleSection = () => {
 		return (
 			<div className="mt-8">
 				<div className="border border-gray-300 rounded-lg bg-gray-50 p-6">
@@ -212,8 +212,8 @@ export default function DataTypes() {
 									</tr>
 								</thead>
 								<tbody>
-									{exampleRows.map((row, index) => {
-										const isLast = index === exampleRows.length - 1;
+									{exampleTypes.map((row, index) => {
+										const isLast = index === exampleTypes.length - 1;
 										return (
 											<tr
 												key={index}
@@ -290,17 +290,11 @@ export default function DataTypes() {
 				</div>
 			</div>
 
-			{/* Types sections rendered with helpers */}
-			{renderTypesSection("Types de données courantes", flatCommon, {
-				showLegend: true,
-			})}
-			<div className="mt-8">
-				{renderTypesSection("Types de données moins courantes", flatLess)}
-			</div>
-
-			{/* Constraints and example rendered with helpers */}
-			{renderConstraints()}
-			{renderExampleTable()}
+			{/* Sections */}
+			{renderTypesSection("Types de données courantes", flatCommon)}
+			{renderTypesSection("Types de données moins courantes", flatLess)}
+			{renderConstraintsSection()}
+			{renderExampleSection()}
 		</div>
 	);
 }
