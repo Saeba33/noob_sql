@@ -75,12 +75,12 @@ export default function DatabaseArchitecture() {
 		},
 		{
 			label: "utilisateur_id",
-			icon: <MdLink className="w-4 h-4 text-red-600" />,
+			icon: <MdLink className="w-4 h-4 text-red-600 opacity-80" />,
 			className: "text-red-900",
 		},
 		{
 			label: "livre_id",
-			icon: <MdLink className="w-4 h-4 text-red-600" />,
+			icon: <MdLink className="w-4 h-4 text-red-600 opacity-80" />,
 			className: "text-red-900",
 		},
 		{
@@ -125,12 +125,12 @@ export default function DatabaseArchitecture() {
 			);
 		}
 		if (cellIndex === 1 || cellIndex === 2) {
-			return (
-				<div className="flex items-center justify-center space-x-1 bg-red-100 py-1 px-2 rounded">
-					<MdLink className="w-3 h-3 text-red-600" />
-					<span className="font-semibold text-red-900">{cell}</span>
-				</div>
-			);
+						return (
+							<div className="flex items-center justify-center space-x-1 bg-red-100 py-1 px-2 rounded">
+								<MdLink className="w-3 h-3 text-red-600 opacity-80" />
+								<span className="font-semibold text-red-900">{cell}</span>
+							</div>
+						);
 		}
 		return <span className="text-gray-900 text-sm">{cell || "—"}</span>;
 	};
@@ -259,7 +259,7 @@ export default function DatabaseArchitecture() {
 					</div>
 					<div className="p-4 bg-red-100 border border-red-200 rounded-lg">
 						<h4 className="font-bold text-red-900 mb-2 flex items-center">
-							<MdLink className="w-4 h-4 mr-2 text-red-600" />
+							<MdLink className="w-4 h-4 mr-2 text-red-600 opacity-80" />
 							Clé Étrangère
 						</h4>
 						<p className="text-red-800 text-sm">

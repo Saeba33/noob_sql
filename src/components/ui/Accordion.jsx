@@ -207,7 +207,7 @@ export default function Accordion({
 																<MdKey className="w-3 h-3 text-blue-600" />
 															)}
 															{column.isForeign && (
-																<MdLink className="w-3 h-3 text-purple-600" />
+																<MdLink className="w-3 h-3 text-purple-600 opacity-80" />
 															)}
 														</div>
 														<div className="flex-shrink-0 text-gray-800 font-medium">

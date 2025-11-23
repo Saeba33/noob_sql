@@ -94,12 +94,12 @@ export default function SqlTableBlock({
 										>
 											{/* Icon */}
 											<div className="flex-shrink-0 w-5 flex items-center justify-center">
-												{column.isPrimary && (
-													<MdKey className="w-3 h-3 text-blue-600" />
-												)}
-												{column.isForeign && (
-													<MdLink className="w-3 h-3 text-purple-600" />
-												)}
+															{column.isPrimary && (
+																<MdKey className="w-3 h-3 text-blue-600" />
+															)}
+															{column.isForeign && (
+																<MdLink className="w-3 h-3 text-purple-600 opacity-80" />
+															)}
 											</div>
 
 											{/* Column */}
