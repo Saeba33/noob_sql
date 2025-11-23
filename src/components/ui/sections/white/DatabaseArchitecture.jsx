@@ -9,7 +9,7 @@ import {
 import ScrollableTable from "../../ScrollableTable";
 
 export default function DatabaseArchitecture() {
-	// Configuration des tableaux
+	// Table configurations
 	const usersColumns = [
 		{
 			label: "id",
@@ -36,7 +36,7 @@ export default function DatabaseArchitecture() {
 
 	const usersData = [
 		[1, "Marie", "Dubois", "marie.dubois@email.com", "2024-01-15"],
-		[2, "Pierre", "Martin","pierre.martin@email.com", "2024-02-20"],
+		[2, "Pierre", "Martin", "pierre.martin@email.com", "2024-02-20"],
 		[3, "Sophie", "Leroy", "sophie.leroy@email.com", "2024-03-10"],
 	];
 
@@ -103,7 +103,7 @@ export default function DatabaseArchitecture() {
 		[203, 3, 1, "2025-01-15", null, "En cours"],
 	];
 
-	const renderUtilisateursCell = (cell, cellIndex) => {
+	const renderUsersCell = (cell, cellIndex) => {
 		if (cellIndex === 0) {
 			return (
 				<div className="flex items-center justify-center space-x-1 bg-yellow-100 py-1 px-2 rounded">
@@ -115,7 +115,7 @@ export default function DatabaseArchitecture() {
 		return <span className="text-gray-900 text-sm">{cell}</span>;
 	};
 
-	const renderEmpruntsCell = (cell, cellIndex) => {
+	const renderBorrowingsCell = (cell, cellIndex) => {
 		if (cellIndex === 0) {
 			return (
 				<div className="flex items-center justify-center space-x-1 bg-yellow-100 py-1 px-2 rounded">
@@ -137,7 +137,7 @@ export default function DatabaseArchitecture() {
 
 	return (
 		<div>
-			{/* Texte explicatif avec analogie */}
+			{/* Introductory section */}
 			<div className="mb-8 space-y-4 text-gray-700 leading-relaxed">
 				<p>
 					Une <strong>base de données</strong> peut être comparée à une{" "}
@@ -175,12 +175,11 @@ export default function DatabaseArchitecture() {
 				</p>
 			</div>
 
-			{/* Représentation visuelle - Base de données */}
-
+			{/* Visual representation - Database */}
 			<div className="mx-auto">
 				{/* Tables */}
 				<div className="space-y-8">
-					{/* Table Utilisateurs */}
+					{/* Users table */}
 					<div className="bg-white border border-gray-300 rounded-lg p-4 shadow-sm">
 						<div className="flex items-center space-x-3 mb-4">
 							<MdTableChart className="w-5 h-5 text-gray-600" />
@@ -193,7 +192,7 @@ export default function DatabaseArchitecture() {
 							columns={usersColumns}
 							data={usersData}
 							minWidth="600px"
-							renderCell={renderUtilisateursCell}
+							renderCell={renderUsersCell}
 						/>
 
 						<div className="mt-2 flex items-center space-x-2 text-sm text-gray-600">
@@ -202,7 +201,7 @@ export default function DatabaseArchitecture() {
 						</div>
 					</div>
 
-					{/* Table Livres */}
+					{/* Books table */}
 					<div className="bg-white border border-gray-300 rounded-lg p-4 shadow-sm">
 						<div className="flex items-center space-x-3 mb-4">
 							<MdTableChart className="w-5 h-5 text-gray-600" />
@@ -215,7 +214,7 @@ export default function DatabaseArchitecture() {
 							columns={booksColumns}
 							data={booksData}
 							minWidth="800px"
-							renderCell={renderUtilisateursCell}
+							renderCell={renderUsersCell}
 						/>
 
 						<div className="mt-2 flex items-center space-x-2 text-sm text-gray-600">
@@ -224,7 +223,7 @@ export default function DatabaseArchitecture() {
 						</div>
 					</div>
 
-					{/* Table Emprunts */}
+					{/* Borrowings table */}
 					<div className="bg-white border border-gray-300 rounded-lg p-4 shadow-sm">
 						<div className="flex items-center space-x-3 mb-4">
 							<MdTableChart className="w-5 h-5 text-gray-600" />
@@ -237,7 +236,7 @@ export default function DatabaseArchitecture() {
 							columns={borrowingColumns}
 							data={borrowingData}
 							minWidth="900px"
-							renderCell={renderEmpruntsCell}
+							renderCell={renderBorrowingsCell}
 						/>
 
 						<div className="mt-2 flex items-center space-x-2 text-sm text-gray-600">
@@ -247,7 +246,7 @@ export default function DatabaseArchitecture() {
 					</div>
 				</div>
 
-				{/* Lexique */}
+				{/* Legend */}
 				<div className="mt-8 grid md:grid-cols-2 gap-4">
 					<div className="p-4 bg-yellow-100 border border-yellow-200 rounded-lg">
 						<h4 className="font-bold text-yellow-900 mb-2 flex items-center">

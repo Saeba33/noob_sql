@@ -1,10 +1,9 @@
-import { IoInformation } from "react-icons/io5";
 import { MdKey, MdLink } from "react-icons/md";
 
 export default function PrimaryForeignKeys() {
 	return (
 		<div className="space-y-8">
-			{/* Introduction */}
+			{/* Introductory section */}
 			<div className="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-r-lg">
 				<p className="text-gray-700 leading-relaxed">
 					Dans une base de données relationnelle, il existe deux types de clés
@@ -14,9 +13,9 @@ export default function PrimaryForeignKeys() {
 				</p>
 			</div>
 
-			{/* Les deux types de clés */}
+			{/* The two key types */}
 			<div className="grid md:grid-cols-2 gap-6">
-				{/* Clés Primaires */}
+				{/* Primary Keys */}
 				<div className="bg-white rounded-lg border border-gray-200 p-6">
 					<div className="flex items-center gap-3 mb-4">
 						<MdKey className="w-8 h-8 text-yellow-600" />
@@ -39,7 +38,7 @@ export default function PrimaryForeignKeys() {
 					</div>
 				</div>
 
-				{/* Clés Étrangères */}
+				{/* Foreign Keys */}
 				<div className="bg-white rounded-lg border border-gray-200 p-6">
 					<div className="flex items-center gap-3 mb-4">
 						<MdLink className="w-8 h-8 text-red-600" />
@@ -62,7 +61,7 @@ export default function PrimaryForeignKeys() {
 				</div>
 			</div>
 
-			{/* Application concrète avec exemple des tables ci-dessus */}
+			{/* Example */}
 			<div className="bg-white border border-gray-300 rounded-lg p-6">
 				<h3 className="text-xl font-bold text-gray-900 mb-4">
 					Comment les relations fonctionnent ?
@@ -123,8 +122,9 @@ export default function PrimaryForeignKeys() {
 						</p>
 						<div className="mt-3 pt-3 border-t border-gray-300">
 							<p className="text-gray-800 italic flex items-center gap-2 pl-1">
-								Par conséquent, on peut déterminer que Marie Dubois a emprunté "Le Petit Prince"
-								le 10 janvier 2025 et l'a rendu le 24 janvier 20252.
+								Par conséquent, on peut déterminer que Marie Dubois a emprunté
+								"Le Petit Prince" le 10 janvier 2025 et l'a rendu le 24 janvier
+								20252.
 							</p>
 						</div>
 					</div>
