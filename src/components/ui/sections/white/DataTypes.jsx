@@ -30,7 +30,7 @@ export default function DataTypes() {
 				{
 					name: "DECIMAL(10,2)",
 					description:
-						"Nombre décimal précis. Dans cet exemple, on indique un nombre maximal de  10 chiffres au total dont 2 après la virgule.",
+						"Nombre décimal précis. Dans cet exemple, on indique un nombre maximal de  10 chiffres au total, dont 2 après la virgule.",
 					examples: ["19.99", "1500.00", "-25.50"],
 					usage: "Prix, salaires, mesures",
 					bestPractice: "Toujours pour les montants financiers",
