@@ -63,7 +63,7 @@ export default function Accordion({
 			{/* Accordion header */}
 			<button
 				onClick={toggle}
-				className={`w-full text-left p-6 bg-white transition-opacity duration-200 focus:outline-none relative ${
+				className={`w-full text-left p-6 bg-white transition-opacity duration-200 focus:outline-none relative cursor-pointer ${
 					isOpen ? "rounded-t-lg" : "rounded-lg"
 				}`}
 			>
@@ -84,10 +84,10 @@ export default function Accordion({
 			<div
 				className={`overflow-hidden transition-all duration-300 ease-in-out ${
 					isOpen ? "max-h-[10000px] opacity-100" : "max-h-0 opacity-0"
-				}`}
+				} cursor-default`}
 			>
 				<div
-					className="p-6 bg-white flex flex-col space-y-6 rounded-b-lg border-t"
+					className="p-6 bg-white flex flex-col space-y-6 rounded-b-lg border-t cursor-default"
 					style={{ borderTopColor: "currentColor" }}
 				>
 					{/* Description - only show if content exists */}
