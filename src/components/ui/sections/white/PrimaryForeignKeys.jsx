@@ -1,4 +1,4 @@
-import { IoMdInformation } from "react-icons/io";
+import { IoInformation } from "react-icons/io5";
 import { MdKey, MdLink } from "react-icons/md";
 
 export default function PrimaryForeignKeys() {
@@ -99,7 +99,8 @@ export default function PrimaryForeignKeys() {
 
 				<div className="bg-gray-100 border border-gray-200 p-4 rounded-lg">
 					<p className="text-gray-700 mb-3">
-						Si on prend pour exemple la ligne 1 de la table emprunts, on peut voir que :
+						Si on prend pour exemple la ligne 1 de la table emprunts, on peut
+						voir que :
 					</p>
 					<div className="space-y-2 text-gray-800 text-sm">
 						<p>
@@ -111,7 +112,7 @@ export default function PrimaryForeignKeys() {
 								Marie Dubois
 							</code>
 						</p>
-						<p>
+						<p className="mb-4">
 							<code className="bg-white px-2 py-1 rounded font-mono text-sm">
 								livre_id = 1
 							</code>{" "}
@@ -121,15 +122,10 @@ export default function PrimaryForeignKeys() {
 							</code>
 						</p>
 						<div className="mt-3 pt-3 border-t border-gray-300">
-							<div className="text-gray-900 font-medium italic flex items-center gap-2">
-								<div className="bg-white rounded-full flex-shrink-0">
-									<IoMdInformation className="w-7 h-7 text-blue-600" />
-								</div>
-								<span className="text-gray-800">
-									Ainsi, on sait que Marie Dubois a emprunté "Le Petit Prince"
-									le 10 janvier 2025 et l'a rendu le 24 janvier.
-								</span>
-							</div>
+							<p className="text-gray-800 italic flex items-center gap-2 pl-1">
+								Par conséquent, on peut déterminer que Marie Dubois a emprunté "Le Petit Prince"
+								le 10 janvier 2025 et l'a rendu le 24 janvier 20252.
+							</p>
 						</div>
 					</div>
 				</div>

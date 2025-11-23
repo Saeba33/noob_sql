@@ -255,7 +255,10 @@ export default function DataTypes() {
 					<MdInventory className="w-6 h-6 text-gray-600 mr-3" />
 					Types de données courantes
 				</h2>
-				<p className="italic text-sm mb-4">* Les valeurs entre parenthèses sont données à titre d'exemple, elles sont configurables selon vos besoins.</p>
+				<p className="italic text-sm mb-4">
+					* Les valeurs entre parenthèses sont données à titre d'exemple, elles
+					sont configurables selon vos besoins.
+				</p>
 
 				<div className="grid gap-6">
 					{commonDataTypes.map((category, categoryIndex) => (
@@ -276,16 +279,16 @@ export default function DataTypes() {
 								<table className="w-full min-w-[800px] border-collapse">
 									<thead>
 										<tr className="bg-gray-100">
-											<th className="text-xs font-semibold text-gray-600 uppercase p-3 pl-5 text-left border-b border-gray-300">
+											<th className="text-xs font-semibold text-gray-600 uppercase p-3 pl-5 text-left border-b border-t border-r border-gray-300">
 												Type
 											</th>
-											<th className="text-xs font-semibold text-gray-600 uppercase p-3 text-left border-b border-gray-300">
+											<th className="text-xs font-semibold text-gray-600 uppercase p-3 text-left border border-gray-300">
 												Description
 											</th>
-											<th className="text-xs font-semibold text-gray-600 uppercase p-3 text-left border-b border-gray-300">
+											<th className="text-xs font-semibold text-gray-600 uppercase p-3 text-left border  border-gray-300">
 												Exemples
 											</th>
-											<th className="text-xs font-semibold text-gray-600 uppercase p-3 text-left border-b border-gray-300">
+											<th className="text-xs font-semibold text-gray-600 uppercase p-3 text-left border-b border-t border-gray-300">
 												Utilisation
 											</th>
 										</tr>
@@ -294,20 +297,20 @@ export default function DataTypes() {
 										{category.types.map((type, typeIndex) => (
 											<tr
 												key={typeIndex}
-												className="border-b border-gray-200 hover:bg-gray-50"
+												className="border-b border-r border-gray-200 hover:bg-gray-50"
 											>
-												<td className="p-3">
+												<td className="p-3 border-r border-gray-300">
 													<div className="bg-gray-100 px-2 py-1 rounded inline-block">
 														<code className="font-semibold text-sm text-gray-800">
 															{type.name}
 														</code>
 													</div>
 												</td>
-												<td className="p-3 text-gray-700 text-sm">
+												<td className="p-3 text-gray-700 text-sm border-r border-gray-300">
 													{type.description}
 												</td>
 												<td className="p-3">
-													<div className="flex flex-wrap gap-1">
+													<div className="flex flex-wrap gap-1 border-gray-300">
 														{type.examples.map((example, exampleIndex) => (
 															<code
 																key={exampleIndex}
@@ -318,7 +321,7 @@ export default function DataTypes() {
 														))}
 													</div>
 												</td>
-												<td className="p-3 text-gray-600 text-sm">
+												<td className="p-3 text-gray-600 text-sm border-l border-gray-300">
 													{type.usage}
 												</td>
 											</tr>
@@ -356,7 +359,7 @@ export default function DataTypes() {
 									<table className="w-full min-w-[800px] border-collapse">
 										<thead>
 											<tr className="bg-gray-100">
-												<th className="text-xs font-semibold text-gray-600 uppercase p-3 pl-5 text-left border-b border-gray-300">
+												<th className="text-xs font-semibold text-gray-600 uppercase p-3 pl-5 text-left border-b border-r border-gray-300">
 													Type
 												</th>
 												<th className="text-xs font-semibold text-gray-600 uppercase p-3 text-left border-b border-gray-300">
@@ -374,7 +377,7 @@ export default function DataTypes() {
 											{category.types.map((type, typeIndex) => (
 												<tr
 													key={typeIndex}
-													className="border-b border-gray-200 hover:bg-gray-50"
+													className="border-b border-r border-gray-200 hover:bg-gray-50"
 												>
 													<td className="p-3">
 														<div className="bg-gray-100 px-2 py-1 rounded inline-block">
