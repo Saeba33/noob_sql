@@ -40,10 +40,10 @@ export default function BestPractices({
 							{/* Rule description */}
 							<p className="text-gray-700 text-sm">{rule.rule}</p>
 
-							{/* Spacer flexible 1 */}
+							{/* Flexible spacer 1 */}
 							<div></div>
 
-							{/* À FAIRE */}
+							{/* Recommended */}
 							<div className="bg-green-50 border-l-4 border-green-500 p-3 rounded">
 								<p className="text-xs text-gray-600 font-semibold mb-1 flex items-center gap-1">
 									<IoMdCheckmarkCircleOutline className="w-5 h-5 text-green-600" />{" "}
@@ -54,7 +54,7 @@ export default function BestPractices({
 								</code>
 							</div>
 
-							{/* À ÉVITER */}
+							{/* Avoid */}
 							<div className="bg-red-50 border-l-4 border-red-500 p-3 rounded">
 								<p className="text-xs text-gray-600 font-semibold mb-1 flex items-center gap-1">
 									<BiSolidErrorAlt className="w-5 h-5 text-red-600" /> À ÉVITER
@@ -64,7 +64,7 @@ export default function BestPractices({
 								</code>
 							</div>
 
-							{/* Spacer flexible 2 */}
+							{/* Flexible spacer 2 */}
 							<div></div>
 
 							{/* Info */}
