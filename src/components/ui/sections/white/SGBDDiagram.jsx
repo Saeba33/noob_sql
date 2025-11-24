@@ -24,7 +24,7 @@ export default function SGBDDiagram() {
 					deux grandes catégories de SGBD :
 				</p>
 
-				<p className="text-gray-700">
+				<p>
 					<span className="text-lg md:text-xl text-gray-800 mr-2 align-middle">
 						•
 					</span>
@@ -37,7 +37,7 @@ export default function SGBDDiagram() {
 					PostgreSQL, Oracle, SQL Server.
 				</p>
 
-				<p className="text-gray-700">
+				<p>
 					<span className="text-lg md:text-xl text-gray-800 mr-2 align-middle">
 						•
 					</span>
@@ -51,7 +51,7 @@ export default function SGBDDiagram() {
 					(Cassandra)…
 				</p>
 
-				<p className="text-gray-600 mb-6">
+				<p className="mb-6">
 					En résumé, les SGBDR utilisent SQL comme langage standardisé, tandis
 					que les bases NoSQL utilisent des langages ou des modèles de requête
 					qui varient selon la technologie. Elles sont souvent choisies pour la
@@ -64,7 +64,7 @@ export default function SGBDDiagram() {
 				Exemples de SGBD (liste non exhaustive) :
 			</span>
 			<div className="border border-gray-300 rounded-lg bg-gray-50 py-6 px-4">
-				{/* Root level - SGBD */}
+				{/* Root - SGBD */}
 				<div className="flex justify-center mb-6">
 					<div className="flex items-center justify-center space-x-4 w-full max-w-2xl px-12 py-8 bg-gradient-to-r from-gray-600 to-gray-500 border-4 border-gray-700 rounded-xl shadow-lg">
 						<MdStorage className="w-10 h-10 text-white" />

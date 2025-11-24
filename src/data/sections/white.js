@@ -5,7 +5,6 @@ import {
 	MdNumbers,
 	MdSecurity,
 	MdSettings,
-	MdSpeed,
 	MdTableChart,
 	MdTextFormat,
 	MdVerified,
@@ -17,6 +16,7 @@ import DataTypes from "@/components/ui/sections/white/DataTypes";
 import PrimaryForeignKeys from "@/components/ui/sections/white/PrimaryForeignKeys";
 import SGBDDiagram from "@/components/ui/sections/white/SGBDDiagram";
 
+// #region whiteBeltConfig
 export const whiteBeltContent = {
 	// Belt configuration
 	belt: "white",
@@ -72,28 +72,21 @@ export const whiteBeltContent = {
 							reason: "Évite les incohérences, facilite les mises à jour",
 						},
 						{
+							title: "Conventions de nommage",
+							icon: <MdDataset className="w-5 h-5 text-gray-600" />,
+							rule: "Privilégier des noms explicites pour tables et colonnes et nommer les tables au pluriel (ex : `utilisateurs`, `commandes`). Le pluriel indique une collection d'entités.",
+							good: "utilisateurs, commande_id, prix_total",
+							bad: "utilisateur, commande ; usr, cmd, t1",
+							reason:
+								"Cohérence et maintenance : facilite la lecture des requêtes et différencie table ↔ instance.",
+						},
+						{
 							title: "Convention snake_case",
 							icon: <MdTextFormat className="w-5 h-5 text-gray-600" />,
 							rule: "Utiliser le snake_case pour les noms",
 							good: "nom_utilisateur, date_creation, prix_total",
 							bad: "nomUtilisateur, dateCreation, prixTotal",
 							reason: "Standard universel de nommage",
-						},
-						{
-							title: "Noms explicites",
-							icon: <MdDataset className="w-5 h-5 text-gray-600" />,
-							rule: "Privilégier des noms explicites pour tables et colonnes",
-							good: "utilisateurs, commande_id, prix_total",
-							bad: "usr, cmd, tot, t1, c_id",
-							reason: "Maintenance facilitée",
-						},
-						{
-							title: "Index stratégiques",
-							icon: <MdSpeed className="w-5 h-5 text-gray-600" />,
-							rule: "Créer des index sur les colonnes de filtrage et jointure (détails en Ceinture Noire)",
-							good: "INDEX sur email, date_creation, statut",
-							bad: "Aucun index sur les colonnes WHERE/JOIN",
-							reason: "Performances optimales des requêtes",
 						},
 						{
 							title: "Types de données appropriés",
@@ -117,8 +110,9 @@ export const whiteBeltContent = {
 		},
 	],
 };
+// #endregion whiteBeltContent
 
-// --- Exported data used by the white belt sections (DataTypes component)
+// #region dataTypes
 export const dataTypes = [
 	{
 		type: "common",
@@ -271,7 +265,9 @@ export const dataTypes = [
 		],
 	},
 ];
+// #endregion dataTypes
 
+// #region constraints
 export const constraints = [
 	{
 		name: "PRIMARY KEY",
@@ -330,7 +326,9 @@ export const constraints = [
 		usage: "Étend la plage de 0 à 4 milliards (au lieu de -2 à +2 milliards)",
 	},
 ];
+// #endregion constraints
 
+// #region exampleTypes
 export const exampleTypes = [
 	{
 		column: "id",
@@ -396,3 +394,4 @@ export const exampleTypes = [
 		benefit: "Extensibilité",
 	},
 ];
+// #endregion exampleTypes
