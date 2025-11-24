@@ -4,7 +4,7 @@ export default function PrimaryForeignKeys() {
 	return (
 		<div className="space-y-8">
 			{/* Introductory section */}
-			<div className="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-r-lg">
+			<div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg">
 				<p className="text-gray-700 leading-relaxed">
 					Dans une base de données relationnelle, il existe deux types de clés
 					essentielles : les <strong>clés primaires</strong> qui identifient de
