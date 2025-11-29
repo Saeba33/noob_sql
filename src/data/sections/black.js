@@ -14,14 +14,11 @@ export const blackBeltContent = {
 	// Content sections
 	header: {
 		title: "Requêtes Avancées",
-		description: "Maîtrisez les techniques avancées et l'optimisation SQL",
 		tag: "Ceinture Noire",
-	},
-	pageDescription: {
-		title: "Excellez dans les Techniques SQL Avancées",
-		content:
+		description:
 			"La ceinture noire vous enseigne les techniques SQL les plus sophistiquées. Maîtrisez les sous-requêtes complexes, les CTE (Common Table Expressions), les vues, les opérations d'union, l'optimisation avec les index et la gestion des transactions. Ces compétences vous permettront de résoudre les problèmes les plus complexes.",
 	},
+
 	accordions: [
 		{
 			title: "Sous-requêtes dans WHERE, SELECT, IN, EXISTS",

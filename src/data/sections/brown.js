@@ -16,14 +16,11 @@ export const brownBeltContent = {
 	// Content sections
 	header: {
 		title: "Jointures",
-		description: "Maîtrisez les relations entre tables avec les jointures",
 		tag: "Ceinture Marron",
-	},
-	pageDescription: {
-		title: "Connectez vos Tables avec les Jointures",
-		content:
+		description:
 			"La ceinture marron vous enseigne l'art des jointures, permettant de relier les données de plusieurs tables. Comprenez les clés primaires et étrangères, explorez tous les types de jointures (INNER, LEFT, RIGHT, FULL, CROSS, SELF) et apprenez à construire des requêtes complexes sur plusieurs tables.",
 	},
+
 	accordions: [
 		{
 			title: "Schéma Récapitulatif des Types de Jointures",

@@ -13,7 +13,7 @@ export default async function BeltPage({ params }) {
 			<main className="w-full max-w-[1500px] mx-auto mt-20 mb-12 px-4 flex-1">
 				<SectionHeader
 					title={beltContent.header.title}
-					description={beltContent.pageDescription.content}
+					description={beltContent.header.description}
 					tag={beltContent.header.tag}
 					tagProps={{ beltColors: beltContent.colors }}
 					descriptionClassName={`${beltContent.colors.text} leading-relaxed`}

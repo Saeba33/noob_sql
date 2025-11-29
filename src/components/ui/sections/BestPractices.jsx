@@ -1,16 +1,12 @@
-import { IoMdCheckmarkCircleOutline, IoMdInformation } from "react-icons/io";
-import { MdLightbulb } from "react-icons/md";
+import { IoMdCheckmarkCircleOutline } from "react-icons/io";
+import { BsInfoCircle } from "react-icons/bs";
 import { RiProhibited2Line } from "react-icons/ri";
 
 export default function BestPractices({
-	title = "Bonnes pratiques",
 	introduction,
 	rules = [],
-	tips = [],
-	accentColor = "gray-600",
 }) {
 
-	// Render rules in a single responsive grid (mobile 1, md 2, lg 3)
 	return (
 		<div>
 			{/* Introduction */}
@@ -30,20 +26,21 @@ export default function BestPractices({
 						{/* Rule header */}
 						<div className="flex items-center space-x-3">
 							{rule.icon}
-							<h3 className="text-base font-bold text-gray-900">{rule.title}</h3>
+							<h3 className="text-base font-bold text-gray-900">
+								{rule.title}
+							</h3>
 						</div>
 
 						{/* Rule description */}
 						<p className="text-gray-700 text-sm">{rule.rule}</p>
 
-						{/* Flexible spacer 1 */}
 						<div></div>
 
 						{/* Recommended */}
 						<div className="bg-green-50 border-l-4 border-green-500 p-3 rounded">
 							<p className="text-xs text-gray-600 font-semibold mb-1 flex items-center gap-1">
-								<IoMdCheckmarkCircleOutline className="w-5 h-5 text-green-600" /> À
-								PRIVILÉGIER
+								<IoMdCheckmarkCircleOutline className="w-5 h-5 text-green-600" />{" "}
+								À PRIVILÉGIER
 							</p>
 							<code className="text-sm text-green-800 font-mono whitespace-pre-wrap break-words">
 								{rule.good}
@@ -53,8 +50,7 @@ export default function BestPractices({
 						{/* Avoid */}
 						<div className="bg-red-50 border-l-4 border-red-500 p-3 rounded">
 							<p className="text-xs text-gray-600 font-semibold mb-1 flex items-center gap-1">
-								<RiProhibited2Line className="w-5 h-5 text-red-600" /> À
-								ÉVITER
+								<RiProhibited2Line className="w-5 h-5 text-red-600" /> À ÉVITER
 							</p>
 							<code className="text-sm text-red-800 font-mono whitespace-pre-wrap break-words">
 								{rule.bad}
@@ -64,41 +60,14 @@ export default function BestPractices({
 						{/* Flexible spacer 2 */}
 						<div></div>
 
-						{/* Info */}
+						{/* Reason */}
 						<div className="text-xs text-gray-600 italic flex items-center gap-1">
-							<div className="mr-1 bg-blue-100 rounded-full flex-shrink-0">
-								<IoMdInformation className="w-6 h-6 text-blue-600" />
-							</div>
+							<BsInfoCircle className="w-5 h-5 mr-1 " />
 							{rule.reason}
 						</div>
 					</div>
 				))}
 			</div>
-			{/* Tips section (optional) */}
-			{tips && tips.length > 0 && (
-				<div className="mt-6 border border-gray-300 rounded-lg bg-gray-50 p-6">
-					<h2 className="text-lg font-bold text-gray-800 mb-4 flex items-center">
-						<MdLightbulb className={`w-5 h-5 text-${accentColor} mr-3`} />
-						Conseils Pratiques
-					</h2>
-					<div className="space-y-4">
-						{tips.map((tip, index) => (
-							<div
-								key={index}
-								className="bg-white p-4 rounded-lg border border-gray-300"
-							>
-								<h3 className="font-bold text-gray-900 mb-2">{tip.title}</h3>
-								<p className="text-sm text-gray-700 mb-2">{tip.tip}</p>
-								{tip.example && (
-									<code className="text-xs bg-gray-100 p-2 rounded block font-mono">
-										{tip.example}
-									</code>
-								)}
-							</div>
-						))}
-					</div>
-				</div>
-			)}
 		</div>
 	);
 }

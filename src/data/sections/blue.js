@@ -7,14 +7,11 @@ export const blueBeltContent = {
 	// Content sections
 	header: {
 		title: "Agrégations",
-		description: "Calculez et regroupez vos données pour des analyses poussées",
 		tag: "Ceinture Bleue",
-	},
-	pageDescription: {
-		title: "Analysez vos Données avec les Fonctions d'Agrégation",
-		content:
+		description:
 			"La ceinture bleue vous initie aux fonctions d'agrégation qui permettent de calculer des statistiques sur vos données. Apprenez COUNT, SUM, AVG, MIN, MAX pour vos calculs, GROUP BY pour regrouper vos données, et HAVING pour filtrer les groupes. Ces outils sont essentiels pour l'analyse de données.",
 	},
+
 	accordions: [
 		{
 			title: "Fonctions d'Agrégation",

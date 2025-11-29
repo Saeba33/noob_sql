@@ -31,15 +31,12 @@ export const whiteBeltContent = {
 
 	// Content sections
 	header: {
-		title: "Généralités & Concepts",
-		description: "Base théorique et concepts fondamentaux du SQL",
 		tag: "Ceinture Blanche",
-	},
-	pageDescription: {
-		title: "Découvrez les fondamentaux des Bases De Données (BDD)",
-		content:
+		title: "Généralités & Concepts",
+		description:
 			"La ceinture blanche vous introduit aux concepts théoriques essentiels des bases de données. Comprenez ce qu'est un SGBD, explorez l'architecture relationnelle, découvrez la syntaxe SQL de base et familiarisez-vous avec les types de données. Cette base solide vous permettra d'aborder sereinement la pratique du SQL.",
 	},
+
 	accordions: [
 		{
 			title: "Qu'est-ce qu'un SGBD ?",
@@ -95,8 +92,7 @@ export const whiteBeltContent = {
 							rule: "Choisir le type de données adapté à chaque colonne.",
 							good: "VARCHAR(255) pour emails, DECIMAL(10,2) pour montants, INTEGER pour identifiants",
 							bad: "VARCHAR trop long, FLOAT pour des prix, TEXT pour des données courtes",
-							reason:
-								"Améliore le stockage, la précision et les performances.",
+							reason: "Améliore le stockage, la précision et les performances.",
 						},
 						{
 							title: "Contraintes de validation",

@@ -9,13 +9,9 @@ export const yellowBeltContent = {
 
 	// Content sections
 	header: {
-		title: "DDL - Langage de Définition de Données",
-		description: "Créez et gérez la structure de vos bases de données",
 		tag: "Ceinture Jaune",
-	},
-	pageDescription: {
-		title: "Maîtrisez la structure de vos bases de données",
-		content:
+		title: "DDL - Langage de Définition de Données",
+		description:
 			"La ceinture jaune vous enseigne le DDL (Data Definition Language), le langage pour définir et modifier la structure de vos bases de données. Apprenez à créer des tables, les modifier et les supprimer. Ces compétences sont essentielles pour concevoir et faire évoluer vos schémas de base de données.",
 	},
 	accordions: [
@@ -102,7 +98,6 @@ DELETE FROM logs;`,
 			externalComponent: (
 				<BestPractices
 					title="Bonnes pratiques DDL"
-					accentColor="yellow-600"
 					introduction="Le DDL définit la structure de votre base. Une conception rigoureuse dès le départ vous évitera des migrations complexes ! Voici les pratiques essentielles pour CREATE, ALTER et DROP."
 					rules={[
 						{

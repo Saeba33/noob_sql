@@ -23,14 +23,11 @@ export const greenBeltContent = {
 	// Content sections
 	header: {
 		title: "CRUD - Opérations de base",
-		description: "Maîtrisez les opérations Créer, Lire, Modifier, Supprimer",
 		tag: "Ceinture Verte",
-	},
-	pageDescription: {
-		title: "Manipulez vos données avec les opérations CRUD",
-		content:
+		description:
 			"La ceinture verte vous apprend les quatre opérations fondamentales de manipulation de données : Create (commande INSERT), Read (commande SELECT), Update et Delete. Ces opérations forment l'épine dorsale de toute interaction avec une base de données.",
 	},
+
 	accordions: [
 		{
 			title: "INSERT - Ajout de données",

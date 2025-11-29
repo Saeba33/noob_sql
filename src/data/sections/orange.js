@@ -13,15 +13,12 @@ export const orangeBeltContent = {
 
 	// Content sections
 	header: {
-		title: "Filtres et Conditions",
-		description: "Contrôlez et filtrez vos données avec précision",
 		tag: "Ceinture Orange",
-	},
-	pageDescription: {
-		title: "Maîtrisez le Filtrage et le tri de vos données",
-		content:
+		title: "Filtres et Conditions",
+		description:
 			"La ceinture orange vous enseigne l'art du filtrage et du contrôle des données. Apprenez à utiliser WHERE pour filtrer, les opérateurs pour comparer, ORDER BY pour trier, et gérez les valeurs NULL. Ces compétences vous permettront d'extraire exactement les données dont vous avez besoin.",
 	},
+
 	accordions: [
 		{
 			title: "WHERE - Clause fondamentale",
@@ -323,7 +320,8 @@ WHERE age > 25 OR age IS NULL;`,
 		},
 		{
 			title: "LIMIT et OFFSET - Pagination",
-			content: "Contrôlez le nombre de résultats (LIMIT) et implémentez la pagination (OFFSET).",
+			content:
+				"Contrôlez le nombre de résultats (LIMIT) et implémentez la pagination (OFFSET).",
 			sqlQueries: [
 				{
 					sqlCode: `-- Liste uniquement des 3 premiers utilisateurs
