@@ -2,7 +2,7 @@
 
 import Accordion from "@/components/ui/Accordion";
 
-export default function AccordionList({ accordions }) {
+export default function AccordionList({ accordions, colors }) {
 	if (!accordions || accordions.length === 0) {
 		return null;
 	}
@@ -20,6 +20,7 @@ export default function AccordionList({ accordions }) {
 						sqlDiagram={accordion.sqlDiagram}
 						sqlResult={accordion.sqlResult}
 						externalComponent={accordion.externalComponent}
+						colors={colors}
 					/>
 				))}
 			</div>

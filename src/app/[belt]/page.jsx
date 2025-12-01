@@ -20,7 +20,10 @@ export default async function BeltPage({ params }) {
 					className="mb-6"
 				/>
 
-				<AccordionList accordions={beltContent.accordions} />
+				<AccordionList
+					accordions={beltContent.accordions}
+					colors={beltContent.colors}
+				/>
 				<SectionNavigation />
 			</main>
 
