@@ -3,7 +3,6 @@ import { MdBuild, MdKey, MdSecurity } from "react-icons/md";
 
 export const yellowBeltContent = {
 	//#region config
-	belt: "yellow",
 	description: "Langage de définition de données",
 	topics: ["CREATE TABLE", "ALTER TABLE", "DROP TABLE", "Bonnes pratiques"],
 	//#endregion

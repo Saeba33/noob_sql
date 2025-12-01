@@ -7,7 +7,6 @@ export const useNavigation = () => {
 	const currentIndex = PAGES_CONFIG.findIndex((item) => item.href === pathname);
 
 	return {
-		items: PAGES_CONFIG,
 		current: currentIndex >= 0 ? PAGES_CONFIG[currentIndex] : null,
 		isActive: (href) => pathname === href,
 		getSectionNavigation: () => ({

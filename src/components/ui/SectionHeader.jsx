@@ -4,8 +4,6 @@ export default function SectionHeader({
 	tag,
 	tagProps,
 	className = "",
-	subtitle,
-	subtitleClassName = "",
 	descriptionClassName = "",
 }) {
 	const colors = tagProps?.beltColors || {};
@@ -38,15 +36,6 @@ export default function SectionHeader({
 								{title}
 							</h1>
 						</div>
-					)}
-
-					{/* Subtitle */}
-					{subtitle && (
-						<h2
-							className={`text-xl sm:text-2xl font-medium text-gray-600 max-w-3xl mx-auto ${subtitleClassName}`}
-						>
-							{subtitle}
-						</h2>
 					)}
 
 					{/* Description */}

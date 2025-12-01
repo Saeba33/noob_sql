@@ -13,7 +13,6 @@ import {
 	MdCheckCircle,
 	MdCode,
 	MdExpandMore,
-	MdGridOn,
 	MdKey,
 	MdLink,
 	MdTableChart,
@@ -26,7 +25,6 @@ export default function Accordion({
 	sqlQueries,
 	sqlDiagram,
 	sqlResult,
-	sqlTable,
 	externalComponent,
 	className = "",
 }) {
@@ -276,17 +274,6 @@ export default function Accordion({
 									title="Résultat de la Requête"
 								/>
 							)}
-						</div>
-					)}
-
-					{/* Data Table */}
-					{sqlTable && (
-						<div>
-							<h4 className="text-sm font-semibold text-gray-900 mb-3 flex items-center">
-								<MdGridOn className="w-4 h-4 mr-2 text-indigo-600" />
-								Table Data
-							</h4>
-							<SqlTableBlock data={sqlTable} title="Table Data" />
 						</div>
 					)}
 				</div>

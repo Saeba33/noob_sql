@@ -1,6 +1,5 @@
 export const brownBeltContent = {
 	//#region config
-	belt: "brown",
 	description: "Relations entre les tables",
 	topics: [
 		"Schéma jointures",

@@ -1,6 +1,5 @@
 export const orangeBeltContent = {
 	//#region config
-	belt: "orange",
 	description: "Contrôle et filtrage des données",
 	topics: [
 		"WHERE",

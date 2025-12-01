@@ -1,6 +1,5 @@
 export const blueBeltContent = {
 	//#region config
-	belt: "blue",
 	description: "Calculs et regroupements",
 	topics: ["COUNT, SUM, AVG, MIN, MAX", "GROUP BY", "HAVING"],
 	//#endregion

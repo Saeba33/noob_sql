@@ -19,7 +19,6 @@ import SGBDDiagram from "@/components/ui/sections/white/SGBDDiagram";
 //#region whiteBeltConfig
 export const whiteBeltContent = {
 	//#region config
-	belt: "white",
 	description: "Théorie et concepts fondamentaux",
 	topics: [
 		"SGBD",

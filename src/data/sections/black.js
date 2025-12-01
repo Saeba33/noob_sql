@@ -1,6 +1,5 @@
 export const blackBeltContent = {
 	//#region config
-	belt: "black",
 	description: "Techniques avancées et optimisation",
 	topics: [
 		"Sous-requêtes",

@@ -9,7 +9,6 @@ import BestPractices from "@/components/ui/sections/BestPractices";
 
 export const greenBeltContent = {
 	//#region config
-	belt: "green",
 	description: "Opérations de base sur les données",
 	topics: [
 		"INSERT",

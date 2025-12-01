@@ -19,7 +19,6 @@ export default function AccordionList({ accordions }) {
 						sqlQueries={accordion.sqlQueries}
 						sqlDiagram={accordion.sqlDiagram}
 						sqlResult={accordion.sqlResult}
-						sqlTable={accordion.sqlTable}
 						externalComponent={accordion.externalComponent}
 					/>
 				))}

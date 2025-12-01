@@ -31,7 +31,6 @@ export default function HomeNavigation() {
 		.map(([key, config]) => ({
 			...config,
 			key,
-			content: BELT_CONTENTS[key],
 			description: BELT_CONTENTS[key].description,
 			topics: BELT_CONTENTS[key].topics,
 		}));
