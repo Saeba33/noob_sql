@@ -236,12 +236,9 @@ TRUNCATE TABLE temp_data;`,
 		},
 		{
 			title: "Bonnes Pratiques CRUD",
-			content:
-				"Découvrez les bonnes pratiques essentielles pour manipuler vos données en toute sécurité et avec performance.",
 			externalComponent: (
 				<BestPractices
-					title="Conventions de Syntaxe"
-					accentColor="green-600"
+
 					introduction="Un code SQL bien formaté est plus facile à lire, déboguer et maintenir ! Voici les conventions de syntaxe essentielles pour écrire du SQL propre et professionnel."
 					rules={[
 						{

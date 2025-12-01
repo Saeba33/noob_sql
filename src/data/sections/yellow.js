@@ -97,7 +97,6 @@ DELETE FROM logs;`,
 			title: "Bonnes pratiques DDL",
 			externalComponent: (
 				<BestPractices
-					title="Bonnes pratiques DDL"
 					introduction="Le DDL définit la structure de votre base. Une conception rigoureuse dès le départ vous évitera des migrations complexes ! Voici les pratiques essentielles pour CREATE, ALTER et DROP."
 					rules={[
 						{
