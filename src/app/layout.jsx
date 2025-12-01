@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata = {
 	title: "NoobSQL",
-	description: "Apprenez SQL avec le système de ceintures",
+	description: "Apprenez SQL avec le système de ceintures des arts martiaux",
 	icons: {
 		icon: "/favicon.ico",
 	},

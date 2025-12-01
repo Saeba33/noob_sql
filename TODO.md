@@ -1,7 +1,6 @@
 - vérifier la coloration syntaxique de mes sql queries.
 - vérifier les menus en table de matières
 - vérifier temps de chargement des pages.
-- améliorer SEO
 - vérifier le responsive complet
 - ajouter commence par, finit par, contient dans les filtres et conditions. PArler également du symbole "\_".
 
@@ -22,22 +21,8 @@ Impact :
 
 Solution suggérée : Séparer données et composants avec un pattern "iconType"
 
-2. Performance - Animations CSS dans Accordion
-   Problème : L'animation d'ouverture utilise max-h-[10000px] :
 
-Impact :
-
-- Force le navigateur à calculer une hauteur extrême
-- Transition de 0 à 10000px = animation saccadée
-
-Solution suggérée : Utiliser grid pour une animation fluide
-
-3. Architecture - constraints dans white.js contient du JSX
+2. Architecture - constraints dans white.js contient du JSX
    Problème : Les constraints exportés contiennent des icônes JSX
 
 Impact : Même problème que le point 1 - impossible d'optimiser.
-
-4. SEO/Accessibilité - Métadonnées par page
-   Problème : Seul le layout.jsx définit des métadonnées globales.
-
-Solution suggérée : Ajouter des métadonnées spécifiques par ceinture

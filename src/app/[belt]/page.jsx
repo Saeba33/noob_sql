@@ -4,6 +4,21 @@ import AccordionList from "@/components/ui/AccordionList";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { BELTS_CONFIG, getBeltData } from "@/config/belts-config";
 
+export async function generateMetadata({ params }) {
+	const { belt } = await params;
+	const { beltContent } = await getBeltData(belt);
+
+	return {
+		title: `${beltContent.header.title} | NoobSQL`,
+		description: beltContent.header.description,
+		openGraph: {
+			title: `${beltContent.header.title} | NoobSQL`,
+			description: beltContent.header.description,
+			type: "article",
+		},
+	};
+}
+
 export default async function BeltPage({ params }) {
 	const { belt } = await params;
 	const { beltContent } = await getBeltData(belt);
