@@ -1,5 +1,5 @@
 export const brownBeltContent = {
-	// Belt configuration
+	//#region config
 	belt: "brown",
 	description: "Relations entre les tables",
 	topics: [
@@ -12,15 +12,18 @@ export const brownBeltContent = {
 		"CROSS JOIN",
 		"SELF JOIN",
 	],
+	//#endregion
 
-	// Content sections
+	//#region header
 	header: {
 		title: "Jointures",
 		tag: "Ceinture Marron",
 		description:
 			"La ceinture marron vous enseigne l'art des jointures, permettant de relier les données de plusieurs tables. Comprenez les clés primaires et étrangères, explorez tous les types de jointures (INNER, LEFT, RIGHT, FULL, CROSS, SELF) et apprenez à construire des requêtes complexes sur plusieurs tables.",
 	},
+	//#endregion
 
+	//#region accordions
 	accordions: [
 		{
 			title: "Schéma Récapitulatif des Types de Jointures",
@@ -737,4 +740,5 @@ LEFT JOIN employes m2 ON m1.manager_id = m2.id;`,
 				"SELF JOIN permet d'analyser les relations au sein d'une même table. Très utile pour les hiérarchies.",
 		},
 	],
+	//#endregion
 };

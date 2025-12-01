@@ -1,5 +1,5 @@
 export const blackBeltContent = {
-	// Belt configuration
+	//#region config
 	belt: "black",
 	description: "Techniques avancées et optimisation",
 	topics: [
@@ -10,15 +10,18 @@ export const blackBeltContent = {
 		"INDEX",
 		"Transactions",
 	],
+	//#endregion
 
-	// Content sections
+	//#region header
 	header: {
 		title: "Requêtes Avancées",
 		tag: "Ceinture Noire",
 		description:
 			"La ceinture noire vous enseigne les techniques SQL les plus sophistiquées. Maîtrisez les sous-requêtes complexes, les CTE (Common Table Expressions), les vues, les opérations d'union, l'optimisation avec les index et la gestion des transactions. Ces compétences vous permettront de résoudre les problèmes les plus complexes.",
 	},
+	//#endregion
 
+	//#region accordions
 	accordions: [
 		{
 			title: "Sous-requêtes dans WHERE, SELECT, IN, EXISTS",
@@ -451,4 +454,5 @@ ROLLBACK;`,
 				"Les transactions garantissent la cohérence des données : tout réussit ou tout échoue (ACID).",
 		},
 	],
+	//#endregion
 };

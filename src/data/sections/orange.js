@@ -1,5 +1,5 @@
 export const orangeBeltContent = {
-	// Belt configuration
+	//#region config
 	belt: "orange",
 	description: "Contrôle et filtrage des données",
 	topics: [
@@ -10,15 +10,18 @@ export const orangeBeltContent = {
 		"NULL",
 		"LIMIT, OFFSET",
 	],
+	//#endregion
 
-	// Content sections
+	//#region header
 	header: {
 		tag: "Ceinture Orange",
 		title: "Filtres et Conditions",
 		description:
 			"La ceinture orange vous enseigne l'art du filtrage et du contrôle des données. Apprenez à utiliser WHERE pour filtrer, les opérateurs pour comparer, ORDER BY pour trier, et gérez les valeurs NULL. Ces compétences vous permettront d'extraire exactement les données dont vous avez besoin.",
 	},
+	//#endregion
 
+	//#region accordions
 	accordions: [
 		{
 			title: "WHERE - Clause fondamentale",
@@ -372,4 +375,5 @@ LIMIT 2 OFFSET 0;`,
 			],
 		},
 	],
+	//#endregion
 };

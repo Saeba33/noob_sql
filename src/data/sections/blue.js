@@ -1,17 +1,20 @@
 export const blueBeltContent = {
-	// Belt configuration
+	//#region config
 	belt: "blue",
 	description: "Calculs et regroupements",
 	topics: ["COUNT, SUM, AVG, MIN, MAX", "GROUP BY", "HAVING"],
+	//#endregion
 
-	// Content sections
+	//#region header
 	header: {
 		title: "Agrégations",
 		tag: "Ceinture Bleue",
 		description:
 			"La ceinture bleue vous initie aux fonctions d'agrégation qui permettent de calculer des statistiques sur vos données. Apprenez COUNT, SUM, AVG, MIN, MAX pour vos calculs, GROUP BY pour regrouper vos données, et HAVING pour filtrer les groupes. Ces outils sont essentiels pour l'analyse de données.",
 	},
+	//#endregion
 
+	//#region accordions
 	accordions: [
 		{
 			title: "Fonctions d'Agrégation",
@@ -259,4 +262,5 @@ ORDER BY chiffre_affaires DESC;`,
 				"HAVING est le WHERE des regroupements. Il filtre les groupes selon des conditions sur les agrégations.",
 		},
 	],
+	//#endregion
 };

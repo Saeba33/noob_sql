@@ -16,9 +16,9 @@ import DataTypes from "@/components/ui/sections/white/DataTypes";
 import PrimaryForeignKeys from "@/components/ui/sections/white/PrimaryForeignKeys";
 import SGBDDiagram from "@/components/ui/sections/white/SGBDDiagram";
 
-// #region whiteBeltConfig
+//#region whiteBeltConfig
 export const whiteBeltContent = {
-	// Belt configuration
+	//#region config
 	belt: "white",
 	description: "Théorie et concepts fondamentaux",
 	topics: [
@@ -28,15 +28,18 @@ export const whiteBeltContent = {
 		"Relations entre les tables",
 		"Bonnes pratiques",
 	],
+	//#endregion
 
-	// Content sections
+	//#region header
 	header: {
 		tag: "Ceinture Blanche",
 		title: "Généralités & Concepts",
 		description:
 			"La ceinture blanche vous introduit aux concepts théoriques essentiels des bases de données. Comprenez ce qu'est un SGBD, explorez l'architecture relationnelle, découvrez la syntaxe SQL de base et familiarisez-vous avec les types de données. Cette base solide vous permettra d'aborder sereinement la pratique du SQL.",
 	},
+	//#endregion
 
+	//#region accordions
 	accordions: [
 		{
 			title: "Qu'est-ce qu'un SGBD ?",
@@ -54,6 +57,8 @@ export const whiteBeltContent = {
 			title: "Types de données",
 			externalComponent: <DataTypes />,
 		},
+
+		//#region best practices
 		{
 			title: "Bonnes pratiques",
 			externalComponent: (
@@ -116,11 +121,13 @@ export const whiteBeltContent = {
 				/>
 			),
 		},
+		//#endregion
 	],
+	//#endregion
 };
-// #endregion whiteBeltContent
+//#endregion
 
-// #region dataTypes
+//#region dataTypes
 export const dataTypes = [
 	{
 		type: "common",
@@ -273,9 +280,9 @@ export const dataTypes = [
 		],
 	},
 ];
-// #endregion dataTypes
+//#endregion dataTypes
 
-// #region constraints
+//#region constraints
 export const constraints = [
 	{
 		name: "PRIMARY KEY",
@@ -334,9 +341,9 @@ export const constraints = [
 		usage: "Étend la plage de 0 à 4 milliards (au lieu de -2 à +2 milliards)",
 	},
 ];
-// #endregion constraints
+//#endregion constraints
 
-// #region exampleTypes
+//#region exampleTypes
 export const exampleTypes = [
 	{
 		column: "id",
@@ -402,4 +409,4 @@ export const exampleTypes = [
 		benefit: "Extensibilité",
 	},
 ];
-// #endregion exampleTypes
+//#endregion exampleTypes

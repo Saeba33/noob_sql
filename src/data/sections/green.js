@@ -8,7 +8,7 @@ import {
 import BestPractices from "@/components/ui/sections/BestPractices";
 
 export const greenBeltContent = {
-	// Belt configuration
+	//#region config
 	belt: "green",
 	description: "Opérations de base sur les données",
 	topics: [
@@ -19,15 +19,18 @@ export const greenBeltContent = {
 		"TRUNCATE",
 		"Bonnes Pratiques",
 	],
+	//#endregion
 
-	// Content sections
+	//#region header
 	header: {
 		title: "CRUD - Opérations de base",
 		tag: "Ceinture Verte",
 		description:
 			"La ceinture verte vous apprend les quatre opérations fondamentales de manipulation de données : Create (commande INSERT), Read (commande SELECT), Update et Delete. Ces opérations forment l'épine dorsale de toute interaction avec une base de données.",
 	},
+	//#endregion
 
+	//#region accordions
 	accordions: [
 		{
 			title: "INSERT - Ajout de données",
@@ -234,6 +237,7 @@ TRUNCATE TABLE temp_data;`,
 				},
 			],
 		},
+		//#region best practices
 		{
 			title: "Bonnes Pratiques CRUD",
 			externalComponent: (
@@ -281,5 +285,7 @@ TRUNCATE TABLE temp_data;`,
 				/>
 			),
 		},
+		//#endregion
 	],
+	//#endregion
 };

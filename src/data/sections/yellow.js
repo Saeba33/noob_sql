@@ -2,18 +2,22 @@ import BestPractices from "@/components/ui/sections/BestPractices";
 import { MdBuild, MdKey, MdSecurity } from "react-icons/md";
 
 export const yellowBeltContent = {
-	// Belt configuration
+	//#region config
 	belt: "yellow",
 	description: "Langage de définition de données",
 	topics: ["CREATE TABLE", "ALTER TABLE", "DROP TABLE", "Bonnes pratiques"],
+	//#endregion
 
-	// Content sections
+	//#region header
 	header: {
 		tag: "Ceinture Jaune",
 		title: "DDL - Langage de Définition de Données",
 		description:
 			"La ceinture jaune vous enseigne le DDL (Data Definition Language), le langage pour définir et modifier la structure de vos bases de données. Apprenez à créer des tables, les modifier et les supprimer. Ces compétences sont essentielles pour concevoir et faire évoluer vos schémas de base de données.",
 	},
+	//#endregion
+
+	//#region accordions
 	accordions: [
 		{
 			title: "CREATE TABLE - Création de tables",
@@ -93,6 +97,8 @@ TRUNCATE TABLE logs;
 -- Alternative : supprimer toutes les données
 DELETE FROM logs;`,
 		},
+
+		//#region best practices
 		{
 			title: "Bonnes pratiques DDL",
 			externalComponent: (
@@ -152,5 +158,7 @@ DELETE FROM logs;`,
 				/>
 			),
 		},
+		//#endregion
 	],
+	//#endregion
 };
