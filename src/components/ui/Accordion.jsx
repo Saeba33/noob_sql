@@ -73,16 +73,17 @@ export default function Accordion({
 				/>
 			</button>
 
-			{/* Accordion content */}
+			{/* Accordion content - using grid for smooth animation */}
 			<div
-				className={`overflow-hidden transition-all duration-300 ease-in-out ${
-					isOpen ? "max-h-[10000px] opacity-100" : "max-h-0 opacity-0"
-				} cursor-default`}
+				className={`grid transition-[grid-template-rows] duration-300 ease-in-out ${
+					isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+				}`}
 			>
-				<div
-					className="p-6 bg-white flex flex-col space-y-6 rounded-b-lg border-t cursor-default"
-					style={{ borderTopColor: "currentColor" }}
-				>
+				<div className="overflow-hidden">
+					<div
+						className="p-6 bg-white flex flex-col space-y-6 rounded-b-lg border-t cursor-default"
+						style={{ borderTopColor: "currentColor" }}
+					>
 					{/* Description - only show if content exists */}
 					{content && (
 						<div
@@ -272,6 +273,7 @@ export default function Accordion({
 						</div>
 					)}
 				</div>
+			</div>
 			</div>
 		</div>
 	);
