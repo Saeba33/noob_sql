@@ -21,7 +21,7 @@ export default async function BeltPage({ params }) {
 				/>
 
 				<AccordionList accordions={beltContent.accordions} />
-				<SectionNavigation currentLevel={belt} />
+				<SectionNavigation />
 			</main>
 
 			{/* Footer */}

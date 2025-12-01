@@ -84,8 +84,6 @@ WHERE EXISTS (
 					],
 				},
 			],
-			description:
-				"Les sous-requêtes permettent des analyses sophistiquées en combinant plusieurs niveaux de données.",
 		},
 		{
 			title: "WITH (CTE - Common Table Expression)",
@@ -173,8 +171,6 @@ ORDER BY niveau, nom;`,
 					],
 				},
 			],
-			description:
-				"Les CTE rendent les requêtes complexes plus lisibles et réutilisables. Les CTE récursifs permettent de parcourir des hiérarchies.",
 		},
 		{
 			title: "Création et Utilisation de VIEW",
@@ -232,8 +228,6 @@ ORDER BY prix DESC;`,
 					],
 				},
 			],
-			description:
-				"Les vues simplifient les requêtes complexes et fournissent une couche d'abstraction sécurisée.",
 		},
 		{
 			title: "Opérations de Combinaison avec UNION, UNION ALL",
@@ -322,8 +316,6 @@ ORDER BY age DESC;`,
 					],
 				},
 			],
-			description:
-				"UNION combine les résultats de plusieurs requêtes. UNION élimine les doublons, UNION ALL les conserve.",
 		},
 		{
 			title: "INDEX - Optimisation des Performances",
@@ -379,8 +371,6 @@ SELECT * FROM utilisateurs WHERE email = 'alice@email.com';`,
 					],
 				},
 			],
-			description:
-				"Les index accélèrent drastiquement les requêtes de lecture au prix d'un ralentissement des écritures.",
 		},
 		{
 			title: "Transactions - BEGIN, COMMIT, ROLLBACK",
@@ -450,8 +440,6 @@ ROLLBACK;`,
 					},
 				},
 			],
-			description:
-				"Les transactions garantissent la cohérence des données : tout réussit ou tout échoue (ACID).",
 		},
 	],
 	//#endregion

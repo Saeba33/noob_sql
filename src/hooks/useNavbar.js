@@ -51,16 +51,13 @@ export function useNavbar(breakpoint = DEFAULT_BREAKPOINT) {
 	}, [isMenuOpen]);
 
 	const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-	const openMenu = () => setIsMenuOpen(true);
 	const closeMenu = () => setIsMenuOpen(false);
 
 	return {
 		isMenuOpen,
 		isMobile,
 		toggleMenu,
-		openMenu,
 		closeMenu,
-		setIsMenuOpen,
 		menuRef,
 	};
 }

@@ -46,14 +46,12 @@ INNER JOIN       LEFT JOIN        RIGHT JOIN       FULL JOIN
 
 CROSS JOIN : Produit cartésien (A × B)
 SELF JOIN : Table jointe avec elle-même`,
-			description:
-				"Chaque type de jointure a un usage spécifique selon les données que vous voulez récupérer.",
 		},
 		{
 			title:
 				"Clés Primaires et Étrangères - Conditions Nécessaires aux Jointures",
 			content: "Comprenez les relations qui permettent de lier vos tables.",
-			sqlSchema: `-- Structure avec clés primaires et étrangères
+			sqlCode: `-- Structure avec clés primaires et étrangères
 CREATE TABLE utilisateurs (
     id INTEGER PRIMARY KEY,    -- Clé primaire
     nom VARCHAR(100),
@@ -76,8 +74,6 @@ CREATE TABLE details_commande (
     FOREIGN KEY (commande_id) REFERENCES commandes(id),
     FOREIGN KEY (produit_id) REFERENCES produits(id)
 );`,
-			description:
-				"Les clés primaires identifient de manière unique chaque ligne. Les clés étrangères créent les relations entre tables.",
 		},
 		{
 			title: "JOIN (INNER JOIN) - Jointure Interne",
@@ -157,8 +153,6 @@ JOIN produits p ON c.produit_id = p.id;`,
 					],
 				},
 			],
-			description:
-				"INNER JOIN ne retourne que les lignes qui existent dans les deux tables. C'est la jointure la plus courante.",
 		},
 		{
 			title: "LEFT JOIN (LEFT OUTER JOIN) - Jointure Externe Gauche",
@@ -265,8 +259,6 @@ ORDER BY total_depense DESC;`,
 					],
 				},
 			],
-			description:
-				"LEFT JOIN garde toutes les lignes de la table de gauche. Parfait pour trouver les éléments sans relation.",
 		},
 		{
 			title: "RIGHT JOIN (RIGHT OUTER JOIN) - Jointure Externe Droite",
@@ -377,8 +369,6 @@ WHERE u.id IS NULL;`,
 					],
 				},
 			],
-			description:
-				"RIGHT JOIN est moins utilisé que LEFT JOIN. La plupart des développeurs préfèrent réorganiser avec LEFT JOIN.",
 		},
 		{
 			title: "FULL JOIN (FULL OUTER JOIN) - Jointure Externe Complète",
@@ -538,8 +528,6 @@ FULL OUTER JOIN commandes c ON u.id = c.utilisateur_id;`,
 					],
 				},
 			],
-			description:
-				"FULL JOIN combine LEFT et RIGHT JOIN. Utile pour l'analyse complète de relations entre tables.",
 		},
 		{
 			title: "CROSS JOIN - Produit Cartésien",
@@ -610,8 +598,6 @@ LIMIT 8;`,
 					],
 				},
 			],
-			description:
-				"CROSS JOIN crée le produit cartésien. Attention à la taille du résultat : n × m lignes !",
 		},
 		{
 			title: "SELF JOIN - Auto-jointure",
@@ -736,8 +722,6 @@ LEFT JOIN employes m2 ON m1.manager_id = m2.id;`,
 					],
 				},
 			],
-			description:
-				"SELF JOIN permet d'analyser les relations au sein d'une même table. Très utile pour les hiérarchies.",
 		},
 	],
 	//#endregion

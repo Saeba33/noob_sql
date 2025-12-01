@@ -1,10 +1,4 @@
-export default function ScrollableTable({
-	columns,
-	data,
-	renderCell,
-}) {
-
-
+export default function ScrollableTable({ columns, data, renderCell }) {
 	return (
 		<div className="border border-gray-300 rounded-lg overflow-x-auto">
 			<div>

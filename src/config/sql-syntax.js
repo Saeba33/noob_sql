@@ -234,52 +234,6 @@ export function analyzeSqlCode(code) {
 // Utility functions for SQL components
 
 // Function to colorize text with SQL syntax (reusable)
-export function colorizeText(text, targetType = "default") {
-	if (!text) return null;
-
-	const parts = analyzeSqlCode(text);
-	if (!parts || parts.length === 0) {
-		return text;
-	}
-
-	let result = [];
-	let currentIndex = 0;
-	let key = 0;
-
-	for (let part of parts) {
-		// Text before this part
-		if (currentIndex < part.start) {
-			result.push({
-				key: key++,
-				text: text.slice(currentIndex, part.start),
-				className: sqlSyntaxConfig.styles.default,
-			});
-		}
-
-		// Coloured part
-		const styleClass =
-			sqlSyntaxConfig.styles[part.type] || sqlSyntaxConfig.styles.default;
-		result.push({
-			key: key++,
-			text: part.text,
-			className: styleClass,
-		});
-
-		currentIndex = part.end;
-	}
-
-	// Rest of text
-	if (currentIndex < text.length) {
-		result.push({
-			key: key++,
-			text: text.slice(currentIndex),
-			className: sqlSyntaxConfig.styles.default,
-		});
-	}
-
-	return result;
-}
-
 // Function to parse database schemas with enhanced structure for diagrams
 export function parseSchema(schemaText) {
 	const tables = [];
@@ -385,26 +339,4 @@ export function formatQueryResult(data, headers = null) {
 			headers ? headers.map((header) => row[header]) : Object.values(row)
 		),
 	};
-}
-
-// Function to generate a simple text diagram
-export function generateDiagram(tables, relationships = []) {
-	let diagram = "┌─ DATABASE ─┐\n";
-
-	tables.forEach((table, index) => {
-		diagram += `│\n├─ ${table.name.toUpperCase()}\n`;
-		table.columns?.forEach((col, colIndex) => {
-			const isLast = colIndex === table.columns.length - 1;
-			const connector = isLast ? "└──" : "├──";
-			diagram += `│  ${connector} ${col.name} (${col.type})\n`;
-		});
-
-		if (index < tables.length - 1) {
-			diagram += "│\n";
-		}
-	});
-
-	diagram += "└────────────────────┘";
-
-	return diagram;
 }

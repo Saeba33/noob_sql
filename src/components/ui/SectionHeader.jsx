@@ -7,14 +7,11 @@ export default function SectionHeader({
 	subtitle,
 	subtitleClassName = "",
 	descriptionClassName = "",
-	currentBelt = null,
 }) {
 	const colors = tagProps?.beltColors || {};
 
 	return (
-		<header
-			className={`relative py-20 overflow-hidden ${className}`}
-		>
+		<header className={`relative py-20 overflow-hidden ${className}`}>
 			<div className="relative">
 				<div className="text-center space-y-8">
 					{/* Tag badge */}

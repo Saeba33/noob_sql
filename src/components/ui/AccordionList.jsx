@@ -17,13 +17,10 @@ export default function AccordionList({ accordions }) {
 						content={accordion.content}
 						sqlCode={accordion.sqlCode}
 						sqlQueries={accordion.sqlQueries}
-						explanation={accordion.explanation}
 						sqlDiagram={accordion.sqlDiagram}
-						sqlSchema={accordion.sqlSchema}
 						sqlResult={accordion.sqlResult}
 						sqlTable={accordion.sqlTable}
 						externalComponent={accordion.externalComponent}
-						description={accordion.description}
 					/>
 				))}
 			</div>

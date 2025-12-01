@@ -87,8 +87,6 @@ FROM utilisateurs;`,
 					],
 				},
 			],
-			description:
-				"Les fonctions d'agrégation transforment plusieurs lignes en une seule valeur calculée.",
 		},
 		{
 			title: "GROUP BY - Regroupement",
@@ -176,8 +174,6 @@ ORDER BY mois;`,
 					],
 				},
 			],
-			description:
-				"GROUP BY divise vos données en groupes et applique les fonctions d'agrégation à chaque groupe.",
 		},
 		{
 			title: "HAVING - Filtrage des Groupes",
@@ -258,8 +254,6 @@ ORDER BY chiffre_affaires DESC;`,
 					],
 				},
 			],
-			description:
-				"HAVING est le WHERE des regroupements. Il filtre les groupes selon des conditions sur les agrégations.",
 		},
 	],
 	//#endregion

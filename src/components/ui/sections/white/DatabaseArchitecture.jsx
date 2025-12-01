@@ -184,7 +184,6 @@ export default function DatabaseArchitecture() {
 						<ScrollableTable
 							columns={usersColumns}
 							data={usersData}
-							minWidth="600px"
 							renderCell={renderUsersCell}
 						/>
 
@@ -206,7 +205,6 @@ export default function DatabaseArchitecture() {
 						<ScrollableTable
 							columns={booksColumns}
 							data={booksData}
-							minWidth="800px"
 							renderCell={renderUsersCell}
 						/>
 
@@ -228,7 +226,6 @@ export default function DatabaseArchitecture() {
 						<ScrollableTable
 							columns={borrowingColumns}
 							data={borrowingData}
-							minWidth="900px"
 							renderCell={renderBorrowingsCell}
 						/>
 
