@@ -599,7 +599,7 @@ LIMIT 3;`,
 			{
 				title: "LIKE + IS NOT NULL + ORDER BY",
 				sqlCode: `-- Utilisateurs avec un téléphone, dont le nom contient 'a', triés par nom
--- Mot-clés : LIKE et IS NOT NULL | Clause : ORDER BY
+-- Mots-clés : LIKE et IS NOT NULL | Clause : ORDER BY
 SELECT prenom, nom, telephone 
 FROM utilisateurs 
 WHERE telephone IS NOT NULL AND nom LIKE '%a%' 
@@ -613,7 +613,7 @@ ORDER BY nom;`,
 			{
 				title: "BETWEEN + NOT IN + ORDER BY",
 				sqlCode: `-- Produits entre 20€ et 500€, sauf catégorie bureau, triés par prix décroissant
--- Mot-clés : BETWEEN et NOT IN | Clause : ORDER BY
+-- Mots-clés : BETWEEN et NOT IN | Clause : ORDER BY
 SELECT nom, categorie, prix 
 FROM produits 
 WHERE prix BETWEEN 20 AND 500 AND categorie NOT IN ('bureau') 
