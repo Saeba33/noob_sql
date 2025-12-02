@@ -15,6 +15,8 @@ export function NavbarMobileButton({ isMenuOpen, toggleMenu }) {
 			onClick={toggleMenu}
 			className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
 			aria-label={isMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
+			aria-expanded={isMenuOpen}
+			aria-controls="mobile-menu"
 		>
 			{isMenuOpen ? (
 				<HiX className="w-6 h-6 text-gray-700" />
@@ -31,35 +33,38 @@ export function NavbarMobileContent({ closeMenu, isOpen }) {
 
 	return (
 		<div
+			id="mobile-menu"
+			aria-hidden={!isOpen}
 			className={`border-t border-gray-200/50 bg-white rounded-b-2xl overflow-hidden transition-all duration-500 ease-in-out ${
 				isOpen ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"
 			}`}
 		>
 			<div className="px-4 py-4">
-				<nav className="flex flex-col gap-2">
+				<nav className="flex flex-col gap-2" aria-label="Navigation mobile">
 					{PAGES_CONFIG.map((item, index) => {
 						const beltKey = item.href.replace("/", "") || "white";
 						const colors = BELT_COLORS[beltKey];
 						const active = isActive(item.href);
 						const isPractice = beltKey === "practice";
 
-						return (
+return (
 							<Link
 								key={`${beltKey}-${index}`}
 								href={item.href}
 								onClick={closeMenu}
+								aria-current={active ? "page" : undefined}
 								className={`mobile-menu-item mobile-menu-${beltKey} ${
 									active
 										? `${colors.bg} ${colors.text} font-bold border-2 ${colors.border}`
 										: isPractice
-										? colors.text
-										: "text-gray-600"
+											? colors.text
+											: "text-gray-600"
 								}`}
 							>
 								{beltKey === "practice" ? (
-									<FaFistRaised size={20} />
+									<FaFistRaised size={20} aria-hidden="true" />
 								) : (
-									<BeltIcon belt={beltKey} size={20} />
+									<BeltIcon belt={beltKey} size={20} aria-hidden="true" />
 								)}
 								<span className="font-medium">{item.title}</span>
 							</Link>

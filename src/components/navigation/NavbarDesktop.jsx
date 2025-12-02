@@ -10,7 +10,10 @@ export default function NavbarDesktop() {
 	const { isActive } = useNavigation();
 
 	return (
-		<nav className="hidden md:flex items-center space-x-2 lg:space-x-4">
+		<nav
+			className="hidden md:flex items-center space-x-2 lg:space-x-4"
+			aria-label="Navigation principale"
+		>
 			{PAGES_CONFIG.map((item, index) => {
 				const beltKey = item.href.replace("/", "") || "white";
 				const colors = BELT_COLORS[beltKey];
@@ -20,6 +23,7 @@ export default function NavbarDesktop() {
 					<Link
 						key={`${beltKey}-${index}`}
 						href={item.href}
+						aria-current={isActive(item.href) ? "page" : undefined}
 						className={`border-pop ${isActive(item.href) ? "active" : ""} ${
 							isPractice
 								? `${colors.bg} border-2 ${colors.border}`
@@ -29,12 +33,17 @@ export default function NavbarDesktop() {
 						} hover:bg-opacity-80 transition-colors rounded-lg px-3 py-2 lg:px-4 lg:py-2 flex items-center text-sm lg:text-base`}
 					>
 						{beltKey === "practice" ? (
-							<FaFistRaised size={14} className="lg:w-4 lg:h-4 mr-2" />
+							<FaFistRaised
+								size={14}
+								className="lg:w-4 lg:h-4 mr-2"
+								aria-hidden="true"
+							/>
 						) : (
 							<BeltIcon
 								belt={beltKey}
 								size={14}
 								className="lg:w-4 lg:h-4 mr-2"
+								aria-hidden="true"
 							/>
 						)}
 						<span className="font-medium">{item.title}</span>
