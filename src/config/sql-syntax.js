@@ -107,7 +107,7 @@ export function analyzeSqlCode(code) {
 
 	// 4. Multi-word SQL keywords (commands)
 	const multiWordKeywords =
-		/\b(CREATE\s+TABLE|CREATE\s+INDEX|CREATE\s+VIEW|INSERT\s+INTO|DELETE\s+FROM|GROUP\s+BY|ORDER\s+BY|LEFT\s+OUTER\s+JOIN|RIGHT\s+OUTER\s+JOIN|FULL\s+OUTER\s+JOIN|LEFT\s+JOIN|RIGHT\s+JOIN|INNER\s+JOIN|FULL\s+JOIN|CROSS\s+JOIN|UNION\s+ALL|ADD\s+COLUMN|DROP\s+COLUMN|RENAME\s+COLUMN|ALTER\s+COLUMN|EXPLAIN\s+QUERY\s+PLAN|ADD\s+CONSTRAINT|DROP\s+CONSTRAINT|ON\s+CONFLICT|IS\s+NOT|IF\s+EXISTS|IF\s+NOT\s+EXISTS)\b/gi;
+		/\b(CREATE\s+TABLE|CREATE\s+INDEX|CREATE\s+VIEW|INSERT\s+INTO|DELETE\s+FROM|GROUP\s+BY|ORDER\s+BY|LEFT\s+OUTER\s+JOIN|RIGHT\s+OUTER\s+JOIN|FULL\s+OUTER\s+JOIN|LEFT\s+JOIN|RIGHT\s+JOIN|INNER\s+JOIN|FULL\s+JOIN|CROSS\s+JOIN|UNION\s+ALL|ADD\s+COLUMN|DROP\s+COLUMN|RENAME\s+COLUMN|ALTER\s+COLUMN|EXPLAIN\s+QUERY\s+PLAN|ADD\s+CONSTRAINT|DROP\s+CONSTRAINT|ON\s+CONFLICT|IS\s+NOT|IF\s+EXISTS|IF\s+NOT\s+EXISTS|NOT\s+LIKE|NOT\s+IN|NOT\s+BETWEEN|NOT\s+EXISTS)\b/gi;
 	while ((match = multiWordKeywords.exec(code)) !== null) {
 		parts.push({
 			start: match.index,
@@ -249,7 +249,6 @@ export function analyzeSqlCode(code) {
 
 	return filteredParts;
 }
-
 
 // Function to parse database schemas with enhanced structure for diagrams
 export function parseSchema(schemaText) {

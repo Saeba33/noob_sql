@@ -195,7 +195,8 @@ FROM utilisateurs;`,
 			"Les opérateurs de comparaison permettent de filtrer les résultats de la requêtes selon les valeurs qui y sont associées. Ils fonctionnent avec les nombres, les textes (ordre alphabétique) et les dates.",
 		sqlQueries: [
 			{
-				sqlCode: `-- Liste des utilisateurs qui ont exactement 25 ans / opérateur =
+				sqlCode: `-- Liste des utilisateurs qui ont exactement 25 ans
+-- Opérateur : =
 SELECT prenom, nom, age 
 FROM utilisateurs 
 WHERE age = 25;`,
@@ -205,7 +206,8 @@ WHERE age = 25;`,
 				],
 			},
 			{
-				sqlCode: `-- Liste des utilisateurs qui ont un âge différent de 25 ans / opérateur != ou <> 
+				sqlCode: `-- Liste des utilisateurs qui ont un âge différent de 25 ans
+-- Opérateur : != ou <>
 SELECT prenom, nom, age 
 FROM utilisateurs 
 WHERE age != 25;`,
@@ -217,7 +219,8 @@ WHERE age != 25;`,
 				],
 			},
 			{
-				sqlCode: `-- Liste des produits qui ont un prix strictement inférieur à 100 euros / opérateur <
+				sqlCode: `-- Liste des produits avec un prix strictement inférieur à 100 euros
+-- Opérateur : <
 SELECT nom, prix 
 FROM produits 
 WHERE prix < 100;`,
@@ -228,7 +231,8 @@ WHERE prix < 100;`,
 				],
 			},
 			{
-				sqlCode: `-- Liste des produits qui ont un prix inférieur ou égal à 25 euros / opérateur <=
+				sqlCode: `-- Liste des produits avec un prix inférieur ou égal à 25 euros
+-- Opérateur : <=
 SELECT nom, prix 
 FROM produits 
 WHERE prix <= 25;`,
@@ -238,7 +242,8 @@ WHERE prix <= 25;`,
 				],
 			},
 			{
-				sqlCode: `-- Liste des produits qui ont un prix strictement supérieur à 500 euros / opérateur >
+				sqlCode: `-- Liste des produits avec un prix strictement supérieur à 500 euros
+-- Opérateur : >
 SELECT nom, prix 
 FROM produits 
 WHERE prix > 500;`,
@@ -248,7 +253,8 @@ WHERE prix > 500;`,
 				],
 			},
 			{
-				sqlCode: `-- Liste des utilisateurs qui ont 25 ans ou moins / opérateur <=
+				sqlCode: `-- Liste des utilisateurs qui ont 25 ans ou moins
+-- Opérateur : <=
 SELECT prenom, nom, email, age 
 FROM utilisateurs 
 WHERE age <= 25;`,
@@ -268,7 +274,8 @@ WHERE age <= 25;`,
 				],
 			},
 			{
-				sqlCode: `-- Liste des utilisateurs dont le prénom commence par D ou après dans l'alphabet / opérateur >=
+				sqlCode: `-- Liste des utilisateurs dont le prénom commence par D ou après dans l'alphabet
+-- Opérateur : >=
 SELECT prenom, nom 
 FROM utilisateurs 
 WHERE prenom >= 'D';`,
@@ -280,6 +287,7 @@ WHERE prenom >= 'D';`,
 			},
 			{
 				sqlCode: `-- Liste des commandes avec une date supérieure au 01 janvier 2024
+-- Opérateur : >
 SELECT numero_commande, date_commande 
 FROM commandes 
 WHERE date_commande > '2024-01-01';`,
@@ -298,6 +306,7 @@ WHERE date_commande > '2024-01-01';`,
 		sqlQueries: [
 			{
 				sqlCode: `-- Liste des utilisateurs entre 25 et 35 ans (inclus)
+-- Opérateur logique : AND
 SELECT prenom, nom, age 
 FROM utilisateurs 
 WHERE age >= 25 AND age <= 35;`,
@@ -310,24 +319,25 @@ WHERE age >= 25 AND age <= 35;`,
 				],
 			},
 			{
-				sqlCode: `-- Liste des produits de catégorie "electronique" OU dont le prix est inférieur à 100€
+				sqlCode: `-- Liste des produits de catégorie "electronique" ou avec un prix inférieur à 100€
+-- Opérateur logique : OR
 SELECT nom, categorie, prix 
 FROM produits 
 WHERE categorie = 'electronique' OR prix < 100;`,
 				sqlResult: [
-					{
-						nom: "Ordinateur Portable",
-						categorie: "electronique",
-						prix: 899,
-					},
-					{ nom: "Livre SQL", categorie: "livre", prix: 25 },
+					{ nom: "Ordinateur Portable", categorie: "electronique", prix: 899 },
 					{ nom: "Smartphone Pro", categorie: "electronique", prix: 1299 },
+					{ nom: "Tablette", categorie: "electronique", prix: 299 },
+					{ nom: "Casque Audio", categorie: "electronique", prix: 249 },
+					{ nom: "Montre Connectée", categorie: "electronique", prix: 349 },
+					{ nom: "Livre SQL", categorie: "livre", prix: 25 },
 					{ nom: "Stylo", categorie: "bureau", prix: 5 },
 					{ nom: "Peluche Pikachu", categorie: "jouet", prix: 29 },
 				],
 			},
 			{
-				sqlCode: `-- Liste des utilisateurs dont l'âge est exactement 25, 30, 35 ou 40 ans
+				sqlCode: `-- Liste des utilisateurs dont l'âge est 25, 30, 35 ou 40 ans
+-- Mot-clé : IN
 SELECT prenom, nom, age 
 FROM utilisateurs 
 WHERE age IN (25, 30, 35, 40);`,
@@ -338,20 +348,8 @@ WHERE age IN (25, 30, 35, 40);`,
 				],
 			},
 			{
-				sqlCode: `-- Liste de tous les utilisateurs dont l'email se termine par '@email.com'
-SELECT prenom, nom, email 
-FROM utilisateurs 
-WHERE email LIKE '%@email.com';`,
-				sqlResult: [
-					{ prenom: "Alice", nom: "Dupont", email: "alice@email.com" },
-					{ prenom: "Claire", nom: "Durand", email: "claire@email.com" },
-					{ prenom: "David", nom: "Moreau", email: "david@email.com" },
-					{ prenom: "Emma", nom: "Bernard", email: "emma@email.com" },
-					{ prenom: "François", nom: "Petit", email: "francois@email.com" },
-				],
-			},
-			{
 				sqlCode: `-- Liste des produits dont le prix est compris entre 200€ et 800€ (inclus)
+-- Mot-clé : BETWEEN
 SELECT nom, prix 
 FROM produits 
 WHERE prix BETWEEN 200 AND 800;`,
@@ -371,6 +369,7 @@ WHERE prix BETWEEN 200 AND 800;`,
 			{
 				title: "Commence par (préfixe)",
 				sqlCode: `-- Tous les prénoms qui commencent par 'A'
+-- Mot-clé : LIKE avec %
 SELECT prenom, nom 
 FROM utilisateurs 
 WHERE prenom LIKE 'A%';`,
@@ -379,16 +378,16 @@ WHERE prenom LIKE 'A%';`,
 			{
 				title: "Finit par (suffixe)",
 				sqlCode: `-- Tous les noms qui finissent par 'and'
+-- Mot-clé : LIKE avec %
 SELECT prenom, nom 
 FROM utilisateurs 
 WHERE nom LIKE '%and';`,
-				sqlResult: [
-					{ prenom: "Claire", nom: "Durand" },
-				],
+				sqlResult: [{ prenom: "Claire", nom: "Durand" }],
 			},
 			{
 				title: "Contient",
 				sqlCode: `-- Tous les noms qui contiennent 'ar'
+-- Mot-clé : LIKE avec %
 SELECT prenom, nom 
 FROM utilisateurs 
 WHERE nom LIKE '%ar%';`,
@@ -400,6 +399,7 @@ WHERE nom LIKE '%ar%';`,
 			{
 				title: "Un seul caractère (_)",
 				sqlCode: `-- Prénoms de exactement 5 lettres commençant par 'A'
+-- Mot-clé : LIKE avec _
 SELECT prenom, nom 
 FROM utilisateurs 
 WHERE prenom LIKE 'A____';`,
@@ -408,6 +408,7 @@ WHERE prenom LIKE 'A____';`,
 			{
 				title: "Combinaison de % et _",
 				sqlCode: `-- Prénoms dont la 2ème lettre est 'a'
+-- Mot-clé : LIKE avec _ et %
 SELECT prenom, nom 
 FROM utilisateurs 
 WHERE prenom LIKE '_a%';`,
@@ -416,6 +417,7 @@ WHERE prenom LIKE '_a%';`,
 			{
 				title: "NOT LIKE (exclusion)",
 				sqlCode: `-- Tous les utilisateurs dont le prénom ne commence PAS par 'A'
+-- Mot-clé : NOT LIKE
 SELECT prenom, nom 
 FROM utilisateurs 
 WHERE prenom NOT LIKE 'A%';`,
@@ -434,7 +436,8 @@ WHERE prenom NOT LIKE 'A%';`,
 		content: "Triez vos résultats dans l'ordre qui vous convient.",
 		sqlQueries: [
 			{
-				sqlCode: `-- Liste de tous les utilisateurs triés par âge croissant (du plus jeune au plus âgé)
+				sqlCode: `-- Liste des utilisateurs triés par âge croissant (du plus jeune au plus âgé)
+-- Clause : ORDER BY avec ASC
 SELECT prenom, nom, age 
 FROM utilisateurs 
 ORDER BY age ASC;`,
@@ -448,7 +451,8 @@ ORDER BY age ASC;`,
 				],
 			},
 			{
-				sqlCode: `-- Liste de tous les produits triés par prix décroissant (du plus cher au moins cher)
+				sqlCode: `-- Liste des produits triés par prix décroissant (du plus cher au moins cher)
+-- Clause : ORDER BY avec DESC
 SELECT nom, prix 
 FROM produits 
 ORDER BY prix DESC;`,
@@ -464,7 +468,8 @@ ORDER BY prix DESC;`,
 				],
 			},
 			{
-				sqlCode: `-- Liste de tous les utilisateurs triés par ville (A-Z) puis par âge décroissant
+				sqlCode: `-- Liste des utilisateurs triés par ville (A-Z) puis par âge décroissant
+-- Clause : ORDER BY multi-colonnes
 SELECT prenom, nom, age, ville 
 FROM utilisateurs 
 ORDER BY ville ASC, age DESC;`,
@@ -485,7 +490,8 @@ ORDER BY ville ASC, age DESC;`,
 			"Gérez les valeurs manquantes avec IS NULL et IS NOT NULL. Important : NULL comme valeur (absence de données) est différent de NULL comme type de colonne (Abordé en ceinture Ceinture Jaune).",
 		sqlQueries: [
 			{
-				sqlCode: `-- Liste de tous les utilisateurs n'ayant pas de numéro de téléphone
+				sqlCode: `-- Liste des utilisateurs n'ayant pas de numéro de téléphone
+-- Mot-clé : IS NULL
 SELECT prenom, nom, telephone 
 FROM utilisateurs 
 WHERE telephone IS NULL;`,
@@ -496,7 +502,8 @@ WHERE telephone IS NULL;`,
 				],
 			},
 			{
-				sqlCode: `-- Liste de tous les utilisateurs ayant un numéro de téléphone renseigné
+				sqlCode: `-- Liste des utilisateurs ayant un numéro de téléphone renseigné
+-- Mot-clé : IS NOT NULL
 SELECT prenom, nom, telephone 
 FROM utilisateurs 
 WHERE telephone IS NOT NULL;`,
@@ -507,7 +514,8 @@ WHERE telephone IS NOT NULL;`,
 				],
 			},
 			{
-				sqlCode: `-- Liste de tous les utilisateurs avec remplacement des téléphones NULL par 'Non renseigné'
+				sqlCode: `-- Liste des utilisateurs avec remplacement des téléphones NULL par 'Non renseigné'
+-- Fonction : COALESCE
 SELECT prenom, nom, COALESCE(telephone, 'Non renseigné') AS contact 
 FROM utilisateurs;`,
 				sqlResult: [
@@ -520,7 +528,8 @@ FROM utilisateurs;`,
 				],
 			},
 			{
-				sqlCode: `-- Liste des utilisateurs de plus de 25 ans OU dont l'âge n'est pas renseigné
+				sqlCode: `-- Liste des utilisateurs de plus de 25 ans ou dont l'âge n'est pas renseigné
+-- Opérateur : > | Mot-clé : IS NULL
 SELECT prenom, nom, age 
 FROM utilisateurs 
 WHERE age > 25 OR age IS NULL;`,
@@ -540,6 +549,7 @@ WHERE age > 25 OR age IS NULL;`,
 		sqlQueries: [
 			{
 				sqlCode: `-- Liste uniquement des 3 premiers utilisateurs
+-- Clause : LIMIT
 SELECT prenom, nom, email 
 FROM utilisateurs 
 LIMIT 3;`,
@@ -550,14 +560,15 @@ LIMIT 3;`,
 				],
 			},
 			{
-				sqlCode: `-- Liste de 2 utilisateurs (LIMIT 2) en sautant les 2 premiers (OFFSET 2)
+				sqlCode: `-- Liste de 2 utilisateurs en sautant les 2 premiers
+-- Clauses : LIMIT et OFFSET
 SELECT prenom, nom, email 
 FROM utilisateurs 
 ORDER BY nom 
 LIMIT 2 OFFSET 2;`,
 				sqlResult: [
 					{ prenom: "Claire", nom: "Durand", email: "claire@email.com" },
-					{ prenom: "David", nom: "Moreau", email: "david@gmail.com" },
+					{ prenom: "Bob", nom: "Martin", email: "bob@gmail.com" },
 				],
 			},
 			{
