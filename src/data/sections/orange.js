@@ -174,7 +174,7 @@ const accordions = [
 	{
 		title: "WHERE - Clause fondamentale",
 		content:
-			"WHERE est la clause qui permet de filtrer les lignes d'une requête. Elle s'écrit après FROM et avant ORDER BY. Grâce à WHERE, on peut récupérer uniquement les lignes qui correspondent à une ou plusieurs conditions. Sans cette clause, toutes les lignes de la table seraient retournées. Les valeurs de type texte et les dates doivent être écrites entre guillemets simples (par exemple : 'Paris' ou '2024-01-15'). Les nombres, eux, s'écrivent sans guillemets (par exemple : 42). Point de vigilance : si une valeur texte contient une apostrophe, il faut la doubler pour que SQL ne confonde pas avec la fin de la chaîne. Par exemple, pour rechercher le nom O'Connor, on écrit : 'O''Connor'.",
+			"WHERE est la clause qui permet de filtrer les lignes d'une requête. Elle s'écrit après FROM et avant ORDER BY. Grâce à WHERE, on peut récupérer uniquement les lignes qui correspondent à une ou plusieurs conditions. Sans cette clause, toutes les lignes de la table seraient retournées.\n\nLes valeurs de type texte et les dates doivent être écrites entre guillemets simples (par exemple : 'Paris' ou '2024-01-15'). Les nombres, eux, s'écrivent sans guillemets (par exemple : 42).\n\nAttention, si une valeur texte contient une apostrophe, il faut la doubler pour que SQL ne la confonde pas avec la fin de la chaîne de caractères. Par exemple, pour rechercher le nom O'Connor, on écrit : 'O''Connor'.",
 		sqlCode: `-- Structure d'une requête avec WHERE
 SELECT nom_des_colonnes          -- Quelles colonnes afficher
 FROM nom_de_la_table             -- Dans quelle table chercher
