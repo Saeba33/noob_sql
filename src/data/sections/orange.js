@@ -5,10 +5,10 @@ const menu = {
 		"WHERE",
 		"Opérateurs de comparaison",
 		"Opérateurs logiques",
-		"LIKE",
-		"ORDER BY",
-		"NULL",
-		"LIMIT, OFFSET",
+		"Mots-clés de filtrage",
+		"Tri des résultats (ORDER BY)",
+		"Pagination (LIMIT, OFFSET)",
+		"Exemples combinés",
 	],
 };
 
@@ -302,7 +302,7 @@ WHERE date_commande > '2024-01-01';`,
 	{
 		title: "Opérateurs logiques",
 		content:
-			"Combinez et affinez vos conditions avec AND, OR, IN, LIKE et BETWEEN.",
+			"Les opérateurs logiques permettent de combiner plusieurs conditions dans une même requête. AND exige que toutes les conditions soient vraies, OR exige qu'au moins une condition soit vraie.",
 		sqlQueries: [
 			{
 				sqlCode: `-- Liste des utilisateurs entre 25 et 35 ans (inclus)
@@ -335,7 +335,15 @@ WHERE categorie = 'electronique' OR prix < 100;`,
 					{ nom: "Peluche Pikachu", categorie: "jouet", prix: 29 },
 				],
 			},
+		],
+	},
+	{
+		title: "Mots-clés de filtrage",
+		content:
+			"Les mots-clés de filtrage offrent des moyens expressifs pour définir des conditions : IN pour une liste de valeurs, BETWEEN pour un intervalle, LIKE pour des motifs de texte, IS NULL pour les valeurs manquantes. Chacun peut être inversé avec NOT. Attention, IS NULL et IS NOT NULL (mot-clé de filtrage) sont différents de NULL et NOT NULL (containtes utilisées lors de la création de tables).",
+		sqlQueries: [
 			{
+				title: "IN - Liste de valeurs",
 				sqlCode: `-- Liste des utilisateurs dont l'âge est 25, 30, 35 ou 40 ans
 -- Mot-clé : IN
 SELECT prenom, nom, age 
@@ -348,8 +356,22 @@ WHERE age IN (25, 30, 35, 40);`,
 				],
 			},
 			{
+				title: "NOT IN - Exclusion de valeurs",
+				sqlCode: `-- Liste des utilisateurs dont l'âge n'est PAS 25, 30, 35 ou 40 ans
+-- Mot-clé : NOT IN
+SELECT prenom, nom, age 
+FROM utilisateurs 
+WHERE age NOT IN (25, 30, 35, 40);`,
+				sqlResult: [
+					{ prenom: "Alice", nom: "Dupont", age: 28 },
+					{ prenom: "Bob", nom: "Martin", age: 32 },
+					{ prenom: "David", nom: "Moreau", age: 45 },
+				],
+			},
+			{
+				title: "BETWEEN - Intervalle de valeurs",
 				sqlCode: `-- Liste des produits dont le prix est compris entre 200€ et 800€ (inclus)
--- Mot-clé : BETWEEN
+-- Mots-clés : BETWEEN avec AND
 SELECT nom, prix 
 FROM produits 
 WHERE prix BETWEEN 200 AND 800;`,
@@ -359,35 +381,43 @@ WHERE prix BETWEEN 200 AND 800;`,
 					{ nom: "Montre Connectée", prix: 349 },
 				],
 			},
-		],
-	},
-	{
-		title: "LIKE - Recherche par motif",
-		content:
-			"LIKE permet de filtrer avec des motifs de texte. Deux caractères spéciaux : % (n'importe quelle séquence de caractères) et _ (exactement un caractère). Note : la sensibilité à la casse dépend du SGBD (MySQL : insensible, PostgreSQL : sensible - utiliser ILIKE pour insensible).",
-		sqlQueries: [
 			{
-				title: "Commence par (préfixe)",
+				title: "NOT BETWEEN - Hors intervalle",
+				sqlCode: `-- Liste des produits dont le prix n'est PAS entre 200€ et 800€
+-- Mots-clés : NOT BETWEEN avec AND
+SELECT nom, prix 
+FROM produits 
+WHERE prix NOT BETWEEN 200 AND 800;`,
+				sqlResult: [
+					{ nom: "Ordinateur Portable", prix: 899 },
+					{ nom: "Smartphone Pro", prix: 1299 },
+					{ nom: "Livre SQL", prix: 25 },
+					{ nom: "Stylo", prix: 5 },
+					{ nom: "Peluche Pikachu", prix: 29 },
+				],
+			},
+			{
+				title: "LIKE - Commence par",
 				sqlCode: `-- Tous les prénoms qui commencent par 'A'
--- Mot-clé : LIKE avec %
+-- Mots-clés : LIKE avec %
 SELECT prenom, nom 
 FROM utilisateurs 
 WHERE prenom LIKE 'A%';`,
 				sqlResult: [{ prenom: "Alice", nom: "Dupont" }],
 			},
 			{
-				title: "Finit par (suffixe)",
+				title: "LIKE - Finit par",
 				sqlCode: `-- Tous les noms qui finissent par 'and'
--- Mot-clé : LIKE avec %
+-- Mots-clés : LIKE avec %
 SELECT prenom, nom 
 FROM utilisateurs 
 WHERE nom LIKE '%and';`,
 				sqlResult: [{ prenom: "Claire", nom: "Durand" }],
 			},
 			{
-				title: "Contient",
+				title: "LIKE - Contient",
 				sqlCode: `-- Tous les noms qui contiennent 'ar'
--- Mot-clé : LIKE avec %
+-- Mots-clés : LIKE avec %
 SELECT prenom, nom 
 FROM utilisateurs 
 WHERE nom LIKE '%ar%';`,
@@ -397,25 +427,16 @@ WHERE nom LIKE '%ar%';`,
 				],
 			},
 			{
-				title: "Un seul caractère (_)",
+				title: "LIKE - Nombre exact de caractères (_)",
 				sqlCode: `-- Prénoms de exactement 5 lettres commençant par 'A'
--- Mot-clé : LIKE avec _
+-- Mots-clés : LIKE avec _
 SELECT prenom, nom 
 FROM utilisateurs 
 WHERE prenom LIKE 'A____';`,
 				sqlResult: [{ prenom: "Alice", nom: "Dupont" }],
 			},
 			{
-				title: "Combinaison de % et _",
-				sqlCode: `-- Prénoms dont la 2ème lettre est 'a'
--- Mot-clé : LIKE avec _ et %
-SELECT prenom, nom 
-FROM utilisateurs 
-WHERE prenom LIKE '_a%';`,
-				sqlResult: [{ prenom: "David", nom: "Moreau" }],
-			},
-			{
-				title: "NOT LIKE (exclusion)",
+				title: "NOT LIKE - Exclusion de motif",
 				sqlCode: `-- Tous les utilisateurs dont le prénom ne commence PAS par 'A'
 -- Mot-clé : NOT LIKE
 SELECT prenom, nom 
@@ -429,11 +450,38 @@ WHERE prenom NOT LIKE 'A%';`,
 					{ prenom: "François", nom: "Petit" },
 				],
 			},
+			{
+				title: "IS NULL - Valeurs manquantes",
+				sqlCode: `-- Liste des utilisateurs n'ayant pas de numéro de téléphone
+-- Mot-clé : IS NULL
+SELECT prenom, nom, telephone 
+FROM utilisateurs 
+WHERE telephone IS NULL;`,
+				sqlResult: [
+					{ prenom: "Claire", nom: "Durand", telephone: null },
+					{ prenom: "Emma", nom: "Bernard", telephone: null },
+					{ prenom: "François", nom: "Petit", telephone: null },
+				],
+			},
+			{
+				title: "IS NOT NULL - Valeurs renseignées",
+				sqlCode: `-- Liste des utilisateurs ayant un numéro de téléphone renseigné
+-- Mot-clé : IS NOT NULL
+SELECT prenom, nom, telephone 
+FROM utilisateurs 
+WHERE telephone IS NOT NULL;`,
+				sqlResult: [
+					{ prenom: "Alice", nom: "Dupont", telephone: "06 12 34 56 78" },
+					{ prenom: "Bob", nom: "Martin", telephone: "07 98 76 54 32" },
+					{ prenom: "David", nom: "Moreau", telephone: "06 11 22 33 44" },
+				],
+			},
 		],
 	},
 	{
-		title: "ORDER BY - Tri des résultats",
-		content: "Triez vos résultats dans l'ordre qui vous convient.",
+		title: "Tri des résultats (ORDER BY)",
+		content:
+			"ORDER BY permet de trier les résultats selon une ou plusieurs colonnes. ASC (ordre croissant) est l'ordre par défaut, DESC (ordre décroissant) inverse l'ordre.",
 		sqlQueries: [
 			{
 				sqlCode: `-- Liste des utilisateurs triés par âge croissant (du plus jeune au plus âgé)
@@ -468,7 +516,7 @@ ORDER BY prix DESC;`,
 				],
 			},
 			{
-				sqlCode: `-- Liste des utilisateurs triés par ville (A-Z) puis par âge décroissant
+				sqlCode: `-- Liste des utilisateurs triés par ville (A-Z) puis par âge décroissant (du plus âgé au moins agé)
 -- Clause : ORDER BY multi-colonnes
 SELECT prenom, nom, age, ville 
 FROM utilisateurs 
@@ -485,67 +533,9 @@ ORDER BY ville ASC, age DESC;`,
 		],
 	},
 	{
-		title: "NULL - Gestion des valeurs nulles",
+		title: "Pagination (LIMIT, OFFSET)",
 		content:
-			"Gérez les valeurs manquantes avec IS NULL et IS NOT NULL. Important : NULL comme valeur (absence de données) est différent de NULL comme type de colonne (Abordé en ceinture Ceinture Jaune).",
-		sqlQueries: [
-			{
-				sqlCode: `-- Liste des utilisateurs n'ayant pas de numéro de téléphone
--- Mot-clé : IS NULL
-SELECT prenom, nom, telephone 
-FROM utilisateurs 
-WHERE telephone IS NULL;`,
-				sqlResult: [
-					{ prenom: "Claire", nom: "Durand", telephone: null },
-					{ prenom: "Emma", nom: "Bernard", telephone: null },
-					{ prenom: "François", nom: "Petit", telephone: null },
-				],
-			},
-			{
-				sqlCode: `-- Liste des utilisateurs ayant un numéro de téléphone renseigné
--- Mot-clé : IS NOT NULL
-SELECT prenom, nom, telephone 
-FROM utilisateurs 
-WHERE telephone IS NOT NULL;`,
-				sqlResult: [
-					{ prenom: "Alice", nom: "Dupont", telephone: "06 12 34 56 78" },
-					{ prenom: "Bob", nom: "Martin", telephone: "07 98 76 54 32" },
-					{ prenom: "David", nom: "Moreau", telephone: "06 11 22 33 44" },
-				],
-			},
-			{
-				sqlCode: `-- Liste des utilisateurs avec remplacement des téléphones NULL par 'Non renseigné'
--- Fonction : COALESCE
-SELECT prenom, nom, COALESCE(telephone, 'Non renseigné') AS contact 
-FROM utilisateurs;`,
-				sqlResult: [
-					{ prenom: "Alice", nom: "Dupont", contact: "06 12 34 56 78" },
-					{ prenom: "Bob", nom: "Martin", contact: "07 98 76 54 32" },
-					{ prenom: "Claire", nom: "Durand", contact: "Non renseigné" },
-					{ prenom: "David", nom: "Moreau", contact: "06 11 22 33 44" },
-					{ prenom: "Emma", nom: "Bernard", contact: "Non renseigné" },
-					{ prenom: "François", nom: "Petit", contact: "Non renseigné" },
-				],
-			},
-			{
-				sqlCode: `-- Liste des utilisateurs de plus de 25 ans ou dont l'âge n'est pas renseigné
--- Opérateur : > | Mot-clé : IS NULL
-SELECT prenom, nom, age 
-FROM utilisateurs 
-WHERE age > 25 OR age IS NULL;`,
-				sqlResult: [
-					{ prenom: "Alice", nom: "Dupont", age: 28 },
-					{ prenom: "Bob", nom: "Martin", age: 32 },
-					{ prenom: "David", nom: "Moreau", age: 45 },
-					{ prenom: "Emma", nom: "Bernard", age: 30 },
-				],
-			},
-		],
-	},
-	{
-		title: "LIMIT et OFFSET - Pagination",
-		content:
-			"Contrôlez le nombre de résultats (LIMIT) et implémentez la pagination (OFFSET).",
+			"LIMIT restreint le nombre de résultats retournés. OFFSET permet de sauter un certain nombre de lignes avant de commencer à retourner des résultats.",
 		sqlQueries: [
 			{
 				sqlCode: `-- Liste uniquement des 3 premiers utilisateurs
@@ -560,39 +550,80 @@ LIMIT 3;`,
 				],
 			},
 			{
-				sqlCode: `-- Liste de 2 utilisateurs en sautant les 2 premiers
+				sqlCode: `-- Liste 3 utilisateurs en sautant les 2 premiers
 -- Clauses : LIMIT et OFFSET
 SELECT prenom, nom, email 
 FROM utilisateurs 
-ORDER BY nom 
-LIMIT 2 OFFSET 2;`,
+LIMIT 3 OFFSET 2;`,
 				sqlResult: [
 					{ prenom: "Claire", nom: "Durand", email: "claire@email.com" },
-					{ prenom: "Bob", nom: "Martin", email: "bob@gmail.com" },
+					{ prenom: "David", nom: "Moreau", email: "david@email.com" },
+					{ prenom: "Emma", nom: "Bernard", email: "emma@email.com" },
+				],
+			},
+		],
+	},
+	{
+		title: "Exemples combinés",
+		content:
+			"Les vraies requêtes SQL combinent souvent plusieurs concepts. Voici des exemples qui utilisent simultanément filtres, tri et pagination.",
+		sqlQueries: [
+			{
+				title: "Filtres multiples + Tri",
+				sqlCode: `-- Utilisateurs parisiens de plus de 25 ans, triés par âge
+-- Opérateurs : = et > | Opérateur logique : AND | Clause : ORDER BY
+SELECT prenom, nom, age, ville 
+FROM utilisateurs 
+WHERE ville = 'Paris' AND age > 25 
+ORDER BY age ASC;`,
+				sqlResult: [
+					{ prenom: "Alice", nom: "Dupont", age: 28, ville: "Paris" },
+					{ prenom: "Bob", nom: "Martin", age: 32, ville: "Paris" },
 				],
 			},
 			{
-				sqlCode: `-- Liste des 3 produits les plus chers
-SELECT nom, prix 
+				title: "Mot-clé + Tri + Pagination",
+				sqlCode: `-- Top 3 des produits électroniques les moins chers
+-- Opérateur : = | Clauses : ORDER BY et LIMIT
+SELECT nom, categorie, prix 
 FROM produits 
-ORDER BY prix DESC 
+WHERE categorie = 'electronique' 
+ORDER BY prix ASC 
 LIMIT 3;`,
 				sqlResult: [
-					{ nom: "Smartphone Pro", prix: 1299 },
-					{ nom: "Ordinateur Portable", prix: 899 },
-					{ nom: "Montre Connectée", prix: 349 },
+					{ nom: "Casque Audio", categorie: "electronique", prix: 249 },
+					{ nom: "Tablette", categorie: "electronique", prix: 299 },
+					{ nom: "Montre Connectée", categorie: "electronique", prix: 349 },
 				],
 			},
 			{
-				sqlCode: `-- Liste des 2 premiers utilisateurs de plus de 25 ans
-SELECT prenom, nom, age 
+				title: "LIKE + IS NOT NULL + ORDER BY",
+				sqlCode: `-- Utilisateurs avec un téléphone, dont le nom contient 'a', triés par nom
+-- Mot-clés : LIKE et IS NOT NULL | Clause : ORDER BY
+SELECT prenom, nom, telephone 
 FROM utilisateurs 
-WHERE age > 25 
-ORDER BY nom 
-LIMIT 2 OFFSET 0;`,
+WHERE telephone IS NOT NULL AND nom LIKE '%a%' 
+ORDER BY nom;`,
 				sqlResult: [
-					{ prenom: "Alice", nom: "Dupont", age: 28 },
-					{ prenom: "Bob", nom: "Martin", age: 32 },
+					{ prenom: "Alice", nom: "Dupont", telephone: "06 12 34 56 78" },
+					{ prenom: "Bob", nom: "Martin", telephone: "07 98 76 54 32" },
+					{ prenom: "David", nom: "Moreau", telephone: "06 11 22 33 44" },
+				],
+			},
+			{
+				title: "BETWEEN + NOT IN + ORDER BY",
+				sqlCode: `-- Produits entre 20€ et 500€, sauf catégorie bureau, triés par prix décroissant
+-- Mot-clés : BETWEEN et NOT IN | Clause : ORDER BY
+SELECT nom, categorie, prix 
+FROM produits 
+WHERE prix BETWEEN 20 AND 500 AND categorie NOT IN ('bureau') 
+ORDER BY prix DESC;`,
+				sqlResult: [
+					{ nom: "Montre Connectée", categorie: "electronique", prix: 349 },
+					{ nom: "Tablette", categorie: "electronique", prix: 299 },
+					{ nom: "Casque Audio", categorie: "electronique", prix: 249 },
+					{ nom: "Peluche Pikachu", categorie: "jouet", prix: 29 },
+					{ nom: "Livre SQL", categorie: "livre", prix: 25 },
 				],
 			},
 		],
