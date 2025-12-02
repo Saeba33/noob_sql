@@ -29,7 +29,8 @@ const header = {
 const accordions = [
 	{
 		title: "INSERT - Ajout de données",
-		content: "La commande INSERT permet d'ajouter de nouvelles lignes dans une table. Tu peux insérer une seule ligne ou plusieurs à la fois en listant les valeurs entre parenthèses.\n\nSi une colonne a une valeur par défaut ou accepte NULL, tu peux l'omettre dans ta requête.",
+		content:
+			"La commande INSERT permet d'ajouter de nouvelles lignes dans une table. Tu peux insérer une seule ligne ou plusieurs à la fois en listant les valeurs entre parenthèses.\n\nSi une colonne a une valeur par défaut ou accepte NULL, tu peux l'omettre dans ta requête.",
 		sqlQueries: [
 			{
 				sqlCode: `-- Insertion d'un seul utilisateur
@@ -64,7 +65,8 @@ INSERT INTO utilisateurs (prenom, nom, email) VALUES
 	},
 	{
 		title: "SELECT - Lecture de données",
-		content: "La commande SELECT est la plus utilisée en SQL : elle permet de lire et récupérer des données. Tu peux sélectionner toutes les colonnes avec * ou choisir uniquement celles dont tu as besoin.\n\nOn peut combiner SELECT avec WHERE pour filtrer les résultats. La clause WHERE et ses opérateurs seront détaillés à la ceinture verte.",
+		content:
+			"La commande SELECT est la plus utilisée en SQL : elle permet de lire et récupérer des données. Tu peux sélectionner toutes les colonnes avec * ou choisir uniquement celles dont tu as besoin.\n\nUtilise AS pour renommer une colonne dans le résultat (alias). C'est utile pour rendre les résultats plus lisibles ou nommer des calculs.\n\nOn peut combiner SELECT avec WHERE pour filtrer les résultats. La clause WHERE et ses opérateurs seront détaillés à la ceinture verte.",
 		sqlQueries: [
 			{
 				sqlCode: `-- Sélectionner toutes les colonnes de tous les utilisateurs
@@ -141,6 +143,20 @@ FROM utilisateurs;`,
 				],
 			},
 			{
+				sqlCode: `-- Renommer les colonnes avec AS (alias)
+SELECT 
+    prenom AS "Prénom",
+    nom AS "Nom de famille",
+    age AS "Âge"
+FROM utilisateurs
+LIMIT 3;`,
+				sqlResult: [
+					{ Prénom: "Alice", "Nom de famille": "Dupont", Âge: 28 },
+					{ Prénom: "Bob", "Nom de famille": "Martin", Âge: 32 },
+					{ Prénom: "Claire", "Nom de famille": "Durand", Âge: 25 },
+				],
+			},
+			{
 				sqlCode: `-- Sélectionner les utilisateurs de plus de 30 ans
 SELECT prenom, nom, age 
 FROM utilisateurs 
@@ -168,7 +184,8 @@ ORDER BY nom ASC;`,
 	},
 	{
 		title: "UPDATE - Modification de données",
-		content: "La commande UPDATE modifie les valeurs existantes dans une table. Utilise SET pour définir les nouvelles valeurs et WHERE pour cibler les lignes à modifier.\n\n⚠️ Attention : sans clause WHERE, toutes les lignes de la table seront modifiées ! La clause WHERE sera détaillée à la ceinture verte.",
+		content:
+			"La commande UPDATE modifie les valeurs existantes dans une table. Utilise SET pour définir les nouvelles valeurs et WHERE pour cibler les lignes à modifier.\n\n⚠️ Attention : sans clause WHERE, toutes les lignes de la table seront modifiées ! La clause WHERE sera détaillée à la ceinture verte.",
 		sqlQueries: [
 			{
 				sqlCode: `-- Modifier l'âge d'un utilisateur spécifique
@@ -283,10 +300,10 @@ TRUNCATE TABLE temp_data;`,
 					{
 						title: "Alias explicites avec AS",
 						icon: <MdCode className="w-5 h-5 text-green-600" />,
-						rule: "Utilise des alias clairs avec AS pour renommer les colonnes",
-						good: "SELECT COUNT(*) AS nombre_total",
-						bad: "SELECT COUNT(*) nombre_total",
-						reason: "Clarté du code, intention explicite",
+						rule: "Utilise AS pour renommer les colonnes dans le résultat. Indispensable pour les calculs et fonctions, et utile pour rendre les résultats plus lisibles",
+						good: 'SELECT prenom AS "Prénom",\n       COUNT(*) AS total',
+						bad: "SELECT prenom Prénom,\n       COUNT(*) total",
+						reason: "Clarté du code, nommage explicite des colonnes calculées",
 					},
 				]}
 			/>

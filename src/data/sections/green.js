@@ -582,9 +582,7 @@ FROM produits
 WHERE prix >= 10           -- Filtre les lignes AVANT regroupement
 GROUP BY categorie
 HAVING AVG(prix) > 100;    -- Filtre les groupes APRÈS regroupement`,
-				sqlResult: [
-					{ categorie: "electronique", nombre: 5, prix_moyen: 619 },
-				],
+				sqlResult: [{ categorie: "electronique", nombre: 5, prix_moyen: 619 }],
 			},
 		],
 	},

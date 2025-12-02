@@ -189,9 +189,9 @@ FROM produits
 WHERE prix > 200
 LIMIT 3;`,
 				sqlResult: [
-					{ nom: "Ordinateur Portable", prix: 899, prix_ttc: 1078.80 },
-					{ nom: "Smartphone Pro", prix: 1299, prix_ttc: 1558.80 },
-					{ nom: "Tablette", prix: 299, prix_ttc: 358.80 },
+					{ nom: "Ordinateur Portable", prix: 899, prix_ttc: 1078.8 },
+					{ nom: "Smartphone Pro", prix: 1299, prix_ttc: 1558.8 },
+					{ nom: "Tablette", prix: 299, prix_ttc: 358.8 },
 				],
 			},
 			{
@@ -265,10 +265,30 @@ SELECT
     DAY(date_commande) AS jour
 FROM commandes;`,
 				sqlResult: [
-					{ date_commande: "2023-11-20 09:15:00", annee: 2023, mois: 11, jour: 20 },
-					{ date_commande: "2024-01-15 10:30:00", annee: 2024, mois: 1, jour: 15 },
-					{ date_commande: "2024-01-15 14:45:00", annee: 2024, mois: 1, jour: 15 },
-					{ date_commande: "2024-02-10 16:20:00", annee: 2024, mois: 2, jour: 10 },
+					{
+						date_commande: "2023-11-20 09:15:00",
+						annee: 2023,
+						mois: 11,
+						jour: 20,
+					},
+					{
+						date_commande: "2024-01-15 10:30:00",
+						annee: 2024,
+						mois: 1,
+						jour: 15,
+					},
+					{
+						date_commande: "2024-01-15 14:45:00",
+						annee: 2024,
+						mois: 1,
+						jour: 15,
+					},
+					{
+						date_commande: "2024-02-10 16:20:00",
+						annee: 2024,
+						mois: 2,
+						jour: 10,
+					},
 				],
 			},
 			{
@@ -316,10 +336,26 @@ SELECT
 FROM commandes
 ORDER BY date_commande DESC;`,
 				sqlResult: [
-					{ numero_commande: "CMD004", date_commande: "2024-02-10 16:20:00", jours_depuis: 296 },
-					{ numero_commande: "CMD002", date_commande: "2024-01-15 10:30:00", jours_depuis: 322 },
-					{ numero_commande: "CMD003", date_commande: "2024-01-15 14:45:00", jours_depuis: 322 },
-					{ numero_commande: "CMD001", date_commande: "2023-11-20 09:15:00", jours_depuis: 378 },
+					{
+						numero_commande: "CMD004",
+						date_commande: "2024-02-10 16:20:00",
+						jours_depuis: 296,
+					},
+					{
+						numero_commande: "CMD002",
+						date_commande: "2024-01-15 10:30:00",
+						jours_depuis: 322,
+					},
+					{
+						numero_commande: "CMD003",
+						date_commande: "2024-01-15 14:45:00",
+						jours_depuis: 322,
+					},
+					{
+						numero_commande: "CMD001",
+						date_commande: "2023-11-20 09:15:00",
+						jours_depuis: 378,
+					},
 				],
 			},
 		],
@@ -412,9 +448,24 @@ SELECT
 FROM produits
 LIMIT 4;`,
 				sqlResult: [
-					{ nom: "Ordinateur Portable", categorie: "electronique", prix: 899, prix_remise: 809.10 },
-					{ nom: "Smartphone Pro", categorie: "electronique", prix: 1299, prix_remise: 1169.10 },
-					{ nom: "Livre SQL", categorie: "livre", prix: 25, prix_remise: 23.75 },
+					{
+						nom: "Ordinateur Portable",
+						categorie: "electronique",
+						prix: 899,
+						prix_remise: 809.1,
+					},
+					{
+						nom: "Smartphone Pro",
+						categorie: "electronique",
+						prix: 1299,
+						prix_remise: 1169.1,
+					},
+					{
+						nom: "Livre SQL",
+						categorie: "livre",
+						prix: 25,
+						prix_remise: 23.75,
+					},
 					{ nom: "Stylo", categorie: "bureau", prix: 5, prix_remise: 5 },
 				],
 			},
