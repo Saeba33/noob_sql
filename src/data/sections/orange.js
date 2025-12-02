@@ -192,7 +192,7 @@ FROM utilisateurs;`,
 	{
 		title: "Opérateurs de comparaison",
 		content:
-			"Les opérateurs de comparaison permettent de filtrer les résultats de la requêtes selon les valeurs qui y sont associées. Ils fonctionnent avec les nombres, les textes (ordre alphabétique) et les dates.",
+			"Les opérateurs de comparaison permettent de filtrer les résultats de la requête selon les valeurs qui y sont associées. Ils fonctionnent avec les nombres, les textes (ordre alphabétique) et les dates.",
 		sqlQueries: [
 			{
 				sqlCode: `-- Liste des utilisateurs qui ont exactement 25 ans
@@ -253,24 +253,16 @@ WHERE prix > 500;`,
 				],
 			},
 			{
-				sqlCode: `-- Liste des utilisateurs qui ont 25 ans ou moins
--- Opérateur : <=
-SELECT prenom, nom, email, age 
-FROM utilisateurs 
-WHERE age <= 25;`,
+				sqlCode: `-- Liste des produits avec un prix supérieur ou égal à 299 euros
+-- Opérateur : >=
+SELECT nom, prix 
+FROM produits 
+WHERE prix >= 299;`,
 				sqlResult: [
-					{
-						prenom: "Claire",
-						nom: "Durand",
-						email: "claire@email.com",
-						age: 25,
-					},
-					{
-						prenom: "François",
-						nom: "Petit",
-						email: "francois@email.com",
-						age: 25,
-					},
+					{ nom: "Ordinateur Portable", prix: 899 },
+					{ nom: "Smartphone Pro", prix: 1299 },
+					{ nom: "Tablette", prix: 299 },
+					{ nom: "Montre Connectée", prix: 349 },
 				],
 			},
 			{
@@ -340,7 +332,7 @@ WHERE categorie = 'electronique' OR prix < 100;`,
 	{
 		title: "Mots-clés de filtrage",
 		content:
-			"Les mots-clés de filtrage offrent des moyens expressifs pour définir des conditions : IN pour une liste de valeurs, BETWEEN pour un intervalle, LIKE pour des motifs de texte, IS NULL pour les valeurs manquantes. Chacun peut être inversé avec NOT. \n\nAttention, IS NULL et IS NOT NULL (mots-clés de filtrage) sont différents de NULL et NOT NULL (containtes utilisées lors de la création de tables).",
+			"Les mots-clés de filtrage offrent des moyens expressifs pour définir des conditions : IN pour une liste de valeurs, BETWEEN pour un intervalle, LIKE pour des motifs de texte, IS NULL pour les valeurs manquantes. Chacun peut être inversé avec NOT. \n\nAttention, IS NULL et IS NOT NULL (mots-clés de filtrage) sont différents de NULL et NOT NULL (contraintes utilisées lors de la création de tables).",
 		sqlQueries: [
 			{
 				title: "IN - Liste de valeurs",
@@ -605,7 +597,6 @@ FROM utilisateurs
 WHERE telephone IS NOT NULL AND nom LIKE '%a%' 
 ORDER BY nom;`,
 				sqlResult: [
-					{ prenom: "Alice", nom: "Dupont", telephone: "06 12 34 56 78" },
 					{ prenom: "Bob", nom: "Martin", telephone: "07 98 76 54 32" },
 					{ prenom: "David", nom: "Moreau", telephone: "06 11 22 33 44" },
 				],
