@@ -20,7 +20,7 @@ export const BELTS_CONFIG = {
 		},
 	},
 	orange: {
-		title: "Filtres & Conditions",
+		title: "CRUD",
 		href: "/orange",
 		colors: {
 			icon: "#F97316",
@@ -30,7 +30,7 @@ export const BELTS_CONFIG = {
 		},
 	},
 	green: {
-		title: "CRUD",
+		title: "Filtres & Conditions",
 		href: "/green",
 		colors: {
 			icon: "#22C55E",
