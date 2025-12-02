@@ -40,7 +40,7 @@ export const BELTS_CONFIG = {
 		},
 	},
 	blue: {
-		title: "Agrégations",
+		title: "Fonctions SQL",
 		href: "/blue",
 		colors: {
 			icon: "#3B82F6",
