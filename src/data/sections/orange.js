@@ -174,7 +174,7 @@ const accordions = [
 	{
 		title: "WHERE - Clause fondamentale",
 		content:
-			"WHERE est la clause qui permet de filtrer les lignes d'une requête. Elle s'écrit après FROM et avant ORDER BY. WHERE permet de ne récupérer que les lignes qui correspondent à une condition. Sans WHERE, toutes les lignes de la table seraient retournées.",
+			"WHERE est la clause qui permet de filtrer les lignes d'une requête. Elle s'écrit après FROM et avant ORDER BY. Grâce à WHERE, on peut récupérer uniquement les lignes qui correspondent à une ou plusieurs conditions. Sans cette clause, toutes les lignes de la table seraient retournées. Les valeurs de type texte et les dates doivent être écrites entre guillemets simples (par exemple : 'Paris' ou '2024-01-15'). Les nombres, eux, s'écrivent sans guillemets (par exemple : 42). Point de vigilance : si une valeur texte contient une apostrophe, il faut la doubler pour que SQL ne confonde pas avec la fin de la chaîne. Par exemple, pour rechercher le nom O'Connor, on écrit : 'O''Connor'.",
 		sqlCode: `-- Structure d'une requête avec WHERE
 SELECT nom_des_colonnes          -- Quelles colonnes afficher
 FROM nom_de_la_table             -- Dans quelle table chercher
@@ -538,7 +538,7 @@ ORDER BY ville ASC, age DESC;`,
 			"LIMIT restreint le nombre de résultats retournés. OFFSET permet de sauter un certain nombre de lignes avant de commencer à retourner des résultats.",
 		sqlQueries: [
 			{
-				sqlCode: `-- Liste uniquement des 3 premiers utilisateurs
+				sqlCode: `-- Liste uniquement les 3 premiers utilisateurs
 -- Clause : LIMIT
 SELECT prenom, nom, email 
 FROM utilisateurs 
