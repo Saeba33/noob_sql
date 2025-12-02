@@ -7,6 +7,7 @@ const menu = {
 		"Opérateurs logiques",
 		"Mots-clés de filtrage",
 		"Tri des résultats (ORDER BY)",
+		"Regroupement (GROUP BY, HAVING)",
 		"Pagination (LIMIT, OFFSET)",
 		"Exemples combinés",
 	],
@@ -16,7 +17,7 @@ const header = {
 	tag: "Ceinture Verte",
 	title: "Filtres et Conditions",
 	description:
-		"La ceinture verte vous enseigne l'art du filtrage et du contrôle des données. Apprenez à utiliser WHERE pour filtrer, les opérateurs pour comparer, ORDER BY pour trier, et gérez les valeurs NULL. Ces compétences vous permettront d'extraire exactement les données dont vous avez besoin.",
+		"La ceinture verte vous enseigne l'art du filtrage et du contrôle des données. Apprenez à utiliser WHERE pour filtrer, les opérateurs pour comparer, ORDER BY pour trier, GROUP BY pour regrouper et HAVING pour filtrer les groupes. Ces compétences vous permettront d'extraire exactement les données dont vous avez besoin.",
 };
 
 const accordions = [
@@ -520,6 +521,69 @@ ORDER BY ville ASC, age DESC;`,
 					{ prenom: "François", nom: "Petit", age: 25, ville: "Paris" },
 					{ prenom: "Emma", nom: "Bernard", age: 30, ville: "Toulouse" },
 					{ prenom: "Claire", nom: "Durand", age: 25, ville: "Toulouse" },
+				],
+			},
+		],
+	},
+	{
+		title: "Regroupement (GROUP BY, HAVING)",
+		content:
+			"GROUP BY regroupe les lignes ayant les mêmes valeurs dans une ou plusieurs colonnes, permettant d'appliquer des fonctions d'agrégation (COUNT, SUM, AVG...) sur chaque groupe. HAVING filtre ensuite ces groupes, comme WHERE filtre les lignes.\n\n⚠️ Différence clé : WHERE filtre AVANT le regroupement, HAVING filtre APRÈS.",
+		sqlQueries: [
+			{
+				title: "GROUP BY - Compter par ville",
+				sqlCode: `-- Nombre d'utilisateurs par ville
+SELECT ville, COUNT(*) AS nombre 
+FROM utilisateurs 
+GROUP BY ville;`,
+				sqlResult: [
+					{ ville: "Lyon", nombre: 1 },
+					{ ville: "Paris", nombre: 3 },
+					{ ville: "Toulouse", nombre: 2 },
+				],
+			},
+			{
+				title: "GROUP BY - Statistiques par catégorie",
+				sqlCode: `-- Nombre de produits et prix moyen par catégorie
+SELECT 
+    categorie,
+    COUNT(*) AS nombre_produits,
+    AVG(prix) AS prix_moyen
+FROM produits 
+GROUP BY categorie
+ORDER BY nombre_produits DESC;`,
+				sqlResult: [
+					{ categorie: "electronique", nombre_produits: 5, prix_moyen: 619 },
+					{ categorie: "livre", nombre_produits: 1, prix_moyen: 25 },
+					{ categorie: "bureau", nombre_produits: 1, prix_moyen: 5 },
+					{ categorie: "jouet", nombre_produits: 1, prix_moyen: 29 },
+				],
+			},
+			{
+				title: "HAVING - Filtrer les groupes",
+				sqlCode: `-- Villes avec au moins 2 utilisateurs
+SELECT ville, COUNT(*) AS nombre 
+FROM utilisateurs 
+GROUP BY ville
+HAVING COUNT(*) >= 2;`,
+				sqlResult: [
+					{ ville: "Paris", nombre: 3 },
+					{ ville: "Toulouse", nombre: 2 },
+				],
+			},
+			{
+				title: "WHERE + GROUP BY + HAVING",
+				sqlCode: `-- Catégories avec prix moyen > 100€ (hors produits < 10€)
+SELECT 
+    categorie,
+    COUNT(*) AS nombre,
+    AVG(prix) AS prix_moyen
+FROM produits 
+WHERE prix >= 10           -- Filtre les lignes AVANT regroupement
+GROUP BY categorie
+HAVING AVG(prix) > 100;    -- Filtre les groupes APRÈS regroupement`,
+				sqlResult: [
+					{ categorie: "electronique", nombre: 5, prix_moyen: 619 },
 				],
 			},
 		],
