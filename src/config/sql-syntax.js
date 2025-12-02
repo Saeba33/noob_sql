@@ -8,7 +8,7 @@ export const sqlSyntaxConfig = {
 		columnName: "text-cyan-300",
 		string: "text-amber-300",
 		number: "text-orange-400",
-		operator: "text-violet-300",
+		operator: "text-red-400",
 		comment: "text-gray-400 italic",
 		function: "text-pink-300 font-medium",
 		punctuation: "text-blue-400",
@@ -92,23 +92,23 @@ export function analyzeSqlCode(code) {
 		});
 	}
 
-	// 3. Multi-word SQL expressions (prioritized before single-word keywords)
-	const multiWordKeywords =
-		/\b(GROUP\s+BY|ORDER\s+BY|LEFT\s+OUTER\s+JOIN|RIGHT\s+OUTER\s+JOIN|FULL\s+OUTER\s+JOIN|LEFT\s+JOIN|RIGHT\s+JOIN|INNER\s+JOIN|FULL\s+JOIN|CROSS\s+JOIN|UNION\s+ALL|NOT\s+NULL|IS\s+NOT\s+NULL|IS\s+NOT|IS\s+NULL|ADD\s+COLUMN|DROP\s+COLUMN|RENAME\s+COLUMN|ALTER\s+COLUMN|EXPLAIN\s+QUERY\s+PLAN|ADD\s+CONSTRAINT|DROP\s+CONSTRAINT|ON\s+CONFLICT|ON\s+DELETE|ON\s+UPDATE)\b/gi;
-	while ((match = multiWordKeywords.exec(code)) !== null) {
+	// 3. Multi-word constraints (highest priority for constraints)
+	const multiWordConstraints =
+		/\b(PRIMARY\s+KEY|FOREIGN\s+KEY|NOT\s+NULL|IS\s+NOT\s+NULL|IS\s+NULL|NO\s+ACTION|SET\s+NULL|SET\s+DEFAULT|ON\s+DELETE|ON\s+UPDATE)\b/gi;
+	while ((match = multiWordConstraints.exec(code)) !== null) {
 		parts.push({
 			start: match.index,
 			end: match.index + match[0].length,
 			text: match[0],
-			type: "keyword",
+			type: "constraint",
 			priority: 3,
 		});
 	}
 
-	// 4. Main SQL keywords
-	const keywords =
-		/\b(CREATE|TABLE|DATABASE|SCHEMA|TRIGGER|PROCEDURE|FUNCTION|ALTER|DROP|RENAME|ADD|MODIFY|CHANGE|COLUMN|SELECT|DISTINCT|FROM|WHERE|JOIN|INNER|LEFT|RIGHT|FULL|OUTER|CROSS|SELF|ON|INSERT|INTO|VALUES|UPDATE|SET|DELETE|TRUNCATE|UNION|ALL|WITH|AS|USING|HAVING|ASC|DESC|LIMIT|OFFSET|CASE|WHEN|THEN|ELSE|END|INDEX|VIEW|BEGIN|COMMIT|ROLLBACK|TRANSACTION|SAVEPOINT|RELEASE|AND|OR|NOT|IN|BETWEEN|LIKE|IS|EXISTS|ANY|SOME|EXPLAIN|ANALYZE|DESCRIBE|DESC|SHOW|USE|GRANT|REVOKE|CASCADE|RESTRICT|RETURNING|CONFLICT|IGNORE|REPLACE|ABORT|FAIL|RAISE|PRAGMA|ATTACH|DETACH|VACUUM)\b/gi;
-	while ((match = keywords.exec(code)) !== null) {
+	// 4. Multi-word SQL keywords (commands)
+	const multiWordKeywords =
+		/\b(CREATE\s+TABLE|CREATE\s+INDEX|CREATE\s+VIEW|INSERT\s+INTO|DELETE\s+FROM|GROUP\s+BY|ORDER\s+BY|LEFT\s+OUTER\s+JOIN|RIGHT\s+OUTER\s+JOIN|FULL\s+OUTER\s+JOIN|LEFT\s+JOIN|RIGHT\s+JOIN|INNER\s+JOIN|FULL\s+JOIN|CROSS\s+JOIN|UNION\s+ALL|ADD\s+COLUMN|DROP\s+COLUMN|RENAME\s+COLUMN|ALTER\s+COLUMN|EXPLAIN\s+QUERY\s+PLAN|ADD\s+CONSTRAINT|DROP\s+CONSTRAINT|ON\s+CONFLICT|IS\s+NOT|IF\s+EXISTS|IF\s+NOT\s+EXISTS)\b/gi;
+	while ((match = multiWordKeywords.exec(code)) !== null) {
 		parts.push({
 			start: match.index,
 			end: match.index + match[0].length,
@@ -118,46 +118,59 @@ export function analyzeSqlCode(code) {
 		});
 	}
 
-	// 5. SQL data types
+	// 5. Main SQL keywords (single words - commands and clauses)
+	const keywords =
+		/\b(CREATE|TABLE|DATABASE|SCHEMA|TRIGGER|PROCEDURE|FUNCTION|ALTER|DROP|RENAME|ADD|MODIFY|CHANGE|COLUMN|SELECT|DISTINCT|FROM|WHERE|JOIN|INNER|LEFT|RIGHT|FULL|OUTER|CROSS|SELF|ON|INSERT|INTO|VALUES|UPDATE|SET|DELETE|TRUNCATE|UNION|ALL|WITH|AS|USING|HAVING|ASC|DESC|LIMIT|OFFSET|CASE|WHEN|THEN|ELSE|END|INDEX|VIEW|BEGIN|COMMIT|ROLLBACK|TRANSACTION|SAVEPOINT|RELEASE|AND|OR|IN|BETWEEN|LIKE|IS|TO|ANY|SOME|EXPLAIN|ANALYZE|DESCRIBE|SHOW|USE|GRANT|REVOKE|RETURNING|CONFLICT|IGNORE|REPLACE|ABORT|FAIL|RAISE|PRAGMA|ATTACH|DETACH|VACUUM)\b/gi;
+	while ((match = keywords.exec(code)) !== null) {
+		parts.push({
+			start: match.index,
+			end: match.index + match[0].length,
+			text: match[0],
+			type: "keyword",
+			priority: 5,
+		});
+	}
+
+	// 6. SQL data types
 	const datatypes =
-		/\b(INTEGER|VARCHAR|DECIMAL|TIMESTAMP|DATE|TEXT|CHAR|BOOLEAN|TINYINT|BIGINT|FLOAT|DOUBLE|TIME|DATETIME|BLOB|JSON)\b/gi;
+		/\b(INTEGER|INT|SMALLINT|VARCHAR|DECIMAL|NUMERIC|TIMESTAMP|DATE|TEXT|CHAR|BOOLEAN|BOOL|TINYINT|BIGINT|FLOAT|DOUBLE|REAL|TIME|DATETIME|BLOB|JSON|SERIAL)\b/gi;
 	while ((match = datatypes.exec(code)) !== null) {
 		parts.push({
 			start: match.index,
 			end: match.index + match[0].length,
 			text: match[0],
 			type: "datatype",
-			priority: 5,
+			priority: 6,
 		});
 	}
 
-	// 6. Constraints and special keywords
+	// 7. Constraints and special keywords (single words)
 	const constraints =
-		/\b(PRIMARY|KEY|FOREIGN|REFERENCES|UNIQUE|NULL|DEFAULT|CURRENT_TIMESTAMP|CURRENT_DATE|CURRENT_TIME|AUTO_INCREMENT|AUTOINCREMENT|CHECK|IF|EXISTS|UNSIGNED|SIGNED|ZEROFILL|CONSTRAINT|CASCADE|RESTRICT|NO\s+ACTION|SET\s+NULL|SET\s+DEFAULT)\b/gi;
+		/\b(PRIMARY|KEY|FOREIGN|REFERENCES|UNIQUE|NULL|NOT|DEFAULT|CURRENT_TIMESTAMP|CURRENT_DATE|CURRENT_TIME|AUTO_INCREMENT|AUTOINCREMENT|CHECK|EXISTS|UNSIGNED|SIGNED|ZEROFILL|CONSTRAINT|CASCADE|RESTRICT)\b/gi;
 	while ((match = constraints.exec(code)) !== null) {
 		parts.push({
 			start: match.index,
 			end: match.index + match[0].length,
 			text: match[0],
 			type: "constraint",
-			priority: 6,
+			priority: 7,
 		});
 	}
 
-	// 7. SQL functions and aggregations
+	// 8. SQL functions and aggregations
 	const functions =
-		/\b(COUNT|SUM|AVG|MAX|MIN|COALESCE|NULLIF|IFNULL|ROW_NUMBER|RANK|DENSE_RANK|NTILE|LAG|LEAD|FIRST_VALUE|LAST_VALUE|SUBSTRING|SUBSTR|CONCAT|CONCAT_WS|UPPER|LOWER|TRIM|LTRIM|RTRIM|LENGTH|REPLACE|REVERSE|NOW|CURDATE|CURTIME|DATE|TIME|DATETIME|STRFTIME|DATE_FORMAT|YEAR|MONTH|DAY|HOUR|MINUTE|SECOND|DATEDIFF|DATEADD|TIMESTAMPDIFF|ABS|CEIL|CEILING|FLOOR|ROUND|MOD|POWER|SQRT|RAND|RANDOM|CAST|CONVERT|GROUP_CONCAT|STRING_AGG)\b/gi;
+		/\b(COUNT|SUM|AVG|MAX|MIN|COALESCE|NULLIF|IFNULL|IIF|ROW_NUMBER|RANK|DENSE_RANK|NTILE|LAG|LEAD|FIRST_VALUE|LAST_VALUE|SUBSTRING|SUBSTR|CONCAT|CONCAT_WS|UPPER|LOWER|TRIM|LTRIM|RTRIM|LENGTH|LEN|REPLACE|REVERSE|NOW|CURDATE|CURTIME|STRFTIME|DATE_FORMAT|YEAR|MONTH|DAY|HOUR|MINUTE|SECOND|DATEDIFF|DATEADD|TIMESTAMPDIFF|ABS|CEIL|CEILING|FLOOR|ROUND|MOD|POWER|SQRT|RAND|RANDOM|CAST|CONVERT|GROUP_CONCAT|STRING_AGG|OVER|PARTITION)\b/gi;
 	while ((match = functions.exec(code)) !== null) {
 		parts.push({
 			start: match.index,
 			end: match.index + match[0].length,
 			text: match[0],
 			type: "function",
-			priority: 7,
+			priority: 8,
 		});
 	}
 
-	// 8. Numbers (including in parentheses like VARCHAR(255))
+	// 9. Numbers (including in parentheses like VARCHAR(255))
 	const numbers = /\b(\d+(?:\.\d+)?)\b/g;
 	while ((match = numbers.exec(code)) !== null) {
 		parts.push({
@@ -165,12 +178,13 @@ export function analyzeSqlCode(code) {
 			end: match.index + match[0].length,
 			text: match[0],
 			type: "number",
-			priority: 8,
+			priority: 9,
 		});
 	}
 
-	// 9. Recognized table names (after CREATE TABLE or REFERENCES)
-	const tablePattern = /(?:CREATE\s+TABLE\s+|REFERENCES\s+)(\w+)/gi;
+	// 10. Recognized table names (after SQL keywords that precede table names)
+	const tablePattern =
+		/(?:CREATE\s+TABLE\s+|ALTER\s+TABLE\s+|DROP\s+TABLE\s+|TRUNCATE\s+TABLE\s+|INSERT\s+INTO\s+|UPDATE\s+|DELETE\s+FROM\s+|FROM\s+|JOIN\s+|INNER\s+JOIN\s+|LEFT\s+JOIN\s+|RIGHT\s+JOIN\s+|FULL\s+JOIN\s+|CROSS\s+JOIN\s+|REFERENCES\s+)(\w+)/gi;
 	while ((match = tablePattern.exec(code)) !== null) {
 		const tableName = match[1];
 		const tableStart = match.index + match[0].length - tableName.length;
@@ -179,23 +193,28 @@ export function analyzeSqlCode(code) {
 			end: tableStart + tableName.length,
 			text: tableName,
 			type: "tableName",
-			priority: 9,
+			priority: 10,
 		});
 	}
 
-	// 10. Operators
-	const operators = /([=!<>]+|[+\-*/%])/g;
+	// 11. Operators
+	// - Comparison: =, !=, <>, <, >, <=, >=
+	// - Arithmetic: +, -, /, %
+	// - Multiplication: * except after SELECT, comma, or aggregate functions (COUNT, SUM, etc.)
+	// - Concatenation: ||
+	const operators =
+		/(\|\||[=!<>]+|[+\-/%]|(?<!SELECT\s*)(?<!,\s*)(?<!COUNT\s*\(\s*)(?<!SUM\s*\(\s*)(?<!AVG\s*\(\s*)(?<!MIN\s*\(\s*)(?<!MAX\s*\(\s*)\*(?!\s*FROM))/gi;
 	while ((match = operators.exec(code)) !== null) {
 		parts.push({
 			start: match.index,
 			end: match.index + match[0].length,
 			text: match[0],
 			type: "operator",
-			priority: 10,
+			priority: 11,
 		});
 	}
 
-	// 11. Punctuation
+	// 12. Punctuation
 	const punctuation = /([(),.;])/g;
 	while ((match = punctuation.exec(code)) !== null) {
 		parts.push({
@@ -203,7 +222,7 @@ export function analyzeSqlCode(code) {
 			end: match.index + match[0].length,
 			text: match[0],
 			type: "punctuation",
-			priority: 11,
+			priority: 12,
 		});
 	}
 
@@ -231,9 +250,7 @@ export function analyzeSqlCode(code) {
 	return filteredParts;
 }
 
-// Utility functions for SQL components
 
-// Function to colorize text with SQL syntax (reusable)
 // Function to parse database schemas with enhanced structure for diagrams
 export function parseSchema(schemaText) {
 	const tables = [];
