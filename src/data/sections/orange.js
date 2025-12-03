@@ -30,7 +30,7 @@ const accordions = [
 	{
 		title: "INSERT - Ajout de données",
 		content:
-			"La commande INSERT permet d'ajouter de nouvelles lignes dans une table. Tu peux insérer une seule ligne ou plusieurs à la fois en listant les valeurs entre parenthèses.\n\nSi une colonne a une valeur par défaut ou accepte NULL, tu peux l'omettre dans ta requête.",
+			"La commande INSERT permet d'ajouter de nouvelles lignes dans une table. Vous pouvez insérer une ou plusieurs lignes à la fois en listant les valeurs entre parenthèses.\nSi une colonne a une valeur par défaut ou accepte NULL, vous pouvez l'omettre de la requête.",
 		sqlQueries: [
 			{
 				sqlCode: `-- Insertion d'un seul utilisateur
@@ -52,21 +52,12 @@ INSERT INTO utilisateurs (prenom, nom, email, age) VALUES
 					type: "message",
 				},
 			},
-			{
-				sqlCode: `-- Insertion sans spécifier l'âge (valeur par défaut ou NULL)
-INSERT INTO utilisateurs (prenom, nom, email) VALUES 
-('Emma', 'Bernard', 'emma@email.com');`,
-				sqlResult: {
-					message: "1 ligne insérée avec succès (âge par défaut appliqué)",
-					type: "message",
-				},
-			},
 		],
 	},
 	{
 		title: "SELECT - Lecture de données",
 		content:
-			"La commande SELECT est la plus utilisée en SQL : elle permet de lire et récupérer des données. Tu peux sélectionner toutes les colonnes avec * ou choisir uniquement celles dont tu as besoin.\n\nUtilise AS pour renommer une colonne dans le résultat (alias). C'est utile pour rendre les résultats plus lisibles ou nommer des calculs.\n\nOn peut combiner SELECT avec WHERE pour filtrer les résultats. La clause WHERE et ses opérateurs seront détaillés à la ceinture verte.",
+			"La commande SELECT est la plus utilisée en SQL : elle permet de lire et récupérer des données.\nVous pouvez sélectionner toutes les colonnes avec le symbole * ou choisir uniquement celles dont tu as besoin.\nVous pouvez utiliser un alias (AS) pour renommer une colonne dans le résultat. C'est utile pour rendre les résultats plus lisibles ou nommer des calculs.\nOn peut combiner SELECT avec WHERE pour filtrer les résultats. La clause WHERE et ses opérateurs seront détaillés dans la prochaine ceinture.",
 		sqlQueries: [
 			{
 				sqlCode: `-- Sélectionner toutes les colonnes de tous les utilisateurs
@@ -148,12 +139,14 @@ SELECT
     prenom AS "Prénom",
     nom AS "Nom de famille",
     age AS "Âge"
-FROM utilisateurs
-LIMIT 3;`,
+FROM utilisateurs;`,
 				sqlResult: [
 					{ Prénom: "Alice", "Nom de famille": "Dupont", Âge: 28 },
 					{ Prénom: "Bob", "Nom de famille": "Martin", Âge: 32 },
 					{ Prénom: "Claire", "Nom de famille": "Durand", Âge: 25 },
+					{ Prénom: "David", "Nom de famille": "Moreau", Âge: 45 },
+					{ Prénom: "Emma", "Nom de famille": "Bernard", Âge: 30 },
+					{ Prénom: "François", "Nom de famille": "Petit", Âge: 25 },
 				],
 			},
 			{
@@ -166,26 +159,12 @@ WHERE age > 30;`,
 					{ prenom: "David", nom: "Moreau", age: 45 },
 				],
 			},
-			{
-				sqlCode: `-- Sélectionner tous les utilisateurs triés par nom de famille
-SELECT prenom, nom, email 
-FROM utilisateurs 
-ORDER BY nom ASC;`,
-				sqlResult: [
-					{ prenom: "Emma", nom: "Bernard", email: "emma@email.com" },
-					{ prenom: "Alice", nom: "Dupont", email: "alice@email.com" },
-					{ prenom: "Claire", nom: "Durand", email: "claire@email.com" },
-					{ prenom: "Bob", nom: "Martin", email: "bob@gmail.com" },
-					{ prenom: "David", nom: "Moreau", email: "david@email.com" },
-					{ prenom: "François", nom: "Petit", email: "francois@email.com" },
-				],
-			},
 		],
 	},
 	{
 		title: "UPDATE - Modification de données",
 		content:
-			"La commande UPDATE modifie les valeurs existantes dans une table. Utilise SET pour définir les nouvelles valeurs et WHERE pour cibler les lignes à modifier.\n\n⚠️ Attention : sans clause WHERE, toutes les lignes de la table seront modifiées ! La clause WHERE sera détaillée à la ceinture verte.",
+			"La commande UPDATE modifie les valeurs existantes dans une table. Utilise SET pour définir les nouvelles valeurs et WHERE pour cibler les lignes à modifier.\n\nAttention : sans clause WHERE, toutes les lignes de la table seront modifiées !",
 		sqlQueries: [
 			{
 				sqlCode: `-- Modifier l'âge d'un utilisateur spécifique
@@ -221,7 +200,7 @@ SET age = age + 1;`,
 	{
 		title: "DELETE - Suppression de données",
 		content:
-			"La commande DELETE supprime des lignes d'une table selon une condition WHERE. Pour vider entièrement une table, TRUNCATE est plus rapide car il ne journalise pas chaque suppression.\n\n⚠️ Attention : DELETE sans WHERE supprime toutes les lignes ! TRUNCATE remet aussi les compteurs auto-increment à zéro. La clause WHERE sera détaillée à la ceinture verte.",
+			"La commande DELETE supprime des lignes d'une table selon une condition WHERE. Pour vider entièrement une table, TRUNCATE est plus rapide car il ne journalise pas chaque suppression.\n\nAttention : un DELETE sans WHERE supprime toutes les lignes ! TRUNCATE supprime toutes les lignes (enregistrements) de la table sans modifier sa structure (colonnes, relations, contraintes) et remet aussi les compteurs auto-increment à zéro.",
 		sqlQueries: [
 			{
 				sqlCode: `-- Supprimer les utilisateurs de moins de 18 ans
