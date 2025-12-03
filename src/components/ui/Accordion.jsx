@@ -139,18 +139,20 @@ export default function Accordion({
 											</h5>
 										)}
 										<SqlCodeBlock>{query.sqlCode}</SqlCodeBlock>
-										<div className="mt-3">
-											{Array.isArray(query.sqlResult) ? (
-												<SqlResultBlock data={query.sqlResult} />
-											) : query.sqlResult?.message ? (
-												<SqlResultBlock
-													message={query.sqlResult.message}
-													type="message"
-												/>
-											) : (
-												<SqlResultBlock data={query.sqlResult} />
-											)}
-										</div>
+										{query.sqlResult !== undefined && (
+											<div className="mt-3">
+												{Array.isArray(query.sqlResult) ? (
+													<SqlResultBlock data={query.sqlResult} />
+												) : query.sqlResult?.message ? (
+													<SqlResultBlock
+														message={query.sqlResult.message}
+														type="message"
+													/>
+												) : (
+													<SqlResultBlock data={query.sqlResult} />
+												)}
+											</div>
+										)}
 									</div>
 								))}
 							</div>
