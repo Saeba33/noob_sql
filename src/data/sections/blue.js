@@ -24,7 +24,8 @@ const accordions = [
 		sqlQueries: [
 			{
 				title: "COUNT - Compter les lignes",
-				sqlCode: `-- Compte le nombre total d'utilisateurs
+				sqlCode: `-- COUNT(*) compte toutes les lignes
+-- COUNT(colonne) compte les valeurs non NULL
 SELECT COUNT(*) AS total_utilisateurs 
 FROM utilisateurs;`,
 				sqlResult: [{ total_utilisateurs: 6 }],
@@ -46,21 +47,22 @@ FROM utilisateurs;`,
 			},
 			{
 				title: "SUM - Somme des valeurs",
-				sqlCode: `-- Calcule la valeur totale du stock de produits
+				sqlCode: `-- SUM(colonne) additionne toutes les valeurs numériques
 SELECT SUM(prix * stock) AS valeur_stock_total 
 FROM produits;`,
 				sqlResult: [{ valeur_stock_total: 47920 }],
 			},
 			{
 				title: "AVG - Moyenne des valeurs",
-				sqlCode: `-- Calcule l'âge moyen des utilisateurs
+				sqlCode: `-- AVG(colonne) calcule la moyenne des valeurs numériques
 SELECT ROUND(AVG(age), 1) AS age_moyen 
 FROM utilisateurs;`,
 				sqlResult: [{ age_moyen: 30.8 }],
 			},
 			{
 				title: "MIN et MAX - Valeurs extrêmes",
-				sqlCode: `-- Trouve le produit le moins cher et le plus cher
+				sqlCode: `-- MIN(colonne) retourne la plus petite valeur
+-- MAX(colonne) retourne la plus grande valeur
 SELECT 
     MIN(prix) AS prix_min,
     MAX(prix) AS prix_max 
@@ -108,7 +110,7 @@ LIMIT 3;`,
 			},
 			{
 				title: "LENGTH - Longueur d'une chaîne",
-				sqlCode: `-- Compte le nombre de caractères
+				sqlCode: `-- LENGTH(colonne) retourne le nombre de caractères
 SELECT 
 	prenom,
 	LENGTH(prenom) AS nb_lettres 
@@ -125,7 +127,7 @@ ORDER BY nb_lettres DESC;`,
 			},
 			{
 				title: "CONCAT - Concaténer des chaînes",
-				sqlCode: `-- Assemble plusieurs valeurs en une seule chaîne
+				sqlCode: `-- CONCAT(val1, val2, ...) assemble plusieurs valeurs en une chaîne
 SELECT CONCAT(prenom, ' ', nom) AS nom_complet 
 FROM utilisateurs 
 LIMIT 3;`,
@@ -160,7 +162,8 @@ SELECT TRIM('   texte avec espaces   ') AS resultat;`,
 			},
 			{
 				title: "REPLACE - Remplacer du texte",
-				sqlCode: `-- Remplace une partie du texte par une autre
+				sqlCode: `-- REPLACE(colonne, 'ancien', 'nouveau')
+-- Remplace toutes les occurrences de 'ancien' par 'nouveau'
 SELECT 
     email AS email_actuel,
     REPLACE(email, '@email.com', '@nouveau.fr') AS nouvel_email 
@@ -169,7 +172,10 @@ WHERE email LIKE '%@email.com'
 LIMIT 3;`,
 				sqlResult: [
 					{ email_actuel: "alice@email.com", nouvel_email: "alice@nouveau.fr" },
-					{ email_actuel: "claire@email.com", nouvel_email: "claire@nouveau.fr" },
+					{
+						email_actuel: "claire@email.com",
+						nouvel_email: "claire@nouveau.fr",
+					},
 					{ email_actuel: "david@email.com", nouvel_email: "david@nouveau.fr" },
 				],
 			},
@@ -182,7 +188,7 @@ LIMIT 3;`,
 		sqlQueries: [
 			{
 				title: "ROUND - Arrondir un nombre",
-				sqlCode: `-- Arrondit à N décimales (ici 2)
+				sqlCode: `-- ROUND(nombre, decimales) arrondit à N décimales
 SELECT 
     nom,
     prix,
@@ -191,14 +197,15 @@ FROM produits
 WHERE prix > 200
 LIMIT 3;`,
 				sqlResult: [
-					{ nom: "Ordinateur Portable", prix: 899, prix_ttc: 1078.80 },
-					{ nom: "Smartphone Pro", prix: 1299, prix_ttc: 1558.80 },
-					{ nom: "Tablette", prix: 299, prix_ttc: 358.80 },
+					{ nom: "Ordinateur Portable", prix: 899, prix_ttc: 1078.8 },
+					{ nom: "Smartphone Pro", prix: 1299, prix_ttc: 1558.8 },
+					{ nom: "Tablette", prix: 299, prix_ttc: 358.8 },
 				],
 			},
 			{
 				title: "CEIL et FLOOR - Arrondir entier",
-				sqlCode: `-- CEIL arrondit à l'eniter supérieur, FLOOR vers l'entier inférieur'
+				sqlCode: `-- CEIL(nombre) arrondit à l'entier supérieur (8.3 → 9)
+-- FLOOR(nombre) arrondit à l'entier inférieur (8.9 → 8)
 SELECT 
     prix,
     prix / 3.0 AS division,
@@ -283,7 +290,9 @@ LIMIT 2;`,
 			},
 			{
 				title: "DATE_ADD / DATE_SUB - Ajouter ou soustraire",
-				sqlCode: `-- Ajoute ou soustrait une durée à une date
+				sqlCode: `-- DATE_ADD(date, INTERVAL n UNIT) ajoute une durée
+-- DATE_SUB(date, INTERVAL n UNIT) soustrait une durée
+-- UNIT peut être : DAY, WEEK, MONTH, YEAR, HOUR, MINUTE...
 SELECT 
     date_commande,
     DATE_ADD(date_commande, INTERVAL 7 DAY) AS livraison_prevue,
@@ -305,7 +314,7 @@ LIMIT 2;`,
 			},
 			{
 				title: "DATEDIFF - Différence entre dates",
-				sqlCode: `-- Calcule le nombre de jours entre deux dates
+				sqlCode: `-- DATEDIFF(date1, date2) retourne le nombre de jours entre les deux dates
 SELECT 
     numero_commande,
     date_commande,
@@ -344,7 +353,8 @@ ORDER BY date_commande DESC;`,
 		sqlQueries: [
 			{
 				title: "COALESCE - Première valeur non NULL",
-				sqlCode: `-- Retourne la première valeur non NULL de la liste
+				sqlCode: `-- COALESCE(colonne, valeur_si_null)
+-- Retourne la colonne si elle n'est pas NULL, sinon la valeur de remplacement
 SELECT 
     prenom,
     COALESCE(telephone, 'Non renseigné') AS telephone 
@@ -360,7 +370,8 @@ FROM utilisateurs;`,
 			},
 			{
 				title: "COALESCE - Cascade de valeurs",
-				sqlCode: `-- Teste plusieurs colonnes jusqu'à trouver une valeur
+				sqlCode: `-- COALESCE(col1, col2, col3, valeur_defaut)
+-- Teste chaque valeur dans l'ordre et retourne la première non NULL
 SELECT 
     prenom,
     COALESCE(telephone, email, 'Aucun contact') AS contact 
@@ -374,24 +385,9 @@ LIMIT 4;`,
 				],
 			},
 			{
-				title: "NULLIF - Retourner NULL si égalité",
-				sqlCode: `-- Retourne NULL si les deux valeurs sont égales
--- Utile pour éviter les divisions par zéro
-SELECT 
-    nom,
-    stock,
-    NULLIF(stock, 0) AS stock_ou_null
-FROM produits
-WHERE stock <= 15;`,
-				sqlResult: [
-					{ nom: "Ordinateur Portable", stock: 15, stock_ou_null: 15 },
-					{ nom: "Smartphone Pro", stock: 8, stock_ou_null: 8 },
-					{ nom: "Montre Connectée", stock: 12, stock_ou_null: 12 },
-				],
-			},
-			{
 				title: "CASE WHEN - Conditions multiples",
-				sqlCode: `-- Applique une logique if/else dans la requête
+				sqlCode: `-- CASE WHEN condition THEN valeur [...] ELSE defaut END
+-- Évalue les conditions dans l'ordre et retourne la première vraie
 SELECT 
     prenom,
     age,

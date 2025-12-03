@@ -105,23 +105,24 @@ export function analyzeSqlCode(code) {
 		});
 	}
 
-	// 4. Multi-word SQL keywords (commands)
-	const multiWordKeywords =
-		/\b(CREATE\s+TABLE|CREATE\s+INDEX|CREATE\s+VIEW|INSERT\s+INTO|DELETE\s+FROM|GROUP\s+BY|ORDER\s+BY|LEFT\s+OUTER\s+JOIN|RIGHT\s+OUTER\s+JOIN|FULL\s+OUTER\s+JOIN|LEFT\s+JOIN|RIGHT\s+JOIN|INNER\s+JOIN|FULL\s+JOIN|CROSS\s+JOIN|UNION\s+ALL|ADD\s+COLUMN|DROP\s+COLUMN|RENAME\s+COLUMN|ALTER\s+COLUMN|EXPLAIN\s+QUERY\s+PLAN|ADD\s+CONSTRAINT|DROP\s+CONSTRAINT|ON\s+CONFLICT|IS\s+NOT\s+NULL|IS\s+NULL|IS\s+NOT|IF\s+EXISTS|IF\s+NOT\s+EXISTS|NOT\s+LIKE|NOT\s+IN|NOT\s+BETWEEN|NOT\s+EXISTS)\b/gi;
-	while ((match = multiWordKeywords.exec(code)) !== null) {
+	// 4. Ambiguous words that are functions when followed by parentheses
+	// DATE, TIME: datatypes vs functions | REPLACE: keyword vs function
+	// Must be detected BEFORE keywords/datatypes to take priority
+	const ambiguousFunctions = /\b(DATE|TIME|REPLACE)(?=\s*\()/gi;
+	while ((match = ambiguousFunctions.exec(code)) !== null) {
 		parts.push({
 			start: match.index,
 			end: match.index + match[0].length,
 			text: match[0],
-			type: "keyword",
+			type: "function",
 			priority: 4,
 		});
 	}
 
-	// 5. Main SQL keywords (single words - commands and clauses)
-	const keywords =
-		/\b(CREATE|TABLE|DATABASE|SCHEMA|TRIGGER|PROCEDURE|FUNCTION|ALTER|DROP|RENAME|ADD|MODIFY|CHANGE|COLUMN|SELECT|DISTINCT|FROM|WHERE|JOIN|INNER|LEFT|RIGHT|FULL|OUTER|CROSS|SELF|ON|INSERT|INTO|VALUES|UPDATE|SET|DELETE|TRUNCATE|UNION|ALL|WITH|AS|USING|HAVING|ASC|DESC|LIMIT|OFFSET|CASE|WHEN|THEN|ELSE|END|INDEX|VIEW|BEGIN|COMMIT|ROLLBACK|TRANSACTION|SAVEPOINT|RELEASE|AND|OR|IN|BETWEEN|LIKE|IS|TO|ANY|SOME|EXPLAIN|ANALYZE|DESCRIBE|SHOW|USE|GRANT|REVOKE|RETURNING|CONFLICT|IGNORE|REPLACE|ABORT|FAIL|RAISE|PRAGMA|ATTACH|DETACH|VACUUM|INTERVAL)\b/gi;
-	while ((match = keywords.exec(code)) !== null) {
+	// 5. Multi-word SQL keywords (commands)
+	const multiWordKeywords =
+		/\b(CREATE\s+TABLE|CREATE\s+INDEX|CREATE\s+VIEW|INSERT\s+INTO|DELETE\s+FROM|GROUP\s+BY|ORDER\s+BY|LEFT\s+OUTER\s+JOIN|RIGHT\s+OUTER\s+JOIN|FULL\s+OUTER\s+JOIN|LEFT\s+JOIN|RIGHT\s+JOIN|INNER\s+JOIN|FULL\s+JOIN|CROSS\s+JOIN|UNION\s+ALL|ADD\s+COLUMN|DROP\s+COLUMN|RENAME\s+COLUMN|ALTER\s+COLUMN|EXPLAIN\s+QUERY\s+PLAN|ADD\s+CONSTRAINT|DROP\s+CONSTRAINT|ON\s+CONFLICT|IS\s+NOT\s+NULL|IS\s+NULL|IS\s+NOT|IF\s+EXISTS|IF\s+NOT\s+EXISTS|NOT\s+LIKE|NOT\s+IN|NOT\s+BETWEEN|NOT\s+EXISTS)\b/gi;
+	while ((match = multiWordKeywords.exec(code)) !== null) {
 		parts.push({
 			start: match.index,
 			end: match.index + match[0].length,
@@ -131,15 +132,15 @@ export function analyzeSqlCode(code) {
 		});
 	}
 
-	// 6. Ambiguous words that are functions when followed by parentheses (DATE, TIME)
-	// These must be detected BEFORE datatypes to take priority
-	const ambiguousFunctions = /\b(DATE|TIME)(?=\s*\()/gi;
-	while ((match = ambiguousFunctions.exec(code)) !== null) {
+	// 6. Main SQL keywords (single words - commands and clauses)
+	const keywords =
+		/\b(CREATE|TABLE|DATABASE|SCHEMA|TRIGGER|PROCEDURE|FUNCTION|ALTER|DROP|RENAME|ADD|MODIFY|CHANGE|COLUMN|SELECT|DISTINCT|FROM|WHERE|JOIN|INNER|LEFT|RIGHT|FULL|OUTER|CROSS|SELF|ON|INSERT|INTO|VALUES|UPDATE|SET|DELETE|TRUNCATE|UNION|ALL|WITH|AS|USING|HAVING|ASC|DESC|LIMIT|OFFSET|CASE|WHEN|THEN|ELSE|END|INDEX|VIEW|BEGIN|COMMIT|ROLLBACK|TRANSACTION|SAVEPOINT|RELEASE|AND|OR|IN|BETWEEN|LIKE|IS|TO|ANY|SOME|EXPLAIN|ANALYZE|DESCRIBE|SHOW|USE|GRANT|REVOKE|RETURNING|CONFLICT|IGNORE|REPLACE|ABORT|FAIL|RAISE|PRAGMA|ATTACH|DETACH|VACUUM|INTERVAL|DEFAULT)\b/gi;
+	while ((match = keywords.exec(code)) !== null) {
 		parts.push({
 			start: match.index,
 			end: match.index + match[0].length,
 			text: match[0],
-			type: "function",
+			type: "keyword",
 			priority: 6,
 		});
 	}
@@ -159,7 +160,7 @@ export function analyzeSqlCode(code) {
 
 	// 8. Constraints and special keywords (single words)
 	const constraints =
-		/\b(PRIMARY|KEY|FOREIGN|REFERENCES|UNIQUE|NULL|NOT|DEFAULT|CURRENT_TIMESTAMP|CURRENT_DATE|CURRENT_TIME|AUTO_INCREMENT|AUTOINCREMENT|CHECK|EXISTS|UNSIGNED|SIGNED|ZEROFILL|CONSTRAINT|CASCADE|RESTRICT)\b/gi;
+		/\b(PRIMARY|KEY|FOREIGN|REFERENCES|UNIQUE|NULL|NOT|AUTO_INCREMENT|AUTOINCREMENT|CHECK|EXISTS|UNSIGNED|SIGNED|ZEROFILL|CONSTRAINT|CASCADE|RESTRICT)\b/gi;
 	while ((match = constraints.exec(code)) !== null) {
 		parts.push({
 			start: match.index,
@@ -172,7 +173,7 @@ export function analyzeSqlCode(code) {
 
 	// 9. SQL functions and aggregations (unambiguous ones)
 	const functions =
-		/\b(COUNT|SUM|AVG|MAX|MIN|COALESCE|NULLIF|IFNULL|IIF|ROW_NUMBER|RANK|DENSE_RANK|NTILE|LAG|LEAD|FIRST_VALUE|LAST_VALUE|SUBSTRING|SUBSTR|CONCAT|CONCAT_WS|UPPER|LOWER|TRIM|LTRIM|RTRIM|LENGTH|LEN|REPLACE|REVERSE|NOW|CURDATE|CURTIME|STRFTIME|DATE_FORMAT|YEAR|MONTH|DAY|HOUR|MINUTE|SECOND|DATEDIFF|DATEADD|TIMESTAMPDIFF|ABS|CEIL|CEILING|FLOOR|ROUND|MOD|POWER|SQRT|RAND|RANDOM|CAST|CONVERT|GROUP_CONCAT|STRING_AGG|OVER|PARTITION|DATE_ADD|DATE_SUB)\b/gi;
+		/\b(COUNT|SUM|AVG|MAX|MIN|COALESCE|NULLIF|IFNULL|IIF|ROW_NUMBER|RANK|DENSE_RANK|NTILE|LAG|LEAD|FIRST_VALUE|LAST_VALUE|SUBSTRING|SUBSTR|CONCAT|CONCAT_WS|UPPER|LOWER|TRIM|LTRIM|RTRIM|LENGTH|LEN|REVERSE|NOW|CURDATE|CURTIME|STRFTIME|DATE_FORMAT|YEAR|MONTH|DAY|HOUR|MINUTE|SECOND|DATEDIFF|DATEADD|TIMESTAMPDIFF|ABS|CEIL|CEILING|FLOOR|ROUND|MOD|POWER|SQRT|RAND|RANDOM|CAST|CONVERT|GROUP_CONCAT|STRING_AGG|OVER|PARTITION|DATE_ADD|DATE_SUB|CURRENT_TIMESTAMP|CURRENT_DATE|CURRENT_TIME)\b/gi;
 	while ((match = functions.exec(code)) !== null) {
 		parts.push({
 			start: match.index,
