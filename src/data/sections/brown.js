@@ -23,15 +23,14 @@ const header = {
 
 const accordions = [
 	{
-		title: "Schéma Récapitulatif des Types de Jointures",
-		content:
-			"Vue d'ensemble visuelle des différents types de jointures SQL et leurs résultats, représentés sous forme de diagrammes de Venn.",
+		title: "Types de jointures",
+		content: "Schéma récapitulatif des principaux types de jointures SQL",
 		externalComponent: <JoinsDiagram />,
 	},
 	{
-		title:
-			"Clés Primaires et Étrangères - Conditions Nécessaires aux Jointures",
-		content: "Comprenez les relations qui permettent de lier vos tables.",
+		title: "Clés primaires / étrangères - Conditions Nécessaires aux Jointures",
+		content:
+			"Les clés primaires et étrangères sont la condition nécessaire pour effectuer des jointures entre plusieurs tables",
 		sqlCode: `-- Structure avec clés primaires et étrangères
 CREATE TABLE utilisateurs (
     id INTEGER PRIMARY KEY,    -- Clé primaire
@@ -57,9 +56,9 @@ CREATE TABLE details_commande (
 );`,
 	},
 	{
-		title: "JOIN (INNER JOIN) - Jointure Interne",
+		title: "JOIN",
 		content:
-			"Retourne uniquement les lignes qui ont une correspondance dans les deux tables. C'est la jointure par défaut si on écrit simplement JOIN.",
+			"JOIN qui peut également s'écrire INNER JOIN, retourne uniquement les lignes qui ont une correspondance commune dans les deux tables. C'est la jointure par défaut si on écrit simplement JOIN.",
 		sqlQueries: [
 			{
 				title: "Syntaxe générale",
@@ -125,9 +124,9 @@ JOIN produits p ON c.produit_id = p.id;`,
 		],
 	},
 	{
-		title: "LEFT JOIN (LEFT OUTER JOIN) - Jointure Externe Gauche",
+		title: "LEFT JOIN",
 		content:
-			"Retourne toutes les lignes de la table de gauche (A), avec les correspondances de la table de droite (B) si elles existent. Les colonnes de B seront NULL s'il n'y a pas de correspondance.",
+			"LEFT JOIN qui peut également s'écrire LEFT OUTTER JOIN, retourne toutes les lignes de la table de gauche (A), avec les correspondances de la table de droite (B) si elles existent. Les colonnes de B seront NULL s'il n'y a pas de correspondance.",
 		sqlQueries: [
 			{
 				title: "Syntaxe générale",
@@ -199,9 +198,9 @@ WHERE c.id IS NULL;`,
 		],
 	},
 	{
-		title: "RIGHT JOIN (RIGHT OUTER JOIN) - Jointure Externe Droite",
+		title: "RIGHT JOIN",
 		content:
-			"Retourne toutes les lignes de la table de droite (B), avec les correspondances de la table de gauche (A) si elles existent. En pratique, on préfère souvent réécrire un RIGHT JOIN en LEFT JOIN en inversant l'ordre des tables.",
+			"RIGHT JOIN qui peut également s'écrire RIGHT OUTTER JOIN, retourne toutes les lignes de la table de droite (B), avec les correspondances de la table de gauche (A) si elles existent. En pratique, on préfère souvent réécrire un RIGHT JOIN en LEFT JOIN en inversant l'ordre des tables.",
 		sqlQueries: [
 			{
 				title: "Syntaxe générale",
@@ -281,9 +280,9 @@ WHERE u.id IS NULL;`,
 		],
 	},
 	{
-		title: "FULL JOIN (FULL OUTER JOIN) - Jointure Externe Complète",
+		title: "FULL JOIN",
 		content:
-			"Retourne toutes les lignes des deux tables, avec ou sans correspondance. Les lignes sans correspondance dans l'une ou l'autre table auront NULL pour les colonnes de l'autre table. Note : SQLite ne supporte pas FULL JOIN directement, il faut utiliser UNION.",
+			"FULL JOIN qui peut également s'écire FULL OUTTER JOIN, retourne toutes les lignes des deux tables, avec ou sans correspondance. Les lignes sans correspondance dans l'une ou l'autre table auront NULL pour les colonnes de l'autre table. A noter : SQLite ne supporte pas FULL JOIN directement, il faut utiliser UNION.",
 		sqlQueries: [
 			{
 				title: "Syntaxe générale",
@@ -426,9 +425,9 @@ LIMIT 8;`,
 		],
 	},
 	{
-		title: "SELF JOIN - Auto-jointure",
+		title: "SELF JOIN",
 		content:
-			"Permet de joindre une table avec elle-même. Indispensable pour analyser les structures hiérarchiques (employés/managers, catégories/sous-catégories) ou comparer des lignes de la même table entre elles.",
+			"SELF JOIN permet de joindre une table avec elle-même. Indispensable pour analyser les structures hiérarchiques (employés/managers, catégories/sous-catégories) ou comparer des lignes de la même table entre elles.",
 		sqlQueries: [
 			{
 				title: "Syntaxe générale",

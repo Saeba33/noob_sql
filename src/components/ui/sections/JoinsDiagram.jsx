@@ -139,7 +139,7 @@ export default function JoinsDiagram() {
 			</div>
 
 			{/* Légende */}
-			<div className="flex flex-wrap gap-4 justify-center text-sm text-gray-400 pt-2">
+			<div className="flex flex-wrap gap-4 justify-start text-sm text-gray-400 pt-2">
 				<div className="flex items-center gap-2">
 					<div className="w-4 h-4 rounded-full bg-cyan-600 border-2 border-cyan-800"></div>
 					<span>Zone sélectionnée</span>
@@ -152,20 +152,6 @@ export default function JoinsDiagram() {
 					<span className="font-bold text-white">B</span>
 					<span>= Table de droite (JOIN)</span>
 				</div>
-			</div>
-
-			{/* Note pédagogique */}
-			<div className="p-3 bg-amber-900/30 border border-amber-700 rounded-lg">
-				<p className="text-amber-200 text-sm">
-					<strong>💡 Note :</strong> Les variantes <strong>EXCLUSIVE</strong>{" "}
-					(données sans correspondance uniquement) s&apos;obtiennent en ajoutant{" "}
-					<code className="bg-slate-700 px-1 rounded">WHERE ... IS NULL</code>.
-					Le <code className="bg-slate-700 px-1 rounded">CROSS JOIN</code>{" "}
-					(produit cartésien) et le{" "}
-					<code className="bg-slate-700 px-1 rounded">SELF JOIN</code>{" "}
-					(auto-jointure) sont des cas particuliers détaillés dans les sections
-					suivantes.
-				</p>
 			</div>
 		</div>
 	);
