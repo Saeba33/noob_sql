@@ -120,7 +120,7 @@ export function analyzeSqlCode(code) {
 
 	// 5. Main SQL keywords (single words - commands and clauses)
 	const keywords =
-		/\b(CREATE|TABLE|DATABASE|SCHEMA|TRIGGER|PROCEDURE|FUNCTION|ALTER|DROP|RENAME|ADD|MODIFY|CHANGE|COLUMN|SELECT|DISTINCT|FROM|WHERE|JOIN|INNER|LEFT|RIGHT|FULL|OUTER|CROSS|SELF|ON|INSERT|INTO|VALUES|UPDATE|SET|DELETE|TRUNCATE|UNION|ALL|WITH|AS|USING|HAVING|ASC|DESC|LIMIT|OFFSET|CASE|WHEN|THEN|ELSE|END|INDEX|VIEW|BEGIN|COMMIT|ROLLBACK|TRANSACTION|SAVEPOINT|RELEASE|AND|OR|IN|BETWEEN|LIKE|IS|TO|ANY|SOME|EXPLAIN|ANALYZE|DESCRIBE|SHOW|USE|GRANT|REVOKE|RETURNING|CONFLICT|IGNORE|REPLACE|ABORT|FAIL|RAISE|PRAGMA|ATTACH|DETACH|VACUUM)\b/gi;
+		/\b(CREATE|TABLE|DATABASE|SCHEMA|TRIGGER|PROCEDURE|FUNCTION|ALTER|DROP|RENAME|ADD|MODIFY|CHANGE|COLUMN|SELECT|DISTINCT|FROM|WHERE|JOIN|INNER|LEFT|RIGHT|FULL|OUTER|CROSS|SELF|ON|INSERT|INTO|VALUES|UPDATE|SET|DELETE|TRUNCATE|UNION|ALL|WITH|AS|USING|HAVING|ASC|DESC|LIMIT|OFFSET|CASE|WHEN|THEN|ELSE|END|INDEX|VIEW|BEGIN|COMMIT|ROLLBACK|TRANSACTION|SAVEPOINT|RELEASE|AND|OR|IN|BETWEEN|LIKE|IS|TO|ANY|SOME|EXPLAIN|ANALYZE|DESCRIBE|SHOW|USE|GRANT|REVOKE|RETURNING|CONFLICT|IGNORE|REPLACE|ABORT|FAIL|RAISE|PRAGMA|ATTACH|DETACH|VACUUM|INTERVAL)\b/gi;
 	while ((match = keywords.exec(code)) !== null) {
 		parts.push({
 			start: match.index,
@@ -131,7 +131,20 @@ export function analyzeSqlCode(code) {
 		});
 	}
 
-	// 6. SQL data types
+	// 6. Ambiguous words that are functions when followed by parentheses (DATE, TIME)
+	// These must be detected BEFORE datatypes to take priority
+	const ambiguousFunctions = /\b(DATE|TIME)(?=\s*\()/gi;
+	while ((match = ambiguousFunctions.exec(code)) !== null) {
+		parts.push({
+			start: match.index,
+			end: match.index + match[0].length,
+			text: match[0],
+			type: "function",
+			priority: 6,
+		});
+	}
+
+	// 7. SQL data types
 	const datatypes =
 		/\b(INTEGER|INT|SMALLINT|VARCHAR|DECIMAL|NUMERIC|TIMESTAMP|DATE|TEXT|CHAR|BOOLEAN|BOOL|TINYINT|BIGINT|FLOAT|DOUBLE|REAL|TIME|DATETIME|BLOB|JSON|SERIAL)\b/gi;
 	while ((match = datatypes.exec(code)) !== null) {
@@ -140,11 +153,11 @@ export function analyzeSqlCode(code) {
 			end: match.index + match[0].length,
 			text: match[0],
 			type: "datatype",
-			priority: 6,
+			priority: 7,
 		});
 	}
 
-	// 7. Constraints and special keywords (single words)
+	// 8. Constraints and special keywords (single words)
 	const constraints =
 		/\b(PRIMARY|KEY|FOREIGN|REFERENCES|UNIQUE|NULL|NOT|DEFAULT|CURRENT_TIMESTAMP|CURRENT_DATE|CURRENT_TIME|AUTO_INCREMENT|AUTOINCREMENT|CHECK|EXISTS|UNSIGNED|SIGNED|ZEROFILL|CONSTRAINT|CASCADE|RESTRICT)\b/gi;
 	while ((match = constraints.exec(code)) !== null) {
@@ -153,24 +166,24 @@ export function analyzeSqlCode(code) {
 			end: match.index + match[0].length,
 			text: match[0],
 			type: "constraint",
-			priority: 7,
+			priority: 8,
 		});
 	}
 
-	// 8. SQL functions and aggregations
+	// 9. SQL functions and aggregations (unambiguous ones)
 	const functions =
-		/\b(COUNT|SUM|AVG|MAX|MIN|COALESCE|NULLIF|IFNULL|IIF|ROW_NUMBER|RANK|DENSE_RANK|NTILE|LAG|LEAD|FIRST_VALUE|LAST_VALUE|SUBSTRING|SUBSTR|CONCAT|CONCAT_WS|UPPER|LOWER|TRIM|LTRIM|RTRIM|LENGTH|LEN|REPLACE|REVERSE|NOW|CURDATE|CURTIME|STRFTIME|DATE_FORMAT|YEAR|MONTH|DAY|HOUR|MINUTE|SECOND|DATEDIFF|DATEADD|TIMESTAMPDIFF|ABS|CEIL|CEILING|FLOOR|ROUND|MOD|POWER|SQRT|RAND|RANDOM|CAST|CONVERT|GROUP_CONCAT|STRING_AGG|OVER|PARTITION)\b/gi;
+		/\b(COUNT|SUM|AVG|MAX|MIN|COALESCE|NULLIF|IFNULL|IIF|ROW_NUMBER|RANK|DENSE_RANK|NTILE|LAG|LEAD|FIRST_VALUE|LAST_VALUE|SUBSTRING|SUBSTR|CONCAT|CONCAT_WS|UPPER|LOWER|TRIM|LTRIM|RTRIM|LENGTH|LEN|REPLACE|REVERSE|NOW|CURDATE|CURTIME|STRFTIME|DATE_FORMAT|YEAR|MONTH|DAY|HOUR|MINUTE|SECOND|DATEDIFF|DATEADD|TIMESTAMPDIFF|ABS|CEIL|CEILING|FLOOR|ROUND|MOD|POWER|SQRT|RAND|RANDOM|CAST|CONVERT|GROUP_CONCAT|STRING_AGG|OVER|PARTITION|DATE_ADD|DATE_SUB)\b/gi;
 	while ((match = functions.exec(code)) !== null) {
 		parts.push({
 			start: match.index,
 			end: match.index + match[0].length,
 			text: match[0],
 			type: "function",
-			priority: 8,
+			priority: 9,
 		});
 	}
 
-	// 9. Numbers (including in parentheses like VARCHAR(255))
+	// 10. Numbers (including in parentheses like VARCHAR(255))
 	const numbers = /\b(\d+(?:\.\d+)?)\b/g;
 	while ((match = numbers.exec(code)) !== null) {
 		parts.push({
@@ -178,11 +191,11 @@ export function analyzeSqlCode(code) {
 			end: match.index + match[0].length,
 			text: match[0],
 			type: "number",
-			priority: 9,
+			priority: 10,
 		});
 	}
 
-	// 10. Recognized table names (after SQL keywords that precede table names)
+	// 11. Recognized table names (after SQL keywords that precede table names)
 	const tablePattern =
 		/(?:CREATE\s+TABLE\s+|ALTER\s+TABLE\s+|DROP\s+TABLE\s+|TRUNCATE\s+TABLE\s+|INSERT\s+INTO\s+|UPDATE\s+|DELETE\s+FROM\s+|FROM\s+|JOIN\s+|INNER\s+JOIN\s+|LEFT\s+JOIN\s+|RIGHT\s+JOIN\s+|FULL\s+JOIN\s+|CROSS\s+JOIN\s+|REFERENCES\s+)(\w+)/gi;
 	while ((match = tablePattern.exec(code)) !== null) {
@@ -193,11 +206,11 @@ export function analyzeSqlCode(code) {
 			end: tableStart + tableName.length,
 			text: tableName,
 			type: "tableName",
-			priority: 10,
+			priority: 11,
 		});
 	}
 
-	// 11. Operators
+	// 12. Operators
 	// - Comparison: =, !=, <>, <, >, <=, >=
 	// - Arithmetic: +, -, /, %
 	// - Multiplication: * except after SELECT, comma, or aggregate functions (COUNT, SUM, etc.)
@@ -210,11 +223,11 @@ export function analyzeSqlCode(code) {
 			end: match.index + match[0].length,
 			text: match[0],
 			type: "operator",
-			priority: 11,
+			priority: 12,
 		});
 	}
 
-	// 12. Punctuation
+	// 13. Punctuation
 	const punctuation = /([(),.;])/g;
 	while ((match = punctuation.exec(code)) !== null) {
 		parts.push({
@@ -222,7 +235,7 @@ export function analyzeSqlCode(code) {
 			end: match.index + match[0].length,
 			text: match[0],
 			type: "punctuation",
-			priority: 12,
+			priority: 13,
 		});
 	}
 

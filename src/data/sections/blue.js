@@ -20,7 +20,7 @@ const accordions = [
 	{
 		title: "Fonctions d'agrégation",
 		content:
-			"Les fonctions d'agrégation calculent une valeur unique à partir d'un ensemble de lignes. Elles sont souvent utilisées avec GROUP BY (vu à la ceinture verte) pour obtenir des statistiques par groupe.\n\nSans GROUP BY, elles retournent un seul résultat pour toute la table.",
+			"Les fonctions d'agrégation calculent une valeur unique à partir d'un ensemble de lignes. Elles sont souvent utilisées avec GROUP BY (vu précedemment) pour obtenir des statistiques par groupe.\n\nSans GROUP BY, elles retournent un seul résultat pour toute la table.",
 		sqlQueries: [
 			{
 				title: "COUNT - Compter les lignes",
@@ -69,7 +69,7 @@ FROM produits;`,
 			},
 			{
 				title: "Combinaison de fonctions",
-				sqlCode: `-- Statistiques complètes sur les utilisateurs
+				sqlCode: `-- Statistiques multiples sur les utilisateurs
 SELECT 
     COUNT(*) AS nombre,
     ROUND(AVG(age), 1) AS age_moyen,
@@ -94,7 +94,7 @@ FROM utilisateurs;`,
 		sqlQueries: [
 			{
 				title: "UPPER et LOWER - Changer la casse",
-				sqlCode: `-- Convertit en majuscules ou minuscules
+				sqlCode: `-- Convertit en majuscules (UPPER) ou minuscules (LOWER)
 SELECT 
     UPPER(prenom) AS prenom_maj,
     LOWER(email) AS email_min 
@@ -109,7 +109,9 @@ LIMIT 3;`,
 			{
 				title: "LENGTH - Longueur d'une chaîne",
 				sqlCode: `-- Compte le nombre de caractères
-SELECT prenom, LENGTH(prenom) AS nb_lettres 
+SELECT 
+	prenom,
+	LENGTH(prenom) AS nb_lettres 
 FROM utilisateurs 
 ORDER BY nb_lettres DESC;`,
 				sqlResult: [
@@ -160,15 +162,15 @@ SELECT TRIM('   texte avec espaces   ') AS resultat;`,
 				title: "REPLACE - Remplacer du texte",
 				sqlCode: `-- Remplace une partie du texte par une autre
 SELECT 
-    email,
+    email AS email_actuel,
     REPLACE(email, '@email.com', '@nouveau.fr') AS nouvel_email 
 FROM utilisateurs 
 WHERE email LIKE '%@email.com'
 LIMIT 3;`,
 				sqlResult: [
-					{ email: "alice@email.com", nouvel_email: "alice@nouveau.fr" },
-					{ email: "claire@email.com", nouvel_email: "claire@nouveau.fr" },
-					{ email: "david@email.com", nouvel_email: "david@nouveau.fr" },
+					{ email_actuel: "alice@email.com", nouvel_email: "alice@nouveau.fr" },
+					{ email_actuel: "claire@email.com", nouvel_email: "claire@nouveau.fr" },
+					{ email_actuel: "david@email.com", nouvel_email: "david@nouveau.fr" },
 				],
 			},
 		],
@@ -189,14 +191,14 @@ FROM produits
 WHERE prix > 200
 LIMIT 3;`,
 				sqlResult: [
-					{ nom: "Ordinateur Portable", prix: 899, prix_ttc: 1078.8 },
-					{ nom: "Smartphone Pro", prix: 1299, prix_ttc: 1558.8 },
-					{ nom: "Tablette", prix: 299, prix_ttc: 358.8 },
+					{ nom: "Ordinateur Portable", prix: 899, prix_ttc: 1078.80 },
+					{ nom: "Smartphone Pro", prix: 1299, prix_ttc: 1558.80 },
+					{ nom: "Tablette", prix: 299, prix_ttc: 358.80 },
 				],
 			},
 			{
 				title: "CEIL et FLOOR - Arrondir entier",
-				sqlCode: `-- CEIL arrondit vers le haut, FLOOR vers le bas
+				sqlCode: `-- CEIL arrondit à l'eniter supérieur, FLOOR vers l'entier inférieur'
 SELECT 
     prix,
     prix / 3.0 AS division,
@@ -210,37 +212,12 @@ WHERE prix < 50;`,
 					{ prix: 29, division: 9.67, arrondi_haut: 10, arrondi_bas: 9 },
 				],
 			},
-			{
-				title: "ABS - Valeur absolue",
-				sqlCode: `-- Retourne la valeur positive d'un nombre
-SELECT 
-    ABS(-42) AS valeur_absolue,
-    ABS(42) AS deja_positif;`,
-				sqlResult: [{ valeur_absolue: 42, deja_positif: 42 }],
-			},
-			{
-				title: "MOD - Modulo (reste de division)",
-				sqlCode: `-- Retourne le reste de la division entière
--- Utile pour alterner pairs/impairs
-SELECT 
-    id,
-    nom,
-    MOD(id, 2) AS reste
-FROM produits 
-LIMIT 4;`,
-				sqlResult: [
-					{ id: 1, nom: "Ordinateur Portable", reste: 1 },
-					{ id: 2, nom: "Smartphone Pro", reste: 0 },
-					{ id: 3, nom: "Tablette", reste: 1 },
-					{ id: 4, nom: "Casque Audio", reste: 0 },
-				],
-			},
 		],
 	},
 	{
 		title: "Fonctions de date",
 		content:
-			"Les fonctions de date permettent d'extraire des parties d'une date, calculer des différences, ou obtenir la date actuelle.\n\n⚠️ Note : la syntaxe peut varier selon le SGBD (MySQL, PostgreSQL, SQLite...). Les exemples ci-dessous utilisent une syntaxe courante.",
+			"Les fonctions de date permettent d'extraire des parties d'une date, calculer des différences, ou obtenir la date actuelle.\n\n A noter : la syntaxe peut varier selon le SGBD (MySQL, PostgreSQL, SQLite...). Les exemples ci-dessous utilisent une syntaxe courante.",
 		sqlQueries: [
 			{
 				title: "NOW / CURRENT_DATE - Date actuelle",
@@ -250,8 +227,8 @@ SELECT
     CURRENT_TIMESTAMP AS date_heure;`,
 				sqlResult: [
 					{
-						date_jour: "2024-12-02",
-						date_heure: "2024-12-02 14:30:00",
+						date_jour: "2025-12-02",
+						date_heure: "2025-12-02 19:30:00",
 					},
 				],
 			},
