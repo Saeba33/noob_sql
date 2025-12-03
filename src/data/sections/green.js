@@ -175,7 +175,7 @@ const accordions = [
 	{
 		title: "WHERE - Clause fondamentale",
 		content:
-			"WHERE est la clause qui permet de filtrer les lignes d'une requête. Elle s'écrit après FROM et avant ORDER BY. Grâce à WHERE, on peut récupérer uniquement les lignes qui correspondent à une ou plusieurs conditions. Sans cette clause, toutes les lignes de la table seraient retournées.\n\nLes valeurs de type texte et les dates doivent être écrites entre guillemets simples (par exemple : 'Paris' ou '2024-01-15'). Les nombres, eux, s'écrivent sans guillemets (par exemple : 42).\n\nAttention, si une valeur texte contient une apostrophe, il faut la doubler pour que SQL ne la confonde pas avec la fin de la chaîne de caractères. Par exemple, pour rechercher le nom O'Connor, on écrit : 'O''Connor'.",
+			"WHERE est la clause qui permet de filtrer les lignes d'une requête. Elle s'écrit après FROM et avant ORDER BY. \nGrâce à WHERE, on peut récupérer uniquement les lignes qui correspondent à une ou plusieurs conditions. Sans cette clause, toutes les lignes de la table seraient retournées.\n\nLes valeurs de type texte et les dates doivent être écrites entre guillemets simples (par exemple : 'Paris' ou '2024-01-15'). Les nombres, eux, s'écrivent sans guillemets (par exemple : 42).\n\nAttention, si une valeur texte contient une apostrophe, il faut la doubler pour que SQL ne la confonde pas avec la fin de la chaîne de caractères. Par exemple, pour rechercher le nom O'Connor, on écrit : 'O''Connor'.",
 		sqlCode: `-- Structure d'une requête avec WHERE
 SELECT nom_des_colonnes          -- Quelles colonnes afficher
 FROM nom_de_la_table             -- Dans quelle table chercher
@@ -333,7 +333,7 @@ WHERE categorie = 'electronique' OR prix < 100;`,
 	{
 		title: "Mots-clés de filtrage",
 		content:
-			"Les mots-clés de filtrage offrent des moyens expressifs pour définir des conditions : IN pour une liste de valeurs, BETWEEN pour un intervalle, LIKE pour des motifs de texte, IS NULL pour les valeurs manquantes. Chacun peut être inversé avec NOT. \n\nAttention, IS NULL et IS NOT NULL (mots-clés de filtrage) sont différents de NULL et NOT NULL (contraintes utilisées lors de la création de tables).",
+			"Les mots-clés de filtrage offrent des moyens expressifs pour définir des conditions : IN pour une liste de valeurs (évitant ainsi de nombreux 'AND'), BETWEEN pour un intervalle, LIKE pour des motifs de texte, IS NULL pour les valeurs manquantes. Chacun peut être inversé avec NOT. \n\nAttention, IS NULL et IS NOT NULL (mots-clés de filtrage) sont différents de NULL et NOT NULL (contraintes utilisées lors de la création de tables).",
 		sqlQueries: [
 			{
 				title: "IN - Liste de valeurs",
@@ -528,7 +528,7 @@ ORDER BY ville ASC, age DESC;`,
 	{
 		title: "Regroupement (GROUP BY, HAVING)",
 		content:
-			"GROUP BY regroupe les lignes ayant les mêmes valeurs dans une ou plusieurs colonnes, permettant d'appliquer des fonctions d'agrégation (COUNT, SUM, AVG...) sur chaque groupe. HAVING filtre ensuite ces groupes, comme WHERE filtre les lignes.\n\n⚠️ Différence clé : WHERE filtre AVANT le regroupement, HAVING filtre APRÈS.",
+			"GROUP BY regroupe les lignes ayant les mêmes valeurs dans une ou plusieurs colonnes, permettant d'appliquer des fonctions d'agrégation sur chaque groupe. HAVING filtre ensuite ces groupes, comme WHERE filtre les lignes.\n\nDifférence clé : WHERE filtre AVANT le regroupement, HAVING filtre APRÈS.",
 		sqlQueries: [
 			{
 				title: "GROUP BY - Compter par ville",
@@ -620,7 +620,7 @@ LIMIT 3 OFFSET 2;`,
 	{
 		title: "Exemples combinés",
 		content:
-			"Les vraies requêtes SQL combinent souvent plusieurs concepts. Voici des exemples qui utilisent simultanément filtres, tri et pagination.",
+			"Les requêtes SQL combinent souvent plusieurs concepts. Voici des exemples qui utilisent simultanément filtres, tri et pagination.",
 		sqlQueries: [
 			{
 				title: "Filtres multiples + Tri",
