@@ -28,7 +28,7 @@ const accordions = [
 		externalComponent: <JoinsDiagram />,
 	},
 	{
-		title: "Clés primaires / étrangères - Conditions Nécessaires aux Jointures",
+		title: "Rappel : clés primaires / étrangères",
 		content:
 			"Les clés primaires et étrangères sont la condition nécessaire pour effectuer des jointures entre plusieurs tables",
 		sqlCode: `-- Structure avec clés primaires et étrangères
