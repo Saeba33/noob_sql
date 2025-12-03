@@ -6,7 +6,7 @@ const JoinCard = ({ title, vennConfig }) => {
 	const strokeColor = "#155e75"; // cyan-800
 
 	return (
-		<div className="flex flex-col items-center p-4 bg-slate-800/50 rounded-lg border border-slate-700 hover:border-cyan-700 transition-colors">
+		<div className="flex flex-col items-center p-4 bg-gray-200 rounded-lg border border-slate-700 hover:border-cyan-700 transition-colors">
 			{/* Diagramme de Venn en SVG - Grande taille */}
 			<svg width="180" height="130" viewBox="0 0 100 70">
 				{/* Définition du masque pour l'intersection */}
@@ -75,7 +75,7 @@ const JoinCard = ({ title, vennConfig }) => {
 					r="26"
 					fill="none"
 					stroke={strokeColor}
-					strokeWidth="3"
+					strokeWidth="1"
 				/>
 
 				{/* Bordure cercle B - toujours visible au-dessus */}
@@ -85,20 +85,20 @@ const JoinCard = ({ title, vennConfig }) => {
 					r="26"
 					fill="none"
 					stroke={strokeColor}
-					strokeWidth="3"
+					strokeWidth="1"
 				/>
 
 				{/* Labels A et B */}
-				<text x="18" y="40" fill="white" fontSize="14" fontWeight="bold">
+				<text x="18" y="40" fill="black" fontSize="14" fontWeight="bold">
 					A
 				</text>
-				<text x="74" y="40" fill="white" fontSize="14" fontWeight="bold">
+				<text x="74" y="40" fill="black" fontSize="14" fontWeight="bold">
 					B
 				</text>
 			</svg>
 
 			{/* Titre du type de jointure */}
-			<h4 className="text-base font-semibold text-white mt-3 text-center">
+			<h4 className="text-base font-semibold text-black mt-3 text-center">
 				{title}
 			</h4>
 		</div>
