@@ -1,4 +1,4 @@
 - vérifier la coloration syntaxique de mes sql queries.
 - vérifier les menus en table de matières
+- améliorer espacements
 - vérifier le responsive complet
-- ajouter commence par, finit par, contient dans les filtres et conditions. PArler également du symbole "_".

@@ -40,16 +40,15 @@ CREATE TABLE utilisateurs (
 
 CREATE TABLE commandes (
     id INTEGER PRIMARY KEY,    -- Clé primaire
-    utilisateur_id INTEGER,   -- Clé étrangère
-    produit VARCHAR(200),
-    prix DECIMAL(10,2),
+    utilisateur_id INTEGER,    -- Clé étrangère
+    prix_total DECIMAL(10,2),
     FOREIGN KEY (utilisateur_id) REFERENCES utilisateurs(id)
 );
 
 CREATE TABLE details_commande (
     id INTEGER PRIMARY KEY,
-    commande_id INTEGER,      -- Clé étrangère vers commandes
-    produit_id INTEGER,       -- Clé étrangère vers produits
+    commande_id INTEGER,       -- Clé étrangère vers commandes
+    produit_id INTEGER,        -- Clé étrangère vers produits
     quantite INTEGER,
     FOREIGN KEY (commande_id) REFERENCES commandes(id),
     FOREIGN KEY (produit_id) REFERENCES produits(id)
@@ -62,13 +61,20 @@ CREATE TABLE details_commande (
 		sqlQueries: [
 			{
 				title: "Syntaxe générale",
-				sqlCode: `-- INNER JOIN : sélectionne uniquement les lignes avec correspondance
--- dans les deux tables (intersection)
-SELECT colonnes
-FROM TableA A
-INNER JOIN TableB B ON A.cle = B.cle;
+				sqlCode: `-- JOIN : sélectionne uniquement les lignes avec correspondance dans les deux tables (intersection)
 
--- JOIN est équivalent à INNER JOIN
+-- JOIN sans alias
+SELECT colonnes
+FROM TableA
+JOIN TableB ON TableA.cle = TableB.cle;
+
+-- JOIN avec alias (et mot-clé AS)
+SELECT colonnes
+FROM TableA AS A
+JOIN TableB AS B ON A.cle = B.cle;,
+
+-- JOIN avec alias (sans mot-clé AS) 
+-- Le mot-clé AS est optionnel pour les alias de table, vous pouvez donc utiliser le raccourci syntaxique suivant :
 SELECT colonnes
 FROM TableA A
 JOIN TableB B ON A.cle = B.cle;`,
