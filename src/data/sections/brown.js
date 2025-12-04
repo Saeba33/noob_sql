@@ -71,7 +71,7 @@ JOIN TableB ON TableA.cle = TableB.cle;
 -- JOIN avec alias (et mot-clé AS)
 SELECT colonnes
 FROM TableA AS A
-JOIN TableB AS B ON A.cle = B.cle;,
+JOIN TableB AS B ON A.cle = B.cle;
 
 -- JOIN avec alias (sans mot-clé AS) 
 -- Le mot-clé AS est optionnel pour les alias de table, vous pouvez donc utiliser le raccourci syntaxique suivant :
@@ -132,7 +132,7 @@ JOIN produits p ON c.produit_id = p.id;`,
 	{
 		title: "LEFT JOIN",
 		content:
-			"LEFT JOIN, qui peut également s'écrire LEFT OUTER JOIN, retourne toutes les lignes de la table de gauche (A), avec les correspondances de la table de droite (B) si elles existent. Les colonnes de B seront NULL s'il n'y a pas de correspondance.",
+			"LEFT JOIN, qui peut également s'écrire LEFT OUTER JOIN, retourne toutes les lignes de la première table (celle après FROM), avec les correspondances de la seconde table si elles existent. Les colonnes de la seconde table seront NULL s'il n'y a pas de correspondance.",
 		sqlQueries: [
 			{
 				title: "Syntaxe générale",
@@ -191,7 +191,7 @@ LEFT JOIN commandes c ON u.id = c.utilisateur_id;`,
 			},
 			{
 				title: "LEFT EXCLUSIVE : Utilisateurs SANS commande",
-				sqlCode: `-- Ajouter WHERE B.cle IS NULL pour exclure les correspondances
+				sqlCode: `-- Ajouter WHERE ... IS NULL pour ne garder que les lignes sans correspondance
 SELECT 
     u.nom,
     u.email,
@@ -206,7 +206,7 @@ WHERE c.id IS NULL;`,
 	{
 		title: "RIGHT JOIN",
 		content:
-			"RIGHT JOIN, qui peut également s'écrire RIGHT OUTER JOIN, retourne toutes les lignes de la table de droite (B), avec les correspondances de la table de gauche (A) si elles existent. En pratique, on préfère souvent réécrire un RIGHT JOIN en LEFT JOIN en inversant l'ordre des tables.",
+			"RIGHT JOIN, qui peut également s'écrire RIGHT OUTER JOIN, retourne toutes les lignes de la seconde table (celle après JOIN), avec les correspondances de la première table si elles existent. En pratique, on préfère souvent réécrire un RIGHT JOIN en LEFT JOIN en inversant l'ordre des tables.",
 		sqlQueries: [
 			{
 				title: "Syntaxe générale",
@@ -370,7 +370,7 @@ WHERE u.id IS NULL OR c.id IS NULL;`,
 	{
 		title: "CROSS JOIN - Produit Cartésien",
 		content:
-			"Génère toutes les combinaisons possibles entre deux tables. Le nombre de lignes résultat est le produit des deux tables (5 lignes × 4 lignes = 20 combinaisons). Utile pour générer des matrices, des plannings, ou des variantes de produits.",
+			"Génère toutes les combinaisons possibles entre deux tables. Le nombre de lignes résultat est le produit du nombre de lignes des deux tables (N × M résultats). Utile pour générer des matrices, des plannings, ou des variantes de produits.",
 		sqlQueries: [
 			{
 				title: "Syntaxe générale",
@@ -438,10 +438,10 @@ LIMIT 8;`,
 			{
 				title: "Syntaxe générale",
 				sqlCode: `-- SELF JOIN : joindre une table avec elle-même
--- Les alias (A et B) sont OBLIGATOIRES pour distinguer les deux "copies"
+-- Les alias sont OBLIGATOIRES pour distinguer les deux "copies" de la table
 SELECT colonnes
-FROM MaTable A
-JOIN MaTable B ON A.colonne_reference = B.colonne_cible;
+FROM MaTable alias1
+JOIN MaTable alias2 ON alias1.colonne_reference = alias2.colonne_cible;
 
 -- Structure hiérarchique typique :
 -- La colonne manager_id référence id de la même table
