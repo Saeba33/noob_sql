@@ -333,7 +333,7 @@ WHERE categorie = 'electronique' OR prix < 100;`,
 	{
 		title: "Mots-clés de filtrage",
 		content:
-			"Les mots-clés de filtrage offrent des moyens expressifs pour définir des conditions : IN pour une liste de valeurs (évitant ainsi de nombreux 'AND'), BETWEEN pour un intervalle, LIKE pour des motifs de texte, IS NULL pour les valeurs manquantes. Chacun peut être inversé avec NOT. \n\nAttention, IS NULL et IS NOT NULL (mots-clés de filtrage) sont différents de NULL et NOT NULL (contraintes utilisées lors de la création de tables).",
+			"Les mots-clés de filtrage offrent des moyens expressifs pour définir des conditions : IN pour une liste de valeurs (évitant ainsi de nombreux 'OR'), BETWEEN pour un intervalle, LIKE pour des motifs de texte, IS NULL pour les valeurs manquantes. Chacun peut être inversé avec NOT. \n\nIS NULL et IS NOT NULL (mots-clés de filtrage) sont différents de NULL et NOT NULL (contraintes utilisées lors de la création de tables).",
 		sqlQueries: [
 			{
 				title: "IN - Liste de valeurs",
