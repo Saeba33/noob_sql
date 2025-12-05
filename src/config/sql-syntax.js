@@ -287,8 +287,8 @@ export function parseSchema(schemaText) {
 		else if (currentTable && line.match(/^\w+\s+\w+/)) {
 			// Remove trailing comma/semicolon and inline comments (-- ...)
 			const cleanLine = line
-				.replace(/--.*$/, "")      // Remove SQL comments
-				.replace(/[,;]\s*$/, "")   // Remove trailing comma/semicolon
+				.replace(/--.*$/, "") // Remove SQL comments
+				.replace(/[,;]\s*$/, "") // Remove trailing comma/semicolon
 				.trim();
 
 			// Extract column name (first word)

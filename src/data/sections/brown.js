@@ -57,12 +57,11 @@ CREATE TABLE commande_details (
 	},
 	{
 		title: "JOIN",
-		content:
-			"JOIN, qui peut également s'écrire INNER JOIN, retourne uniquement les lignes ayant une correspondance dans les deux tables (intersection). C'est la jointure par défaut.",
+		content: `JOIN, qui peut également s'écrire INNER JOIN, retourne uniquement les lignes ayant une correspondance dans les deux tables (intersection). \n\nPrincipe de syntaxe :\n<code>FROM</code> nom_de_la_table_A\n<code>JOIN</code> nom_de_la_table_B <code>ON</code> nom_de_la_table_A<code>.</code>nom_de_la_cle_primaire <code>=</code> nom_de_la_table_B<code>.</code>nom_de_la_cle_etrangere_qui_relie_la_table_A_a_la_table_B`,
 		sqlQueries: [
 			{
 				title: "Syntaxe générale",
-				sqlCode: `-- JOIN : sélectionne uniquement les lignes avec correspondance dans les deux tables (intersection)
+				sqlCode: `-- On peut l'écrire de 3 façons :
 
 -- JOIN sans alias
 SELECT colonnes
@@ -141,12 +140,12 @@ JOIN produits p ON c.produit_id = p.id;`,
 -- Les lignes de A sans correspondance auront NULL pour les colonnes de B
 SELECT colonnes
 FROM TableA A
-LEFT JOIN TableB B ON A.cle = B.cle;
+LEFT JOIN TableB B ON A.id = B.tableA_id;
 
 -- LEFT OUTER JOIN est équivalent à LEFT JOIN
 SELECT colonnes
 FROM TableA A
-LEFT OUTER JOIN TableB B ON A.cle = B.cle;`,
+LEFT OUTER JOIN TableB B ON A.id = B.tableA_id;`,
 			},
 			{
 				title: "Exemple : Tous les utilisateurs (même sans commande)",
@@ -215,12 +214,12 @@ WHERE c.id IS NULL;`,
 -- Les lignes de B sans correspondance auront NULL pour les colonnes de A
 SELECT colonnes
 FROM TableA A
-RIGHT JOIN TableB B ON A.cle = B.cle;
+RIGHT JOIN TableB B ON A.id = B.tableA_id;
 
--- Équivalent avec LEFT JOIN (plus lisible) :
+-- Équivalent avec LEFT JOIN (en inversant les tables) :
 SELECT colonnes
 FROM TableB B
-LEFT JOIN TableA A ON B.cle = A.cle;`,
+LEFT JOIN TableA A ON A.id = B.tableA_id;`,
 			},
 			{
 				title: "Exemple : Toutes les commandes (même orphelines)",
@@ -297,12 +296,12 @@ WHERE u.id IS NULL;`,
 -- Les lignes sans correspondance auront NULL de l'autre côté
 SELECT colonnes
 FROM TableA A
-FULL OUTER JOIN TableB B ON A.cle = B.cle;
+FULL OUTER JOIN TableB B ON A.id = B.tableA_id;
 
 -- Pour SQLite (pas de FULL JOIN natif), utiliser UNION :
-SELECT colonnes FROM TableA A LEFT JOIN TableB B ON A.cle = B.cle
+SELECT colonnes FROM TableA A LEFT JOIN TableB B ON A.id = B.tableA_id
 UNION
-SELECT colonnes FROM TableA A RIGHT JOIN TableB B ON A.cle = B.cle;`,
+SELECT colonnes FROM TableA A RIGHT JOIN TableB B ON A.id = B.tableA_id;`,
 			},
 			{
 				title: "Exemple : Vue complète utilisateurs/commandes",
@@ -376,6 +375,7 @@ WHERE u.id IS NULL OR c.id IS NULL;`,
 			{
 				title: "Syntaxe générale",
 				sqlCode: `-- CROSS JOIN : chaque ligne de A combinée avec chaque ligne de B
+-- Pas de clause ON : aucune condition de jointure
 -- Attention : N lignes × M lignes = N×M résultats !
 SELECT colonnes
 FROM TableA A
@@ -383,7 +383,7 @@ CROSS JOIN TableB B;
 
 -- Syntaxe alternative (implicite) :
 SELECT colonnes
-FROM TableA A, TableB B;  -- Équivalent mais moins explicite`,
+FROM TableA A, TableB B;`,
 			},
 			{
 				title: "Exemple : Matrice tailles × couleurs",

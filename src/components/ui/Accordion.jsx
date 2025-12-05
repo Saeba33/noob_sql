@@ -103,7 +103,10 @@ export default function Accordion({
 									colors.text || "text-gray-700"
 								}`}
 							>
-								<p className="leading-relaxed whitespace-pre-line">{content}</p>
+								<p
+									className="leading-relaxed whitespace-pre-line content-html"
+									dangerouslySetInnerHTML={{ __html: content }}
+								/>
 							</div>
 						)}
 
