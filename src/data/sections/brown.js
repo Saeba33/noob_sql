@@ -57,7 +57,7 @@ CREATE TABLE commande_details (
 	},
 	{
 		title: "JOIN",
-		content: `JOIN, qui peut également s'écrire INNER JOIN, retourne uniquement les lignes ayant une correspondance dans les deux tables (intersection). \n\nPrincipe de syntaxe :\n<code>FROM</code> nom_de_la_table_A\n<code>JOIN</code> nom_de_la_table_B <code>ON</code> nom_de_la_table_A<code>.</code>nom_de_la_cle_primaire <code>=</code> nom_de_la_table_B<code>.</code>nom_de_la_cle_etrangere_qui_relie_la_table_A_a_la_table_B`,
+		content: `JOIN, qui peut également s'écrire INNER JOIN, retourne uniquement les lignes ayant une correspondance dans les deux tables (intersection). \n\nPrincipe de syntaxe :\n<code>FROM</code> nom_de_la_table_A\n<code>JOIN</code> nom_de_la_table_B <code>ON</code> nom_de_la_table_A<code>.</code>nom_de_la_cle_primaire <code>=</code> nom_de_la_table_B<code>.</code>nom_de_la_cle_etrangere_qui_relie_la_table_B_a_la_table_A`,
 		sqlQueries: [
 			{
 				title: "Syntaxe générale",
