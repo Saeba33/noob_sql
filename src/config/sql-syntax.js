@@ -285,10 +285,20 @@ export function parseSchema(schemaText) {
 		}
 		// Detect a column
 		else if (currentTable && line.match(/^\w+\s+\w+/)) {
-			const parts = line.replace(/[,;]/g, "").split(/\s+/);
-			const columnName = parts[0];
-			const columnType = parts[1];
-			const constraints = parts.slice(2).join(" ");
+			const cleanLine = line.replace(/[,;]\s*$/, "");
+
+			// Extract column name (first word)
+			const columnName = cleanLine.match(/^(\w+)/)[1];
+
+			// Extract type: word + optional parentheses content (handles ENUM('a','b'), DECIMAL(10,2), VARCHAR(255))
+			const typeMatch = cleanLine.match(/^\w+\s+(\w+(?:\s*\([^)]+\))?)/);
+			const columnType = typeMatch ? typeMatch[1] : "";
+
+			// Everything after the type is constraints
+			const afterType = cleanLine
+				.slice(cleanLine.indexOf(columnType) + columnType.length)
+				.trim();
+			const constraints = afterType;
 
 			const column = {
 				name: columnName,

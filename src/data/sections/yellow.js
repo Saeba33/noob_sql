@@ -29,19 +29,18 @@ CREATE TABLE utilisateurs (
 CREATE TABLE commandes (
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
     utilisateur_id INTEGER NOT NULL REFERENCES utilisateurs(id),
-    produit VARCHAR(200) NOT NULL,
-    quantite INTEGER DEFAULT 1,
-    prix DECIMAL(10,2) NOT NULL,
+    prix_total DECIMAL(10,2) NOT NULL,
+    statut ENUM('en_attente', 'expediee', 'livree', 'annulee') DEFAULT 'en_attente',
     date_commande TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Table avec contraintes CHECK pour valider les données
-CREATE TABLE produits (
-    id INTEGER PRIMARY KEY,
-    nom VARCHAR(100) NOT NULL,
-    prix DECIMAL(10,2) CHECK (prix > 0),
-    stock INTEGER DEFAULT 0 CHECK (stock >= 0),
-    sku VARCHAR(50) UNIQUE NOT NULL
+CREATE TABLE commande_details (
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    commande_id INTEGER NOT NULL REFERENCES commandes(id),
+    produit_id INTEGER NOT NULL REFERENCES produits(id),
+    quantite INTEGER DEFAULT 1 CHECK (quantite > 0),
+    prix_unitaire DECIMAL(10,2) NOT NULL
 );`,
 	},
 	{
@@ -130,7 +129,7 @@ DELETE FROM logs;`,
 					{
 						title: "Migrations ALTER TABLE",
 						icon: <MdBuild className="w-5 h-5 text-yellow-600" />,
-						rule: "Privilégier ALTER TABLE plutôt que la séquence DROP/CREATE",
+						rule: "Privilégier ALTER TABLE plutôt que la séquence DROP → CREATE",
 						good: "ALTER TABLE utilisateurs ADD COLUMN telephone VARCHAR(20)",
 						bad: "DROP TABLE puis CREATE TABLE (perte de données)",
 						reason: "Préserve les données existantes lors des modifications",
@@ -147,7 +146,7 @@ DELETE FROM logs;`,
 						title: "DROP TABLE avec précaution",
 						icon: <MdSecurity className="w-5 h-5 text-yellow-600" />,
 						rule: "Utiliser DROP TABLE IF EXISTS pour éviter les erreurs",
-						good: "DROP TABLE IF EXISTS table_temporaire; -- Vérifier avant!",
+						good: "DROP TABLE IF EXISTS table_temporaire;",
 						bad: "DROP TABLE sans vérification ni backup",
 						reason: "Évite les erreurs et la perte accidentelle de données.",
 					},

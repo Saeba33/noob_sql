@@ -26,7 +26,7 @@ export default function DataTypes() {
 				type: cat.type,
 			}))
 		);
-		//#endregion
+	//#endregion
 
 	// #region Types Section
 	const renderTypesSection = (title, rows) => {
