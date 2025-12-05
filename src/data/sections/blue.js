@@ -191,15 +191,15 @@ LIMIT 3;`,
 				sqlCode: `-- ROUND(nombre, decimales) arrondit à N décimales
 SELECT 
     nom,
-    prix,
+    prix AS prix_ht,
     ROUND(prix * 1.20, 2) AS prix_ttc 
 FROM produits 
 WHERE prix > 200
 LIMIT 3;`,
 				sqlResult: [
-					{ nom: "Ordinateur Portable", prix: 899, prix_ttc: 1078.8 },
-					{ nom: "Smartphone Pro", prix: 1299, prix_ttc: 1558.8 },
-					{ nom: "Tablette", prix: 299, prix_ttc: 358.8 },
+					{ nom: "Ordinateur Portable", prix_ht: 899, prix_ttc: 1078.8 },
+					{ nom: "Smartphone Pro", prix_ht: 1299, prix_ttc: 1558.8 },
+					{ nom: "Tablette", prix_ht: 299, prix_ttc: 358.8 },
 				],
 			},
 			{
@@ -370,7 +370,7 @@ FROM utilisateurs;`,
 			},
 			{
 				title: "COALESCE - Cascade de valeurs",
-				sqlCode: `-- COALESCE(col1, col2, col3, valeur_defaut)
+				sqlCode: `-- COALESCE(col1, col2, col3, valeur_si_null)
 -- Teste chaque valeur dans l'ordre et retourne la première non NULL
 SELECT 
     prenom,
