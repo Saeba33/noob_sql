@@ -285,7 +285,11 @@ export function parseSchema(schemaText) {
 		}
 		// Detect a column
 		else if (currentTable && line.match(/^\w+\s+\w+/)) {
-			const cleanLine = line.replace(/[,;]\s*$/, "");
+			// Remove trailing comma/semicolon and inline comments (-- ...)
+			const cleanLine = line
+				.replace(/--.*$/, "")      // Remove SQL comments
+				.replace(/[,;]\s*$/, "")   // Remove trailing comma/semicolon
+				.trim();
 
 			// Extract column name (first word)
 			const columnName = cleanLine.match(/^(\w+)/)[1];

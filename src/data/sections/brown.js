@@ -1,4 +1,4 @@
-import JoinsDiagram from "@/components/ui/sections/JoinsDiagram";
+import JoinsDiagram from "@/components/ui/sections/brown/JoinsDiagram";
 
 const menu = {
 	description: "Relations entre les tables",
@@ -34,24 +34,25 @@ const accordions = [
 		sqlCode: `-- Structure avec clés primaires et étrangères
 CREATE TABLE utilisateurs (
     id INTEGER PRIMARY KEY,    -- Clé primaire
-    nom VARCHAR(100),
-    email VARCHAR(255)
-);
+    nom VARCHAR(100) NOT NULL,
+    email VARCHAR(255) UNIQUE,
+    age INTEGER,
+    date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 
 CREATE TABLE commandes (
-    id INTEGER PRIMARY KEY,    -- Clé primaire
-    utilisateur_id INTEGER,    -- Clé étrangère
-    prix_total DECIMAL(10,2),
-    FOREIGN KEY (utilisateur_id) REFERENCES utilisateurs(id)
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,                          -- Clé primaire
+    utilisateur_id INTEGER NOT NULL REFERENCES utilisateurs(id),    -- Clé étrangère vers la table utilisateurs
+    prix_total DECIMAL(10,2) NOT NULL,
+    statut ENUM('en_attente', 'expediee', 'livree', 'annulee') DEFAULT 'en_attente',
+    date_commande TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE details_commande (
-    id INTEGER PRIMARY KEY,
-    commande_id INTEGER,       -- Clé étrangère vers commandes
-    produit_id INTEGER,        -- Clé étrangère vers produits
-    quantite INTEGER,
-    FOREIGN KEY (commande_id) REFERENCES commandes(id),
-    FOREIGN KEY (produit_id) REFERENCES produits(id)
+CREATE TABLE commande_details (
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,                  -- Clé primaire
+    commande_id INTEGER NOT NULL REFERENCES commandes(id),  -- Clé étrangère vers la tabnle commandes
+    produit_id INTEGER NOT NULL REFERENCES produits(id),    -- Clé étrangère vers la table produits
+    quantite INTEGER DEFAULT 1 CHECK (quantite > 0),
+    prix_unitaire DECIMAL(10,2) NOT NULL
 );`,
 	},
 	{
