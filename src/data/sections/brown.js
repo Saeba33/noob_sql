@@ -30,7 +30,7 @@ const accordions = [
 	{
 		title: "Rappel : clés primaires / étrangères",
 		content:
-			"Les clés primaires et étrangères sont indispensables pour établir des jointures entre tables. Elles définissent les relations qui lient les enregistrements d'une table à ceux d'une autre.",
+			"Les clés primaires et étrangères sont indispensables pour établir des jointures entre tables. Elles définissent les relations qui lient les enregistrements d'une table à ceux d'une autre. Sans elles, il n'est pas possible de faire de jointures entre plusieurs tables.",
 		sqlCode: `-- Structure avec clés primaires et étrangères
 CREATE TABLE utilisateurs (
     id INTEGER PRIMARY KEY,    -- Clé primaire
@@ -49,7 +49,7 @@ CREATE TABLE commandes (
 
 CREATE TABLE commande_details (
     id INTEGER PRIMARY KEY AUTO_INCREMENT,                  -- Clé primaire
-    commande_id INTEGER NOT NULL REFERENCES commandes(id),  -- Clé étrangère vers la tabnle commandes
+    commande_id INTEGER NOT NULL REFERENCES commandes(id),  -- Clé étrangère vers la table commandes
     produit_id INTEGER NOT NULL REFERENCES produits(id),    -- Clé étrangère vers la table produits
     quantite INTEGER DEFAULT 1 CHECK (quantite > 0),
     prix_unitaire DECIMAL(10,2) NOT NULL
@@ -84,7 +84,7 @@ JOIN TableB B ON A.cle = B.cle;`,
 				title: "Exemple : Utilisateurs avec leurs commandes",
 				sqlCode: `SELECT u.nom, c.produit, c.prix
 FROM utilisateurs u
-INNER JOIN commandes c ON u.id = c.utilisateur_id;`,
+JOIN commandes c ON u.id = c.utilisateur_id;`,
 				sqlResult: [
 					{ nom: "Alice Dupont", produit: "Laptop Pro", prix: 1299 },
 					{ nom: "Bob Martin", produit: "Souris Gaming", prix: 89 },
