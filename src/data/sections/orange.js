@@ -33,8 +33,8 @@ const accordions = [
 			"La commande INSERT permet d'ajouter de nouvelles lignes dans une table. Vous pouvez insérer une ou plusieurs lignes à la fois en listant les valeurs entre parenthèses.\nSi une colonne a une valeur par défaut ou accepte NULL, vous pouvez l'omettre de la requête.",
 		sqlQueries: [
 			{
-				sqlCode: `-- Insertion d'un seul utilisateur
-INSERT INTO utilisateurs (prenom, nom, email, age) VALUES 
+				title: "Insertion d'un seul utilisateur",
+				sqlCode: `INSERT INTO utilisateurs (prenom, nom, email, age) VALUES 
 ('Alice', 'Dupont', 'alice@email.com', 28);`,
 				sqlResult: {
 					message: "1 ligne insérée avec succès",
@@ -42,6 +42,7 @@ INSERT INTO utilisateurs (prenom, nom, email, age) VALUES
 				},
 			},
 			{
+				title: "Insertion de plusieurs utilisateurs",
 				sqlCode: `-- Insertion de plusieurs utilisateurs en une seule requête
 INSERT INTO utilisateurs (prenom, nom, email, age) VALUES 
 ('Bob', 'Martin', 'bob@gmail.com', 32),

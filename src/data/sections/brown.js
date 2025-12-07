@@ -33,7 +33,11 @@ const accordions = [
 		title: "Rappel : clés primaires / étrangères",
 		content:
 			"Les clés primaires et étrangères sont indispensables pour établir des jointures entre tables. Elles définissent les relations qui lient les enregistrements d'une table à ceux d'une autre. Sans elles, il n'est pas possible de faire de jointures entre les tables.",
-		sqlCode: `-- Structure avec clés primaires et étrangères
+		examples: [
+			{
+				type: "schema",
+				title: "Structure de la base bibliothèque",
+				code: `-- Structure avec clés primaires et étrangères
 CREATE TABLE utilisateurs (
     id INTEGER PRIMARY KEY,             -- Clé primaire
     prenom VARCHAR(50) NOT NULL,
@@ -61,15 +65,17 @@ CREATE TABLE emprunts (
     date_retour_reel DATE,
     statut ENUM('en_cours', 'rendu', 'en_retard') DEFAULT 'en_cours'
 );`,
+			},
+		],
 	},
 	{
 		title: "INNER JOIN",
 		content: `INNER JOIN, qui peut s'écrire simplement JOIN, retourne uniquement les lignes ayant une correspondance dans les deux tables (intersection). \n\nPrincipe de syntaxe :\n<code>FROM</code> nom_de_la_table_A\n<code>JOIN</code> nom_de_la_table_B <code>ON</code> nom_de_la_table_A <code>.</code> nom_de_la_cle_primaire <code>=</code> nom_de_la_table_B <code>.</code> nom_de_la_cle_etrangere`,
 		externalComponent: <JoinDiagramSingle type="inner" />,
-		sqlQueries: [
+		examples: [
 			{
 				title: "Syntaxe générale",
-				sqlCode: `-- On peut l'écrire de 3 façons :
+				code: `-- On peut l'écrire de 3 façons :
 
 -- JOIN sans alias (on retourne le nom complet de la table dans le ON)
 SELECT colonnes
@@ -89,7 +95,7 @@ JOIN TableB B ON A.cle_primaire = B.cle_etrangere;`,
 			},
 			{
 				title: "Exemple : jointure sur deux tables (utilisateurs et emprunts)",
-				sqlCode: `-- Afficher les utilisateurs avec leurs emprunts
+				code: `-- Afficher les utilisateurs avec leurs emprunts
 SELECT 
     u.prenom,
     u.nom,
@@ -100,7 +106,7 @@ SELECT
 FROM utilisateurs u
 JOIN emprunts e ON u.id = e.utilisateur_id
 WHERE e.statut = 'en_cours';`,
-				sqlResult: [
+				result: [
 					{
 						prenom: "Alice",
 						nom: "Dupont",
@@ -125,12 +131,12 @@ WHERE e.statut = 'en_cours';`,
 						date_retour_prevue: "2024-12-25",
 						statut: "en_cours",
 					},
-				],
-			},
+			],
+		},
 
-			{
-				title: "Exemple : jointure sur trois tables (utilisateurs, livres et emprunts)",
-				sqlCode: `-- Afficher tous les emprunts avec les informations des livres et des utilisateurs
+		{
+			title: "Exemple : jointure sur trois tables (utilisateurs, livres et emprunts)",
+			code: `-- Afficher tous les emprunts avec les informations des livres et des utilisateurs
 SELECT 
     u.prenom,
     u.nom,
@@ -143,7 +149,7 @@ FROM utilisateurs u
 JOIN emprunts e ON u.id = e.utilisateur_id
 JOIN livres l ON e.livre_id = l.id
 ORDER BY e.date_emprunt DESC;`,
-				sqlResult: [
+			result: [
 					{
 						prenom: "Claire",
 						nom: "Durand",

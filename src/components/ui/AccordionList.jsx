@@ -15,6 +15,7 @@ export default function AccordionList({ accordions, colors }) {
 						key={index}
 						title={accordion.title}
 						content={accordion.content}
+						examples={accordion.examples}
 						sqlCode={accordion.sqlCode}
 						sqlQueries={accordion.sqlQueries}
 						sqlResult={accordion.sqlResult}
