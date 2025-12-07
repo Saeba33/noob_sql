@@ -1,7 +1,7 @@
 import { MdCheckCircle, MdInfo, MdTableChart } from "react-icons/md";
 import { formatQueryResult } from "../../../config/sql-syntax.js";
 
-export default function SqlResultBlock({
+export default function SQLResultBlock({
 	data,
 	headers,
 	message,
