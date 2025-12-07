@@ -198,10 +198,10 @@ Principe de syntaxe :
 <code>FROM</code> nom_de_la_table_A
 <code>LEFT JOIN</code> nom_de_la_table_B <code>ON</code> nom_de_la_table_A <code>.</code> nom_de_la_cle_primaire <code>=</code> nom_de_la_table_B <code>.</code> nom_de_la_cle_etrangere`,
 		externalComponent: <JoinDiagramSingle type="left" />,
-		sqlQueries: [
+		examples: [
 			{
 				title: "Syntaxe générale",
-				sqlCode: `-- On peut l'écrire de 2 façons :
+				code: `-- On peut l'écrire de 2 façons :
 
 -- LEFT JOIN avec alias et mot-clé AS (on retourne l'alias de la table dans le ON)
 SELECT colonnes
@@ -221,7 +221,7 @@ LEFT OUTER JOIN TableB B ON A.cle_primaire = B.cle_etrangere;`,
 			},
 			{
 				title: "Exemple : Tous les utilisateurs (même sans emprunt)",
-				sqlCode: `SELECT 
+				code: `SELECT 
     u.prenom,
     u.nom,
     u.email,
@@ -229,7 +229,7 @@ LEFT OUTER JOIN TableB B ON A.cle_primaire = B.cle_etrangere;`,
 FROM utilisateurs u
 LEFT JOIN emprunts e ON u.id = e.utilisateur_id
 GROUP BY u.id, u.prenom, u.nom, u.email;`,
-				sqlResult: [
+				result: [
 					{
 						prenom: "Alice",
 						nom: "Dupont",
@@ -258,7 +258,7 @@ GROUP BY u.id, u.prenom, u.nom, u.email;`,
 			},
 			{
 				title: "LEFT EXCLUSIVE : Utilisateurs sans emprunt",
-				sqlCode: `-- Ajouter WHERE ... IS NULL pour ne garder que les lignes sans correspondance
+				code: `-- Ajouter WHERE ... IS NULL pour ne garder que les lignes sans correspondance
 SELECT 
     u.prenom,
     u.nom,
@@ -267,7 +267,7 @@ SELECT
 FROM utilisateurs u
 LEFT JOIN emprunts e ON u.id = e.utilisateur_id
 WHERE e.id IS NULL;`,
-				sqlResult: [
+				result: [
 					{
 						prenom: "Emma",
 						nom: "Bernard",
@@ -286,10 +286,10 @@ Principe de syntaxe :
 <code>FROM</code> nom_de_la_table_A
 <code>RIGHT JOIN</code> nom_de_la_table_B <code>ON</code> nom_de_la_table_A <code>.</code> nom_de_la_cle_primaire <code>=</code> nom_de_la_table_B <code>.</code> nom_de_la_cle_etrangere`,
 		externalComponent: <JoinDiagramSingle type="right" />,
-		sqlQueries: [
+		examples: [
 			{
 				title: "Syntaxe générale",
-				sqlCode: `-- On peut l'écrire de 2 façons :
+				code: `-- On peut l'écrire de 2 façons :
 
 -- RIGHT JOIN avec alias et mot-clé AS (on retourne l'alias de la table dans le ON)
 SELECT colonnes
@@ -309,7 +309,7 @@ LEFT JOIN TableA A ON A.cle_primaire = B.cle_etrangere;`,
 			},
 			{
 				title: "Exemple : Tous les livres (même jamais empruntés)",
-				sqlCode: `SELECT 
+				code: `SELECT 
     l.titre,
     l.auteur,
     l.genre,
@@ -317,7 +317,7 @@ LEFT JOIN TableA A ON A.cle_primaire = B.cle_etrangere;`,
 FROM emprunts e
 RIGHT JOIN livres l ON e.livre_id = l.id
 GROUP BY l.id, l.titre, l.auteur, l.genre;`,
-				sqlResult: [
+				result: [
 					{
 						titre: "1984",
 						auteur: "George Orwell",
@@ -352,7 +352,7 @@ GROUP BY l.id, l.titre, l.auteur, l.genre;`,
 			},
 			{
 				title: "RIGHT EXCLUSIVE : Livres jamais empruntés",
-				sqlCode: `-- Trouver les livres qui n'ont jamais été empruntés
+				code: `-- Trouver les livres qui n'ont jamais été empruntés
 SELECT 
     l.titre,
     l.auteur,
@@ -361,7 +361,7 @@ SELECT
 FROM emprunts e
 RIGHT JOIN livres l ON e.livre_id = l.id
 WHERE e.id IS NULL;`,
-				sqlResult: [
+				result: [
 					{
 						titre: "Design Patterns",
 						auteur: "Gang of Four",
@@ -382,10 +382,10 @@ Principe de syntaxe :
 <code>FROM</code> nom_de_la_table_A
 <code>FULL JOIN</code> nom_de_la_table_B <code>ON</code> nom_de_la_table_A <code>.</code> nom_de_la_cle_primaire <code>=</code> nom_de_la_table_B <code>.</code> nom_de_la_cle_etrangere`,
 		externalComponent: <JoinDiagramSingle type="full" />,
-		sqlQueries: [
+		examples: [
 			{
 				title: "Syntaxe générale",
-				sqlCode: `-- On peut l'écrire de 2 façons :
+				code: `-- On peut l'écrire de 2 façons :
 
 -- FULL JOIN avec alias et mot-clé AS (on retourne l'alias de la table dans le ON)
 SELECT colonnes
@@ -406,7 +406,7 @@ SELECT colonnes FROM TableA A RIGHT JOIN TableB B ON A.cle_primaire = B.cle_etra
 			},
 			{
 				title: "Exemple : Vue complète utilisateurs/livres",
-				sqlCode: `SELECT 
+				code: `SELECT 
     u.prenom,
     u.nom,
     l.titre,
@@ -415,7 +415,7 @@ SELECT colonnes FROM TableA A RIGHT JOIN TableB B ON A.cle_primaire = B.cle_etra
 FROM utilisateurs u
 LEFT JOIN emprunts e ON u.id = e.utilisateur_id
 FULL OUTER JOIN livres l ON e.livre_id = l.id;`,
-				sqlResult: [
+				result: [
 					{
 						prenom: "Alice",
 						nom: "Dupont",
@@ -462,7 +462,7 @@ FULL OUTER JOIN livres l ON e.livre_id = l.id;`,
 			},
 			{
 				title: "FULL EXCLUSIVE : Données non appariées",
-				sqlCode: `-- Trouver les utilisateurs sans emprunts ET les livres jamais empruntés
+				code: `-- Trouver les utilisateurs sans emprunts ET les livres jamais empruntés
 SELECT 
     u.prenom,
     u.nom,
@@ -475,7 +475,7 @@ FROM utilisateurs u
 LEFT JOIN emprunts e ON u.id = e.utilisateur_id
 FULL OUTER JOIN livres l ON e.livre_id = l.id
 WHERE u.id IS NULL OR l.id IS NULL;`,
-				sqlResult: [
+				result: [
 					{
 						prenom: "Emma",
 						nom: "Bernard",
@@ -501,10 +501,10 @@ Principe de syntaxe :
 <code>CROSS JOIN</code> nom_de_la_table_B
 
 Note : CROSS JOIN n'utilise pas de clause <code>ON</code> car il n'y a aucune condition de jointure.`,
-		sqlQueries: [
+		examples: [
 			{
 				title: "Syntaxe générale",
-				sqlCode: `-- On peut l'écrire de 2 façons :
+				code: `-- On peut l'écrire de 2 façons :
 
 -- CROSS JOIN avec alias et mot-clé AS
 -- Pas de clause ON car aucune condition de jointure
@@ -526,7 +526,7 @@ FROM TableA A, TableB B;`,
 			},
 			{
 				title: "Exemple : Matrice utilisateurs × genres littéraires",
-				sqlCode: `-- Générer des recommandations : tous les utilisateurs × tous les genres
+				code: `-- Générer des recommandations : tous les utilisateurs × tous les genres
 SELECT 
     u.prenom,
     u.nom,
@@ -539,7 +539,7 @@ CROSS JOIN (
 ) g
 ORDER BY u.nom, g.genre
 LIMIT 8;`,
-				sqlResult: [
+				result: [
 					{ prenom: "Emma", nom: "Bernard", genre: "Conte" },
 					{ prenom: "Emma", nom: "Bernard", genre: "Fantasy" },
 					{ prenom: "Emma", nom: "Bernard", genre: "Informatique" },
@@ -552,7 +552,7 @@ LIMIT 8;`,
 			},
 			{
 				title: "Cas pratique : Planning de réservations",
-				sqlCode: `-- Créer un planning : tous les livres × toutes les dates disponibles
+				code: `-- Créer un planning : tous les livres × toutes les dates disponibles
 SELECT 
     l.titre,
     d.date_disponible
@@ -565,7 +565,7 @@ CROSS JOIN (
 ) d
 WHERE l.genre = 'Informatique'
 ORDER BY l.titre, d.date_disponible;`,
-				sqlResult: [
+				result: [
 					{ titre: "Clean Code", date_disponible: "2024-12-01" },
 					{ titre: "Clean Code", date_disponible: "2024-12-08" },
 					{ titre: "Clean Code", date_disponible: "2024-12-15" },
@@ -583,10 +583,10 @@ ORDER BY l.titre, d.date_disponible;`,
 Principe de syntaxe :
 <code>FROM</code> nom_de_la_table alias1
 <code>JOIN</code> nom_de_la_table alias2 <code>ON</code> alias1 <code>.</code> nom_colonne <code>=</code> alias2 <code>.</code> nom_colonne`,
-		sqlQueries: [
+		examples: [
 			{
 				title: "Syntaxe générale",
-				sqlCode: `-- On peut l'écrire de 2 façons :
+				code: `-- On peut l'écrire de 2 façons :
 
 -- SELF JOIN avec alias et mot-clé AS (les alias sont OBLIGATOIRES)
 SELECT colonnes
@@ -608,7 +608,7 @@ CREATE TABLE categories (
 			},
 			{
 				title: "Livres du même auteur",
-				sqlCode: `-- Trouver les livres écrits par le même auteur
+				code: `-- Trouver les livres écrits par le même auteur
 SELECT 
     l1.titre AS livre1,
     l2.titre AS livre2,
@@ -619,7 +619,7 @@ FROM livres l1
 JOIN livres l2 ON l1.auteur = l2.auteur
     AND l1.id < l2.id  -- Évite les doublons
 ORDER BY l1.auteur;`,
-				sqlResult: [
+				result: [
 					{
 						livre1: "Clean Code",
 						livre2: "The Clean Coder",
@@ -633,7 +633,7 @@ ORDER BY l1.auteur;`,
 	},
 ];
 
-export const brownBeltContent = {
+export const beltContent = {
 	...menu,
 	header,
 	accordions,

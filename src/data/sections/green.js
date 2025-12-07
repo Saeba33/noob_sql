@@ -25,11 +25,11 @@ const accordions = [
 		title: "Données de référence",
 		content:
 			"Voici les tables utilisées dans les exemples de cette section. Consultez-les pour mieux comprendre les résultats des requêtes.",
-		sqlQueries: [
+		examples: [
 			{
 				title: "Table utilisateurs",
-				sqlCode: `SELECT * FROM utilisateurs;`,
-				sqlResult: [
+				code: `SELECT * FROM utilisateurs;`,
+				result: [
 					{
 						id: 1,
 						prenom: "Alice",
@@ -88,8 +88,8 @@ const accordions = [
 			},
 			{
 				title: "Table produits",
-				sqlCode: `SELECT * FROM produits;`,
-				sqlResult: [
+				code: `SELECT * FROM produits;`,
+				result: [
 					{
 						id: 1,
 						nom: "Ordinateur Portable",
@@ -138,8 +138,8 @@ const accordions = [
 			},
 			{
 				title: "Table commandes",
-				sqlCode: `SELECT * FROM commandes;`,
-				sqlResult: [
+				code: `SELECT * FROM commandes;`,
+				result: [
 					{
 						id: 1,
 						numero_commande: "CMD001",
@@ -176,7 +176,7 @@ const accordions = [
 		title: "WHERE - Clause fondamentale",
 		content:
 			"WHERE est la clause qui permet de filtrer les lignes d'une requête. Elle s'écrit après FROM et avant ORDER BY. \nGrâce à WHERE, on peut récupérer uniquement les lignes qui correspondent à une ou plusieurs conditions. Sans cette clause, toutes les lignes de la table seraient retournées.\n\nLes valeurs de type texte et les dates doivent être écrites entre guillemets simples (par exemple : 'Paris' ou '2024-01-15'). Les nombres, eux, s'écrivent sans guillemets (par exemple : 42).\n\nAttention, si une valeur texte contient une apostrophe, il faut la doubler pour que SQL ne la confonde pas avec la fin de la chaîne de caractères. Par exemple, pour rechercher le nom O'Connor, on écrit : 'O''Connor'.",
-		sqlCode: `-- Structure d'une requête avec WHERE
+		code: `-- Structure d'une requête avec WHERE
 SELECT nom_des_colonnes          -- Quelles colonnes afficher
 FROM nom_de_la_table             -- Dans quelle table chercher
 WHERE condition;                 -- Quelles lignes garder
@@ -194,25 +194,25 @@ FROM utilisateurs;`,
 		title: "Opérateurs de comparaison",
 		content:
 			"Les opérateurs de comparaison permettent de filtrer les résultats de la requête selon les valeurs qui y sont associées. Ils fonctionnent avec les nombres, les textes (ordre alphabétique) et les dates.",
-		sqlQueries: [
+		examples: [
 			{
-				sqlCode: `-- Liste des utilisateurs qui ont exactement 25 ans
+				code: `-- Liste des utilisateurs qui ont exactement 25 ans
 -- Opérateur : =
 SELECT prenom, nom, age 
 FROM utilisateurs 
 WHERE age = 25;`,
-				sqlResult: [
+				result: [
 					{ prenom: "Claire", nom: "Durand", age: 25 },
 					{ prenom: "François", nom: "Petit", age: 25 },
 				],
 			},
 			{
-				sqlCode: `-- Liste des utilisateurs qui ont un âge différent de 25 ans
+				code: `-- Liste des utilisateurs qui ont un âge différent de 25 ans
 -- Opérateur : != ou <>
 SELECT prenom, nom, age 
 FROM utilisateurs 
 WHERE age != 25;`,
-				sqlResult: [
+				result: [
 					{ prenom: "Alice", nom: "Dupont", age: 28 },
 					{ prenom: "Bob", nom: "Martin", age: 32 },
 					{ prenom: "David", nom: "Moreau", age: 45 },
@@ -220,46 +220,46 @@ WHERE age != 25;`,
 				],
 			},
 			{
-				sqlCode: `-- Liste des produits avec un prix strictement inférieur à 100 euros
+				code: `-- Liste des produits avec un prix strictement inférieur à 100 euros
 -- Opérateur : <
 SELECT nom, prix 
 FROM produits 
 WHERE prix < 100;`,
-				sqlResult: [
+				result: [
 					{ nom: "Livre SQL", prix: 25 },
 					{ nom: "Stylo", prix: 5 },
 					{ nom: "Peluche Pikachu", prix: 29 },
 				],
 			},
 			{
-				sqlCode: `-- Liste des produits avec un prix inférieur ou égal à 25 euros
+				code: `-- Liste des produits avec un prix inférieur ou égal à 25 euros
 -- Opérateur : <=
 SELECT nom, prix 
 FROM produits 
 WHERE prix <= 25;`,
-				sqlResult: [
+				result: [
 					{ nom: "Livre SQL", prix: 25 },
 					{ nom: "Stylo", prix: 5 },
 				],
 			},
 			{
-				sqlCode: `-- Liste des produits avec un prix strictement supérieur à 500 euros
+				code: `-- Liste des produits avec un prix strictement supérieur à 500 euros
 -- Opérateur : >
 SELECT nom, prix 
 FROM produits 
 WHERE prix > 500;`,
-				sqlResult: [
+				result: [
 					{ nom: "Ordinateur Portable", prix: 899 },
 					{ nom: "Smartphone Pro", prix: 1299 },
 				],
 			},
 			{
-				sqlCode: `-- Liste des produits avec un prix supérieur ou égal à 299 euros
+				code: `-- Liste des produits avec un prix supérieur ou égal à 299 euros
 -- Opérateur : >=
 SELECT nom, prix 
 FROM produits 
 WHERE prix >= 299;`,
-				sqlResult: [
+				result: [
 					{ nom: "Ordinateur Portable", prix: 899 },
 					{ nom: "Smartphone Pro", prix: 1299 },
 					{ nom: "Tablette", prix: 299 },
@@ -267,24 +267,24 @@ WHERE prix >= 299;`,
 				],
 			},
 			{
-				sqlCode: `-- Liste des utilisateurs dont le prénom commence par D ou après dans l'alphabet
+				code: `-- Liste des utilisateurs dont le prénom commence par D ou après dans l'alphabet
 -- Opérateur : >=
 SELECT prenom, nom 
 FROM utilisateurs 
 WHERE prenom >= 'D';`,
-				sqlResult: [
+				result: [
 					{ prenom: "David", nom: "Moreau" },
 					{ prenom: "Emma", nom: "Bernard" },
 					{ prenom: "François", nom: "Petit" },
 				],
 			},
 			{
-				sqlCode: `-- Liste des commandes avec une date supérieure au 01 janvier 2024
+				code: `-- Liste des commandes avec une date supérieure au 01 janvier 2024
 -- Opérateur : >
 SELECT numero_commande, date_commande 
 FROM commandes 
 WHERE date_commande > '2024-01-01';`,
-				sqlResult: [
+				result: [
 					{ numero_commande: "CMD002", date_commande: "2024-01-15 10:30:00" },
 					{ numero_commande: "CMD003", date_commande: "2024-01-15 14:45:00" },
 					{ numero_commande: "CMD004", date_commande: "2024-02-10 16:20:00" },
@@ -296,14 +296,14 @@ WHERE date_commande > '2024-01-01';`,
 		title: "Opérateurs logiques",
 		content:
 			"Les opérateurs logiques permettent de combiner plusieurs conditions dans une même requête. AND exige que toutes les conditions soient vraies, OR exige qu'au moins une condition soit vraie.",
-		sqlQueries: [
+		examples: [
 			{
-				sqlCode: `-- Liste des utilisateurs entre 25 et 35 ans (inclus)
+				code: `-- Liste des utilisateurs entre 25 et 35 ans (inclus)
 -- Opérateur logique : AND
 SELECT prenom, nom, age 
 FROM utilisateurs 
 WHERE age >= 25 AND age <= 35;`,
-				sqlResult: [
+				result: [
 					{ prenom: "Alice", nom: "Dupont", age: 28 },
 					{ prenom: "Bob", nom: "Martin", age: 32 },
 					{ prenom: "Claire", nom: "Durand", age: 25 },
@@ -312,12 +312,12 @@ WHERE age >= 25 AND age <= 35;`,
 				],
 			},
 			{
-				sqlCode: `-- Liste des produits de catégorie "electronique" ou avec un prix inférieur à 100€
+				code: `-- Liste des produits de catégorie "electronique" ou avec un prix inférieur à 100€
 -- Opérateur logique : OR
 SELECT nom, categorie, prix 
 FROM produits 
 WHERE categorie = 'electronique' OR prix < 100;`,
-				sqlResult: [
+				result: [
 					{ nom: "Ordinateur Portable", categorie: "electronique", prix: 899 },
 					{ nom: "Smartphone Pro", categorie: "electronique", prix: 1299 },
 					{ nom: "Tablette", categorie: "electronique", prix: 299 },
@@ -334,15 +334,15 @@ WHERE categorie = 'electronique' OR prix < 100;`,
 		title: "Mots-clés de filtrage",
 		content:
 			"Les mots-clés de filtrage offrent des moyens expressifs pour définir des conditions : IN pour une liste de valeurs (évitant ainsi de nombreux 'OR'), BETWEEN pour un intervalle, LIKE pour des motifs de texte, IS NULL pour les valeurs manquantes. Chacun peut être inversé avec NOT. \n\nIS NULL et IS NOT NULL (mots-clés de filtrage) sont différents de NULL et NOT NULL (contraintes utilisées lors de la création de tables).",
-		sqlQueries: [
+		examples: [
 			{
 				title: "IN - Liste de valeurs",
-				sqlCode: `-- Liste des utilisateurs dont l'âge est 25, 30, 35 ou 40 ans
+				code: `-- Liste des utilisateurs dont l'âge est 25, 30, 35 ou 40 ans
 -- Mot-clé : IN
 SELECT prenom, nom, age 
 FROM utilisateurs 
 WHERE age IN (25, 30, 35, 40);`,
-				sqlResult: [
+				result: [
 					{ prenom: "Claire", nom: "Durand", age: 25 },
 					{ prenom: "Emma", nom: "Bernard", age: 30 },
 					{ prenom: "François", nom: "Petit", age: 25 },
@@ -350,12 +350,12 @@ WHERE age IN (25, 30, 35, 40);`,
 			},
 			{
 				title: "NOT IN - Exclusion de valeurs",
-				sqlCode: `-- Liste des utilisateurs dont l'âge n'est PAS 25, 30, 35 ou 40 ans
+				code: `-- Liste des utilisateurs dont l'âge n'est PAS 25, 30, 35 ou 40 ans
 -- Mot-clé : NOT IN
 SELECT prenom, nom, age 
 FROM utilisateurs 
 WHERE age NOT IN (25, 30, 35, 40);`,
-				sqlResult: [
+				result: [
 					{ prenom: "Alice", nom: "Dupont", age: 28 },
 					{ prenom: "Bob", nom: "Martin", age: 32 },
 					{ prenom: "David", nom: "Moreau", age: 45 },
@@ -363,12 +363,12 @@ WHERE age NOT IN (25, 30, 35, 40);`,
 			},
 			{
 				title: "BETWEEN - Intervalle de valeurs",
-				sqlCode: `-- Liste des produits dont le prix est compris entre 200€ et 800€ (inclus)
+				code: `-- Liste des produits dont le prix est compris entre 200€ et 800€ (inclus)
 -- Mots-clés : BETWEEN avec AND
 SELECT nom, prix 
 FROM produits 
 WHERE prix BETWEEN 200 AND 800;`,
-				sqlResult: [
+				result: [
 					{ nom: "Tablette", prix: 299 },
 					{ nom: "Casque Audio", prix: 249 },
 					{ nom: "Montre Connectée", prix: 349 },
@@ -376,12 +376,12 @@ WHERE prix BETWEEN 200 AND 800;`,
 			},
 			{
 				title: "NOT BETWEEN - Hors intervalle",
-				sqlCode: `-- Liste des produits dont le prix n'est PAS entre 200€ et 800€
+				code: `-- Liste des produits dont le prix n'est PAS entre 200€ et 800€
 -- Mots-clés : NOT BETWEEN avec AND
 SELECT nom, prix 
 FROM produits 
 WHERE prix NOT BETWEEN 200 AND 800;`,
-				sqlResult: [
+				result: [
 					{ nom: "Ordinateur Portable", prix: 899 },
 					{ nom: "Smartphone Pro", prix: 1299 },
 					{ nom: "Livre SQL", prix: 25 },
@@ -391,51 +391,51 @@ WHERE prix NOT BETWEEN 200 AND 800;`,
 			},
 			{
 				title: "LIKE - Commence par",
-				sqlCode: `-- Tous les prénoms qui commencent par 'A'
+				code: `-- Tous les prénoms qui commencent par 'A'
 -- Mots-clés : LIKE avec %
 SELECT prenom, nom 
 FROM utilisateurs 
 WHERE prenom LIKE 'A%';`,
-				sqlResult: [{ prenom: "Alice", nom: "Dupont" }],
+				result: [{ prenom: "Alice", nom: "Dupont" }],
 			},
 			{
 				title: "LIKE - Finit par",
-				sqlCode: `-- Tous les noms qui finissent par 'and'
+				code: `-- Tous les noms qui finissent par 'and'
 -- Mots-clés : LIKE avec %
 SELECT prenom, nom 
 FROM utilisateurs 
 WHERE nom LIKE '%and';`,
-				sqlResult: [{ prenom: "Claire", nom: "Durand" }],
+				result: [{ prenom: "Claire", nom: "Durand" }],
 			},
 			{
 				title: "LIKE - Contient",
-				sqlCode: `-- Tous les noms qui contiennent 'ar'
+				code: `-- Tous les noms qui contiennent 'ar'
 -- Mots-clés : LIKE avec %
 SELECT prenom, nom 
 FROM utilisateurs 
 WHERE nom LIKE '%ar%';`,
-				sqlResult: [
+				result: [
 					{ prenom: "Bob", nom: "Martin" },
 					{ prenom: "Emma", nom: "Bernard" },
 				],
 			},
 			{
 				title: "LIKE - Nombre exact de caractères (_)",
-				sqlCode: `-- Prénoms de exactement 5 lettres commençant par 'A'
+				code: `-- Prénoms de exactement 5 lettres commençant par 'A'
 -- Mots-clés : LIKE avec _
 SELECT prenom, nom 
 FROM utilisateurs 
 WHERE prenom LIKE 'A____';`,
-				sqlResult: [{ prenom: "Alice", nom: "Dupont" }],
+				result: [{ prenom: "Alice", nom: "Dupont" }],
 			},
 			{
 				title: "NOT LIKE - Exclusion de motif",
-				sqlCode: `-- Tous les utilisateurs dont le prénom ne commence PAS par 'A'
+				code: `-- Tous les utilisateurs dont le prénom ne commence PAS par 'A'
 -- Mot-clé : NOT LIKE
 SELECT prenom, nom 
 FROM utilisateurs 
 WHERE prenom NOT LIKE 'A%';`,
-				sqlResult: [
+				result: [
 					{ prenom: "Bob", nom: "Martin" },
 					{ prenom: "Claire", nom: "Durand" },
 					{ prenom: "David", nom: "Moreau" },
@@ -445,12 +445,12 @@ WHERE prenom NOT LIKE 'A%';`,
 			},
 			{
 				title: "IS NULL - Valeurs manquantes",
-				sqlCode: `-- Liste des utilisateurs n'ayant pas de numéro de téléphone
+				code: `-- Liste des utilisateurs n'ayant pas de numéro de téléphone
 -- Mot-clé : IS NULL
 SELECT prenom, nom, telephone 
 FROM utilisateurs 
 WHERE telephone IS NULL;`,
-				sqlResult: [
+				result: [
 					{ prenom: "Claire", nom: "Durand", telephone: null },
 					{ prenom: "Emma", nom: "Bernard", telephone: null },
 					{ prenom: "François", nom: "Petit", telephone: null },
@@ -458,12 +458,12 @@ WHERE telephone IS NULL;`,
 			},
 			{
 				title: "IS NOT NULL - Valeurs renseignées",
-				sqlCode: `-- Liste des utilisateurs ayant un numéro de téléphone renseigné
+				code: `-- Liste des utilisateurs ayant un numéro de téléphone renseigné
 -- Mot-clé : IS NOT NULL
 SELECT prenom, nom, telephone 
 FROM utilisateurs 
 WHERE telephone IS NOT NULL;`,
-				sqlResult: [
+				result: [
 					{ prenom: "Alice", nom: "Dupont", telephone: "06 12 34 56 78" },
 					{ prenom: "Bob", nom: "Martin", telephone: "07 98 76 54 32" },
 					{ prenom: "David", nom: "Moreau", telephone: "06 11 22 33 44" },
@@ -475,14 +475,14 @@ WHERE telephone IS NOT NULL;`,
 		title: "Tri des résultats (ORDER BY)",
 		content:
 			"ORDER BY permet de trier les résultats selon une ou plusieurs colonnes. ASC (ordre croissant) est l'ordre par défaut, DESC (ordre décroissant) inverse l'ordre.",
-		sqlQueries: [
+		examples: [
 			{
-				sqlCode: `-- Liste des utilisateurs triés par âge croissant (du plus jeune au plus âgé)
+				code: `-- Liste des utilisateurs triés par âge croissant (du plus jeune au plus âgé)
 -- Clause : ORDER BY avec ASC
 SELECT prenom, nom, age 
 FROM utilisateurs 
 ORDER BY age ASC;`,
-				sqlResult: [
+				result: [
 					{ prenom: "Claire", nom: "Durand", age: 25 },
 					{ prenom: "François", nom: "Petit", age: 25 },
 					{ prenom: "Alice", nom: "Dupont", age: 28 },
@@ -492,12 +492,12 @@ ORDER BY age ASC;`,
 				],
 			},
 			{
-				sqlCode: `-- Liste des produits triés par prix décroissant (du plus cher au moins cher)
+				code: `-- Liste des produits triés par prix décroissant (du plus cher au moins cher)
 -- Clause : ORDER BY avec DESC
 SELECT nom, prix 
 FROM produits 
 ORDER BY prix DESC;`,
-				sqlResult: [
+				result: [
 					{ nom: "Smartphone Pro", prix: 1299 },
 					{ nom: "Ordinateur Portable", prix: 899 },
 					{ nom: "Montre Connectée", prix: 349 },
@@ -509,12 +509,12 @@ ORDER BY prix DESC;`,
 				],
 			},
 			{
-				sqlCode: `-- Liste des utilisateurs triés par ville (A-Z) puis par âge décroissant (du plus âgé au moins agé)
+				code: `-- Liste des utilisateurs triés par ville (A-Z) puis par âge décroissant (du plus âgé au moins agé)
 -- Clause : ORDER BY multi-colonnes
 SELECT prenom, nom, age, ville 
 FROM utilisateurs 
 ORDER BY ville ASC, age DESC;`,
-				sqlResult: [
+				result: [
 					{ prenom: "David", nom: "Moreau", age: 45, ville: "Lyon" },
 					{ prenom: "Bob", nom: "Martin", age: 32, ville: "Paris" },
 					{ prenom: "Alice", nom: "Dupont", age: 28, ville: "Paris" },
@@ -529,14 +529,14 @@ ORDER BY ville ASC, age DESC;`,
 		title: "Regroupement (GROUP BY, HAVING)",
 		content:
 			"GROUP BY regroupe les lignes ayant les mêmes valeurs dans une ou plusieurs colonnes, permettant d'appliquer des fonctions d'agrégation sur chaque groupe. HAVING filtre ensuite ces groupes, comme WHERE filtre les lignes.\n\nDifférence clé : WHERE filtre AVANT le regroupement, HAVING filtre APRÈS.",
-		sqlQueries: [
+		examples: [
 			{
 				title: "GROUP BY - Compter par ville",
-				sqlCode: `-- Nombre d'utilisateurs par ville
+				code: `-- Nombre d'utilisateurs par ville
 SELECT ville, COUNT(*) AS nombre 
 FROM utilisateurs 
 GROUP BY ville;`,
-				sqlResult: [
+				result: [
 					{ ville: "Lyon", nombre: 1 },
 					{ ville: "Paris", nombre: 3 },
 					{ ville: "Toulouse", nombre: 2 },
@@ -544,7 +544,7 @@ GROUP BY ville;`,
 			},
 			{
 				title: "GROUP BY - Statistiques par catégorie",
-				sqlCode: `-- Nombre de produits et prix moyen par catégorie
+				code: `-- Nombre de produits et prix moyen par catégorie
 SELECT 
     categorie,
     COUNT(*) AS nombre_produits,
@@ -552,7 +552,7 @@ SELECT
 FROM produits 
 GROUP BY categorie
 ORDER BY nombre_produits DESC;`,
-				sqlResult: [
+				result: [
 					{ categorie: "electronique", nombre_produits: 5, prix_moyen: 619 },
 					{ categorie: "livre", nombre_produits: 1, prix_moyen: 25 },
 					{ categorie: "bureau", nombre_produits: 1, prix_moyen: 5 },
@@ -561,19 +561,19 @@ ORDER BY nombre_produits DESC;`,
 			},
 			{
 				title: "HAVING - Filtrer les groupes",
-				sqlCode: `-- Villes avec au moins 2 utilisateurs
+				code: `-- Villes avec au moins 2 utilisateurs
 SELECT ville, COUNT(*) AS nombre 
 FROM utilisateurs 
 GROUP BY ville
 HAVING COUNT(*) >= 2;`,
-				sqlResult: [
+				result: [
 					{ ville: "Paris", nombre: 3 },
 					{ ville: "Toulouse", nombre: 2 },
 				],
 			},
 			{
 				title: "WHERE + GROUP BY + HAVING",
-				sqlCode: `-- Catégories avec prix moyen > 100€ (hors produits < 10€)
+				code: `-- Catégories avec prix moyen > 100€ (hors produits < 10€)
 SELECT 
     categorie,
     COUNT(*) AS nombre,
@@ -582,7 +582,7 @@ FROM produits
 WHERE prix >= 10           -- Filtre les lignes AVANT regroupement
 GROUP BY categorie
 HAVING AVG(prix) > 100;    -- Filtre les groupes APRÈS regroupement`,
-				sqlResult: [{ categorie: "electronique", nombre: 5, prix_moyen: 619 }],
+				result: [{ categorie: "electronique", nombre: 5, prix_moyen: 619 }],
 			},
 		],
 	},
@@ -590,26 +590,26 @@ HAVING AVG(prix) > 100;    -- Filtre les groupes APRÈS regroupement`,
 		title: "Pagination (LIMIT, OFFSET)",
 		content:
 			"LIMIT restreint le nombre de résultats retournés. OFFSET permet de sauter un certain nombre de lignes avant de commencer à retourner des résultats.",
-		sqlQueries: [
+		examples: [
 			{
-				sqlCode: `-- Liste uniquement les 3 premiers utilisateurs
+				code: `-- Liste uniquement les 3 premiers utilisateurs
 -- Clause : LIMIT
 SELECT prenom, nom, email 
 FROM utilisateurs 
 LIMIT 3;`,
-				sqlResult: [
+				result: [
 					{ prenom: "Alice", nom: "Dupont", email: "alice@email.com" },
 					{ prenom: "Bob", nom: "Martin", email: "bob@gmail.com" },
 					{ prenom: "Claire", nom: "Durand", email: "claire@email.com" },
 				],
 			},
 			{
-				sqlCode: `-- Liste 3 utilisateurs en sautant les 2 premiers
+				code: `-- Liste 3 utilisateurs en sautant les 2 premiers
 -- Clauses : LIMIT et OFFSET
 SELECT prenom, nom, email 
 FROM utilisateurs 
 LIMIT 3 OFFSET 2;`,
-				sqlResult: [
+				result: [
 					{ prenom: "Claire", nom: "Durand", email: "claire@email.com" },
 					{ prenom: "David", nom: "Moreau", email: "david@email.com" },
 					{ prenom: "Emma", nom: "Bernard", email: "emma@email.com" },
@@ -621,30 +621,30 @@ LIMIT 3 OFFSET 2;`,
 		title: "Exemples combinés",
 		content:
 			"Les requêtes SQL combinent souvent plusieurs concepts. Voici des exemples qui utilisent simultanément filtres, tri et pagination.",
-		sqlQueries: [
+		examples: [
 			{
 				title: "Filtres multiples + Tri",
-				sqlCode: `-- Utilisateurs parisiens de plus de 25 ans, triés par âge
+				code: `-- Utilisateurs parisiens de plus de 25 ans, triés par âge
 -- Opérateurs : = et > | Opérateur logique : AND | Clause : ORDER BY
 SELECT prenom, nom, age, ville 
 FROM utilisateurs 
 WHERE ville = 'Paris' AND age > 25 
 ORDER BY age ASC;`,
-				sqlResult: [
+				result: [
 					{ prenom: "Alice", nom: "Dupont", age: 28, ville: "Paris" },
 					{ prenom: "Bob", nom: "Martin", age: 32, ville: "Paris" },
 				],
 			},
 			{
 				title: "Mot-clé + Tri + Pagination",
-				sqlCode: `-- Top 3 des produits électroniques les moins chers
+				code: `-- Top 3 des produits électroniques les moins chers
 -- Opérateur : = | Clauses : ORDER BY et LIMIT
 SELECT nom, categorie, prix 
 FROM produits 
 WHERE categorie = 'electronique' 
 ORDER BY prix ASC 
 LIMIT 3;`,
-				sqlResult: [
+				result: [
 					{ nom: "Casque Audio", categorie: "electronique", prix: 249 },
 					{ nom: "Tablette", categorie: "electronique", prix: 299 },
 					{ nom: "Montre Connectée", categorie: "electronique", prix: 349 },
@@ -652,26 +652,26 @@ LIMIT 3;`,
 			},
 			{
 				title: "LIKE + IS NOT NULL + ORDER BY",
-				sqlCode: `-- Utilisateurs avec un téléphone, dont le nom contient 'a', triés par nom
+				code: `-- Utilisateurs avec un téléphone, dont le nom contient 'a', triés par nom
 -- Mots-clés : LIKE et IS NOT NULL | Clause : ORDER BY
 SELECT prenom, nom, telephone 
 FROM utilisateurs 
 WHERE telephone IS NOT NULL AND nom LIKE '%a%' 
 ORDER BY nom;`,
-				sqlResult: [
+				result: [
 					{ prenom: "Bob", nom: "Martin", telephone: "07 98 76 54 32" },
 					{ prenom: "David", nom: "Moreau", telephone: "06 11 22 33 44" },
 				],
 			},
 			{
 				title: "BETWEEN + NOT IN + ORDER BY",
-				sqlCode: `-- Produits entre 20€ et 500€, sauf catégorie bureau, triés par prix décroissant
+				code: `-- Produits entre 20€ et 500€, sauf catégorie bureau, triés par prix décroissant
 -- Mots-clés : BETWEEN et NOT IN | Clause : ORDER BY
 SELECT nom, categorie, prix 
 FROM produits 
 WHERE prix BETWEEN 20 AND 500 AND categorie NOT IN ('bureau') 
 ORDER BY prix DESC;`,
-				sqlResult: [
+				result: [
 					{ nom: "Montre Connectée", categorie: "electronique", prix: 349 },
 					{ nom: "Tablette", categorie: "electronique", prix: 299 },
 					{ nom: "Casque Audio", categorie: "electronique", prix: 249 },
@@ -683,7 +683,7 @@ ORDER BY prix DESC;`,
 	},
 ];
 
-export const greenBeltContent = {
+export const beltContent = {
 	...menu,
 	header,
 	accordions,

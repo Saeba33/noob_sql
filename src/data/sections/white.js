@@ -114,7 +114,7 @@ const accordions = [
 	},
 ];
 
-export const whiteBeltContent = {
+export const beltContent = {
   ...menu,
   header,
   accordions,

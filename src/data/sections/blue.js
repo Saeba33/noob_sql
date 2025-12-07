@@ -21,64 +21,64 @@ const accordions = [
 		title: "Fonctions d'agrégation",
 		content:
 			"Les fonctions d'agrégation calculent une valeur unique à partir d'un ensemble de lignes. Elles sont souvent utilisées avec GROUP BY (vu précedemment) pour obtenir des statistiques par groupe.\n\nSans GROUP BY, elles retournent un seul résultat pour toute la table.",
-		sqlQueries: [
+		examples: [
 			{
 				title: "COUNT - Compter les lignes",
-				sqlCode: `-- COUNT(*) compte toutes les lignes
+				code: `-- COUNT(*) compte toutes les lignes
 -- COUNT(colonne) compte les valeurs non NULL
 SELECT COUNT(*) AS total_utilisateurs 
 FROM utilisateurs;`,
-				sqlResult: [{ total_utilisateurs: 6 }],
+				result: [{ total_utilisateurs: 6 }],
 			},
 			{
 				title: "COUNT avec condition",
-				sqlCode: `-- Compte les utilisateurs de 30 ans ou plus
+				code: `-- Compte les utilisateurs de 30 ans ou plus
 SELECT COUNT(*) AS utilisateurs_30_plus 
 FROM utilisateurs 
 WHERE age >= 30;`,
-				sqlResult: [{ utilisateurs_30_plus: 3 }],
+				result: [{ utilisateurs_30_plus: 3 }],
 			},
 			{
 				title: "COUNT DISTINCT - Valeurs uniques",
-				sqlCode: `-- Compte le nombre de villes différentes
+				code: `-- Compte le nombre de villes différentes
 SELECT COUNT(DISTINCT ville) AS nb_villes 
 FROM utilisateurs;`,
-				sqlResult: [{ nb_villes: 3 }],
+				result: [{ nb_villes: 3 }],
 			},
 			{
 				title: "SUM - Somme des valeurs",
-				sqlCode: `-- SUM(colonne) additionne toutes les valeurs numériques
+				code: `-- SUM(colonne) additionne toutes les valeurs numériques
 SELECT SUM(prix * stock) AS valeur_stock_total 
 FROM produits;`,
-				sqlResult: [{ valeur_stock_total: 47920 }],
+				result: [{ valeur_stock_total: 47920 }],
 			},
 			{
 				title: "AVG - Moyenne des valeurs",
-				sqlCode: `-- AVG(colonne) calcule la moyenne des valeurs numériques
+				code: `-- AVG(colonne) calcule la moyenne des valeurs numériques
 SELECT ROUND(AVG(age), 1) AS age_moyen 
 FROM utilisateurs;`,
-				sqlResult: [{ age_moyen: 30.8 }],
+				result: [{ age_moyen: 30.8 }],
 			},
 			{
 				title: "MIN et MAX - Valeurs extrêmes",
-				sqlCode: `-- MIN(colonne) retourne la plus petite valeur
+				code: `-- MIN(colonne) retourne la plus petite valeur
 -- MAX(colonne) retourne la plus grande valeur
 SELECT 
     MIN(prix) AS prix_min,
     MAX(prix) AS prix_max 
 FROM produits;`,
-				sqlResult: [{ prix_min: 5, prix_max: 1299 }],
+				result: [{ prix_min: 5, prix_max: 1299 }],
 			},
 			{
 				title: "Combinaison de fonctions",
-				sqlCode: `-- Statistiques multiples sur les utilisateurs
+				code: `-- Statistiques multiples sur les utilisateurs
 SELECT 
     COUNT(*) AS nombre,
     ROUND(AVG(age), 1) AS age_moyen,
     MIN(age) AS plus_jeune,
     MAX(age) AS plus_age
 FROM utilisateurs;`,
-				sqlResult: [
+				result: [
 					{
 						nombre: 6,
 						age_moyen: 30.8,
@@ -93,16 +93,16 @@ FROM utilisateurs;`,
 		title: "Fonctions de texte",
 		content:
 			"Les fonctions de texte manipulent les chaînes de caractères : changer la casse, extraire une partie, concaténer, nettoyer les espaces, etc.\n\nElles s'appliquent ligne par ligne et retournent une valeur pour chaque ligne.",
-		sqlQueries: [
+		examples: [
 			{
 				title: "UPPER et LOWER - Changer la casse",
-				sqlCode: `-- Convertit en majuscules (UPPER) ou minuscules (LOWER)
+				code: `-- Convertit en majuscules (UPPER) ou minuscules (LOWER)
 SELECT 
     UPPER(prenom) AS prenom_maj,
     LOWER(email) AS email_min 
 FROM utilisateurs 
 LIMIT 3;`,
-				sqlResult: [
+				result: [
 					{ prenom_maj: "ALICE", email_min: "alice@email.com" },
 					{ prenom_maj: "BOB", email_min: "bob@gmail.com" },
 					{ prenom_maj: "CLAIRE", email_min: "claire@email.com" },
@@ -110,13 +110,13 @@ LIMIT 3;`,
 			},
 			{
 				title: "LENGTH - Longueur d'une chaîne",
-				sqlCode: `-- LENGTH(colonne) retourne le nombre de caractères
+				code: `-- LENGTH(colonne) retourne le nombre de caractères
 SELECT 
 	prenom,
 	LENGTH(prenom) AS nb_lettres 
 FROM utilisateurs 
 ORDER BY nb_lettres DESC;`,
-				sqlResult: [
+				result: [
 					{ prenom: "François", nb_lettres: 8 },
 					{ prenom: "Claire", nb_lettres: 6 },
 					{ prenom: "Alice", nb_lettres: 5 },
@@ -127,11 +127,11 @@ ORDER BY nb_lettres DESC;`,
 			},
 			{
 				title: "CONCAT - Concaténer des chaînes",
-				sqlCode: `-- CONCAT(val1, val2, ...) assemble plusieurs valeurs en une chaîne
+				code: `-- CONCAT(val1, val2, ...) assemble plusieurs valeurs en une chaîne
 SELECT CONCAT(prenom, ' ', nom) AS nom_complet 
 FROM utilisateurs 
 LIMIT 3;`,
-				sqlResult: [
+				result: [
 					{ nom_complet: "Alice Dupont" },
 					{ nom_complet: "Bob Martin" },
 					{ nom_complet: "Claire Durand" },
@@ -139,14 +139,14 @@ LIMIT 3;`,
 			},
 			{
 				title: "SUBSTRING - Extraire une partie",
-				sqlCode: `-- Extrait les 3 premiers caractères du prénom
+				code: `-- Extrait les 3 premiers caractères du prénom
 -- SUBSTRING(colonne, début, longueur)
 SELECT 
     prenom,
     SUBSTRING(prenom, 1, 3) AS initiales 
 FROM utilisateurs 
 LIMIT 4;`,
-				sqlResult: [
+				result: [
 					{ prenom: "Alice", initiales: "Ali" },
 					{ prenom: "Bob", initiales: "Bob" },
 					{ prenom: "Claire", initiales: "Cla" },
@@ -155,14 +155,14 @@ LIMIT 4;`,
 			},
 			{
 				title: "TRIM - Supprimer les espaces",
-				sqlCode: `-- Supprime les espaces en début et fin de chaîne
+				code: `-- Supprime les espaces en début et fin de chaîne
 -- Utile pour nettoyer des données mal saisies
 SELECT TRIM('   texte avec espaces   ') AS resultat;`,
-				sqlResult: [{ resultat: "texte avec espaces" }],
+				result: [{ resultat: "texte avec espaces" }],
 			},
 			{
 				title: "REPLACE - Remplacer du texte",
-				sqlCode: `-- REPLACE(colonne, 'ancien', 'nouveau')
+				code: `-- REPLACE(colonne, 'ancien', 'nouveau')
 -- Remplace toutes les occurrences de 'ancien' par 'nouveau'
 SELECT 
     email AS email_actuel,
@@ -170,7 +170,7 @@ SELECT
 FROM utilisateurs 
 WHERE email LIKE '%@email.com'
 LIMIT 3;`,
-				sqlResult: [
+				result: [
 					{ email_actuel: "alice@email.com", nouvel_email: "alice@nouveau.fr" },
 					{
 						email_actuel: "claire@email.com",
@@ -185,10 +185,10 @@ LIMIT 3;`,
 		title: "Fonctions numériques",
 		content:
 			"Les fonctions numériques effectuent des calculs mathématiques sur les nombres : arrondir, valeur absolue, modulo, etc.",
-		sqlQueries: [
+		examples: [
 			{
 				title: "ROUND - Arrondir un nombre",
-				sqlCode: `-- ROUND(nombre, decimales) arrondit à N décimales
+				code: `-- ROUND(nombre, decimales) arrondit à N décimales
 SELECT 
     nom,
     prix AS prix_ht,
@@ -196,7 +196,7 @@ SELECT
 FROM produits 
 WHERE prix > 200
 LIMIT 3;`,
-				sqlResult: [
+				result: [
 					{ nom: "Ordinateur Portable", prix_ht: 899, prix_ttc: 1078.8 },
 					{ nom: "Smartphone Pro", prix_ht: 1299, prix_ttc: 1558.8 },
 					{ nom: "Tablette", prix_ht: 299, prix_ttc: 358.8 },
@@ -204,7 +204,7 @@ LIMIT 3;`,
 			},
 			{
 				title: "CEIL et FLOOR - Arrondir entier",
-				sqlCode: `-- CEIL(nombre) arrondit à l'entier supérieur (8.3 → 9)
+				code: `-- CEIL(nombre) arrondit à l'entier supérieur (8.3 → 9)
 -- FLOOR(nombre) arrondit à l'entier inférieur (8.9 → 8)
 SELECT 
     prix,
@@ -213,7 +213,7 @@ SELECT
     FLOOR(prix / 3.0) AS arrondi_bas
 FROM produits 
 WHERE prix < 50;`,
-				sqlResult: [
+				result: [
 					{ prix: 25, division: 8.33, arrondi_haut: 9, arrondi_bas: 8 },
 					{ prix: 5, division: 1.67, arrondi_haut: 2, arrondi_bas: 1 },
 					{ prix: 29, division: 9.67, arrondi_haut: 10, arrondi_bas: 9 },
@@ -225,14 +225,14 @@ WHERE prix < 50;`,
 		title: "Fonctions de date",
 		content:
 			"Les fonctions de date permettent d'extraire des parties d'une date, calculer des différences, ou obtenir la date actuelle.\n\n A noter : la syntaxe peut varier selon le SGBD (MySQL, PostgreSQL, SQLite...). Les exemples ci-dessous utilisent une syntaxe courante.",
-		sqlQueries: [
+		examples: [
 			{
 				title: "NOW / CURRENT_DATE - Date actuelle",
-				sqlCode: `-- Obtient la date et l'heure actuelles
+				code: `-- Obtient la date et l'heure actuelles
 SELECT 
     CURRENT_DATE AS date_jour,
     CURRENT_TIMESTAMP AS date_heure;`,
-				sqlResult: [
+				result: [
 					{
 						date_jour: "2025-12-02",
 						date_heure: "2025-12-02 19:30:00",
@@ -241,14 +241,14 @@ SELECT
 			},
 			{
 				title: "YEAR, MONTH, DAY - Extraire des parties",
-				sqlCode: `-- Extrait l'année, le mois ou le jour d'une date
+				code: `-- Extrait l'année, le mois ou le jour d'une date
 SELECT 
     date_commande,
     YEAR(date_commande) AS annee,
     MONTH(date_commande) AS mois,
     DAY(date_commande) AS jour
 FROM commandes;`,
-				sqlResult: [
+				result: [
 					{
 						date_commande: "2023-11-20 09:15:00",
 						annee: 2023,
@@ -277,20 +277,20 @@ FROM commandes;`,
 			},
 			{
 				title: "DATE - Extraire uniquement la date",
-				sqlCode: `-- Supprime la partie heure d'un datetime
+				code: `-- Supprime la partie heure d'un datetime
 SELECT 
     date_commande,
     DATE(date_commande) AS date_seule
 FROM commandes
 LIMIT 2;`,
-				sqlResult: [
+				result: [
 					{ date_commande: "2023-11-20 09:15:00", date_seule: "2023-11-20" },
 					{ date_commande: "2024-01-15 10:30:00", date_seule: "2024-01-15" },
 				],
 			},
 			{
 				title: "DATE_ADD / DATE_SUB - Ajouter ou soustraire",
-				sqlCode: `-- DATE_ADD(date, INTERVAL n UNIT) ajoute une durée
+				code: `-- DATE_ADD(date, INTERVAL n UNIT) ajoute une durée
 -- DATE_SUB(date, INTERVAL n UNIT) soustrait une durée
 -- UNIT peut être : DAY, WEEK, MONTH, YEAR, HOUR, MINUTE...
 SELECT 
@@ -299,7 +299,7 @@ SELECT
     DATE_SUB(date_commande, INTERVAL 1 MONTH) AS mois_precedent
 FROM commandes
 LIMIT 2;`,
-				sqlResult: [
+				result: [
 					{
 						date_commande: "2024-01-15 10:30:00",
 						livraison_prevue: "2024-01-22 10:30:00",
@@ -314,14 +314,14 @@ LIMIT 2;`,
 			},
 			{
 				title: "DATEDIFF - Différence entre dates",
-				sqlCode: `-- DATEDIFF(date1, date2) retourne le nombre de jours entre les deux dates
+				code: `-- DATEDIFF(date1, date2) retourne le nombre de jours entre les deux dates
 SELECT 
     numero_commande,
     date_commande,
     DATEDIFF(CURRENT_DATE, date_commande) AS jours_depuis
 FROM commandes
 ORDER BY date_commande DESC;`,
-				sqlResult: [
+				result: [
 					{
 						numero_commande: "CMD004",
 						date_commande: "2024-02-10 16:20:00",
@@ -350,16 +350,16 @@ ORDER BY date_commande DESC;`,
 		title: "Fonctions conditionnelles",
 		content:
 			"Les fonctions conditionnelles permettent de gérer les valeurs NULL et d'appliquer une logique conditionnelle directement dans les requêtes.",
-		sqlQueries: [
+		examples: [
 			{
 				title: "COALESCE - Première valeur non NULL",
-				sqlCode: `-- COALESCE(colonne, valeur_si_null)
+				code: `-- COALESCE(colonne, valeur_si_null)
 -- Retourne la colonne si elle n'est pas NULL, sinon la valeur de remplacement
 SELECT 
     prenom,
     COALESCE(telephone, 'Non renseigné') AS telephone 
 FROM utilisateurs;`,
-				sqlResult: [
+				result: [
 					{ prenom: "Alice", telephone: "06 12 34 56 78" },
 					{ prenom: "Bob", telephone: "07 98 76 54 32" },
 					{ prenom: "Claire", telephone: "Non renseigné" },
@@ -370,14 +370,14 @@ FROM utilisateurs;`,
 			},
 			{
 				title: "COALESCE - Cascade de valeurs",
-				sqlCode: `-- COALESCE(col1, col2, col3, valeur_si_null)
+				code: `-- COALESCE(col1, col2, col3, valeur_si_null)
 -- Teste chaque valeur dans l'ordre et retourne la première non NULL
 SELECT 
     prenom,
     COALESCE(telephone, email, 'Aucun contact') AS contact 
 FROM utilisateurs
 LIMIT 4;`,
-				sqlResult: [
+				result: [
 					{ prenom: "Alice", contact: "06 12 34 56 78" },
 					{ prenom: "Bob", contact: "07 98 76 54 32" },
 					{ prenom: "Claire", contact: "claire@email.com" },
@@ -386,7 +386,7 @@ LIMIT 4;`,
 			},
 			{
 				title: "CASE WHEN - Conditions multiples",
-				sqlCode: `-- CASE WHEN condition THEN valeur [...] ELSE defaut END
+				code: `-- CASE WHEN condition THEN valeur [...] ELSE defaut END
 -- Évalue les conditions dans l'ordre et retourne la première vraie
 SELECT 
     prenom,
@@ -397,7 +397,7 @@ SELECT
         ELSE 'Senior'
     END AS categorie
 FROM utilisateurs;`,
-				sqlResult: [
+				result: [
 					{ prenom: "Alice", age: 28, categorie: "Jeune" },
 					{ prenom: "Bob", age: 32, categorie: "Adulte" },
 					{ prenom: "Claire", age: 25, categorie: "Jeune" },
@@ -408,7 +408,7 @@ FROM utilisateurs;`,
 			},
 			{
 				title: "CASE WHEN - Avec calculs",
-				sqlCode: `-- Applique des remises différentes selon la catégorie
+				code: `-- Applique des remises différentes selon la catégorie
 SELECT 
     nom,
     categorie,
@@ -420,7 +420,7 @@ SELECT
     END AS prix_remise
 FROM produits
 LIMIT 4;`,
-				sqlResult: [
+				result: [
 					{
 						nom: "Ordinateur Portable",
 						categorie: "electronique",
@@ -446,7 +446,7 @@ LIMIT 4;`,
 	},
 ];
 
-export const blueBeltContent = {
+export const beltContent = {
 	...menu,
 	header,
 	accordions,

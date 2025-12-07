@@ -16,7 +16,10 @@ const header = {
 const accordions = [
 	{
 		title: "CREATE TABLE - Création de tables",
-		sqlCode: `-- Création d'une table avec colonnes typées et contraintes de base
+		examples: [
+			{
+				type: "schema",
+				code: `-- Création d'une table avec colonnes typées et contraintes de base
 CREATE TABLE utilisateurs (
     id INTEGER PRIMARY KEY,
     nom VARCHAR(100) NOT NULL,
@@ -42,10 +45,15 @@ CREATE TABLE commande_details (
     quantite INTEGER DEFAULT 1 CHECK (quantite > 0),
     prix_unitaire DECIMAL(10,2) NOT NULL
 );`,
+			},
+		],
 	},
 	{
 		title: "ALTER TABLE - Modification de structure",
-		sqlCode: `-- Ajouter une colonne simple à une table existante
+		examples: [
+			{
+				type: "schema",
+				code: `-- Ajouter une colonne simple à une table existante
 ALTER TABLE utilisateurs 
 ADD COLUMN telephone VARCHAR(20);
 
@@ -68,6 +76,8 @@ RENAME COLUMN nom TO nom_complet;
 -- Supprimer une colonne devenue inutile
 ALTER TABLE utilisateurs 
 DROP COLUMN telephone;`,
+			},
+		],
 	},
 	{
 		title: "DROP TABLE - Suppression de tables",
@@ -80,7 +90,10 @@ DROP COLUMN telephone;`,
 				! Soyez vigilant !
 			</>
 		),
-		sqlCode: `-- Supprimer définitivement une table et toutes ses données
+		examples: [
+			{
+				type: "schema",
+				code: `-- Supprimer définitivement une table et toutes ses données
 DROP TABLE ancienne_table;
 
 -- Suppression conditionnelle (évite une erreur si la table n'existe pas)
@@ -94,6 +107,8 @@ TRUNCATE TABLE logs;
 
 -- Alternative : supprimer les données de la table
 DELETE FROM logs;`,
+			},
+		],
 	},
 	{
 		title: "Bonnes pratiques DDL",
@@ -156,7 +171,7 @@ DELETE FROM logs;`,
 	},
 ];
 
-export const yellowBeltContent = {
+export const beltContent = {
 	...menu,
 	header,
 	accordions,

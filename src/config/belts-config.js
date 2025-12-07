@@ -101,11 +101,10 @@ export async function getBeltData(belt) {
 
 	try {
 		const beltModule = await import(`@/data/sections/${belt}`);
-		const contentKey = `${belt}BeltContent`;
-		const beltContent = beltModule[contentKey];
+		const beltContent = beltModule.beltContent;
 
 		if (!beltContent) {
-			console.error(`Content key "${contentKey}" not found in belt module`);
+			console.error(`beltContent not found in ${belt} module`);
 			notFound();
 		}
 

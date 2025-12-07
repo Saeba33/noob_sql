@@ -31,24 +31,24 @@ const accordions = [
 		title: "INSERT - Ajout de données",
 		content:
 			"La commande INSERT permet d'ajouter de nouvelles lignes dans une table. Vous pouvez insérer une ou plusieurs lignes à la fois en listant les valeurs entre parenthèses.\nSi une colonne a une valeur par défaut ou accepte NULL, vous pouvez l'omettre de la requête.",
-		sqlQueries: [
+		examples: [
 			{
 				title: "Insertion d'un seul utilisateur",
-				sqlCode: `INSERT INTO utilisateurs (prenom, nom, email, age) VALUES 
+				code: `INSERT INTO utilisateurs (prenom, nom, email, age) VALUES 
 ('Alice', 'Dupont', 'alice@email.com', 28);`,
-				sqlResult: {
+				result: {
 					message: "1 ligne insérée avec succès",
 					type: "message",
 				},
 			},
 			{
 				title: "Insertion de plusieurs utilisateurs",
-				sqlCode: `-- Insertion de plusieurs utilisateurs en une seule requête
+				code: `-- Insertion de plusieurs utilisateurs en une seule requête
 INSERT INTO utilisateurs (prenom, nom, email, age) VALUES 
 ('Bob', 'Martin', 'bob@gmail.com', 32),
 ('Claire', 'Durand', 'claire@email.com', 25),
 ('David', 'Moreau', 'david@email.com', 45);`,
-				sqlResult: {
+				result: {
 					message: "3 lignes insérées avec succès",
 					type: "message",
 				},
@@ -59,12 +59,13 @@ INSERT INTO utilisateurs (prenom, nom, email, age) VALUES
 		title: "SELECT - Lecture de données",
 		content:
 			"La commande SELECT est la plus utilisée en SQL : elle permet de lire et récupérer des données.\nVous pouvez sélectionner toutes les colonnes avec le symbole * ou choisir uniquement celles dont tu as besoin.\nVous pouvez utiliser un alias (AS) pour renommer une colonne dans le résultat. C'est utile pour rendre les résultats plus lisibles ou nommer des calculs.\nOn peut combiner SELECT avec WHERE pour filtrer les résultats. La clause WHERE et ses opérateurs seront détaillés dans la prochaine ceinture.",
-		sqlQueries: [
+		examples: [
 			{
-				sqlCode: `-- Sélectionner toutes les colonnes de tous les utilisateurs
+				title: "Sélectionner toutes les colonnes",
+				code: `-- Sélectionner toutes les colonnes de tous les utilisateurs
 SELECT * 
 FROM utilisateurs;`,
-				sqlResult: [
+				result: [
 					{
 						id: 1,
 						prenom: "Alice",
@@ -122,10 +123,11 @@ FROM utilisateurs;`,
 				],
 			},
 			{
-				sqlCode: `-- Sélectionner uniquement le prénom, nom et email
+				title: "Sélectionner des colonnes spécifiques",
+				code: `-- Sélectionner uniquement le prénom, nom et email
 SELECT prenom, nom, email 
 FROM utilisateurs;`,
-				sqlResult: [
+				result: [
 					{ prenom: "Alice", nom: "Dupont", email: "alice@email.com" },
 					{ prenom: "Bob", nom: "Martin", email: "bob@gmail.com" },
 					{ prenom: "Claire", nom: "Durand", email: "claire@email.com" },
@@ -135,13 +137,14 @@ FROM utilisateurs;`,
 				],
 			},
 			{
-				sqlCode: `-- Renommer les colonnes avec AS (alias)
+				title: "Utiliser des alias",
+				code: `-- Renommer les colonnes avec AS (alias)
 SELECT 
     prenom AS "Prénom",
     nom AS "Nom de famille",
     age AS "Âge"
 FROM utilisateurs;`,
-				sqlResult: [
+				result: [
 					{ Prénom: "Alice", "Nom de famille": "Dupont", Âge: 28 },
 					{ Prénom: "Bob", "Nom de famille": "Martin", Âge: 32 },
 					{ Prénom: "Claire", "Nom de famille": "Durand", Âge: 25 },
@@ -151,11 +154,12 @@ FROM utilisateurs;`,
 				],
 			},
 			{
-				sqlCode: `-- Sélectionner les utilisateurs de plus de 30 ans
+				title: "Filtrer avec WHERE",
+				code: `-- Sélectionner les utilisateurs de plus de 30 ans
 SELECT prenom, nom, age 
 FROM utilisateurs 
 WHERE age > 30;`,
-				sqlResult: [
+				result: [
 					{ prenom: "Bob", nom: "Martin", age: 32 },
 					{ prenom: "David", nom: "Moreau", age: 45 },
 				],
@@ -166,32 +170,35 @@ WHERE age > 30;`,
 		title: "UPDATE - Modification de données",
 		content:
 			"La commande UPDATE modifie les valeurs existantes dans une table. Utilise SET pour définir les nouvelles valeurs et WHERE pour cibler les lignes à modifier.\n\nAttention : sans clause WHERE, toutes les lignes de la table seront modifiées !",
-		sqlQueries: [
+		examples: [
 			{
-				sqlCode: `-- Modifier l'âge d'un utilisateur spécifique
+				title: "Modifier une ligne spécifique",
+				code: `-- Modifier l'âge d'un utilisateur spécifique
 UPDATE utilisateurs 
 SET age = 29 
 WHERE prenom = 'Alice' AND nom = 'Dupont';`,
-				sqlResult: {
+				result: {
 					message: "1 ligne mise à jour avec succès",
 					type: "message",
 				},
 			},
 			{
-				sqlCode: `-- Changer la ville de tous les utilisateurs de plus de 40 ans
+				title: "Modifier plusieurs lignes avec condition",
+				code: `-- Changer la ville de tous les utilisateurs de plus de 40 ans
 UPDATE utilisateurs 
 SET ville = 'Nice' 
 WHERE age >= 40;`,
-				sqlResult: {
+				result: {
 					message: "1 ligne mise à jour avec succès",
 					type: "message",
 				},
 			},
 			{
-				sqlCode: `-- Augmenter l'âge de tous les utilisateurs d'un an
+				title: "Modifier toutes les lignes (sans WHERE)",
+				code: `-- Augmenter l'âge de tous les utilisateurs d'un an
 UPDATE utilisateurs 
 SET age = age + 1;`,
-				sqlResult: {
+				result: {
 					message: "6 lignes mises à jour avec succès",
 					type: "message",
 				},
@@ -202,43 +209,47 @@ SET age = age + 1;`,
 		title: "DELETE - Suppression de données",
 		content:
 			"La commande DELETE supprime des lignes d'une table selon une condition WHERE. Pour vider entièrement une table, TRUNCATE est plus rapide car il ne journalise pas chaque suppression.\n\nAttention : un DELETE sans WHERE supprime toutes les lignes ! TRUNCATE supprime toutes les lignes (enregistrements) de la table sans modifier sa structure (colonnes, relations, contraintes) et remet aussi les compteurs auto-increment à zéro.",
-		sqlQueries: [
+		examples: [
 			{
-				sqlCode: `-- Supprimer les utilisateurs de moins de 18 ans
+				title: "Supprimer avec condition",
+				code: `-- Supprimer les utilisateurs de moins de 18 ans
 DELETE FROM utilisateurs 
 WHERE age < 18;`,
-				sqlResult: {
+				result: {
 					message: "0 ligne supprimée (aucun utilisateur de moins de 18 ans)",
 					type: "message",
 				},
 			},
 			{
-				sqlCode: `-- Supprimer un utilisateur spécifique avec plusieurs conditions
+				title: "Supprimer une ligne spécifique",
+				code: `-- Supprimer un utilisateur spécifique avec plusieurs conditions
 DELETE FROM utilisateurs 
 WHERE prenom = 'Bob' 
   AND nom = 'Martin' 
   AND age > 30;`,
-				sqlResult: {
+				result: {
 					message: "1 ligne supprimée avec succès",
 					type: "message",
 				},
 			},
 			{
-				sqlCode: `-- Vider complètement une table (plus rapide que DELETE)
+				title: "TRUNCATE - vider une table",
+				code: `-- Vider complètement une table (plus rapide que DELETE)
 TRUNCATE TABLE sessions;`,
-				sqlResult: {
+				result: {
 					message: "Table 'sessions' vidée",
 					type: "message",
 				},
 			},
 			{
-				sqlCode: `-- DELETE : suppression sélective avec WHERE
+				title: "DELETE vs TRUNCATE",
+				code: `-- DELETE : suppression sélective avec WHERE
 DELETE FROM logs 
 WHERE date_creation < '2024-01-01';
 
 -- TRUNCATE : vide toute la table, plus rapide, sans WHERE
 TRUNCATE TABLE temp_data;`,
-				sqlResult: {
+				result: {
 					message: "DELETE : 1500 lignes supprimées | TRUNCATE : table vidée",
 					type: "message",
 				},
@@ -291,7 +302,7 @@ TRUNCATE TABLE temp_data;`,
 	},
 ];
 
-export const orangeBeltContent = {
+export const beltContent = {
 	...menu,
 	header,
 	accordions,

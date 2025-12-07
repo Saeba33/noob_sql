@@ -21,25 +21,25 @@ const accordions = [
   {
     title: "Sous-requêtes dans WHERE, SELECT, IN, EXISTS",
     content: "Utilisez des requêtes imbriquées pour des analyses complexes.",
-    sqlQueries: [
+    examples: [
       {
         title: "Sous-requête dans WHERE",
-        sqlCode: `SELECT nom, age 
+        code: `SELECT nom, age 
 FROM utilisateurs 
 WHERE age > (SELECT AVG(age) FROM utilisateurs);`,
-        sqlResult: [
+        result: [
           { nom: "Bob Martin", age: 32 },
           { nom: "David Moreau", age: 45 },
         ],
       },
       {
         title: "Sous-requête dans SELECT",
-        sqlCode: `SELECT 
+        code: `SELECT 
     nom,
     age,
     (SELECT COUNT(*) FROM commandes WHERE utilisateur_id = u.id) AS nb_commandes
 FROM utilisateurs u;`,
-        sqlResult: [
+        result: [
           { nom: "Alice Dupont", age: 28, nb_commandes: 1 },
           { nom: "Bob Martin", age: 32, nb_commandes: 1 },
           { nom: "Claire Durand", age: 25, nb_commandes: 1 },
@@ -49,21 +49,21 @@ FROM utilisateurs u;`,
       },
       {
         title: "Sous-requête avec IN",
-        sqlCode: `SELECT nom, email 
+        code: `SELECT nom, email 
 FROM utilisateurs 
 WHERE id IN (
     SELECT utilisateur_id 
     FROM commandes 
     WHERE prix > 100
 );`,
-        sqlResult: [
+        result: [
           { nom: "Alice Dupont", email: "alice@email.com" },
           { nom: "David Moreau", email: "david@email.com" },
         ],
       },
       {
         title: "Sous-requête avec EXISTS",
-        sqlCode: `SELECT nom, email 
+        code: `SELECT nom, email 
 FROM utilisateurs u
 WHERE EXISTS (
     SELECT 1 
@@ -71,7 +71,7 @@ WHERE EXISTS (
     WHERE c.utilisateur_id = u.id 
     AND c.date_commande > '2024-01-01'
 );`,
-        sqlResult: [
+        result: [
           { nom: "Alice Dupont", email: "alice@email.com" },
           { nom: "Bob Martin", email: "bob@email.com" },
           { nom: "Claire Durand", email: "claire@email.com" },
@@ -84,17 +84,17 @@ WHERE EXISTS (
     title: "WITH (CTE - Common Table Expression)",
     content:
       "Organisez vos requêtes complexes avec des expressions de table commune.",
-    sqlQueries: [
+    examples: [
       {
         title: "CTE simple",
-        sqlCode: `WITH utilisateurs_actifs AS (
+        code: `WITH utilisateurs_actifs AS (
     SELECT id, nom, email, age 
     FROM utilisateurs 
     WHERE age >= 30
 )
 SELECT * FROM utilisateurs_actifs
 ORDER BY age;`,
-        sqlResult: [
+        result: [
           { id: 2, nom: "Bob Martin", email: "bob@email.com", age: 32 },
           { id: 5, nom: "Emma Bernard", email: "emma@email.com", age: 30 },
           { id: 4, nom: "David Moreau", email: "david@email.com", age: 45 },
@@ -102,7 +102,7 @@ ORDER BY age;`,
       },
       {
         title: "CTE avec calculs d'agrégation",
-        sqlCode: `WITH statistiques_commandes AS (
+        code: `WITH statistiques_commandes AS (
     SELECT 
         utilisateur_id,
         COUNT(*) AS nb_commandes,
@@ -119,7 +119,7 @@ SELECT
 FROM utilisateurs u
 JOIN statistiques_commandes s ON u.id = s.utilisateur_id
 WHERE s.total_depense > 500;`,
-        sqlResult: [
+        result: [
           {
             nom: "Alice Dupont",
             nb_commandes: 1,
@@ -136,7 +136,7 @@ WHERE s.total_depense > 500;`,
       },
       {
         title: "CTE récursif - Hiérarchie d'employés",
-        sqlCode: `WITH RECURSIVE hierarchie_employes AS (
+        code: `WITH RECURSIVE hierarchie_employes AS (
     -- Cas de base : les managers de niveau 1
     SELECT id, nom, manager_id, 1 as niveau
     FROM employes 
@@ -153,7 +153,7 @@ SELECT nom, niveau,
        REPEAT('  ', niveau - 1) || nom AS nom_indente
 FROM hierarchie_employes
 ORDER BY niveau, nom;`,
-        sqlResult: [
+        result: [
           { nom: "Alice Dupont", niveau: 1, nom_indente: "Alice Dupont" },
           { nom: "Bob Martin", niveau: 2, nom_indente: "  Bob Martin" },
           {
@@ -170,21 +170,21 @@ ORDER BY niveau, nom;`,
   {
     title: "Création et Utilisation de VIEW",
     content: "Créez des vues pour simplifier et sécuriser l'accès aux données.",
-    sqlQueries: [
+    examples: [
       {
         title: "Création d'une vue simple",
-        sqlCode: `CREATE VIEW vue_utilisateurs_actifs AS
+        code: `CREATE VIEW vue_utilisateurs_actifs AS
 SELECT id, nom, email, age
 FROM utilisateurs 
 WHERE age >= 25;`,
-        sqlResult: {
+        result: {
           message: "Vue 'vue_utilisateurs_actifs' créée avec succès",
           type: "message",
         },
       },
       {
         title: "Vue avec jointures complexes",
-        sqlCode: `CREATE VIEW vue_commandes_detaillees AS
+        code: `CREATE VIEW vue_commandes_detaillees AS
 SELECT 
     c.id,
     u.nom AS client,
@@ -195,16 +195,16 @@ SELECT
 FROM commandes c
 JOIN utilisateurs u ON c.utilisateur_id = u.id
 JOIN produits p ON c.produit_id = p.id;`,
-        sqlResult: {
+        result: {
           message: "Vue 'vue_commandes_detaillees' créée avec succès",
           type: "message",
         },
       },
       {
         title: "Utilisation des vues",
-        sqlCode: `SELECT * FROM vue_utilisateurs_actifs
+        code: `SELECT * FROM vue_utilisateurs_actifs
 WHERE age > 30;`,
-        sqlResult: [
+        result: [
           { id: 2, nom: "Bob Martin", email: "bob@email.com", age: 32 },
           { id: 4, nom: "David Moreau", email: "david@email.com", age: 45 },
           { id: 5, nom: "Emma Bernard", email: "emma@email.com", age: 30 },
@@ -212,11 +212,11 @@ WHERE age > 30;`,
       },
       {
         title: "Requête sur vue avec jointures",
-        sqlCode: `SELECT client, produit, prix
+        code: `SELECT client, produit, prix
 FROM vue_commandes_detaillees 
 WHERE prix > 100
 ORDER BY prix DESC;`,
-        sqlResult: [
+        result: [
           { client: "Alice Dupont", produit: "Laptop Pro", prix: 1299 },
           { client: "David Moreau", produit: "Smartphone", prix: 799 },
         ],
@@ -226,23 +226,23 @@ ORDER BY prix DESC;`,
   {
     title: "Opérations de Combinaison avec UNION, UNION ALL",
     content: "Combinez les résultats de plusieurs requêtes avec UNION.",
-    sqlQueries: [
+    examples: [
       {
         title: "UNION - Combine et élimine les doublons",
-        sqlCode: `SELECT nom, email FROM utilisateurs WHERE age < 30
+        code: `SELECT nom, email FROM utilisateurs WHERE age < 30
 UNION
 SELECT nom, email FROM utilisateurs WHERE nom LIKE 'A%';`,
-        sqlResult: [
+        result: [
           { nom: "Alice Dupont", email: "alice@email.com" },
           { nom: "Claire Durand", email: "claire@email.com" },
         ],
       },
       {
         title: "UNION ALL - Combine sans éliminer les doublons",
-        sqlCode: `SELECT 'utilisateur' AS type, nom, email FROM utilisateurs
+        code: `SELECT 'utilisateur' AS type, nom, email FROM utilisateurs
 UNION ALL
 SELECT 'admin' AS type, nom, email_admin FROM administrateurs;`,
-        sqlResult: [
+        result: [
           {
             type: "utilisateur",
             nom: "Alice Dupont",
@@ -278,11 +278,11 @@ SELECT 'admin' AS type, nom, email_admin FROM administrateurs;`,
       },
       {
         title: "UNION avec ORDER BY global",
-        sqlCode: `SELECT nom, email, age, 'Paris' as ville FROM utilisateurs WHERE id IN (1,2)
+        code: `SELECT nom, email, age, 'Paris' as ville FROM utilisateurs WHERE id IN (1,2)
 UNION
 SELECT nom, email, age, 'Lyon' as ville FROM utilisateurs WHERE id IN (3,4)
 ORDER BY age DESC;`,
-        sqlResult: [
+        result: [
           {
             nom: "David Moreau",
             email: "david@email.com",
@@ -314,47 +314,47 @@ ORDER BY age DESC;`,
   {
     title: "INDEX - Optimisation des Performances",
     content: "Optimisez vos requêtes avec des index stratégiquement placés.",
-    sqlQueries: [
+    examples: [
       {
         title: "Index simple sur une colonne",
-        sqlCode: `CREATE INDEX idx_utilisateurs_email ON utilisateurs(email);`,
-        sqlResult: {
+        code: `CREATE INDEX idx_utilisateurs_email ON utilisateurs(email);`,
+        result: {
           message: "Index 'idx_utilisateurs_email' créé avec succès",
           type: "message",
         },
       },
       {
         title: "Index composé sur plusieurs colonnes",
-        sqlCode: `CREATE INDEX idx_commandes_user_date 
+        code: `CREATE INDEX idx_commandes_user_date 
 ON commandes(utilisateur_id, date_commande);`,
-        sqlResult: {
+        result: {
           message: "Index composé 'idx_commandes_user_date' créé avec succès",
           type: "message",
         },
       },
       {
         title: "Index unique pour contraintes",
-        sqlCode: `CREATE UNIQUE INDEX idx_produits_sku ON produits(sku);`,
-        sqlResult: {
+        code: `CREATE UNIQUE INDEX idx_produits_sku ON produits(sku);`,
+        result: {
           message: "Index unique 'idx_produits_sku' créé avec succès",
           type: "message",
         },
       },
       {
         title: "Index partiel avec condition",
-        sqlCode: `CREATE INDEX idx_commandes_recentes 
+        code: `CREATE INDEX idx_commandes_recentes 
 ON commandes(date_commande) 
 WHERE date_commande > '2024-01-01';`,
-        sqlResult: {
+        result: {
           message: "Index partiel 'idx_commandes_recentes' créé avec succès",
           type: "message",
         },
       },
       {
         title: "Analyser l'utilisation des index",
-        sqlCode: `EXPLAIN QUERY PLAN 
+        code: `EXPLAIN QUERY PLAN 
 SELECT * FROM utilisateurs WHERE email = 'alice@email.com';`,
-        sqlResult: [
+        result: [
           {
             selectid: 0,
             order: 0,
@@ -369,17 +369,17 @@ SELECT * FROM utilisateurs WHERE email = 'alice@email.com';`,
   {
     title: "Transactions - BEGIN, COMMIT, ROLLBACK",
     content: "Gérez l'intégrité des données avec les transactions.",
-    sqlQueries: [
+    examples: [
       {
         title: "Transaction simple",
-        sqlCode: `BEGIN TRANSACTION;
+        code: `BEGIN TRANSACTION;
     INSERT INTO utilisateurs (nom, email, age) 
     VALUES ('Nouvel Utilisateur', 'nouveau@email.com', 35);
     
     INSERT INTO commandes (utilisateur_id, produit_id, prix) 
     VALUES (LAST_INSERT_ROWID(), 1, 99.99);
 COMMIT;`,
-        sqlResult: {
+        result: {
           message:
             "Transaction validée : utilisateur et commande créés avec succès",
           type: "message",
@@ -387,7 +387,7 @@ COMMIT;`,
       },
       {
         title: "Transaction avec vérification",
-        sqlCode: `BEGIN TRANSACTION;
+        code: `BEGIN TRANSACTION;
     UPDATE utilisateurs SET age = age + 1 WHERE id = 1;
     
     -- Vérifier que l'âge reste dans une plage acceptable
@@ -397,14 +397,14 @@ COMMIT;`,
     END 
     FROM utilisateurs WHERE id = 1;
 COMMIT;`,
-        sqlResult: {
+        result: {
           message: "Transaction validée : âge mis à jour avec vérification",
           type: "message",
         },
       },
       {
         title: "Transaction de transfert bancaire",
-        sqlCode: `BEGIN TRANSACTION;
+        code: `BEGIN TRANSACTION;
     UPDATE comptes SET solde = solde - 200 WHERE id = 1;
     UPDATE comptes SET solde = solde + 200 WHERE id = 2;
     
@@ -415,7 +415,7 @@ COMMIT;`,
         ELSE 'Transfert OK'
     END;
 COMMIT;`,
-        sqlResult: {
+        result: {
           message:
             "Transaction validée : transfert de 200€ effectué avec succès",
           type: "message",
@@ -423,12 +423,12 @@ COMMIT;`,
       },
       {
         title: "Transaction avec ROLLBACK",
-        sqlCode: `BEGIN TRANSACTION;
+        code: `BEGIN TRANSACTION;
     DELETE FROM logs WHERE date_creation < '2024-01-01';
     
     -- Après réflexion, on garde les logs...
 ROLLBACK;`,
-        sqlResult: {
+        result: {
           message: "Transaction annulée : aucune suppression effectuée",
           type: "message",
         },
@@ -437,8 +437,8 @@ ROLLBACK;`,
   },
 ];
 
-export const blackBeltContent = {
-  ...menu,
-  header,
-  accordions,
+export const beltContent = {
+	...menu,
+	header,
+	accordions,
 };

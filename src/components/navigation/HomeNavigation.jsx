@@ -5,13 +5,13 @@ import Link from "next/link";
 import { FaFistRaised } from "react-icons/fa";
 
 // Import belt content
-import { blackBeltContent } from "@/data/sections/black";
-import { blueBeltContent } from "@/data/sections/blue";
-import { brownBeltContent } from "@/data/sections/brown";
-import { greenBeltContent } from "@/data/sections/green";
-import { orangeBeltContent } from "@/data/sections/orange";
-import { whiteBeltContent } from "@/data/sections/white";
-import { yellowBeltContent } from "@/data/sections/yellow";
+import { beltContent as blackBeltContent } from "@/data/sections/black";
+import { beltContent as blueBeltContent } from "@/data/sections/blue";
+import { beltContent as brownBeltContent } from "@/data/sections/brown";
+import { beltContent as greenBeltContent } from "@/data/sections/green";
+import { beltContent as orangeBeltContent } from "@/data/sections/orange";
+import { beltContent as whiteBeltContent } from "@/data/sections/white";
+import { beltContent as yellowBeltContent } from "@/data/sections/yellow";
 
 // Belt content mapping
 const BELT_CONTENTS = {
