@@ -199,18 +199,18 @@ Principe de syntaxe :
 -- LEFT JOIN avec alias et mot-clé AS (on retourne l'alias de la table dans le ON)
 SELECT colonnes
 FROM TableA AS A
-LEFT JOIN TableB AS B ON A.cle = B.cle;
+LEFT JOIN TableB AS B ON A.cle_primaire = B.cle_etrangere;
 
 -- LEFT JOIN avec alias et sans mot-clé AS
 -- Le mot-clé AS est optionnel pour les alias de table, vous pouvez donc utiliser le raccourci syntaxique suivant :
 SELECT colonnes
 FROM TableA A
-LEFT JOIN TableB B ON A.cle = B.cle;
+LEFT JOIN TableB B ON A.cle_primaire = B.cle_etrangere;
 
 -- LEFT OUTER JOIN est strictement équivalent à LEFT JOIN
 SELECT colonnes
 FROM TableA A
-LEFT OUTER JOIN TableB B ON A.cle = B.cle;`,
+LEFT OUTER JOIN TableB B ON A.cle_primaire = B.cle_etrangere;`,
 			},
 			{
 				title: "Exemple : Tous les utilisateurs (même sans emprunt)",
@@ -287,18 +287,18 @@ Principe de syntaxe :
 -- RIGHT JOIN avec alias et mot-clé AS (on retourne l'alias de la table dans le ON)
 SELECT colonnes
 FROM TableA AS A
-RIGHT JOIN TableB AS B ON A.cle = B.cle;
+RIGHT JOIN TableB AS B ON A.cle_primaire = B.cle_etrangere;
 
 -- RIGHT JOIN avec alias et sans mot-clé AS
 -- Le mot-clé AS est optionnel pour les alias de table, vous pouvez donc utiliser le raccourci syntaxique suivant :
 SELECT colonnes
 FROM TableA A
-RIGHT JOIN TableB B ON A.cle = B.cle;
+RIGHT JOIN TableB B ON A.cle_primaire = B.cle_etrangere;
 
 -- Équivalent avec LEFT JOIN (en inversant l'ordre des tables) :
 SELECT colonnes
 FROM TableB B
-LEFT JOIN TableA A ON A.cle = B.cle;`,
+LEFT JOIN TableA A ON A.cle_primaire = B.cle_etrangere;`,
 			},
 			{
 				title: "Exemple : Tous les livres (même jamais empruntés)",
@@ -383,19 +383,19 @@ Principe de syntaxe :
 -- FULL JOIN avec alias et mot-clé AS (on retourne l'alias de la table dans le ON)
 SELECT colonnes
 FROM TableA AS A
-FULL OUTER JOIN TableB AS B ON A.cle = B.cle;
+FULL OUTER JOIN TableB AS B ON A.cle_primaire = B.cle_etrangere;
 
 -- FULL JOIN avec alias et sans mot-clé AS
 -- Le mot-clé AS est optionnel pour les alias de table, vous pouvez donc utiliser le raccourci syntaxique suivant :
 SELECT colonnes
 FROM TableA A
-FULL OUTER JOIN TableB B ON A.cle = B.cle;
+FULL OUTER JOIN TableB B ON A.cle_primaire = B.cle_etrangere;
 
 -- Alternative pour SQLite (pas de FULL JOIN natif) :
 -- Combiner LEFT JOIN et RIGHT JOIN avec UNION
-SELECT colonnes FROM TableA A LEFT JOIN TableB B ON A.cle = B.cle
+SELECT colonnes FROM TableA A LEFT JOIN TableB B ON A.cle_primaire = B.cle_etrangere
 UNION
-SELECT colonnes FROM TableA A RIGHT JOIN TableB B ON A.cle = B.cle;`,
+SELECT colonnes FROM TableA A RIGHT JOIN TableB B ON A.cle_primaire = B.cle_etrangere;`,
 			},
 			{
 				title: "Exemple : Vue complète utilisateurs/livres",
