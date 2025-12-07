@@ -1,4 +1,4 @@
-export const SQLSyntaxConfig = {
+export const sqlSyntaxConfig = {
 	// Style definitions for each token type
 	styles: {
 		keyword: "text-blue-400 font-semibold",
@@ -61,7 +61,7 @@ export const SQLSyntaxConfig = {
 };
 
 // Function to analyze and colorize SQL code with improved logic
-export function analyzeSQLCode(code) {
+export function analyzeSqlCode(code) {
 	if (!code) return null;
 
 	let parts = [];
@@ -351,7 +351,7 @@ export function parseSchema(schemaText) {
 }
 
 // Function to convert SQL CREATE TABLE statements to diagram data
-export function SQLToTableDiagram(sqlCode) {
+export function sqlToTableDiagram(sqlCode) {
 	if (!sqlCode) return [];
 
 	// Parse the SQL to extract table structure

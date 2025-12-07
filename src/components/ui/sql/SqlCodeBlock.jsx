@@ -1,13 +1,13 @@
-import { analyzeSQLCode, SQLSyntaxConfig } from "../../../config/sql-syntax.js";
+import { analyzeSqlCode, sqlSyntaxConfig } from "../../../config/sql-syntax.js";
 
 export default function SQLCodeBlock({ children, className = "" }) {
 	// Function to colorize SQL code using the configuration
 	const renderColorizedCode = (code) => {
 		if (!code) return null;
 
-		const parts = analyzeSQLCode(code);
+		const parts = analyzeSqlCode(code);
 		if (!parts || parts.length === 0) {
-			return <span className={SQLSyntaxConfig.styles.default}>{code}</span>;
+			return <span className={sqlSyntaxConfig.styles.default}>{code}</span>;
 		}
 
 		let result = [];
@@ -18,14 +18,14 @@ export default function SQLCodeBlock({ children, className = "" }) {
 			// Add text before this part
 			if (currentIndex < part.start) {
 				result.push(
-					<span key={key++} className={SQLSyntaxConfig.styles.default}>
+					<span key={key++} className={sqlSyntaxConfig.styles.default}>
 						{code.slice(currentIndex, part.start)}
 					</span>
 				);
 			}
 			// Add the coloured part
 			const styleClass =
-				SQLSyntaxConfig.styles[part.type] || SQLSyntaxConfig.styles.default;
+				sqlSyntaxConfig.styles[part.type] || sqlSyntaxConfig.styles.default;
 
 			result.push(
 				<span key={key++} className={styleClass}>
@@ -39,7 +39,7 @@ export default function SQLCodeBlock({ children, className = "" }) {
 		// Add the rest of the text
 		if (currentIndex < code.length) {
 			result.push(
-				<span key={key++} className={SQLSyntaxConfig.styles.default}>
+				<span key={key++} className={sqlSyntaxConfig.styles.default}>
 					{code.slice(currentIndex)}
 				</span>
 			);
@@ -51,11 +51,11 @@ export default function SQLCodeBlock({ children, className = "" }) {
 	return (
 		<div className={`relative ${className}`}>
 			<div
-				className={`${SQLSyntaxConfig.componentStyles.code.background} ${SQLSyntaxConfig.componentStyles.code.border} border rounded-lg overflow-hidden shadow-lg`}
+				className={`${sqlSyntaxConfig.componentStyles.code.background} ${sqlSyntaxConfig.componentStyles.code.border} border rounded-lg overflow-hidden shadow-lg`}
 			>
 				{/* Terminal Header */}
 				<div
-					className={`${SQLSyntaxConfig.componentStyles.code.header} px-4 py-2 flex items-center space-x-2`}
+					className={`${sqlSyntaxConfig.componentStyles.code.header} px-4 py-2 flex items-center space-x-2`}
 				>
 					<div className="flex space-x-1">
 						<div className="w-3 h-3 bg-red-500 rounded-full"></div>
