@@ -25,13 +25,14 @@ const header = {
 const accordions = [
 	{
 		title: "Types de jointures",
-		content: "Schéma récapitulatif des principaux types de jointures SQL",
+		content:
+			"Pour mieux comprendre comment combiner les données de plusieurs tables en SQL, voici un schéma récapitulatif des quatres principaux types de jointures : INNER JOIN, LEFT JOIN, RIGHT JOIN et FULL JOIN. Il illustre la façon dont chaque jointure inclut ou exclut les enregistrements selon leur présence dans les tables concernées.",
 		externalComponent: <JoinsDiagram />,
 	},
 	{
 		title: "Rappel : clés primaires / étrangères",
 		content:
-			"Les clés primaires et étrangères sont indispensables pour établir des jointures entre tables. Elles définissent les relations qui lient les enregistrements d'une table à ceux d'une autre. Sans elles, il n'est pas possible de faire de jointures entre plusieurs tables.",
+			"Les clés primaires et étrangères sont indispensables pour établir des jointures entre tables. Elles définissent les relations qui lient les enregistrements d'une table à ceux d'une autre. Sans elles, il n'est pas possible de faire de jointures entre les tables.",
 		sqlCode: `-- Structure avec clés primaires et étrangères
 CREATE TABLE utilisateurs (
     id INTEGER PRIMARY KEY,             -- Clé primaire
@@ -63,10 +64,7 @@ CREATE TABLE emprunts (
 	},
 	{
 		title: "JOIN",
-		content: `JOIN (ou INNER JOIN) retourne uniquement les lignes ayant une correspondance dans les deux tables (intersection).
-
-Principe de syntaxe :
-<code>FROM</code> TableA <code>JOIN</code> TableB <code>ON</code> TableA.cle_primaire <code>=</code> TableB.cle_etrangere`,
+		content: `JOIN, qui peut également s'écrire INNER JOIN, retourne uniquement les lignes ayant une correspondance dans les deux tables (intersection). \n\nPrincipe de syntaxe :\n<code>FROM</code> nom_de_la_table_A\n<code>JOIN</code> nom_de_la_table_B <code>ON</code> nom_de_la_table_A<code>.</code>nom_de_la_cle_primaire <code>=</code> nom_de_la_table_B<code>.</code>nom_de_la_cle_etrangere_qui_relie_la_table_B_a_la_table_A`,
 		externalComponent: <JoinDiagramSingle type="inner" />,
 		sqlQueries: [
 			{
@@ -84,7 +82,7 @@ FROM TableA AS A
 JOIN TableB AS B ON A.cle = B.cle;
 
 -- JOIN avec alias (sans mot-clé AS) 
--- Le mot-clé AS est optionnel, vous pouvez utiliser ce raccourci :
+-- Le mot-clé AS est optionnel pour les alias de table, vous pouvez donc utiliser le raccourci syntaxique suivant :
 SELECT colonnes
 FROM TableA A
 JOIN TableB B ON A.cle = B.cle;`,
@@ -103,9 +101,30 @@ JOIN emprunts e ON u.id = e.utilisateur_id
 JOIN livres l ON e.livre_id = l.id
 WHERE e.statut = 'en_cours';`,
 				sqlResult: [
-					{ prenom: "Alice", nom: "Dupont", titre: "1984", auteur: "George Orwell", date_emprunt: "2024-11-15", date_retour_prevue: "2024-12-15" },
-					{ prenom: "Bob", nom: "Martin", titre: "Le Seigneur des Anneaux", auteur: "J.R.R. Tolkien", date_emprunt: "2024-11-20", date_retour_prevue: "2024-12-20" },
-					{ prenom: "Claire", nom: "Durand", titre: "Clean Code", auteur: "Robert Martin", date_emprunt: "2024-11-25", date_retour_prevue: "2024-12-25" },
+					{
+						prenom: "Alice",
+						nom: "Dupont",
+						titre: "1984",
+						auteur: "George Orwell",
+						date_emprunt: "2024-11-15",
+						date_retour_prevue: "2024-12-15",
+					},
+					{
+						prenom: "Bob",
+						nom: "Martin",
+						titre: "Le Seigneur des Anneaux",
+						auteur: "J.R.R. Tolkien",
+						date_emprunt: "2024-11-20",
+						date_retour_prevue: "2024-12-20",
+					},
+					{
+						prenom: "Claire",
+						nom: "Durand",
+						titre: "Clean Code",
+						auteur: "Robert Martin",
+						date_emprunt: "2024-11-25",
+						date_retour_prevue: "2024-12-25",
+					},
 				],
 			},
 			{
@@ -124,10 +143,42 @@ JOIN emprunts e ON u.id = e.utilisateur_id
 JOIN livres l ON e.livre_id = l.id
 ORDER BY e.date_emprunt DESC;`,
 				sqlResult: [
-					{ prenom: "Claire", nom: "Durand", titre: "Clean Code", genre: "Informatique", date_emprunt: "2024-11-25", date_retour_reel: null, statut: "en_cours" },
-					{ prenom: "Bob", nom: "Martin", titre: "Le Seigneur des Anneaux", genre: "Fantasy", date_emprunt: "2024-11-20", date_retour_reel: null, statut: "en_cours" },
-					{ prenom: "Alice", nom: "Dupont", titre: "1984", genre: "Science-Fiction", date_emprunt: "2024-11-15", date_retour_reel: null, statut: "en_cours" },
-					{ prenom: "Alice", nom: "Dupont", titre: "Le Petit Prince", genre: "Conte", date_emprunt: "2024-10-01", date_retour_reel: "2024-10-15", statut: "rendu" },
+					{
+						prenom: "Claire",
+						nom: "Durand",
+						titre: "Clean Code",
+						genre: "Informatique",
+						date_emprunt: "2024-11-25",
+						date_retour_reel: null,
+						statut: "en_cours",
+					},
+					{
+						prenom: "Bob",
+						nom: "Martin",
+						titre: "Le Seigneur des Anneaux",
+						genre: "Fantasy",
+						date_emprunt: "2024-11-20",
+						date_retour_reel: null,
+						statut: "en_cours",
+					},
+					{
+						prenom: "Alice",
+						nom: "Dupont",
+						titre: "1984",
+						genre: "Science-Fiction",
+						date_emprunt: "2024-11-15",
+						date_retour_reel: null,
+						statut: "en_cours",
+					},
+					{
+						prenom: "Alice",
+						nom: "Dupont",
+						titre: "Le Petit Prince",
+						genre: "Conte",
+						date_emprunt: "2024-10-01",
+						date_retour_reel: "2024-10-15",
+						statut: "rendu",
+					},
 				],
 			},
 		],
@@ -165,10 +216,30 @@ FROM utilisateurs u
 LEFT JOIN emprunts e ON u.id = e.utilisateur_id
 GROUP BY u.id, u.prenom, u.nom, u.email;`,
 				sqlResult: [
-					{ prenom: "Alice", nom: "Dupont", email: "alice@email.com", nombre_emprunts: 2 },
-					{ prenom: "Bob", nom: "Martin", email: "bob@email.com", nombre_emprunts: 1 },
-					{ prenom: "Claire", nom: "Durand", email: "claire@email.com", nombre_emprunts: 1 },
-					{ prenom: "Emma", nom: "Bernard", email: "emma@email.com", nombre_emprunts: 0 },
+					{
+						prenom: "Alice",
+						nom: "Dupont",
+						email: "alice@email.com",
+						nombre_emprunts: 2,
+					},
+					{
+						prenom: "Bob",
+						nom: "Martin",
+						email: "bob@email.com",
+						nombre_emprunts: 1,
+					},
+					{
+						prenom: "Claire",
+						nom: "Durand",
+						email: "claire@email.com",
+						nombre_emprunts: 1,
+					},
+					{
+						prenom: "Emma",
+						nom: "Bernard",
+						email: "emma@email.com",
+						nombre_emprunts: 0,
+					},
 				],
 			},
 			{
@@ -183,7 +254,12 @@ FROM utilisateurs u
 LEFT JOIN emprunts e ON u.id = e.utilisateur_id
 WHERE e.id IS NULL;`,
 				sqlResult: [
-					{ prenom: "Emma", nom: "Bernard", email: "emma@email.com", date_inscription: "2024-11-10" },
+					{
+						prenom: "Emma",
+						nom: "Bernard",
+						email: "emma@email.com",
+						date_inscription: "2024-11-10",
+					},
 				],
 			},
 		],
@@ -221,11 +297,36 @@ FROM emprunts e
 RIGHT JOIN livres l ON e.livre_id = l.id
 GROUP BY l.id, l.titre, l.auteur, l.genre;`,
 				sqlResult: [
-					{ titre: "1984", auteur: "George Orwell", genre: "Science-Fiction", nombre_emprunts: 1 },
-					{ titre: "Le Seigneur des Anneaux", auteur: "J.R.R. Tolkien", genre: "Fantasy", nombre_emprunts: 1 },
-					{ titre: "Clean Code", auteur: "Robert Martin", genre: "Informatique", nombre_emprunts: 1 },
-					{ titre: "Le Petit Prince", auteur: "Antoine de Saint-Exupéry", genre: "Conte", nombre_emprunts: 1 },
-					{ titre: "Design Patterns", auteur: "Gang of Four", genre: "Informatique", nombre_emprunts: 0 },
+					{
+						titre: "1984",
+						auteur: "George Orwell",
+						genre: "Science-Fiction",
+						nombre_emprunts: 1,
+					},
+					{
+						titre: "Le Seigneur des Anneaux",
+						auteur: "J.R.R. Tolkien",
+						genre: "Fantasy",
+						nombre_emprunts: 1,
+					},
+					{
+						titre: "Clean Code",
+						auteur: "Robert Martin",
+						genre: "Informatique",
+						nombre_emprunts: 1,
+					},
+					{
+						titre: "Le Petit Prince",
+						auteur: "Antoine de Saint-Exupéry",
+						genre: "Conte",
+						nombre_emprunts: 1,
+					},
+					{
+						titre: "Design Patterns",
+						auteur: "Gang of Four",
+						genre: "Informatique",
+						nombre_emprunts: 0,
+					},
 				],
 			},
 			{
@@ -240,7 +341,12 @@ FROM emprunts e
 RIGHT JOIN livres l ON e.livre_id = l.id
 WHERE e.id IS NULL;`,
 				sqlResult: [
-					{ titre: "Design Patterns", auteur: "Gang of Four", genre: "Informatique", annee_publication: 1994 },
+					{
+						titre: "Design Patterns",
+						auteur: "Gang of Four",
+						genre: "Informatique",
+						annee_publication: 1994,
+					},
 				],
 			},
 		],
@@ -279,12 +385,48 @@ FROM utilisateurs u
 LEFT JOIN emprunts e ON u.id = e.utilisateur_id
 FULL OUTER JOIN livres l ON e.livre_id = l.id;`,
 				sqlResult: [
-					{ prenom: "Alice", nom: "Dupont", titre: "1984", genre: "Science-Fiction", statut: "en_cours" },
-					{ prenom: "Bob", nom: "Martin", titre: "Le Seigneur des Anneaux", genre: "Fantasy", statut: "en_cours" },
-					{ prenom: "Claire", nom: "Durand", titre: "Clean Code", genre: "Informatique", statut: "en_cours" },
-					{ prenom: "Alice", nom: "Dupont", titre: "Le Petit Prince", genre: "Conte", statut: "rendu" },
-					{ prenom: "Emma", nom: "Bernard", titre: null, genre: null, statut: null },
-					{ prenom: null, nom: null, titre: "Design Patterns", genre: "Informatique", statut: null },
+					{
+						prenom: "Alice",
+						nom: "Dupont",
+						titre: "1984",
+						genre: "Science-Fiction",
+						statut: "en_cours",
+					},
+					{
+						prenom: "Bob",
+						nom: "Martin",
+						titre: "Le Seigneur des Anneaux",
+						genre: "Fantasy",
+						statut: "en_cours",
+					},
+					{
+						prenom: "Claire",
+						nom: "Durand",
+						titre: "Clean Code",
+						genre: "Informatique",
+						statut: "en_cours",
+					},
+					{
+						prenom: "Alice",
+						nom: "Dupont",
+						titre: "Le Petit Prince",
+						genre: "Conte",
+						statut: "rendu",
+					},
+					{
+						prenom: "Emma",
+						nom: "Bernard",
+						titre: null,
+						genre: null,
+						statut: null,
+					},
+					{
+						prenom: null,
+						nom: null,
+						titre: "Design Patterns",
+						genre: "Informatique",
+						statut: null,
+					},
 				],
 			},
 			{
@@ -303,8 +445,18 @@ LEFT JOIN emprunts e ON u.id = e.utilisateur_id
 FULL OUTER JOIN livres l ON e.livre_id = l.id
 WHERE u.id IS NULL OR l.id IS NULL;`,
 				sqlResult: [
-					{ prenom: "Emma", nom: "Bernard", titre: null, anomalie: "Utilisateur sans emprunt" },
-					{ prenom: null, nom: null, titre: "Design Patterns", anomalie: "Livre jamais emprunté" },
+					{
+						prenom: "Emma",
+						nom: "Bernard",
+						titre: null,
+						anomalie: "Utilisateur sans emprunt",
+					},
+					{
+						prenom: null,
+						nom: null,
+						titre: "Design Patterns",
+						anomalie: "Livre jamais emprunté",
+					},
 				],
 			},
 		],
@@ -420,8 +572,20 @@ JOIN utilisateurs u2 ON YEAR(u1.date_naissance) = YEAR(u2.date_naissance)
     AND u1.id < u2.id  -- Évite les doublons (A,B) et (B,A)
 ORDER BY annee_naissance;`,
 				sqlResult: [
-					{ prenom1: "Alice", nom1: "Dupont", prenom2: "Bob", nom2: "Martin", annee_naissance: 1995 },
-					{ prenom1: "Claire", nom1: "Durand", prenom2: "Emma", nom2: "Bernard", annee_naissance: 1998 },
+					{
+						prenom1: "Alice",
+						nom1: "Dupont",
+						prenom2: "Bob",
+						nom2: "Martin",
+						annee_naissance: 1995,
+					},
+					{
+						prenom1: "Claire",
+						nom1: "Durand",
+						prenom2: "Emma",
+						nom2: "Bernard",
+						annee_naissance: 1998,
+					},
 				],
 			},
 			{
@@ -438,7 +602,13 @@ JOIN livres l2 ON l1.auteur = l2.auteur
     AND l1.id < l2.id  -- Évite les doublons
 ORDER BY l1.auteur;`,
 				sqlResult: [
-					{ livre1: "Clean Code", livre2: "The Clean Coder", auteur: "Robert Martin", annee1: 2008, annee2: 2011 },
+					{
+						livre1: "Clean Code",
+						livre2: "The Clean Coder",
+						auteur: "Robert Martin",
+						annee1: 2008,
+						annee2: 2011,
+					},
 				],
 			},
 		],
