@@ -1,5 +1,5 @@
-import JoinsDiagram from "@/components/ui/sections/brown/JoinsDiagram";
 import JoinDiagramSingle from "@/components/ui/sections/brown/JoinDiagramSingle";
+import JoinsDiagram from "@/components/ui/sections/brown/JoinsDiagram";
 
 const menu = {
 	description: "Relations entre les tables",
@@ -64,7 +64,7 @@ CREATE TABLE emprunts (
 	},
 	{
 		title: "INNER JOIN",
-		content: `INNER JOIN, qui peut s'écrire simplement JOIN, retourne uniquement les lignes ayant une correspondance dans les deux tables (intersection). \n\nPrincipe de syntaxe :\n<code>FROM</code> nom_de_la_table_A\n<code>JOIN</code> nom_de_la_table_B <code>ON</code> nom_de_la_table_A<code>.</code>nom_de_la_cle_primaire <code>=</code> nom_de_la_table_B<code>.</code>nom_de_la_cle_etrangere`,
+		content: `INNER JOIN, qui peut s'écrire simplement JOIN, retourne uniquement les lignes ayant une correspondance dans les deux tables (intersection). \n\nPrincipe de syntaxe :\n<code>FROM</code> nom_de_la_table_A\n<code>JOIN</code> nom_de_la_table_B <code>ON</code> nom_de_la_table_A <code>.</code> nom_de_la_cle_primaire <code>=</code> nom_de_la_table_B <code>.</code> nom_de_la_cle_etrangere`,
 		externalComponent: <JoinDiagramSingle type="inner" />,
 		sqlQueries: [
 			{
@@ -88,45 +88,46 @@ FROM TableA A
 JOIN TableB B ON A.cle_primaire = B.cle_etrangere;`,
 			},
 			{
-				title: "Exemple : Emprunts en cours avec détails",
-				sqlCode: `SELECT 
+				title: "Exemple : Jointure simple sur deux tables",
+				sqlCode: `-- Afficher les utilisateurs avec leurs emprunts
+SELECT 
     u.prenom,
     u.nom,
-    l.titre,
-    l.auteur,
+    u.email,
     e.date_emprunt,
-    e.date_retour_prevue
+    e.date_retour_prevue,
+    e.statut
 FROM utilisateurs u
 JOIN emprunts e ON u.id = e.utilisateur_id
-JOIN livres l ON e.livre_id = l.id
 WHERE e.statut = 'en_cours';`,
 				sqlResult: [
 					{
 						prenom: "Alice",
 						nom: "Dupont",
-						titre: "1984",
-						auteur: "George Orwell",
+						email: "alice@email.com",
 						date_emprunt: "2024-11-15",
 						date_retour_prevue: "2024-12-15",
+						statut: "en_cours",
 					},
 					{
 						prenom: "Bob",
 						nom: "Martin",
-						titre: "Le Seigneur des Anneaux",
-						auteur: "J.R.R. Tolkien",
+						email: "bob@email.com",
 						date_emprunt: "2024-11-20",
 						date_retour_prevue: "2024-12-20",
+						statut: "en_cours",
 					},
 					{
 						prenom: "Claire",
 						nom: "Durand",
-						titre: "Clean Code",
-						auteur: "Robert Martin",
+						email: "claire@email.com",
 						date_emprunt: "2024-11-25",
 						date_retour_prevue: "2024-12-25",
+						statut: "en_cours",
 					},
 				],
 			},
+
 			{
 				title: "Jointure sur trois tables : historique complet",
 				sqlCode: `-- Afficher tous les emprunts avec informations utilisateur et livre
@@ -189,7 +190,7 @@ ORDER BY e.date_emprunt DESC;`,
 
 Principe de syntaxe :
 <code>FROM</code> nom_de_la_table_A
-<code>LEFT JOIN</code> nom_de_la_table_B <code>ON</code> nom_de_la_table_A<code>.</code>nom_de_la_cle_primaire <code>=</code> nom_de_la_table_B<code>.</code>nom_de_la_cle_etrangere`,
+<code>LEFT JOIN</code> nom_de_la_table_B <code>ON</code> nom_de_la_table_A <code>.</code> nom_de_la_cle_primaire <code>=</code> nom_de_la_table_B <code>.</code> nom_de_la_cle_etrangere`,
 		externalComponent: <JoinDiagramSingle type="left" />,
 		sqlQueries: [
 			{
@@ -277,7 +278,7 @@ WHERE e.id IS NULL;`,
 
 Principe de syntaxe :
 <code>FROM</code> nom_de_la_table_A
-<code>RIGHT JOIN</code> nom_de_la_table_B <code>ON</code> nom_de_la_table_A<code>.</code>nom_de_la_cle_primaire <code>=</code> nom_de_la_table_B<code>.</code>nom_de_la_cle_etrangere`,
+<code>RIGHT JOIN</code> nom_de_la_table_B <code>ON</code> nom_de_la_table_A <code>.</code> nom_de_la_cle_primaire <code>=</code> nom_de_la_table_B <code>.</code> nom_de_la_cle_etrangere`,
 		externalComponent: <JoinDiagramSingle type="right" />,
 		sqlQueries: [
 			{
@@ -373,7 +374,7 @@ Note : SQLite ne supporte pas FULL JOIN nativement, il faut utiliser UNION pour 
 
 Principe de syntaxe :
 <code>FROM</code> nom_de_la_table_A
-<code>FULL JOIN</code> nom_de_la_table_B <code>ON</code> nom_de_la_table_A<code>.</code>nom_de_la_cle_primaire <code>=</code> nom_de_la_table_B<code>.</code>nom_de_la_cle_etrangere`,
+<code>FULL JOIN</code> nom_de_la_table_B <code>ON</code> nom_de_la_table_A <code>.</code> nom_de_la_cle_primaire <code>=</code> nom_de_la_table_B <code>.</code> nom_de_la_cle_etrangere`,
 		externalComponent: <JoinDiagramSingle type="full" />,
 		sqlQueries: [
 			{
@@ -575,7 +576,7 @@ ORDER BY l.titre, d.date_disponible;`,
 
 Principe de syntaxe :
 <code>FROM</code> nom_de_la_table alias1
-<code>JOIN</code> nom_de_la_table alias2 <code>ON</code> alias1<code>.</code>nom_colonne <code>=</code> alias2<code>.</code>nom_colonne`,
+<code>JOIN</code> nom_de_la_table alias2 <code>ON</code> alias1 <code>.</code> nom_colonne <code>=</code> alias2 <code>.</code> nom_colonne`,
 		sqlQueries: [
 			{
 				title: "Syntaxe générale",
