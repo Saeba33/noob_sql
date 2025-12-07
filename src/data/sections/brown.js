@@ -601,36 +601,6 @@ CREATE TABLE categories (
 );`,
 			},
 			{
-				title: "Exemple : Utilisateurs nés la même année",
-				sqlCode: `-- Comparer les dates de naissance des utilisateurs
-SELECT 
-    u1.prenom AS prenom1,
-    u1.nom AS nom1,
-    u2.prenom AS prenom2,
-    u2.nom AS nom2,
-    YEAR(u1.date_naissance) AS annee_naissance
-FROM utilisateurs u1
-JOIN utilisateurs u2 ON YEAR(u1.date_naissance) = YEAR(u2.date_naissance)
-    AND u1.id < u2.id  -- Évite les doublons (A,B) et (B,A)
-ORDER BY annee_naissance;`,
-				sqlResult: [
-					{
-						prenom1: "Alice",
-						nom1: "Dupont",
-						prenom2: "Bob",
-						nom2: "Martin",
-						annee_naissance: 1995,
-					},
-					{
-						prenom1: "Claire",
-						nom1: "Durand",
-						prenom2: "Emma",
-						nom2: "Bernard",
-						annee_naissance: 1998,
-					},
-				],
-			},
-			{
 				title: "Livres du même auteur",
 				sqlCode: `-- Trouver les livres écrits par le même auteur
 SELECT 
