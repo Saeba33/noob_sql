@@ -192,16 +192,17 @@ ORDER BY e.date_emprunt DESC;`,
 	},
 	{
 		section: "LEFT JOIN",
-		content: `LEFT JOIN, qui peut également s'écrire LEFT OUTER JOIN, retourne toutes les lignes de la table de gauche (après FROM), avec les correspondances de la table de droite si elles existent. S'il n'y a pas de correspondance, les colonnes de la table de droite seront NULL. 
-
-Principe de syntaxe :
-<code>FROM</code> nom_de_la_table_A
-<code>LEFT JOIN</code> nom_de_la_table_B <code>ON</code> nom_de_la_table_A <code>.</code> nom_de_la_cle_primaire <code>=</code> nom_de_la_table_B <code>.</code> nom_de_la_cle_etrangere`,
+		content: `LEFT JOIN, qui peut également s'écrire LEFT OUTER JOIN, retourne toutes les lignes de la table de gauche (après FROM), avec les correspondances de la table de droite si elles existent. S'il n'y a pas de correspondance, les colonnes de la table de droite seront NULL.\n\nPrincipe de syntaxe :\n<code>FROM</code> nom_de_la_table_A\n<code>LEFT JOIN</code> nom_de_la_table_B <code>ON</code> nom_de_la_table_A <code>.</code> nom_de_la_cle_primaire <code>=</code> nom_de_la_table_B <code>.</code> nom_de_la_cle_etrangere`,
 		externalComponent: <JoinDiagramSingle type="left" />,
 		examples: [
 			{
 				label: "Syntaxe générale",
-				code: `-- On peut l'écrire de 2 façons :
+				code: `-- On peut l'écrire de 3 façons :
+
+-- LEFT JOIN sans alias (on retourne le nom complet de la table dans le ON)
+SELECT colonnes
+FROM TableA
+LEFT JOIN TableB ON TableA.cle_primaire = TableB.cle_etrangere;
 
 -- LEFT JOIN avec alias et mot-clé AS (on retourne l'alias de la table dans le ON)
 SELECT colonnes
@@ -209,19 +210,15 @@ FROM TableA AS A
 LEFT JOIN TableB AS B ON A.cle_primaire = B.cle_etrangere;
 
 -- LEFT JOIN avec alias et sans mot-clé AS
--- Le mot-clé AS est optionnel pour les alias de table, vous pouvez donc utiliser le raccourci syntaxique suivant :
+-- Le mot-clé AS est optionnel pour les alias de table
 SELECT colonnes
 FROM TableA A
-LEFT JOIN TableB B ON A.cle_primaire = B.cle_etrangere;
-
--- LEFT OUTER JOIN est strictement équivalent à LEFT JOIN
-SELECT colonnes
-FROM TableA A
-LEFT OUTER JOIN TableB B ON A.cle_primaire = B.cle_etrangere;`,
+LEFT JOIN TableB B ON A.cle_primaire = B.cle_etrangere;`,
 			},
 			{
-				label: "Exemple : Tous les utilisateurs (même sans emprunt)",
-				code: `SELECT 
+				label: "Exemple : jointure sur deux tables (utilisateurs et emprunts)",
+				code: `-- Afficher tous les utilisateurs avec le nombre d'emprunts
+SELECT 
     u.prenom,
     u.nom,
     u.email,
@@ -257,8 +254,8 @@ GROUP BY u.id, u.prenom, u.nom, u.email;`,
 				],
 			},
 			{
-				label: "LEFT EXCLUSIVE : Utilisateurs sans emprunt",
-				code: `-- Ajouter WHERE ... IS NULL pour ne garder que les lignes sans correspondance
+				label: "Exemple : jointure sur trois tables avec filtre exclusif",
+				code: `-- Trouver les utilisateurs qui n'ont jamais emprunté de livres du genre "Informatique"
 SELECT 
     u.prenom,
     u.nom,
@@ -266,8 +263,22 @@ SELECT
     u.date_inscription
 FROM utilisateurs u
 LEFT JOIN emprunts e ON u.id = e.utilisateur_id
-WHERE e.id IS NULL;`,
+LEFT JOIN livres l ON e.livre_id = l.id AND l.genre = 'Informatique'
+WHERE l.id IS NULL
+GROUP BY u.id, u.prenom, u.nom, u.email, u.date_inscription;`,
 				result: [
+					{
+						prenom: "Alice",
+						nom: "Dupont",
+						email: "alice@email.com",
+						date_inscription: "2024-08-15",
+					},
+					{
+						prenom: "Bob",
+						nom: "Martin",
+						email: "bob@email.com",
+						date_inscription: "2024-09-20",
+					},
 					{
 						prenom: "Emma",
 						nom: "Bernard",
@@ -280,16 +291,17 @@ WHERE e.id IS NULL;`,
 	},
 	{
 		section: "RIGHT JOIN",
-		content: `RIGHT JOIN, qui peut également s'écrire RIGHT OUTER JOIN, retourne toutes les lignes de la table de droite (après JOIN), avec les correspondances de la table de gauche si elles existent. En pratique, on préfère souvent réécrire un RIGHT JOIN en LEFT JOIN en inversant l'ordre des tables. 
-
-Principe de syntaxe :
-<code>FROM</code> nom_de_la_table_A
-<code>RIGHT JOIN</code> nom_de_la_table_B <code>ON</code> nom_de_la_table_A <code>.</code> nom_de_la_cle_primaire <code>=</code> nom_de_la_table_B <code>.</code> nom_de_la_cle_etrangere`,
+		content: `RIGHT JOIN, qui peut également s'écrire RIGHT OUTER JOIN, retourne toutes les lignes de la table de droite (après JOIN), avec les correspondances de la table de gauche si elles existent. En pratique, on préfère souvent réécrire un RIGHT JOIN en LEFT JOIN en inversant l'ordre des tables.\n\nPrincipe de syntaxe :\n<code>FROM</code> nom_de_la_table_A\n<code>RIGHT JOIN</code> nom_de_la_table_B <code>ON</code> nom_de_la_table_A <code>.</code> nom_de_la_cle_primaire <code>=</code> nom_de_la_table_B <code>.</code> nom_de_la_cle_etrangere`,
 		externalComponent: <JoinDiagramSingle type="right" />,
 		examples: [
 			{
 				label: "Syntaxe générale",
-				code: `-- On peut l'écrire de 2 façons :
+				code: `-- On peut l'écrire de 3 façons :
+
+-- RIGHT JOIN sans alias (on retourne le nom complet de la table dans le ON)
+SELECT colonnes
+FROM TableA
+RIGHT JOIN TableB ON TableA.cle_primaire = TableB.cle_etrangere;
 
 -- RIGHT JOIN avec alias et mot-clé AS (on retourne l'alias de la table dans le ON)
 SELECT colonnes
@@ -297,26 +309,23 @@ FROM TableA AS A
 RIGHT JOIN TableB AS B ON A.cle_primaire = B.cle_etrangere;
 
 -- RIGHT JOIN avec alias et sans mot-clé AS
--- Le mot-clé AS est optionnel pour les alias de table, vous pouvez donc utiliser le raccourci syntaxique suivant :
+-- Le mot-clé AS est optionnel pour les alias de table
 SELECT colonnes
 FROM TableA A
-RIGHT JOIN TableB B ON A.cle_primaire = B.cle_etrangere;
-
--- Équivalent avec LEFT JOIN (en inversant l'ordre des tables) :
-SELECT colonnes
-FROM TableB B
-LEFT JOIN TableA A ON A.cle_primaire = B.cle_etrangere;`,
+RIGHT JOIN TableB B ON A.cle_primaire = B.cle_etrangere;`,
 			},
 			{
-				label: "Exemple : Tous les livres (même jamais empruntés)",
-				code: `SELECT 
+				label: "Exemple : jointure sur deux tables (emprunts et livres)",
+				code: `-- Afficher tous les livres avec le nombre d'emprunts
+SELECT 
     l.titre,
     l.auteur,
     l.genre,
     COUNT(e.id) AS nombre_emprunts
 FROM emprunts e
 RIGHT JOIN livres l ON e.livre_id = l.id
-GROUP BY l.id, l.titre, l.auteur, l.genre;`,
+GROUP BY l.id, l.titre, l.auteur, l.genre
+ORDER BY nombre_emprunts DESC;`,
 				result: [
 					{
 						titre: "1984",
@@ -351,22 +360,65 @@ GROUP BY l.id, l.titre, l.auteur, l.genre;`,
 				],
 			},
 			{
-				label: "RIGHT EXCLUSIVE : Livres jamais empruntés",
-				code: `-- Trouver les livres qui n'ont jamais été empruntés
+				label: "Exemple : jointure sur trois tables avec analyse des emprunts",
+				code: `-- Afficher tous les livres avec les emprunts en cours et les utilisateurs
 SELECT 
     l.titre,
-    l.auteur,
     l.genre,
-    l.annee_publication
-FROM emprunts e
+    u.prenom,
+    u.nom,
+    e.date_emprunt,
+    e.date_retour_prevue,
+    e.statut
+FROM utilisateurs u
+JOIN emprunts e ON u.id = e.utilisateur_id
 RIGHT JOIN livres l ON e.livre_id = l.id
-WHERE e.id IS NULL;`,
+ORDER BY l.titre;`,
 				result: [
 					{
-						titre: "Design Patterns",
-						auteur: "Gang of Four",
+						titre: "1984",
+						genre: "Science-Fiction",
+						prenom: "Alice",
+						nom: "Dupont",
+						date_emprunt: "2024-11-15",
+						date_retour_prevue: "2024-12-15",
+						statut: "en_cours",
+					},
+					{
+						titre: "Clean Code",
 						genre: "Informatique",
-						annee_publication: 1994,
+						prenom: "Claire",
+						nom: "Durand",
+						date_emprunt: "2024-11-25",
+						date_retour_prevue: "2024-12-25",
+						statut: "en_cours",
+					},
+					{
+						titre: "Design Patterns",
+						genre: "Informatique",
+						prenom: null,
+						nom: null,
+						date_emprunt: null,
+						date_retour_prevue: null,
+						statut: null,
+					},
+					{
+						titre: "Le Petit Prince",
+						genre: "Conte",
+						prenom: "Alice",
+						nom: "Dupont",
+						date_emprunt: "2024-10-01",
+						date_retour_prevue: "2024-10-31",
+						statut: "rendu",
+					},
+					{
+						titre: "Le Seigneur des Anneaux",
+						genre: "Fantasy",
+						prenom: "Bob",
+						nom: "Martin",
+						date_emprunt: "2024-11-20",
+						date_retour_prevue: "2024-12-20",
+						statut: "en_cours",
 					},
 				],
 			},
@@ -374,18 +426,17 @@ WHERE e.id IS NULL;`,
 	},
 	{
 		section: "FULL JOIN",
-		content: `FULL JOIN, qui peut également s'écrire FULL OUTER JOIN, retourne toutes les lignes des deux tables, qu'il y ait correspondance ou non. Les colonnes sans correspondance seront NULL. 
-
-Note : SQLite ne supporte pas FULL JOIN nativement, il faut utiliser UNION pour combiner LEFT et RIGHT JOIN.
-
-Principe de syntaxe :
-<code>FROM</code> nom_de_la_table_A
-<code>FULL JOIN</code> nom_de_la_table_B <code>ON</code> nom_de_la_table_A <code>.</code> nom_de_la_cle_primaire <code>=</code> nom_de_la_table_B <code>.</code> nom_de_la_cle_etrangere`,
+		content: `FULL JOIN, qui peut également s'écrire FULL OUTER JOIN, retourne toutes les lignes des deux tables, qu'il y ait correspondance ou non. Les colonnes sans correspondance seront NULL.\n\nNote : SQLite ne supporte pas FULL JOIN nativement, il faut utiliser UNION pour combiner LEFT et RIGHT JOIN.\n\nPrincipe de syntaxe :\n<code>FROM</code> nom_de_la_table_A\n<code>FULL JOIN</code> nom_de_la_table_B <code>ON</code> nom_de_la_table_A <code>.</code> nom_de_la_cle_primaire <code>=</code> nom_de_la_table_B <code>.</code> nom_de_la_cle_etrangere`,
 		externalComponent: <JoinDiagramSingle type="full" />,
 		examples: [
 			{
 				label: "Syntaxe générale",
-				code: `-- On peut l'écrire de 2 façons :
+				code: `-- On peut l'écrire de 3 façons :
+
+-- FULL JOIN sans alias (on retourne le nom complet de la table dans le ON)
+SELECT colonnes
+FROM TableA
+FULL OUTER JOIN TableB ON TableA.cle_primaire = TableB.cle_etrangere;
 
 -- FULL JOIN avec alias et mot-clé AS (on retourne l'alias de la table dans le ON)
 SELECT colonnes
@@ -393,49 +444,111 @@ FROM TableA AS A
 FULL OUTER JOIN TableB AS B ON A.cle_primaire = B.cle_etrangere;
 
 -- FULL JOIN avec alias et sans mot-clé AS
--- Le mot-clé AS est optionnel pour les alias de table, vous pouvez donc utiliser le raccourci syntaxique suivant :
+-- Le mot-clé AS est optionnel pour les alias de table
 SELECT colonnes
 FROM TableA A
-FULL OUTER JOIN TableB B ON A.cle_primaire = B.cle_etrangere;
-
--- Alternative pour SQLite (pas de FULL JOIN natif) :
--- Combiner LEFT JOIN et RIGHT JOIN avec UNION
-SELECT colonnes FROM TableA A LEFT JOIN TableB B ON A.cle_primaire = B.cle_etrangere
-UNION
-SELECT colonnes FROM TableA A RIGHT JOIN TableB B ON A.cle_primaire = B.cle_etrangere;`,
+FULL OUTER JOIN TableB B ON A.cle_primaire = B.cle_etrangere;`,
 			},
 			{
-				label: "Exemple : Vue complète utilisateurs/livres",
-				code: `SELECT 
+				label: "Exemple : jointure sur deux tables (utilisateurs et emprunts)",
+				code: `-- Vue complète : tous les utilisateurs ET tous les emprunts (même orphelins)
+SELECT 
+    u.prenom,
+    u.nom,
+    u.email,
+    e.date_emprunt,
+    e.date_retour_prevue,
+    e.statut
+FROM utilisateurs u
+FULL OUTER JOIN emprunts e ON u.id = e.utilisateur_id
+ORDER BY u.nom, e.date_emprunt;`,
+				result: [
+					{
+						prenom: "Emma",
+						nom: "Bernard",
+						email: "emma@email.com",
+						date_emprunt: null,
+						date_retour_prevue: null,
+						statut: null,
+					},
+					{
+						prenom: "Alice",
+						nom: "Dupont",
+						email: "alice@email.com",
+						date_emprunt: "2024-10-01",
+						date_retour_prevue: "2024-10-31",
+						statut: "rendu",
+					},
+					{
+						prenom: "Alice",
+						nom: "Dupont",
+						email: "alice@email.com",
+						date_emprunt: "2024-11-15",
+						date_retour_prevue: "2024-12-15",
+						statut: "en_cours",
+					},
+					{
+						prenom: "Claire",
+						nom: "Durand",
+						email: "claire@email.com",
+						date_emprunt: "2024-11-25",
+						date_retour_prevue: "2024-12-25",
+						statut: "en_cours",
+					},
+					{
+						prenom: "Bob",
+						nom: "Martin",
+						email: "bob@email.com",
+						date_emprunt: "2024-11-20",
+						date_retour_prevue: "2024-12-20",
+						statut: "en_cours",
+					},
+				],
+			},
+			{
+				label: "Exemple : jointure sur trois tables avec détection d'anomalies",
+				code: `-- Audit complet : utilisateurs, emprunts et livres (incluant les orphelins)
+SELECT 
     u.prenom,
     u.nom,
     l.titre,
     l.genre,
-    e.statut
+    e.statut,
+    CASE 
+        WHEN u.id IS NULL THEN 'Emprunt sans utilisateur'
+        WHEN l.id IS NULL THEN 'Emprunt sans livre'
+        WHEN e.id IS NULL AND u.id IS NOT NULL THEN 'Utilisateur sans emprunt'
+        WHEN e.id IS NULL AND l.id IS NOT NULL THEN 'Livre jamais emprunté'
+        ELSE 'OK'
+    END AS etat
 FROM utilisateurs u
-LEFT JOIN emprunts e ON u.id = e.utilisateur_id
-FULL OUTER JOIN livres l ON e.livre_id = l.id;`,
+FULL OUTER JOIN emprunts e ON u.id = e.utilisateur_id
+FULL OUTER JOIN livres l ON e.livre_id = l.id
+ORDER BY etat DESC, u.nom;`,
 				result: [
+					{
+						prenom: "Emma",
+						nom: "Bernard",
+						titre: null,
+						genre: null,
+						statut: null,
+						etat: "Utilisateur sans emprunt",
+					},
+					{
+						prenom: null,
+						nom: null,
+						titre: "Design Patterns",
+						genre: "Informatique",
+						statut: null,
+						etat: "Livre jamais emprunté",
+					},
 					{
 						prenom: "Alice",
 						nom: "Dupont",
 						titre: "1984",
 						genre: "Science-Fiction",
 						statut: "en_cours",
-					},
-					{
-						prenom: "Bob",
-						nom: "Martin",
-						titre: "Le Seigneur des Anneaux",
-						genre: "Fantasy",
-						statut: "en_cours",
-					},
-					{
-						prenom: "Claire",
-						nom: "Durand",
-						titre: "Clean Code",
-						genre: "Informatique",
-						statut: "en_cours",
+						etat: "OK",
 					},
 					{
 						prenom: "Alice",
@@ -443,50 +556,23 @@ FULL OUTER JOIN livres l ON e.livre_id = l.id;`,
 						titre: "Le Petit Prince",
 						genre: "Conte",
 						statut: "rendu",
+						etat: "OK",
 					},
 					{
-						prenom: "Emma",
-						nom: "Bernard",
-						titre: null,
-						genre: null,
-						statut: null,
+						prenom: "Bob",
+						nom: "Martin",
+						titre: "Le Seigneur des Anneaux",
+						genre: "Fantasy",
+						statut: "en_cours",
+						etat: "OK",
 					},
 					{
-						prenom: null,
-						nom: null,
-						titre: "Design Patterns",
+						prenom: "Claire",
+						nom: "Durand",
+						titre: "Clean Code",
 						genre: "Informatique",
-						statut: null,
-					},
-				],
-			},
-			{
-				label: "FULL EXCLUSIVE : Données non appariées",
-				code: `-- Trouver les utilisateurs sans emprunts ET les livres jamais empruntés
-SELECT 
-    u.prenom,
-    u.nom,
-    l.titre,
-    CASE 
-        WHEN u.id IS NULL THEN 'Livre jamais emprunté'
-        WHEN l.id IS NULL THEN 'Utilisateur sans emprunt'
-    END AS anomalie
-FROM utilisateurs u
-LEFT JOIN emprunts e ON u.id = e.utilisateur_id
-FULL OUTER JOIN livres l ON e.livre_id = l.id
-WHERE u.id IS NULL OR l.id IS NULL;`,
-				result: [
-					{
-						prenom: "Emma",
-						nom: "Bernard",
-						titre: null,
-						anomalie: "Utilisateur sans emprunt",
-					},
-					{
-						prenom: null,
-						nom: null,
-						titre: "Design Patterns",
-						anomalie: "Livre jamais emprunté",
+						statut: "en_cours",
+						etat: "OK",
 					},
 				],
 			},
@@ -494,39 +580,33 @@ WHERE u.id IS NULL OR l.id IS NULL;`,
 	},
 	{
 		section: "CROSS JOIN",
-		content: `CROSS JOIN génère le produit cartésien : chaque ligne de la première table est combinée avec chaque ligne de la seconde. Attention : N lignes × M lignes = N×M résultats ! Utile pour générer des matrices ou des combinaisons. 
-
-Principe de syntaxe :
-<code>FROM</code> nom_de_la_table_A
-<code>CROSS JOIN</code> nom_de_la_table_B
-
-Note : CROSS JOIN n'utilise pas de clause <code>ON</code> car il n'y a aucune condition de jointure.`,
+		content: `CROSS JOIN génère le produit cartésien : chaque ligne de la première table est combinée avec chaque ligne de la seconde. Attention : N lignes × M lignes = N×M résultats ! Utile pour générer des matrices ou des combinaisons.\n\nPrincipe de syntaxe :\n<code>FROM</code> nom_de_la_table_A\n<code>CROSS JOIN</code> nom_de_la_table_B\n\nNote : CROSS JOIN n'utilise pas de clause <code>ON</code> car il n'y a aucune condition de jointure.`,
 		examples: [
 			{
 				label: "Syntaxe générale",
-				code: `-- On peut l'écrire de 2 façons :
+				code: `-- On peut l'écrire de 3 façons :
 
--- CROSS JOIN avec alias et mot-clé AS
+-- CROSS JOIN sans alias
 -- Pas de clause ON car aucune condition de jointure
 -- Attention : génère N × M lignes !
+SELECT colonnes
+FROM TableA
+CROSS JOIN TableB;
+
+-- CROSS JOIN avec alias et mot-clé AS
 SELECT colonnes
 FROM TableA AS A
 CROSS JOIN TableB AS B;
 
 -- CROSS JOIN avec alias et sans mot-clé AS
--- Le mot-clé AS est optionnel pour les alias de table, vous pouvez donc utiliser le raccourci syntaxique suivant :
+-- Le mot-clé AS est optionnel pour les alias de table
 SELECT colonnes
 FROM TableA A
-CROSS JOIN TableB B;
-
--- Syntaxe alternative (implicite) :
--- Utiliser la virgule entre les tables produit le même résultat
-SELECT colonnes
-FROM TableA A, TableB B;`,
+CROSS JOIN TableB B;`,
 			},
 			{
-				label: "Exemple : Matrice utilisateurs × genres littéraires",
-				code: `-- Générer des recommandations : tous les utilisateurs × tous les genres
+				label: "Exemple : produit cartésien simple (utilisateurs × genres)",
+				code: `-- Générer toutes les combinaisons utilisateurs × genres littéraires
 SELECT 
     u.prenom,
     u.nom,
@@ -538,7 +618,7 @@ CROSS JOIN (
     WHERE genre IS NOT NULL
 ) g
 ORDER BY u.nom, g.genre
-LIMIT 8;`,
+LIMIT 12;`,
 				result: [
 					{ prenom: "Emma", nom: "Bernard", genre: "Conte" },
 					{ prenom: "Emma", nom: "Bernard", genre: "Fantasy" },
@@ -548,41 +628,98 @@ LIMIT 8;`,
 					{ prenom: "Alice", nom: "Dupont", genre: "Fantasy" },
 					{ prenom: "Alice", nom: "Dupont", genre: "Informatique" },
 					{ prenom: "Alice", nom: "Dupont", genre: "Science-Fiction" },
+					{ prenom: "Claire", nom: "Durand", genre: "Conte" },
+					{ prenom: "Claire", nom: "Durand", genre: "Fantasy" },
+					{ prenom: "Claire", nom: "Durand", genre: "Informatique" },
+					{ prenom: "Claire", nom: "Durand", genre: "Science-Fiction" },
 				],
 			},
 			{
-				label: "Cas pratique : Planning de réservations",
-				code: `-- Créer un planning : tous les livres × toutes les dates disponibles
+				label: "Exemple : matrice complexe avec filtres et comptages",
+				code: `-- Créer une matrice de recommandations : utilisateurs × livres avec score de compatibilité
 SELECT 
+    u.prenom,
+    u.nom,
     l.titre,
-    d.date_disponible
-FROM livres l
-CROSS JOIN (
-    SELECT DATE('2024-12-01') AS date_disponible
-    UNION SELECT DATE('2024-12-08')
-    UNION SELECT DATE('2024-12-15')
-    UNION SELECT DATE('2024-12-22')
-) d
-WHERE l.genre = 'Informatique'
-ORDER BY l.titre, d.date_disponible;`,
+    l.genre,
+    CASE 
+        WHEN EXISTS (
+            SELECT 1 FROM emprunts e 
+            WHERE e.utilisateur_id = u.id 
+            AND e.livre_id = l.id
+        ) THEN 'Déjà emprunté'
+        WHEN l.genre = 'Informatique' THEN 'Recommandé'
+        ELSE 'Disponible'
+    END AS statut_recommandation
+FROM utilisateurs u
+CROSS JOIN livres l
+WHERE u.prenom IN ('Alice', 'Emma')
+ORDER BY u.nom, l.titre
+LIMIT 8;`,
 				result: [
-					{ titre: "Clean Code", date_disponible: "2024-12-01" },
-					{ titre: "Clean Code", date_disponible: "2024-12-08" },
-					{ titre: "Clean Code", date_disponible: "2024-12-15" },
-					{ titre: "Clean Code", date_disponible: "2024-12-22" },
-					{ titre: "Design Patterns", date_disponible: "2024-12-01" },
-					{ titre: "Design Patterns", date_disponible: "2024-12-08" },
+					{
+						prenom: "Emma",
+						nom: "Bernard",
+						titre: "1984",
+						genre: "Science-Fiction",
+						statut_recommandation: "Disponible",
+					},
+					{
+						prenom: "Emma",
+						nom: "Bernard",
+						titre: "Clean Code",
+						genre: "Informatique",
+						statut_recommandation: "Recommandé",
+					},
+					{
+						prenom: "Emma",
+						nom: "Bernard",
+						titre: "Design Patterns",
+						genre: "Informatique",
+						statut_recommandation: "Recommandé",
+					},
+					{
+						prenom: "Emma",
+						nom: "Bernard",
+						titre: "Le Petit Prince",
+						genre: "Conte",
+						statut_recommandation: "Disponible",
+					},
+					{
+						prenom: "Alice",
+						nom: "Dupont",
+						titre: "1984",
+						genre: "Science-Fiction",
+						statut_recommandation: "Déjà emprunté",
+					},
+					{
+						prenom: "Alice",
+						nom: "Dupont",
+						titre: "Clean Code",
+						genre: "Informatique",
+						statut_recommandation: "Recommandé",
+					},
+					{
+						prenom: "Alice",
+						nom: "Dupont",
+						titre: "Design Patterns",
+						genre: "Informatique",
+						statut_recommandation: "Recommandé",
+					},
+					{
+						prenom: "Alice",
+						nom: "Dupont",
+						titre: "Le Petit Prince",
+						genre: "Conte",
+						statut_recommandation: "Déjà emprunté",
+					},
 				],
 			},
 		],
 	},
 	{
 		section: "SELF JOIN",
-		content: `SELF JOIN permet de joindre une table avec elle-même. Indispensable pour les structures hiérarchiques ou pour comparer des lignes entre elles. Les alias sont obligatoires pour distinguer les deux "copies" de la table. 
-
-Principe de syntaxe :
-<code>FROM</code> nom_de_la_table alias1
-<code>JOIN</code> nom_de_la_table alias2 <code>ON</code> alias1 <code>.</code> nom_colonne <code>=</code> alias2 <code>.</code> nom_colonne`,
+		content: `SELF JOIN permet de joindre une table avec elle-même. Indispensable pour les structures hiérarchiques ou pour comparer des lignes entre elles. Les alias sont obligatoires pour distinguer les deux "copies" de la table.\n\nPrincipe de syntaxe :\n<code>FROM</code> nom_de_la_table alias1\n<code>JOIN</code> nom_de_la_table alias2 <code>ON</code> alias1 <code>.</code> nom_colonne <code>=</code> alias2 <code>.</code> nom_colonne`,
 		examples: [
 			{
 				label: "Syntaxe générale",
@@ -594,7 +731,7 @@ FROM MaTable AS alias1
 JOIN MaTable AS alias2 ON alias1.colonne = alias2.colonne;
 
 -- SELF JOIN avec alias et sans mot-clé AS
--- Le mot-clé AS est optionnel pour les alias de table, vous pouvez donc utiliser le raccourci syntaxique suivant :
+-- Le mot-clé AS est optionnel pour les alias de table
 SELECT colonnes
 FROM MaTable alias1
 JOIN MaTable alias2 ON alias1.colonne = alias2.colonne;
@@ -607,8 +744,8 @@ CREATE TABLE categories (
 );`,
 			},
 			{
-				label: "Livres du même auteur",
-				code: `-- Trouver les livres écrits par le même auteur
+				label: "Exemple : comparaison simple (livres du même auteur)",
+				code: `-- Trouver les paires de livres écrits par le même auteur
 SELECT 
     l1.titre AS livre1,
     l2.titre AS livre2,
@@ -617,7 +754,7 @@ SELECT
     l2.annee_publication AS annee2
 FROM livres l1
 JOIN livres l2 ON l1.auteur = l2.auteur
-    AND l1.id < l2.id  -- Évite les doublons
+    AND l1.id < l2.id  -- Évite les doublons (A-B et B-A)
 ORDER BY l1.auteur;`,
 				result: [
 					{
@@ -626,6 +763,39 @@ ORDER BY l1.auteur;`,
 						auteur: "Robert Martin",
 						annee1: 2008,
 						annee2: 2011,
+					},
+				],
+			},
+			{
+				label: "Exemple : analyse des emprunts consécutifs par utilisateur",
+				code: `-- Trouver les emprunts consécutifs d'un même utilisateur
+-- Utile pour analyser les délais entre emprunts
+SELECT 
+    u.prenom,
+    u.nom,
+    l1.titre AS livre_precedent,
+    e1.date_retour_reel AS date_retour,
+    l2.titre AS livre_suivant,
+    e2.date_emprunt AS nouvelle_date_emprunt,
+    JULIANDAY(e2.date_emprunt) - JULIANDAY(e1.date_retour_reel) AS jours_entre_emprunts
+FROM emprunts e1
+JOIN emprunts e2 ON e1.utilisateur_id = e2.utilisateur_id
+    AND e1.date_retour_reel < e2.date_emprunt
+    AND e1.id != e2.id
+JOIN utilisateurs u ON e1.utilisateur_id = u.id
+JOIN livres l1 ON e1.livre_id = l1.id
+JOIN livres l2 ON e2.livre_id = l2.id
+WHERE e1.date_retour_reel IS NOT NULL
+ORDER BY u.nom, e1.date_retour_reel;`,
+				result: [
+					{
+						prenom: "Alice",
+						nom: "Dupont",
+						livre_precedent: "Le Petit Prince",
+						date_retour: "2024-10-15",
+						livre_suivant: "1984",
+						nouvelle_date_emprunt: "2024-11-15",
+						jours_entre_emprunts: 31,
 					},
 				],
 			},
