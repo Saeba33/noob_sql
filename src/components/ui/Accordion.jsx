@@ -26,7 +26,7 @@ const renderSqlResult = (sqlResult) => {
 };
 
 export default function Accordion({
-	title,
+	section,
 	content,
 	examples,
 	externalComponent,
@@ -34,7 +34,7 @@ export default function Accordion({
 	className = "",
 }) {
 	const [isOpen, setIsOpen] = useState(false);
-	const accordionId = `accordion-${title.replace(/\s+/g, "-").toLowerCase()}`;
+	const accordionId = `accordion-${section.replace(/\s+/g, "-").toLowerCase()}`;
 
 	const toggle = () => setIsOpen(!isOpen);
 
@@ -62,7 +62,7 @@ export default function Accordion({
 							className={`w-5 h-5 ${colors.text || "text-gray-700"}`}
 							aria-hidden="true"
 						/>
-						<h3 className="text-lg font-semibold">{title}</h3>
+						<h3 className="text-lg font-semibold">{section}</h3>
 					</div>
 				</div>
 				<MdExpandMore
@@ -127,9 +127,9 @@ export default function Accordion({
 										key={index}
 										className="space-y-4 border border-gray-200 rounded-lg p-4"
 									>
-										{example.title && (
+										{example.label && (
 											<h5 className="text-sm font-medium text-gray-800 border-l-4 border-blue-500 pl-3 mb-3">
-												{example.title}
+												{example.label}
 											</h5>
 										)}
 

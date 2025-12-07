@@ -2,7 +2,7 @@ import JoinDiagramSingle from "@/components/ui/sections/brown/JoinDiagramSingle"
 import JoinsDiagram from "@/components/ui/sections/brown/JoinsDiagram";
 
 const menu = {
-	description: "Relations entre les tables",
+	summary: "Relations entre les tables",
 	topics: [
 		"Schéma jointures",
 		"Clés primaires/étrangères",
@@ -24,19 +24,19 @@ const header = {
 
 const accordions = [
 	{
-		title: "Types de jointures",
+		section: "Types de jointures",
 		content:
 			"Pour mieux comprendre comment combiner les données de plusieurs tables en SQL, voici un schéma récapitulatif des quatres principaux types de jointures : INNER JOIN, LEFT JOIN, RIGHT JOIN et FULL JOIN. Il illustre la façon dont chaque jointure inclut ou exclut les enregistrements selon leur présence dans les tables concernées.",
 		externalComponent: <JoinsDiagram />,
 	},
 	{
-		title: "Rappel : clés primaires / étrangères",
+		section: "Rappel : clés primaires / étrangères",
 		content:
 			"Les clés primaires et étrangères sont indispensables pour établir des jointures entre tables. Elles définissent les relations qui lient les enregistrements d'une table à ceux d'une autre. Sans elles, il n'est pas possible de faire de jointures entre les tables.",
 		examples: [
 			{
 				type: "schema",
-				title: "Structure de la base bibliothèque",
+				label: "Structure de la base bibliothèque",
 				code: `-- Structure avec clés primaires et étrangères
 CREATE TABLE utilisateurs (
     id INTEGER PRIMARY KEY,             -- Clé primaire
@@ -69,12 +69,12 @@ CREATE TABLE emprunts (
 		],
 	},
 	{
-		title: "INNER JOIN",
+		section: "INNER JOIN",
 		content: `INNER JOIN, qui peut s'écrire simplement JOIN, retourne uniquement les lignes ayant une correspondance dans les deux tables (intersection). \n\nPrincipe de syntaxe :\n<code>FROM</code> nom_de_la_table_A\n<code>JOIN</code> nom_de_la_table_B <code>ON</code> nom_de_la_table_A <code>.</code> nom_de_la_cle_primaire <code>=</code> nom_de_la_table_B <code>.</code> nom_de_la_cle_etrangere`,
 		externalComponent: <JoinDiagramSingle type="inner" />,
 		examples: [
 			{
-				title: "Syntaxe générale",
+				label: "Syntaxe générale",
 				code: `-- On peut l'écrire de 3 façons :
 
 -- JOIN sans alias (on retourne le nom complet de la table dans le ON)
@@ -94,7 +94,7 @@ FROM TableA A
 JOIN TableB B ON A.cle_primaire = B.cle_etrangere;`,
 			},
 			{
-				title: "Exemple : jointure sur deux tables (utilisateurs et emprunts)",
+				label: "Exemple : jointure sur deux tables (utilisateurs et emprunts)",
 				code: `-- Afficher les utilisateurs avec leurs emprunts
 SELECT 
     u.prenom,
@@ -135,7 +135,7 @@ WHERE e.statut = 'en_cours';`,
 		},
 
 		{
-			title: "Exemple : jointure sur trois tables (utilisateurs, livres et emprunts)",
+			label: "Exemple : jointure sur trois tables (utilisateurs, livres et emprunts)",
 			code: `-- Afficher tous les emprunts avec les informations des livres et des utilisateurs
 SELECT 
     u.prenom,
@@ -191,7 +191,7 @@ ORDER BY e.date_emprunt DESC;`,
 		],
 	},
 	{
-		title: "LEFT JOIN",
+		section: "LEFT JOIN",
 		content: `LEFT JOIN, qui peut également s'écrire LEFT OUTER JOIN, retourne toutes les lignes de la table de gauche (après FROM), avec les correspondances de la table de droite si elles existent. S'il n'y a pas de correspondance, les colonnes de la table de droite seront NULL. 
 
 Principe de syntaxe :
@@ -200,7 +200,7 @@ Principe de syntaxe :
 		externalComponent: <JoinDiagramSingle type="left" />,
 		examples: [
 			{
-				title: "Syntaxe générale",
+				label: "Syntaxe générale",
 				code: `-- On peut l'écrire de 2 façons :
 
 -- LEFT JOIN avec alias et mot-clé AS (on retourne l'alias de la table dans le ON)
@@ -220,7 +220,7 @@ FROM TableA A
 LEFT OUTER JOIN TableB B ON A.cle_primaire = B.cle_etrangere;`,
 			},
 			{
-				title: "Exemple : Tous les utilisateurs (même sans emprunt)",
+				label: "Exemple : Tous les utilisateurs (même sans emprunt)",
 				code: `SELECT 
     u.prenom,
     u.nom,
@@ -257,7 +257,7 @@ GROUP BY u.id, u.prenom, u.nom, u.email;`,
 				],
 			},
 			{
-				title: "LEFT EXCLUSIVE : Utilisateurs sans emprunt",
+				label: "LEFT EXCLUSIVE : Utilisateurs sans emprunt",
 				code: `-- Ajouter WHERE ... IS NULL pour ne garder que les lignes sans correspondance
 SELECT 
     u.prenom,
@@ -279,7 +279,7 @@ WHERE e.id IS NULL;`,
 		],
 	},
 	{
-		title: "RIGHT JOIN",
+		section: "RIGHT JOIN",
 		content: `RIGHT JOIN, qui peut également s'écrire RIGHT OUTER JOIN, retourne toutes les lignes de la table de droite (après JOIN), avec les correspondances de la table de gauche si elles existent. En pratique, on préfère souvent réécrire un RIGHT JOIN en LEFT JOIN en inversant l'ordre des tables. 
 
 Principe de syntaxe :
@@ -288,7 +288,7 @@ Principe de syntaxe :
 		externalComponent: <JoinDiagramSingle type="right" />,
 		examples: [
 			{
-				title: "Syntaxe générale",
+				label: "Syntaxe générale",
 				code: `-- On peut l'écrire de 2 façons :
 
 -- RIGHT JOIN avec alias et mot-clé AS (on retourne l'alias de la table dans le ON)
@@ -308,7 +308,7 @@ FROM TableB B
 LEFT JOIN TableA A ON A.cle_primaire = B.cle_etrangere;`,
 			},
 			{
-				title: "Exemple : Tous les livres (même jamais empruntés)",
+				label: "Exemple : Tous les livres (même jamais empruntés)",
 				code: `SELECT 
     l.titre,
     l.auteur,
@@ -351,7 +351,7 @@ GROUP BY l.id, l.titre, l.auteur, l.genre;`,
 				],
 			},
 			{
-				title: "RIGHT EXCLUSIVE : Livres jamais empruntés",
+				label: "RIGHT EXCLUSIVE : Livres jamais empruntés",
 				code: `-- Trouver les livres qui n'ont jamais été empruntés
 SELECT 
     l.titre,
@@ -373,7 +373,7 @@ WHERE e.id IS NULL;`,
 		],
 	},
 	{
-		title: "FULL JOIN",
+		section: "FULL JOIN",
 		content: `FULL JOIN, qui peut également s'écrire FULL OUTER JOIN, retourne toutes les lignes des deux tables, qu'il y ait correspondance ou non. Les colonnes sans correspondance seront NULL. 
 
 Note : SQLite ne supporte pas FULL JOIN nativement, il faut utiliser UNION pour combiner LEFT et RIGHT JOIN.
@@ -384,7 +384,7 @@ Principe de syntaxe :
 		externalComponent: <JoinDiagramSingle type="full" />,
 		examples: [
 			{
-				title: "Syntaxe générale",
+				label: "Syntaxe générale",
 				code: `-- On peut l'écrire de 2 façons :
 
 -- FULL JOIN avec alias et mot-clé AS (on retourne l'alias de la table dans le ON)
@@ -405,7 +405,7 @@ UNION
 SELECT colonnes FROM TableA A RIGHT JOIN TableB B ON A.cle_primaire = B.cle_etrangere;`,
 			},
 			{
-				title: "Exemple : Vue complète utilisateurs/livres",
+				label: "Exemple : Vue complète utilisateurs/livres",
 				code: `SELECT 
     u.prenom,
     u.nom,
@@ -461,7 +461,7 @@ FULL OUTER JOIN livres l ON e.livre_id = l.id;`,
 				],
 			},
 			{
-				title: "FULL EXCLUSIVE : Données non appariées",
+				label: "FULL EXCLUSIVE : Données non appariées",
 				code: `-- Trouver les utilisateurs sans emprunts ET les livres jamais empruntés
 SELECT 
     u.prenom,
@@ -493,7 +493,7 @@ WHERE u.id IS NULL OR l.id IS NULL;`,
 		],
 	},
 	{
-		title: "CROSS JOIN",
+		section: "CROSS JOIN",
 		content: `CROSS JOIN génère le produit cartésien : chaque ligne de la première table est combinée avec chaque ligne de la seconde. Attention : N lignes × M lignes = N×M résultats ! Utile pour générer des matrices ou des combinaisons. 
 
 Principe de syntaxe :
@@ -503,7 +503,7 @@ Principe de syntaxe :
 Note : CROSS JOIN n'utilise pas de clause <code>ON</code> car il n'y a aucune condition de jointure.`,
 		examples: [
 			{
-				title: "Syntaxe générale",
+				label: "Syntaxe générale",
 				code: `-- On peut l'écrire de 2 façons :
 
 -- CROSS JOIN avec alias et mot-clé AS
@@ -525,7 +525,7 @@ SELECT colonnes
 FROM TableA A, TableB B;`,
 			},
 			{
-				title: "Exemple : Matrice utilisateurs × genres littéraires",
+				label: "Exemple : Matrice utilisateurs × genres littéraires",
 				code: `-- Générer des recommandations : tous les utilisateurs × tous les genres
 SELECT 
     u.prenom,
@@ -551,7 +551,7 @@ LIMIT 8;`,
 				],
 			},
 			{
-				title: "Cas pratique : Planning de réservations",
+				label: "Cas pratique : Planning de réservations",
 				code: `-- Créer un planning : tous les livres × toutes les dates disponibles
 SELECT 
     l.titre,
@@ -577,7 +577,7 @@ ORDER BY l.titre, d.date_disponible;`,
 		],
 	},
 	{
-		title: "SELF JOIN",
+		section: "SELF JOIN",
 		content: `SELF JOIN permet de joindre une table avec elle-même. Indispensable pour les structures hiérarchiques ou pour comparer des lignes entre elles. Les alias sont obligatoires pour distinguer les deux "copies" de la table. 
 
 Principe de syntaxe :
@@ -585,7 +585,7 @@ Principe de syntaxe :
 <code>JOIN</code> nom_de_la_table alias2 <code>ON</code> alias1 <code>.</code> nom_colonne <code>=</code> alias2 <code>.</code> nom_colonne`,
 		examples: [
 			{
-				title: "Syntaxe générale",
+				label: "Syntaxe générale",
 				code: `-- On peut l'écrire de 2 façons :
 
 -- SELF JOIN avec alias et mot-clé AS (les alias sont OBLIGATOIRES)
@@ -607,7 +607,7 @@ CREATE TABLE categories (
 );`,
 			},
 			{
-				title: "Livres du même auteur",
+				label: "Livres du même auteur",
 				code: `-- Trouver les livres écrits par le même auteur
 SELECT 
     l1.titre AS livre1,

@@ -1,5 +1,5 @@
 const menu = {
-  description: "Techniques avancées et optimisation",
+  summary: "Techniques avancées et optimisation",
   topics: [
     "Sous-requêtes",
     "WITH (CTE)",
@@ -19,11 +19,11 @@ const header = {
 
 const accordions = [
   {
-    title: "Sous-requêtes dans WHERE, SELECT, IN, EXISTS",
+    section: "Sous-requêtes dans WHERE, SELECT, IN, EXISTS",
     content: "Utilisez des requêtes imbriquées pour des analyses complexes.",
     examples: [
       {
-        title: "Sous-requête dans WHERE",
+        label: "Sous-requête dans WHERE",
         code: `SELECT nom, age 
 FROM utilisateurs 
 WHERE age > (SELECT AVG(age) FROM utilisateurs);`,
@@ -33,7 +33,7 @@ WHERE age > (SELECT AVG(age) FROM utilisateurs);`,
         ],
       },
       {
-        title: "Sous-requête dans SELECT",
+        section: "Sous-requête dans SELECT",
         code: `SELECT 
     nom,
     age,
@@ -48,7 +48,7 @@ FROM utilisateurs u;`,
         ],
       },
       {
-        title: "Sous-requête avec IN",
+        section: "Sous-requête avec IN",
         code: `SELECT nom, email 
 FROM utilisateurs 
 WHERE id IN (
@@ -62,7 +62,7 @@ WHERE id IN (
         ],
       },
       {
-        title: "Sous-requête avec EXISTS",
+        section: "Sous-requête avec EXISTS",
         code: `SELECT nom, email 
 FROM utilisateurs u
 WHERE EXISTS (
@@ -81,12 +81,12 @@ WHERE EXISTS (
     ],
   },
   {
-    title: "WITH (CTE - Common Table Expression)",
+    section: "WITH (CTE - Common Table Expression)",
     content:
       "Organisez vos requêtes complexes avec des expressions de table commune.",
     examples: [
       {
-        title: "CTE simple",
+        label: "CTE simple",
         code: `WITH utilisateurs_actifs AS (
     SELECT id, nom, email, age 
     FROM utilisateurs 
@@ -101,7 +101,7 @@ ORDER BY age;`,
         ],
       },
       {
-        title: "CTE avec calculs d'agrégation",
+        section: "CTE avec calculs d'agrégation",
         code: `WITH statistiques_commandes AS (
     SELECT 
         utilisateur_id,
@@ -135,7 +135,7 @@ WHERE s.total_depense > 500;`,
         ],
       },
       {
-        title: "CTE récursif - Hiérarchie d'employés",
+        section: "CTE récursif - Hiérarchie d'employés",
         code: `WITH RECURSIVE hierarchie_employes AS (
     -- Cas de base : les managers de niveau 1
     SELECT id, nom, manager_id, 1 as niveau
@@ -168,11 +168,11 @@ ORDER BY niveau, nom;`,
     ],
   },
   {
-    title: "Création et Utilisation de VIEW",
+    section: "Création et Utilisation de VIEW",
     content: "Créez des vues pour simplifier et sécuriser l'accès aux données.",
     examples: [
       {
-        title: "Création d'une vue simple",
+        label: "Création d'une vue simple",
         code: `CREATE VIEW vue_utilisateurs_actifs AS
 SELECT id, nom, email, age
 FROM utilisateurs 
@@ -183,7 +183,7 @@ WHERE age >= 25;`,
         },
       },
       {
-        title: "Vue avec jointures complexes",
+        label: "Vue avec jointures complexes",
         code: `CREATE VIEW vue_commandes_detaillees AS
 SELECT 
     c.id,
@@ -201,7 +201,7 @@ JOIN produits p ON c.produit_id = p.id;`,
         },
       },
       {
-        title: "Utilisation des vues",
+        label: "Utilisation des vues",
         code: `SELECT * FROM vue_utilisateurs_actifs
 WHERE age > 30;`,
         result: [
@@ -211,7 +211,7 @@ WHERE age > 30;`,
         ],
       },
       {
-        title: "Requête sur vue avec jointures",
+        section: "Requête sur vue avec jointures",
         code: `SELECT client, produit, prix
 FROM vue_commandes_detaillees 
 WHERE prix > 100
@@ -224,11 +224,11 @@ ORDER BY prix DESC;`,
     ],
   },
   {
-    title: "Opérations de Combinaison avec UNION, UNION ALL",
+    section: "Opérations de Combinaison avec UNION, UNION ALL",
     content: "Combinez les résultats de plusieurs requêtes avec UNION.",
     examples: [
       {
-        title: "UNION - Combine et élimine les doublons",
+        label: "UNION - Combine et élimine les doublons",
         code: `SELECT nom, email FROM utilisateurs WHERE age < 30
 UNION
 SELECT nom, email FROM utilisateurs WHERE nom LIKE 'A%';`,
@@ -238,7 +238,7 @@ SELECT nom, email FROM utilisateurs WHERE nom LIKE 'A%';`,
         ],
       },
       {
-        title: "UNION ALL - Combine sans éliminer les doublons",
+        section: "UNION ALL - Combine sans éliminer les doublons",
         code: `SELECT 'utilisateur' AS type, nom, email FROM utilisateurs
 UNION ALL
 SELECT 'admin' AS type, nom, email_admin FROM administrateurs;`,
@@ -277,7 +277,7 @@ SELECT 'admin' AS type, nom, email_admin FROM administrateurs;`,
         ],
       },
       {
-        title: "UNION avec ORDER BY global",
+        section: "UNION avec ORDER BY global",
         code: `SELECT nom, email, age, 'Paris' as ville FROM utilisateurs WHERE id IN (1,2)
 UNION
 SELECT nom, email, age, 'Lyon' as ville FROM utilisateurs WHERE id IN (3,4)
@@ -312,11 +312,11 @@ ORDER BY age DESC;`,
     ],
   },
   {
-    title: "INDEX - Optimisation des Performances",
+    section: "INDEX - Optimisation des Performances",
     content: "Optimisez vos requêtes avec des index stratégiquement placés.",
     examples: [
       {
-        title: "Index simple sur une colonne",
+        label: "Index simple sur une colonne",
         code: `CREATE INDEX idx_utilisateurs_email ON utilisateurs(email);`,
         result: {
           message: "Index 'idx_utilisateurs_email' créé avec succès",
@@ -324,7 +324,7 @@ ORDER BY age DESC;`,
         },
       },
       {
-        title: "Index composé sur plusieurs colonnes",
+        label: "Index composé sur plusieurs colonnes",
         code: `CREATE INDEX idx_commandes_user_date 
 ON commandes(utilisateur_id, date_commande);`,
         result: {
@@ -333,7 +333,7 @@ ON commandes(utilisateur_id, date_commande);`,
         },
       },
       {
-        title: "Index unique pour contraintes",
+        label: "Index unique pour contraintes",
         code: `CREATE UNIQUE INDEX idx_produits_sku ON produits(sku);`,
         result: {
           message: "Index unique 'idx_produits_sku' créé avec succès",
@@ -341,7 +341,7 @@ ON commandes(utilisateur_id, date_commande);`,
         },
       },
       {
-        title: "Index partiel avec condition",
+        label: "Index partiel avec condition",
         code: `CREATE INDEX idx_commandes_recentes 
 ON commandes(date_commande) 
 WHERE date_commande > '2024-01-01';`,
@@ -351,7 +351,7 @@ WHERE date_commande > '2024-01-01';`,
         },
       },
       {
-        title: "Analyser l'utilisation des index",
+        label: "Analyser l'utilisation des index",
         code: `EXPLAIN QUERY PLAN 
 SELECT * FROM utilisateurs WHERE email = 'alice@email.com';`,
         result: [
@@ -367,11 +367,11 @@ SELECT * FROM utilisateurs WHERE email = 'alice@email.com';`,
     ],
   },
   {
-    title: "Transactions - BEGIN, COMMIT, ROLLBACK",
+    section: "Transactions - BEGIN, COMMIT, ROLLBACK",
     content: "Gérez l'intégrité des données avec les transactions.",
     examples: [
       {
-        title: "Transaction simple",
+        label: "Transaction simple",
         code: `BEGIN TRANSACTION;
     INSERT INTO utilisateurs (nom, email, age) 
     VALUES ('Nouvel Utilisateur', 'nouveau@email.com', 35);
@@ -386,7 +386,7 @@ COMMIT;`,
         },
       },
       {
-        title: "Transaction avec vérification",
+        label: "Transaction avec vérification",
         code: `BEGIN TRANSACTION;
     UPDATE utilisateurs SET age = age + 1 WHERE id = 1;
     
@@ -403,7 +403,7 @@ COMMIT;`,
         },
       },
       {
-        title: "Transaction de transfert bancaire",
+        label: "Transaction de transfert bancaire",
         code: `BEGIN TRANSACTION;
     UPDATE comptes SET solde = solde - 200 WHERE id = 1;
     UPDATE comptes SET solde = solde + 200 WHERE id = 2;
@@ -422,7 +422,7 @@ COMMIT;`,
         },
       },
       {
-        title: "Transaction avec ROLLBACK",
+        label: "Transaction avec ROLLBACK",
         code: `BEGIN TRANSACTION;
     DELETE FROM logs WHERE date_creation < '2024-01-01';
     

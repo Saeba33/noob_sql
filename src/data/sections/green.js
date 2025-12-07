@@ -1,5 +1,5 @@
 const menu = {
-	description: "Contrôle et filtrage des données",
+	summary: "Contrôle et filtrage des données",
 	topics: [
 		"Données de référence",
 		"WHERE",
@@ -22,12 +22,12 @@ const header = {
 
 const accordions = [
 	{
-		title: "Données de référence",
+		section: "Données de référence",
 		content:
 			"Voici les tables utilisées dans les exemples de cette section. Consultez-les pour mieux comprendre les résultats des requêtes.",
 		examples: [
 			{
-				title: "Table utilisateurs",
+				label: "Table utilisateurs",
 				code: `SELECT * FROM utilisateurs;`,
 				result: [
 					{
@@ -87,7 +87,7 @@ const accordions = [
 				],
 			},
 			{
-				title: "Table produits",
+				label: "Table produits",
 				code: `SELECT * FROM produits;`,
 				result: [
 					{
@@ -137,7 +137,7 @@ const accordions = [
 				],
 			},
 			{
-				title: "Table commandes",
+				label: "Table commandes",
 				code: `SELECT * FROM commandes;`,
 				result: [
 					{
@@ -173,7 +173,7 @@ const accordions = [
 		],
 	},
 	{
-		title: "WHERE - Clause fondamentale",
+		section: "WHERE - Clause fondamentale",
 		content:
 			"WHERE est la clause qui permet de filtrer les lignes d'une requête. Elle s'écrit après FROM et avant ORDER BY. \nGrâce à WHERE, on peut récupérer uniquement les lignes qui correspondent à une ou plusieurs conditions. Sans cette clause, toutes les lignes de la table seraient retournées.\n\nLes valeurs de type texte et les dates doivent être écrites entre guillemets simples (par exemple : 'Paris' ou '2024-01-15'). Les nombres, eux, s'écrivent sans guillemets (par exemple : 42).\n\nAttention, si une valeur texte contient une apostrophe, il faut la doubler pour que SQL ne la confonde pas avec la fin de la chaîne de caractères. Par exemple, pour rechercher le nom O'Connor, on écrit : 'O''Connor'.",
 		code: `-- Structure d'une requête avec WHERE
@@ -191,7 +191,7 @@ SELECT nom, age
 FROM utilisateurs;`,
 	},
 	{
-		title: "Opérateurs de comparaison",
+		section: "Opérateurs de comparaison",
 		content:
 			"Les opérateurs de comparaison permettent de filtrer les résultats de la requête selon les valeurs qui y sont associées. Ils fonctionnent avec les nombres, les textes (ordre alphabétique) et les dates.",
 		examples: [
@@ -293,7 +293,7 @@ WHERE date_commande > '2024-01-01';`,
 		],
 	},
 	{
-		title: "Opérateurs logiques",
+		section: "Opérateurs logiques",
 		content:
 			"Les opérateurs logiques permettent de combiner plusieurs conditions dans une même requête. AND exige que toutes les conditions soient vraies, OR exige qu'au moins une condition soit vraie.",
 		examples: [
@@ -331,12 +331,12 @@ WHERE categorie = 'electronique' OR prix < 100;`,
 		],
 	},
 	{
-		title: "Mots-clés de filtrage",
+		section: "Mots-clés de filtrage",
 		content:
 			"Les mots-clés de filtrage offrent des moyens expressifs pour définir des conditions : IN pour une liste de valeurs (évitant ainsi de nombreux 'OR'), BETWEEN pour un intervalle, LIKE pour des motifs de texte, IS NULL pour les valeurs manquantes. Chacun peut être inversé avec NOT. \n\nIS NULL et IS NOT NULL (mots-clés de filtrage) sont différents de NULL et NOT NULL (contraintes utilisées lors de la création de tables).",
 		examples: [
 			{
-				title: "IN - Liste de valeurs",
+				label: "IN - Liste de valeurs",
 				code: `-- Liste des utilisateurs dont l'âge est 25, 30, 35 ou 40 ans
 -- Mot-clé : IN
 SELECT prenom, nom, age 
@@ -349,7 +349,7 @@ WHERE age IN (25, 30, 35, 40);`,
 				],
 			},
 			{
-				title: "NOT IN - Exclusion de valeurs",
+				label: "NOT IN - Exclusion de valeurs",
 				code: `-- Liste des utilisateurs dont l'âge n'est PAS 25, 30, 35 ou 40 ans
 -- Mot-clé : NOT IN
 SELECT prenom, nom, age 
@@ -362,7 +362,7 @@ WHERE age NOT IN (25, 30, 35, 40);`,
 				],
 			},
 			{
-				title: "BETWEEN - Intervalle de valeurs",
+				label: "BETWEEN - Intervalle de valeurs",
 				code: `-- Liste des produits dont le prix est compris entre 200€ et 800€ (inclus)
 -- Mots-clés : BETWEEN avec AND
 SELECT nom, prix 
@@ -375,7 +375,7 @@ WHERE prix BETWEEN 200 AND 800;`,
 				],
 			},
 			{
-				title: "NOT BETWEEN - Hors intervalle",
+				label: "NOT BETWEEN - Hors intervalle",
 				code: `-- Liste des produits dont le prix n'est PAS entre 200€ et 800€
 -- Mots-clés : NOT BETWEEN avec AND
 SELECT nom, prix 
@@ -390,7 +390,7 @@ WHERE prix NOT BETWEEN 200 AND 800;`,
 				],
 			},
 			{
-				title: "LIKE - Commence par",
+				label: "LIKE - Commence par",
 				code: `-- Tous les prénoms qui commencent par 'A'
 -- Mots-clés : LIKE avec %
 SELECT prenom, nom 
@@ -399,7 +399,7 @@ WHERE prenom LIKE 'A%';`,
 				result: [{ prenom: "Alice", nom: "Dupont" }],
 			},
 			{
-				title: "LIKE - Finit par",
+				label: "LIKE - Finit par",
 				code: `-- Tous les noms qui finissent par 'and'
 -- Mots-clés : LIKE avec %
 SELECT prenom, nom 
@@ -408,7 +408,7 @@ WHERE nom LIKE '%and';`,
 				result: [{ prenom: "Claire", nom: "Durand" }],
 			},
 			{
-				title: "LIKE - Contient",
+				label: "LIKE - Contient",
 				code: `-- Tous les noms qui contiennent 'ar'
 -- Mots-clés : LIKE avec %
 SELECT prenom, nom 
@@ -420,7 +420,7 @@ WHERE nom LIKE '%ar%';`,
 				],
 			},
 			{
-				title: "LIKE - Nombre exact de caractères (_)",
+				label: "LIKE - Nombre exact de caractères (_)",
 				code: `-- Prénoms de exactement 5 lettres commençant par 'A'
 -- Mots-clés : LIKE avec _
 SELECT prenom, nom 
@@ -429,7 +429,7 @@ WHERE prenom LIKE 'A____';`,
 				result: [{ prenom: "Alice", nom: "Dupont" }],
 			},
 			{
-				title: "NOT LIKE - Exclusion de motif",
+				label: "NOT LIKE - Exclusion de motif",
 				code: `-- Tous les utilisateurs dont le prénom ne commence PAS par 'A'
 -- Mot-clé : NOT LIKE
 SELECT prenom, nom 
@@ -444,7 +444,7 @@ WHERE prenom NOT LIKE 'A%';`,
 				],
 			},
 			{
-				title: "IS NULL - Valeurs manquantes",
+				label: "IS NULL - Valeurs manquantes",
 				code: `-- Liste des utilisateurs n'ayant pas de numéro de téléphone
 -- Mot-clé : IS NULL
 SELECT prenom, nom, telephone 
@@ -457,7 +457,7 @@ WHERE telephone IS NULL;`,
 				],
 			},
 			{
-				title: "IS NOT NULL - Valeurs renseignées",
+				label: "IS NOT NULL - Valeurs renseignées",
 				code: `-- Liste des utilisateurs ayant un numéro de téléphone renseigné
 -- Mot-clé : IS NOT NULL
 SELECT prenom, nom, telephone 
@@ -472,7 +472,7 @@ WHERE telephone IS NOT NULL;`,
 		],
 	},
 	{
-		title: "Tri des résultats (ORDER BY)",
+		section: "Tri des résultats (ORDER BY)",
 		content:
 			"ORDER BY permet de trier les résultats selon une ou plusieurs colonnes. ASC (ordre croissant) est l'ordre par défaut, DESC (ordre décroissant) inverse l'ordre.",
 		examples: [
@@ -526,12 +526,12 @@ ORDER BY ville ASC, age DESC;`,
 		],
 	},
 	{
-		title: "Regroupement (GROUP BY, HAVING)",
+		section: "Regroupement (GROUP BY, HAVING)",
 		content:
 			"GROUP BY regroupe les lignes ayant les mêmes valeurs dans une ou plusieurs colonnes, permettant d'appliquer des fonctions d'agrégation sur chaque groupe. HAVING filtre ensuite ces groupes, comme WHERE filtre les lignes.\n\nDifférence clé : WHERE filtre AVANT le regroupement, HAVING filtre APRÈS.",
 		examples: [
 			{
-				title: "GROUP BY - Compter par ville",
+				label: "GROUP BY - Compter par ville",
 				code: `-- Nombre d'utilisateurs par ville
 SELECT ville, COUNT(*) AS nombre 
 FROM utilisateurs 
@@ -543,7 +543,7 @@ GROUP BY ville;`,
 				],
 			},
 			{
-				title: "GROUP BY - Statistiques par catégorie",
+				label: "GROUP BY - Statistiques par catégorie",
 				code: `-- Nombre de produits et prix moyen par catégorie
 SELECT 
     categorie,
@@ -560,7 +560,7 @@ ORDER BY nombre_produits DESC;`,
 				],
 			},
 			{
-				title: "HAVING - Filtrer les groupes",
+				label: "HAVING - Filtrer les groupes",
 				code: `-- Villes avec au moins 2 utilisateurs
 SELECT ville, COUNT(*) AS nombre 
 FROM utilisateurs 
@@ -572,7 +572,7 @@ HAVING COUNT(*) >= 2;`,
 				],
 			},
 			{
-				title: "WHERE + GROUP BY + HAVING",
+				label: "WHERE + GROUP BY + HAVING",
 				code: `-- Catégories avec prix moyen > 100€ (hors produits < 10€)
 SELECT 
     categorie,
@@ -587,7 +587,7 @@ HAVING AVG(prix) > 100;    -- Filtre les groupes APRÈS regroupement`,
 		],
 	},
 	{
-		title: "Pagination (LIMIT, OFFSET)",
+		section: "Pagination (LIMIT, OFFSET)",
 		content:
 			"LIMIT restreint le nombre de résultats retournés. OFFSET permet de sauter un certain nombre de lignes avant de commencer à retourner des résultats.",
 		examples: [
@@ -618,12 +618,12 @@ LIMIT 3 OFFSET 2;`,
 		],
 	},
 	{
-		title: "Exemples combinés",
+		section: "Exemples combinés",
 		content:
 			"Les requêtes SQL combinent souvent plusieurs concepts. Voici des exemples qui utilisent simultanément filtres, tri et pagination.",
 		examples: [
 			{
-				title: "Filtres multiples + Tri",
+				label: "Filtres multiples + Tri",
 				code: `-- Utilisateurs parisiens de plus de 25 ans, triés par âge
 -- Opérateurs : = et > | Opérateur logique : AND | Clause : ORDER BY
 SELECT prenom, nom, age, ville 
@@ -636,7 +636,7 @@ ORDER BY age ASC;`,
 				],
 			},
 			{
-				title: "Mot-clé + Tri + Pagination",
+				label: "Mot-clé + Tri + Pagination",
 				code: `-- Top 3 des produits électroniques les moins chers
 -- Opérateur : = | Clauses : ORDER BY et LIMIT
 SELECT nom, categorie, prix 
@@ -651,7 +651,7 @@ LIMIT 3;`,
 				],
 			},
 			{
-				title: "LIKE + IS NOT NULL + ORDER BY",
+				label: "LIKE + IS NOT NULL + ORDER BY",
 				code: `-- Utilisateurs avec un téléphone, dont le nom contient 'a', triés par nom
 -- Mots-clés : LIKE et IS NOT NULL | Clause : ORDER BY
 SELECT prenom, nom, telephone 
@@ -664,7 +664,7 @@ ORDER BY nom;`,
 				],
 			},
 			{
-				title: "BETWEEN + NOT IN + ORDER BY",
+				label: "BETWEEN + NOT IN + ORDER BY",
 				code: `-- Produits entre 20€ et 500€, sauf catégorie bureau, triés par prix décroissant
 -- Mots-clés : BETWEEN et NOT IN | Clause : ORDER BY
 SELECT nom, categorie, prix 

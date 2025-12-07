@@ -31,7 +31,7 @@ export default function HomeNavigation() {
 		.map(([key, config]) => ({
 			...config,
 			key,
-			description: BELT_CONTENTS[key].description,
+			summary: BELT_CONTENTS[key].summary,
 			topics: BELT_CONTENTS[key].topics,
 		}));
 
@@ -46,13 +46,13 @@ export default function HomeNavigation() {
 							href={page.href}
 							className={`home-card ${page.colors.text}`}
 						>
-							<h3 className="text-xl font-bold mb-4">{page.title}</h3>
+						<h3 className="text-xl font-bold mb-4">{page.title}</h3>
 
-							<p className="text-sm text-gray-600 mb-4 leading-relaxed">
-								{page.description}
-							</p>
+						<p className="text-sm text-gray-600 mb-4 leading-relaxed">
+							{page.summary}
+						</p>
 
-							<div className="space-y-2">
+						<div className="space-y-2">
 								{page.topics.slice(0, 3).map((topic, index) => (
 									<div
 										key={index}

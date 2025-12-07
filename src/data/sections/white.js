@@ -17,7 +17,7 @@ import PrimaryForeignKeys from "@/components/ui/sections/white/PrimaryForeignKey
 import SGBDDiagram from "@/components/ui/sections/white/SGBDDiagram";
 
 const menu = {
-  description: "Théorie et concepts fondamentaux",
+  summary: "Théorie et concepts fondamentaux",
   topics: [
     "SGBD",
     "Architecture BDD relationnelles",
@@ -36,29 +36,29 @@ const header = {
 
 const accordions = [
 	{
-		title: "Qu'est-ce qu'un SGBD ?",
+		section: "Qu'est-ce qu'un SGBD ?",
 		externalComponent: <SGBDDiagram />,
 	},
 	{
-		title: "Architecture d'une base de données relationnelles",
+		section: "Architecture d'une base de données relationnelles",
 		externalComponent: <DatabaseArchitecture />,
 	},
 	{
-		title: "Relations entre les tables",
+		section: "Relations entre les tables",
 		externalComponent: <PrimaryForeignKeys />,
 	},
 	{
-		title: "Types de données",
+		section: "Types de données",
 		externalComponent: <DataTypes />,
 	},
 	{
-		title: "Bonnes pratiques",
+		section: "Bonnes pratiques",
 		externalComponent: (
 			<BestPractices
 				introduction="Une base de données bien conçue facilite le développement et évite les erreurs ! Les bonnes pratiques SQL essentielles pour concevoir des bases de données maintenables et performantes. Suivez ces règles fondamentales pour éviter les pièges courants."
 				rules={[
 					{
-						title: "Normalisation des tables",
+						section: "Normalisation des tables",
 						icon: <MdTableChart className="w-5 h-5 text-gray-600" />,
 						rule: "Organiser les données en tables distinctes afin d’éviter les duplications. Une information ne doit exister qu’à un seul endroit.",
 						good: "Tables séparées : utilisateurs, commandes, produits",
@@ -66,7 +66,7 @@ const accordions = [
 						reason: "Évite les incohérences, facilite les mises à jour.",
 					},
 					{
-						title: "Conventions de nommage",
+						section: "Conventions de nommage",
 						icon: <MdDataset className="w-5 h-5 text-gray-600" />,
 						rule: "Utiliser des noms explicites. Par convention, les tables sont nommées au pluriel, les colonnes au singulier.",
 						good: "Tables : utilisateurs, commandes \nColonnes : email, date_creation, utilisateur_id",
@@ -74,7 +74,7 @@ const accordions = [
 						reason: "Facilite la lecture, la compréhension et la maintenance.",
 					},
 					{
-						title: "Convention snake_case",
+						section: "Convention snake_case",
 						icon: <MdTextFormat className="w-5 h-5 text-gray-600" />,
 						rule: "Écrire les noms de tables et de colonnes en minuscules avec des underscores (snake_case).",
 						good: "nom_utilisateur, date_creation, prix_total",
@@ -83,7 +83,7 @@ const accordions = [
 							"Standard universel limitant les erreurs d’interprétation des SGBD.",
 					},
 					{
-						title: "Types de données appropriés",
+						section: "Types de données appropriés",
 						icon: <MdTextFormat className="w-5 h-5 text-gray-600" />,
 						rule: "Choisir le type de données adapté à chaque colonne.",
 						good: "VARCHAR(255) pour emails, DECIMAL(10,2) pour montants, INTEGER pour identifiants",
@@ -91,7 +91,7 @@ const accordions = [
 						reason: "Améliore le stockage, la précision et les performances.",
 					},
 					{
-						title: "Contraintes de validation",
+						section: "Contraintes de validation",
 						icon: <MdDataset className="w-5 h-5 text-gray-600" />,
 						rule: "Ajouter des contraintes pour garantir la validité des données (NOT NULL, UNIQUE, CHECK...)",
 						good: "email VARCHAR(255) UNIQUE NOT NULL, age INTEGER CHECK(age >= 0)",
@@ -100,7 +100,7 @@ const accordions = [
 							"Renforce l'intégrité des données, évite les erreurs en amont.",
 					},
 					{
-						title: "Relations entre les tables",
+						section: "Relations entre les tables",
 						icon: <MdLink className="w-5 h-5 text-gray-600" />,
 						rule: "Relier les tables logiquement grâce aux clés étrangères (FOREIGN KEY).",
 						good: "commande.utilisateur_id → FOREIGN KEY vers utilisateurs.id",

@@ -11,10 +11,10 @@ export default function AccordionList({ accordions, colors }) {
 		<div className="py-8">
 			<div className="space-y-8 flex flex-col">
 				{accordions.map((accordion, index) => (
-					<Accordion
-						key={index}
-						title={accordion.title}
-						content={accordion.content}
+				<Accordion
+					key={index}
+					section={accordion.section}
+					content={accordion.content}
 						examples={accordion.examples}
 						sqlCode={accordion.sqlCode}
 						sqlQueries={accordion.sqlQueries}

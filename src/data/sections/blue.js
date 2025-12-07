@@ -1,5 +1,5 @@
 const menu = {
-	description: "Fonctions de calcul et transformation",
+	summary: "Fonctions de calcul et transformation",
 	topics: [
 		"Fonctions d'agrégation",
 		"Fonctions de texte",
@@ -18,12 +18,12 @@ const header = {
 
 const accordions = [
 	{
-		title: "Fonctions d'agrégation",
+		section: "Fonctions d'agrégation",
 		content:
 			"Les fonctions d'agrégation calculent une valeur unique à partir d'un ensemble de lignes. Elles sont souvent utilisées avec GROUP BY (vu précedemment) pour obtenir des statistiques par groupe.\n\nSans GROUP BY, elles retournent un seul résultat pour toute la table.",
 		examples: [
 			{
-				title: "COUNT - Compter les lignes",
+				label: "COUNT - Compter les lignes",
 				code: `-- COUNT(*) compte toutes les lignes
 -- COUNT(colonne) compte les valeurs non NULL
 SELECT COUNT(*) AS total_utilisateurs 
@@ -31,7 +31,7 @@ FROM utilisateurs;`,
 				result: [{ total_utilisateurs: 6 }],
 			},
 			{
-				title: "COUNT avec condition",
+				label: "COUNT avec condition",
 				code: `-- Compte les utilisateurs de 30 ans ou plus
 SELECT COUNT(*) AS utilisateurs_30_plus 
 FROM utilisateurs 
@@ -39,28 +39,28 @@ WHERE age >= 30;`,
 				result: [{ utilisateurs_30_plus: 3 }],
 			},
 			{
-				title: "COUNT DISTINCT - Valeurs uniques",
+				label: "COUNT DISTINCT - Valeurs uniques",
 				code: `-- Compte le nombre de villes différentes
 SELECT COUNT(DISTINCT ville) AS nb_villes 
 FROM utilisateurs;`,
 				result: [{ nb_villes: 3 }],
 			},
 			{
-				title: "SUM - Somme des valeurs",
+				label: "SUM - Somme des valeurs",
 				code: `-- SUM(colonne) additionne toutes les valeurs numériques
 SELECT SUM(prix * stock) AS valeur_stock_total 
 FROM produits;`,
 				result: [{ valeur_stock_total: 47920 }],
 			},
 			{
-				title: "AVG - Moyenne des valeurs",
+				label: "AVG - Moyenne des valeurs",
 				code: `-- AVG(colonne) calcule la moyenne des valeurs numériques
 SELECT ROUND(AVG(age), 1) AS age_moyen 
 FROM utilisateurs;`,
 				result: [{ age_moyen: 30.8 }],
 			},
 			{
-				title: "MIN et MAX - Valeurs extrêmes",
+				label: "MIN et MAX - Valeurs extrêmes",
 				code: `-- MIN(colonne) retourne la plus petite valeur
 -- MAX(colonne) retourne la plus grande valeur
 SELECT 
@@ -70,7 +70,7 @@ FROM produits;`,
 				result: [{ prix_min: 5, prix_max: 1299 }],
 			},
 			{
-				title: "Combinaison de fonctions",
+				label: "Combinaison de fonctions",
 				code: `-- Statistiques multiples sur les utilisateurs
 SELECT 
     COUNT(*) AS nombre,
@@ -90,12 +90,12 @@ FROM utilisateurs;`,
 		],
 	},
 	{
-		title: "Fonctions de texte",
+		section: "Fonctions de texte",
 		content:
 			"Les fonctions de texte manipulent les chaînes de caractères : changer la casse, extraire une partie, concaténer, nettoyer les espaces, etc.\n\nElles s'appliquent ligne par ligne et retournent une valeur pour chaque ligne.",
 		examples: [
 			{
-				title: "UPPER et LOWER - Changer la casse",
+				label: "UPPER et LOWER - Changer la casse",
 				code: `-- Convertit en majuscules (UPPER) ou minuscules (LOWER)
 SELECT 
     UPPER(prenom) AS prenom_maj,
@@ -109,7 +109,7 @@ LIMIT 3;`,
 				],
 			},
 			{
-				title: "LENGTH - Longueur d'une chaîne",
+				label: "LENGTH - Longueur d'une chaîne",
 				code: `-- LENGTH(colonne) retourne le nombre de caractères
 SELECT 
 	prenom,
@@ -126,7 +126,7 @@ ORDER BY nb_lettres DESC;`,
 				],
 			},
 			{
-				title: "CONCAT - Concaténer des chaînes",
+				label: "CONCAT - Concaténer des chaînes",
 				code: `-- CONCAT(val1, val2, ...) assemble plusieurs valeurs en une chaîne
 SELECT CONCAT(prenom, ' ', nom) AS nom_complet 
 FROM utilisateurs 
@@ -138,7 +138,7 @@ LIMIT 3;`,
 				],
 			},
 			{
-				title: "SUBSTRING - Extraire une partie",
+				label: "SUBSTRING - Extraire une partie",
 				code: `-- Extrait les 3 premiers caractères du prénom
 -- SUBSTRING(colonne, début, longueur)
 SELECT 
@@ -154,14 +154,14 @@ LIMIT 4;`,
 				],
 			},
 			{
-				title: "TRIM - Supprimer les espaces",
+				label: "TRIM - Supprimer les espaces",
 				code: `-- Supprime les espaces en début et fin de chaîne
 -- Utile pour nettoyer des données mal saisies
 SELECT TRIM('   texte avec espaces   ') AS resultat;`,
 				result: [{ resultat: "texte avec espaces" }],
 			},
 			{
-				title: "REPLACE - Remplacer du texte",
+				label: "REPLACE - Remplacer du texte",
 				code: `-- REPLACE(colonne, 'ancien', 'nouveau')
 -- Remplace toutes les occurrences de 'ancien' par 'nouveau'
 SELECT 
@@ -182,12 +182,12 @@ LIMIT 3;`,
 		],
 	},
 	{
-		title: "Fonctions numériques",
+		section: "Fonctions numériques",
 		content:
 			"Les fonctions numériques effectuent des calculs mathématiques sur les nombres : arrondir, valeur absolue, modulo, etc.",
 		examples: [
 			{
-				title: "ROUND - Arrondir un nombre",
+				label: "ROUND - Arrondir un nombre",
 				code: `-- ROUND(nombre, decimales) arrondit à N décimales
 SELECT 
     nom,
@@ -203,7 +203,7 @@ LIMIT 3;`,
 				],
 			},
 			{
-				title: "CEIL et FLOOR - Arrondir entier",
+				label: "CEIL et FLOOR - Arrondir entier",
 				code: `-- CEIL(nombre) arrondit à l'entier supérieur (8.3 → 9)
 -- FLOOR(nombre) arrondit à l'entier inférieur (8.9 → 8)
 SELECT 
@@ -222,12 +222,12 @@ WHERE prix < 50;`,
 		],
 	},
 	{
-		title: "Fonctions de date",
+		section: "Fonctions de date",
 		content:
 			"Les fonctions de date permettent d'extraire des parties d'une date, calculer des différences, ou obtenir la date actuelle.\n\n A noter : la syntaxe peut varier selon le SGBD (MySQL, PostgreSQL, SQLite...). Les exemples ci-dessous utilisent une syntaxe courante.",
 		examples: [
 			{
-				title: "NOW / CURRENT_DATE - Date actuelle",
+				label: "NOW / CURRENT_DATE - Date actuelle",
 				code: `-- Obtient la date et l'heure actuelles
 SELECT 
     CURRENT_DATE AS date_jour,
@@ -240,7 +240,7 @@ SELECT
 				],
 			},
 			{
-				title: "YEAR, MONTH, DAY - Extraire des parties",
+				label: "YEAR, MONTH, DAY - Extraire des parties",
 				code: `-- Extrait l'année, le mois ou le jour d'une date
 SELECT 
     date_commande,
@@ -276,7 +276,7 @@ FROM commandes;`,
 				],
 			},
 			{
-				title: "DATE - Extraire uniquement la date",
+				label: "DATE - Extraire uniquement la date",
 				code: `-- Supprime la partie heure d'un datetime
 SELECT 
     date_commande,
@@ -289,7 +289,7 @@ LIMIT 2;`,
 				],
 			},
 			{
-				title: "DATE_ADD / DATE_SUB - Ajouter ou soustraire",
+				label: "DATE_ADD / DATE_SUB - Ajouter ou soustraire",
 				code: `-- DATE_ADD(date, INTERVAL n UNIT) ajoute une durée
 -- DATE_SUB(date, INTERVAL n UNIT) soustrait une durée
 -- UNIT peut être : DAY, WEEK, MONTH, YEAR, HOUR, MINUTE...
@@ -313,7 +313,7 @@ LIMIT 2;`,
 				],
 			},
 			{
-				title: "DATEDIFF - Différence entre dates",
+				label: "DATEDIFF - Différence entre dates",
 				code: `-- DATEDIFF(date1, date2) retourne le nombre de jours entre les deux dates
 SELECT 
     numero_commande,
@@ -347,12 +347,12 @@ ORDER BY date_commande DESC;`,
 		],
 	},
 	{
-		title: "Fonctions conditionnelles",
+		section: "Fonctions conditionnelles",
 		content:
 			"Les fonctions conditionnelles permettent de gérer les valeurs NULL et d'appliquer une logique conditionnelle directement dans les requêtes.",
 		examples: [
 			{
-				title: "COALESCE - Première valeur non NULL",
+				label: "COALESCE - Première valeur non NULL",
 				code: `-- COALESCE(colonne, valeur_si_null)
 -- Retourne la colonne si elle n'est pas NULL, sinon la valeur de remplacement
 SELECT 
@@ -369,7 +369,7 @@ FROM utilisateurs;`,
 				],
 			},
 			{
-				title: "COALESCE - Cascade de valeurs",
+				label: "COALESCE - Cascade de valeurs",
 				code: `-- COALESCE(col1, col2, col3, valeur_si_null)
 -- Teste chaque valeur dans l'ordre et retourne la première non NULL
 SELECT 
@@ -385,7 +385,7 @@ LIMIT 4;`,
 				],
 			},
 			{
-				title: "CASE WHEN - Conditions multiples",
+				label: "CASE WHEN - Conditions multiples",
 				code: `-- CASE WHEN condition THEN valeur [...] ELSE defaut END
 -- Évalue les conditions dans l'ordre et retourne la première vraie
 SELECT 
@@ -407,7 +407,7 @@ FROM utilisateurs;`,
 				],
 			},
 			{
-				title: "CASE WHEN - Avec calculs",
+				label: "CASE WHEN - Avec calculs",
 				code: `-- Applique des remises différentes selon la catégorie
 SELECT 
     nom,

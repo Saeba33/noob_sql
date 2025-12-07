@@ -2,7 +2,7 @@ import BestPractices from "@/components/ui/sections/BestPractices";
 import { MdBuild, MdKey, MdSecurity } from "react-icons/md";
 
 const menu = {
-	description: "Langage de définition de données",
+	summary: "Langage de définition de données",
 	topics: ["CREATE TABLE", "ALTER TABLE", "DROP TABLE", "Bonnes pratiques"],
 };
 
@@ -15,7 +15,7 @@ const header = {
 
 const accordions = [
 	{
-		title: "CREATE TABLE - Création de tables",
+		section: "CREATE TABLE - Création de tables",
 		examples: [
 			{
 				type: "schema",
@@ -49,7 +49,7 @@ CREATE TABLE commande_details (
 		],
 	},
 	{
-		title: "ALTER TABLE - Modification de structure",
+		section: "ALTER TABLE - Modification de structure",
 		examples: [
 			{
 				type: "schema",
@@ -80,7 +80,7 @@ DROP COLUMN telephone;`,
 		],
 	},
 	{
-		title: "DROP TABLE - Suppression de tables",
+		section: "DROP TABLE - Suppression de tables",
 		content: (
 			<>
 				Attention : l&apos;exécution d&apos;une commande DROP est{" "}
@@ -111,13 +111,13 @@ DELETE FROM logs;`,
 		],
 	},
 	{
-		title: "Bonnes pratiques DDL",
+		section: "Bonnes pratiques DDL",
 		externalComponent: (
 			<BestPractices
 				introduction="Le DDL définit la structure de votre base. Une conception rigoureuse dès le départ vous évitera des migrations complexes ! Voici les pratiques essentielles pour CREATE, ALTER et DROP."
 				rules={[
 					{
-						title: "Clés primaires auto-incrémentées",
+						section: "Clés primaires auto-incrémentées",
 						icon: <MdKey className="w-5 h-5 text-yellow-600" />,
 						rule: "Toujours définir une clé primaire auto-incrémentée avec PRIMARY KEY",
 						good: "id INTEGER PRIMARY KEY AUTO_INCREMENT",
@@ -126,7 +126,7 @@ DELETE FROM logs;`,
 							"Garantit l'unicité et simplifie les relations entre tables",
 					},
 					{
-						title: "Valeurs par défaut",
+						section: "Valeurs par défaut",
 						icon: <MdBuild className="w-5 h-5 text-yellow-600" />,
 						rule: "Utiliser DEFAULT pour les colonnes avec valeurs récurrentes",
 						good: "statut VARCHAR(20) DEFAULT 'actif', created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP",
@@ -134,7 +134,7 @@ DELETE FROM logs;`,
 						reason: "Simplifie les INSERT et garantit la cohérence",
 					},
 					{
-						title: "Documentation des tables",
+						section: "Documentation des tables",
 						icon: <MdBuild className="w-5 h-5 text-yellow-600" />,
 						rule: "Ajouter des commentaires sur les tables et colonnes complexes",
 						good: "CREATE TABLE utilisateurs (...) COMMENT 'Stocke les utilisateurs actifs de l'application'",
@@ -142,7 +142,7 @@ DELETE FROM logs;`,
 						reason: "Facilite la maintenance et la compréhension du schéma",
 					},
 					{
-						title: "Migrations ALTER TABLE",
+						section: "Migrations ALTER TABLE",
 						icon: <MdBuild className="w-5 h-5 text-yellow-600" />,
 						rule: "Privilégier ALTER TABLE plutôt que la séquence DROP → CREATE",
 						good: "ALTER TABLE utilisateurs ADD COLUMN telephone VARCHAR(20)",
@@ -150,7 +150,7 @@ DELETE FROM logs;`,
 						reason: "Préserve les données existantes lors des modifications",
 					},
 					{
-						title: "Sauvegardes avant DDL",
+						section: "Sauvegardes avant DDL",
 						icon: <MdSecurity className="w-5 h-5 text-yellow-600" />,
 						rule: "Toujours sauvegarder avant les opérations DDL critiques",
 						good: "mysqldump database > backup.sql avant ALTER/DROP",
@@ -158,7 +158,7 @@ DELETE FROM logs;`,
 						reason: "Les opérations DDL sont souvent irréversibles",
 					},
 					{
-						title: "DROP TABLE avec précaution",
+						section: "DROP TABLE avec précaution",
 						icon: <MdSecurity className="w-5 h-5 text-yellow-600" />,
 						rule: "Utiliser DROP TABLE IF EXISTS pour éviter les erreurs",
 						good: "DROP TABLE IF EXISTS table_temporaire;",
