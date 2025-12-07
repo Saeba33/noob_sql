@@ -63,25 +63,25 @@ CREATE TABLE emprunts (
 );`,
 	},
 	{
-		title: "JOIN",
-		content: `JOIN, qui peut également s'écrire INNER JOIN, retourne uniquement les lignes ayant une correspondance dans les deux tables (intersection). \n\nPrincipe de syntaxe :\n<code>FROM</code> nom_de_la_table_A\n<code>JOIN</code> nom_de_la_table_B <code>ON</code> nom_de_la_table_A<code>.</code>nom_de_la_cle_primaire <code>=</code> nom_de_la_table_B<code>.</code>nom_de_la_cle_etrangere_qui_relie_la_table_B_a_la_table_A`,
+		title: "INNER JOIN",
+		content: `INNER JOIN, qui peut s'écrire simplement JOIN, retourne uniquement les lignes ayant une correspondance dans les deux tables (intersection). \n\nPrincipe de syntaxe :\n<code>FROM</code> nom_de_la_table_A\n<code>JOIN</code> nom_de_la_table_B <code>ON</code> nom_de_la_table_A<code>.</code>nom_de_la_cle_primaire <code>=</code> nom_de_la_table_B<code>.</code>nom_de_la_cle_etrangere`,
 		externalComponent: <JoinDiagramSingle type="inner" />,
 		sqlQueries: [
 			{
 				title: "Syntaxe générale",
 				sqlCode: `-- On peut l'écrire de 3 façons :
 
--- JOIN sans alias
+-- JOIN sans alias (on retourne le nom complet de la table dans le ON)
 SELECT colonnes
 FROM TableA
 JOIN TableB ON TableA.cle = TableB.cle;
 
--- JOIN avec alias (et mot-clé AS)
+-- JOIN avec alias et mot-clé AS (on retourne l'alias de la table dans le ON)
 SELECT colonnes
 FROM TableA AS A
 JOIN TableB AS B ON A.cle = B.cle;
 
--- JOIN avec alias (sans mot-clé AS) 
+-- JOIN avec alias et sans mot-clé AS
 -- Le mot-clé AS est optionnel pour les alias de table, vous pouvez donc utiliser le raccourci syntaxique suivant :
 SELECT colonnes
 FROM TableA A
