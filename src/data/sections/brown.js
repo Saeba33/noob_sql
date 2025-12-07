@@ -88,7 +88,7 @@ FROM TableA A
 JOIN TableB B ON A.cle_primaire = B.cle_etrangere;`,
 			},
 			{
-				title: "Exemple : Jointure simple sur deux tables",
+				title: "Exemple : jointure sur deux tables (utilisateurs et emprunts)",
 				sqlCode: `-- Afficher les utilisateurs avec leurs emprunts
 SELECT 
     u.prenom,
@@ -129,8 +129,8 @@ WHERE e.statut = 'en_cours';`,
 			},
 
 			{
-				title: "Jointure sur trois tables : historique complet",
-				sqlCode: `-- Afficher tous les emprunts avec informations utilisateur et livre
+				title: "Exemple : jointure sur trois tables (utilisateurs, livres et emprunts)",
+				sqlCode: `-- Afficher tous les emprunts avec les informations des livres et des utilisateurs
 SELECT 
     u.prenom,
     u.nom,
