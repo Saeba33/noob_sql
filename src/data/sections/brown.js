@@ -74,18 +74,18 @@ CREATE TABLE emprunts (
 -- JOIN sans alias (on retourne le nom complet de la table dans le ON)
 SELECT colonnes
 FROM TableA
-JOIN TableB ON TableA.cle = TableB.cle;
+JOIN TableB ON TableA.cle_primaire = TableB.cle_etrangere;
 
 -- JOIN avec alias et mot-clé AS (on retourne l'alias de la table dans le ON)
 SELECT colonnes
 FROM TableA AS A
-JOIN TableB AS B ON A.cle = B.cle;
+JOIN TableB AS B ON A.cle_primaire = B.cle_etrangere;
 
 -- JOIN avec alias et sans mot-clé AS
--- Le mot-clé AS est optionnel pour les alias de table, vous pouvez donc utiliser le raccourci syntaxique suivant :
+-- Le mot-clé AS est optionnel pour les alias de table
 SELECT colonnes
 FROM TableA A
-JOIN TableB B ON A.cle = B.cle;`,
+JOIN TableB B ON A.cle_primaire = B.cle_etrangere;`,
 			},
 			{
 				title: "Exemple : Emprunts en cours avec détails",
@@ -185,25 +185,32 @@ ORDER BY e.date_emprunt DESC;`,
 	},
 	{
 		title: "LEFT JOIN",
-		content: `LEFT JOIN (ou LEFT OUTER JOIN) retourne toutes les lignes de la table de gauche (après FROM), avec les correspondances de la table de droite si elles existent. S'il n'y a pas de correspondance, les colonnes de la table de droite seront NULL.
+		content: `LEFT JOIN, qui peut également s'écrire LEFT OUTER JOIN, retourne toutes les lignes de la table de gauche (après FROM), avec les correspondances de la table de droite si elles existent. S'il n'y a pas de correspondance, les colonnes de la table de droite seront NULL. 
 
 Principe de syntaxe :
-<code>FROM</code> TableA <code>LEFT JOIN</code> TableB <code>ON</code> TableA.cle_primaire <code>=</code> TableB.cle_etrangere`,
+<code>FROM</code> nom_de_la_table_A
+<code>LEFT JOIN</code> nom_de_la_table_B <code>ON</code> nom_de_la_table_A<code>.</code>nom_de_la_cle_primaire <code>=</code> nom_de_la_table_B<code>.</code>nom_de_la_cle_etrangere`,
 		externalComponent: <JoinDiagramSingle type="left" />,
 		sqlQueries: [
 			{
 				title: "Syntaxe générale",
-				sqlCode: `-- LEFT JOIN : toutes les lignes de A + correspondances de B (si elles existent)
--- Les lignes de A sans correspondance auront NULL pour les colonnes de B
+				sqlCode: `-- On peut l'écrire de 2 façons :
 
+-- LEFT JOIN avec alias et mot-clé AS (on retourne l'alias de la table dans le ON)
+SELECT colonnes
+FROM TableA AS A
+LEFT JOIN TableB AS B ON A.cle = B.cle;
+
+-- LEFT JOIN avec alias et sans mot-clé AS
+-- Le mot-clé AS est optionnel pour les alias de table, vous pouvez donc utiliser le raccourci syntaxique suivant :
 SELECT colonnes
 FROM TableA A
-LEFT JOIN TableB B ON A.cle_primaire = B.cle_etrangere;
+LEFT JOIN TableB B ON A.cle = B.cle;
 
 -- LEFT OUTER JOIN est strictement équivalent à LEFT JOIN
 SELECT colonnes
 FROM TableA A
-LEFT OUTER JOIN TableB B ON A.cle_primaire = B.cle_etrangere;`,
+LEFT OUTER JOIN TableB B ON A.cle = B.cle;`,
 			},
 			{
 				title: "Exemple : Tous les utilisateurs (même sans emprunt)",
@@ -266,25 +273,32 @@ WHERE e.id IS NULL;`,
 	},
 	{
 		title: "RIGHT JOIN",
-		content: `RIGHT JOIN (ou RIGHT OUTER JOIN) retourne toutes les lignes de la table de droite (après JOIN), avec les correspondances de la table de gauche si elles existent. En pratique, on préfère souvent réécrire un RIGHT JOIN en LEFT JOIN en inversant l'ordre des tables.
+		content: `RIGHT JOIN, qui peut également s'écrire RIGHT OUTER JOIN, retourne toutes les lignes de la table de droite (après JOIN), avec les correspondances de la table de gauche si elles existent. En pratique, on préfère souvent réécrire un RIGHT JOIN en LEFT JOIN en inversant l'ordre des tables. 
 
 Principe de syntaxe :
-<code>FROM</code> TableA <code>RIGHT JOIN</code> TableB <code>ON</code> TableA.cle_primaire <code>=</code> TableB.cle_etrangere`,
+<code>FROM</code> nom_de_la_table_A
+<code>RIGHT JOIN</code> nom_de_la_table_B <code>ON</code> nom_de_la_table_A<code>.</code>nom_de_la_cle_primaire <code>=</code> nom_de_la_table_B<code>.</code>nom_de_la_cle_etrangere`,
 		externalComponent: <JoinDiagramSingle type="right" />,
 		sqlQueries: [
 			{
 				title: "Syntaxe générale",
-				sqlCode: `-- RIGHT JOIN : toutes les lignes de B + correspondances de A (si elles existent)
--- Les lignes de B sans correspondance auront NULL pour les colonnes de A
+				sqlCode: `-- On peut l'écrire de 2 façons :
 
+-- RIGHT JOIN avec alias et mot-clé AS (on retourne l'alias de la table dans le ON)
+SELECT colonnes
+FROM TableA AS A
+RIGHT JOIN TableB AS B ON A.cle = B.cle;
+
+-- RIGHT JOIN avec alias et sans mot-clé AS
+-- Le mot-clé AS est optionnel pour les alias de table, vous pouvez donc utiliser le raccourci syntaxique suivant :
 SELECT colonnes
 FROM TableA A
-RIGHT JOIN TableB B ON A.cle_primaire = B.cle_etrangere;
+RIGHT JOIN TableB B ON A.cle = B.cle;
 
 -- Équivalent avec LEFT JOIN (en inversant l'ordre des tables) :
 SELECT colonnes
 FROM TableB B
-LEFT JOIN TableA A ON A.cle_primaire = B.cle_etrangere;`,
+LEFT JOIN TableA A ON A.cle = B.cle;`,
 			},
 			{
 				title: "Exemple : Tous les livres (même jamais empruntés)",
@@ -353,22 +367,32 @@ WHERE e.id IS NULL;`,
 	},
 	{
 		title: "FULL JOIN",
-		content: `FULL JOIN (ou FULL OUTER JOIN) retourne toutes les lignes des deux tables, qu'il y ait correspondance ou non. Les colonnes sans correspondance seront NULL. Note : SQLite ne supporte pas FULL JOIN, il faut utiliser UNION.
+		content: `FULL JOIN, qui peut également s'écrire FULL OUTER JOIN, retourne toutes les lignes des deux tables, qu'il y ait correspondance ou non. Les colonnes sans correspondance seront NULL. 
+
+Note : SQLite ne supporte pas FULL JOIN nativement, il faut utiliser UNION pour combiner LEFT et RIGHT JOIN.
 
 Principe de syntaxe :
-<code>FROM</code> TableA <code>FULL JOIN</code> TableB <code>ON</code> TableA.cle_primaire <code>=</code> TableB.cle_etrangere`,
+<code>FROM</code> nom_de_la_table_A
+<code>FULL JOIN</code> nom_de_la_table_B <code>ON</code> nom_de_la_table_A<code>.</code>nom_de_la_cle_primaire <code>=</code> nom_de_la_table_B<code>.</code>nom_de_la_cle_etrangere`,
 		externalComponent: <JoinDiagramSingle type="full" />,
 		sqlQueries: [
 			{
 				title: "Syntaxe générale",
-				sqlCode: `-- FULL JOIN : toutes les lignes de A + toutes les lignes de B
--- Les lignes sans correspondance auront NULL de l'autre côté
+				sqlCode: `-- On peut l'écrire de 2 façons :
 
+-- FULL JOIN avec alias et mot-clé AS (on retourne l'alias de la table dans le ON)
+SELECT colonnes
+FROM TableA AS A
+FULL OUTER JOIN TableB AS B ON A.cle = B.cle;
+
+-- FULL JOIN avec alias et sans mot-clé AS
+-- Le mot-clé AS est optionnel pour les alias de table, vous pouvez donc utiliser le raccourci syntaxique suivant :
 SELECT colonnes
 FROM TableA A
-FULL OUTER JOIN TableB B ON A.cle_primaire = B.cle_etrangere;
+FULL OUTER JOIN TableB B ON A.cle = B.cle;
 
 -- Alternative pour SQLite (pas de FULL JOIN natif) :
+-- Combiner LEFT JOIN et RIGHT JOIN avec UNION
 SELECT colonnes FROM TableA A LEFT JOIN TableB B ON A.cle = B.cle
 UNION
 SELECT colonnes FROM TableA A RIGHT JOIN TableB B ON A.cle = B.cle;`,
@@ -463,23 +487,33 @@ WHERE u.id IS NULL OR l.id IS NULL;`,
 	},
 	{
 		title: "CROSS JOIN",
-		content: `CROSS JOIN génère le produit cartésien : chaque ligne de la première table est combinée avec chaque ligne de la seconde. Attention : N lignes × M lignes = N×M résultats ! Utile pour générer des matrices ou des combinaisons.
+		content: `CROSS JOIN génère le produit cartésien : chaque ligne de la première table est combinée avec chaque ligne de la seconde. Attention : N lignes × M lignes = N×M résultats ! Utile pour générer des matrices ou des combinaisons. 
 
 Principe de syntaxe :
-<code>FROM</code> TableA <code>CROSS JOIN</code> TableB
-(pas de clause ON)`,
+<code>FROM</code> nom_de_la_table_A
+<code>CROSS JOIN</code> nom_de_la_table_B
+
+Note : CROSS JOIN n'utilise pas de clause <code>ON</code> car il n'y a aucune condition de jointure.`,
 		sqlQueries: [
 			{
 				title: "Syntaxe générale",
-				sqlCode: `-- CROSS JOIN : chaque ligne de A combinée avec chaque ligne de B
--- Pas de clause ON : aucune condition de jointure
--- Attention au nombre de résultats : N × M lignes !
+				sqlCode: `-- On peut l'écrire de 2 façons :
 
+-- CROSS JOIN avec alias et mot-clé AS
+-- Pas de clause ON car aucune condition de jointure
+-- Attention : génère N × M lignes !
+SELECT colonnes
+FROM TableA AS A
+CROSS JOIN TableB AS B;
+
+-- CROSS JOIN avec alias et sans mot-clé AS
+-- Le mot-clé AS est optionnel pour les alias de table, vous pouvez donc utiliser le raccourci syntaxique suivant :
 SELECT colonnes
 FROM TableA A
 CROSS JOIN TableB B;
 
 -- Syntaxe alternative (implicite) :
+-- Utiliser la virgule entre les tables produit le même résultat
 SELECT colonnes
 FROM TableA A, TableB B;`,
 			},
@@ -537,19 +571,26 @@ ORDER BY l.titre, d.date_disponible;`,
 	},
 	{
 		title: "SELF JOIN",
-		content: `SELF JOIN permet de joindre une table avec elle-même. Indispensable pour les structures hiérarchiques ou pour comparer des lignes entre elles. Les alias sont obligatoires pour distinguer les deux "copies".
+		content: `SELF JOIN permet de joindre une table avec elle-même. Indispensable pour les structures hiérarchiques ou pour comparer des lignes entre elles. Les alias sont obligatoires pour distinguer les deux "copies" de la table. 
 
 Principe de syntaxe :
-<code>FROM</code> MaTable alias1 <code>JOIN</code> MaTable alias2 <code>ON</code> alias1.colonne <code>=</code> alias2.colonne`,
+<code>FROM</code> nom_de_la_table alias1
+<code>JOIN</code> nom_de_la_table alias2 <code>ON</code> alias1<code>.</code>nom_colonne <code>=</code> alias2<code>.</code>nom_colonne`,
 		sqlQueries: [
 			{
 				title: "Syntaxe générale",
-				sqlCode: `-- SELF JOIN : joindre une table avec elle-même
--- Les alias sont OBLIGATOIRES pour distinguer les deux "copies"
+				sqlCode: `-- On peut l'écrire de 2 façons :
 
+-- SELF JOIN avec alias et mot-clé AS (les alias sont OBLIGATOIRES)
+SELECT colonnes
+FROM MaTable AS alias1
+JOIN MaTable AS alias2 ON alias1.colonne = alias2.colonne;
+
+-- SELF JOIN avec alias et sans mot-clé AS
+-- Le mot-clé AS est optionnel pour les alias de table, vous pouvez donc utiliser le raccourci syntaxique suivant :
 SELECT colonnes
 FROM MaTable alias1
-JOIN MaTable alias2 ON alias1.colonne_ref = alias2.colonne_cible;
+JOIN MaTable alias2 ON alias1.colonne = alias2.colonne;
 
 -- Structure hiérarchique typique (colonne qui référence la même table) :
 CREATE TABLE categories (
