@@ -11,13 +11,12 @@
 const JoinCard = ({ title, vennConfig }) => {
 	// Brown/amber color palette
 	const fillColor = "#d97706"; // amber-600
-	const fillColorLight = "#fbbf24"; // amber-400
 	const strokeColor = "#92400e"; // amber-800
 
 	return (
-		<div className="group relative flex flex-col items-center p-5 bg-gradient-to-br from-stone-100 to-amber-50 rounded-xl border border-amber-200 hover:border-amber-400 transition-all duration-300 hover:shadow-xs hover:shadow-amber-200/50 hover:-translate-y-1">
+		<div className="group relative flex flex-col items-center p-5 bg-stone-50 rounded-xl border border-amber-200 hover:border-amber-400 transition-all duration-300 hover:shadow-xs hover:shadow-amber-200/50 hover:-translate-y-1">
 			{/* Hover glow effect */}
-			<div className="absolute inset-0 rounded-xl bg-gradient-to-br from-amber-100/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+			<div className="absolute inset-0 rounded-xl bg-amber-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
 			{/* Venn diagram SVG */}
 			<svg
@@ -27,16 +26,6 @@ const JoinCard = ({ title, vennConfig }) => {
 				className="relative z-10"
 			>
 				<defs>
-					{/* Radial gradient for filled circles */}
-					<radialGradient
-						id={`gradient-${title.replace(/\s+/g, "")}`}
-						cx="30%"
-						cy="30%"
-					>
-						<stop offset="0%" stopColor={fillColorLight} />
-						<stop offset="100%" stopColor={fillColor} />
-					</radialGradient>
-
 					{/* Mask to exclude intersection from circle A */}
 					<mask id={`maskA-${title.replace(/\s+/g, "")}`}>
 						<rect width="100" height="70" fill="white" />
@@ -59,7 +48,7 @@ const JoinCard = ({ title, vennConfig }) => {
 						cx="32"
 						cy="35"
 						r="26"
-						fill={`url(#gradient-${title.replace(/\s+/g, "")})`}
+						fill={fillColor}
 						mask={`url(#maskA-${title.replace(/\s+/g, "")})`}
 					/>
 				)}
@@ -68,7 +57,7 @@ const JoinCard = ({ title, vennConfig }) => {
 						cx="32"
 						cy="35"
 						r="26"
-						fill={`url(#gradient-${title.replace(/\s+/g, "")})`}
+						fill={fillColor}
 					/>
 				)}
 
@@ -78,7 +67,7 @@ const JoinCard = ({ title, vennConfig }) => {
 						cx="68"
 						cy="35"
 						r="26"
-						fill={`url(#gradient-${title.replace(/\s+/g, "")})`}
+						fill={fillColor}
 						mask={`url(#maskB-${title.replace(/\s+/g, "")})`}
 					/>
 				)}
@@ -87,7 +76,7 @@ const JoinCard = ({ title, vennConfig }) => {
 						cx="68"
 						cy="35"
 						r="26"
-						fill={`url(#gradient-${title.replace(/\s+/g, "")})`}
+						fill={fillColor}
 					/>
 				)}
 
@@ -99,7 +88,7 @@ const JoinCard = ({ title, vennConfig }) => {
 							cx="68"
 							cy="35"
 							r="26"
-							fill={`url(#gradient-${title.replace(/\s+/g, "")})`}
+							fill={fillColor}
 							clipPath={`url(#intersection-${title.replace(/\s+/g, "")})`}
 						/>
 					)}
@@ -181,7 +170,7 @@ export default function JoinsDiagram() {
 			{/* Legend */}
 			<div className="flex flex-wrap gap-6 justify-center text-sm pt-4 px-4 py-3 bg-amber-50/50 rounded-lg border border-amber-200/50">
 				<div className="flex items-center gap-2">
-					<div className="w-4 h-4 rounded-full bg-gradient-to-br from-amber-400 to-amber-600"></div>
+					<div className="w-4 h-4 rounded-full bg-amber-600"></div>
 					<span className="text-stone-600">Zone sélectionnée</span>
 				</div>
 				<div className="flex items-center gap-2">

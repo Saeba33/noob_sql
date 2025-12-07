@@ -1,4 +1,5 @@
 import JoinsDiagram from "@/components/ui/sections/brown/JoinsDiagram";
+import JoinDiagramSingle from "@/components/ui/sections/brown/JoinDiagramSingle";
 
 const menu = {
 	description: "Relations entre les tables",
@@ -33,31 +34,40 @@ const accordions = [
 			"Les clés primaires et étrangères sont indispensables pour établir des jointures entre tables. Elles définissent les relations qui lient les enregistrements d'une table à ceux d'une autre. Sans elles, il n'est pas possible de faire de jointures entre plusieurs tables.",
 		sqlCode: `-- Structure avec clés primaires et étrangères
 CREATE TABLE utilisateurs (
-    id INTEGER PRIMARY KEY,    -- Clé primaire
+    id INTEGER PRIMARY KEY,             -- Clé primaire
+    prenom VARCHAR(50) NOT NULL,
     nom VARCHAR(100) NOT NULL,
     email VARCHAR(255) UNIQUE,
-    age INTEGER,
-    date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-
-CREATE TABLE commandes (
-    id INTEGER PRIMARY KEY AUTO_INCREMENT,                          -- Clé primaire
-    utilisateur_id INTEGER NOT NULL REFERENCES utilisateurs(id),    -- Clé étrangère vers la table utilisateurs
-    prix_total DECIMAL(10,2) NOT NULL,
-    statut ENUM('en_attente', 'expediee', 'livree', 'annulee') DEFAULT 'en_attente',
-    date_commande TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    date_naissance DATE,
+    date_inscription DATE DEFAULT CURRENT_DATE
 );
 
-CREATE TABLE commande_details (
-    id INTEGER PRIMARY KEY AUTO_INCREMENT,                  -- Clé primaire
-    commande_id INTEGER NOT NULL REFERENCES commandes(id),  -- Clé étrangère vers la table commandes
-    produit_id INTEGER NOT NULL REFERENCES produits(id),    -- Clé étrangère vers la table produits
-    quantite INTEGER DEFAULT 1 CHECK (quantite > 0),
-    prix_unitaire DECIMAL(10,2) NOT NULL
+CREATE TABLE livres (
+    id INTEGER PRIMARY KEY,             -- Clé primaire
+    titre VARCHAR(200) NOT NULL,
+    auteur VARCHAR(100) NOT NULL,
+    genre VARCHAR(50),
+    annee_publication INTEGER,
+    isbn VARCHAR(13) UNIQUE
+);
+
+CREATE TABLE emprunts (
+    id INTEGER PRIMARY KEY,                             -- Clé primaire
+    utilisateur_id INTEGER REFERENCES utilisateurs(id), -- Clé étrangère vers utilisateurs
+    livre_id INTEGER REFERENCES livres(id),             -- Clé étrangère vers livres
+    date_emprunt DATE NOT NULL,
+    date_retour_prevue DATE NOT NULL,
+    date_retour_reel DATE,
+    statut ENUM('en_cours', 'rendu', 'en_retard') DEFAULT 'en_cours'
 );`,
 	},
 	{
 		title: "JOIN",
-		content: `JOIN, qui peut également s'écrire INNER JOIN, retourne uniquement les lignes ayant une correspondance dans les deux tables (intersection). \n\nPrincipe de syntaxe :\n<code>FROM</code> nom_de_la_table_A\n<code>JOIN</code> nom_de_la_table_B <code>ON</code> nom_de_la_table_A<code>.</code>nom_de_la_cle_primaire <code>=</code> nom_de_la_table_B<code>.</code>nom_de_la_cle_etrangere_qui_relie_la_table_B_a_la_table_A`,
+		content: `JOIN (ou INNER JOIN) retourne uniquement les lignes ayant une correspondance dans les deux tables (intersection).
+
+Principe de syntaxe :
+<code>FROM</code> TableA <code>JOIN</code> TableB <code>ON</code> TableA.cle_primaire <code>=</code> TableB.cle_etrangere`,
+		externalComponent: <JoinDiagramSingle type="inner" />,
 		sqlQueries: [
 			{
 				title: "Syntaxe générale",
@@ -74,309 +84,245 @@ FROM TableA AS A
 JOIN TableB AS B ON A.cle = B.cle;
 
 -- JOIN avec alias (sans mot-clé AS) 
--- Le mot-clé AS est optionnel pour les alias de table, vous pouvez donc utiliser le raccourci syntaxique suivant :
+-- Le mot-clé AS est optionnel, vous pouvez utiliser ce raccourci :
 SELECT colonnes
 FROM TableA A
 JOIN TableB B ON A.cle = B.cle;`,
 			},
 			{
-				title: "Exemple : Utilisateurs avec leurs commandes",
-				sqlCode: `SELECT u.nom, c.produit, c.prix
+				title: "Exemple : Emprunts en cours avec détails",
+				sqlCode: `SELECT 
+    u.prenom,
+    u.nom,
+    l.titre,
+    l.auteur,
+    e.date_emprunt,
+    e.date_retour_prevue
 FROM utilisateurs u
-JOIN commandes c ON u.id = c.utilisateur_id;`,
+JOIN emprunts e ON u.id = e.utilisateur_id
+JOIN livres l ON e.livre_id = l.id
+WHERE e.statut = 'en_cours';`,
 				sqlResult: [
-					{ nom: "Alice Dupont", produit: "Laptop Pro", prix: 1299 },
-					{ nom: "Bob Martin", produit: "Souris Gaming", prix: 89 },
-					{ nom: "Claire Durand", produit: "Livre SQL", prix: 25 },
-					{ nom: "David Moreau", produit: "Smartphone", prix: 799 },
+					{ prenom: "Alice", nom: "Dupont", titre: "1984", auteur: "George Orwell", date_emprunt: "2024-11-15", date_retour_prevue: "2024-12-15" },
+					{ prenom: "Bob", nom: "Martin", titre: "Le Seigneur des Anneaux", auteur: "J.R.R. Tolkien", date_emprunt: "2024-11-20", date_retour_prevue: "2024-12-20" },
+					{ prenom: "Claire", nom: "Durand", titre: "Clean Code", auteur: "Robert Martin", date_emprunt: "2024-11-25", date_retour_prevue: "2024-12-25" },
 				],
 			},
 			{
-				title: "Jointure sur trois tables",
-				sqlCode: `-- On peut enchaîner plusieurs JOIN
+				title: "Jointure sur trois tables : historique complet",
+				sqlCode: `-- Afficher tous les emprunts avec informations utilisateur et livre
 SELECT 
-    u.nom AS client,
-    p.nom AS produit,
-    c.quantite,
-    p.prix,
-    (c.quantite * p.prix) AS total
+    u.prenom,
+    u.nom,
+    l.titre,
+    l.genre,
+    e.date_emprunt,
+    e.date_retour_reel,
+    e.statut
 FROM utilisateurs u
-JOIN commandes c ON u.id = c.utilisateur_id
-JOIN produits p ON c.produit_id = p.id;`,
+JOIN emprunts e ON u.id = e.utilisateur_id
+JOIN livres l ON e.livre_id = l.id
+ORDER BY e.date_emprunt DESC;`,
 				sqlResult: [
-					{
-						client: "Alice Dupont",
-						produit: "Laptop Pro",
-						quantite: 1,
-						prix: 1299,
-						total: 1299,
-					},
-					{
-						client: "Bob Martin",
-						produit: "Souris Gaming",
-						quantite: 2,
-						prix: 89,
-						total: 178,
-					},
-					{
-						client: "Claire Durand",
-						produit: "Livre SQL",
-						quantite: 1,
-						prix: 25,
-						total: 25,
-					},
+					{ prenom: "Claire", nom: "Durand", titre: "Clean Code", genre: "Informatique", date_emprunt: "2024-11-25", date_retour_reel: null, statut: "en_cours" },
+					{ prenom: "Bob", nom: "Martin", titre: "Le Seigneur des Anneaux", genre: "Fantasy", date_emprunt: "2024-11-20", date_retour_reel: null, statut: "en_cours" },
+					{ prenom: "Alice", nom: "Dupont", titre: "1984", genre: "Science-Fiction", date_emprunt: "2024-11-15", date_retour_reel: null, statut: "en_cours" },
+					{ prenom: "Alice", nom: "Dupont", titre: "Le Petit Prince", genre: "Conte", date_emprunt: "2024-10-01", date_retour_reel: "2024-10-15", statut: "rendu" },
 				],
 			},
 		],
 	},
 	{
 		title: "LEFT JOIN",
-		content:
-			"LEFT JOIN, qui peut également s'écrire LEFT OUTER JOIN, retourne toutes les lignes de la première table (celle après FROM), avec les correspondances de la seconde table si elles existent. Les colonnes de la seconde table seront NULL s'il n'y a pas de correspondance.",
+		content: `LEFT JOIN (ou LEFT OUTER JOIN) retourne toutes les lignes de la table de gauche (après FROM), avec les correspondances de la table de droite si elles existent. S'il n'y a pas de correspondance, les colonnes de la table de droite seront NULL.
+
+Principe de syntaxe :
+<code>FROM</code> TableA <code>LEFT JOIN</code> TableB <code>ON</code> TableA.cle_primaire <code>=</code> TableB.cle_etrangere`,
+		externalComponent: <JoinDiagramSingle type="left" />,
 		sqlQueries: [
 			{
 				title: "Syntaxe générale",
-				sqlCode: `-- LEFT JOIN : toutes les lignes de A + correspondances de B
+				sqlCode: `-- LEFT JOIN : toutes les lignes de A + correspondances de B (si elles existent)
 -- Les lignes de A sans correspondance auront NULL pour les colonnes de B
-SELECT colonnes
-FROM TableA A
-LEFT JOIN TableB B ON A.id = B.tableA_id;
 
--- LEFT OUTER JOIN est équivalent à LEFT JOIN
 SELECT colonnes
 FROM TableA A
-LEFT OUTER JOIN TableB B ON A.id = B.tableA_id;`,
+LEFT JOIN TableB B ON A.cle_primaire = B.cle_etrangere;
+
+-- LEFT OUTER JOIN est strictement équivalent à LEFT JOIN
+SELECT colonnes
+FROM TableA A
+LEFT OUTER JOIN TableB B ON A.cle_primaire = B.cle_etrangere;`,
 			},
 			{
-				title: "Exemple : Tous les utilisateurs (même sans commande)",
+				title: "Exemple : Tous les utilisateurs (même sans emprunt)",
 				sqlCode: `SELECT 
+    u.prenom,
     u.nom,
     u.email,
-    c.produit,
-    c.prix
+    COUNT(e.id) AS nombre_emprunts
 FROM utilisateurs u
-LEFT JOIN commandes c ON u.id = c.utilisateur_id;`,
+LEFT JOIN emprunts e ON u.id = e.utilisateur_id
+GROUP BY u.id, u.prenom, u.nom, u.email;`,
 				sqlResult: [
-					{
-						nom: "Alice Dupont",
-						email: "alice@email.com",
-						produit: "Laptop Pro",
-						prix: 1299,
-					},
-					{
-						nom: "Bob Martin",
-						email: "bob@email.com",
-						produit: "Souris Gaming",
-						prix: 89,
-					},
-					{
-						nom: "Claire Durand",
-						email: "claire@email.com",
-						produit: "Livre SQL",
-						prix: 25,
-					},
-					{
-						nom: "David Moreau",
-						email: "david@email.com",
-						produit: "Smartphone",
-						prix: 799,
-					},
-					{
-						nom: "Emma Bernard",
-						email: "emma@email.com",
-						produit: null,
-						prix: null,
-					},
+					{ prenom: "Alice", nom: "Dupont", email: "alice@email.com", nombre_emprunts: 2 },
+					{ prenom: "Bob", nom: "Martin", email: "bob@email.com", nombre_emprunts: 1 },
+					{ prenom: "Claire", nom: "Durand", email: "claire@email.com", nombre_emprunts: 1 },
+					{ prenom: "Emma", nom: "Bernard", email: "emma@email.com", nombre_emprunts: 0 },
 				],
 			},
 			{
-				title: "LEFT EXCLUSIVE : Utilisateurs SANS commande",
+				title: "LEFT EXCLUSIVE : Utilisateurs sans emprunt",
 				sqlCode: `-- Ajouter WHERE ... IS NULL pour ne garder que les lignes sans correspondance
 SELECT 
+    u.prenom,
     u.nom,
     u.email,
-    u.age
+    u.date_inscription
 FROM utilisateurs u
-LEFT JOIN commandes c ON u.id = c.utilisateur_id
-WHERE c.id IS NULL;`,
-				sqlResult: [{ nom: "Emma Bernard", email: "emma@email.com", age: 30 }],
+LEFT JOIN emprunts e ON u.id = e.utilisateur_id
+WHERE e.id IS NULL;`,
+				sqlResult: [
+					{ prenom: "Emma", nom: "Bernard", email: "emma@email.com", date_inscription: "2024-11-10" },
+				],
 			},
 		],
 	},
 	{
 		title: "RIGHT JOIN",
-		content:
-			"RIGHT JOIN, qui peut également s'écrire RIGHT OUTER JOIN, retourne toutes les lignes de la seconde table (celle après JOIN), avec les correspondances de la première table si elles existent. En pratique, on préfère souvent réécrire un RIGHT JOIN en LEFT JOIN en inversant l'ordre des tables.",
+		content: `RIGHT JOIN (ou RIGHT OUTER JOIN) retourne toutes les lignes de la table de droite (après JOIN), avec les correspondances de la table de gauche si elles existent. En pratique, on préfère souvent réécrire un RIGHT JOIN en LEFT JOIN en inversant l'ordre des tables.
+
+Principe de syntaxe :
+<code>FROM</code> TableA <code>RIGHT JOIN</code> TableB <code>ON</code> TableA.cle_primaire <code>=</code> TableB.cle_etrangere`,
+		externalComponent: <JoinDiagramSingle type="right" />,
 		sqlQueries: [
 			{
 				title: "Syntaxe générale",
-				sqlCode: `-- RIGHT JOIN : toutes les lignes de B + correspondances de A
+				sqlCode: `-- RIGHT JOIN : toutes les lignes de B + correspondances de A (si elles existent)
 -- Les lignes de B sans correspondance auront NULL pour les colonnes de A
+
 SELECT colonnes
 FROM TableA A
-RIGHT JOIN TableB B ON A.id = B.tableA_id;
+RIGHT JOIN TableB B ON A.cle_primaire = B.cle_etrangere;
 
--- Équivalent avec LEFT JOIN (en inversant les tables) :
+-- Équivalent avec LEFT JOIN (en inversant l'ordre des tables) :
 SELECT colonnes
 FROM TableB B
-LEFT JOIN TableA A ON A.id = B.tableA_id;`,
+LEFT JOIN TableA A ON A.cle_primaire = B.cle_etrangere;`,
 			},
 			{
-				title: "Exemple : Toutes les commandes (même orphelines)",
+				title: "Exemple : Tous les livres (même jamais empruntés)",
 				sqlCode: `SELECT 
-    u.nom,
-    c.produit,
-    c.prix,
-    c.date_commande
-FROM utilisateurs u
-RIGHT JOIN commandes c ON u.id = c.utilisateur_id;`,
+    l.titre,
+    l.auteur,
+    l.genre,
+    COUNT(e.id) AS nombre_emprunts
+FROM emprunts e
+RIGHT JOIN livres l ON e.livre_id = l.id
+GROUP BY l.id, l.titre, l.auteur, l.genre;`,
 				sqlResult: [
-					{
-						nom: "Alice Dupont",
-						produit: "Laptop Pro",
-						prix: 1299,
-						date_commande: "2024-01-15",
-					},
-					{
-						nom: "Bob Martin",
-						produit: "Souris Gaming",
-						prix: 89,
-						date_commande: "2024-01-18",
-					},
-					{
-						nom: "Claire Durand",
-						produit: "Livre SQL",
-						prix: 25,
-						date_commande: "2024-02-05",
-					},
-					{
-						nom: "David Moreau",
-						produit: "Smartphone",
-						prix: 799,
-						date_commande: "2024-02-20",
-					},
-					{
-						nom: null,
-						produit: "Commande Orpheline",
-						prix: 150,
-						date_commande: "2024-03-01",
-					},
+					{ titre: "1984", auteur: "George Orwell", genre: "Science-Fiction", nombre_emprunts: 1 },
+					{ titre: "Le Seigneur des Anneaux", auteur: "J.R.R. Tolkien", genre: "Fantasy", nombre_emprunts: 1 },
+					{ titre: "Clean Code", auteur: "Robert Martin", genre: "Informatique", nombre_emprunts: 1 },
+					{ titre: "Le Petit Prince", auteur: "Antoine de Saint-Exupéry", genre: "Conte", nombre_emprunts: 1 },
+					{ titre: "Design Patterns", auteur: "Gang of Four", genre: "Informatique", nombre_emprunts: 0 },
 				],
 			},
 			{
-				title: "RIGHT EXCLUSIVE : Commandes orphelines",
-				sqlCode: `-- Trouver les commandes sans utilisateur valide
+				title: "RIGHT EXCLUSIVE : Livres jamais empruntés",
+				sqlCode: `-- Trouver les livres qui n'ont jamais été empruntés
 SELECT 
-    c.id,
-    c.produit,
-    c.prix,
-    c.utilisateur_id
-FROM utilisateurs u
-RIGHT JOIN commandes c ON u.id = c.utilisateur_id
-WHERE u.id IS NULL;`,
+    l.titre,
+    l.auteur,
+    l.genre,
+    l.annee_publication
+FROM emprunts e
+RIGHT JOIN livres l ON e.livre_id = l.id
+WHERE e.id IS NULL;`,
 				sqlResult: [
-					{
-						id: 5,
-						produit: "Commande Orpheline",
-						prix: 150,
-						utilisateur_id: 999,
-					},
+					{ titre: "Design Patterns", auteur: "Gang of Four", genre: "Informatique", annee_publication: 1994 },
 				],
 			},
 		],
 	},
 	{
 		title: "FULL JOIN",
-		content:
-			"FULL JOIN, qui peut également s'écrire FULL OUTER JOIN, retourne toutes les lignes des deux tables, avec ou sans correspondance. Les lignes sans correspondance dans l'une ou l'autre table auront NULL pour les colonnes de l'autre table. À noter : SQLite ne supporte pas FULL JOIN directement, il faut utiliser UNION.",
+		content: `FULL JOIN (ou FULL OUTER JOIN) retourne toutes les lignes des deux tables, qu'il y ait correspondance ou non. Les colonnes sans correspondance seront NULL. Note : SQLite ne supporte pas FULL JOIN, il faut utiliser UNION.
+
+Principe de syntaxe :
+<code>FROM</code> TableA <code>FULL JOIN</code> TableB <code>ON</code> TableA.cle_primaire <code>=</code> TableB.cle_etrangere`,
+		externalComponent: <JoinDiagramSingle type="full" />,
 		sqlQueries: [
 			{
 				title: "Syntaxe générale",
 				sqlCode: `-- FULL JOIN : toutes les lignes de A + toutes les lignes de B
 -- Les lignes sans correspondance auront NULL de l'autre côté
+
 SELECT colonnes
 FROM TableA A
-FULL OUTER JOIN TableB B ON A.id = B.tableA_id;
+FULL OUTER JOIN TableB B ON A.cle_primaire = B.cle_etrangere;
 
--- Pour SQLite (pas de FULL JOIN natif), utiliser UNION :
-SELECT colonnes FROM TableA A LEFT JOIN TableB B ON A.id = B.tableA_id
+-- Alternative pour SQLite (pas de FULL JOIN natif) :
+SELECT colonnes FROM TableA A LEFT JOIN TableB B ON A.cle = B.cle
 UNION
-SELECT colonnes FROM TableA A RIGHT JOIN TableB B ON A.id = B.tableA_id;`,
+SELECT colonnes FROM TableA A RIGHT JOIN TableB B ON A.cle = B.cle;`,
 			},
 			{
-				title: "Exemple : Vue complète utilisateurs/commandes",
+				title: "Exemple : Vue complète utilisateurs/livres",
 				sqlCode: `SELECT 
+    u.prenom,
     u.nom,
-    u.email,
-    c.produit,
-    c.prix
+    l.titre,
+    l.genre,
+    e.statut
 FROM utilisateurs u
-FULL OUTER JOIN commandes c ON u.id = c.utilisateur_id;`,
+LEFT JOIN emprunts e ON u.id = e.utilisateur_id
+FULL OUTER JOIN livres l ON e.livre_id = l.id;`,
 				sqlResult: [
-					{
-						nom: "Alice Dupont",
-						email: "alice@email.com",
-						produit: "Laptop Pro",
-						prix: 1299,
-					},
-					{
-						nom: "Bob Martin",
-						email: "bob@email.com",
-						produit: "Souris Gaming",
-						prix: 89,
-					},
-					{
-						nom: "Emma Bernard",
-						email: "emma@email.com",
-						produit: null,
-						prix: null,
-					},
-					{
-						nom: null,
-						email: null,
-						produit: "Commande Orpheline",
-						prix: 150,
-					},
+					{ prenom: "Alice", nom: "Dupont", titre: "1984", genre: "Science-Fiction", statut: "en_cours" },
+					{ prenom: "Bob", nom: "Martin", titre: "Le Seigneur des Anneaux", genre: "Fantasy", statut: "en_cours" },
+					{ prenom: "Claire", nom: "Durand", titre: "Clean Code", genre: "Informatique", statut: "en_cours" },
+					{ prenom: "Alice", nom: "Dupont", titre: "Le Petit Prince", genre: "Conte", statut: "rendu" },
+					{ prenom: "Emma", nom: "Bernard", titre: null, genre: null, statut: null },
+					{ prenom: null, nom: null, titre: "Design Patterns", genre: "Informatique", statut: null },
 				],
 			},
 			{
 				title: "FULL EXCLUSIVE : Données non appariées",
-				sqlCode: `-- Trouver TOUS les enregistrements orphelins (des deux côtés)
+				sqlCode: `-- Trouver les utilisateurs sans emprunts ET les livres jamais empruntés
 SELECT 
+    u.prenom,
     u.nom,
-    c.produit,
+    l.titre,
     CASE 
-        WHEN u.id IS NULL THEN 'Commande orpheline'
-        WHEN c.id IS NULL THEN 'Utilisateur sans commande'
+        WHEN u.id IS NULL THEN 'Livre jamais emprunté'
+        WHEN l.id IS NULL THEN 'Utilisateur sans emprunt'
     END AS anomalie
 FROM utilisateurs u
-FULL OUTER JOIN commandes c ON u.id = c.utilisateur_id
-WHERE u.id IS NULL OR c.id IS NULL;`,
+LEFT JOIN emprunts e ON u.id = e.utilisateur_id
+FULL OUTER JOIN livres l ON e.livre_id = l.id
+WHERE u.id IS NULL OR l.id IS NULL;`,
 				sqlResult: [
-					{
-						nom: "Emma Bernard",
-						produit: null,
-						anomalie: "Utilisateur sans commande",
-					},
-					{
-						nom: null,
-						produit: "Commande Orpheline",
-						anomalie: "Commande orpheline",
-					},
+					{ prenom: "Emma", nom: "Bernard", titre: null, anomalie: "Utilisateur sans emprunt" },
+					{ prenom: null, nom: null, titre: "Design Patterns", anomalie: "Livre jamais emprunté" },
 				],
 			},
 		],
 	},
 	{
-		title: "CROSS JOIN - Produit Cartésien",
-		content:
-			"Génère toutes les combinaisons possibles entre deux tables. Le nombre de lignes résultat est le produit du nombre de lignes des deux tables (N × M résultats). Utile pour générer des matrices, des plannings, ou des variantes de produits.",
+		title: "CROSS JOIN",
+		content: `CROSS JOIN génère le produit cartésien : chaque ligne de la première table est combinée avec chaque ligne de la seconde. Attention : N lignes × M lignes = N×M résultats ! Utile pour générer des matrices ou des combinaisons.
+
+Principe de syntaxe :
+<code>FROM</code> TableA <code>CROSS JOIN</code> TableB
+(pas de clause ON)`,
 		sqlQueries: [
 			{
 				title: "Syntaxe générale",
 				sqlCode: `-- CROSS JOIN : chaque ligne de A combinée avec chaque ligne de B
 -- Pas de clause ON : aucune condition de jointure
--- Attention : N lignes × M lignes = N×M résultats !
+-- Attention au nombre de résultats : N × M lignes !
+
 SELECT colonnes
 FROM TableA A
 CROSS JOIN TableB B;
@@ -386,118 +332,113 @@ SELECT colonnes
 FROM TableA A, TableB B;`,
 			},
 			{
-				title: "Exemple : Matrice tailles × couleurs",
-				sqlCode: `-- Générer toutes les variantes d'un produit
+				title: "Exemple : Matrice utilisateurs × genres littéraires",
+				sqlCode: `-- Générer des recommandations : tous les utilisateurs × tous les genres
 SELECT 
-    t.nom AS taille,
-    c.nom AS couleur,
-    CONCAT(t.nom, ' - ', c.nom) AS variante
-FROM tailles t
-CROSS JOIN couleurs c
-ORDER BY t.ordre, c.ordre;`,
+    u.prenom,
+    u.nom,
+    g.genre
+FROM utilisateurs u
+CROSS JOIN (
+    SELECT DISTINCT genre
+    FROM livres
+    WHERE genre IS NOT NULL
+) g
+ORDER BY u.nom, g.genre
+LIMIT 8;`,
 				sqlResult: [
-					{ taille: "S", couleur: "Rouge", variante: "S - Rouge" },
-					{ taille: "S", couleur: "Bleu", variante: "S - Bleu" },
-					{ taille: "S", couleur: "Vert", variante: "S - Vert" },
-					{ taille: "M", couleur: "Rouge", variante: "M - Rouge" },
-					{ taille: "M", couleur: "Bleu", variante: "M - Bleu" },
-					{ taille: "M", couleur: "Vert", variante: "M - Vert" },
-					{ taille: "L", couleur: "Rouge", variante: "L - Rouge" },
-					{ taille: "L", couleur: "Bleu", variante: "L - Bleu" },
-					{ taille: "L", couleur: "Vert", variante: "L - Vert" },
+					{ prenom: "Emma", nom: "Bernard", genre: "Conte" },
+					{ prenom: "Emma", nom: "Bernard", genre: "Fantasy" },
+					{ prenom: "Emma", nom: "Bernard", genre: "Informatique" },
+					{ prenom: "Emma", nom: "Bernard", genre: "Science-Fiction" },
+					{ prenom: "Alice", nom: "Dupont", genre: "Conte" },
+					{ prenom: "Alice", nom: "Dupont", genre: "Fantasy" },
+					{ prenom: "Alice", nom: "Dupont", genre: "Informatique" },
+					{ prenom: "Alice", nom: "Dupont", genre: "Science-Fiction" },
 				],
 			},
 			{
-				title: "Cas pratique : Génération de créneaux",
-				sqlCode: `-- Créer un planning : toutes les dates × toutes les heures
+				title: "Cas pratique : Planning de réservations",
+				sqlCode: `-- Créer un planning : tous les livres × toutes les dates disponibles
 SELECT 
-    d.date,
-    h.heure,
-    DATETIME(d.date || ' ' || h.heure) AS creneau
-FROM dates_semaine d
-CROSS JOIN heures_ouverture h
-WHERE d.jour_semaine NOT IN ('samedi', 'dimanche')
-LIMIT 8;`,
+    l.titre,
+    d.date_disponible
+FROM livres l
+CROSS JOIN (
+    SELECT DATE('2024-12-01') AS date_disponible
+    UNION SELECT DATE('2024-12-08')
+    UNION SELECT DATE('2024-12-15')
+    UNION SELECT DATE('2024-12-22')
+) d
+WHERE l.genre = 'Informatique'
+ORDER BY l.titre, d.date_disponible;`,
 				sqlResult: [
-					{ date: "2024-07-15", heure: "09:00", creneau: "2024-07-15 09:00" },
-					{ date: "2024-07-15", heure: "10:00", creneau: "2024-07-15 10:00" },
-					{ date: "2024-07-15", heure: "11:00", creneau: "2024-07-15 11:00" },
-					{ date: "2024-07-15", heure: "14:00", creneau: "2024-07-15 14:00" },
-					{ date: "2024-07-16", heure: "09:00", creneau: "2024-07-16 09:00" },
-					{ date: "2024-07-16", heure: "10:00", creneau: "2024-07-16 10:00" },
-					{ date: "2024-07-16", heure: "11:00", creneau: "2024-07-16 11:00" },
-					{ date: "2024-07-16", heure: "14:00", creneau: "2024-07-16 14:00" },
+					{ titre: "Clean Code", date_disponible: "2024-12-01" },
+					{ titre: "Clean Code", date_disponible: "2024-12-08" },
+					{ titre: "Clean Code", date_disponible: "2024-12-15" },
+					{ titre: "Clean Code", date_disponible: "2024-12-22" },
+					{ titre: "Design Patterns", date_disponible: "2024-12-01" },
+					{ titre: "Design Patterns", date_disponible: "2024-12-08" },
 				],
 			},
 		],
 	},
 	{
 		title: "SELF JOIN",
-		content:
-			"SELF JOIN permet de joindre une table avec elle-même. Indispensable pour analyser les structures hiérarchiques (employés/managers, catégories/sous-catégories) ou comparer des lignes de la même table entre elles.",
+		content: `SELF JOIN permet de joindre une table avec elle-même. Indispensable pour les structures hiérarchiques ou pour comparer des lignes entre elles. Les alias sont obligatoires pour distinguer les deux "copies".
+
+Principe de syntaxe :
+<code>FROM</code> MaTable alias1 <code>JOIN</code> MaTable alias2 <code>ON</code> alias1.colonne <code>=</code> alias2.colonne`,
 		sqlQueries: [
 			{
 				title: "Syntaxe générale",
 				sqlCode: `-- SELF JOIN : joindre une table avec elle-même
--- Les alias sont OBLIGATOIRES pour distinguer les deux "copies" de la table
+-- Les alias sont OBLIGATOIRES pour distinguer les deux "copies"
+
 SELECT colonnes
 FROM MaTable alias1
-JOIN MaTable alias2 ON alias1.colonne_reference = alias2.colonne_cible;
+JOIN MaTable alias2 ON alias1.colonne_ref = alias2.colonne_cible;
 
--- Structure hiérarchique typique :
--- La colonne manager_id référence id de la même table
-CREATE TABLE employes (
+-- Structure hiérarchique typique (colonne qui référence la même table) :
+CREATE TABLE categories (
     id INTEGER PRIMARY KEY,
     nom VARCHAR(100),
-    manager_id INTEGER,  -- Référence vers id (même table)
-    FOREIGN KEY (manager_id) REFERENCES employes(id)
+    parent_id INTEGER REFERENCES categories(id)  -- Auto-référence
 );`,
 			},
 			{
-				title: "Exemple : Employés avec leur manager",
-				sqlCode: `-- Trouver le manager de chaque employé
+				title: "Exemple : Utilisateurs nés la même année",
+				sqlCode: `-- Comparer les dates de naissance des utilisateurs
 SELECT 
-    e.nom AS employe,
-    e.poste,
-    m.nom AS manager
-FROM employes e
-LEFT JOIN employes m ON e.manager_id = m.id;`,
+    u1.prenom AS prenom1,
+    u1.nom AS nom1,
+    u2.prenom AS prenom2,
+    u2.nom AS nom2,
+    YEAR(u1.date_naissance) AS annee_naissance
+FROM utilisateurs u1
+JOIN utilisateurs u2 ON YEAR(u1.date_naissance) = YEAR(u2.date_naissance)
+    AND u1.id < u2.id  -- Évite les doublons (A,B) et (B,A)
+ORDER BY annee_naissance;`,
 				sqlResult: [
-					{ employe: "Alice Dupont", poste: "PDG", manager: null },
-					{
-						employe: "Bob Martin",
-						poste: "Directeur IT",
-						manager: "Alice Dupont",
-					},
-					{
-						employe: "Claire Durand",
-						poste: "Développeuse",
-						manager: "Bob Martin",
-					},
-					{
-						employe: "David Moreau",
-						poste: "Développeur",
-						manager: "Bob Martin",
-					},
+					{ prenom1: "Alice", nom1: "Dupont", prenom2: "Bob", nom2: "Martin", annee_naissance: 1995 },
+					{ prenom1: "Claire", nom1: "Durand", prenom2: "Emma", nom2: "Bernard", annee_naissance: 1998 },
 				],
 			},
 			{
-				title: "Trouver les collègues (même manager)",
-				sqlCode: `-- Comparer des lignes de la même table entre elles
+				title: "Livres du même auteur",
+				sqlCode: `-- Trouver les livres écrits par le même auteur
 SELECT 
-    e1.nom AS employe1,
-    e2.nom AS employe2,
-    m.nom AS manager_commun
-FROM employes e1
-JOIN employes e2 ON e1.manager_id = e2.manager_id 
-    AND e1.id < e2.id  -- Évite les doublons (A,B) et (B,A)
-JOIN employes m ON e1.manager_id = m.id;`,
+    l1.titre AS livre1,
+    l2.titre AS livre2,
+    l1.auteur,
+    l1.annee_publication AS annee1,
+    l2.annee_publication AS annee2
+FROM livres l1
+JOIN livres l2 ON l1.auteur = l2.auteur
+    AND l1.id < l2.id  -- Évite les doublons
+ORDER BY l1.auteur;`,
 				sqlResult: [
-					{
-						employe1: "Claire Durand",
-						employe2: "David Moreau",
-						manager_commun: "Bob Martin",
-					},
+					{ livre1: "Clean Code", livre2: "The Clean Coder", auteur: "Robert Martin", annee1: 2008, annee2: 2011 },
 				],
 			},
 		],
