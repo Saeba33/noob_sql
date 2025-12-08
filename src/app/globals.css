@@ -2,15 +2,15 @@
 
 /* Styles for HTML content in Accordion */
 .content-html code {
-  background: transparent !important;
-  padding: 0.1rem 0.4rem;
-  border-radius: 0.25rem;
-  border: 1px solid currentColor;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: 0.9em;
-  color: inherit !important;
-  font-weight: 600;
-  word-break: break-word;
+	background: transparent !important;
+	padding: 0.1rem 0.4rem;
+	border-radius: 0.25rem;
+	border: 1px solid currentColor;
+	font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+	font-size: 0.9em;
+	color: inherit !important;
+	font-weight: 600;
+	word-break: break-word;
 }
 
 /* #region - reset default styles */
@@ -25,7 +25,6 @@ body {
 	overflow-x: hidden;
 }
 /* #endregion */
-
 
 /* #region - borders (buttons & generic borders) */
 .border-pop {
@@ -69,7 +68,6 @@ body {
 }
 /* #endregion */
 
-
 /* #region - Accordion */
 .border-accordion {
 	display: block;
@@ -104,7 +102,6 @@ body {
 }
 /* #endregion */
 
-
 /* #region Cards */
 .nav-card {
 	display: block;
@@ -127,7 +124,10 @@ body {
 .home-card {
 	display: block;
 	padding: 1.5rem;
-	border: 2px solid currentColor;
+	border-top: 2px solid currentColor;
+	border-bottom: 2px solid currentColor;
+/* 	border-right: 2px solid currentColor;
+	border-left: 2px solid currentColor; */
 	border-radius: 0.75rem;
 	background-color: white;
 	transition: transform 0.2s ease-in-out;
@@ -158,7 +158,6 @@ body {
 	transform: translateY(-2px);
 }
 /* #endregion */
-
 
 /* #region Mobile Menu */
 .mobile-menu-item {
