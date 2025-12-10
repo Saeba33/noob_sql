@@ -13,7 +13,7 @@ export default function Header() {
 		useNavbar(1400);
 
 	return (
-		<header className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4">
+		<header className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4 lg:px-6">
 			<div className="w-full max-w-[1500px]">
 				<div
 					ref={menuRef}
