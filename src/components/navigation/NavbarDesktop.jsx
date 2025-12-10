@@ -20,19 +20,6 @@ export default function NavbarDesktop() {
 				const isPractice = beltKey === "practice";
 				const active = isActive(item.href);
 
-				// Couleurs de hover spécifiques par ceinture
-				const hoverTextClass = !isPractice
-					? {
-							white: "hover:text-gray-500",
-							yellow: "hover:text-yellow-600",
-							orange: "hover:text-orange-600",
-							green: "hover:text-green-600",
-							blue: "hover:text-blue-600",
-							brown: "hover:text-amber-700",
-							black: "hover:text-gray-900",
-					  }[beltKey]
-					: "";
-
 				return (
 					<Link
 						key={`${beltKey}-${index}`}
@@ -56,7 +43,7 @@ export default function NavbarDesktop() {
 								!isPractice
 									? active
 										? "text-gray-900"
-										: `text-gray-600 ${hoverTextClass}`
+										: `text-gray-600 ${colors.navbarHoverText || ""}`
 									: ""
 							}
 							whitespace-nowrap
