@@ -88,7 +88,10 @@ export default function Accordion({
 					>
 						{/* Description - only show if content exists */}
 						{content && (
-							<div className="bg-white border border-gray-200 rounded-lg p-5 shadow-sm">
+							<div 
+								className="bg-white border rounded-lg p-5 shadow-sm"
+								style={{ borderColor: `color-mix(in srgb, ${colors.icon} 85%, #e5e7eb 85%)` }}
+							>
 								<p
 									className="leading-relaxed whitespace-pre-line content-html text-gray-700"
 									dangerouslySetInnerHTML={{ __html: content }}
@@ -119,7 +122,8 @@ export default function Accordion({
 									return (
 										<div
 											key={index}
-											className="space-y-4 border border-gray-200 rounded-lg p-5 bg-white shadow-sm"
+											className="space-y-4 border rounded-lg p-5 bg-white shadow-sm"
+											style={{ borderColor: `color-mix(in srgb, ${colors.icon} 25%, #e5e7eb 85%)` }}
 										>
 											{example.label && (
 												<h5 className="text-sm font-semibold text-gray-900 flex items-center gap-2 mb-4">

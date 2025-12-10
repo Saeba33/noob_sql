@@ -45,6 +45,7 @@ export default function HomeNavigation() {
 							key={page.key}
 							href={page.href}
 							className={`home-card ${page.colors.text}`}
+							style={{ borderColor: `color-mix(in srgb, ${page.colors.icon} 15%, #e5e7eb 85%)` }}
 						>
 							<h3 className="text-2xl font-bold mb-5 tracking-tight">
 								{page.title}
@@ -80,6 +81,7 @@ export default function HomeNavigation() {
 				<Link
 					href="/practice"
 					className="home-card home-card-practice text-red-700"
+					style={{ borderColor: `color-mix(in srgb, ${BELTS_CONFIG.practice.colors.icon} 15%, #e5e7eb 85%)` }}
 				>
 					<div className="flex items-center mb-5">
 						<FaFistRaised
