@@ -79,7 +79,7 @@ export default function HomeNavigation() {
 				{/* Practice Card */}
 				<Link
 					href="/practice"
-					className={`home-card ${BELTS_CONFIG.practice.colors.text}`}
+					className="home-card home-card-practice text-red-700"
 				>
 					<div className="flex items-center mb-5">
 						<FaFistRaised
