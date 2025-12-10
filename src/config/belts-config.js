@@ -36,7 +36,7 @@ export const BELTS_CONFIG = {
 		},
 	},
 	green: {
-		title: "Filtres & Conditions",
+		title: "Filtres & conditions",
 		href: "/green",
 		colors: {
 			icon: "#22C55E",
@@ -72,7 +72,7 @@ export const BELTS_CONFIG = {
 		},
 	},
 	black: {
-		title: "Requêtes Avancées",
+		title: "Requêtes avancées",
 		href: "/black",
 		colors: {
 			icon: "#1F2937",

@@ -8,8 +8,8 @@ export default function AccordionList({ accordions, colors }) {
 	}
 
 	return (
-		<div className="py-4">
-			<div className="space-y-4 flex flex-col">
+		<div>
+			<div className="space-y-6 flex flex-col">
 				{accordions.map((accordion, index) => (
 					<Accordion
 						key={index}
