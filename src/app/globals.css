@@ -23,6 +23,8 @@ body {
 	margin: 0;
 	padding: 0;
 	overflow-x: hidden;
+	font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont,
+		"Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif;
 }
 /* #endregion */
 
@@ -82,20 +84,48 @@ body {
 }
 /* #endregion */
 
+/* #region - Navbar Active Border */
+.nav-item-active {
+	position: relative;
+}
+
+.nav-item-active::after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 2px;
+	background-color: var(--border-color);
+}
+/* #endregion */
+
 /* #region Home Card */
 .home-card {
 	display: block;
-	padding: 1.5rem;
-	border-top: 2px solid currentColor;
-	border-bottom: 2px solid currentColor;
-/* 	border-right: 2px solid currentColor;
-	border-left: 2px solid currentColor; */
-	border-radius: 0.75rem;
+	padding: 2rem;
+	border: 2px solid #e5e7eb;
+	border-radius: 1rem;
 	background-color: white;
-	transition: transform 0.2s ease-in-out;
+	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 	text-decoration: none;
 	cursor: pointer;
 	width: 100%;
+	position: relative;
+	overflow: hidden;
+}
+
+.home-card::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 4px;
+	background: currentColor;
+	opacity: 0;
+	transition: opacity 0.3s ease;
 }
 
 @media (min-width: 768px) {
@@ -117,7 +147,13 @@ body {
 }
 
 .home-card:hover {
-	transform: translateY(-2px);
+	transform: translateY(-4px);
+	box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.12);
+	border-color: currentColor;
+}
+
+.home-card:hover::before {
+	opacity: 1;
 }
 /* #endregion */
 

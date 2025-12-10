@@ -7,12 +7,12 @@ export default function IntroductionPage() {
 	return (
 		<div className="bg-gradient-to-br from-gray-50 to-blue-50 flex-1 pt-28 lg:pt-32 flex flex-col">
 			{/* Introduction Section */}
-			<div className="py-10">
-				<div className="text-center mb-1 px-4">
-					<h2 className="text-4xl font-bold text-gray-900 mb-6">
+			<div className="py-16">
+				<div className="text-center mb-2 px-4">
+					<h2 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-8 tracking-tight">
 						Apprenez le SQL
 					</h2>
-					<p className="text-gray-600 text-lg text-left max-w-3xl mx-auto">
+					<p className="text-gray-700 text-lg lg:text-xl text-left max-w-4xl mx-auto leading-relaxed font-normal">
 						Maîtrisez les bases du langage SQL à travers différents niveaux de
 						difficulté, représentés par les ceintures des arts martiaux.
 						Commencez par la ceinture blanche et progressez jusqu'à la ceinture

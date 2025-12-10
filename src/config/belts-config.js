@@ -74,7 +74,7 @@ export const BELTS_CONFIG = {
 		href: "/practice",
 		colors: {
 			icon: "#DC2626",
-			bg: "bg-red-50",
+			bg: "bg-gray-50",
 			text: "text-red-800",
 			border: "border-red-300",
 		},

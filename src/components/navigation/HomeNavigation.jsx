@@ -36,7 +36,7 @@ export default function HomeNavigation() {
 		}));
 
 	return (
-		<div className="w-full lg:max-w-[1500px] lg:mx-auto px-4 py-8">
+		<div className="w-full lg:max-w-[1500px] lg:mx-auto px-4 py-12">
 			<div className="flex flex-wrap justify-center gap-6">
 				{/* Belt Cards */}
 				{belts.map((page) => {
@@ -46,24 +46,26 @@ export default function HomeNavigation() {
 							href={page.href}
 							className={`home-card ${page.colors.text}`}
 						>
-						<h3 className="text-xl font-bold mb-4">{page.title}</h3>
+							<h3 className="text-2xl font-bold mb-5 tracking-tight">
+								{page.title}
+							</h3>
 
-						<p className="text-sm text-gray-600 mb-4 leading-relaxed">
-							{page.summary}
-						</p>
+							<p className="text-base text-gray-700 mb-6 leading-relaxed font-normal">
+								{page.summary}
+							</p>
 
-						<div className="space-y-2">
+							<div className="space-y-3">
 								{page.topics.slice(0, 3).map((topic, index) => (
 									<div
 										key={index}
-										className="text-sm text-gray-700 flex items-start"
+										className="text-sm text-gray-700 flex items-start font-medium"
 									>
-										<span className="text-gray-400 mr-2">•</span>
+										<span className="text-gray-400 mr-3 font-bold">•</span>
 										<span>{topic}</span>
 									</div>
 								))}
 								{page.topics.length > 3 && (
-									<div className="text-sm text-gray-500">
+									<div className="text-sm text-gray-500 mt-4 font-medium">
 										+ {page.topics.length - 3} autre
 										{page.topics.length - 3 > 1 ? "s" : ""} sujet
 										{page.topics.length - 3 > 1 ? "s" : ""}
@@ -79,35 +81,35 @@ export default function HomeNavigation() {
 					href="/practice"
 					className={`home-card ${BELTS_CONFIG.practice.colors.text}`}
 				>
-					<div className="flex items-center mb-4">
+					<div className="flex items-center mb-5">
 						<FaFistRaised
-							size={24}
+							size={28}
 							style={{ color: BELTS_CONFIG.practice.colors.icon }}
 							className="mr-3"
 						/>
-						<h3 className="text-xl font-bold">
-							Passez 1<sup className="text-sm">ère</sup> DAN
+						<h3 className="text-2xl font-bold tracking-tight">
+							Passez 1<sup className="text-base">ère</sup> DAN
 						</h3>
 					</div>
 
-					<p className="text-sm text-gray-600 mb-4 leading-relaxed">
+					<p className="text-base text-gray-700 mb-6 leading-relaxed font-normal">
 						Testez vos connaissances au travers d'exercices pratiques
 					</p>
 
-					<div className="space-y-2">
-						<div className="text-xs font-medium text-gray-500 uppercase tracking-wide">
+					<div className="space-y-3">
+						<div className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
 							Au programme :
 						</div>
-						<div className="text-sm text-gray-700 flex items-start">
-							<span className="text-gray-400 mr-2">•</span>
+						<div className="text-sm text-gray-700 flex items-start font-medium">
+							<span className="text-gray-400 mr-3 font-bold">•</span>
 							<span>Exercices pratiques</span>
 						</div>
-						<div className="text-sm text-gray-700 flex items-start">
-							<span className="text-gray-400 mr-2">•</span>
+						<div className="text-sm text-gray-700 flex items-start font-medium">
+							<span className="text-gray-400 mr-3 font-bold">•</span>
 							<span>Tests de niveau</span>
 						</div>
-						<div className="text-sm text-gray-700 flex items-start">
-							<span className="text-gray-400 mr-2">•</span>
+						<div className="text-sm text-gray-700 flex items-start font-medium">
+							<span className="text-gray-400 mr-3 font-bold">•</span>
 							<span>Validation des acquis</span>
 						</div>
 					</div>

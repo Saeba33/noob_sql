@@ -17,18 +17,17 @@ export default function Header() {
 			<div className="w-full max-w-[1500px]">
 				<div
 					ref={menuRef}
-					className="bg-white/50 backdrop-blur-lg border border-gray-200/50 shadow-lg rounded-2xl"
+					className="bg-white/80 backdrop-blur-lg border border-gray-200/60 shadow-lg rounded-xl"
 				>
-					<div className="py-2 px-4">
-						<div className="flex justify-between items-center h-22 gap-4">
-							{/* Logo + Title */}
+					<div className="py-3 px-6">
+						<div className="flex justify-between items-center gap-4">
+							{/* Title */}
 							<Link
 								href="/"
-								className="flex items-center gap-3 transition-opacity duration-300 hover:opacity-70"
+								className="flex items-center transition-all duration-300 group"
 							>
-								<span className="text-3xl">🥋</span>
 								<div className="flex flex-col">
-									<span className="text-xl font-bold tracking-tight leading-none bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
+									<span className="text-xl font-bold tracking-tight leading-none text-gray-400 group-hover:text-gray-900 transition-colors">
 										NoobSQL
 									</span>
 								</div>
