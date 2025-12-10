@@ -7,7 +7,6 @@ export const BELTS_CONFIG = {
 			bg: "bg-gray-50",
 			text: "text-gray-500",
 			border: "border-gray-100",
-			// Mobile menu hover
 			mobileHoverBg: "rgb(249 250 251)",
 			mobileHoverText: "rgb(107 114 128)",
 		},
