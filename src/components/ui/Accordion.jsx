@@ -57,7 +57,7 @@ export default function Accordion({
 							className="w-5 h-5 flex-shrink-0"
 							aria-hidden="true"
 						/>
-						<h3 className="text-lg font-semibold text-gray-900">{section}</h3>
+						<h3 className="text-lg font-semibold text-gray-600">{section}</h3>
 					</div>
 					<MdExpandMore
 						className={`w-6 h-6 text-gray-400 transition-transform duration-200 flex-shrink-0 ${
@@ -80,8 +80,11 @@ export default function Accordion({
 			>
 				<div className="overflow-hidden">
 					<div
-						className="px-6 py-5 bg-gray-50 flex flex-col space-y-6 rounded-b-lg border-t"
-						style={{ borderTopColor: colors.icon, borderTopWidth: "1px" }}
+						className="px-6 py-5 bg-white flex flex-col space-y-6 rounded-b-lg border-t"
+						style={{ 
+							borderTopColor: colors.icon, 
+							borderTopWidth: "1px"
+						}}
 					>
 						{/* Description - only show if content exists */}
 						{content && (

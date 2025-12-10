@@ -34,7 +34,8 @@ body {
 .border-accordion {
 	display: block;
 	width: 100%;
-	border: 1px solid #e5e7eb;
+	border: 1px solid;
+	border-color: color-mix(in srgb, var(--accordion-color, #e5e7eb) 15%, #e5e7eb 85%);
 	border-radius: 0.75rem;
 	background-color: white;
 	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
