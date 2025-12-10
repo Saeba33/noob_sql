@@ -25,14 +25,14 @@ export default async function BeltPage({ params }) {
 
 	return (
 		<div className={`min-h-screen ${beltContent.colors.bg} flex flex-col`}>
-			<main className="w-full max-w-[1400px] mx-auto mt-20 mb-12 px-4 flex-1">
+			<main className="w-full max-w-[1200px] mx-auto mt-24 mb-16 px-4 lg:px-6 flex-1">
 				<SectionHeader
 					title={beltContent.header.title}
 					description={beltContent.header.description}
 					tag={beltContent.header.tag}
 					tagProps={{ beltColors: beltContent.colors }}
-					descriptionClassName={`${beltContent.colors.text} leading-relaxed`}
-					className="mb-6"
+					descriptionClassName="text-gray-700 leading-relaxed"
+					className="mb-8"
 				/>
 
 				<AccordionList

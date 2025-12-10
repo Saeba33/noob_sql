@@ -7,12 +7,7 @@ import { BELT_COLORS } from "@/config/belts-config";
 import { sqlToTableDiagram } from "@/config/sql-syntax";
 import { Suspense, useState } from "react";
 import { FaCode } from "react-icons/fa6";
-import {
-	MdAccountTree,
-	MdCheckCircle,
-	MdCode,
-	MdExpandMore,
-} from "react-icons/md";
+import { MdAccountTree, MdCode, MdExpandMore } from "react-icons/md";
 
 // Helper to render SQL result
 const renderSqlResult = (sqlResult) => {
@@ -42,9 +37,8 @@ export default function Accordion({
 		<div
 			className={`border-accordion ${
 				isOpen ? "open" : ""
-			} bg-white rounded-lg shadow-sm ${
-				colors.text || "text-gray-700"
-			} ${className}`}
+			} overflow-hidden ${className}`}
+			style={{ "--accordion-color": colors.icon }}
 		>
 			{/* Accordion header */}
 			<button
@@ -52,25 +46,26 @@ export default function Accordion({
 				onClick={toggle}
 				aria-expanded={isOpen}
 				aria-controls={`${accordionId}-content`}
-				className={`w-full text-left p-6 bg-white transition-opacity duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 relative cursor-pointer ${
+				className={`w-full text-left px-6 py-4 bg-white transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 relative cursor-pointer ${
 					isOpen ? "rounded-t-lg" : "rounded-lg"
 				}`}
 			>
-				<div className="flex flex-col space-y-2 flex-1">
-					<div className="flex items-center space-x-3">
+				<div className="flex items-center justify-between pr-8">
+					<div className="flex items-center gap-3">
 						<FaCode
-							className={`w-5 h-5 ${colors.text || "text-gray-700"}`}
+							style={{ color: colors.icon }}
+							className="w-5 h-5 flex-shrink-0"
 							aria-hidden="true"
 						/>
-						<h3 className="text-lg font-semibold">{section}</h3>
+						<h3 className="text-lg font-semibold text-gray-900">{section}</h3>
 					</div>
+					<MdExpandMore
+						className={`w-6 h-6 text-gray-400 transition-transform duration-200 flex-shrink-0 ${
+							isOpen ? "rotate-180" : ""
+						}`}
+						aria-hidden="true"
+					/>
 				</div>
-				<MdExpandMore
-					className={`w-6 h-6 text-gray-500 transition-transform duration-200 absolute top-6 right-6 ${
-						isOpen ? "rotate-180" : ""
-					}`}
-					aria-hidden="true"
-				/>
 			</button>
 
 			{/* Accordion content - using grid for smooth animation */}
@@ -85,89 +80,97 @@ export default function Accordion({
 			>
 				<div className="overflow-hidden">
 					<div
-						className="p-6 bg-white flex flex-col space-y-6 rounded-b-lg border-t cursor-default"
-						style={{ borderTopColor: "currentColor" }}
+						className="px-6 py-5 bg-gray-50 flex flex-col space-y-6 rounded-b-lg border-t"
+						style={{ borderTopColor: colors.icon, borderTopWidth: "1px" }}
 					>
 						{/* Description - only show if content exists */}
 						{content && (
-							<div
-								className={`bg-gray-50 border border-gray-200 rounded-lg p-4 ${
-									colors.text || "text-gray-700"
-								}`}
-							>
+							<div className="bg-white border border-gray-200 rounded-lg p-5 shadow-sm">
 								<p
-									className="leading-relaxed whitespace-pre-line content-html"
+									className="leading-relaxed whitespace-pre-line content-html text-gray-700"
 									dangerouslySetInnerHTML={{ __html: content }}
 								/>
 							</div>
 						)}
 
-					{/* External Component */}
-					{externalComponent && (
-						<Suspense
-							fallback={
-								<div className="flex items-center justify-center p-8">
-									<div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-									<span className="ml-3 text-gray-600">Chargement...</span>
-								</div>
-							}
-						>
-							<div>{externalComponent}</div>
-						</Suspense>
-					)}
-
-					{/* Examples structure */}
-					{examples && examples.length > 0 && (
-						<div className="space-y-6">
-							{examples.map((example, index) => {
-								const exampleType = example.type || "query"; // default to "query"
-								
-								return (
-									<div
-										key={index}
-										className="space-y-4 border border-gray-200 rounded-lg p-4"
-									>
-										{example.label && (
-											<h5 className="text-sm font-medium text-gray-800 border-l-4 border-blue-500 pl-3 mb-3">
-												{example.label}
-											</h5>
-										)}
-
-										{exampleType === "schema" ? (
-											// Schema: CREATE TABLE with auto-generated diagram
-											<>
-												<SQLCodeBlock>{example.code}</SQLCodeBlock>
-												{example.code && example.code.includes("CREATE TABLE") && (
-													<div className="mt-4">
-														<h4 className="text-sm font-semibold text-gray-900 mb-3 flex items-center">
-															<MdAccountTree className="w-4 h-4 mr-2 text-emerald-600" />
-															Structure des tables
-														</h4>
-														<div className="flex flex-wrap gap-6 items-start">
-															{sqlToTableDiagram(example.code).map((table, tableIndex) => (
-																<SQLTableDiagram key={tableIndex} table={table} />
-															))}
-														</div>
-													</div>
-												)}
-											</>
-										) : (
-											// Query: Regular SQL with optional result
-											<>
-												<SQLCodeBlock>{example.code}</SQLCodeBlock>
-												{example.result !== undefined && (
-													<div className="mt-3">{renderSqlResult(example.result)}</div>
-												)}
-											</>
-										)}
+						{/* External Component */}
+						{externalComponent && (
+							<Suspense
+								fallback={
+									<div className="flex items-center justify-center p-8">
+										<div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+										<span className="ml-3 text-gray-600">Chargement...</span>
 									</div>
-								);
-							})}
-						</div>
-					)}
+								}
+							>
+								<div>{externalComponent}</div>
+							</Suspense>
+						)}
+
+						{/* Examples structure */}
+						{examples && examples.length > 0 && (
+							<div className="space-y-6">
+								{examples.map((example, index) => {
+									const exampleType = example.type || "query"; // default to "query"
+
+									return (
+										<div
+											key={index}
+											className="space-y-4 border border-gray-200 rounded-lg p-5 bg-white shadow-sm"
+										>
+											{example.label && (
+												<h5 className="text-sm font-semibold text-gray-900 flex items-center gap-2 mb-4">
+													<MdCode
+														className="w-4 h-4"
+														style={{ color: colors.icon }}
+													/>
+													{example.label}
+												</h5>
+											)}
+
+											{exampleType === "schema" ? (
+												// Schema: CREATE TABLE with auto-generated diagram
+												<>
+													<SQLCodeBlock>{example.code}</SQLCodeBlock>
+													{example.code &&
+														example.code.includes("CREATE TABLE") && (
+															<div className="mt-4">
+																<h4 className="text-sm font-semibold text-gray-900 mb-3 flex items-center">
+																	<MdAccountTree className="w-4 h-4 mr-2 text-emerald-600" />
+																	Structure des tables
+																</h4>
+																<div className="flex flex-wrap gap-6 items-start">
+																	{sqlToTableDiagram(example.code).map(
+																		(table, tableIndex) => (
+																			<SQLTableDiagram
+																				key={tableIndex}
+																				table={table}
+																			/>
+																		)
+																	)}
+																</div>
+															</div>
+														)}
+												</>
+											) : (
+												// Query: Regular SQL with optional result
+												<>
+													<SQLCodeBlock>{example.code}</SQLCodeBlock>
+													{example.result !== undefined && (
+														<div className="mt-3">
+															{renderSqlResult(example.result)}
+														</div>
+													)}
+												</>
+											)}
+										</div>
+									);
+								})}
+							</div>
+						)}
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-);
+	);
 }

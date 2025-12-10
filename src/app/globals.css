@@ -28,59 +28,34 @@ body {
 }
 /* #endregion */
 
-/* #region - borders (buttons & generic borders) */
-.border-pop {
-	display: inline-flex;
-	align-items: center;
-	padding: 0.5rem 0.75rem;
-	font-size: 0.875rem;
-	font-weight: 500;
-	border: 2px solid currentColor;
-	border-radius: 0.375rem;
-	box-shadow: 2px 2px 0 0 currentColor;
-	transition: all 0.2s ease-in-out;
-	cursor: pointer;
-}
 
-.border-pop:hover {
-	box-shadow: 1px 1px 0 0 currentColor;
-	transform: translate(2px, 2px);
-}
-
-.border-pop.active {
-	box-shadow: 1px 1px 0 0 currentColor;
-	transform: translate(2px, 2px);
-}
-
-/* #endregion */
 
 /* #region - Accordion style */
 .border-accordion {
 	display: block;
 	width: 100%;
-	border: 2px solid currentColor;
-	border-radius: 0.375rem;
-	box-shadow: 2px 2px 0 0 currentColor;
+	border: 1px solid #e5e7eb;
+	border-radius: 0.75rem;
+	background-color: white;
+	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 	transition: all 0.2s ease-in-out;
 	cursor: pointer;
 }
+
 /* Hover animation (closed only) */
 .border-accordion:not(.open):hover {
-	box-shadow: 1px 1px 0 0 currentColor;
-	transform: translate(2px, 2px);
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.08);
+	border-color: var(--accordion-color, currentColor);
 }
-/* No animation when open */
+
+/* Open state */
+.border-accordion.open {
+	border-color: var(--accordion-color, currentColor);
+	box-shadow: 0 2px 8px -1px rgba(0, 0, 0, 0.1);
+}
+
 .border-accordion.open:hover {
-	box-shadow: 2px 2px 0 0 currentColor;
-	transform: none;
-}
-/* Active state */
-.border-accordion.active {
-	box-shadow: 1px 1px 0 0 currentColor;
-	transform: translate(2px, 2px);
-}
-.border-accordion.active:hover {
-	transform: none;
+	box-shadow: 0 2px 8px -1px rgba(0, 0, 0, 0.1);
 }
 /* #endregion */
 
@@ -90,7 +65,7 @@ body {
 }
 
 .nav-item-active::after {
-	content: '';
+	content: "";
 	position: absolute;
 	bottom: 0;
 	left: 0;
@@ -140,7 +115,6 @@ body {
 }
 
 /* Practice Card Style */
-
 
 .home-card-practice:hover {
 	background-color: #fee2e2;
