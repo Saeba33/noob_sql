@@ -7,7 +7,6 @@ import Link from "next/link";
 import { FaFistRaised } from "react-icons/fa";
 import { HiMenu, HiX } from "react-icons/hi";
 
-
 // Burger button
 export function NavbarMobileButton({ isMenuOpen, toggleMenu }) {
 	return (
@@ -55,10 +54,10 @@ export function NavbarMobileContent({ closeMenu, isOpen }) {
 								aria-current={active ? "page" : undefined}
 								className={`flex items-center gap-3 px-3 py-3 rounded-lg transition-all duration-300 ${
 									active
-										? `${colors.bg} ${colors.text} font-bold border-2 ${colors.border}`
+										? "bg-gray-100 text-gray-900 font-bold border-2 border-gray-300"
 										: isPractice
-											? colors.text
-											: "text-gray-600"
+										? "text-red-700"
+										: "text-gray-600"
 								}`}
 								style={{
 									"--hover-bg": colors.mobileHoverBg,
@@ -66,7 +65,8 @@ export function NavbarMobileContent({ closeMenu, isOpen }) {
 								}}
 								onMouseEnter={(e) => {
 									if (!active) {
-										e.currentTarget.style.backgroundColor = colors.mobileHoverBg;
+										e.currentTarget.style.backgroundColor =
+											colors.mobileHoverBg;
 										e.currentTarget.style.color = colors.mobileHoverText;
 									}
 								}}

@@ -24,9 +24,7 @@ export default function SectionNavigation() {
 					{previous ? (
 						<Link
 							href={previous.href}
-							className={`group inline-flex items-center gap-3 transition-all duration-200 hover:translate-x-[-4px] ${
-								colors.text || "text-gray-700"
-							}`}
+							className="group inline-flex items-center gap-3 transition-all duration-200 hover:translate-x-[-4px] text-gray-700"
 						>
 							<MdChevronLeft
 								className={`w-6 h-6 transition-transform group-hover:scale-110 opacity-60`}
@@ -43,9 +41,7 @@ export default function SectionNavigation() {
 					{next ? (
 						<Link
 							href={next.href}
-							className={`group inline-flex items-center gap-3 transition-all duration-200 hover:translate-x-[4px] ${
-								colors.text || "text-gray-700"
-							}`}
+							className="group inline-flex items-center gap-3 transition-all duration-200 hover:translate-x-[4px] text-gray-700"
 						>
 							<span className="text-xs uppercase tracking-wider opacity-60 font-medium group-hover:opacity-80">
 								Suivant

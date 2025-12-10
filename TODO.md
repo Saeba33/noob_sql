@@ -5,3 +5,5 @@
 
 ENUM pas en bleu dans CREATE TABLE (yellow)
 Réduction des couleurs (string et integer donc valeur de la meme couleur)
+
+Attention : l'exécution d'une commande DROP est, ,[object Object], ,! Soyez vigilant !

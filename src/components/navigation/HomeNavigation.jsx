@@ -82,7 +82,7 @@ export default function HomeNavigation() {
 				{/* Practice Card */}
 				<Link
 					href="/practice"
-					className={`home-card ${BELTS_CONFIG.practice.colors.text} ${BELTS_CONFIG.practice.colors.border}`}
+					className="home-card text-red-700 border-red-600"
 					onMouseEnter={(e) => {
 						e.currentTarget.style.backgroundColor =
 							BELTS_CONFIG.practice.colors.cardHoverBg;
@@ -95,13 +95,8 @@ export default function HomeNavigation() {
 					}}
 				>
 					<div className="flex items-center mb-5">
-						<FaFistRaised
-							size={28}
-							className={`mr-3 ${BELTS_CONFIG.practice.colors.text}`}
-						/>
-						<h3
-							className={`text-2xl font-bold tracking-tight ${BELTS_CONFIG.practice.colors.text}`}
-						>
+						<FaFistRaised size={28} className="mr-3 text-red-700" />
+						<h3 className="text-2xl font-bold tracking-tight text-red-700">
 							Passez 1<sup className="text-base">ère</sup> DAN
 						</h3>
 					</div>
