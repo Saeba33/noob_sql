@@ -19,7 +19,7 @@ export default function Header() {
 					ref={menuRef}
 					className="bg-white/80 backdrop-blur-lg border border-gray-200/60 shadow-lg rounded-xl"
 				>
-					<div className="py-3 px-6">
+					<div className="py-4 px-6">
 						<div className="flex justify-between items-center gap-4">
 							{/* Title */}
 							<Link
@@ -27,7 +27,7 @@ export default function Header() {
 								className="flex items-center transition-all duration-300 group"
 							>
 								<div className="flex flex-col">
-									<span className="text-xl font-bold tracking-tight leading-none text-gray-400 group-hover:text-gray-900 transition-colors">
+									<span className="text-xl font-bold tracking-tight leading-none text-gray-700 group-hover:text-gray-900 transition-colors">
 										NoobSQL
 									</span>
 								</div>

@@ -80,7 +80,7 @@ export default function NavbarDesktop() {
 						{beltKey === "practice" ? (
 							<FaFistRaised size={16} aria-hidden="true" />
 						) : (
-							<BeltIcon belt={beltKey} size={16} aria-hidden="true" />
+							<BeltIcon belt={beltKey} size={20} aria-hidden="true" />
 						)}
 						<span className={isPractice ? "font-semibold" : ""}>
 							{item.title}
