@@ -47,19 +47,35 @@ export function NavbarMobileContent({ closeMenu, isOpen }) {
 						const active = isActive(item.href);
 						const isPractice = beltKey === "practice";
 
-return (
+						return (
 							<Link
 								key={`${beltKey}-${index}`}
 								href={item.href}
 								onClick={closeMenu}
 								aria-current={active ? "page" : undefined}
-								className={`mobile-menu-item mobile-menu-${beltKey} ${
+								className={`flex items-center gap-3 px-3 py-3 rounded-lg transition-all duration-300 ${
 									active
 										? `${colors.bg} ${colors.text} font-bold border-2 ${colors.border}`
 										: isPractice
 											? colors.text
 											: "text-gray-600"
 								}`}
+								style={{
+									"--hover-bg": colors.mobileHoverBg,
+									"--hover-text": colors.mobileHoverText,
+								}}
+								onMouseEnter={(e) => {
+									if (!active) {
+										e.currentTarget.style.backgroundColor = colors.mobileHoverBg;
+										e.currentTarget.style.color = colors.mobileHoverText;
+									}
+								}}
+								onMouseLeave={(e) => {
+									if (!active) {
+										e.currentTarget.style.backgroundColor = "";
+										e.currentTarget.style.color = "";
+									}
+								}}
 							>
 								{beltKey === "practice" ? (
 									<FaFistRaised size={20} aria-hidden="true" />

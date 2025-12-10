@@ -7,6 +7,9 @@ export const BELTS_CONFIG = {
 			bg: "bg-gray-50",
 			text: "text-gray-500",
 			border: "border-gray-100",
+			// Mobile menu hover
+			mobileHoverBg: "rgb(249 250 251)",
+			mobileHoverText: "rgb(107 114 128)",
 		},
 	},
 	yellow: {
@@ -17,6 +20,8 @@ export const BELTS_CONFIG = {
 			bg: "bg-yellow-50",
 			text: "text-yellow-600",
 			border: "border-yellow-400",
+			mobileHoverBg: "rgb(254 252 232)",
+			mobileHoverText: "rgb(202 138 4)",
 		},
 	},
 	orange: {
@@ -27,6 +32,8 @@ export const BELTS_CONFIG = {
 			bg: "bg-orange-100",
 			text: "text-orange-700",
 			border: "border-orange-300",
+			mobileHoverBg: "rgb(255 237 213)",
+			mobileHoverText: "rgb(194 65 12)",
 		},
 	},
 	green: {
@@ -37,6 +44,8 @@ export const BELTS_CONFIG = {
 			bg: "bg-green-50",
 			text: "text-green-800",
 			border: "border-green-300",
+			mobileHoverBg: "rgb(240 253 244)",
+			mobileHoverText: "rgb(22 101 52)",
 		},
 	},
 	blue: {
@@ -47,6 +56,8 @@ export const BELTS_CONFIG = {
 			bg: "bg-blue-50",
 			text: "text-blue-800",
 			border: "border-blue-300",
+			mobileHoverBg: "rgb(239 246 255)",
+			mobileHoverText: "rgb(30 64 175)",
 		},
 	},
 	brown: {
@@ -57,6 +68,8 @@ export const BELTS_CONFIG = {
 			bg: "bg-yellow-100",
 			text: "text-yellow-800",
 			border: "border-yellow-600",
+			mobileHoverBg: "rgb(254 249 195)",
+			mobileHoverText: "rgb(133 77 14)",
 		},
 	},
 	black: {
@@ -67,6 +80,8 @@ export const BELTS_CONFIG = {
 			bg: "bg-gray-50",
 			text: "text-gray-900",
 			border: "border-gray-400",
+			mobileHoverBg: "rgb(249 250 251)",
+			mobileHoverText: "rgb(17 24 39)",
 		},
 	},
 	practice: {
@@ -74,9 +89,15 @@ export const BELTS_CONFIG = {
 		href: "/practice",
 		colors: {
 			icon: "#DC2626",
-			bg: "bg-gray-50",
-			text: "text-red-800",
-			border: "border-red-300",
+			bg: "bg-red-50",
+			text: "text-red-700",
+			border: "border-red-600",
+			// Mobile menu hover
+			mobileHoverBg: "rgb(254 242 242)",
+			mobileHoverText: "rgb(153 27 27)",
+			// Home card hover
+			cardHoverBg: "#fef2f2",
+			cardHoverBorder: "#dc2626",
 		},
 	},
 };
