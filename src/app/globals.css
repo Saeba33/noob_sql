@@ -140,10 +140,7 @@ body {
 }
 
 /* Practice Card Style */
-.home-card-practice {
-	background-color: #fef2f2;
-	border-color: #dc2626;
-}
+
 
 .home-card-practice:hover {
 	background-color: #fee2e2;
