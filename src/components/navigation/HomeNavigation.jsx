@@ -80,16 +80,14 @@ export default function HomeNavigation() {
 				{/* Practice Card */}
 				<Link
 					href="/practice"
-					className="home-card home-card-practice text-red-700"
-					style={{ borderColor: `color-mix(in srgb, ${BELTS_CONFIG.practice.colors.icon} 15%, #e5e7eb 85%)` }}
+					className="home-card home-card-practice text-red-700 border-red-600"
 				>
 					<div className="flex items-center mb-5">
 						<FaFistRaised
 							size={28}
-							style={{ color: BELTS_CONFIG.practice.colors.icon }}
-							className="mr-3"
+							className="mr-3 text-red-700"
 						/>
-						<h3 className="text-2xl font-bold tracking-tight">
+						<h3 className="text-2xl font-bold tracking-tight text-red-700">
 							Passez 1<sup className="text-base">ère</sup> DAN
 						</h3>
 					</div>
