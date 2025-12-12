@@ -1,10 +1,7 @@
 "use client";
 
 import NavbarDesktop from "@/components/navigation/NavbarDesktop";
-import {
-	NavbarMobileButton,
-	NavbarMobileContent,
-} from "@/components/navigation/NavbarMobile";
+import NavbarMobile from "@/components/navigation/NavbarMobile";
 import { useNavbar } from "@/hooks/useNavbar";
 import Link from "next/link";
 
@@ -33,12 +30,14 @@ export default function Header() {
 								</div>
 							</Link>
 
-							{/* Navigation - Desktop ou Mobile */}
+							{/* Navigation */}
 							<div className="flex items-center">
 								{isMobile ? (
-									<NavbarMobileButton
+									<NavbarMobile
 										isMenuOpen={isMenuOpen}
 										toggleMenu={toggleMenu}
+										closeMenu={closeMenu}
+										renderButton
 									/>
 								) : (
 									<NavbarDesktop />
@@ -49,7 +48,11 @@ export default function Header() {
 
 					{/* Mobile Menu Dropdown */}
 					{isMobile && (
-						<NavbarMobileContent closeMenu={closeMenu} isOpen={isMenuOpen} />
+						<NavbarMobile
+							isMenuOpen={isMenuOpen}
+							toggleMenu={toggleMenu}
+							closeMenu={closeMenu}
+						/>
 					)}
 				</div>
 			</div>

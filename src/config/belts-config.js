@@ -72,6 +72,7 @@ export const BELTS_CONFIG = {
 	practice: {
 		title: "FIGHT",
 		href: "/practice",
+		image: "/karate.png",
 		colors: {
 			theme: "#DC2626",
 			mobileHoverBg: "rgb(254 242 242)",
@@ -101,7 +102,7 @@ export async function getBeltData(belt) {
 	}
 
 	try {
-		const beltModule = await import(`@/data/sections/${belt}`);
+		const beltModule = await import(`@/data/belts/${belt}`);
 		const beltContent = beltModule.beltContent;
 
 		if (!beltContent) {

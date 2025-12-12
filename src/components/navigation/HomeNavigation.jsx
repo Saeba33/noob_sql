@@ -1,17 +1,18 @@
 "use client";
 
+import BeltIcon from "@/components/ui/BeltIcon";
 import { BELTS_CONFIG } from "@/config/belts-config";
 import Link from "next/link";
-import { FaFistRaised } from "react-icons/fa";
 
 // Import belt content
-import { beltContent as blackBeltContent } from "@/data/sections/black";
-import { beltContent as blueBeltContent } from "@/data/sections/blue";
-import { beltContent as brownBeltContent } from "@/data/sections/brown";
-import { beltContent as greenBeltContent } from "@/data/sections/green";
-import { beltContent as orangeBeltContent } from "@/data/sections/orange";
-import { beltContent as whiteBeltContent } from "@/data/sections/white";
-import { beltContent as yellowBeltContent } from "@/data/sections/yellow";
+import { beltContent as blackBeltContent } from "@/data/belts/black";
+import { beltContent as blueBeltContent } from "@/data/belts/blue";
+import { beltContent as brownBeltContent } from "@/data/belts/brown";
+import { beltContent as greenBeltContent } from "@/data/belts/green";
+import { beltContent as orangeBeltContent } from "@/data/belts/orange";
+import { beltContent as practiceBeltContent } from "@/data/belts/practice";
+import { beltContent as whiteBeltContent } from "@/data/belts/white";
+import { beltContent as yellowBeltContent } from "@/data/belts/yellow";
 
 // Belt content mapping
 const BELT_CONTENTS = {
@@ -22,6 +23,7 @@ const BELT_CONTENTS = {
 	blue: blueBeltContent,
 	brown: brownBeltContent,
 	black: blackBeltContent,
+	practice: practiceBeltContent,
 };
 
 export default function HomeNavigation() {
@@ -38,7 +40,6 @@ export default function HomeNavigation() {
 	return (
 		<div className="w-full lg:max-w-[1500px] lg:mx-auto px-4 lg:px-6 py-12">
 			<div className="flex flex-wrap justify-center gap-6">
-				{/* Belt Cards */}
 				{belts.map((page) => {
 					return (
 						<Link
@@ -49,9 +50,12 @@ export default function HomeNavigation() {
 								borderColor: `color-mix(in srgb, ${page.colors.theme} 80%, #e5e7eb 85%)`,
 							}}
 						>
-							<h3 className="text-2xl font-bold mb-5 tracking-tight text-gray-600">
-								{page.title}
-							</h3>
+							<div className="flex items-center mb-5">
+								<BeltIcon belt={page.key} size={32} className="mr-3" />
+								<h3 className="text-2xl font-bold tracking-tight text-gray-600">
+									{page.title}
+								</h3>
+							</div>
 
 							<p className="text-base text-gray-700 mb-6 leading-relaxed font-normal">
 								{page.summary}
@@ -78,51 +82,6 @@ export default function HomeNavigation() {
 						</Link>
 					);
 				})}
-
-				{/* Practice Card */}
-				<Link
-					href="/practice"
-					className="home-card text-red-700 border-red-600"
-					onMouseEnter={(e) => {
-						e.currentTarget.style.backgroundColor =
-							BELTS_CONFIG.practice.colors.cardHoverBg;
-						e.currentTarget.style.borderColor =
-							BELTS_CONFIG.practice.colors.cardHoverBorder;
-					}}
-					onMouseLeave={(e) => {
-						e.currentTarget.style.backgroundColor = "";
-						e.currentTarget.style.borderColor = "";
-					}}
-				>
-					<div className="flex items-center mb-5">
-						<FaFistRaised size={28} className="mr-3 text-red-700" />
-						<h3 className="text-2xl font-bold tracking-tight text-red-700">
-							Passez 1<sup className="text-base">ère</sup> DAN
-						</h3>
-					</div>
-
-					<p className="text-base text-gray-700 mb-6 leading-relaxed font-normal">
-						Testez vos connaissances au travers d'exercices pratiques
-					</p>
-
-					<div className="space-y-3">
-						<div className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
-							Au programme :
-						</div>
-						<div className="text-sm text-gray-700 flex items-start font-medium">
-							<span className="text-gray-400 mr-3 font-bold">•</span>
-							<span>Exercices pratiques</span>
-						</div>
-						<div className="text-sm text-gray-700 flex items-start font-medium">
-							<span className="text-gray-400 mr-3 font-bold">•</span>
-							<span>Tests de niveau</span>
-						</div>
-						<div className="text-sm text-gray-700 flex items-start font-medium">
-							<span className="text-gray-400 mr-3 font-bold">•</span>
-							<span>Validation des acquis</span>
-						</div>
-					</div>
-				</Link>
 			</div>
 		</div>
 	);

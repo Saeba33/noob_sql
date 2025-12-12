@@ -6,8 +6,7 @@ import Link from "next/link";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 
 export default function SectionNavigation() {
-	const { getSectionNavigation } = useNavigation();
-	const { previous, next, current } = getSectionNavigation();
+	const { previous, next, current } = useNavigation();
 
 	// Determine current belt from current page
 	const currentBelt = current?.href?.split("/")[1];
