@@ -46,7 +46,7 @@ export default function Accordion({
 				onClick={toggle}
 				aria-expanded={isOpen}
 				aria-controls={`${accordionId}-content`}
-				className={`w-full text-left px-6 py-4 bg-white transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 relative cursor-pointer ${
+				className={`w-full text-left px-6 py-4 bg-white transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 relative cursor-pointer group ${
 					isOpen ? "rounded-t-lg" : "rounded-lg"
 				}`}
 			>
@@ -54,10 +54,10 @@ export default function Accordion({
 					<div className="flex items-center gap-3">
 						<FaCode
 							style={{ color: colors.icon }}
-							className="w-5 h-5 flex-shrink-0"
+							className="w-5 h-5 flex-shrink-0 transition-all duration-200 group-hover:scale-110 group-hover:drop-shadow-md"
 							aria-hidden="true"
 						/>
-						<h3 className="text-lg font-semibold text-gray-600">{section}</h3>
+						<h3 className="text-lg font-semibold text-gray-600 group-hover:text-gray-800 transition-colors">{section}</h3>
 					</div>
 					<MdExpandMore
 						className={`w-6 h-6 text-gray-400 transition-transform duration-200 flex-shrink-0 ${

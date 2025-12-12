@@ -30,7 +30,7 @@ export default function NavbarDesktop() {
 							relative
 							${
 								isPractice
-									? "bg-red-50 border border-red-600 text-red-700 hover:bg-red-100 hover:border-red-700 rounded-lg"
+									? "bg-red-50 border border-red-600 text-red-700 hover:bg-red-100 hover:border-red-700 rounded-md"
 									: "bg-transparent rounded-lg"
 							}
 							${active && !isPractice ? "nav-item-active" : ""}

@@ -13,13 +13,13 @@ export default function Header() {
 		useNavbar(1400);
 
 	return (
-		<header className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4 lg:px-6">
+		<header className="fixed top-6 left-0 right-0 z-50 flex justify-center px-4 lg:px-6">
 			<div className="w-full max-w-[1500px]">
 				<div
 					ref={menuRef}
-					className="bg-white/80 backdrop-blur-lg border border-gray-200/60 shadow-lg rounded-xl"
+					className="bg-white/80 backdrop-blur-lg border border-gray-200/60 shadow-lg rounded-lg"
 				>
-					<div className="py-4 px-6">
+					<div className="py-3 px-3">
 						<div className="flex justify-between items-center gap-4">
 							{/* Title */}
 							<Link
