@@ -2,9 +2,9 @@ export const BELTS_CONFIG = {
 	white: {
 		title: "Généralités",
 		href: "/white",
+		image: "/white.png",
 		colors: {
-			icon: "#9CA3AF",
-			navbarHoverText: "hover:text-gray-500",
+			theme: "#9CA3AF",
 			mobileHoverBg: "rgb(249 250 251)",
 			mobileHoverText: "rgb(107 114 128)",
 		},
@@ -12,9 +12,9 @@ export const BELTS_CONFIG = {
 	yellow: {
 		title: "DDL",
 		href: "/yellow",
+		image: "/yellow.png",
 		colors: {
-			icon: "#EAB308",
-			navbarHoverText: "hover:text-yellow-600",
+			theme: "#EAB308",
 			mobileHoverBg: "rgb(254 252 232)",
 			mobileHoverText: "rgb(202 138 4)",
 		},
@@ -22,9 +22,9 @@ export const BELTS_CONFIG = {
 	orange: {
 		title: "CRUD",
 		href: "/orange",
+		image: "/orange.png",
 		colors: {
-			icon: "#F97316",
-			navbarHoverText: "hover:text-orange-600",
+			theme: "#F97316",
 			mobileHoverBg: "rgb(255 237 213)",
 			mobileHoverText: "rgb(194 65 12)",
 		},
@@ -32,9 +32,9 @@ export const BELTS_CONFIG = {
 	green: {
 		title: "Filtres & Conditions",
 		href: "/green",
+		image: "/green.png",
 		colors: {
-			icon: "#22C55E",
-			navbarHoverText: "hover:text-green-600",
+			theme: "#22C55E",
 			mobileHoverBg: "rgb(240 253 244)",
 			mobileHoverText: "rgb(22 101 52)",
 		},
@@ -42,9 +42,9 @@ export const BELTS_CONFIG = {
 	blue: {
 		title: "Fonctions SQL",
 		href: "/blue",
+		image: "/blue.png",
 		colors: {
-			icon: "#3B82F6",
-			navbarHoverText: "hover:text-blue-600",
+			theme: "#3B82F6",
 			mobileHoverBg: "rgb(239 246 255)",
 			mobileHoverText: "rgb(30 64 175)",
 		},
@@ -52,9 +52,9 @@ export const BELTS_CONFIG = {
 	brown: {
 		title: "Jointures",
 		href: "/brown",
+		image: "/brown.png",
 		colors: {
-			icon: "#8B4513",
-			navbarHoverText: "hover:text-amber-700",
+			theme: "#8B4513",
 			mobileHoverBg: "rgb(254 249 195)",
 			mobileHoverText: "rgb(133 77 14)",
 		},
@@ -62,9 +62,9 @@ export const BELTS_CONFIG = {
 	black: {
 		title: "Requêtes Avancées",
 		href: "/black",
+		image: "/black.png",
 		colors: {
-			icon: "#1F2937",
-			navbarHoverText: "hover:text-gray-900",
+			theme: "#1F2937",
 			mobileHoverBg: "rgb(249 250 251)",
 			mobileHoverText: "rgb(17 24 39)",
 		},
@@ -73,12 +73,9 @@ export const BELTS_CONFIG = {
 		title: "FIGHT",
 		href: "/practice",
 		colors: {
-			icon: "#DC2626",
-			navbarHoverText: "hover:text-red-600",
-			// Mobile menu hover
+			theme: "#DC2626",
 			mobileHoverBg: "rgb(254 242 242)",
 			mobileHoverText: "rgb(153 27 27)",
-			// Home card hover
 			cardHoverBg: "#f9fafb",
 			cardHoverBorder: "#dc2626",
 		},

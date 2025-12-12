@@ -38,7 +38,7 @@ export default function Accordion({
 			className={`border-accordion ${
 				isOpen ? "open" : ""
 			} overflow-hidden ${className}`}
-			style={{ "--accordion-color": colors.icon }}
+			style={{ "--accordion-color": colors.theme }}
 		>
 			{/* Accordion header */}
 			<button
@@ -53,7 +53,7 @@ export default function Accordion({
 				<div className="flex items-center justify-between pr-8">
 					<div className="flex items-center gap-3">
 						<FaCode
-							style={{ color: colors.icon }}
+							style={{ color: colors.theme }}
 							className="w-5 h-5 flex-shrink-0 transition-all duration-200 group-hover:scale-110 group-hover:drop-shadow-md"
 							aria-hidden="true"
 						/>
@@ -82,7 +82,7 @@ export default function Accordion({
 					<div
 						className="px-6 py-5 bg-white flex flex-col space-y-6 rounded-b-lg border-t"
 						style={{ 
-							borderTopColor: colors.icon, 
+							borderTopColor: colors.theme, 
 							borderTopWidth: "1px"
 						}}
 					>
@@ -90,7 +90,7 @@ export default function Accordion({
 						{content && (
 							<div
 								className="bg-white border rounded-lg p-5 shadow-sm"
-								style={{ borderColor: `color-mix(in srgb, ${colors.icon} 15%, #e5e7eb 85%)` }}
+								style={{ borderColor: `color-mix(in srgb, ${colors.theme} 15%, #e5e7eb 85%)` }}
 							>
 								<p
 									className="leading-relaxed whitespace-pre-line content-html text-gray-700"
@@ -123,13 +123,13 @@ export default function Accordion({
 											<div
 												key={index}
 												className="space-y-4 border rounded-lg p-5 bg-white shadow-sm"
-												style={{ borderColor: `color-mix(in srgb, ${colors.icon} 25%, #e5e7eb 85%)` }}
+												style={{ borderColor: `color-mix(in srgb, ${colors.theme} 25%, #e5e7eb 85%)` }}
 											>
 											{example.label && (
 												<h5 className="text-sm font-semibold text-gray-900 flex items-center gap-2 mb-4">
 													<MdCode
 														className="w-4 h-4"
-														style={{ color: colors.icon }}
+														style={{ color: colors.theme }}
 													/>
 													{example.label}
 												</h5>

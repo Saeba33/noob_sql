@@ -46,7 +46,7 @@ export default function HomeNavigation() {
 							href={page.href}
 							className="home-card"
 							style={{
-								borderColor: `color-mix(in srgb, ${page.colors.icon} 80%, #e5e7eb 85%)`,
+								borderColor: `color-mix(in srgb, ${page.colors.theme} 80%, #e5e7eb 85%)`,
 							}}
 						>
 							<h3 className="text-2xl font-bold mb-5 tracking-tight text-gray-600">

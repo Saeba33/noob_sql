@@ -27,7 +27,7 @@ export default function SectionNavigation() {
 							className="group inline-flex items-center gap-3 transition-all duration-200 hover:translate-x-[-4px] text-gray-700"
 						>
 							<MdChevronLeft
-								style={{ color: colors.icon }}
+							style={{ color: colors.theme }}
 								className="w-6 h-6 transition-all duration-200 group-hover:scale-110 opacity-50 group-hover:opacity-100"
 							/>
 							<span className="text-xs uppercase tracking-wider opacity-60 font-medium group-hover:opacity-80">
@@ -48,7 +48,7 @@ export default function SectionNavigation() {
 								Suivant
 							</span>
 							<MdChevronRight
-								style={{ color: colors.icon }}
+							style={{ color: colors.theme }}
 								className="w-6 h-6 transition-all duration-200 group-hover:scale-110 opacity-50 group-hover:opacity-100"
 							/>
 						</Link>

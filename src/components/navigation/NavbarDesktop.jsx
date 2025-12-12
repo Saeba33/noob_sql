@@ -43,16 +43,16 @@ export default function NavbarDesktop() {
 								!isPractice
 									? active
 										? "text-gray-900"
-										: `text-gray-600 ${colors.navbarHoverText || ""}`
+										: "text-gray-600 hover:text-gray-900"
 									: ""
 							}
 							whitespace-nowrap
 						`}
 						style={
-							active && !isPractice 
-								? { 
-									'--border-color': colors.icon
-								} 
+							active && !isPractice
+								? {
+										"--border-color": colors.theme,
+								  }
 								: {}
 						}
 					>
@@ -60,14 +60,14 @@ export default function NavbarDesktop() {
 						{!isPractice && !active && (
 							<span
 								className="absolute bottom-0 left-1/2 w-0 h-0.5 group-hover:w-full group-hover:left-0 transition-all duration-300 ease-out"
-								style={{ backgroundColor: colors.icon, opacity: 0.3 }}
+								style={{ backgroundColor: colors.theme, opacity: 0.3 }}
 							/>
 						)}
 
 						{beltKey === "practice" ? (
-							<FaFistRaised size={16} aria-hidden="true" />
+							<FaFistRaised size={24} aria-hidden="true" />
 						) : (
-							<BeltIcon belt={beltKey} size={20} aria-hidden="true" />
+							<BeltIcon belt={beltKey} size={24} />
 						)}
 						<span className={isPractice ? "font-semibold" : ""}>
 							{item.title}

@@ -1,14 +1,17 @@
-import { BELT_COLORS } from "@/config/belts-config";
-import { GiBlackBelt } from "react-icons/gi";
+import { BELTS_CONFIG } from "@/config/belts-config";
+import Image from "next/image";
 
-export default function BeltIcon({ belt, className = "", size = 64 }) {
-	const color = BELT_COLORS[belt]?.icon || BELT_COLORS.white.icon;
+export default function BeltIcon({ belt, size = 32, className = "" }) {
+	const beltConfig = BELTS_CONFIG[belt];
 
 	return (
-		<GiBlackBelt
-			size={size}
-			color={color}
+		<Image
+			src={beltConfig.image}
+			alt={`Ceinture ${belt}`}
+			width={size}
+			height={size}
 			className={className}
+			aria-hidden="true"
 			title={`Ceinture ${belt}`}
 		/>
 	);

@@ -78,9 +78,9 @@ export function NavbarMobileContent({ closeMenu, isOpen }) {
 								}}
 							>
 								{beltKey === "practice" ? (
-									<FaFistRaised size={20} aria-hidden="true" />
+									<FaFistRaised size={28} aria-hidden="true" />
 								) : (
-									<BeltIcon belt={beltKey} size={20} aria-hidden="true" />
+									<BeltIcon belt={beltKey} size={32} />
 								)}
 								<span className="font-medium">{item.title}</span>
 							</Link>
