@@ -102,7 +102,7 @@ export async function getBeltData(belt) {
 	}
 
 	try {
-		const beltModule = await import(`@/data/belts/${belt}`);
+		const beltModule = await import(`@/data/sections/${belt}`);
 		const beltContent = beltModule.beltContent;
 
 		if (!beltContent) {

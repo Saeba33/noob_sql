@@ -1,4 +1,4 @@
-import { constraints, dataTypes, exampleTypes } from "@/data/belts/white";
+import { constraints, dataTypes, exampleTypes } from "@/data/sections/white";
 import { MdInventory, MdLocalOffer, MdLock, MdStorage } from "react-icons/md";
 
 export default function DataTypes() {

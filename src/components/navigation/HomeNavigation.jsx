@@ -5,14 +5,14 @@ import { BELTS_CONFIG } from "@/config/belts-config";
 import Link from "next/link";
 
 // Import belt content
-import { beltContent as blackBeltContent } from "@/data/belts/black";
-import { beltContent as blueBeltContent } from "@/data/belts/blue";
-import { beltContent as brownBeltContent } from "@/data/belts/brown";
-import { beltContent as greenBeltContent } from "@/data/belts/green";
-import { beltContent as orangeBeltContent } from "@/data/belts/orange";
-import { beltContent as practiceBeltContent } from "@/data/belts/practice";
-import { beltContent as whiteBeltContent } from "@/data/belts/white";
-import { beltContent as yellowBeltContent } from "@/data/belts/yellow";
+import { beltContent as blackBeltContent } from "@/data/sections/black";
+import { beltContent as blueBeltContent } from "@/data/sections/blue";
+import { beltContent as brownBeltContent } from "@/data/sections/brown";
+import { beltContent as greenBeltContent } from "@/data/sections/green";
+import { beltContent as orangeBeltContent } from "@/data/sections/orange";
+import { beltContent as practiceBeltContent } from "@/data/sections/practice";
+import { beltContent as whiteBeltContent } from "@/data/sections/white";
+import { beltContent as yellowBeltContent } from "@/data/sections/yellow";
 
 // Belt content mapping
 const BELT_CONTENTS = {

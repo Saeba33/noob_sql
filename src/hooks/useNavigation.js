@@ -21,11 +21,5 @@ export const useNavigation = () => {
 		previous,
 		next,
 		isActive: (href) => pathname === href,
-		// Kept for backward compatibility, but can now destructure directly from useNavigation
-		getSectionNavigation: () => ({
-			previous,
-			next,
-			current,
-		}),
 	};
 };
