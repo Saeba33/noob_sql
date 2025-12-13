@@ -5,31 +5,12 @@ import { BELT_COLORS, PAGES_CONFIG } from "@/config/belts-config";
 import { useNavigation } from "@/hooks/useNavigation";
 import Link from "next/link";
 import { HiMenu, HiX } from "react-icons/hi";
+import { createPortal } from "react-dom";
 
-export default function NavbarMobile({ isMenuOpen, toggleMenu, closeMenu, renderButton }) {
+export default function NavbarMobile({ isMenuOpen, toggleMenu, closeMenu, menuRef }) {
 	const { isActive } = useNavigation();
 
-	// Si on demande seulement le bouton
-	if (renderButton) {
-		return (
-			<button
-				onClick={toggleMenu}
-				className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
-				aria-label={isMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
-				aria-expanded={isMenuOpen}
-				aria-controls="mobile-menu"
-			>
-				{isMenuOpen ? (
-					<HiX className="w-6 h-6 text-gray-700" />
-				) : (
-					<HiMenu className="w-6 h-6 text-gray-700" />
-				)}
-			</button>
-		);
-	}
-
-	// Sinon le menu
-	return (
+	const menu = (
 		<div
 			id="mobile-menu"
 			aria-hidden={!isMenuOpen}
@@ -81,5 +62,24 @@ export default function NavbarMobile({ isMenuOpen, toggleMenu, closeMenu, render
 				</nav>
 			</div>
 		</div>
+	);
+
+	return (
+		<>
+			<button
+				onClick={toggleMenu}
+				className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
+				aria-label={isMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
+				aria-expanded={isMenuOpen}
+				aria-controls="mobile-menu"
+			>
+				{isMenuOpen ? (
+					<HiX className="w-6 h-6 text-gray-700" />
+				) : (
+					<HiMenu className="w-6 h-6 text-gray-700" />
+				)}
+			</button>
+			{menuRef?.current && createPortal(menu, menuRef.current)}
+		</>
 	);
 }

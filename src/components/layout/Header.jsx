@@ -37,7 +37,7 @@ export default function Header() {
 										isMenuOpen={isMenuOpen}
 										toggleMenu={toggleMenu}
 										closeMenu={closeMenu}
-										renderButton
+										menuRef={menuRef}
 									/>
 								) : (
 									<NavbarDesktop />
@@ -45,15 +45,6 @@ export default function Header() {
 							</div>
 						</div>
 					</div>
-
-					{/* Mobile Menu Dropdown */}
-					{isMobile && (
-						<NavbarMobile
-							isMenuOpen={isMenuOpen}
-							toggleMenu={toggleMenu}
-							closeMenu={closeMenu}
-						/>
-					)}
 				</div>
 			</div>
 		</header>
