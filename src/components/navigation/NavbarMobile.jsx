@@ -16,7 +16,7 @@ export default function NavbarMobile({
 	const { isActive } = useNavigation();
 
 	// Helper functions
-	const getLinkProps = (active, colors) => ({
+	const getMobileLinkStyle = (active, colors) => ({
 		className: `flex items-center gap-3 px-3 py-3 rounded-lg transition-all duration-300 ${
 			active
 				? "bg-gray-100 text-gray-900 font-bold border-2 border-gray-300"
@@ -49,7 +49,7 @@ export default function NavbarMobile({
 								href={item.href}
 								onClick={closeMenu}
 								aria-current={active ? "page" : undefined}
-								{...getLinkProps(active, colors)}
+								{...getMobileLinkStyle(active, colors)}
 							>
 								<BeltIcon belt={beltKey} size={32} />
 								<span className="font-medium">{item.title}</span>

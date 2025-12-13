@@ -8,6 +8,24 @@ import Link from "next/link";
 export default function NavbarDesktop() {
 	const { isActive } = useNavigation();
 
+	// Helper functions
+	const getDesktopLinkStyle = (active, colors) => ({
+		className: `group relative bg-transparent rounded-lg ${
+			active ? "nav-item-active" : ""
+		} transition-all duration-200 px-4 py-2 flex items-center gap-2 text-sm font-medium ${
+			active ? "text-gray-900" : "text-gray-600 hover:text-gray-900"
+		} whitespace-nowrap`,
+		style: active ? { "--border-color": colors.theme } : {},
+	});
+
+	const renderHoverBorder = (active, colors) =>
+		!active && (
+			<span
+				className="absolute bottom-0 left-1/2 w-0 h-0.5 group-hover:w-full group-hover:left-0 transition-all duration-300 ease-out"
+				style={{ backgroundColor: colors.theme, opacity: 0.3 }}
+			/>
+		);
+
 	return (
 		<nav
 			className="hidden md:flex items-center gap-3"
@@ -23,39 +41,9 @@ export default function NavbarDesktop() {
 						key={`${beltKey}-${index}`}
 						href={item.href}
 						aria-current={active ? "page" : undefined}
-						className={`
-							group
-							relative
-							bg-transparent rounded-lg
-							${active ? "nav-item-active" : ""}
-							transition-all duration-200 
-							px-4 py-2
-							flex items-center gap-2
-							text-sm
-							font-medium
-							${
-								active
-									? "text-gray-900"
-									: "text-gray-600 hover:text-gray-900"
-							}
-							whitespace-nowrap
-						`}
-						style={
-							active
-								? {
-										"--border-color": colors.theme,
-								  }
-								: {}
-						}
+						{...getDesktopLinkStyle(active, colors)}
 					>
-						{/* Border hover */}
-						{!active && (
-							<span
-								className="absolute bottom-0 left-1/2 w-0 h-0.5 group-hover:w-full group-hover:left-0 transition-all duration-300 ease-out"
-								style={{ backgroundColor: colors.theme, opacity: 0.3 }}
-							/>
-						)}
-
+						{renderHoverBorder(active, colors)}
 						<BeltIcon belt={beltKey} size={24} />
 						<span>{item.title}</span>
 					</Link>
