@@ -27,10 +27,7 @@ export default function NavbarDesktop() {
 		);
 
 	return (
-		<nav
-			className="flex flex-1 items-center gap-5"
-			aria-label="Navigation principale"
-		>
+		<nav className="flex items-center gap-5" aria-label="Navigation principale">
 			{PAGES_CONFIG.filter((item) => item.href !== "/practice").map(
 				(item, index) => {
 					const beltKey = item.href.replace("/", "") || "white";
