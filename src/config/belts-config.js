@@ -72,7 +72,7 @@ export const BELTS_CONFIG = {
 	practice: {
 		title: "FIGHT",
 		href: "/practice",
-		image: "/karate.png",
+		image: "/practice.png",
 		colors: {
 			theme: "#DC2626",
 			mobileHoverBg: "rgb(254 242 242)",

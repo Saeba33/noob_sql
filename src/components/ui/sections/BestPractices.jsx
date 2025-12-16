@@ -27,7 +27,7 @@ export default function BestPractices({
 						<div className="flex items-center space-x-3">
 							{rule.icon}
 							<h3 className="text-base font-bold text-gray-900">
-								{rule.title}
+								{rule.section}
 							</h3>
 						</div>
 
