@@ -21,7 +21,7 @@ export default function NavbarDesktop() {
 	const renderHoverBorder = (active, colors) =>
 		!active && (
 			<span
-				className="absolute bottom-0 left-1/2 w-0 h-0.5 group-hover:w-full group-hover:left-0 transition-all duration-300 ease-out"
+				className="absolute bottom-0 left-1/2 w-0 h-[1px] group-hover:w-full group-hover:left-0 transition-all duration-300 ease-out"
 				style={{ backgroundColor: colors.theme, opacity: 0.3 }}
 			/>
 		);
@@ -46,7 +46,7 @@ export default function NavbarDesktop() {
 						>
 							{renderHoverBorder(active, colors)}
 							<BeltIcon belt={beltKey} size={32} />
-							<span className="pb-[7px] font-light tracking-wider">
+							<span className="pb-[7px] font-light tracking-wide">
 								{item.title}
 							</span>
 						</Link>
