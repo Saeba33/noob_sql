@@ -28,7 +28,7 @@ export default function NavbarDesktop() {
 
 	return (
 		<nav
-			className="hidden md:flex items-center gap-6"
+			className="flex flex-1 items-center gap-5"
 			aria-label="Navigation principale"
 		>
 			{PAGES_CONFIG.filter((item) => item.href !== "/practice").map(
