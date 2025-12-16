@@ -44,7 +44,7 @@ export default function NavbarDesktop() {
 						{...getDesktopLinkStyle(active, colors)}
 					>
 						{renderHoverBorder(active, colors)}
-						<BeltIcon belt={beltKey} size={24} />
+						<BeltIcon belt={beltKey} size={32} />
 						<span>{item.title}</span>
 					</Link>
 				);
