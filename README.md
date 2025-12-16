@@ -4,18 +4,18 @@
 
 ### 🤍 Ceinture Blanche - Généralités
 **Base théorique et concepts fondamentaux**
-- Définition d'un SGBD avec schéma de ramification (SGBD vs NoSQL, etc.)
-- Présentation du SGBDR (relationnel)
+- Définition d'un SGBD avec schéma de ramification (SGBD vs NoSQL)
 - Architecture d'une base de données (table, colonne, ligne)
-- Syntaxe de base d'une requête SQL
-- Mots-clés, indentation, casse et commentaires SQL
+- Relations entre lestables
 - Types de données (INTEGER, TEXT, etc.)
+- Bonnes pratiques
 
 ### 🟡 Ceinture Jaune - DDL (Data Definition Language)
 **Structure et définition des données**
 - CREATE : Création de tables
 - ALTER : Modification de structure
 - DROP : Suppression de tables
+- Bonnes pratiques
 
 ### 🟠 Ceinture Orange - CRUD (Create, Read, Update, Delete)
 **Opérations de base sur les données**
@@ -27,16 +27,20 @@
 ### 🟢 Ceinture Verte - Filtres et Conditions
 **Contrôle et filtrage des données**
 - Clause WHERE
-- Opérateurs de comparaison (=, !=, <, >, etc.)
-- Opérateurs logiques (AND, OR, IN, LIKE, BETWEEN)
-- ORDER BY : Tri des résultats
-- NULL et IS NULL : Gestion des valeurs nulles
-- LIMIT et OFFSET : Pagination
+- Opérateurs de comparaison (=, !=, <, >)
+- Opérateurs logiques (AND, OR)
+- Mots clés de filtrages (IN, BETWEEN, LIKE, IS NULL ...)
+- Tri des résultats (ORDER BY)
+- Regroupement (GROUP BY, HAVING)
+- Pagination (LIMIT, OFFSET)
 
 ### 🔵 Ceinture Bleue - Agrégations
 **Calculs et regroupements**
 - Fonctions d'agrégation (COUNT, SUM, AVG, MIN, MAX)
-- GROUP BY et HAVING : Regroupement et filtrage des groupes
+- Fontions de texte (UPPER, LOWER, LENGTH, CONCAT, SUBSTRING, TRIM, REPLACE)
+- Fonctions numériques (ROUND, CEIL, FLOOR)
+- Fonctions de date (NOW, DATE, DATEDIFF)
+- Fonctions conditionnelles (COALESCE, CASE/WHEN)
 
 ### 🟤 Ceinture Marron - Jointures
 **Relations entre les tables**
