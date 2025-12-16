@@ -69,10 +69,10 @@ body {
 .nav-item-active::after {
 	content: "";
 	position: absolute;
-	bottom: 4px;
+	bottom: 0;
 	left: 0;
 	right: 0;
-	height: 2px;
+	height: 1.5px;
 	background-color: var(--border-color);
 }
 /* #endregion */

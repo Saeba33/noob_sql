@@ -12,7 +12,7 @@ export default function NavbarDesktop() {
 	const getDesktopLinkStyle = (active, colors) => ({
 		className: `group relative bg-transparent rounded-lg ${
 			active ? "nav-item-active" : ""
-		} transition-all duration-200 px-4 py-2 flex items-center gap-2 text-sm font-medium ${
+		} transition-all duration-200 px-1 pt-[7px] flex items-center gap-2 text-sm font-medium ${
 			active ? "text-gray-900" : "text-gray-600 hover:text-gray-900"
 		} whitespace-nowrap`,
 		style: active ? { "--border-color": colors.theme } : {},
@@ -21,14 +21,14 @@ export default function NavbarDesktop() {
 	const renderHoverBorder = (active, colors) =>
 		!active && (
 			<span
-				className="absolute bottom-1 left-1/2 w-0 h-0.5 group-hover:w-full group-hover:left-0 transition-all duration-300 ease-out"
+				className="absolute bottom-0 left-1/2 w-0 h-0.5 group-hover:w-full group-hover:left-0 transition-all duration-300 ease-out"
 				style={{ backgroundColor: colors.theme, opacity: 0.3 }}
 			/>
 		);
 
 	return (
 		<nav
-			className="hidden md:flex items-center gap-3"
+			className="hidden md:flex items-center gap-6"
 			aria-label="Navigation principale"
 		>
 			{PAGES_CONFIG.filter((item) => item.href !== "/practice").map(
@@ -46,7 +46,9 @@ export default function NavbarDesktop() {
 						>
 							{renderHoverBorder(active, colors)}
 							<BeltIcon belt={beltKey} size={32} />
-							<span>{item.title}</span>
+							<span className="pb-[7px] font-light tracking-wider">
+								{item.title}
+							</span>
 						</Link>
 					);
 				}
