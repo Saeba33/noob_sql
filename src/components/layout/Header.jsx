@@ -17,21 +17,19 @@ export default function Header() {
 					className="bg-white/80 backdrop-blur-lg border border-gray-200/60 shadow-lg rounded-lg"
 				>
 					<div className="py-3 px-3">
-						<div className="flex justify-between items-center gap-4">
+						<div className="flex justify-between items-center gap-6">
 							{/* Title */}
 							<Link
 								href="/"
-								className="flex items-center transition-all duration-300 group"
+								className="flex items-center transition-all duration-300 group flex-shrink-0"
 							>
-								<div className="flex flex-col">
-									<span className="text-xl font-bold tracking-tight leading-none text-gray-700 group-hover:text-gray-900 transition-colors">
-										NoobSQL
-									</span>
-								</div>
+								<span className="text-2xl font-bold tracking-tight leading-none text-gray-800 group-hover:text-gray-950 transition-colors">
+									NoobSQL
+								</span>
 							</Link>
 
 							{/* Navigation */}
-							<div className="flex items-center">
+							<div className="flex items-center flex-1 justify-center">
 								{isMobile ? (
 									<NavbarMobile
 										isMenuOpen={isMenuOpen}
@@ -43,6 +41,19 @@ export default function Header() {
 									<NavbarDesktop />
 								)}
 							</div>
+
+							{/* CTA Fight - Desktop only */}
+							{!isMobile && (
+								<Link
+									href="/practice"
+									className="group relative rounded-lg transition-all duration-200 px-4 py-2 flex items-center gap-2 text-sm font-medium whitespace-nowrap border border-gray-300 text-gray-700 hover:border-gray-400 hover:bg-gray-50 flex-shrink-0"
+								>
+									<svg width="28" height="28" viewBox="0 0 100 100" fill="none">
+										<image href="/practice.png" width="100" height="100" />
+									</svg>
+									<span>FIGHT</span>
+								</Link>
+							)}
 						</div>
 					</div>
 				</div>
