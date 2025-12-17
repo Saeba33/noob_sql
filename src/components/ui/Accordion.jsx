@@ -53,8 +53,8 @@ export default function Accordion({
 				<div className="flex items-center justify-between">
 					<div className="flex items-center gap-3">
 						<FaCode
-							style={{ color: colors.theme }}
 							className="w-5 h-5 flex-shrink-0 transition-colors duration-200"
+							style={{ color: "#8A8A8A" }}
 							aria-hidden="true"
 						/>
 						<h3 className="text-lg font-semibold text-gray-600 group-hover:text-gray-800 transition-colors">
@@ -82,7 +82,7 @@ export default function Accordion({
 			>
 				<div className="overflow-hidden">
 					<div
-						className="px-6 py-5 bg-white flex flex-col space-y-6 rounded-b-lg border-t"
+						className="px-6 py-5 bg-white flex flex-col space-y-6 rounded-b-lg border-t cursor-auto"
 						style={{
 							borderTopColor: `color-mix(in srgb, ${colors.theme} 15%, #e5e7eb 85%)`,
 							borderTopWidth: "1px",
