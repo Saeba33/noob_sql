@@ -34,11 +34,7 @@ body {
 	display: block;
 	width: 100%;
 	border: 1px solid;
-	border-color: color-mix(
-		in srgb,
-		var(--accordion-color, #e5e7eb) 15%,
-		#e5e7eb 85%
-	);
+	border-color:#e5e7eb;
 	border-radius: 0.75rem;
 	background-color: white;
 	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
@@ -55,11 +51,7 @@ body {
 }
 
 .border-accordion.open {
-	border-color: color-mix(
-		in srgb,
-		var(--accordion-color, #e5e7eb) 15%,
-		#e5e7eb 85%
-	);
+
 	box-shadow: 0 2px 8px -1px rgba(0, 0, 0, 0.1);
 }
 
@@ -74,8 +66,8 @@ body {
 	display: block;
 	padding: 1.75rem;
 	border: 1px solid #e5e7eb;
-	border-left: 4px solid var(--theme-color);
-	border-radius: 0.75rem;
+	border-left: 5px solid var(--theme-color);
+	border-radius: 1rem;
 	background-color: white;
 	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.06);
 	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);

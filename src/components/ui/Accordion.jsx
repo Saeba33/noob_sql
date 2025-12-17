@@ -82,11 +82,8 @@ export default function Accordion({
 			>
 				<div className="overflow-hidden">
 					<div
-						className="px-6 py-5 bg-white flex flex-col space-y-6 rounded-b-lg border-t cursor-auto"
-						style={{
-							borderTopColor: `color-mix(in srgb, ${colors.theme} 15%, #e5e7eb 85%)`,
-							borderTopWidth: "1px",
-						}}
+						className="px-6 py-5 bg-white flex flex-col space-y-6 rounded-b-lg cursor-auto border-t border-[#e5e7eb]"
+
 					>
 						{/* Description - only show if content exists */}
 						{content && (
