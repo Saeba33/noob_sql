@@ -84,7 +84,7 @@ export default function Accordion({
 					<div
 						className="px-6 py-5 bg-white flex flex-col space-y-6 rounded-b-lg border-t"
 						style={{
-							borderTopColor: colors.theme,
+							borderTopColor: `color-mix(in srgb, ${colors.theme} 15%, #e5e7eb 85%)`,
 							borderTopWidth: "1px",
 						}}
 					>
