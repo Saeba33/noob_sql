@@ -22,7 +22,7 @@ const Logo = () => (
 const Practice = () => (
 	<Link
 		href="/practice"
-		className="group relative transition-all duration-200 px-4 py-2 flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-gray-900 whitespace-nowrap border border-gray-300 rounded-lg hover:bg-gray-50 hover:border-gray-400"
+		className="group relative transition-all duration-200 px-4 py-2 flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-gray-900 whitespace-nowrap border hover:border-gray-400 rounded-lg bg-gray-100 border-gray-300"
 	>
 		<Image src="/practice.png" width={28} height={28} alt="Practice icon" />
 		<span className="tracking-wide">FIGHT</span>
