@@ -16,12 +16,8 @@ export default function SectionHeader({
 					{tag && (
 						<div className="inline-flex items-center justify-center">
 							<span
-								className="text-sm sm:text-base font-light uppercase tracking-wider text-gray-700 opacity-90 px-4 py-1.5 rounded-full border-2"
-								style={{
-									borderColor: colors.theme
-										? `color-mix(in srgb, ${colors.theme} 60%, #e5e7eb 40%)`
-										: "#e5e7eb",
-								}}
+								className="text-sm sm:text-base font-light uppercase tracking-wider text-gray-700 "
+
 							>
 								{tag}
 							</span>
