@@ -5,8 +5,8 @@ export const BELTS_CONFIG = {
 		image: "/white.png",
 		colors: {
 			theme: "#9CA3AF",
-			mobileHoverBg: "rgb(249 250 251)",
-			mobileHoverText: "rgb(107 114 128)",
+			mobileHoverBg: "#F9FAFB",
+			mobileHoverText: "#6B7280",
 		},
 	},
 	yellow: {
@@ -15,8 +15,8 @@ export const BELTS_CONFIG = {
 		image: "/yellow.png",
 		colors: {
 			theme: "#F2D12A",
-			mobileHoverBg: "rgb(254 252 232)",
-			mobileHoverText: "rgb(202 138 4)",
+			mobileHoverBg: "#FEFCE8",
+			mobileHoverText: "#9A7A00",
 		},
 	},
 	orange: {
@@ -25,8 +25,8 @@ export const BELTS_CONFIG = {
 		image: "/orange.png",
 		colors: {
 			theme: "#F2993A",
-			mobileHoverBg: "rgb(255 237 213)",
-			mobileHoverText: "rgb(194 65 12)",
+			mobileHoverBg: "#FFF4E6",
+			mobileHoverText: "#C46A1A",
 		},
 	},
 	green: {
@@ -35,8 +35,8 @@ export const BELTS_CONFIG = {
 		image: "/green.png",
 		colors: {
 			theme: "#4FAE6A",
-			mobileHoverBg: "rgb(240 253 244)",
-			mobileHoverText: "rgb(22 101 52)",
+			mobileHoverBg: "#ECFDF3",
+			mobileHoverText: "#1F6F3A",
 		},
 	},
 	blue: {
@@ -45,8 +45,8 @@ export const BELTS_CONFIG = {
 		image: "/blue.png",
 		colors: {
 			theme: "#3B7FD6",
-			mobileHoverBg: "rgb(239 246 255)",
-			mobileHoverText: "rgb(30 64 175)",
+			mobileHoverBg: "#EFF6FF",
+			mobileHoverText: "#1A4F8F",
 		},
 	},
 	brown: {
@@ -55,8 +55,8 @@ export const BELTS_CONFIG = {
 		image: "/brown.png",
 		colors: {
 			theme: "#9C6A3E",
-			mobileHoverBg: "rgb(254 249 195)",
-			mobileHoverText: "rgb(133 77 14)",
+			mobileHoverBg: "#FDF4EC",
+			mobileHoverText: "#5B3518",
 		},
 	},
 	black: {
@@ -64,9 +64,9 @@ export const BELTS_CONFIG = {
 		href: "/black",
 		image: "/black.png",
 		colors: {
-			theme: "#1F2937",
-			mobileHoverBg: "rgb(249 250 251)",
-			mobileHoverText: "rgb(17 24 39)",
+			theme: "#1A1A1A",
+			mobileHoverBg: "#F9FAFB",
+			mobileHoverText: "#000000",
 		},
 	},
 	practice: {
@@ -74,9 +74,9 @@ export const BELTS_CONFIG = {
 		href: "/practice",
 		image: "/practice.png",
 		colors: {
-			theme: "#1F2937",
-			mobileHoverBg: "rgb(249 250 251)",
-			mobileHoverText: "rgb(17 24 39)",
+			theme: "#DC2626",
+			mobileHoverBg: "#FEE2E2",
+			mobileHoverText: "#991B1B",
 			cardHoverBg: "#f9fafb",
 			cardHoverBorder: "#dc2626",
 		},
