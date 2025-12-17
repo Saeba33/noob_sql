@@ -90,19 +90,13 @@ export default function Accordion({
 					>
 						{/* Description - only show if content exists */}
 						{content && (
-							<div
-							className="border-l-[3px] rounded-lg p-5"
-							style={{
-								borderLeftColor: `color-mix(in srgb, ${colors.theme} 40%, #e5e7eb 60%)`,
-								backgroundColor: `${colors.theme}05`,
-							}}
-						>
-							<p
-								className="leading-relaxed whitespace-pre-line content-html text-gray-700"
-								dangerouslySetInnerHTML={{ __html: content }}
-							/>
-						</div>
-					)}
+							<div>
+								<p
+									className="leading-relaxed whitespace-pre-line content-html text-gray-700"
+									dangerouslySetInnerHTML={{ __html: content }}
+								/>
+							</div>
+						)}
 
 						{/* External Component */}
 						{externalComponent && (
@@ -123,15 +117,15 @@ export default function Accordion({
 							<div className="space-y-6">
 								{examples.map((example, index) => {
 									const exampleType = example.type || "query"; // default to "query"
-								const hasMultipleExamples = examples.length > 1;
+									const hasMultipleExamples = examples.length > 1;
 
-								return (
-									<div
-										key={index}
-										className="space-y-4 border border-gray-200 rounded-lg p-5 bg-gray-50"
-										style={{
-											boxShadow: "0 1px 2px 0 rgba(0, 0, 0, 0.03)",
-										}}
+									return (
+										<div
+											key={index}
+											className="space-y-4 border border-gray-200 rounded-lg p-5 bg-gray-50"
+											style={{
+												boxShadow: "0 1px 2px 0 rgba(0, 0, 0, 0.03)",
+											}}
 										>
 											{example.label && (
 												<h5 className="text-sm font-semibold text-gray-900 flex items-center gap-2 mb-4">
