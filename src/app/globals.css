@@ -43,11 +43,7 @@ body {
 
 .border-accordion:not(.open):hover {
 	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.08);
-	border-color: color-mix(
-		in srgb,
-		var(--accordion-color, #e5e7eb) 40%,
-		#e5e7eb 60%
-	);
+	border-color: #b7b7b7;
 }
 
 .border-accordion.open {

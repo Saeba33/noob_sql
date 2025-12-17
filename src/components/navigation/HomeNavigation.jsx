@@ -47,7 +47,7 @@ export default function HomeNavigation() {
 							className="home-card"
 							style={{
 								"--theme-color": page.colors.theme,
-							"--theme-hover-bg": page.colors.mobileHoverBg,
+								"--theme-hover-bg": page.colors.mobileHoverBg,
 							}}
 						>
 							<h3 className="text-2xl font-extrabold tracking-tight text-gray-800 mb-4">

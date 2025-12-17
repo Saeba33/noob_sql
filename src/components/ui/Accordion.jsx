@@ -38,7 +38,6 @@ export default function Accordion({
 			className={`border-accordion ${
 				isOpen ? "open" : ""
 			} overflow-hidden ${className}`}
-			style={{ "--accordion-color": colors.theme }}
 		>
 			{/* Accordion header */}
 			<button
@@ -128,7 +127,6 @@ export default function Accordion({
 												<h5 className="text-sm font-semibold text-gray-900 flex items-center gap-2 mb-4">
 													<MdCode
 														className="w-4 h-4"
-														style={{ color: colors.theme }}
 													/>
 													{example.label}
 												</h5>
@@ -142,7 +140,7 @@ export default function Accordion({
 														example.code.includes("CREATE TABLE") && (
 															<div className="mt-4">
 																<h4 className="text-sm font-semibold text-gray-900 mb-3 flex items-center">
-																	<MdAccountTree className="w-4 h-4 mr-2 text-emerald-600" />
+																	<MdAccountTree className="w-4 h-4 mr-2" />
 																	Structure des tables
 																</h4>
 																<div className="flex flex-wrap gap-6 items-start">
