@@ -14,7 +14,7 @@ export const metadata = {
 
 export default function PracticePage() {
 	return (
-		<div className="bg-red-900 flex-1 flex flex-col pt-28 lg:pt-32">
+		<div className="bg-slate-900/50 flex-1 flex flex-col pt-28 lg:pt-32">
 			<main className="flex-1 flex items-center justify-center">
 				<div className="max-w-[1500px] mx-auto px-4">
 					<h1 className="text-4xl text-white text-center">
