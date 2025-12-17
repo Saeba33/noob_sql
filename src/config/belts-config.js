@@ -77,8 +77,6 @@ export const BELTS_CONFIG = {
 			theme: "#DC2626",
 			mobileHoverBg: "#FEE2E2",
 			mobileHoverText: "#991B1B",
-			cardHoverBg: "#f9fafb",
-			cardHoverBorder: "#dc2626",
 		},
 	},
 };

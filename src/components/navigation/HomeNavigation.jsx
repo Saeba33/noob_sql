@@ -1,6 +1,5 @@
 "use client";
 
-import BeltIcon from "@/components/ui/BeltIcon";
 import { BELTS_CONFIG } from "@/config/belts-config";
 import Link from "next/link";
 
@@ -47,35 +46,36 @@ export default function HomeNavigation() {
 							href={page.href}
 							className="home-card"
 							style={{
-								borderColor: `color-mix(in srgb, ${page.colors.theme} 80%, #e5e7eb 85%)`,
+								"--theme-color": page.colors.theme,
+							"--theme-hover-bg": page.colors.mobileHoverBg,
 							}}
 						>
-							<div className="flex items-center mb-5">
-								<BeltIcon belt={page.key} size={32} className="mr-3" />
-								<h3 className="text-2xl font-bold tracking-tight text-gray-600">
-									{page.title}
-								</h3>
-							</div>
+							<h3 className="text-2xl font-extrabold tracking-tight text-gray-800 mb-4">
+								{page.title}
+							</h3>
 
-							<p className="text-base text-gray-700 mb-6 leading-relaxed font-normal">
+							<p className="text-base text-gray-700 mb-6 leading-relaxed">
 								{page.summary}
 							</p>
 
-							<div className="space-y-3">
+							<div className="space-y-2.5">
 								{page.topics.slice(0, 3).map((topic, index) => (
 									<div
 										key={index}
-										className="text-sm text-gray-700 flex items-start font-medium"
+										className="text-sm text-gray-600 flex items-start"
 									>
-										<span className="text-gray-400 mr-3 font-bold">•</span>
+										<span className="text-gray-400 mr-2.5">•</span>
 										<span>{topic}</span>
 									</div>
 								))}
 								{page.topics.length > 3 && (
-									<div className="text-sm text-gray-500 mt-4 font-medium">
-										+ {page.topics.length - 3} autre
-										{page.topics.length - 3 > 1 ? "s" : ""} sujet
-										{page.topics.length - 3 > 1 ? "s" : ""}
+									<div className="text-sm text-gray-500 flex items-start">
+										<span className="text-gray-400 mr-2.5">+</span>
+										<span>
+											{page.topics.length - 3} autre
+											{page.topics.length - 3 > 1 ? "s" : ""} sujet
+											{page.topics.length - 3 > 1 ? "s" : ""}
+										</span>
 									</div>
 								)}
 							</div>
