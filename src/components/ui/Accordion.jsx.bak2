@@ -101,9 +101,8 @@ export default function Accordion({
 								className="leading-relaxed whitespace-pre-line content-html text-gray-700"
 								dangerouslySetInnerHTML={{ __html: content }}
 							/>
-						</div>
-					)}
-
+</div>
+)}
 						{/* External Component */}
 						{externalComponent && (
 							<Suspense
