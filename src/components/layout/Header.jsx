@@ -38,7 +38,9 @@ export default function Header() {
 			<div className="w-full max-w-[1500px] px-4 lg:px-6">
 				<div
 					ref={menuRef}
-					className="bg-white/80 backdrop-blur-lg border border-gray-200/60 shadow-lg rounded-lg"
+					className={`border border-gray-200/60 shadow-lg rounded-lg ${
+						isMobile ? "bg-white" : "bg-white/80 backdrop-blur-lg"
+					}`}
 				>
 					<div className="px-6 py-3">
 						{!isMobile ? (

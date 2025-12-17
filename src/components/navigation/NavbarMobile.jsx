@@ -17,13 +17,13 @@ export default function NavbarMobile({
 
 	// Helper functions
 	const getMobileLinkStyle = (active, colors, isFight = false) => {
-		// Style spécial pour Fight
+		// Style spécial pour Fight - cohérent avec les ceintures mais avec couleur distinctive
 		if (isFight) {
 			return {
-				className: `flex items-center gap-3 px-3 py-3 rounded-lg transition-all duration-300 border ${
+				className: `flex items-center gap-3 px-3 py-3 rounded-lg transition-all duration-300 ${
 					active
-						? "border-2 border-gray-400 bg-gray-100 text-gray-900 font-medium"
-						: "border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400"
+						? "bg-gray-100 text-gray-900 font-medium border-l-4 border-gray-800"
+						: "text-gray-700 hover:bg-gray-100 hover:text-gray-900"
 				}`,
 				style: {},
 			};
