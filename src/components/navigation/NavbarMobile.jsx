@@ -16,17 +16,34 @@ export default function NavbarMobile({
 	const { isActive } = useNavigation();
 
 	// Helper functions
-	const getMobileLinkStyle = (active, colors) => ({
-		className: `flex items-center gap-3 px-3 py-3 rounded-lg transition-all duration-300 ${
-			active
-				? "bg-gray-100 text-gray-900 font-bold border-2 border-gray-300"
-				: "text-gray-600 hover:bg-[var(--hover-bg)] hover:text-[var(--hover-text)]"
-		}`,
-		style: {
-			"--hover-bg": colors.mobileHoverBg,
-			"--hover-text": colors.mobileHoverText,
-		},
-	});
+	const getMobileLinkStyle = (active, colors, isFight = false) => {
+		// Style spécial pour Fight
+		if (isFight) {
+			return {
+				className: `flex items-center gap-3 px-3 py-3 rounded-lg transition-all duration-300 border ${
+					active
+						? "border-2 border-gray-400 bg-gray-100 text-gray-900 font-medium"
+						: "border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400"
+				}`,
+				style: {},
+			};
+		}
+
+		// Style normal pour les ceintures
+		return {
+			className: `flex items-center gap-3 px-3 py-3 rounded-lg transition-all duration-300 ${
+				active
+					? "bg-[var(--active-bg)] text-gray-900 font-medium border-l-4 border-[var(--active-color)]"
+					: "text-gray-600 hover:bg-[var(--hover-bg)] hover:text-[var(--hover-text)]"
+			}`,
+			style: {
+				"--hover-bg": colors.mobileHoverBg,
+				"--hover-text": colors.mobileHoverText,
+				"--active-bg": `${colors.theme}15`,
+				"--active-color": colors.theme,
+			},
+		};
+	};
 
 	const menu = (
 		<div
@@ -42,6 +59,7 @@ export default function NavbarMobile({
 						const beltKey = item.href.replace("/", "") || "white";
 						const colors = BELT_COLORS[beltKey];
 						const active = isActive(item.href);
+						const isFight = beltKey === "practice";
 
 						return (
 							<Link
@@ -49,7 +67,7 @@ export default function NavbarMobile({
 								href={item.href}
 								onClick={closeMenu}
 								aria-current={active ? "page" : undefined}
-								{...getMobileLinkStyle(active, colors)}
+								{...getMobileLinkStyle(active, colors, isFight)}
 							>
 								<BeltIcon belt={beltKey} size={32} className="pt-1.5" />
 								<span className=" font-medium">{item.title}</span>
