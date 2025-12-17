@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 
 // Default breakpoint for mobile/desktop detection
-const DEFAULT_BREAKPOINT = 1400;
+const DEFAULT_BREAKPOINT = 1500;
 
 export function useNavbar(breakpoint = DEFAULT_BREAKPOINT) {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
