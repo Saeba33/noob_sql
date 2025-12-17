@@ -9,14 +9,14 @@
  * @param {boolean} vennConfig.rightOnly - Highlight right circle (table B)
  */
 const JoinCard = ({ title, vennConfig }) => {
-	// Brown/amber color palette
-	const fillColor = "#d97706"; // amber-600
-	const strokeColor = "#92400e"; // amber-800
+	// Brown color palette from belts-config
+	const fillColor = "#9C6A3E"; // brown theme
+	const strokeColor = "#5B3518"; // brown dark
 
 	return (
-		<div className="group relative flex flex-col items-center p-5 bg-stone-50 rounded-xl border border-amber-200 hover:border-amber-400 transition-all duration-300 hover:shadow-xs hover:shadow-amber-200/50 hover:-translate-y-1">
+		<div className="group relative flex flex-col items-center p-5 bg-stone-50 rounded-xl border border-stone-200 hover:border-stone-400 transition-all duration-300 hover:shadow-xs hover:shadow-stone-200/50 hover:-translate-y-1">
 			{/* Hover glow effect */}
-			<div className="absolute inset-0 rounded-xl bg-amber-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+			<div className="absolute inset-0 rounded-xl bg-stone-100 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
 			{/* Venn diagram SVG */}
 			<svg
@@ -114,16 +114,16 @@ const JoinCard = ({ title, vennConfig }) => {
 				/>
 
 				{/* Labels A and B */}
-				<text x="18" y="40" fill="#78350f" fontSize="13" fontWeight="bold">
+				<text x="18" y="40" fill="#5B3518" fontSize="13" fontWeight="bold">
 					A
 				</text>
-				<text x="74" y="40" fill="#78350f" fontSize="13" fontWeight="bold">
+				<text x="74" y="40" fill="#5B3518" fontSize="13" fontWeight="bold">
 					B
 				</text>
 			</svg>
 
 			{/* Join type title */}
-			<h4 className="relative z-10 text-base font-semibold text-amber-900 mt-3 text-center tracking-wide group-hover:text-amber-700 transition-colors duration-300">
+			<h4 className="relative z-10 text-base font-semibold text-stone-800 mt-3 text-center tracking-wide group-hover:text-stone-600 transition-colors duration-300">
 				{title}
 			</h4>
 		</div>
@@ -168,19 +168,19 @@ export default function JoinsDiagram() {
 			</div>
 
 			{/* Legend */}
-			<div className="flex flex-wrap gap-6 justify-center text-sm pt-4 px-4 py-3 bg-amber-50/50 rounded-lg border border-amber-200/50">
+			<div className="flex flex-wrap gap-6 justify-center text-sm pt-4 px-4 py-3 bg-stone-50/50 rounded-lg border border-stone-200/50">
 				<div className="flex items-center gap-2">
-					<div className="w-4 h-4 rounded-full bg-amber-600"></div>
+					<div className="w-4 h-4 rounded-full" style={{ backgroundColor: '#9C6A3E' }}></div>
 					<span className="text-stone-600">Zone sélectionnée</span>
 				</div>
 				<div className="flex items-center gap-2">
-					<span className="font-bold text-amber-900 bg-amber-100 w-6 h-6 rounded flex items-center justify-center text-xs">
+					<span className="font-bold text-stone-800 bg-stone-100 w-6 h-6 rounded flex items-center justify-center text-xs">
 						A
 					</span>
 					<span className="text-stone-600">Table de gauche (FROM)</span>
 				</div>
 				<div className="flex items-center gap-2">
-					<span className="font-bold text-amber-900 bg-amber-100 w-6 h-6 rounded flex items-center justify-center text-xs">
+					<span className="font-bold text-stone-800 bg-stone-100 w-6 h-6 rounded flex items-center justify-center text-xs">
 						B
 					</span>
 					<span className="text-stone-600">Table de droite (JOIN)</span>

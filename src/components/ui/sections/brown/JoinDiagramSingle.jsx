@@ -5,8 +5,8 @@
  * @param {string} type - The join type: "inner", "left", "right", "full"
  */
 export default function JoinDiagramSingle({ type = "inner" }) {
-	const fillColor = "#d97706"; // amber-600
-	const strokeColor = "#92400e"; // amber-800
+	const fillColor = "#9C6A3E"; // brown theme
+	const strokeColor = "#5B3518"; // brown dark
 
 	// Configuration based on join type
 	const configs = {
@@ -101,10 +101,10 @@ export default function JoinDiagramSingle({ type = "inner" }) {
 				/>
 
 				{/* Labels A and B */}
-				<text x="18" y="40" fill="#78350f" fontSize="13" fontWeight="bold">
+				<text x="18" y="40" fill="#5B3518" fontSize="13" fontWeight="bold">
 					A
 				</text>
-				<text x="74" y="40" fill="#78350f" fontSize="13" fontWeight="bold">
+				<text x="74" y="40" fill="#5B3518" fontSize="13" fontWeight="bold">
 					B
 				</text>
 			</svg>
