@@ -18,9 +18,6 @@ const Logo = () => (
 	</Link>
 );
 
-// Separator
-const Separator = () => <div className="h-8 w-px bg-gray-300" />;
-
 // Practice Button
 const Practice = () => (
 	<Link
@@ -45,11 +42,10 @@ export default function Header() {
 				>
 					<div className="px-6 py-3">
 						{!isMobile ? (
-							<div className="grid grid-cols-[auto_1fr_auto] items-center gap-6">
+							<div className="grid grid-cols-[auto_1fr_auto] items-center gap-8">
 								{/* Left zone */}
-								<div className="flex items-center gap-6">
+								<div className="flex items-center">
 									<Logo />
-									<Separator />
 								</div>
 
 								{/* Center - Navigation */}
@@ -58,8 +54,7 @@ export default function Header() {
 								</div>
 
 								{/* Right zone */}
-								<div className="flex items-center gap-6">
-									<Separator />
+								<div className="flex items-center">
 									<Practice />
 								</div>
 							</div>
