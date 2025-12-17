@@ -1,8 +1,8 @@
 Colors des belts en svg :
 
 white: 
-    fill: 
-    outline:
+    fill: #FFFFFF
+    outline: #8A8A8A
 
 yellow: 
     fill: #F2D12A
@@ -25,5 +25,5 @@ brown:
     outline: #5B3518
 
 black: 
-    fill: 
-    outline:
+    fill: #3F3F3F
+    outline: #000000
