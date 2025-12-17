@@ -128,19 +128,10 @@ export default function Accordion({
 								return (
 									<div
 										key={index}
-										className={`space-y-4 ${
-											hasMultipleExamples
-												? "border-l-2 pl-5 py-2"
-												: ""
-										}`}
-										style={
-											hasMultipleExamples
-												? {
-														borderLeftColor: `color-mix(in srgb, ${colors.theme} 40%, #e5e7eb 60%)`,
-														borderRadius: "0.5rem",
-												  }
-												: {}
-										}
+										className="space-y-4 border border-gray-200 rounded-lg p-5 bg-gray-50"
+										style={{
+											boxShadow: "0 1px 2px 0 rgba(0, 0, 0, 0.03)",
+										}}
 										>
 											{example.label && (
 												<h5 className="text-sm font-semibold text-gray-900 flex items-center gap-2 mb-4">
