@@ -10,14 +10,9 @@ Attention : l'exécution d'une commande DROP est, ,[object Object], ,! Soyez vig
 enlever encadré des sql queries dans certaines conditions
 navbar meme largeur que le reste
 
-
-svg belt sur flaticon
-recenser couleur des flatcons pour mettre àjour fichier data en concordence avec les svg.
-
 ENUM('en_cours', 'rendu', 'en_retard') brown coouleurs
 DEFAULT 'en coours' couleur
 
 Cursor pointer dans les accordeons
-Navbar proportions et effets
 
 MAJ README

@@ -50,14 +50,16 @@ export default function Accordion({
 					isOpen ? "rounded-t-lg" : "rounded-lg"
 				}`}
 			>
-				<div className="flex items-center justify-between pr-8">
+				<div className="flex items-center justify-between">
 					<div className="flex items-center gap-3">
 						<FaCode
 							style={{ color: colors.theme }}
-							className="w-5 h-5 flex-shrink-0 transition-all duration-200 group-hover:scale-110 group-hover:drop-shadow-md"
+							className="w-5 h-5 flex-shrink-0 transition-colors duration-200"
 							aria-hidden="true"
 						/>
-						<h3 className="text-lg font-semibold text-gray-600 group-hover:text-gray-800 transition-colors">{section}</h3>
+						<h3 className="text-lg font-semibold text-gray-600 group-hover:text-gray-800 transition-colors">
+							{section}
+						</h3>
 					</div>
 					<MdExpandMore
 						className={`w-6 h-6 text-gray-400 transition-transform duration-200 flex-shrink-0 ${
@@ -81,16 +83,18 @@ export default function Accordion({
 				<div className="overflow-hidden">
 					<div
 						className="px-6 py-5 bg-white flex flex-col space-y-6 rounded-b-lg border-t"
-						style={{ 
-							borderTopColor: colors.theme, 
-							borderTopWidth: "1px"
+						style={{
+							borderTopColor: colors.theme,
+							borderTopWidth: "1px",
 						}}
 					>
 						{/* Description - only show if content exists */}
 						{content && (
 							<div
 								className="bg-white border rounded-lg p-5 shadow-sm"
-								style={{ borderColor: `color-mix(in srgb, ${colors.theme} 15%, #e5e7eb 85%)` }}
+								style={{
+									borderColor: `color-mix(in srgb, ${colors.theme} 15%, #e5e7eb 85%)`,
+								}}
 							>
 								<p
 									className="leading-relaxed whitespace-pre-line content-html text-gray-700"
@@ -119,12 +123,14 @@ export default function Accordion({
 								{examples.map((example, index) => {
 									const exampleType = example.type || "query"; // default to "query"
 
-										return (
-											<div
-												key={index}
-												className="space-y-4 border rounded-lg p-5 bg-white shadow-sm"
-												style={{ borderColor: `color-mix(in srgb, ${colors.theme} 25%, #e5e7eb 85%)` }}
-											>
+									return (
+										<div
+											key={index}
+											className="space-y-4"
+											style={{
+												borderColor: `color-mix(in srgb, ${colors.theme} 25%, #e5e7eb 85%)`,
+											}}
+										>
 											{example.label && (
 												<h5 className="text-sm font-semibold text-gray-900 flex items-center gap-2 mb-4">
 													<MdCode

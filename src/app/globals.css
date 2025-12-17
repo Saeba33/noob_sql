@@ -48,11 +48,14 @@ body {
 
 .border-accordion:not(.open):hover {
 	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.08);
-	border-color: var(--accordion-color, currentColor);
+	border-color: color-mix(
+		in srgb,
+		var(--accordion-color, #e5e7eb) 40%,
+		#e5e7eb 60%
+	);
 }
 
 .border-accordion.open {
-	border-color: var(--accordion-color, currentColor);
 	box-shadow: 0 2px 8px -1px rgba(0, 0, 0, 0.1);
 }
 
