@@ -34,8 +34,8 @@ export default function Header() {
 		useNavbar(1500);
 
 	return (
-		<header className="fixed top-6 left-0 right-0 z-50 flex justify-center px-4 lg:px-6">
-			<div className="w-full max-w-[1500px]">
+		<header className="fixed top-6 left-0 right-0 z-50 flex justify-center">
+			<div className="w-full max-w-[1500px] px-4 lg:px-6">
 				<div
 					ref={menuRef}
 					className="bg-white/80 backdrop-blur-lg border border-gray-200/60 shadow-lg rounded-lg"
