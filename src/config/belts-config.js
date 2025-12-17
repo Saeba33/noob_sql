@@ -74,9 +74,9 @@ export const BELTS_CONFIG = {
 		href: "/practice",
 		image: "/practice.png",
 		colors: {
-			theme: "#DC2626",
-			mobileHoverBg: "rgb(254 242 242)",
-			mobileHoverText: "rgb(153 27 27)",
+			theme: "#1F2937",
+			mobileHoverBg: "rgb(249 250 251)",
+			mobileHoverText: "rgb(17 24 39)",
 			cardHoverBg: "#f9fafb",
 			cardHoverBorder: "#dc2626",
 		},
