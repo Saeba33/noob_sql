@@ -70,7 +70,7 @@ export const BELTS_CONFIG = {
 		},
 	},
 	practice: {
-		title: "FIGHT!",
+		title: "FIGHT",
 		href: "/practice",
 		image: "/practice.png",
 		colors: {

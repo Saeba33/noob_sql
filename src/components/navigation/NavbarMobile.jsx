@@ -51,8 +51,8 @@ export default function NavbarMobile({
 								aria-current={active ? "page" : undefined}
 								{...getMobileLinkStyle(active, colors)}
 							>
-								<BeltIcon belt={beltKey} size={32} />
-								<span className="font-medium">{item.title}</span>
+								<BeltIcon belt={beltKey} size={32} className="pt-1.5" />
+								<span className=" font-medium">{item.title}</span>
 							</Link>
 						);
 					})}
@@ -65,7 +65,7 @@ export default function NavbarMobile({
 		<>
 			<button
 				onClick={toggleMenu}
-				className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
+				className="p-2 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer"
 				aria-label={isMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
 				aria-expanded={isMenuOpen}
 				aria-controls="mobile-menu"
