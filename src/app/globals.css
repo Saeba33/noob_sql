@@ -94,9 +94,7 @@ body {
 	position: relative;
 }
 .home-card:hover {
-	transform: translateY(-3px);
-	box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.12);
-	border-left-width: 6px;
+	transform: translateY(-2px);
 	background-color: var(--theme-hover-bg);
 }
 @media (min-width: 768px) {
