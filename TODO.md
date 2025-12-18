@@ -13,6 +13,27 @@ navbar meme largeur que le reste
 ENUM('en_cours', 'rendu', 'en_retard') brown coouleurs
 DEFAULT 'en coours' couleur
 
-Cursor pointer dans les accordeons
 
 MAJ README
+
+Google analytics ?
+
+Footer sur practice
+
+
+Responsive (iphone5):
+- ceinture blanche :
+    . Exemples de SGBD(liste non exhaustive) : les deux points sont "seuls" sur une deuxième ligne
+    . contraintes et options : Centrer le contenu sous le titre à gauche de l'icone. Verifier le centrage vertical entre le titre et l'icone
+    . Exemple d'une table utilisateurs.... : l'icone rétréci au redimensionnement inférieur. éviter cela.
+    . Les icones de types de données courantes,types de données moins courantes et contraintes et options sont très petits.
+    .Idem pour les icones dans bonnes pratiques (quand le titre est sur plusieurs lignes)
+    .Idem poour les icones sur les titres des examples(toutes ceintures)
+- ceintures marron : 
+    . Les diagram se superposent. Passer à un par ligne.
+    . centrer gauche la légende.
+
+Voir break-word
+Icone swip ?
+
+Le clic sur NoobSQL en version mobile ne renvoie pas à l'accueil.

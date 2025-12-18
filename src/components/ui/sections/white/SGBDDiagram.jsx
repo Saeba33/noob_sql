@@ -29,7 +29,7 @@ export default function SGBDDiagram() {
 						•
 					</span>
 					<span className="font-semibold text-blue-800">
-						Systèmes de Gestion de Bases de Données Relationnelles (SGBDR)
+						Systèmes de Gestion de Bases de Données Relationnelles (SGBDR){" "}
 					</span>
 					: ils organisent les données sous forme de tables liées entre elles.
 					Ils utilisent le langage SQL (Structured Query Language), un standard
@@ -42,7 +42,7 @@ export default function SGBDDiagram() {
 						•
 					</span>
 					<span className="font-semibold text-emerald-800">
-						Not Only SQL (NoSQL)
+						Not Only SQL (NoSQL){" "}
 					</span>
 					: conçus pour des données moins structurées ou très volumineuses. Ils
 					sont plus flexibles que les SGBDR. Chaque technologie NoSQL a son
