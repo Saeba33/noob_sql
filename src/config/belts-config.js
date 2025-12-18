@@ -19,7 +19,7 @@ export const BELTS_CONFIG = {
 			theme: "#F2D12A",
 			mobileHoverBg: "#FEFCE8",
 			mobileHoverText: "#9A7A00",
-			// svgFill: "#F2D12A",
+			//svgFill: "#F2D12A",
 			//svgOutline: "#9A7A00",
 		},
 	},
