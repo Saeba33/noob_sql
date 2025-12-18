@@ -7,6 +7,8 @@ export const BELTS_CONFIG = {
 			theme: "#8A8A8A",
 			mobileHoverBg: "#F9FAFB",
 			mobileHoverText: "#6B7280",
+			//svgFill: "#FFFFFF",
+			//svgOutline: "#8A8A8A",
 		},
 	},
 	yellow: {
@@ -17,6 +19,8 @@ export const BELTS_CONFIG = {
 			theme: "#F2D12A",
 			mobileHoverBg: "#FEFCE8",
 			mobileHoverText: "#9A7A00",
+			// svgFill: "#F2D12A",
+			//svgOutline: "#9A7A00",
 		},
 	},
 	orange: {
@@ -27,6 +31,8 @@ export const BELTS_CONFIG = {
 			theme: "#F2993A",
 			mobileHoverBg: "#FFF4E6",
 			mobileHoverText: "#C46A1A",
+			//svgFill: "#F2993A",
+			//svgOutline: "#C46A1A",
 		},
 	},
 	green: {
@@ -37,6 +43,8 @@ export const BELTS_CONFIG = {
 			theme: "#4FAE6A",
 			mobileHoverBg: "#ECFDF3",
 			mobileHoverText: "#1F6F3A",
+			//svgFill: "#4FAE6A",
+			//svgOutline: "#1F6F3A",
 		},
 	},
 	blue: {
@@ -47,6 +55,8 @@ export const BELTS_CONFIG = {
 			theme: "#3B7FD6",
 			mobileHoverBg: "#EFF6FF",
 			mobileHoverText: "#1A4F8F",
+			//svgFill: "#3B7FD6",
+			//svgOutline: "#1A4F8F",
 		},
 	},
 	brown: {
@@ -57,6 +67,8 @@ export const BELTS_CONFIG = {
 			theme: "#9C6A3E",
 			mobileHoverBg: "#FDF4EC",
 			mobileHoverText: "#5B3518",
+			//svgFill: "#9C6A3E",
+			//svgOutline: "#5B3518",
 		},
 	},
 	black: {
@@ -67,6 +79,8 @@ export const BELTS_CONFIG = {
 			theme: "#3F3F3F",
 			mobileHoverBg: "#F9FAFB",
 			mobileHoverText: "#000000",
+			//svgFill: "#3F3F3F",
+			//svgOutline: "#000000",
 		},
 	},
 	practice: {
