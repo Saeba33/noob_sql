@@ -10,7 +10,7 @@ import Link from "next/link";
 const Logo = () => (
 	<Link
 		href="/"
-		className="flex items-center transition-all duration-300 group"
+		className="flex items-center transition-all duration-300 group ml-2"
 	>
 		<span className="text-xl sm:text-2xl font-bold tracking-tight leading-none text-gray-800 group-hover:text-gray-950 transition-colors">
 			NoobSQL
@@ -22,7 +22,7 @@ const Logo = () => (
 const Practice = () => (
 	<Link
 		href="/practice"
-		className="group relative transition-all duration-200 px-3 py-1.5 flex items-center gap-2 text-topic font-medium text-gray-700 hover:text-gray-900 whitespace-nowrap border hover:border-gray-400 rounded-lg bg-gray-100 border-gray-200"
+		className="group relative transition-all duration-200 px-3 py-2 mr-2 flex items-center gap-2 text-topic font-medium text-gray-700 hover:text-gray-900 whitespace-nowrap border hover:border-gray-400 rounded-lg bg-gray-100 border-gray-200"
 	>
 		<Image src="/practice.png" width={28} height={28} alt="Practice icon" />
 		<span className="tracking-wide">FIGHT</span>
@@ -42,7 +42,7 @@ export default function Header() {
 						isMobile ? "bg-white" : "bg-white/80 backdrop-blur-lg"
 					}`}
 				>
-					<div className="px-6 h-14 flex items-center">
+					<div className="px-4 h-18 flex items-center">
 						{!isMobile ? (
 							<div className="grid grid-cols-[auto_1fr_auto] items-center gap-8 w-full">
 								{/* Left zone */}
