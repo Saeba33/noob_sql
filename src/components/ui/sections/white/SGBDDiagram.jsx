@@ -1,3 +1,5 @@
+"use client";
+
 import { MdAccountTree, MdDataObject, MdHub, MdStorage } from "react-icons/md";
 import {
 	SiMongodb,
@@ -51,7 +53,7 @@ export default function SGBDDiagram() {
 					(Cassandra)…
 				</p>
 
-				<p className="mb-6">
+				<p className="text-body mb-6">
 					En résumé, les SGBDR utilisent SQL comme langage standardisé, tandis
 					que les bases NoSQL utilisent des langages ou des modèles de requête
 					qui varient selon la technologie. Elles sont souvent choisies pour la

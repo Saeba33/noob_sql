@@ -131,12 +131,13 @@ WHERE e.statut = 'en_cours';`,
 						date_retour_prevue: "2024-12-25",
 						statut: "en_cours",
 					},
-			],
-		},
+				],
+			},
 
-		{
-			label: "Exemple : jointure sur trois tables (utilisateurs, livres et emprunts)",
-			code: `-- Afficher tous les emprunts avec les informations des livres et des utilisateurs
+			{
+				label:
+					"Exemple : jointure sur trois tables (utilisateurs, livres et emprunts)",
+				code: `-- Afficher tous les emprunts avec les informations des livres et des utilisateurs
 SELECT 
     u.prenom,
     u.nom,
@@ -149,7 +150,7 @@ FROM utilisateurs u
 JOIN emprunts e ON u.id = e.utilisateur_id
 JOIN livres l ON e.livre_id = l.id
 ORDER BY e.date_emprunt DESC;`,
-			result: [
+				result: [
 					{
 						prenom: "Claire",
 						nom: "Durand",

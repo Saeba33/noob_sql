@@ -1,6 +1,11 @@
+"use client";
+
 import { analyzeSqlCode, sqlSyntaxConfig } from "../../../config/sql-syntax.js";
+import { useScrollIndicator } from "@/hooks/useScrollIndicator";
 
 export default function SQLCodeBlock({ children, className = "" }) {
+	const { ref, hasScroll } = useScrollIndicator();
+
 	// Function to colorize SQL code using the configuration
 	const renderColorizedCode = (code) => {
 		if (!code) return null;
@@ -64,8 +69,10 @@ export default function SQLCodeBlock({ children, className = "" }) {
 				</div>
 
 				{/* Code Content */}
-				<div className="p-4">
-					<pre className="text-sm font-mono leading-relaxed overflow-x-auto">
+				<div className="p-4 relative">
+					{/* Scroll indicator - affiché uniquement si scroll */}
+					{hasScroll && <div className="scroll-indicator-dark" />}
+					<pre ref={ref} className="text-sm font-mono leading-relaxed overflow-x-auto">
 						<code>{renderColorizedCode(children)}</code>
 					</pre>
 				</div>

@@ -1,6 +1,15 @@
+"use client";
+
+import { useScrollIndicator } from "@/hooks/useScrollIndicator";
+
 export default function ScrollableTable({ columns, data, renderCell }) {
+	const { ref, hasScroll } = useScrollIndicator();
+
 	return (
-		<div className="border border-gray-300 rounded-lg overflow-x-auto">
+		<div className="border border-gray-300 rounded-lg overflow-hidden relative">
+			{/* Scroll indicator - affiché uniquement si scroll */}
+			{hasScroll && <div className="scroll-indicator-white" />}
+			<div ref={ref} className="overflow-x-auto">
 			<div>
 				<div
 					className="grid"
@@ -49,5 +58,6 @@ export default function ScrollableTable({ columns, data, renderCell }) {
 				</div>
 			</div>
 		</div>
+	</div>
 	);
 }

@@ -1,5 +1,8 @@
+"use client";
+
 import { MdCheckCircle, MdInfo, MdTableChart } from "react-icons/md";
 import { formatQueryResult } from "../../../config/sql-syntax.js";
+import { useScrollIndicator } from "@/hooks/useScrollIndicator";
 
 export default function SQLResultBlock({
 	data,
@@ -9,6 +12,8 @@ export default function SQLResultBlock({
 	className = "",
 	type = "auto",
 }) {
+	const { ref, hasScroll } = useScrollIndicator();
+
 	// Determines the type of content to display
 	const contentType =
 		type === "auto"
@@ -82,7 +87,10 @@ export default function SQLResultBlock({
 				</div>
 
 				{/* Results Table */}
-				<div className="overflow-x-auto">
+				<div className="relative">
+					{/* Scroll indicator - affiché uniquement si scroll */}
+					{hasScroll && <div className="scroll-indicator-white" />}
+					<div ref={ref} className="overflow-x-auto">
 					<table className="w-full text-sm">
 						{/* Headers */}
 						<thead>
@@ -128,5 +136,6 @@ export default function SQLResultBlock({
 				</div>
 			</div>
 		</div>
+	</div>
 	);
 }

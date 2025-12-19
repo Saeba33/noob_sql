@@ -1,7 +1,12 @@
+"use client";
+
 import { constraints, dataTypes, exampleTypes } from "@/data/sections/white";
 import { MdInventory, MdLocalOffer, MdLock, MdStorage } from "react-icons/md";
+import { useScrollIndicator } from "@/hooks/useScrollIndicator";
 
 export default function DataTypes() {
+	const scrollIndicator1 = useScrollIndicator();
+	const scrollIndicator2 = useScrollIndicator();
 	// #region  Table's types
 	const flatCommon = dataTypes
 		.filter((cat) => cat.type === "common")
@@ -30,13 +35,13 @@ export default function DataTypes() {
 
 	// #region Types Section
 	const renderTypesSection = (title, rows) => {
-		return (
-			<div className="border border-gray-300 rounded-lg bg-gray-50 p-6 mt-8">
-				<h2 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
-					<MdInventory className="w-6 h-6 min-w-[24px] text-gray-600 mr-3 hidden sm:block" />
-					{title}
-				</h2>
-				<p className="italic text-sm mb-2">
+			return (
+				<div className="border border-gray-300 rounded-lg bg-gray-50 p-6 mt-8">
+					<h4 className="font-bold text-gray-800 mb-6 flex items-center">
+						<MdInventory className="w-6 h-6 min-w-[24px] text-gray-600 mr-3 hidden sm:block" />
+						{title}
+					</h4>
+				<p className="italic mb-2">
 					* Les valeurs entre parenthèses sont données à titre d'exemple, elles
 					sont configurables selon vos besoins. La liste suivante n'est pas
 					exhaustive.
@@ -44,9 +49,9 @@ export default function DataTypes() {
 
 				<div className="bg-white border border-gray-300 rounded-lg shadow-sm overflow-hidden">
 					<div className="relative">
-						{/* Scroll indicator */}
-						<div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white to-transparent pointer-events-none z-10" />
-						<div className="overflow-x-auto">
+						{/* Scroll indicator - affiché uniquement si scroll */}
+						{scrollIndicator1.hasScroll && <div className="scroll-indicator-white" />}
+						<div ref={scrollIndicator1.ref} className="overflow-x-auto">
 						<table className="w-full min-w-[800px] border-collapse bg-white rounded-lg shadow-sm overflow-hidden">
 							<thead>
 								<tr>
@@ -140,12 +145,12 @@ export default function DataTypes() {
 		return (
 			<div className="mt-8">
 				<div className="border border-gray-300 rounded-lg bg-gray-50 p-6">
-					<h2 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
+					<h4 className="font-bold text-gray-800 mb-6 flex items-center">
 						<MdLock className="w-6 h-6 min-w-[24px] text-gray-600 mr-3 hidden sm:block" />
 						Contraintes et options
-					</h2>
+					</h4>
 
-					<p className="text-gray-700 mb-6">
+					<p className="text-body text-gray-700 mb-6">
 						Les <strong>contraintes</strong> définissent des règles que les
 						données doivent respecter pour garantir l'intégrité et la cohérence
 						de votre base de données.
@@ -192,16 +197,16 @@ export default function DataTypes() {
 		return (
 			<div className="mt-8">
 				<div className="border border-gray-300 rounded-lg bg-gray-50 p-6">
-					<h2 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
+					<h4 className="font-bold text-gray-800 mb-6 flex items-center">
 						<MdStorage className="w-6 h-6 min-w-[24px] text-gray-600 mr-3 hidden sm:block" />
 						Exemple d'une table "utilisateurs" avec contraintes
-					</h2>
+					</h4>
 
 					<div className="bg-white border border-gray-300 rounded-lg shadow-sm overflow-hidden">
 						<div className="relative">
-							{/* Scroll indicator */}
-							<div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white to-transparent pointer-events-none z-10" />
-							<div className="overflow-x-auto">
+							{/* Scroll indicator - affiché uniquement si scroll */}
+							{scrollIndicator2.hasScroll && <div className="scroll-indicator-white" />}
+							<div ref={scrollIndicator2.ref} className="overflow-x-auto">
 							<table className="w-full min-w-[800px] border-collapse bg-white rounded-lg shadow-sm overflow-hidden">
 								<thead>
 									<tr>

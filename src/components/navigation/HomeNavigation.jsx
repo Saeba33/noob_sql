@@ -50,11 +50,11 @@ export default function HomeNavigation() {
 								"--theme-hover-bg": page.colors.mobileHoverBg,
 							}}
 						>
-							<h3 className="text-2xl font-extrabold tracking-tight text-gray-800 mb-4">
+							<h3 className="font-extrabold tracking-tight text-gray-800 mb-4">
 								{page.title}
 							</h3>
 
-							<p className="text-base text-gray-700 mb-6 leading-relaxed">
+							<p className="text-body text-gray-700 mb-6 leading-relaxed">
 								{page.summary}
 							</p>
 
@@ -62,14 +62,14 @@ export default function HomeNavigation() {
 								{page.topics.slice(0, 3).map((topic, index) => (
 									<div
 										key={index}
-										className="text-sm text-gray-600 flex items-start"
-									>
-										<span className="text-gray-400 mr-2.5">•</span>
-										<span>{topic}</span>
-									</div>
-								))}
-								{page.topics.length > 3 && (
-									<div className="text-sm text-gray-500 flex items-center">
+									className="text-xs sm:text-sm text-gray-600 flex items-start"
+								>
+									<span className="text-gray-400 mr-2.5">•</span>
+									<span>{topic}</span>
+								</div>
+							))}
+							{page.topics.length > 3 && (
+								<div className="text-xs sm:text-sm text-gray-500 flex items-center">
 										<span className="text-gray-400 mr-2.5">+</span>
 										<span>
 											{page.topics.length - 3} autre

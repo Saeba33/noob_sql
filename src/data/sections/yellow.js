@@ -82,15 +82,8 @@ DROP COLUMN telephone;`,
 	},
 	{
 		section: "DROP TABLE - Suppression de tables",
-		content: (
-			<>
-				Attention : l&apos;exécution d&apos;une commande DROP est{" "}
-				<strong>
-					<u>irréversible</u>
-				</strong>{" "}
-				! Soyez vigilant !
-			</>
-		),
+		content:
+			"Attention : l'exécution d'une commande DROP est <strong><u>irréversible</u></strong> ! Soyez vigilant !",
 		examples: [
 			{
 				type: "schema",

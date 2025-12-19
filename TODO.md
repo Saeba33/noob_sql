@@ -13,9 +13,3 @@ DEFAULT 'en coours' couleur
 Google analytics ?
 
 MAJ README
-
-Icone swip ?
-
-Le clic sur NoobSQL renvoie à la page d'accueil est par conséquent doit refermer le dropdown.
-
-couleurs des icones bonnes pratiques à calquer sur belts-config

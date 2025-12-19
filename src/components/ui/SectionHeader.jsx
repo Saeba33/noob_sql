@@ -27,9 +27,9 @@ export default function SectionHeader({
 					{/* Title */}
 					{title && (
 						<div className="space-y-3 relative">
-							<h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-tight tracking-tight text-gray-900 relative inline-block">
+							<h2 className="font-extrabold leading-tight tracking-tight text-gray-900 relative inline-block">
 								{title}
-							</h1>
+							</h2>
 						</div>
 					)}
 

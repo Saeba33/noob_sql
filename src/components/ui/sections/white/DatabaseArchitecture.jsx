@@ -1,3 +1,5 @@
+"use client";
+
 import {
 	MdKey,
 	MdLink,
@@ -132,7 +134,7 @@ export default function DatabaseArchitecture() {
 		<div>
 			{/* Introductory section */}
 			<div className="mb-8 space-y-4 text-gray-700 leading-relaxed">
-				<p>
+				<p className="text-body">
 					Une <strong>base de données</strong> peut être comparée à une{" "}
 					<strong>bibliothèque</strong> bien organisée.
 				</p>
@@ -156,7 +158,7 @@ export default function DatabaseArchitecture() {
 					</p>
 				</div>
 
-				<p>
+				<p className="text-body">
 					Tout comme une bibliothèque organise ses livres par sections (une
 					étagère pour la fiction, une pour l'histoire), une base de données
 					organise les informations en <strong>tables</strong> thématiques.
@@ -176,7 +178,7 @@ export default function DatabaseArchitecture() {
 					<div className="bg-white border border-gray-300 rounded-lg p-4 shadow-sm">
 						<div className="flex items-center space-x-3 mb-4">
 							<MdTableChart className="w-5 h-5 min-w-[20px] text-gray-600" />
-							<h3 className="text-lg font-bold text-gray-800">
+						<h3 className="text-base sm:text-lg font-bold text-gray-800">
 								Table "utilisateurs"
 							</h3>
 						</div>
@@ -243,7 +245,7 @@ export default function DatabaseArchitecture() {
 							<MdKey className="w-4 h-4 mr-2 text-yellow-600" />
 							Clé Primaire
 						</h4>
-						<p className="text-yellow-800 text-sm">
+						<p className="text-body text-yellow-800">
 							Identifiant unique de chaque ligne dans une table
 						</p>
 					</div>
@@ -252,7 +254,7 @@ export default function DatabaseArchitecture() {
 							<MdLink className="w-4 h-4 mr-2 text-red-600 opacity-80" />
 							Clé Étrangère
 						</h4>
-						<p className="text-red-800 text-sm">
+						<p className="text-body text-red-800">
 							Référence vers la clé primaire d'une autre table
 						</p>
 					</div>

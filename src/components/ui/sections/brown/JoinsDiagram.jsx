@@ -121,7 +121,7 @@ const JoinCard = ({ title, vennConfig }) => {
 			</svg>
 
 			{/* Join type title */}
-			<h4 className="relative z-10 text-base font-semibold text-stone-800 mt-3 text-center tracking-wide group-hover:text-stone-600 transition-colors duration-300">
+			<h4 className="relative z-10 font-semibold text-stone-800 mt-3 text-center tracking-wide group-hover:text-stone-600 transition-colors duration-300">
 				{title}
 			</h4>
 		</div>

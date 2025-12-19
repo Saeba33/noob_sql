@@ -56,7 +56,7 @@ export default function Accordion({
 							style={{ color: "#8A8A8A" }}
 							aria-hidden="true"
 						/>
-						<h3 className="text-base sm:text-lg font-semibold text-gray-600 group-hover:text-gray-800 transition-colors">
+						<h3 className="font-semibold text-gray-600 group-hover:text-gray-800 transition-colors">
 							{section}
 						</h3>
 					</div>
@@ -92,18 +92,18 @@ export default function Accordion({
 						)}
 
 						{/* External Component */}
-						{externalComponent && (
-							<Suspense
-								fallback={
-									<div className="flex items-center justify-center p-8">
-										<div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-										<span className="ml-3 text-gray-600">Chargement...</span>
-									</div>
-								}
-							>
-								<div>{externalComponent}</div>
-							</Suspense>
-						)}
+					{externalComponent && (
+						<Suspense
+							fallback={
+								<div className="flex items-center justify-center p-8">
+									<div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+									<span className="ml-3 text-gray-600">Chargement...</span>
+								</div>
+							}
+						>
+							<div>{externalComponent}</div>
+						</Suspense>
+					)}
 
 						{/* Examples structure */}
 						{examples && examples.length > 0 && (
@@ -121,7 +121,7 @@ export default function Accordion({
 											}}
 										>
 											{example.label && (
-												<h5 className="text-sm font-semibold text-gray-900 flex items-center gap-2 mb-4">
+												<h5 className="font-semibold text-gray-900 flex items-center gap-2 mb-4">
 													<MdCode className="w-4 h-4" />
 													{example.label}
 												</h5>
@@ -134,7 +134,7 @@ export default function Accordion({
 													{example.code &&
 														example.code.includes("CREATE TABLE") && (
 															<div className="mt-4">
-																<h4 className="text-sm font-semibold text-gray-900 mb-3 flex items-center">
+																<h4 className="font-semibold text-gray-900 mb-3 flex items-center">
 																	<MdAccountTree className="w-4 h-4 mr-2" />
 																	Structure des tables
 																</h4>

@@ -62,7 +62,7 @@ const accordions = [
 					{
 						section: "Normalisation des tables",
 						icon: <MdTableChart />,
-						rule: "Organiser les données en tables distinctes afin d’éviter les duplications. Une information ne doit exister qu’à un seul endroit.",
+						rule: "Organiser les données en tables distinctes afin d'éviter les duplications. Une information ne doit exister qu'à un seul endroit.",
 						good: "Tables séparées : utilisateurs, commandes, produits",
 						bad: "Une table commandes avec nom_client répété à chaque ligne",
 						reason: "Évite les incohérences, facilite les mises à jour.",
@@ -101,17 +101,16 @@ const accordions = [
 						reason:
 							"Renforce l'intégrité des données, évite les erreurs en amont.",
 					},
-					{
-						section: "Relations entre les tables",
-						icon: <MdLink />,
-						rule: "Relier les tables logiquement grâce aux clés étrangères (FOREIGN KEY).",
-						good: "commande.utilisateur_id → FOREIGN KEY vers utilisateurs.id",
-						bad: "Stoker nom_client directement dans une table commandes",
-						reason:
-							"Assure la cohérence entre les tables et permet des jointures fiables.",
-					},
-				]}
-			/>
+				{
+					section: "Relations entre les tables",
+					icon: <MdLink />,
+					rule: "Relier les tables logiquement grâce aux clés étrangères (FOREIGN KEY).",
+					good: "commande.utilisateur_id → FOREIGN KEY vers utilisateurs.id",
+					bad: "Stoker nom_client directement dans une table commandes",
+					reason: "Assure la cohérence entre les tables et permet des jointures fiables.",
+				},
+			]}
+		/>
 		),
 	},
 ];
