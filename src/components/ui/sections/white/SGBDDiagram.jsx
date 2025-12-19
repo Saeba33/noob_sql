@@ -61,7 +61,7 @@ export default function SGBDDiagram() {
 
 			{/* Hierarchy diagram */}
 			<span className="text-xs italic -mb-6 pl-1 mt-3">
-				Exemples de SGBD (liste non exhaustive) :
+			Exemples de SGBD (liste non exhaustive)&nbsp;:
 			</span>
 			<div className="border border-gray-300 rounded-lg bg-gray-50 py-6 px-4">
 				{/* Root - SGBD */}
@@ -78,9 +78,9 @@ export default function SGBDDiagram() {
 					<div className="flex flex-col items-center bg-blue-50 p-6 rounded-xl border-2 border-blue-300">
 						{/* SGBDR category node */}
 						<div className="flex items-center space-x-3 px-6 py-4 bg-white border-3 border-blue-500 rounded-lg mb-8 shadow-md">
-							<MdStorage className="w-6 h-6 text-blue-600" />
-							<span className="font-bold text-blue-800 text-lg">SGBDR</span>
-						</div>
+						<MdStorage className="w-6 h-6 min-w-[24px] text-blue-600" />
+						<span className="font-bold text-blue-800 text-lg">SGBDR</span>
+					</div>
 
 						{/* SGBDR databases */}
 						<div className="space-y-4 w-full max-w-[240px]">
@@ -107,9 +107,9 @@ export default function SGBDDiagram() {
 					<div className="flex flex-col items-center bg-emerald-50 p-6 rounded-xl border-2 border-emerald-300">
 						{/* NoSQL category node */}
 						<div className="flex items-center space-x-3 px-6 py-4 bg-white border-3 border-emerald-500 rounded-lg mb-8 shadow-md">
-							<MdAccountTree className="w-6 h-6 text-emerald-600" />
-							<span className="font-bold text-emerald-800 text-lg">NoSQL</span>
-						</div>
+						<MdAccountTree className="w-6 h-6 min-w-[24px] text-emerald-600" />
+						<span className="font-bold text-emerald-800 text-lg">NoSQL</span>
+					</div>
 
 						{/* NoSQL databases */}
 						<div className="space-y-4 w-full max-w-[240px]">

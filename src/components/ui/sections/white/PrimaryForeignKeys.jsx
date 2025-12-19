@@ -18,7 +18,7 @@ export default function PrimaryForeignKeys() {
 				{/* Primary Keys */}
 				<div className="bg-white rounded-lg border border-gray-200 p-6">
 					<div className="flex items-center gap-3 mb-4">
-						<MdKey className="w-8 h-8 text-yellow-600" />
+						<MdKey className="w-8 h-8 min-w-[32px] text-yellow-600" />
 						<h3 className="text-xl font-bold text-gray-900">
 							Clé Primaire (PRIMARY KEY)
 						</h3>
@@ -41,7 +41,7 @@ export default function PrimaryForeignKeys() {
 				{/* Foreign Keys */}
 				<div className="bg-white rounded-lg border border-gray-200 p-6">
 					<div className="flex items-center gap-3 mb-4">
-						<MdLink className="w-8 h-8 text-red-600 opacity-80" />
+						<MdLink className="w-8 h-8 min-w-[32px] text-red-600 opacity-80" />
 						<h3 className="text-xl font-bold text-gray-900">
 							Clé Étrangère (FOREIGN KEY)
 						</h3>

@@ -175,7 +175,7 @@ export default function DatabaseArchitecture() {
 					{/* Users table */}
 					<div className="bg-white border border-gray-300 rounded-lg p-4 shadow-sm">
 						<div className="flex items-center space-x-3 mb-4">
-							<MdTableChart className="w-5 h-5 text-gray-600" />
+							<MdTableChart className="w-5 h-5 min-w-[20px] text-gray-600" />
 							<h3 className="text-lg font-bold text-gray-800">
 								Table "utilisateurs"
 							</h3>
@@ -196,7 +196,7 @@ export default function DatabaseArchitecture() {
 					{/* Books table */}
 					<div className="bg-white border border-gray-300 rounded-lg p-4 shadow-sm">
 						<div className="flex items-center space-x-3 mb-4">
-							<MdTableChart className="w-5 h-5 text-gray-600" />
+							<MdTableChart className="w-5 h-5 min-w-[20px] text-gray-600" />
 							<h3 className="text-lg font-bold text-gray-800">
 								Table "livres"
 							</h3>
@@ -217,7 +217,7 @@ export default function DatabaseArchitecture() {
 					{/* Borrowings table */}
 					<div className="bg-white border border-gray-300 rounded-lg p-4 shadow-sm">
 						<div className="flex items-center space-x-3 mb-4">
-							<MdTableChart className="w-5 h-5 text-gray-600" />
+							<MdTableChart className="w-5 h-5 min-w-[20px] text-gray-600" />
 							<h3 className="text-lg font-bold text-gray-800">
 								Table "emprunts"
 							</h3>

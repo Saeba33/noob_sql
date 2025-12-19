@@ -52,7 +52,7 @@ export default function Accordion({
 				<div className="flex items-center justify-between">
 					<div className="flex items-center gap-3">
 						<FaCode
-							className="w-5 h-5 flex-shrink-0 transition-colors duration-200"
+							className="w-5 h-5 flex-shrink-0 transition-colors duration-200 hidden sm:block"
 							style={{ color: "#8A8A8A" }}
 							aria-hidden="true"
 						/>
@@ -80,10 +80,7 @@ export default function Accordion({
 				}`}
 			>
 				<div className="overflow-hidden">
-					<div
-						className="px-6 py-5 bg-white flex flex-col space-y-6 rounded-b-lg cursor-auto border-t border-[#e5e7eb]"
-
-					>
+					<div className="px-6 py-5 bg-white flex flex-col space-y-6 rounded-b-lg cursor-auto border-t border-[#e5e7eb]">
 						{/* Description - only show if content exists */}
 						{content && (
 							<div>
@@ -125,9 +122,7 @@ export default function Accordion({
 										>
 											{example.label && (
 												<h5 className="text-sm font-semibold text-gray-900 flex items-center gap-2 mb-4">
-													<MdCode
-														className="w-4 h-4"
-													/>
+													<MdCode className="w-4 h-4" />
 													{example.label}
 												</h5>
 											)}

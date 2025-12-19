@@ -33,7 +33,7 @@ Responsive (iphone5):
     . Idem pour les icônes dans bonnes pratiques (notamment quand le titre est sur plusieurs lignes).
 
     .Idem poour les icônes sur les titres des examples (toutes ceintures)
-    
+
 - ceintures marron : 
     . Les diagram se superposent. Passer à un par ligne.
     . centrer gauche la légende.
@@ -42,3 +42,13 @@ Voir break-word
 Icone swip ?
 
 Le clic sur NoobSQL en version mobile ne renvoie pas à l'accueil.
+
+p {
+	text-wrap: pretty;
+}
+
+h1, ... {
+    text-wrap: balance;
+}
+
+couleurs des icones bonnes pratiques à calquer sur belts-config

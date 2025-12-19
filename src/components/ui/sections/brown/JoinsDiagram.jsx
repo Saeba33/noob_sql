@@ -157,7 +157,7 @@ export default function JoinsDiagram() {
 	return (
 		<div className="space-y-6">
 			{/* Join types grid */}
-			<div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+			<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
 				{joins.map((join, index) => (
 					<JoinCard
 						key={index}
@@ -168,7 +168,7 @@ export default function JoinsDiagram() {
 			</div>
 
 			{/* Legend */}
-			<div className="flex flex-wrap gap-6 justify-center text-sm pt-4 px-4 py-3 bg-stone-50/50 rounded-lg border border-stone-200/50">
+			<div className="flex flex-wrap gap-6 justify-start text-sm pt-4 px-4 py-3 bg-stone-50/50 rounded-lg border border-stone-200/50">
 				<div className="flex items-center gap-2">
 					<div className="w-4 h-4 rounded-full" style={{ backgroundColor: '#9C6A3E' }}></div>
 					<span className="text-stone-600">Zone sélectionnée</span>

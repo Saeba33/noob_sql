@@ -40,7 +40,7 @@ const accordions = [
 		externalComponent: <SGBDDiagram />,
 	},
 	{
-		section: "Architecture d'une base de données relationnelles",
+		section: "Architecture d'un SGBDR",
 		externalComponent: <DatabaseArchitecture />,
 	},
 	{
@@ -59,7 +59,7 @@ const accordions = [
 				rules={[
 					{
 						section: "Normalisation des tables",
-						icon: <MdTableChart className="w-5 h-5 text-gray-600" />,
+						icon: <MdTableChart className="w-5 h-5 min-w-[20px] text-gray-600" />,
 						rule: "Organiser les données en tables distinctes afin d’éviter les duplications. Une information ne doit exister qu’à un seul endroit.",
 						good: "Tables séparées : utilisateurs, commandes, produits",
 						bad: "Une table commandes avec nom_client répété à chaque ligne",
@@ -67,7 +67,7 @@ const accordions = [
 					},
 					{
 						section: "Conventions de nommage",
-						icon: <MdDataset className="w-5 h-5 text-gray-600" />,
+						icon: <MdDataset className="w-5 h-5 min-w-[20px] text-gray-600" />,
 						rule: "Utiliser des noms explicites. Par convention, les tables sont nommées au pluriel, les colonnes au singulier.",
 						good: "Tables : utilisateurs, commandes \nColonnes : email, date_creation, utilisateur_id",
 						bad: "Tables : utilisateur, commande \nColonnes : usr, nm, data1",
@@ -75,7 +75,7 @@ const accordions = [
 					},
 					{
 						section: "Convention snake_case",
-						icon: <MdTextFormat className="w-5 h-5 text-gray-600" />,
+						icon: <MdTextFormat className="w-5 h-5 min-w-[20px] text-gray-600" />,
 						rule: "Écrire les noms de tables et de colonnes en minuscules avec des underscores (snake_case).",
 						good: "nom_utilisateur, date_creation, prix_total",
 						bad: "Utilisateurs, dateCreation, prix-total",
@@ -84,7 +84,7 @@ const accordions = [
 					},
 					{
 						section: "Types de données appropriés",
-						icon: <MdTextFormat className="w-5 h-5 text-gray-600" />,
+						icon: <MdTextFormat className="w-5 h-5 min-w-[20px] text-gray-600" />,
 						rule: "Choisir le type de données adapté à chaque colonne.",
 						good: "VARCHAR(255) pour emails, DECIMAL(10,2) pour montants, INTEGER pour identifiants",
 						bad: "VARCHAR trop long, FLOAT pour des prix, TEXT pour des données courtes",
@@ -92,7 +92,7 @@ const accordions = [
 					},
 					{
 						section: "Contraintes de validation",
-						icon: <MdDataset className="w-5 h-5 text-gray-600" />,
+						icon: <MdDataset className="w-5 h-5 min-w-[20px] text-gray-600" />,
 						rule: "Ajouter des contraintes pour garantir la validité des données (NOT NULL, UNIQUE, CHECK...)",
 						good: "email VARCHAR(255) UNIQUE NOT NULL, age INTEGER CHECK(age >= 0)",
 						bad: "Colonnes sans contraintes, valeurs nulles ou incohérentes possibles",
@@ -101,7 +101,7 @@ const accordions = [
 					},
 					{
 						section: "Relations entre les tables",
-						icon: <MdLink className="w-5 h-5 text-gray-600" />,
+						icon: <MdLink className="w-5 h-5 min-w-[20px] text-gray-600" />,
 						rule: "Relier les tables logiquement grâce aux clés étrangères (FOREIGN KEY).",
 						good: "commande.utilisateur_id → FOREIGN KEY vers utilisateurs.id",
 						bad: "Stoker nom_client directement dans une table commandes",
@@ -274,62 +274,55 @@ export const dataTypes = [
 ];
 
 export const constraints = [
-  {
-    name: "PRIMARY KEY",
-    description: "Identifiant unique de la table",
-    icon: <MdKey className="w-5 h-5 text-gray-600" />,
-    example: "id INTEGER PRIMARY KEY AUTO_INCREMENT",
-    usage: "Une seule par table, jamais NULL, unique",
-  },
-  {
-    name: "FOREIGN KEY",
-    description: "Référence vers une autre table",
-    icon: <MdLink className="w-5 h-5 text-gray-600" />,
-    example: "utilisateur_id INTEGER REFERENCES utilisateurs(id)",
-    usage: "Maintient l'intégrité référentielle",
-  },
-  {
-    name: "UNIQUE",
-    description: "Valeur unique dans la table",
-    icon: <MdVerified className="w-5 h-5 text-gray-600" />,
-    example: "email VARCHAR(255) UNIQUE",
-    usage: "Emails, noms d'utilisateurs uniques",
-  },
-  {
-    name: "NOT NULL",
-    description: "Valeur obligatoire",
-    icon: <MdSecurity className="w-5 h-5 text-gray-600" />,
-    example: "nom VARCHAR(100) NOT NULL",
-    usage: "Champs obligatoires",
-  },
-  {
-    name: "DEFAULT",
-    description: "Valeur par défaut",
-    icon: <MdSettings className="w-5 h-5 text-gray-600" />,
-    example: "statut VARCHAR(20) DEFAULT 'actif'",
-    usage: "Valeurs automatiques à l'insertion",
-  },
-  {
-    name: "CHECK",
-    description: "Contrainte de validation",
-    icon: <MdVerified className="w-5 h-5 text-gray-600" />,
-    example: "age INTEGER CHECK (age >= 0 AND age <= 120)",
-    usage: "Validation des données",
-  },
-  {
-    name: "AUTO_INCREMENT",
-    description: "Incrémentation automatique",
-    icon: <MdNumbers className="w-5 h-5 text-gray-600" />,
-    example: "id INTEGER AUTO_INCREMENT",
-    usage: "IDs automatiques, commence à 1",
-  },
-  {
-    name: "UNSIGNED",
-    description: "Nombres positifs uniquement",
-    icon: <MdNumbers className="w-5 h-5 text-gray-600" />,
-    example: "age INTEGER UNSIGNED",
-    usage: "Étend la plage de 0 à 4 milliards (au lieu de -2 à +2 milliards)",
-  },
+	{
+		name: "PRIMARY KEY",
+		description: "Identifiant unique de la table",
+		icon: <MdKey className="w-5 h-5 min-w-[20px] text-gray-600" />,
+		example: "id INTEGER PRIMARY KEY AUTO_INCREMENT",
+		usage: "Identifie de manière unique chaque enregistrement de la table",
+	},
+	{
+		name: "FOREIGN KEY",
+		description: "Référence vers une autre table",
+		icon: <MdLink className="w-5 h-5 min-w-[20px] text-gray-600" />,
+		example: "utilisateur_id INTEGER REFERENCES utilisateurs(id)",
+		usage: "Assure l’intégrité référentielle entre deux tables",
+	},
+	{
+		name: "UNIQUE",
+		description: "Valeur unique dans la table",
+		icon: <MdVerified className="w-5 h-5 min-w-[20px] text-gray-600" />,
+		example: "email VARCHAR(255) UNIQUE",
+		usage: "Empêche l’enregistrement de valeurs dupliquées",
+	},
+	{
+		name: "NOT NULL",
+		description: "Valeur obligatoire",
+		icon: <MdSecurity className="w-5 h-5 min-w-[20px] text-gray-600" />,
+		example: "nom VARCHAR(100) NOT NULL",
+		usage: "Interdit les valeurs vides pour cette colonne",
+	},
+	{
+		name: "DEFAULT",
+		description: "Valeur par défaut",
+		icon: <MdSettings className="w-5 h-5 min-w-[20px] text-gray-600" />,
+		example: "statut VARCHAR(20) DEFAULT 'actif'",
+		usage: "Applique une valeur par défaut à un enregistrement",
+	},
+	{
+		name: "CHECK",
+		description: "Contrainte de validation",
+		icon: <MdVerified className="w-5 h-5 min-w-[20px] text-gray-600" />,
+		example: "age INTEGER CHECK (age >= 0 AND age <= 120)",
+		usage: "Vérifie que la valeur rentre dans le périmètre défini",
+	},
+	{
+		name: "AUTO_INCREMENT",
+		description: "Incrémentation automatique",
+		icon: <MdNumbers className="w-5 h-5 min-w-[20px] text-gray-600" />,
+		example: "id INTEGER AUTO_INCREMENT",
+		usage: "Génère automatiquement une valeur numérique incrémentée",
+	},
 ];
 
 export const exampleTypes = [
