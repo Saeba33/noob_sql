@@ -22,7 +22,7 @@ const Logo = () => (
 const Practice = () => (
 	<Link
 		href="/practice"
-		className="group relative transition-all duration-200 px-4 py-2 flex items-center gap-2 text-topic font-medium text-gray-700 hover:text-gray-900 whitespace-nowrap border hover:border-gray-400 rounded-lg bg-gray-100 border-gray-200"
+		className="group relative transition-all duration-200 px-3 py-1.5 flex items-center gap-2 text-topic font-medium text-gray-700 hover:text-gray-900 whitespace-nowrap border hover:border-gray-400 rounded-lg bg-gray-100 border-gray-200"
 	>
 		<Image src="/practice.png" width={28} height={28} alt="Practice icon" />
 		<span className="tracking-wide">FIGHT</span>
@@ -61,9 +61,8 @@ export default function Header() {
 								</div>
 							</div>
 						) : (
-							<div className="flex items-center">
+							<div className="flex items-center justify-between w-full">
 								<Logo />
-								<div className="flex-1" />
 								<NavbarMobile
 									isMenuOpen={isMenuOpen}
 									toggleMenu={toggleMenu}
