@@ -38,7 +38,7 @@ export default function HomeNavigation() {
 
 	return (
 		<div className="w-full lg:max-w-[1500px] lg:mx-auto px-4 lg:px-6 py-12">
-			<div className="flex flex-wrap justify-center gap-6">
+			<div className="flex flex-wrap justify-center gap-4 sm:gap-5 md:gap-6">
 				{belts.map((page) => {
 					return (
 						<Link

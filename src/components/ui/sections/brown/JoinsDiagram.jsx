@@ -20,10 +20,8 @@ const JoinCard = ({ title, vennConfig }) => {
 
 			{/* Venn diagram SVG */}
 			<svg
-				width="160"
-				height="110"
 				viewBox="0 0 100 70"
-				className="relative z-10"
+				className="relative z-10 w-32 h-auto sm:w-36 md:w-40"
 			>
 				<defs>
 					{/* Mask to exclude intersection from circle A */}

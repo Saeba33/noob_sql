@@ -43,7 +43,10 @@ export default function DataTypes() {
 				</p>
 
 				<div className="bg-white border border-gray-300 rounded-lg shadow-sm overflow-hidden">
-					<div className="overflow-x-auto">
+					<div className="relative">
+						{/* Scroll indicator */}
+						<div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white to-transparent pointer-events-none z-10" />
+						<div className="overflow-x-auto">
 						<table className="w-full min-w-[800px] border-collapse bg-white rounded-lg shadow-sm overflow-hidden">
 							<thead>
 								<tr>
@@ -127,6 +130,7 @@ export default function DataTypes() {
 					</div>
 				</div>
 			</div>
+		</div>
 		);
 	};
 	//#endregion
@@ -194,8 +198,11 @@ export default function DataTypes() {
 					</h2>
 
 					<div className="bg-white border border-gray-300 rounded-lg shadow-sm overflow-hidden">
-						<div className="overflow-x-auto">
-							<table className="w-full min-w-[900px] border-collapse bg-white rounded-lg shadow-sm overflow-hidden">
+						<div className="relative">
+							{/* Scroll indicator */}
+							<div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white to-transparent pointer-events-none z-10" />
+							<div className="overflow-x-auto">
+							<table className="w-full min-w-[800px] border-collapse bg-white rounded-lg shadow-sm overflow-hidden">
 								<thead>
 									<tr>
 										<th className="text-xs font-semibold text-gray-600 uppercase p-3 text-left border-b  border-r border-gray-300 bg-gray-100 rounded-tl-lg">
@@ -263,7 +270,8 @@ export default function DataTypes() {
 					</div>
 				</div>
 			</div>
-		);
+		</div>
+	);
 	};
 	//#endregion
 

@@ -237,7 +237,7 @@ export default function DatabaseArchitecture() {
 				</div>
 
 				{/* Legend */}
-				<div className="mt-8 grid md:grid-cols-2 gap-4">
+				<div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
 					<div className="p-4 bg-yellow-100 border border-yellow-200 rounded-lg">
 						<h4 className="font-bold text-yellow-900 mb-2 flex items-center">
 							<MdKey className="w-4 h-4 mr-2 text-yellow-600" />

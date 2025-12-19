@@ -45,7 +45,7 @@ export default function Accordion({
 				onClick={toggle}
 				aria-expanded={isOpen}
 				aria-controls={`${accordionId}-content`}
-				className={`w-full text-left px-6 py-4 bg-white transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 relative cursor-pointer group ${
+				className={`w-full text-left px-4 py-3 sm:px-5 sm:py-3.5 md:px-6 md:py-4 bg-white transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 relative cursor-pointer group ${
 					isOpen ? "rounded-t-lg" : "rounded-lg"
 				}`}
 			>
@@ -56,7 +56,7 @@ export default function Accordion({
 							style={{ color: "#8A8A8A" }}
 							aria-hidden="true"
 						/>
-						<h3 className="text-lg font-semibold text-gray-600 group-hover:text-gray-800 transition-colors">
+						<h3 className="text-base sm:text-lg font-semibold text-gray-600 group-hover:text-gray-800 transition-colors">
 							{section}
 						</h3>
 					</div>
