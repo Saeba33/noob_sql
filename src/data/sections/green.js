@@ -6,9 +6,9 @@ const menu = {
 		"Opérateurs de comparaison",
 		"Opérateurs logiques",
 		"Mots-clés de filtrage",
-		"Tri des résultats (ORDER BY)",
-		"Regroupement (GROUP BY, HAVING)",
-		"Pagination (LIMIT, OFFSET)",
+		"ORDER BY",
+		"GROUP BY & HAVING",
+		"LIMIT & OFFSET",
 		"Exemples combinés",
 	],
 };
@@ -472,7 +472,7 @@ WHERE telephone IS NOT NULL;`,
 		],
 	},
 	{
-		section: "Tri des résultats (ORDER BY)",
+		section: "ORDER BY - Tri",
 		content:
 			"ORDER BY permet de trier les résultats selon une ou plusieurs colonnes. ASC (ordre croissant) est l'ordre par défaut, DESC (ordre décroissant) inverse l'ordre.",
 		examples: [
@@ -526,7 +526,7 @@ ORDER BY ville ASC, age DESC;`,
 		],
 	},
 	{
-		section: "Regroupement (GROUP BY, HAVING)",
+		section: "GROUP BY & HAVING",
 		content:
 			"GROUP BY regroupe les lignes ayant les mêmes valeurs dans une ou plusieurs colonnes, permettant d'appliquer des fonctions d'agrégation sur chaque groupe. HAVING filtre ensuite ces groupes, comme WHERE filtre les lignes.\n\nDifférence clé : WHERE filtre AVANT le regroupement, HAVING filtre APRÈS.",
 		examples: [
@@ -587,7 +587,7 @@ HAVING AVG(prix) > 100;    -- Filtre les groupes APRÈS regroupement`,
 		],
 	},
 	{
-		section: "Pagination (LIMIT, OFFSET)",
+		section: "LIMIT & OFFSET",
 		content:
 			"LIMIT restreint le nombre de résultats retournés. OFFSET permet de sauter un certain nombre de lignes avant de commencer à retourner des résultats.",
 		examples: [

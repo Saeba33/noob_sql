@@ -19,7 +19,7 @@ const header = {
 
 const accordions = [
   {
-    section: "Sous-requêtes dans WHERE, SELECT, IN, EXISTS",
+    section: "Sous-requêtes",
     content: "Utilisez des requêtes imbriquées pour des analyses complexes.",
     examples: [
       {
@@ -81,7 +81,7 @@ WHERE EXISTS (
     ],
   },
   {
-    section: "WITH (CTE - Common Table Expression)",
+    section: "CTE (Common Table Expression)",
     content:
       "Organisez vos requêtes complexes avec des expressions de table commune.",
     examples: [
@@ -168,7 +168,7 @@ ORDER BY niveau, nom;`,
     ],
   },
   {
-    section: "Création et Utilisation de VIEW",
+    section: "VIEW - Vues",
     content: "Créez des vues pour simplifier et sécuriser l'accès aux données.",
     examples: [
       {
@@ -224,7 +224,7 @@ ORDER BY prix DESC;`,
     ],
   },
   {
-    section: "Opérations de Combinaison avec UNION, UNION ALL",
+    section: "UNION & UNION ALL",
     content: "Combinez les résultats de plusieurs requêtes avec UNION.",
     examples: [
       {
@@ -312,7 +312,7 @@ ORDER BY age DESC;`,
     ],
   },
   {
-    section: "INDEX - Optimisation des Performances",
+    section: "INDEX - Optimisation",
     content: "Optimisez vos requêtes avec des index stratégiquement placés.",
     examples: [
       {
@@ -367,7 +367,7 @@ SELECT * FROM utilisateurs WHERE email = 'alice@email.com';`,
     ],
   },
   {
-    section: "Transactions - BEGIN, COMMIT, ROLLBACK",
+    section: "Transactions",
     content: "Gérez l'intégrité des données avec les transactions.",
     examples: [
       {

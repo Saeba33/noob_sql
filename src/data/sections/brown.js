@@ -30,7 +30,7 @@ const accordions = [
 		externalComponent: <JoinsDiagram />,
 	},
 	{
-		section: "Rappel : clés primaires / étrangères",
+		section: "Clés primaires & étrangères",
 		content:
 			"Les clés primaires et étrangères sont indispensables pour établir des jointures entre tables. Elles définissent les relations qui lient les enregistrements d'une table à ceux d'une autre. Sans elles, il n'est pas possible de faire de jointures entre les tables.",
 		examples: [

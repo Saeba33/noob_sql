@@ -36,7 +36,7 @@ export const BELTS_CONFIG = {
 		},
 	},
 	green: {
-		title: "Filtres & Conditions",
+		title: "Filtres",
 		href: "/green",
 		image: "/green.png",
 		colors: {
@@ -48,7 +48,7 @@ export const BELTS_CONFIG = {
 		},
 	},
 	blue: {
-		title: "Fonctions SQL",
+		title: "Fonctions",
 		href: "/blue",
 		image: "/blue.png",
 		colors: {
@@ -72,7 +72,7 @@ export const BELTS_CONFIG = {
 		},
 	},
 	black: {
-		title: "Requêtes Avancées",
+		title: "Avancé",
 		href: "/black",
 		image: "/black.png",
 		colors: {

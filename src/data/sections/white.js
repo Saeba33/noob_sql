@@ -21,7 +21,7 @@ const menu = {
   summary: "Théorie et concepts fondamentaux",
   topics: [
     "SGBD",
-    "Architecture BDD relationnelles",
+    "Architecture relationnelle",
     "Types de données",
     "Relations entre les tables",
     "Bonnes pratiques",

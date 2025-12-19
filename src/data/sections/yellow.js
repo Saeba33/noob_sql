@@ -16,7 +16,7 @@ const header = {
 
 const accordions = [
 	{
-		section: "CREATE TABLE - Création de tables",
+		section: "CREATE TABLE",
 		examples: [
 			{
 				type: "schema",
@@ -50,7 +50,7 @@ CREATE TABLE commande_details (
 		],
 	},
 	{
-		section: "ALTER TABLE - Modification de structure",
+		section: "ALTER TABLE",
 		examples: [
 			{
 				type: "schema",
@@ -81,7 +81,7 @@ DROP COLUMN telephone;`,
 		],
 	},
 	{
-		section: "DROP TABLE - Suppression de tables",
+		section: "DROP TABLE",
 		content:
 			"Attention : l'exécution d'une commande DROP est <strong><u>irréversible</u></strong> ! Soyez vigilant !",
 		examples: [
