@@ -130,7 +130,7 @@ export default function Accordion({
 											{exampleType === "schema" ? (
 												// Schema: CREATE TABLE with auto-generated diagram
 												<>
-													<SQLCodeBlock>{example.code}</SQLCodeBlock>
+												<SQLCodeBlock>{example.code}</SQLCodeBlock>
 													{example.code &&
 														example.code.includes("CREATE TABLE") && (
 															<div className="mt-4">
@@ -154,7 +154,7 @@ export default function Accordion({
 											) : (
 												// Query: Regular SQL with optional result
 												<>
-													<SQLCodeBlock>{example.code}</SQLCodeBlock>
+												<SQLCodeBlock>{example.code}</SQLCodeBlock>
 													{example.result !== undefined && (
 														<div className="mt-3">
 															{renderSqlResult(example.result)}
