@@ -204,7 +204,8 @@ p.text-body {
    ================================================== */
 
 /* Scroll indicators */
-.scroll-indicator {
+.scroll-indicator-white,
+.scroll-indicator-dark {
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -214,11 +215,11 @@ p.text-body {
 	z-index: 10;
 }
 
-.scroll-indicator--white {
+.scroll-indicator-white {
 	background: linear-gradient(to left, white, transparent);
 }
 
-.scroll-indicator--dark {
+.scroll-indicator-dark {
 	background: linear-gradient(to left, rgb(17, 24, 39), transparent);
 }
 
