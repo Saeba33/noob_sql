@@ -128,6 +128,19 @@ h5 {
 	}
 }
 
+/* H6 – Micro titles */
+h6 {
+	font-size: 0.625rem; /* 10px */
+	font-weight: 600;
+	line-height: 1.5;
+}
+
+@media (min-width: 640px) {
+	h6 {
+		font-size: 0.75rem; /* 12px */
+	}
+}
+
 /* ==================================================
    Typography – Paragraphs
    ================================================== */
