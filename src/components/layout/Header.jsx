@@ -12,7 +12,7 @@ const Logo = () => (
 		href="/"
 		className="flex items-center transition-all duration-300 group"
 	>
-		<span className="text-2xl sm:text-3xl font-bold tracking-tight leading-none text-gray-800 group-hover:text-gray-950 transition-colors">
+		<span className="text-xl sm:text-2xl font-bold tracking-tight leading-none text-gray-800 group-hover:text-gray-950 transition-colors">
 			NoobSQL
 		</span>
 	</Link>
@@ -42,9 +42,9 @@ export default function Header() {
 						isMobile ? "bg-white" : "bg-white/80 backdrop-blur-lg"
 					}`}
 				>
-					<div className="px-6 py-3">
+					<div className="px-6 h-14 flex items-center">
 						{!isMobile ? (
-							<div className="grid grid-cols-[auto_1fr_auto] items-center gap-8">
+							<div className="grid grid-cols-[auto_1fr_auto] items-center gap-8 w-full">
 								{/* Left zone */}
 								<div className="flex items-center">
 									<Logo />

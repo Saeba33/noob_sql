@@ -21,6 +21,11 @@ body {
    Typography – Global behavior
    ================================================== */
 
+h1,
+h2 {
+	font-family: "Outfit", sans-serif;
+}
+
 p {
 	text-wrap: pretty;
 }
