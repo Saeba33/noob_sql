@@ -15,7 +15,7 @@ const menu = {
 
 const header = {
 	tag: "Ceinture Verte",
-	title: "Filtres et Conditions",
+	title: "Filtres & Conditions",
 	description:
 		"La ceinture verte vous enseigne l'art du filtrage et du contrôle des données. Apprenez à utiliser WHERE pour filtrer, les opérateurs pour comparer, ORDER BY pour trier, GROUP BY pour regrouper et HAVING pour filtrer les groupes. Ces compétences vous permettront d'extraire exactement les données dont vous avez besoin.",
 };
