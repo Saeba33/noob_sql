@@ -20,50 +20,6 @@ export const sqlSyntaxConfig = {
 		comment: "text-gray-500 italic",
 		default: "text-gray-200",
 	},
-
-	// Specific styles for different components
-	componentStyles: {
-		diagram: {
-			background: "bg-slate-800",
-			border: "border-slate-600",
-			header: "bg-slate-700",
-			headerText: "text-slate-300",
-			content: "text-slate-100",
-		},
-		schema: {
-			background: "bg-gray-900",
-			border: "border-gray-600",
-			header: "bg-gray-800",
-			headerText: "text-gray-300",
-			content: "text-gray-100",
-			tableName: "text-green-400 font-semibold",
-			columnType: "text-blue-300",
-			constraint: "text-purple-300",
-		},
-		result: {
-			background: "bg-emerald-900",
-			border: "border-emerald-600",
-			header: "bg-emerald-800",
-			headerText: "text-emerald-200",
-			content: "text-emerald-100",
-			rowEven: "bg-emerald-800/30",
-			rowOdd: "bg-emerald-700/20",
-		},
-		table: {
-			background: "bg-indigo-900",
-			border: "border-indigo-600",
-			header: "bg-indigo-800",
-			headerText: "text-indigo-200",
-			content: "text-indigo-100",
-			cellBorder: "border-indigo-700",
-		},
-		code: {
-			background: "bg-gray-900",
-			border: "border-gray-700",
-			header: "bg-gray-800",
-			headerText: "text-gray-400",
-		},
-	},
 };
 
 // Function to analyze and colorize SQL code with improved logic

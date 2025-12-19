@@ -1,7 +1,7 @@
 "use client";
 
 import BeltIcon from "@/components/ui/BeltIcon";
-import { BELT_COLORS, PAGES_CONFIG } from "@/config/belts-config";
+import { PAGES_CONFIG } from "@/config/belts-config";
 import { useNavigation } from "@/hooks/useNavigation";
 import Link from "next/link";
 

@@ -50,21 +50,15 @@ export default function SQLCodeBlock({ children, className = "" }) {
 
 	return (
 		<div className={`relative ${className}`}>
-			<div
-				className={`${sqlSyntaxConfig.componentStyles.code.background} ${sqlSyntaxConfig.componentStyles.code.border} border rounded-lg overflow-hidden shadow-lg`}
-			>
+			<div className="bg-gray-900 border-gray-700 border rounded-lg overflow-hidden shadow-lg">
 				{/* Terminal Header */}
-				<div
-					className={`${sqlSyntaxConfig.componentStyles.code.header} px-4 py-2 flex items-center space-x-2`}
-				>
+				<div className="bg-gray-800 px-4 py-2 flex items-center space-x-2">
 					<div className="flex space-x-1">
 						<div className="w-3 h-3 bg-red-500 rounded-full"></div>
 						<div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
 						<div className="w-3 h-3 bg-green-500 rounded-full"></div>
 					</div>
-					<span
-						className={`${sqlSyntaxConfig.componentStyles.code.headerText} text-sm font-mono ml-3`}
-					>
+					<span className="text-gray-400 text-sm font-mono ml-3">
 						SQL Query
 					</span>
 				</div>

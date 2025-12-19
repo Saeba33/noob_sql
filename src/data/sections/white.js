@@ -15,6 +15,7 @@ import DatabaseArchitecture from "@/components/ui/sections/white/DatabaseArchite
 import DataTypes from "@/components/ui/sections/white/DataTypes";
 import PrimaryForeignKeys from "@/components/ui/sections/white/PrimaryForeignKeys";
 import SGBDDiagram from "@/components/ui/sections/white/SGBDDiagram";
+import { BELT_COLORS } from "@/config/belts-config";
 
 const menu = {
   summary: "Théorie et concepts fondamentaux",
@@ -55,11 +56,12 @@ const accordions = [
 		section: "Bonnes pratiques",
 		externalComponent: (
 			<BestPractices
+				iconColor={BELT_COLORS.white.theme}
 				introduction="Une base de données bien conçue facilite le développement et évite les erreurs ! Les bonnes pratiques SQL essentielles pour concevoir des bases de données maintenables et performantes. Suivez ces règles fondamentales pour éviter les pièges courants."
 				rules={[
 					{
 						section: "Normalisation des tables",
-						icon: <MdTableChart className="w-5 h-5 min-w-[20px] text-gray-600" />,
+						icon: <MdTableChart className="w-5 h-5 min-w-[20px]" />,
 						rule: "Organiser les données en tables distinctes afin d’éviter les duplications. Une information ne doit exister qu’à un seul endroit.",
 						good: "Tables séparées : utilisateurs, commandes, produits",
 						bad: "Une table commandes avec nom_client répété à chaque ligne",
@@ -67,7 +69,7 @@ const accordions = [
 					},
 					{
 						section: "Conventions de nommage",
-						icon: <MdDataset className="w-5 h-5 min-w-[20px] text-gray-600" />,
+						icon: <MdDataset className="w-5 h-5 min-w-[20px]" />,
 						rule: "Utiliser des noms explicites. Par convention, les tables sont nommées au pluriel, les colonnes au singulier.",
 						good: "Tables : utilisateurs, commandes \nColonnes : email, date_creation, utilisateur_id",
 						bad: "Tables : utilisateur, commande \nColonnes : usr, nm, data1",
@@ -75,7 +77,7 @@ const accordions = [
 					},
 					{
 						section: "Convention snake_case",
-						icon: <MdTextFormat className="w-5 h-5 min-w-[20px] text-gray-600" />,
+						icon: <MdTextFormat className="w-5 h-5 min-w-[20px]" />,
 						rule: "Écrire les noms de tables et de colonnes en minuscules avec des underscores (snake_case).",
 						good: "nom_utilisateur, date_creation, prix_total",
 						bad: "Utilisateurs, dateCreation, prix-total",
@@ -84,7 +86,7 @@ const accordions = [
 					},
 					{
 						section: "Types de données appropriés",
-						icon: <MdTextFormat className="w-5 h-5 min-w-[20px] text-gray-600" />,
+						icon: <MdTextFormat className="w-5 h-5 min-w-[20px]" />,
 						rule: "Choisir le type de données adapté à chaque colonne.",
 						good: "VARCHAR(255) pour emails, DECIMAL(10,2) pour montants, INTEGER pour identifiants",
 						bad: "VARCHAR trop long, FLOAT pour des prix, TEXT pour des données courtes",
@@ -92,7 +94,7 @@ const accordions = [
 					},
 					{
 						section: "Contraintes de validation",
-						icon: <MdDataset className="w-5 h-5 min-w-[20px] text-gray-600" />,
+						icon: <MdDataset className="w-5 h-5 min-w-[20px]" />,
 						rule: "Ajouter des contraintes pour garantir la validité des données (NOT NULL, UNIQUE, CHECK...)",
 						good: "email VARCHAR(255) UNIQUE NOT NULL, age INTEGER CHECK(age >= 0)",
 						bad: "Colonnes sans contraintes, valeurs nulles ou incohérentes possibles",
@@ -101,7 +103,7 @@ const accordions = [
 					},
 					{
 						section: "Relations entre les tables",
-						icon: <MdLink className="w-5 h-5 min-w-[20px] text-gray-600" />,
+						icon: <MdLink className="w-5 h-5 min-w-[20px]" />,
 						rule: "Relier les tables logiquement grâce aux clés étrangères (FOREIGN KEY).",
 						good: "commande.utilisateur_id → FOREIGN KEY vers utilisateurs.id",
 						bad: "Stoker nom_client directement dans une table commandes",

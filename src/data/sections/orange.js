@@ -6,6 +6,7 @@ import {
 } from "react-icons/md";
 
 import BestPractices from "@/components/ui/sections/BestPractices";
+import { BELT_COLORS } from "@/config/belts-config";
 
 const menu = {
 	summary: "Opérations de base sur les données",
@@ -260,11 +261,12 @@ TRUNCATE TABLE temp_data;`,
 		section: "Bonnes Pratiques CRUD",
 		externalComponent: (
 			<BestPractices
+				iconColor={BELT_COLORS.orange.theme}
 				introduction="Un code SQL bien formaté est plus facile à lire, déboguer et maintenir ! Voici les conventions de syntaxe essentielles pour écrire du SQL propre et professionnel."
 				rules={[
 					{
 						section: "Mots-clés en MAJUSCULES",
-						icon: <MdSpellcheck className="w-5 h-5 min-w-[20px] text-green-600" />,
+						icon: <MdSpellcheck className="w-5 h-5 min-w-[20px]" />,
 						rule: "Écrire tous les mots-clés SQL en lettres majuscules pour une meilleure lisibilité",
 						good: "SELECT nom\nFROM utilisateurs\nWHERE age > 25;",
 						bad: "select nom\nfrom utilisateurs\nwhere age > 25;",
@@ -273,7 +275,7 @@ TRUNCATE TABLE temp_data;`,
 					},
 					{
 						section: "Indentation cohérente",
-						icon: <MdFormatIndentIncrease className="w-5 h-5 min-w-[20px] text-green-600" />,
+						icon: <MdFormatIndentIncrease className="w-5 h-5 min-w-[20px]" />,
 						rule: "Indenter les clauses SQL pour structurer visuellement tes requêtes",
 						good: "SELECT nom, email\nFROM utilisateurs\nWHERE age > 18\nORDER BY nom;",
 						bad: "SELECT nom, email FROM utilisateurs WHERE age > 18 ORDER BY nom;",
@@ -281,7 +283,7 @@ TRUNCATE TABLE temp_data;`,
 					},
 					{
 						section: "Ponctuation : partie de la syntaxe",
-						icon: <MdTextFormat className="w-5 h-5 min-w-[20px] text-green-600" />,
+						icon: <MdTextFormat className="w-5 h-5 min-w-[20px]" />,
 						rule: "La ponctuation n'est pas optionnelle : point-virgule en fin de requête, virgules entre colonnes (sauf la dernière)",
 						good: "SELECT nom, prenom, email\nFROM utilisateurs;",
 						bad: "SELECT nom prenom email\nFROM utilisateurs",
@@ -290,7 +292,7 @@ TRUNCATE TABLE temp_data;`,
 					},
 					{
 						section: "Alias explicites avec AS",
-						icon: <MdCode className="w-5 h-5 min-w-[20px] text-green-600" />,
+						icon: <MdCode className="w-5 h-5 min-w-[20px]" />,
 						rule: "Utiliser AS pour renommer les colonnes dans le résultat. Indispensable pour les calculs et fonctions, et utile pour rendre les résultats plus lisibles",
 						good: 'SELECT prenom AS "Prénom",\n       COUNT(*) AS total',
 						bad: "SELECT prenom Prénom,\n       COUNT(*) total",

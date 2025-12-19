@@ -1,5 +1,6 @@
 import BestPractices from "@/components/ui/sections/BestPractices";
 import { MdBuild, MdKey, MdSecurity } from "react-icons/md";
+import { BELT_COLORS } from "@/config/belts-config";
 
 const menu = {
 	summary: "Langage de définition de données",
@@ -114,11 +115,12 @@ DELETE FROM logs;`,
 		section: "Bonnes pratiques DDL",
 		externalComponent: (
 			<BestPractices
+				iconColor={BELT_COLORS.yellow.theme}
 				introduction="Le DDL définit la structure de votre base. Une conception rigoureuse dès le départ vous évitera des migrations complexes ! Voici les pratiques essentielles pour CREATE, ALTER et DROP."
 				rules={[
 					{
 						section: "Clés primaires auto-incrémentées",
-						icon: <MdKey className="w-5 h-5 min-w-[20px] text-yellow-600" />,
+						icon: <MdKey className="w-5 h-5 min-w-[20px]" />,
 						rule: "Toujours définir une clé primaire auto-incrémentée avec PRIMARY KEY",
 						good: "id INTEGER PRIMARY KEY AUTO_INCREMENT",
 						bad: "Table sans clé primaire ou clé composite complexe",
@@ -127,7 +129,7 @@ DELETE FROM logs;`,
 					},
 					{
 						section: "Valeurs par défaut",
-						icon: <MdBuild className="w-5 h-5 min-w-[20px] text-yellow-600" />,
+						icon: <MdBuild className="w-5 h-5 min-w-[20px]" />,
 						rule: "Utiliser DEFAULT pour les colonnes avec valeurs récurrentes",
 						good: "statut VARCHAR(20) DEFAULT 'actif', created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP",
 						bad: "Forcer l'utilisateur à spécifier chaque valeur",
@@ -135,7 +137,7 @@ DELETE FROM logs;`,
 					},
 					{
 						section: "Documentation des tables",
-						icon: <MdBuild className="w-5 h-5 min-w-[20px] text-yellow-600" />,
+						icon: <MdBuild className="w-5 h-5 min-w-[20px]" />,
 						rule: "Ajouter des commentaires sur les tables et colonnes complexes",
 						good: "CREATE TABLE utilisateurs (...) COMMENT 'Stocke les utilisateurs actifs de l'application'",
 						bad: "Tables sans documentation, logique métier non expliquée",
@@ -143,7 +145,7 @@ DELETE FROM logs;`,
 					},
 					{
 						section: "Migrations ALTER TABLE",
-						icon: <MdBuild className="w-5 h-5 min-w-[20px] text-yellow-600" />,
+						icon: <MdBuild className="w-5 h-5 min-w-[20px]" />,
 						rule: "Privilégier ALTER TABLE plutôt que la séquence DROP → CREATE",
 						good: "ALTER TABLE utilisateurs ADD COLUMN telephone VARCHAR(20)",
 						bad: "DROP TABLE puis CREATE TABLE (perte de données)",
@@ -151,7 +153,7 @@ DELETE FROM logs;`,
 					},
 					{
 						section: "Sauvegardes avant DDL",
-						icon: <MdSecurity className="w-5 h-5 min-w-[20px] text-yellow-600" />,
+						icon: <MdSecurity className="w-5 h-5 min-w-[20px]" />,
 						rule: "Toujours sauvegarder avant les opérations DDL critiques",
 						good: "mysqldump database > backup.sql avant ALTER/DROP",
 						bad: "Modifier la structure sans backup",
@@ -159,7 +161,7 @@ DELETE FROM logs;`,
 					},
 					{
 						section: "DROP TABLE avec précaution",
-						icon: <MdSecurity className="w-5 h-5 min-w-[20px] text-yellow-600" />,
+						icon: <MdSecurity className="w-5 h-5 min-w-[20px]" />,
 						rule: "Utiliser DROP TABLE IF EXISTS pour éviter les erreurs",
 						good: "DROP TABLE IF EXISTS table_temporaire;",
 						bad: "DROP TABLE sans vérification ni backup",

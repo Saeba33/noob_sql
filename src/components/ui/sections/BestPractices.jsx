@@ -5,6 +5,7 @@ import { RiProhibited2Line } from "react-icons/ri";
 export default function BestPractices({
 	introduction,
 	rules = [],
+	iconColor = "#6B7280",
 }) {
 
 	return (
@@ -25,7 +26,7 @@ export default function BestPractices({
 					>
 						{/* Rule header */}
 						<div className="flex items-center space-x-3">
-							<div className="flex-shrink-0 min-w-[20px]">{rule.icon}</div>
+							<div className="flex-shrink-0 min-w-[20px]" style={{ color: iconColor }}>{rule.icon}</div>
 							<h3 className="text-base font-bold text-gray-900">
 								{rule.section}
 							</h3>
