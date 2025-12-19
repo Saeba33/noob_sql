@@ -29,7 +29,7 @@ export default function SectionNavigation() {
 							style={{ color: colors.theme }}
 								className="w-6 h-6 transition-all duration-200 group-hover:scale-110 opacity-50 group-hover:opacity-100"
 							/>
-							<span className="text-xs uppercase tracking-wider opacity-60 font-medium group-hover:opacity-80">
+							<span className="text-xs sm:text-sm uppercase tracking-wider opacity-60 font-medium group-hover:opacity-80">
 								Précédent
 							</span>
 						</Link>
@@ -43,7 +43,7 @@ export default function SectionNavigation() {
 							href={next.href}
 							className="group inline-flex items-center gap-3 transition-all duration-200 hover:translate-x-[4px] text-gray-700"
 						>
-							<span className="text-xs uppercase tracking-wider opacity-60 font-medium group-hover:opacity-80">
+							<span className="text-xs sm:text-sm uppercase tracking-wider opacity-60 font-medium group-hover:opacity-80">
 								Suivant
 							</span>
 							<MdChevronRight

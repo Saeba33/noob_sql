@@ -34,7 +34,7 @@ export default function BestPractices({
 							>
 								{rule.icon}
 							</div>
-							<h3 className="font-bold text-gray-900">{rule.section}</h3>
+							<h4 className="font-bold text-gray-900">{rule.section}</h4>
 						</div>
 						<p className="text-body text-gray-700">{rule.rule}</p>
 						<div></div>

@@ -62,7 +62,7 @@ export default function HomeNavigation() {
 								{page.topics.slice(0, 3).map((topic, index) => (
 									<div
 										key={index}
-									className="text-xs sm:text-sm text-gray-600 flex items-start"
+									className="text-topic text-gray-600 flex items-start"
 								>
 									<span className="text-gray-400 mr-2.5">•</span>
 									<span>{topic}</span>
