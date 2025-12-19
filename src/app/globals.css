@@ -204,6 +204,28 @@ p.text-body {
 	line-height: 1.5;
 }
 
+.text-topic {
+	font-size: 0.75rem; /* 12px */
+}
+
+@media (min-width: 640px) {
+	.text-topic {
+		font-size: 0.875rem; /* 14px */
+	}
+}
+
+/* Mobile menu slide-in animation */
+@keyframes slideIn {
+	from {
+		opacity: 0;
+		transform: translateY(-8px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
 /* ==================================================
    Utilities
    ================================================== */

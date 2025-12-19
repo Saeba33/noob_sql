@@ -2,12 +2,9 @@ export default function SectionHeader({
 	title,
 	description,
 	tag,
-	tagProps,
 	className = "",
 	descriptionClassName = "",
 }) {
-	const colors = tagProps?.beltColors || {};
-
 	return (
 		<header className={`relative py-20 overflow-hidden ${className}`}>
 			<div className="relative">

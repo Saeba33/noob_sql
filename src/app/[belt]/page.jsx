@@ -30,7 +30,6 @@ export default async function BeltPage({ params }) {
 					title={beltContent.header.title}
 					description={beltContent.header.description}
 					tag={beltContent.header.tag}
-					tagProps={{ beltColors: beltContent.colors }}
 					descriptionClassName="text-gray-700 leading-relaxed"
 					className="mb-8"
 				/>

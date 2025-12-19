@@ -5,7 +5,7 @@ import SQLResultBlock from "@/components/ui/sql/SQLResultBlock";
 import SQLTableDiagram from "@/components/ui/sql/SQLTableDiagram";
 import { BELT_COLORS } from "@/config/belts-config";
 import { sqlToTableDiagram } from "@/config/sql-syntax";
-import { Suspense, useState } from "react";
+import { useState } from "react";
 import { FaCode } from "react-icons/fa6";
 import { MdAccountTree, MdCode, MdExpandMore } from "react-icons/md";
 
@@ -93,16 +93,7 @@ export default function Accordion({
 
 						{/* External Component */}
 					{externalComponent && (
-						<Suspense
-							fallback={
-								<div className="flex items-center justify-center p-8">
-									<div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-									<span className="ml-3 text-gray-600">Chargement...</span>
-								</div>
-							}
-						>
-							<div>{externalComponent}</div>
-						</Suspense>
+						<div>{externalComponent}</div>
 					)}
 
 						{/* Examples structure */}

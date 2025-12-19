@@ -7,12 +7,12 @@ export default function BeltIcon({ belt, size, className}) {
 	return (
 		<Image
 			src={beltConfig.image}
-			alt={`Ceinture ${belt}`}
+			alt=""
 			width={size}
 			height={size}
 			className={className}
-			aria-hidden="true"
-			title={`Ceinture ${belt}`}
+			aria-label={beltConfig.title}
+			role="img"
 		/>
 	);
 }

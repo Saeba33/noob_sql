@@ -22,18 +22,12 @@ export default function NavbarDesktop() {
 							aria-current={active ? "page" : undefined}
 							className={`bg-transparent rounded-lg transition-all duration-200 px-2 pt-[7px] pb-[7px] flex items-center gap-2 text-sm ${
 								active ? "font-bold text-gray-900" : "font-light text-gray-600 hover:text-gray-900"
-							} whitespace-nowrap`}
+							} whitespace-nowrap focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-400 rounded-lg`}
 						>
 							<BeltIcon belt={beltKey} size={32} className="pt-1.5"/>
 							<span className="relative tracking-wide">
-								{/* Invisible text with semibold to reserve space */}
-								<span className="invisible font-bold" aria-hidden="true">
-									{item.title}
-								</span>
-								{/* Actual text positioned absolutely */}
-								<span className="absolute inset-0">
-									{item.title}
-								</span>
+								<span className="invisible font-bold" aria-hidden="true">{item.title}</span>
+								<span className="absolute inset-0">{item.title}</span>
 							</span>
 						</Link>
 					);

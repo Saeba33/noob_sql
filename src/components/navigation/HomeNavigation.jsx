@@ -69,7 +69,7 @@ export default function HomeNavigation() {
 								</div>
 							))}
 							{page.topics.length > 3 && (
-								<div className="text-xs sm:text-sm text-gray-500 flex items-center">
+								<div className="text-topic text-gray-500 flex items-center">
 										<span className="text-gray-400 mr-2.5">+</span>
 										<span>
 											{page.topics.length - 3} autre

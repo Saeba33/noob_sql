@@ -7,10 +7,9 @@ import Image from "next/image";
 import Link from "next/link";
 
 // Logo
-const Logo = ({ onClick }) => (
+const Logo = () => (
 	<Link
 		href="/"
-		onClick={onClick}
 		className="flex items-center transition-all duration-300 group"
 	>
 		<span className="text-xl sm:text-2xl font-bold tracking-tight leading-none text-gray-800 group-hover:text-gray-950 transition-colors">
@@ -23,7 +22,7 @@ const Logo = ({ onClick }) => (
 const Practice = () => (
 	<Link
 		href="/practice"
-		className="group relative transition-all duration-200 px-4 py-2 flex items-center gap-2 text-xs sm:text-sm font-medium text-gray-700 hover:text-gray-900 whitespace-nowrap border hover:border-gray-400 rounded-lg bg-gray-100 border-gray-200"
+		className="group relative transition-all duration-200 px-4 py-2 flex items-center gap-2 text-topic font-medium text-gray-700 hover:text-gray-900 whitespace-nowrap border hover:border-gray-400 rounded-lg bg-gray-100 border-gray-200"
 	>
 		<Image src="/practice.png" width={28} height={28} alt="Practice icon" />
 		<span className="tracking-wide">FIGHT</span>
@@ -48,7 +47,7 @@ export default function Header() {
 							<div className="grid grid-cols-[auto_1fr_auto] items-center gap-8">
 								{/* Left zone */}
 								<div className="flex items-center">
-								<Logo onClick={closeMenu} />
+								<Logo />
 								</div>
 
 								{/* Center - Navigation */}
@@ -63,7 +62,7 @@ export default function Header() {
 							</div>
 						) : (
 							<div className="flex items-center">
-								<Logo onClick={closeMenu} />
+								<Logo />
 								<div className="flex-1" />
 								<NavbarMobile
 									isMenuOpen={isMenuOpen}
