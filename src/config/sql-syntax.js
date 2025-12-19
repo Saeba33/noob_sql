@@ -1,17 +1,23 @@
 export const sqlSyntaxConfig = {
-	// Style definitions for each token type
+	// Style definitions for each type
 	styles: {
 		keyword: "text-blue-400 font-semibold",
-		datatype: "text-sky-400 font-medium",
-		constraint: "text-violet-400 font-medium",
-		tableName: "text-emerald-400 font-medium",
-		columnName: "text-cyan-300",
-		string: "text-amber-300",
-		number: "text-orange-400",
-		operator: "text-red-400",
-		comment: "text-gray-400 italic",
-		function: "text-pink-300 font-medium",
 		punctuation: "text-blue-400",
+
+		datatype: "text-violet-400 font-medium",
+		constraint: "text-violet-400 font-medium",
+
+		tableName: "text-emerald-400 font-medium",
+		columnName: "text-emerald-400",
+
+		string: "text-amber-300",
+		number: "text-amber-300",
+
+		operator: "text-rose-400",
+
+		function: "text-sky-400 font-medium",
+
+		comment: "text-gray-500 italic",
 		default: "text-gray-200",
 	},
 
