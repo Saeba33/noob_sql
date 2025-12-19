@@ -15,7 +15,7 @@ export default function BestPractices({
 			{/* Introduction */}
 			{introduction && (
 				<div className="mb-8 space-y-4 text-gray-700 leading-relaxed">
-					<p>{introduction}</p>
+					<p className="text-body">{introduction}</p>
 				</div>
 			)}
 			{/* Rules section */}
@@ -28,23 +28,23 @@ export default function BestPractices({
 					>
 						{/* Rule header */}
 						<div className="flex items-center space-x-3">
-							<div className="w-5 h-5 min-w-[20px] flex-shrink-0" style={{ color: iconColor }}>{rule.icon}</div>
-							<h3 className="text-sm sm:text-base font-bold text-gray-900">
-								{rule.section}
-							</h3>
+							<div
+								className="w-5 h-5 min-w-[20px] flex-shrink-0"
+								style={{ color: iconColor }}
+							>
+								{rule.icon}
+							</div>
+							<h3 className="font-bold text-gray-900">{rule.section}</h3>
 						</div>
-
-						{/* Rule description */}
 						<p className="text-body text-gray-700">{rule.rule}</p>
-
 						<div></div>
 
 						{/* Recommended */}
 						<div className="bg-green-50 border-l-4 border-green-500 p-3 rounded">
-							<p className="text-xs text-gray-600 font-semibold mb-1 flex items-center gap-1">
+							<h6 className=" text-gray-600 font-semibold mb-1 flex items-center gap-1">
 								<IoMdCheckmarkCircleOutline className="w-5 h-5 text-green-600" />{" "}
 								À PRIVILÉGIER
-							</p>
+							</h6>
 							<code className="text-sm text-green-800 font-mono whitespace-pre-wrap break-words">
 								{rule.good}
 							</code>
@@ -52,9 +52,9 @@ export default function BestPractices({
 
 						{/* Avoid */}
 						<div className="bg-red-50 border-l-4 border-red-500 p-3 rounded">
-							<p className="text-xs text-gray-600 font-semibold mb-1 flex items-center gap-1">
+							<h6 className=" text-gray-600 font-semibold mb-1 flex items-center gap-1">
 								<RiProhibited2Line className="w-5 h-5 text-red-600" /> À ÉVITER
-							</p>
+							</h6>
 							<code className="text-sm text-red-800 font-mono whitespace-pre-wrap break-words">
 								{rule.bad}
 							</code>

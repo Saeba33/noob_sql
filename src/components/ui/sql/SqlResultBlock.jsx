@@ -31,9 +31,7 @@ export default function SQLResultBlock({
 				<div className="bg-blue-50 border border-blue-200 rounded-lg overflow-hidden">
 					{/* Header */}
 					<div className="bg-blue-100 px-4 py-3 border-b border-blue-200">
-						<h3 className="text-blue-800 font-semibold text-sm flex items-center">
-							<MdCheckCircle className="w-4 h-4 mr-2" />
-							{title}
+					<h3 className="text-blue-800 font-semibold flex items-center">
 						</h3>
 					</div>
 
@@ -56,9 +54,7 @@ export default function SQLResultBlock({
 				<div className="bg-gray-50 border border-gray-200 rounded-lg overflow-hidden">
 					{/* Header */}
 					<div className="bg-gray-100 px-4 py-3 border-b border-gray-200">
-						<h3 className="text-gray-700 font-semibold text-sm flex items-center">
-							<MdInfo className="w-4 h-4 mr-2" />
-							{title}
+					<h3 className="text-gray-700 font-semibold flex items-center">
 						</h3>
 					</div>
 
@@ -79,9 +75,7 @@ export default function SQLResultBlock({
 			<div className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm">
 				{/* Header */}
 				<div className="bg-gray-50 px-4 py-3 border-b border-gray-200">
-					<h3 className="text-gray-800 font-semibold text-sm flex items-center">
-						<MdTableChart className="w-4 h-4 mr-2" />
-						{title} ({formattedData.rows.length} ligne
+				<h3 className="text-gray-800 font-semibold flex items-center">
 						{formattedData.rows.length > 1 ? "s" : ""})
 					</h3>
 				</div>

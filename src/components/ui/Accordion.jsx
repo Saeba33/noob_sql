@@ -85,11 +85,11 @@ export default function Accordion({
 						{content && (
 							<div>
 								<p
-									className="leading-relaxed whitespace-pre-line content-html text-gray-700"
-									dangerouslySetInnerHTML={{ __html: content }}
-								/>
-							</div>
-						)}
+								className="text-body leading-relaxed whitespace-pre-line content-html text-gray-700"
+								dangerouslySetInnerHTML={{ __html: content }}
+							/>
+						</div>
+					)}
 
 						{/* External Component */}
 					{externalComponent && (

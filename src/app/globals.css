@@ -1,6 +1,9 @@
 @import "tailwindcss";
 
-/* #region - Reset default styles */
+/* ==================================================
+   Base / Reset
+   ================================================== */
+
 * {
 	box-sizing: border-box;
 }
@@ -13,83 +16,29 @@ body {
 	font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont,
 		"Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif;
 }
-/* #endregion */
+
+/* ==================================================
+   Typography – Global behavior
+   ================================================== */
 
 p {
 	text-wrap: pretty;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
 	text-wrap: balance;
 }
 
-/* #region - Code style on accordion */
-.content-html code {
-	background: transparent !important;
-	padding: 0.1rem 0.4rem;
-	border-radius: 0.25rem;
-	border: 1px solid currentColor;
-	font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-	font-size: 0.9em;
-	color: inherit !important;
-	font-weight: 600;
-	word-break: break-word;
-}
-/* #endregion */
+/* ==================================================
+   Typography – Headings
+   ================================================== */
 
-/* #region - Accordion style */
-.border-accordion {
-	display: block;
-	width: 100%;
-	border: 1px solid;
-	border-color:#e5e7eb;
-	border-radius: 0.75rem;
-	background-color: white;
-	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-	transition: all 0.2s ease-in-out;
-}
-
-.border-accordion:not(.open):hover {
-	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.08);
-	border-color: #b7b7b7;
-}
-
-.border-accordion.open {
-
-	box-shadow: 0 2px 8px -1px rgba(0, 0, 0, 0.1);
-}
-
-.border-accordion.open:hover {
-	box-shadow: 0 2px 8px -1px rgba(0, 0, 0, 0.1);
-}
-/* #endregion */
-
-/* #region - Scroll Indicators */
-.scroll-indicator-white {
-	position: absolute;
-	right: 0;
-	top: 0;
-	bottom: 0;
-	width: 2rem;
-	background: linear-gradient(to left, white, transparent);
-	pointer-events: none;
-	z-index: 10;
-}
-
-.scroll-indicator-dark {
-	position: absolute;
-	right: 0;
-	top: 0;
-	bottom: 0;
-	width: 2rem;
-	background: linear-gradient(to left, rgb(17, 24, 39), transparent);
-	pointer-events: none;
-	z-index: 10;
-}
-/* #endregion */
-
-/* #region - Responsive Typography */
-/* Heading 1 - Hero titles */
+/* H1 – Hero titles */
 h1 {
 	font-size: 2.25rem; /* 36px */
 	font-weight: 800;
@@ -109,7 +58,7 @@ h1 {
 	}
 }
 
-/* Heading 2 - Section titles */
+/* H2 – Section titles */
 h2 {
 	font-size: 1.125rem; /* 18px */
 	font-weight: 700;
@@ -128,7 +77,7 @@ h2 {
 	}
 }
 
-/* Heading 3 - Subsection titles */
+/* H3 – Subsection titles */
 h3 {
 	font-size: 0.875rem; /* 14px */
 	font-weight: 700;
@@ -147,7 +96,7 @@ h3 {
 	}
 }
 
-/* Heading 4 - Component titles */
+/* H4 – Component titles */
 h4 {
 	font-size: 0.75rem; /* 12px */
 	font-weight: 600;
@@ -166,7 +115,7 @@ h4 {
 	}
 }
 
-/* Heading 5 - Small titles */
+/* H5 – Small titles */
 h5 {
 	font-size: 0.75rem; /* 12px */
 	font-weight: 600;
@@ -179,7 +128,11 @@ h5 {
 	}
 }
 
-/* Paragraph - Body text */
+/* ==================================================
+   Typography – Paragraphs
+   ================================================== */
+
+/* Base paragraph */
 p {
 	font-size: 0.875rem; /* 14px */
 	line-height: 1.6;
@@ -192,7 +145,6 @@ p {
 }
 
 /* Paragraph variants */
-/* Introduction/Hero paragraph - Plus important */
 p.text-intro {
 	font-size: 1rem; /* 16px */
 	line-height: 1.7;
@@ -212,7 +164,6 @@ p.text-intro {
 	}
 }
 
-/* Lead paragraph - Paragraphe important de section */
 p.text-lead {
 	font-size: 0.9375rem; /* 15px */
 	line-height: 1.65;
@@ -224,7 +175,6 @@ p.text-lead {
 	}
 }
 
-/* Body paragraph - Paragraphe standard (dans accordions, etc.) */
 p.text-body {
 	font-size: 0.875rem; /* 14px */
 	line-height: 1.6;
@@ -235,40 +185,104 @@ p.text-body {
 		font-size: 1rem; /* 16px */
 	}
 }
-/* #endregion */
 
-/* #region HomeCard */
+/* ==================================================
+   Utilities
+   ================================================== */
+
+/* Scroll indicators */
+.scroll-indicator {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 2rem;
+	pointer-events: none;
+	z-index: 10;
+}
+
+.scroll-indicator--white {
+	background: linear-gradient(to left, white, transparent);
+}
+
+.scroll-indicator--dark {
+	background: linear-gradient(to left, rgb(17, 24, 39), transparent);
+}
+
+/* ==================================================
+   Components – Accordion
+   ================================================== */
+
+.border-accordion {
+	display: block;
+	width: 100%;
+	border: 1px solid #e5e7eb;
+	border-radius: 0.75rem;
+	background-color: white;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+	transition: all 0.2s ease-in-out;
+}
+
+.border-accordion:hover:not(.open) {
+	border-color: #b7b7b7;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.border-accordion.open {
+	box-shadow: 0 2px 8px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* Code styling inside accordion content */
+.content-html code {
+	background: transparent;
+	padding: 0.1rem 0.4rem;
+	border-radius: 0.25rem;
+	border: 1px solid currentColor;
+	font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+	font-size: 0.9em;
+	font-weight: 600;
+	color: inherit;
+	word-break: break-word;
+}
+
+/* ==================================================
+   Components – Home Card
+   ================================================== */
+
 .home-card {
 	display: block;
+	width: 100%;
 	padding: 1.75rem;
 	border: 1px solid #e5e7eb;
 	border-left: 3px solid var(--theme-color);
 	border-radius: 0.75rem;
 	background-color: white;
-	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.06);
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
 	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 	text-decoration: none;
 	cursor: pointer;
-	width: 100%;
 	position: relative;
 }
+
 .home-card:hover {
 	transform: translateY(-2px);
 	background-color: var(--theme-hover-bg);
 }
+
 @media (min-width: 768px) {
 	.home-card {
 		width: calc(50% - 0.75rem);
 	}
 }
+
 @media (min-width: 1024px) {
 	.home-card {
 		width: calc(33.333% - 1rem);
 	}
 }
+
 @media (min-width: 1280px) {
 	.home-card {
 		width: calc(25% - 1.125rem);
 	}
 }
-/* #endregion */

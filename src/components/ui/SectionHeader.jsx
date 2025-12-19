@@ -37,7 +37,7 @@ export default function SectionHeader({
 					{description && (
 						<div className="max-w-3xl mx-auto mt-6">
 							<p
-								className={`text-lg sm:text-xl leading-relaxed font-light ${descriptionClassName}`}
+								className={`text-lead leading-relaxed font-light ${descriptionClassName}`}
 							>
 								{description}
 							</p>

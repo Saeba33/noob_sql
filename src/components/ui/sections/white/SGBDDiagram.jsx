@@ -14,7 +14,7 @@ export default function SGBDDiagram() {
 		<div className="bg-white flex flex-col gap-8">
 			{/* Introductory text */}
 			<div className="text-gray-700 leading-relaxed flex flex-col gap-6 ">
-				<p>
+				<p className="text-body">
 					Un
 					<span className="font-semibold text-gray-900">
 						{" "}
@@ -26,7 +26,7 @@ export default function SGBDDiagram() {
 					deux grandes catégories de SGBD :
 				</p>
 
-				<p>
+				<p className="text-body">
 					<span className="text-lg md:text-xl text-gray-800 mr-2 align-middle">
 						•
 					</span>
@@ -39,7 +39,7 @@ export default function SGBDDiagram() {
 					PostgreSQL, Oracle, SQL Server.
 				</p>
 
-				<p>
+				<p className="text-body">
 					<span className="text-lg md:text-xl text-gray-800 mr-2 align-middle">
 						•
 					</span>

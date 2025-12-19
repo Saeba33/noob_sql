@@ -40,8 +40,8 @@ export default function DataTypes() {
 					<h4 className="font-bold text-gray-800 mb-6 flex items-center">
 						<MdInventory className="w-6 h-6 min-w-[24px] text-gray-600 mr-3 hidden sm:block" />
 						{title}
-					</h4>
-				<p className="italic mb-2">
+				</h4>
+				<p className="italic text-sm mb-2">
 					* Les valeurs entre parenthèses sont données à titre d'exemple, elles
 					sont configurables selon vos besoins. La liste suivante n'est pas
 					exhaustive.
@@ -136,8 +136,8 @@ export default function DataTypes() {
 				</div>
 			</div>
 		</div>
-		);
-	};
+	);
+};
 	//#endregion
 
 	// #region Constraints Section
@@ -170,7 +170,7 @@ export default function DataTypes() {
 											</h4>
 											<span className="pb-1 w-5 h-5 min-w-[20px] text-gray-600 ">{constraint.icon}</span>
 										</div>
-										<p className="text-gray-700 text-sm mb-2">
+									<p className="text-body text-gray-700 mb-2">
 											{constraint.description}
 										</p>
 										<div className="inline-block bg-gray-100 border border-gray-200 rounded px-2 py-1 mb-2 max-w-full">
@@ -284,7 +284,7 @@ export default function DataTypes() {
 		<div>
 			{/* Introductory section */}
 			<div className="mb-8 space-y-4 text-gray-700 leading-relaxed">
-				<p>
+				<p className="text-body">
 					En SQL, chaque colonne d'une table doit avoir un{" "}
 					<strong>type de données</strong> qui définit le format des
 					informations qu'elle peut contenir, ainsi que des{" "}
@@ -295,7 +295,7 @@ export default function DataTypes() {
 				</p>
 
 				<div className="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-r-lg">
-					<p className="flex justifyitems-center">
+				<p className="text-body flex justifyitems-center">
 						<span>
 							<MdInventory className="w-4 h-4 text-blue-600 inline mr-2" />
 							<strong>Type de données</strong> = le format autorisé (nombres,

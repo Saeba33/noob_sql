@@ -140,7 +140,7 @@ export default function DatabaseArchitecture() {
 				</p>
 
 				<div className="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-r-lg">
-					<p>
+					<p className="text-body">
 						<MdStorage className="w-5 h-5 text-blue-600 inline mr-2" />
 						<strong>La bibliothèque</strong> = la{" "}
 						<strong>base de données</strong>
@@ -178,17 +178,15 @@ export default function DatabaseArchitecture() {
 					<div className="bg-white border border-gray-300 rounded-lg p-4 shadow-sm">
 						<div className="flex items-center space-x-3 mb-4">
 							<MdTableChart className="w-5 h-5 min-w-[20px] text-gray-600" />
-						<h3 className="text-base sm:text-lg font-bold text-gray-800">
+							<h3 className="font-bold text-gray-800">
 								Table "utilisateurs"
 							</h3>
 						</div>
-
 						<ScrollableTable
 							columns={usersColumns}
 							data={usersData}
 							renderCell={renderUsersCell}
 						/>
-
 						<div className="mt-2 flex items-center space-x-2 text-sm text-gray-600">
 							<MdTableRows className="w-4 h-4" />
 							<span>3 lignes dans cette table (utilisateurs)</span>
@@ -199,17 +197,15 @@ export default function DatabaseArchitecture() {
 					<div className="bg-white border border-gray-300 rounded-lg p-4 shadow-sm">
 						<div className="flex items-center space-x-3 mb-4">
 							<MdTableChart className="w-5 h-5 min-w-[20px] text-gray-600" />
-							<h3 className="text-lg font-bold text-gray-800">
+							<h3 className="font-bold text-gray-800">
 								Table "livres"
 							</h3>
 						</div>
-
 						<ScrollableTable
 							columns={booksColumns}
 							data={booksData}
 							renderCell={renderUsersCell}
 						/>
-
 						<div className="mt-2 flex items-center space-x-2 text-sm text-gray-600">
 							<MdTableRows className="w-4 h-4" />
 							<span>3 lignes dans cette table (livres)</span>
@@ -220,17 +216,15 @@ export default function DatabaseArchitecture() {
 					<div className="bg-white border border-gray-300 rounded-lg p-4 shadow-sm">
 						<div className="flex items-center space-x-3 mb-4">
 							<MdTableChart className="w-5 h-5 min-w-[20px] text-gray-600" />
-							<h3 className="text-lg font-bold text-gray-800">
+							<h3 className="font-bold text-gray-800">
 								Table "emprunts"
 							</h3>
 						</div>
-
 						<ScrollableTable
 							columns={borrowingColumns}
 							data={borrowingData}
 							renderCell={renderBorrowingsCell}
 						/>
-
 						<div className="mt-2 flex items-center space-x-2 text-sm text-gray-600">
 							<MdTableRows className="w-4 h-4" />
 							<span>3 lignes dans cette table (emprunts)</span>

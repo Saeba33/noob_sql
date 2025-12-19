@@ -104,7 +104,7 @@ export default function PrimaryForeignKeys() {
 						voir que :
 					</p>
 					<div className="space-y-2 text-gray-800 text-sm">
-						<p>
+						<p className="text-body">
 							<code className="bg-white px-2 py-1 rounded font-mono text-sm">
 								utilisateur_id = 1
 							</code>{" "}
@@ -113,7 +113,7 @@ export default function PrimaryForeignKeys() {
 								Marie Dubois
 							</code>
 						</p>
-						<p className="mb-4">
+						<p className="text-body mb-4">
 							<code className="bg-white px-2 py-1 rounded font-mono text-sm">
 								livre_id = 1
 							</code>{" "}
@@ -123,7 +123,7 @@ export default function PrimaryForeignKeys() {
 							</code>
 						</p>
 						<div className="mt-3 pt-3 border-t border-gray-300">
-							<p className="text-gray-800 italic flex items-center gap-2 pl-1">
+							<p className="text-body text-gray-800 italic flex items-center gap-2 pl-1">
 								Par conséquent, on peut déterminer que Marie Dubois a emprunté
 								"Le Petit Prince" le 10 janvier 2025 et l'a rendu le 24 janvier
 								2025.
