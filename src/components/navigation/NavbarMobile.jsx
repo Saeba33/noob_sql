@@ -35,11 +35,17 @@ export default function NavbarMobile({
 			id="mobile-menu"
 			aria-hidden={!isMenuOpen}
 			className={`border-t border-gray-200/50 bg-white rounded-b-2xl overflow-hidden transition-all duration-300 ease-out ${
-				isMenuOpen ? "max-h-[600px] opacity-100 translate-y-0" : "max-h-0 opacity-0 -translate-y-2"
+				isMenuOpen
+					? "max-h-[600px] opacity-100 translate-y-0"
+					: "max-h-0 opacity-0 -translate-y-2"
 			}`}
 		>
 			<div className="px-4 py-4">
-				<nav className="flex flex-col gap-2" aria-label="Navigation mobile" style={{ animation: isMenuOpen ? 'slideIn 0.3s ease-out' : 'none' }}>
+				<nav
+					className="flex flex-col gap-2"
+					aria-label="Navigation mobile"
+					style={{ animation: isMenuOpen ? "slideIn 0.3s ease-out" : "none" }}
+				>
 					{PAGES_CONFIG.map((item, index) => {
 						const beltKey = item.href.replace("/", "") || "white";
 						const colors = BELT_COLORS[beltKey];

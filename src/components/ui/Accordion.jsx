@@ -85,16 +85,14 @@ export default function Accordion({
 						{content && (
 							<div>
 								<p
-								className="text-body leading-relaxed whitespace-pre-line content-html text-gray-700"
-								dangerouslySetInnerHTML={{ __html: content }}
-							/>
-						</div>
-					)}
+									className="text-body leading-relaxed whitespace-pre-line content-html text-gray-700"
+									dangerouslySetInnerHTML={{ __html: content }}
+								/>
+							</div>
+						)}
 
 						{/* External Component */}
-					{externalComponent && (
-						<div>{externalComponent}</div>
-					)}
+						{externalComponent && <div>{externalComponent}</div>}
 
 						{/* Examples structure */}
 						{examples && examples.length > 0 && (
@@ -121,7 +119,7 @@ export default function Accordion({
 											{exampleType === "schema" ? (
 												// Schema: CREATE TABLE with auto-generated diagram
 												<>
-												<SQLCodeBlock>{example.code}</SQLCodeBlock>
+													<SQLCodeBlock>{example.code}</SQLCodeBlock>
 													{example.code &&
 														example.code.includes("CREATE TABLE") && (
 															<div className="mt-4">
@@ -145,7 +143,7 @@ export default function Accordion({
 											) : (
 												// Query: Regular SQL with optional result
 												<>
-												<SQLCodeBlock>{example.code}</SQLCodeBlock>
+													<SQLCodeBlock>{example.code}</SQLCodeBlock>
 													{example.result !== undefined && (
 														<div className="mt-3">
 															{renderSqlResult(example.result)}

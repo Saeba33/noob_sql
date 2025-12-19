@@ -9,7 +9,10 @@ export default function NavbarDesktop() {
 	const { isActive } = useNavigation();
 
 	return (
-		<nav className="flex items-center gap-4 " aria-label="Navigation principale">
+		<nav
+			className="flex items-center gap-4 "
+			aria-label="Navigation principale"
+		>
 			{PAGES_CONFIG.filter((item) => item.href !== "/practice").map(
 				(item, index) => {
 					const beltKey = item.href.replace("/", "") || "white";
@@ -21,12 +24,16 @@ export default function NavbarDesktop() {
 							href={item.href}
 							aria-current={active ? "page" : undefined}
 							className={`bg-transparent rounded-lg transition-all duration-200 px-2 pt-[7px] pb-[7px] flex items-center gap-2 text-sm ${
-								active ? "font-bold text-gray-900" : "font-light text-gray-600 hover:text-gray-900"
+								active
+									? "font-bold text-gray-900"
+									: "font-light text-gray-600 hover:text-gray-900"
 							} whitespace-nowrap focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-400 rounded-lg`}
 						>
-							<BeltIcon belt={beltKey} size={32} className="pt-1.5"/>
+							<BeltIcon belt={beltKey} size={32} className="pt-1.5" />
 							<span className="relative tracking-wide">
-								<span className="invisible font-bold" aria-hidden="true">{item.title}</span>
+								<span className="invisible font-bold" aria-hidden="true">
+									{item.title}
+								</span>
 								<span className="absolute inset-0">{item.title}</span>
 							</span>
 						</Link>

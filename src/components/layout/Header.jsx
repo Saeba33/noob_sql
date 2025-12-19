@@ -47,7 +47,7 @@ export default function Header() {
 							<div className="grid grid-cols-[auto_1fr_auto] items-center gap-8">
 								{/* Left zone */}
 								<div className="flex items-center">
-								<Logo />
+									<Logo />
 								</div>
 
 								{/* Center - Navigation */}

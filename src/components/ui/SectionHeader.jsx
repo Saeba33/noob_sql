@@ -12,10 +12,7 @@ export default function SectionHeader({
 					{/* Tag badge */}
 					{tag && (
 						<div className="inline-flex items-center justify-center">
-							<span
-								className="text-sm sm:text-base font-light uppercase tracking-wider text-gray-700 "
-
-							>
+							<span className="text-sm sm:text-base font-light uppercase tracking-wider text-gray-700 ">
 								{tag}
 							</span>
 						</div>

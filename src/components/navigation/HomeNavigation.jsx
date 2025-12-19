@@ -62,14 +62,14 @@ export default function HomeNavigation() {
 								{page.topics.slice(0, 3).map((topic, index) => (
 									<div
 										key={index}
-									className="text-topic text-gray-600 flex items-start"
-								>
-									<span className="text-gray-400 mr-2.5">•</span>
-									<span>{topic}</span>
-								</div>
-							))}
-							{page.topics.length > 3 && (
-								<div className="text-topic text-gray-500 flex items-center">
+										className="text-topic text-gray-600 flex items-start"
+									>
+										<span className="text-gray-400 mr-2.5">•</span>
+										<span>{topic}</span>
+									</div>
+								))}
+								{page.topics.length > 3 && (
+									<div className="text-topic text-gray-500 flex items-center">
 										<span className="text-gray-400 mr-2.5">+</span>
 										<span>
 											{page.topics.length - 3} autre
