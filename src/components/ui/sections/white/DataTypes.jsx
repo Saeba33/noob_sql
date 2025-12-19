@@ -159,7 +159,7 @@ export default function DataTypes() {
 											<h4 className="font-bold text-gray-900 mb-1">
 												{constraint.name}
 											</h4>
-											<span className="pb-1">{constraint.icon}</span>
+											<span className="pb-1 w-5 h-5 min-w-[20px] text-gray-600 ">{constraint.icon}</span>
 										</div>
 										<p className="text-gray-700 text-sm mb-2">
 											{constraint.description}
