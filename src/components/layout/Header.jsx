@@ -12,7 +12,7 @@ const Logo = () => (
 		href="/"
 		className="flex items-center transition-all duration-300 group"
 	>
-		<span className="text-xl sm:text-2xl font-bold tracking-tight leading-none text-gray-800 group-hover:text-gray-950 transition-colors">
+		<span className="text-2xl sm:text-3xl font-bold tracking-tight leading-none text-gray-800 group-hover:text-gray-950 transition-colors">
 			NoobSQL
 		</span>
 	</Link>

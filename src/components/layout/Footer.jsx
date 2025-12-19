@@ -4,8 +4,8 @@ export default function Footer({
 }) {
 	return (
 		<footer className="relative mt-auto">
-			<div className="max-w-[800px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
-				<div className={`border-t ${borderColor} pt-8`}>
+			<div className="max-w-[800px] mx-auto px-8 sm:px-10 lg:px-12 py-6">
+				<div className={`border-t ${borderColor} pt-6`}>
 				<div className={`text-center text-footer ${textColor} font-light tracking-wide`}>
 					&copy; 2025 NoobSQL (by Saeba33) · Tous droits réservés
 				</div>
