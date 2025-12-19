@@ -26,7 +26,7 @@ export default function BestPractices({
 					>
 						{/* Rule header */}
 						<div className="flex items-center space-x-3">
-							<div className="flex-shrink-0 min-w-[20px]" style={{ color: iconColor }}>{rule.icon}</div>
+							<div className="w-5 h-5 min-w-[20px] flex-shrink-0" style={{ color: iconColor }}>{rule.icon}</div>
 							<h3 className="text-base font-bold text-gray-900">
 								{rule.section}
 							</h3>
