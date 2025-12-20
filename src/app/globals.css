@@ -1,9 +1,6 @@
 @import "tailwindcss";
 
-/* ==================================================
-   Base / Reset
-   ================================================== */
-
+/* Base & Reset */
 * {
 	box-sizing: border-box;
 }
@@ -17,19 +14,6 @@ body {
 		"Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif;
 }
 
-/* ==================================================
-   Typography – Global behavior
-   ================================================== */
-
-h1,
-h2 {
-	font-family: "Outfit", sans-serif;
-}
-
-p {
-	text-wrap: pretty;
-}
-
 h1,
 h2,
 h3,
@@ -39,234 +23,191 @@ h6 {
 	text-wrap: balance;
 }
 
-/* ==================================================
-   Typography – Headings
-   ================================================== */
+p {
+	text-wrap: pretty;
+}
 
-/* H1 – Hero titles */
+
+/* Typography */
 h1 {
-	font-size: 2.75rem; /* 44px */
+	font-family: "Playfair Display", serif;
+	font-size: 2.75rem;
 	font-weight: 800;
 	line-height: 1.1;
 	letter-spacing: -0.03em;
 }
-
 @media (min-width: 640px) {
 	h1 {
-		font-size: 4rem; /* 64px */
+		font-size: 4rem;
 	}
 }
-
 @media (min-width: 1024px) {
 	h1 {
-		font-size: 5rem; /* 80px */
+		font-size: 5rem;
 	}
 }
 
-/* H2 – Section titles */
 h2 {
-	font-size: 2rem; /* 32px */
+	font-family: "Outfit", sans-serif;
+	font-size: 2rem;
 	font-weight: 700;
 	line-height: 1.1;
 }
-
 @media (min-width: 640px) {
 	h2 {
-		font-size: 3rem; /* 48px */
+		font-size: 3rem;
 	}
 }
 
 @media (min-width: 1024px) {
 	h2 {
-		font-size: 3.75rem; /* 60px */
+		font-size: 3.75rem;
 	}
 }
 
-/* H3 – Subsection titles (Accordions) */
 h3 {
-	font-size: 0.9375rem; /* 15px */
+	font-size: 0.9375rem;
 	font-weight: 600;
 	line-height: 1.4;
 }
-
 @media (min-width: 640px) {
 	h3 {
-		font-size: 1rem; /* 16px */
+		font-size: 1rem;
 	}
 }
-
 @media (min-width: 1024px) {
 	h3 {
-		font-size: 1.0625rem; /* 17px */
+		font-size: 1.0625rem;
 	}
 }
 
-/* H4 – Component titles */
 h4 {
-	font-size: 0.875rem; /* 14px */
+	font-size: 0.875rem;
 	font-weight: 600;
 	line-height: 1.4;
 }
-
 @media (min-width: 640px) {
 	h4 {
-		font-size: 0.9375rem; /* 15px */
+		font-size: 0.9375rem;
 	}
 }
-
 @media (min-width: 1024px) {
 	h4 {
-		font-size: 1rem; /* 16px */
+		font-size: 1rem;
 	}
 }
 
-/* H5 – Small titles */
 h5 {
-	font-size: 0.8125rem; /* 13px */
+	font-size: 0.8125rem;
 	font-weight: 600;
 	line-height: 1.5;
 }
-
 @media (min-width: 640px) {
 	h5 {
-		font-size: 0.875rem; /* 14px */
+		font-size: 0.875rem;
 	}
 }
-
 @media (min-width: 1024px) {
 	h5 {
-		font-size: 0.9375rem; /* 15px */
+		font-size: 0.9375rem;
 	}
 }
 
-/* H6 – Micro titles */
 h6 {
-	font-size: 0.75rem; /* 12px */
+	font-size: 0.75rem;
 	font-weight: 600;
 	line-height: 1.5;
 }
-
 @media (min-width: 640px) {
 	h6 {
-		font-size: 0.8125rem; /* 13px */
+		font-size: 0.8125rem;
 	}
 }
 
-/* ==================================================
-   Typography – Paragraphs
-   ================================================== */
-
-/* Base paragraph */
 p {
-	font-size: 0.875rem; /* 14px */
+	font-size: 0.875rem;
 	line-height: 1.6;
 }
-
 @media (min-width: 640px) {
 	p {
-		font-size: 1rem; /* 16px */
+		font-size: 1rem;
 	}
 }
 
-/* Paragraph variants */
 p.text-intro {
-	font-size: 1.0625rem; /* 17px */
+	font-size: 1.0625rem;
 	line-height: 1.75;
 	font-weight: 300;
 	letter-spacing: 0.01em;
 }
-
 @media (min-width: 640px) {
 	p.text-intro {
-		font-size: 1.1875rem; /* 19px */
+		font-size: 1.1875rem;
 	}
 }
-
 @media (min-width: 1024px) {
 	p.text-intro {
-		font-size: 1.3125rem; /* 21px */
+		font-size: 1.3125rem;
 		line-height: 1.85;
 	}
 }
 
 p.text-lead {
-	font-size: 1rem; /* 16px */
+	font-size: 1rem;
 	line-height: 1.7;
 	font-weight: 300;
 	letter-spacing: 0.005em;
 }
-
 @media (min-width: 640px) {
 	p.text-lead {
-		font-size: 1.125rem; /* 18px */
+		font-size: 1.125rem;
 	}
 }
-
 @media (min-width: 1024px) {
 	p.text-lead {
-		font-size: 1.1875rem; /* 19px */
+		font-size: 1.1875rem;
 	}
 }
 
 p.text-body {
-	font-size: 0.875rem; /* 14px */
+	font-size: 0.875rem;
 	line-height: 1.6;
 }
-
 @media (min-width: 640px) {
 	p.text-body {
-		font-size: 1rem; /* 16px */
+		font-size: 1rem;
 	}
 }
 
-.text-footer {
-	font-size: 0.8125rem; /* 13px */
+p.text-footer {
+	font-size: 0.8125rem;
 	line-height: 1.5;
 }
-
 @media (min-width: 640px) {
 	.text-footer {
-		font-size: 0.875rem; /* 14px */
+		font-size: 0.875rem;
 	}
 }
 
 .text-topic {
-	font-size: 0.75rem; /* 12px */
+	font-size: 0.75rem;
 }
-
 @media (min-width: 640px) {
 	.text-topic {
-		font-size: 0.875rem; /* 14px */
+		font-size: 0.875rem;
 	}
 }
 
 .text-nav {
-	font-size: 0.75rem; /* 12px */
+	font-size: 0.75rem;
 	font-weight: 500;
 	letter-spacing: 0.1em;
 }
-
 @media (min-width: 640px) {
 	.text-nav {
-		font-size: 0.8125rem; /* 13px */
+		font-size: 0.8125rem;
 	}
 }
-
-/* Mobile menu slide-in animation */
-@keyframes slideIn {
-	from {
-		opacity: 0;
-		transform: translateY(-8px);
-	}
-	to {
-		opacity: 1;
-		transform: translateY(0);
-	}
-}
-
-/* ==================================================
-   Utilities
-   ================================================== */
 
 /* Scroll indicators */
 .scroll-indicator-white,
@@ -288,10 +229,7 @@ p.text-body {
 	background: linear-gradient(to left, rgb(17, 24, 39), transparent);
 }
 
-/* ==================================================
-   Components – Accordion
-   ================================================== */
-
+/* Accordion */
 .border-accordion {
 	display: block;
 	width: 100%;
@@ -311,7 +249,7 @@ p.text-body {
 	box-shadow: 0 2px 8px -1px rgba(0, 0, 0, 0.1);
 }
 
-/* Code styling inside accordion content */
+/* Code styling */
 .content-html code {
 	background: transparent;
 	padding: 0.1rem 0.4rem;
@@ -324,10 +262,7 @@ p.text-body {
 	word-break: break-word;
 }
 
-/* ==================================================
-   Components – Home Card
-   ================================================== */
-
+/* Home Card */
 .home-card {
 	display: block;
 	width: 100%;
@@ -342,26 +277,33 @@ p.text-body {
 	cursor: pointer;
 	position: relative;
 }
-
 .home-card:hover {
 	transform: translateY(-2px);
 	background-color: var(--theme-hover-bg);
 }
-
 @media (min-width: 768px) {
 	.home-card {
 		width: calc(50% - 0.75rem);
 	}
 }
-
 @media (min-width: 1024px) {
 	.home-card {
 		width: calc(33.333% - 1rem);
 	}
 }
-
 @media (min-width: 1280px) {
 	.home-card {
 		width: calc(25% - 1.125rem);
+	}
+}
+
+@keyframes slideIn {
+	from {
+		opacity: 0;
+		transform: translateY(-8px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
 	}
 }
