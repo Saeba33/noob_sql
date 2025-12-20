@@ -60,7 +60,7 @@ export default function NavbarMobile({
 								{...getMobileLinkStyle(active, colors)}
 							>
 								<BeltIcon belt={beltKey} size={32} className="pt-1.5" />
-								<span className=" font-medium">{item.title}</span>
+								<span className="navbar-item font-medium">{item.title}</span>
 							</Link>
 						);
 					})}

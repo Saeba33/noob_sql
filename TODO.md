@@ -10,3 +10,5 @@ DEFAULT 'en coours' couleur
 Google analytics ?
 
 MAJ README
+
+Léger redimensionnement de la navbar entre mobile et desktop (très léger)

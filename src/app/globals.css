@@ -149,7 +149,7 @@ p {
 
 p.text-intro {
 	font-size: 1.0625rem;
-	line-height: 1.75;
+	line-height: 1.6;
 	font-weight: 300;
 }
 @media (min-width: 640px) {
@@ -165,7 +165,7 @@ p.text-intro {
 
 p.text-lead {
 	font-size: 1rem;
-	line-height: 1.7;
+	line-height: 1.6;
 	font-weight: 300;
 	letter-spacing: 0.005em;
 }
@@ -218,6 +218,11 @@ p.text-body {
 	.text-nav {
 		font-size: 0.8125rem;
 	}
+}
+
+.navbar-item {
+	font-family: "IBM Plex Sans", sans-serif;
+	font-size: 1rem;
 }
 
 /* Scroll indicators */

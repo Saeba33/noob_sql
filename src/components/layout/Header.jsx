@@ -25,7 +25,7 @@ const Practice = () => (
 		className="group relative transition-all duration-200 px-3 py-2 mr-2 flex items-center gap-2 text-topic font-medium text-gray-700 hover:text-gray-900 whitespace-nowrap border hover:border-gray-400 rounded-lg bg-gray-100 border-gray-200"
 	>
 		<Image src="/practice.png" width={28} height={28} alt="Practice icon" />
-		<span className="tracking-wide">FIGHT</span>
+		<span className="tracking-wide font-semibold">FIGHT</span>
 	</Link>
 );
 

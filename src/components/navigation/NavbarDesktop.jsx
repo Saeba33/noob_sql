@@ -23,7 +23,7 @@ export default function NavbarDesktop() {
 							key={`${beltKey}-${index}`}
 							href={item.href}
 							aria-current={active ? "page" : undefined}
-							className={`bg-transparent rounded-lg transition-all duration-200 px-2 pt-[7px] pb-[7px] flex items-center gap-2 text-sm ${
+							className={`navbar-item bg-transparent rounded-lg transition-all duration-200 px-2 pt-[7px] pb-[7px] flex items-center gap-2 ${
 								active
 									? "font-bold text-gray-900"
 									: "font-light text-gray-600 hover:text-gray-900"
