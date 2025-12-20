@@ -24,7 +24,7 @@ export default async function BeltPage({ params }) {
 	const { beltContent } = await getBeltData(belt);
 
 	return (
-		<div className="min-h-screen bg-gray-50 flex flex-col">
+		<div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 flex flex-col">
 			<main className="w-full max-w-[1500px] mx-auto mt-24 mb-16 px-4 lg:px-6 flex-1">
 				<SectionHeader
 					title={beltContent.header.title}
