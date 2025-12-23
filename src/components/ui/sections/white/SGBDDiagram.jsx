@@ -68,7 +68,7 @@ export default function SGBDDiagram() {
 			<div className="border border-gray-300 rounded-lg bg-gray-50 py-6 px-4">
 				{/* Root - SGBD */}
 				<div className="flex justify-center mb-6">
-					<div className="flex items-center justify-center space-x-4 w-full max-w-2xl px-12 py-8 bg-gradient-to-r from-gray-600 to-gray-500 border-4 border-gray-700 rounded-xl shadow-lg">
+					<div className="flex items-center justify-center space-x-4 max-w-lg w-full  py-4 lg:py-6 bg-gradient-to-r from-gray-600 to-gray-500 border-4 border-gray-700 rounded-xl shadow-lg">
 						<MdStorage className="w-10 h-10 text-white" />
 						<span className="text-3xl font-bold text-white">SGBD</span>
 					</div>
