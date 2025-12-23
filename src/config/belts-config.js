@@ -5,7 +5,7 @@ export const BELTS_CONFIG = {
 		image: "/white.png",
 		colors: {
 			theme: "#8A8A8A",
-			mobileHoverBg: "#F9FAFB",
+			mobileHoverBg: "#FAFAFA",
 			mobileHoverText: "#6B7280",
 			//svgFill: "#FFFFFF",
 			//svgOutline: "#8A8A8A",
@@ -77,7 +77,7 @@ export const BELTS_CONFIG = {
 		image: "/black.png",
 		colors: {
 			theme: "#3F3F3F",
-			mobileHoverBg: "#F9FAFB",
+			mobileHoverBg: "#F0F0F0",
 			mobileHoverText: "#000000",
 			//svgFill: "#3F3F3F",
 			//svgOutline: "#000000",

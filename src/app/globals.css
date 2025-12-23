@@ -209,33 +209,6 @@ p.text-body {
 	}
 }
 
-.text-nav {
-	font-size: 0.75rem;
-	font-weight: 500;
-	letter-spacing: 0.1em;
-}
-@media (min-width: 640px) {
-	.text-nav {
-		font-size: 0.8125rem;
-	}
-}
-
-.navbar-item {
-	font-family: "IBM Plex Sans", sans-serif;
-	font-size: 1rem;
-}
-
-/* Scroll indicators */
-.scroll-indicator-white,
-.scroll-indicator-dark {
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	width: 2rem;
-	pointer-events: none;
-	z-index: 10;
-}
 
 .scroll-indicator-white {
 	background: linear-gradient(to left, white, transparent);
@@ -279,27 +252,30 @@ p.text-body {
 }
 
 /* Home Card */
+
+/* Home Card (version unique, premium, fond blanc) */
 .home-card {
 	display: block;
 	width: 100%;
 	padding: 1.75rem;
 	border-radius: 0.75rem;
-	background-color: white;
-	box-shadow: 
+	background-color: #fff;
+	box-shadow:
 		0 1px 3px rgba(0, 0, 0, 0.04),
 		0 4px 12px rgba(0, 0, 0, 0.06);
-	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	border: 1px solid transparent;
+	transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 	text-decoration: none;
 	cursor: pointer;
 	position: relative;
 }
-
 .home-card:hover {
-	transform: translateY(-3px);
-	box-shadow: 
-		0 4px 12px rgba(0, 0, 0, 0.08),
-		0 12px 28px rgba(0, 0, 0, 0.1);
-	background-color: var(--theme-hover-bg);
+	transform: translateY(-2px);
+	box-shadow:
+		0 8px 24px rgba(0, 0, 0, 0.10),
+		0 16px 32px rgba(0, 0, 0, 0.10);
+	border-color: #E5EAF2;
+	background-color: #fff;
 }
 @media (min-width: 768px) {
 	.home-card {

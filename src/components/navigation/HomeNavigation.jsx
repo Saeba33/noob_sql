@@ -44,10 +44,10 @@ export default function HomeNavigation() {
 						<Link
 							key={page.key}
 							href={page.href}
-							className="home-card group"
+							className="home-card group "
 							style={{
 								"--theme-color": page.colors.theme,
-								"--theme-hover-bg": page.colors.mobileHoverBg,
+/* 								"--theme-hover-bg": page.colors.mobileHoverBg, */
 							}}
 						>
 							{/* Header avec titre, point et ligne animée */}
