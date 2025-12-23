@@ -178,9 +178,9 @@ export default function DatabaseArchitecture() {
 					<div className="bg-white border border-gray-300 rounded-lg p-4 shadow-sm">
 						<div className="flex items-center space-x-3 mb-4">
 							<MdTableChart className="w-5 h-5 min-w-[20px] text-gray-600" />
-							<h4 className="font-bold text-gray-800">
+							<h5 className="font-bold text-gray-800">
 								Table "utilisateurs"
-							</h4>
+							</h5>
 						</div>
 						<ScrollableTable
 							columns={usersColumns}
@@ -197,9 +197,9 @@ export default function DatabaseArchitecture() {
 					<div className="bg-white border border-gray-300 rounded-lg p-4 shadow-sm">
 						<div className="flex items-center space-x-3 mb-4">
 							<MdTableChart className="w-5 h-5 min-w-[20px] text-gray-600" />
-							<h4 className="font-bold text-gray-800">
+							<h5 className="font-bold text-gray-800">
 								Table "livres"
-							</h4>
+							</h5>
 						</div>
 						<ScrollableTable
 							columns={booksColumns}
@@ -216,9 +216,9 @@ export default function DatabaseArchitecture() {
 					<div className="bg-white border border-gray-300 rounded-lg p-4 shadow-sm">
 						<div className="flex items-center space-x-3 mb-4">
 							<MdTableChart className="w-5 h-5 min-w-[20px] text-gray-600" />
-							<h4 className="font-bold text-gray-800">
+							<h5 className="font-bold text-gray-800">
 								Table "emprunts"
-							</h4>
+							</h5>
 						</div>
 						<ScrollableTable
 							columns={borrowingColumns}
@@ -235,19 +235,19 @@ export default function DatabaseArchitecture() {
 				{/* Legend */}
 				<div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
 					<div className="p-4 bg-yellow-100 border border-yellow-200 rounded-lg">
-						<h4 className="font-bold text-yellow-900 mb-2 flex items-center">
+						<h5 className="font-bold text-yellow-900 mb-2 flex items-center">
 							<MdKey className="w-4 h-4 mr-2 text-yellow-600" />
 							Clé Primaire
-						</h4>
+						</h5>
 						<p className="text-body text-yellow-800">
 							Identifiant unique de chaque ligne dans une table
 						</p>
 					</div>
 					<div className="p-4 bg-red-100 border border-red-200 rounded-lg">
-						<h4 className="font-bold text-red-900 mb-2 flex items-center">
+						<h5 className="font-bold text-red-900 mb-2 flex items-center">
 							<MdLink className="w-4 h-4 mr-2 text-red-600 opacity-80" />
 							Clé Étrangère
-						</h4>
+						</h5>
 						<p className="text-body text-red-800">
 							Référence vers la clé primaire d'une autre table
 						</p>

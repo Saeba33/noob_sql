@@ -21,9 +21,9 @@ export default function PrimaryForeignKeys() {
 				<div className="bg-white rounded-lg border border-gray-200 p-6">
 					<div className="flex items-center gap-3 mb-4">
 						<MdKey className="w-8 h-8 min-w-[32px] text-yellow-600" />
-					<h4 className="font-bold text-gray-900">
+					<h5 className="font-bold text-gray-900">
 						Clé Primaire (PRIMARY KEY)
-					</h4>
+					</h5>
 				</div>
 
 				<div className="space-y-3">
@@ -44,9 +44,9 @@ export default function PrimaryForeignKeys() {
 			<div className="bg-white rounded-lg border border-gray-200 p-6">
 				<div className="flex items-center gap-3 mb-4">
 					<MdLink className="w-8 h-8 min-w-[32px] text-red-600 opacity-80" />
-					<h4 className="font-bold text-gray-900">
+					<h5 className="font-bold text-gray-900">
 						Clé Étrangère (FOREIGN KEY)
-					</h4>
+					</h5>
 				</div>
 
 				<div className="space-y-3">
@@ -65,9 +65,9 @@ export default function PrimaryForeignKeys() {
 
 		{/* Example */}
 		<div className="bg-white border border-gray-300 rounded-lg p-6">
-			<h4 className="font-bold text-gray-900 mb-4">
+			<h5 className="font-bold text-gray-900 mb-4">
 				Comment les relations fonctionnent ?
-			</h4>
+			</h5>
 
 			<p className="text-body text-gray-700 mb-2">
 				En prenant pour exemple les tables vues dans la section précédente :

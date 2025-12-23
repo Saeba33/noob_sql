@@ -56,9 +56,9 @@ export default function Accordion({
 							style={{ color: "#8A8A8A" }}
 							aria-hidden="true"
 						/>
-						<h3 className="font-semibold text-gray-600 group-hover:text-gray-800 transition-colors">
+						<h4 className="font-semibold text-gray-600 group-hover:text-gray-800 transition-colors">
 							{section}
-						</h3>
+						</h4>
 					</div>
 					<MdExpandMore
 						className={`w-6 h-6 text-gray-400 transition-transform duration-200 flex-shrink-0 ${
@@ -123,10 +123,10 @@ export default function Accordion({
 													{example.code &&
 														example.code.includes("CREATE TABLE") && (
 															<div className="mt-4">
-																<h4 className="font-semibold text-gray-900 mb-3 flex items-center">
+																<h5 className="font-semibold text-gray-900 mb-3 flex items-center">
 																	<MdAccountTree className="w-4 h-4 mr-2" />
 																	Structure des tables
-																</h4>
+																</h5>
 																<div className="flex flex-wrap gap-6 items-start">
 																	{sqlToTableDiagram(example.code).map(
 																		(table, tableIndex) => (

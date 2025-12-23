@@ -37,10 +37,10 @@ export default function DataTypes() {
 	const renderTypesSection = (title, rows) => {
 			return (
 				<div className="border border-gray-300 rounded-lg bg-gray-50 p-6 mt-8">
-					<h4 className="font-bold text-gray-800 mb-6 flex items-center">
+					<h5 className="font-bold text-gray-800 mb-6 flex items-center">
 						<MdInventory className="w-6 h-6 min-w-[24px] text-gray-600 mr-3 hidden sm:block" />
 						{title}
-				</h4>
+				</h5>
 				<p className="italic text-sm mb-2">
 					* Les valeurs entre parenthèses sont données à titre d'exemple, elles
 					sont configurables selon vos besoins. La liste suivante n'est pas
@@ -145,10 +145,10 @@ export default function DataTypes() {
 		return (
 			<div className="mt-8">
 				<div className="border border-gray-300 rounded-lg bg-gray-50 p-6">
-					<h4 className="font-bold text-gray-800 mb-6 flex items-center">
+					<h5 className="font-bold text-gray-800 mb-6 flex items-center">
 						<MdLock className="w-6 h-6 min-w-[24px] text-gray-600 mr-3 hidden sm:block" />
 						Contraintes et options
-					</h4>
+					</h5>
 
 					<p className="text-body text-gray-700 mb-6">
 						Les <strong>contraintes</strong> définissent des règles que les
@@ -165,9 +165,9 @@ export default function DataTypes() {
 								<div className="flex items-center space-x-3">
 									<div className="flex-1 self-start">
 										<div className="flex items-center gap-2">
-											<h4 className="font-bold text-gray-900 mb-1">
+											<h5 className="font-bold text-gray-900 mb-1">
 												{constraint.name}
-											</h4>
+											</h5>
 											<span className="pb-1 w-5 h-5 min-w-[20px] text-gray-600 ">{constraint.icon}</span>
 										</div>
 									<p className="text-body text-gray-700 mb-2">
@@ -197,10 +197,10 @@ export default function DataTypes() {
 		return (
 			<div className="mt-8">
 				<div className="border border-gray-300 rounded-lg bg-gray-50 p-6">
-					<h4 className="font-bold text-gray-800 mb-6 flex items-center">
+					<h5 className="font-bold text-gray-800 mb-6 flex items-center">
 						<MdStorage className="w-6 h-6 min-w-[24px] text-gray-600 mr-3 hidden sm:block" />
 						Exemple d'une table "utilisateurs" avec contraintes
-					</h4>
+					</h5>
 
 					<div className="bg-white border border-gray-300 rounded-lg shadow-sm overflow-hidden">
 						<div className="relative">
