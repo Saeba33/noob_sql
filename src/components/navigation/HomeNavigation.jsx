@@ -44,33 +44,48 @@ export default function HomeNavigation() {
 						<Link
 							key={page.key}
 							href={page.href}
-							className="home-card"
+							className="home-card group"
 							style={{
 								"--theme-color": page.colors.theme,
 								"--theme-hover-bg": page.colors.mobileHoverBg,
 							}}
 						>
-							<h3 className="font-extrabold tracking-tight text-gray-800 mb-4">
-								{page.title}
-							</h3>
+							{/* Header avec titre, point et ligne animée */}
+							<div className="mb-5">
 
-							<p className="text-body text-gray-700 mb-6 leading-relaxed">
+
+									<h3 className="font-extrabold tracking-tight text-gray-800 transition-colors duration-300">
+										{page.title}
+									</h3>
+
+								{/* Ligne animée sous le titre */}
+								<div className="mt-2 h-[2px] bg-gray-200 rounded-full overflow-hidden">
+									<div 
+										className="h-full w-0 group-hover:w-full transition-all duration-300 ease-out rounded-full"
+										style={{ backgroundColor: page.colors.theme }}
+									/>
+								</div>
+							</div>
+
+							{/* Description */}
+							<p className="text-body text-gray-600 mb-6 leading-relaxed">
 								{page.summary}
 							</p>
 
-							<div className="space-y-2.5">
+							{/* Topics */}
+							<div className="space-y-2">
 								{page.topics.slice(0, 3).map((topic, index) => (
 									<div
 										key={index}
-										className="text-topic text-gray-600 flex items-start"
+										className="text-topic text-gray-500 flex items-start"
 									>
-										<span className="text-gray-400 mr-2.5">•</span>
+										<span className="text-gray-300 mr-2">•</span>
 										<span>{topic}</span>
 									</div>
 								))}
 								{page.topics.length > 3 && (
-									<div className="text-topic text-gray-500 flex items-center">
-										<span className="text-gray-400 mr-2.5">+</span>
+									<div className="text-topic text-gray-400 flex items-center">
+										<span className="mr-2">+</span>
 										<span>
 											{page.topics.length - 3} autre
 											{page.topics.length - 3 > 1 ? "s" : ""} sujet
