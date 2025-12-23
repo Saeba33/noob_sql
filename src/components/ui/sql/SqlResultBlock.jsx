@@ -1,8 +1,7 @@
 "use client";
 
-import { MdCheckCircle, MdInfo, MdTableChart } from "react-icons/md";
-import { formatQueryResult } from "../../../config/sql-syntax.js";
 import { useScrollIndicator } from "@/hooks/useScrollIndicator";
+import { formatQueryResult } from "../../../config/sql-syntax.js";
 
 export default function SQLResultBlock({
 	data,
@@ -31,8 +30,7 @@ export default function SQLResultBlock({
 				<div className="bg-blue-50 border border-blue-200 rounded-lg overflow-hidden">
 					{/* Header */}
 					<div className="bg-blue-100 px-4 py-3 border-b border-blue-200">
-					<h5 className="text-blue-800 font-semibold flex items-center">
-						</h5>
+						<h5 className="text-blue-800 font-semibold flex items-center"></h5>
 					</div>
 
 					{/* Message Content */}
@@ -54,8 +52,7 @@ export default function SQLResultBlock({
 				<div className="bg-gray-50 border border-gray-200 rounded-lg overflow-hidden">
 					{/* Header */}
 					<div className="bg-gray-100 px-4 py-3 border-b border-gray-200">
-					<h5 className="text-gray-700 font-semibold flex items-center">
-						</h5>
+						<h5 className="text-gray-700 font-semibold flex items-center"></h5>
 					</div>
 
 					{/* Empty Content */}
@@ -75,7 +72,7 @@ export default function SQLResultBlock({
 			<div className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm">
 				{/* Header */}
 				<div className="bg-gray-50 px-4 py-3 border-b border-gray-200">
-				<h5 className="text-gray-800 font-semibold flex items-center">
+					<h5 className="text-gray-800 font-semibold flex items-center">
 						{formattedData.rows.length > 1 ? "s" : ""}
 					</h5>
 				</div>
@@ -85,51 +82,51 @@ export default function SQLResultBlock({
 					{/* Scroll indicator - affiché uniquement si scroll */}
 					{hasScroll && <div className="scroll-indicator-white" />}
 					<div ref={ref} className="overflow-x-auto">
-					<table className="w-full text-sm">
-						{/* Headers */}
-						<thead>
-							<tr className="bg-gray-50 border-b border-gray-200">
-								{formattedData.headers.map((header, index) => (
-									<th
-										key={index}
-										className="px-4 py-3 text-left font-semibold text-gray-700 border-r border-gray-200 last:border-r-0"
-									>
-										{header}
-									</th>
-								))}
-							</tr>
-						</thead>
-
-						{/* Rows */}
-						<tbody className="divide-y divide-gray-200">
-							{formattedData.rows.map((row, rowIndex) => (
-								<tr
-									key={rowIndex}
-									className={`hover:bg-gray-50 transition-colors ${
-										rowIndex % 2 === 0 ? "bg-white" : "bg-gray-50/50"
-									}`}
-								>
-									{row.map((cell, cellIndex) => (
-										<td
-											key={cellIndex}
-											className="px-4 py-3 text-gray-800 font-mono border-r border-gray-200 last:border-r-0"
+						<table className="w-full text-sm">
+							{/* Headers */}
+							<thead>
+								<tr className="bg-gray-50 border-b border-gray-200">
+									{formattedData.headers.map((header, index) => (
+										<th
+											key={index}
+											className="px-4 py-3 text-left font-semibold text-gray-700 border-r border-gray-200 last:border-r-0"
 										>
-											{cell === null ? (
-												<span className="text-gray-400 italic">NULL</span>
-											) : cell === undefined ? (
-												<span className="text-gray-400 italic">-</span>
-											) : (
-												String(cell)
-											)}
-										</td>
+											{header}
+										</th>
 									))}
 								</tr>
-							))}
-						</tbody>
-					</table>
+							</thead>
+
+							{/* Rows */}
+							<tbody className="divide-y divide-gray-200">
+								{formattedData.rows.map((row, rowIndex) => (
+									<tr
+										key={rowIndex}
+										className={`hover:bg-gray-50 transition-colors ${
+											rowIndex % 2 === 0 ? "bg-white" : "bg-gray-50/50"
+										}`}
+									>
+										{row.map((cell, cellIndex) => (
+											<td
+												key={cellIndex}
+												className="px-4 py-3 text-gray-800 font-mono border-r border-gray-200 last:border-r-0"
+											>
+												{cell === null ? (
+													<span className="text-gray-400 italic">NULL</span>
+												) : cell === undefined ? (
+													<span className="text-gray-400 italic">-</span>
+												) : (
+													String(cell)
+												)}
+											</td>
+										))}
+									</tr>
+								))}
+							</tbody>
+						</table>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 	);
 }

@@ -1,7 +1,7 @@
 "use client";
 
-import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import { BsInfoCircle } from "react-icons/bs";
+import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import { RiProhibited2Line } from "react-icons/ri";
 
 export default function BestPractices({
@@ -9,7 +9,6 @@ export default function BestPractices({
 	rules = [],
 	iconColor = "#6B7280",
 }) {
-
 	return (
 		<div>
 			{/* Introduction */}
@@ -29,7 +28,7 @@ export default function BestPractices({
 						{/* Rule header */}
 						<div className="flex items-center space-x-3">
 							<div
-								className="w-5 h-5 min-w-[20px] flex-shrink-0"
+								className="flex-shrink-0 [&>svg]:w-5 [&>svg]:h-5 sm:[&>svg]:w-6 sm:[&>svg]:h-6"
 								style={{ color: iconColor }}
 							>
 								{rule.icon}
