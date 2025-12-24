@@ -1,5 +1,6 @@
 "use client";
 
+import { MdCheckCircle, MdInfo, MdTableChart } from "react-icons/md";
 import { useScrollIndicator } from "@/hooks/useScrollIndicator";
 import { formatQueryResult } from "../../../config/sql-syntax.js";
 
@@ -30,7 +31,10 @@ export default function SQLResultBlock({
 				<div className="bg-blue-50 border border-blue-200 rounded-lg overflow-hidden">
 					{/* Header */}
 					<div className="bg-blue-100 px-4 py-3 border-b border-blue-200">
-						<h5 className="text-blue-800 font-semibold flex items-center"></h5>
+						<h6 className="text-blue-800 font-semibold text-sm flex items-center">
+							<MdCheckCircle className="w-4 h-4 mr-2" />
+							{title}
+						</h6>
 					</div>
 
 					{/* Message Content */}
@@ -52,7 +56,10 @@ export default function SQLResultBlock({
 				<div className="bg-gray-50 border border-gray-200 rounded-lg overflow-hidden">
 					{/* Header */}
 					<div className="bg-gray-100 px-4 py-3 border-b border-gray-200">
-						<h5 className="text-gray-700 font-semibold flex items-center"></h5>
+						<h6 className="text-gray-700 font-semibold text-sm flex items-center">
+							<MdInfo className="w-4 h-4 mr-2" />
+							{title}
+						</h6>
 					</div>
 
 					{/* Empty Content */}
@@ -72,9 +79,11 @@ export default function SQLResultBlock({
 			<div className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm">
 				{/* Header */}
 				<div className="bg-gray-50 px-4 py-3 border-b border-gray-200">
-					<h5 className="text-gray-800 font-semibold flex items-center">
-						{formattedData.rows.length > 1 ? "s" : ""}
-					</h5>
+					<h6 className="text-gray-800 font-semibold text-sm flex items-center">
+						<MdTableChart className="w-4 h-4 mr-2" />
+						{title} ({formattedData.rows.length} ligne
+						{formattedData.rows.length > 1 ? "s" : ""})
+					</h6>
 				</div>
 
 				{/* Results Table */}

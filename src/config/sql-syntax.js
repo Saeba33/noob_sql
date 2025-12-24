@@ -15,7 +15,7 @@ export const sqlSyntaxConfig = {
 
 		operator: "text-rose-400",
 
-		function: "text-sky-400 font-medium",
+		function: "text-cyan-400 font-medium",
 
 		comment: "text-gray-500 italic",
 		default: "text-gray-200",
@@ -66,12 +66,22 @@ export function analyzeSqlCode(code) {
 			priority: 3,
 		});
 	}
-
-	// 4. Ambiguous words that are functions when followed by parentheses
-	// DATE, TIME: datatypes vs functions | REPLACE: keyword vs function
-	// Must be detected BEFORE keywords/datatypes to take priority
-	const ambiguousFunctions = /\b(DATE|TIME|REPLACE)(?=\s*\()/gi;
+	// 4. Mots ambigus (DATE, TIME, etc.) qui sont des fonctions quand suivis de parenthèses
+	// Doit être détecté AVANT les datatypes pour avoir la priorité
+	const ambiguousFunctions = /\b(DATE|TIME|TIMESTAMP|REPLACE)\s*(?=\()/gi;
 	while ((match = ambiguousFunctions.exec(code)) !== null) {
+		parts.push({
+			start: match.index,
+			end: match.index + match[0].trim().length,
+			text: match[0].trim(),
+			type: "function",
+			priority: 4,
+		});
+	}
+
+	// Fonctions temporelles (priorité haute pour éviter conflit avec keywords)
+	const temporalFunctions = /\b(CURRENT_TIMESTAMP|CURRENT_DATE|CURRENT_TIME|NOW)\b/gi;
+	while ((match = temporalFunctions.exec(code)) !== null) {
 		parts.push({
 			start: match.index,
 			end: match.index + match[0].length,
@@ -81,6 +91,21 @@ export function analyzeSqlCode(code) {
 		});
 	}
 
+	// CASCADE bleu si précédé de DROP TABLE (doit être ici, car code est défini)
+	const cascadeDropTable = /DROP\s+TABLE[^;]*\bCASCADE\b/gi;
+	let cascadeMatch;
+	while ((cascadeMatch = cascadeDropTable.exec(code)) !== null) {
+		const cascadeIndex = cascadeMatch[0].lastIndexOf("CASCADE");
+		if (cascadeIndex !== -1) {
+			parts.push({
+				start: cascadeMatch.index + cascadeIndex,
+				end: cascadeMatch.index + cascadeIndex + 7,
+				text: "CASCADE",
+				type: "keyword",
+				priority: 5,
+			});
+		}
+	}
 	// 5. Multi-word SQL keywords (commands)
 	const multiWordKeywords =
 		/\b(CREATE\s+TABLE|CREATE\s+INDEX|CREATE\s+VIEW|INSERT\s+INTO|DELETE\s+FROM|GROUP\s+BY|ORDER\s+BY|LEFT\s+OUTER\s+JOIN|RIGHT\s+OUTER\s+JOIN|FULL\s+OUTER\s+JOIN|LEFT\s+JOIN|RIGHT\s+JOIN|INNER\s+JOIN|FULL\s+JOIN|CROSS\s+JOIN|UNION\s+ALL|ADD\s+COLUMN|DROP\s+COLUMN|RENAME\s+COLUMN|ALTER\s+COLUMN|EXPLAIN\s+QUERY\s+PLAN|ADD\s+CONSTRAINT|DROP\s+CONSTRAINT|ON\s+CONFLICT|IS\s+NOT\s+NULL|IS\s+NULL|IS\s+NOT|IF\s+EXISTS|IF\s+NOT\s+EXISTS|NOT\s+LIKE|NOT\s+IN|NOT\s+BETWEEN|NOT\s+EXISTS)\b/gi;
@@ -109,7 +134,7 @@ export function analyzeSqlCode(code) {
 
 	// 7. SQL data types
 	const datatypes =
-		/\b(INTEGER|INT|SMALLINT|VARCHAR|DECIMAL|NUMERIC|TIMESTAMP|DATE|TEXT|CHAR|BOOLEAN|BOOL|TINYINT|BIGINT|FLOAT|DOUBLE|REAL|TIME|DATETIME|BLOB|JSON|SERIAL)\b/gi;
+	/\b(ENUM|INTEGER|INT|SMALLINT|VARCHAR|DECIMAL|NUMERIC|TIMESTAMP|DATE|TEXT|CHAR|BOOLEAN|BOOL|TINYINT|BIGINT|FLOAT|DOUBLE|REAL|TIME|DATETIME|BLOB|JSON|SERIAL)\b/gi;
 	while ((match = datatypes.exec(code)) !== null) {
 		parts.push({
 			start: match.index,
@@ -231,7 +256,6 @@ export function parseSchema(schemaText) {
 	const tables = [];
 	const lines = schemaText.split("\n");
 	let currentTable = null;
-
 	for (let line of lines) {
 		line = line.trim();
 
@@ -244,28 +268,18 @@ export function parseSchema(schemaText) {
 				relationships: [],
 			};
 			tables.push(currentTable);
-		}
-		// Detect a column
-		else if (currentTable && line.match(/^\w+\s+\w+/)) {
-			// Remove trailing comma/semicolon and inline comments (-- ...)
+		} else if (currentTable && line.match(/^\w+\s+\w+/)) {
 			const cleanLine = line
-				.replace(/--.*$/, "") // Remove SQL comments
-				.replace(/[,;]\s*$/, "") // Remove trailing comma/semicolon
+				.replace(/--.*$/, "")
+				.replace(/[,;]\s*$/, "")
 				.trim();
-
-			// Extract column name (first word)
 			const columnName = cleanLine.match(/^(\w+)/)[1];
-
-			// Extract type: word + optional parentheses content (handles ENUM('a','b'), DECIMAL(10,2), VARCHAR(255))
 			const typeMatch = cleanLine.match(/^\w+\s+(\w+(?:\s*\([^)]+\))?)/);
 			const columnType = typeMatch ? typeMatch[1] : "";
-
-			// Everything after the type is constraints
 			const afterType = cleanLine
 				.slice(cleanLine.indexOf(columnType) + columnType.length)
 				.trim();
 			const constraints = afterType;
-
 			const column = {
 				name: columnName,
 				type: columnType,
@@ -276,29 +290,16 @@ export function parseSchema(schemaText) {
 				isUnique: /UNIQUE/i.test(constraints),
 				isNotNull: /NOT\s+NULL/i.test(constraints),
 			};
-
 			currentTable.columns.push(column);
-		}
-		// Detect foreign key relationships
-		else if (
-			currentTable &&
-			line.match(/FOREIGN KEY\s*\((\w+)\)\s*REFERENCES\s+(\w+)\s*\((\w+)\)/i)
-		) {
-			const match = line.match(
-				/FOREIGN KEY\s*\((\w+)\)\s*REFERENCES\s+(\w+)\s*\((\w+)\)/i
-			);
+		} else if (currentTable && line.match(/FOREIGN KEY\s*\((\w+)\)\s*REFERENCES\s+(\w+)\s*\((\w+)\)/i)) {
+			const match = line.match(/FOREIGN KEY\s*\((\w+)\)\s*REFERENCES\s+(\w+)\s*\((\w+)\)/i);
 			const relationship = {
 				column: match[1],
 				referencedTable: match[2],
 				referencedColumn: match[3],
 			};
 			currentTable.relationships.push(relationship);
-		}
-		// Detect inline references
-		else if (
-			currentTable &&
-			line.match(/(\w+)\s+\w+.*REFERENCES\s+(\w+)\s*\((\w+)\)/i)
-		) {
+		} else if (currentTable && line.match(/(\w+)\s+\w+.*REFERENCES\s+(\w+)\s*\((\w+)\)/i)) {
 			const match = line.match(/(\w+)\s+\w+.*REFERENCES\s+(\w+)\s*\((\w+)\)/i);
 			const relationship = {
 				column: match[1],
@@ -308,7 +309,6 @@ export function parseSchema(schemaText) {
 			currentTable.relationships.push(relationship);
 		}
 	}
-
 	return tables;
 }
 
