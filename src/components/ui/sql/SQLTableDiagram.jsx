@@ -9,10 +9,10 @@ export default function SQLTableDiagram({ table }) {
 		<div className="bg-white border border-gray-300 rounded-lg shadow-sm w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]">
 			{/* Table header */}
 			<div className="bg-gray-50 px-4 py-3 border-b border-gray-200 rounded-t-lg">
-				<h5 className="text-gray-800 font-semibold font-mono flex items-center justify-center">
+				<h6 className="text-gray-800 font-semibold font-mono flex items-center justify-center">
 					<MdTableChart className="w-4 h-4 mr-2" />
 					{table.name}
-				</h5>
+				</h6>
 			</div>
 
 			{/* Columns */}

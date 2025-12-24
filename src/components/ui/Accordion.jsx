@@ -110,10 +110,10 @@ export default function Accordion({
 											}}
 										>
 											{example.label && (
-												<h5 className="font-semibold text-gray-900 flex items-center gap-2 mb-4">
+												<h6 className="font-semibold text-gray-900 flex items-center gap-2 mb-4">
 													<MdCode className="w-4 h-4" />
 													{example.label}
-												</h5>
+												</h6>
 											)}
 
 											{exampleType === "schema" ? (
@@ -123,10 +123,10 @@ export default function Accordion({
 													{example.code &&
 														example.code.includes("CREATE TABLE") && (
 															<div className="mt-4">
-																<h5 className="font-semibold text-gray-900 mb-3 flex items-center">
+																<h6 className="font-semibold text-gray-900 mb-3 flex items-center">
 																	<MdAccountTree className="w-4 h-4 mr-2" />
 																	Structure des tables
-																</h5>
+																</h6>
 																<div className="flex flex-wrap gap-6 items-start">
 																	{sqlToTableDiagram(example.code).map(
 																		(table, tableIndex) => (
