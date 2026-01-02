@@ -29,7 +29,7 @@ const Practice = () => (
 			width={22} 
 			height={22} 
 			alt="Practice icon"
-			className="transition-all duration-300 group-hover:scale-110 group-hover:brightness-110 block" 
+			className="transition-all duration-300 group-hover:scale-105 group-hover:brightness-110 block" 
 		/>
 		<span className="tracking-wide font-semibold text-gray-600 group-hover:text-gray-900 transition-colors duration-300 text-sm leading-none">FIGHT</span>
 	</Link>
