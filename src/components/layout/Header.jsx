@@ -42,41 +42,41 @@ export default function Header() {
 	return (
 		<header className="fixed top-6 left-0 right-0 z-50 flex justify-center">
 			<div className="w-full max-w-[1500px] px-6">
-				<div
-					ref={menuRef}
-					className={`border border-gray-200/60 shadow-lg rounded-lg overflow-hidden h-[74px] box-border ${
-						isMobile ? "bg-white" : "bg-white/80 backdrop-blur-lg"
-					}`}
-				>
-					<div className="px-6 h-full flex items-center overflow-hidden box-border">
-						{!isMobile ? (
-							<div className="grid grid-cols-[auto_1fr_auto] items-center gap-6 w-full h-[40px]">
-								{/* Left zone */}
-								<div className="flex items-center h-full">
+				<div ref={menuRef} className="relative">
+					<div
+						className={`border border-gray-200/60 shadow-lg overflow-hidden ${
+							isMobile && isMenuOpen ? "rounded-t-lg" : "rounded-lg"
+						} ${isMobile ? "bg-white" : "bg-white/80 backdrop-blur-lg"}`}
+					>
+						<div className="px-6 h-[74px] flex items-center">
+							{!isMobile ? (
+								<div className="grid grid-cols-[auto_1fr_auto] items-center gap-6 w-full">
+									{/* Left zone */}
+									<div className="flex items-center">
+										<Logo />
+									</div>
+
+									{/* Center - Navigation */}
+									<div className="flex justify-center">
+										<NavbarDesktop />
+									</div>
+
+									{/* Right zone */}
+									<div className="flex items-center">
+										<Practice />
+									</div>
+								</div>
+							) : (
+								<div className="flex items-center justify-between w-full">
 									<Logo />
+									<NavbarMobile
+										isMenuOpen={isMenuOpen}
+										toggleMenu={toggleMenu}
+										closeMenu={closeMenu}
+									/>
 								</div>
-
-								{/* Center - Navigation */}
-								<div className="flex justify-center">
-									<NavbarDesktop />
-								</div>
-
-								{/* Right zone */}
-								<div className="flex items-center">
-									<Practice />
-								</div>
-							</div>
-						) : (
-							<div className="flex items-center justify-between w-full h-[40px]">
-								<Logo />
-								<NavbarMobile
-									isMenuOpen={isMenuOpen}
-									toggleMenu={toggleMenu}
-									closeMenu={closeMenu}
-									menuRef={menuRef}
-								/>
-							</div>
-						)}
+							)}
+						</div>
 					</div>
 				</div>
 			</div>

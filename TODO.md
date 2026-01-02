@@ -8,5 +8,5 @@ Google analytics ?
 MAJ README
 
 
-Corriger: Gutter scrollbar
+Modifier hover bouton fight desktop.
 Cohérence taille des polices en full responsive (y compris popup) entre les différentes rubriques.

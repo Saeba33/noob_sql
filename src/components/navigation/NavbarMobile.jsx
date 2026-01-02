@@ -4,14 +4,12 @@ import BeltIcon from "@/components/ui/BeltIcon";
 import { BELT_COLORS, PAGES_CONFIG } from "@/config/belts-config";
 import { useNavigation } from "@/hooks/useNavigation";
 import Link from "next/link";
-import { createPortal } from "react-dom";
 import { HiMenu, HiX } from "react-icons/hi";
 
 export default function NavbarMobile({
 	isMenuOpen,
 	toggleMenu,
 	closeMenu,
-	menuRef,
 }) {
 	const { isActive } = useNavigation();
 
@@ -34,10 +32,10 @@ export default function NavbarMobile({
 		<div
 			id="mobile-menu"
 			aria-hidden={!isMenuOpen}
-			className={`border-t border-gray-200/50 bg-white rounded-b-2xl overflow-hidden transition-all duration-300 ease-out ${
+			className={`absolute top-full left-0 right-0 border-x border-b border-gray-200/60 border-t border-t-gray-200/20 bg-white rounded-b-lg shadow-lg overflow-hidden transition-all duration-300 ease-out ${
 				isMenuOpen
 					? "max-h-[600px] opacity-100 translate-y-0"
-					: "max-h-0 opacity-0 -translate-y-2"
+					: "max-h-0 opacity-0 -translate-y-1 pointer-events-none"
 			}`}
 		>
 			<div className="px-4 py-4">
@@ -84,7 +82,7 @@ export default function NavbarMobile({
 					<HiMenu className="w-6 h-6 text-gray-700" />
 				)}
 			</button>
-			{menuRef?.current && createPortal(menu, menuRef.current)}
+			{menu}
 		</>
 	);
 }

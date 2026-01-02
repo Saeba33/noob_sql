@@ -2,7 +2,7 @@
 
 import { analyzeSqlCode, sqlSyntaxConfig } from "../../../config/sql-syntax.js";
 import { useScrollIndicator } from "@/hooks/useScrollIndicator";
-import SQLLegend from "./SQLLegend";
+import SQLLegend from "./SQLLegend.jsx";
 import { useState, useEffect } from "react";
 import { MdInfoOutline, MdClose } from "react-icons/md";
 
