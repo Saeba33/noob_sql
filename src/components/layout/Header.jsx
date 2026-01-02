@@ -22,16 +22,16 @@ const Logo = () => (
 const Practice = () => (
 	<Link
 		href="/practice"
-		className="group relative transition-all duration-300 px-4 py-2 flex items-center gap-2.5 whitespace-nowrap rounded-lg border border-gray-300 hover:border-red-800/40 bg-white hover:bg-red-950/5 h-[40px] max-h-[40px]"
+		className="group relative transition-all duration-300 px-4 py-2 flex items-center gap-2.5 whitespace-nowrap rounded-lg border border-gray-300 hover:border-gray-400 bg-white hover:bg-gray-50 hover:shadow-md h-[40px] max-h-[40px]"
 	>
 		<Image 
 			src="/practice.png" 
 			width={22} 
 			height={22} 
 			alt="Practice icon"
-			className="transition-transform duration-300 group-hover:scale-105 block" 
+			className="transition-all duration-300 group-hover:scale-110 group-hover:brightness-110 block" 
 		/>
-		<span className="tracking-wide font-semibold text-gray-600 group-hover:text-red-800 transition-colors duration-300 text-sm leading-none">FIGHT</span>
+		<span className="tracking-wide font-semibold text-gray-600 group-hover:text-gray-900 transition-colors duration-300 text-sm leading-none">FIGHT</span>
 	</Link>
 );
 
