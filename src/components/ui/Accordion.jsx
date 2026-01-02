@@ -98,16 +98,21 @@ export default function Accordion({
 						{examples && examples.length > 0 && (
 							<div className="space-y-6">
 								{examples.map((example, index) => {
-									const exampleType = example.type || "query"; // default to "query"
-									const hasMultipleExamples = examples.length > 1;
+									// Determine if we need a container (when result exists)
+									const hasResult = example.result !== undefined;
+									const containerClasses = hasResult
+										? "space-y-4 border border-gray-200 rounded-lg p-5 bg-gray-50"
+										: "space-y-4";
 
 									return (
 										<div
 											key={index}
-											className="space-y-4 border border-gray-200 rounded-lg p-5 bg-gray-50"
-											style={{
-												boxShadow: "0 1px 2px 0 rgba(0, 0, 0, 0.03)",
-											}}
+											className={containerClasses}
+											style={
+												hasResult
+													? { boxShadow: "0 1px 2px 0 rgba(0, 0, 0, 0.03)" }
+													: undefined
+											}
 										>
 											{example.label && (
 												<h6 className="font-semibold text-gray-900 flex items-center gap-2 mb-4">
@@ -116,40 +121,34 @@ export default function Accordion({
 												</h6>
 											)}
 
-											{exampleType === "schema" ? (
-												// Schema: CREATE TABLE with auto-generated diagram
-												<>
-													<SQLCodeBlock>{example.code}</SQLCodeBlock>
-													{example.code &&
-														example.code.includes("CREATE TABLE") && (
-															<div className="mt-4">
-																<h6 className="font-semibold text-gray-900 mb-3 flex items-center">
-																	<MdAccountTree className="w-4 h-4 mr-2" />
-																	Structure des tables
-																</h6>
-																<div className="flex flex-wrap gap-6 items-start">
-																	{sqlToTableDiagram(example.code).map(
-																		(table, tableIndex) => (
-																			<SQLTableDiagram
-																				key={tableIndex}
-																				table={table}
-																			/>
-																		)
-																	)}
-																</div>
-															</div>
+											{/* SQL Query - always displayed */}
+											<SQLCodeBlock>{example.code}</SQLCodeBlock>
+
+											{/* Table Structure - displayed if CREATE TABLE detected */}
+											{example.code?.includes("CREATE TABLE") && (
+												<div className="mt-4">
+													<h6 className="font-semibold text-gray-900 mb-3 flex items-center">
+														<MdAccountTree className="w-4 h-4 mr-2" />
+														Structure des tables
+													</h6>
+													<div className="flex flex-wrap gap-6 items-start">
+														{sqlToTableDiagram(example.code).map(
+															(table, tableIndex) => (
+																<SQLTableDiagram
+																	key={tableIndex}
+																	table={table}
+																/>
+															)
 														)}
-												</>
-											) : (
-												// Query: Regular SQL with optional result
-												<>
-													<SQLCodeBlock>{example.code}</SQLCodeBlock>
-													{example.result !== undefined && (
-														<div className="mt-3">
-															{renderSqlResult(example.result)}
-														</div>
-													)}
-												</>
+													</div>
+												</div>
+											)}
+
+											{/* Query Result - displayed if result exists */}
+											{hasResult && (
+												<div className="mt-3">
+													{renderSqlResult(example.result)}
+												</div>
 											)}
 										</div>
 									);
