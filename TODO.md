@@ -9,6 +9,4 @@ MAJ README
 
 Corriger : léger redimensionnement de la navbar entre mobile et desktop (très léger)
 Corriger: Gutter scrollbar
-Corriger Encadré des exemples
-Cohérence taille des polices en full responsive
-Faire apparaitre une légende pour les couleurs syntaxiques du SQL ?
+Cohérence taille des polices en full responsive (y compris popup)
