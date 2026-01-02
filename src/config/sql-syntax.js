@@ -1,24 +1,78 @@
 export const sqlSyntaxConfig = {
-	// Style definitions for each type
-	styles: {
-		keyword: "text-blue-400 font-semibold",
-		punctuation: "text-blue-400",
-
-		datatype: "text-violet-400 font-medium",
-		constraint: "text-violet-400 font-medium",
-
-		tableName: "text-emerald-400 font-medium",
-		columnName: "text-emerald-400",
-
-		string: "text-amber-300",
-		number: "text-amber-300",
-
-		operator: "text-rose-400",
-
-		function: "text-cyan-400 font-medium",
-
-		comment: "text-gray-500 italic",
-		default: "text-gray-200",
+	// Unified configuration with labels, colors, and styles
+	types: {
+		keyword: {
+			label: "Mots-clés SQL",
+			color: "text-blue-400",
+			style: "text-blue-400 font-semibold",
+			showInLegend: true,
+		},
+		punctuation: {
+			label: "Ponctuation",
+			color: "text-blue-400",
+			style: "text-blue-400",
+			showInLegend: false,
+		},
+		datatype: {
+			label: "Types & Contraintes",
+			color: "text-violet-400",
+			style: "text-violet-400 font-medium",
+			showInLegend: true,
+		},
+		constraint: {
+			label: "Contraintes",
+			color: "text-violet-400",
+			style: "text-violet-400 font-medium",
+			showInLegend: false, // Même catégorie que datatype
+		},
+		tableName: {
+			label: "Tables",
+			color: "text-emerald-400",
+			style: "text-emerald-400 font-medium",
+			showInLegend: true,
+		},
+		columnName: {
+			label: "Colonnes",
+			color: "text-white",
+			style: "text-white",
+			showInLegend: true,
+		},
+		string: {
+			label: "Valeurs littérales",
+			color: "text-amber-300",
+			style: "text-amber-300",
+			showInLegend: true,
+		},
+		number: {
+			label: "Nombres",
+			color: "text-amber-300",
+			style: "text-amber-300",
+			showInLegend: false,
+		},
+		operator: {
+			label: "Opérateurs",
+			color: "text-rose-400",
+			style: "text-rose-400",
+			showInLegend: true,
+		},
+		function: {
+			label: "Fonctions",
+			color: "text-cyan-400",
+			style: "text-cyan-400 font-medium",
+			showInLegend: true,
+		},
+		comment: {
+			label: "Commentaires",
+			color: "text-gray-500",
+			style: "text-gray-500 italic",
+			showInLegend: true,
+		},
+		default: {
+			label: "Texte par défaut",
+			color: "text-gray-200",
+			style: "text-gray-200",
+			showInLegend: false,
+		},
 	},
 };
 
