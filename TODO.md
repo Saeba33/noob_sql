@@ -7,6 +7,6 @@ Google analytics ?
 
 MAJ README
 
-Corriger : léger redimensionnement de la navbar entre mobile et desktop (très léger)
+
 Corriger: Gutter scrollbar
-Cohérence taille des polices en full responsive (y compris popup)
+Cohérence taille des polices en full responsive (y compris popup) entre les différentes rubriques.

@@ -73,7 +73,7 @@ export default function NavbarMobile({
 		<>
 			<button
 				onClick={toggleMenu}
-				className="p-2 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer"
+				className="p-1.5 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer h-[40px] w-[40px] flex items-center justify-center"
 				aria-label={isMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
 				aria-expanded={isMenuOpen}
 				aria-controls="mobile-menu"
