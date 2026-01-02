@@ -8,5 +8,4 @@ Google analytics ?
 MAJ README
 
 
-Modifier hover bouton fight desktop.
 Cohérence taille des polices en full responsive (y compris popup) entre les différentes rubriques.

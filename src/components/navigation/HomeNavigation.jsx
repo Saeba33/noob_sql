@@ -84,8 +84,8 @@ export default function HomeNavigation() {
 									</div>
 								))}
 								{page.topics.length > 3 && (
-									<div className="text-topic text-gray-400 flex items-center">
-										<span className="mr-2">+</span>
+									<div className="text-topic text-gray-400 flex items-start">
+										<span className="mr-2 -translate-y-[0.1em]">+</span>
 										<span>
 											{page.topics.length - 3} autre
 											{page.topics.length - 3 > 1 ? "s" : ""} sujet
