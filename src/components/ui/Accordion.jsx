@@ -114,15 +114,13 @@ export default function Accordion({
 													: undefined
 											}
 										>
-											<div className=" flex flex-col gap-4">
-												{/* Label avec bordure */}
+											<div className="flex flex-col gap-4">
+												{/* Label */}
 												{example.label && (
-													<div className="pb-4 border-b border-gray-200">
-														<h6 className="font-semibold text-gray-900 flex items-center gap-2">
-															<MdCode className="w-4 h-4" />
-															{example.label}
-														</h6>
-													</div>
+													<h6 className="font-semibold text-gray-900 flex items-center gap-2">
+														<MdCode className="w-4 h-4" />
+														{example.label}
+													</h6>
 												)}
 
 												{/* SQL Query - always displayed */}
