@@ -1,6 +1,6 @@
 export default function Footer({ 
 	textColor = "text-gray-600", 
-	borderColor = "border-gray-300/50" 
+	borderColor = "border-gray-600/30" 
 }) {
 	return (
 		<footer className="relative mt-auto">
