@@ -65,10 +65,10 @@ export default function SGBDDiagram() {
 			<span className="text-xs italic -mb-6 pl-1 mt-3">
 			Exemples de SGBD (liste non exhaustive)&nbsp;:
 			</span>
-			<div className="border border-gray-300 rounded-lg bg-gray-50 py-6 px-4">
+			<div className="border border-gray-300 squircle bg-gray-50 py-6 px-4">
 				{/* Root - SGBD */}
 				<div className="flex justify-center mb-6">
-					<div className="flex items-center justify-center space-x-4 max-w-lg w-full  py-4 lg:py-6 bg-gradient-to-r from-gray-600 to-gray-500 border-4 border-gray-700 rounded-xl shadow-lg">
+					<div className="flex items-center justify-center space-x-4 max-w-lg w-full  py-4 lg:py-6 bg-gradient-to-r from-gray-600 to-gray-500 border-4 border-gray-700 squircle shadow-lg">
 						<MdStorage className="w-10 h-10 text-white" />
 						<span className="text-3xl font-bold text-white">SGBD</span>
 					</div>
@@ -77,28 +77,28 @@ export default function SGBDDiagram() {
 				{/* Category level */}
 				<div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
 					{/* SGBDR */}
-					<div className="flex flex-col items-center bg-blue-50 p-6 rounded-xl border-2 border-blue-300">
+					<div className="flex flex-col items-center bg-blue-50 p-6 squircle border-2 border-blue-300">
 						{/* SGBDR category node */}
-						<div className="flex items-center space-x-3 px-6 py-4 bg-white border-3 border-blue-500 rounded-lg mb-8 shadow-md">
+						<div className="flex items-center space-x-3 px-6 py-4 bg-white border-3 border-blue-500 squircle mb-8 shadow-md">
 						<MdStorage className="w-6 h-6 min-w-[24px] text-blue-600" />
 						<span className="font-bold text-blue-800 text-lg">SGBDR</span>
 					</div>
 
 						{/* SGBDR databases */}
 						<div className="space-y-4 w-full max-w-[240px]">
-							<div className="flex items-center space-x-3 p-4 bg-white rounded-lg border-2 border-blue-200 shadow-sm">
+							<div className="flex items-center space-x-3 p-4 bg-white squircle border-2 border-blue-200 shadow-sm">
 								<SiMysql className="w-5 h-5 text-orange-600 flex-shrink-0" />
 								<span className="font-semibold text-gray-900">MySQL</span>
 							</div>
-							<div className="flex items-center space-x-3 p-4 bg-white rounded-lg border-2 border-blue-200 shadow-sm">
+							<div className="flex items-center space-x-3 p-4 bg-white squircle border-2 border-blue-200 shadow-sm">
 								<SiPostgresql className="w-5 h-5 text-blue-700 flex-shrink-0" />
 								<span className="font-semibold text-gray-900">PostgreSQL</span>
 							</div>
-							<div className="flex items-center space-x-3 p-4 bg-white rounded-lg border-2 border-blue-200 shadow-sm">
+							<div className="flex items-center space-x-3 p-4 bg-white squircle border-2 border-blue-200 shadow-sm">
 								<SiSqlite className="w-5 h-5 text-blue-500 flex-shrink-0" />
 								<span className="font-semibold text-gray-900">SQLite</span>
 							</div>
-							<div className="flex items-center space-x-3 p-4 bg-white rounded-lg border-2 border-blue-200 shadow-sm">
+							<div className="flex items-center space-x-3 p-4 bg-white squircle border-2 border-blue-200 shadow-sm">
 								<MdStorage className="w-5 h-5 text-red-600 flex-shrink-0" />
 								<span className="font-semibold text-gray-900">SQL Server</span>
 							</div>
@@ -106,37 +106,37 @@ export default function SGBDDiagram() {
 					</div>
 
 					{/* NoSQL */}
-					<div className="flex flex-col items-center bg-emerald-50 p-6 rounded-xl border-2 border-emerald-300">
+					<div className="flex flex-col items-center bg-emerald-50 p-6 squircle border-2 border-emerald-300">
 						{/* NoSQL category node */}
-						<div className="flex items-center space-x-3 px-6 py-4 bg-white border-3 border-emerald-500 rounded-lg mb-8 shadow-md">
+						<div className="flex items-center space-x-3 px-6 py-4 bg-white border-3 border-emerald-500 squircle mb-8 shadow-md">
 						<MdAccountTree className="w-6 h-6 min-w-[24px] text-emerald-600" />
 						<span className="font-bold text-emerald-800 text-lg">NoSQL</span>
 					</div>
 
 						{/* NoSQL databases */}
 						<div className="space-y-4 w-full max-w-[240px]">
-							<div className="flex items-center space-x-3 p-4 bg-white rounded-lg border-2 border-emerald-200 shadow-sm">
+							<div className="flex items-center space-x-3 p-4 bg-white squircle border-2 border-emerald-200 shadow-sm">
 								<SiMongodb className="w-5 h-5 text-green-600 flex-shrink-0" />
 								<div className="min-w-0">
 									<div className="font-semibold text-gray-900">MongoDB</div>
 									<div className="text-xs text-emerald-600">Documents JSON</div>
 								</div>
 							</div>
-							<div className="flex items-center space-x-3 p-4 bg-white rounded-lg border-2 border-emerald-200 shadow-sm">
+							<div className="flex items-center space-x-3 p-4 bg-white squircle border-2 border-emerald-200 shadow-sm">
 								<SiRedis className="w-5 h-5 text-red-500 flex-shrink-0" />
 								<div className="min-w-0">
 									<div className="font-semibold text-gray-900">Redis</div>
 									<div className="text-xs text-emerald-600">Clé-Valeur</div>
 								</div>
 							</div>
-							<div className="flex items-center space-x-3 p-4 bg-white rounded-lg border-2 border-emerald-200 shadow-sm">
+							<div className="flex items-center space-x-3 p-4 bg-white squircle border-2 border-emerald-200 shadow-sm">
 								<MdDataObject className="w-5 h-5 text-purple-600 opacity-80 flex-shrink-0" />
 								<div className="min-w-0">
 									<div className="font-semibold text-gray-900">Cassandra</div>
 									<div className="text-xs text-emerald-600">Colonnes</div>
 								</div>
 							</div>
-							<div className="flex items-center space-x-3 p-4 bg-white rounded-lg border-2 border-emerald-200 shadow-sm">
+							<div className="flex items-center space-x-3 p-4 bg-white squircle border-2 border-emerald-200 shadow-sm">
 								<MdHub className="w-5 h-5 text-blue-600 flex-shrink-0" />
 								<div className="min-w-0">
 									<div className="font-semibold text-gray-900">Neo4j</div>

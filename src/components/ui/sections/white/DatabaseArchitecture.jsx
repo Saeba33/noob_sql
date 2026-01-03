@@ -104,7 +104,7 @@ export default function DatabaseArchitecture() {
 	const renderUsersCell = (cell, cellIndex) => {
 		if (cellIndex === 0) {
 			return (
-				<div className="flex items-center justify-center space-x-1 bg-yellow-100 py-1 px-2 rounded">
+				<div className="flex items-center justify-center space-x-1 bg-yellow-100 py-1 px-2 squircle-sm">
 					<span className="font-semibold text-yellow-900 text-sm">{cell}</span>
 				</div>
 			);
@@ -115,14 +115,14 @@ export default function DatabaseArchitecture() {
 	const renderBorrowingsCell = (cell, cellIndex) => {
 		if (cellIndex === 0) {
 			return (
-				<div className="flex items-center justify-center space-x-1 bg-yellow-100 py-1 px-2 rounded">
+				<div className="flex items-center justify-center space-x-1 bg-yellow-100 py-1 px-2 squircle-sm">
 					<span className="font-semibold text-yellow-900 text-sm">{cell}</span>
 				</div>
 			);
 		}
 		if (cellIndex === 1 || cellIndex === 2) {
 			return (
-				<div className="flex items-center justify-center space-x-1 bg-red-100 py-1 px-2 rounded">
+				<div className="flex items-center justify-center space-x-1 bg-red-100 py-1 px-2 squircle-sm">
 					<span className="font-semibold text-red-900 text-sm">{cell}</span>
 				</div>
 			);
@@ -139,7 +139,7 @@ export default function DatabaseArchitecture() {
 					<strong>bibliothèque</strong> bien organisée.
 				</p>
 
-				<div className="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-r-lg">
+				<div className="bg-blue-50 border-l-4 border-blue-400 p-4 ">
 					<p className="text-body">
 						<MdStorage className="w-5 h-5 text-blue-600 inline mr-2" />
 						<strong>La bibliothèque</strong> = la{" "}
@@ -175,7 +175,7 @@ export default function DatabaseArchitecture() {
 				{/* Tables */}
 				<div className="space-y-8">
 					{/* Users table */}
-					<div className="bg-white border border-gray-300 rounded-lg p-4 shadow-sm">
+					<div className="bg-white border border-gray-300 squircle p-4 shadow-sm">
 						<div className="flex items-center space-x-3 mb-4">
 							<MdTableChart className="w-5 h-5 min-w-[20px] text-gray-600" />
 							<h5 className="font-bold text-gray-800">
@@ -194,7 +194,7 @@ export default function DatabaseArchitecture() {
 					</div>
 
 					{/* Books table */}
-					<div className="bg-white border border-gray-300 rounded-lg p-4 shadow-sm">
+					<div className="bg-white border border-gray-300 squircle p-4 shadow-sm">
 						<div className="flex items-center space-x-3 mb-4">
 							<MdTableChart className="w-5 h-5 min-w-[20px] text-gray-600" />
 							<h5 className="font-bold text-gray-800">
@@ -213,7 +213,7 @@ export default function DatabaseArchitecture() {
 					</div>
 
 					{/* Borrowings table */}
-					<div className="bg-white border border-gray-300 rounded-lg p-4 shadow-sm">
+					<div className="bg-white border border-gray-300 squircle p-4 shadow-sm">
 						<div className="flex items-center space-x-3 mb-4">
 							<MdTableChart className="w-5 h-5 min-w-[20px] text-gray-600" />
 							<h5 className="font-bold text-gray-800">
@@ -234,7 +234,7 @@ export default function DatabaseArchitecture() {
 
 				{/* Legend */}
 				<div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
-					<div className="p-4 bg-yellow-100 border border-yellow-200 rounded-lg">
+					<div className="p-4 bg-yellow-100 border border-yellow-200 squircle">
 						<h5 className="font-bold text-yellow-900 mb-2 flex items-center">
 							<MdKey className="w-4 h-4 mr-2 text-yellow-600" />
 							Clé Primaire
@@ -243,7 +243,7 @@ export default function DatabaseArchitecture() {
 							Identifiant unique de chaque ligne dans une table
 						</p>
 					</div>
-					<div className="p-4 bg-red-100 border border-red-200 rounded-lg">
+					<div className="p-4 bg-red-100 border border-red-200 squircle">
 						<h5 className="font-bold text-red-900 mb-2 flex items-center">
 							<MdLink className="w-4 h-4 mr-2 text-red-600 opacity-80" />
 							Clé Étrangère

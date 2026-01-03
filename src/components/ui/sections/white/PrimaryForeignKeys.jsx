@@ -6,7 +6,7 @@ export default function PrimaryForeignKeys() {
 	return (
 		<div className="space-y-8">
 			{/* Introductory section */}
-			<div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg">
+			<div className="bg-blue-50 border-l-4 border-blue-500 p-4 ">
 				<p className="text-body text-gray-700 leading-relaxed">
 					Dans une base de données relationnelle, il existe deux types de clés
 					essentielles : les <strong>clés primaires</strong> qui identifient de
@@ -18,7 +18,7 @@ export default function PrimaryForeignKeys() {
 			{/* The two key types */}
 			<div className="grid md:grid-cols-2 gap-6">
 				{/* Primary Keys */}
-				<div className="bg-white rounded-lg border border-gray-200 p-6">
+				<div className="bg-white squircle border border-gray-200 p-6">
 					<div className="flex items-center gap-3 mb-4">
 						<MdKey className="w-8 h-8 min-w-[32px] text-yellow-600" />
 					<h5 className="font-bold text-gray-900">
@@ -41,7 +41,7 @@ export default function PrimaryForeignKeys() {
 			</div>
 
 			{/* Foreign Keys */}
-			<div className="bg-white rounded-lg border border-gray-200 p-6">
+			<div className="bg-white squircle border border-gray-200 p-6">
 				<div className="flex items-center gap-3 mb-4">
 					<MdLink className="w-8 h-8 min-w-[32px] text-red-600 opacity-80" />
 					<h5 className="font-bold text-gray-900">
@@ -64,7 +64,7 @@ export default function PrimaryForeignKeys() {
 		</div>
 
 		{/* Example */}
-		<div className="bg-white border border-gray-300 rounded-lg p-6">
+		<div className="bg-white border border-gray-300 squircle p-6">
 			<h5 className="font-bold text-gray-900 mb-4">
 				Comment les relations fonctionnent ?
 			</h5>
@@ -76,21 +76,21 @@ export default function PrimaryForeignKeys() {
 			<div className="mb-8">
 				<ul className="space-y-2 text-gray-800">
 						<li>
-							<code className="bg-gray-100 px-2 py-1 rounded font-mono text-sm">
+							<code className="bg-gray-100 px-2 py-1 squircle-sm font-mono text-sm">
 								utilisateur_id
 							</code>{" "}
 							dans la table <strong>emprunts</strong> fait référence à{" "}
-							<code className="bg-gray-100 px-2 py-1 rounded font-mono text-sm">
+							<code className="bg-gray-100 px-2 py-1 squircle-sm font-mono text-sm">
 								id
 							</code>{" "}
 							de la table <strong>utilisateurs</strong>
 						</li>
 						<li>
-							<code className="bg-gray-100 px-2 py-1 rounded font-mono text-sm">
+							<code className="bg-gray-100 px-2 py-1 squircle-sm font-mono text-sm">
 								livre_id
 							</code>{" "}
 							dans la table <strong>emprunts</strong> fait référence à{" "}
-							<code className="bg-gray-100 px-2 py-1 rounded font-mono text-sm">
+							<code className="bg-gray-100 px-2 py-1 squircle-sm font-mono text-sm">
 								id
 							</code>{" "}
 							de la table <strong>livres</strong>
@@ -98,27 +98,27 @@ export default function PrimaryForeignKeys() {
 					</ul>
 				</div>
 
-				<div className="bg-gray-100 border border-gray-200 p-4 rounded-lg">
+				<div className="bg-gray-100 border border-gray-200 p-4 squircle">
 					<p className="text-body text-gray-700 mb-3">
 						Si on prend pour exemple la ligne 1 de la table emprunts, on peut
 						voir que :
 					</p>
 					<div className="space-y-2 text-gray-800 text-sm">
 						<p className="text-body">
-							<code className="bg-white px-2 py-1 rounded font-mono text-sm">
+							<code className="bg-white px-2 py-1 squircle-sm font-mono text-sm">
 								utilisateur_id = 1
 							</code>{" "}
 							correspond à{" "}
-							<code className="bg-white px-2 py-1 rounded font-mono text-sm">
+							<code className="bg-white px-2 py-1 squircle-sm font-mono text-sm">
 								Marie Dubois
 							</code>
 						</p>
 						<p className="text-body mb-4">
-							<code className="bg-white px-2 py-1 rounded font-mono text-sm">
+							<code className="bg-white px-2 py-1 squircle-sm font-mono text-sm">
 								livre_id = 1
 							</code>{" "}
 							correspond à{" "}
-							<code className="bg-white px-2 py-1 rounded font-mono text-sm">
+							<code className="bg-white px-2 py-1 squircle-sm font-mono text-sm">
 								Le Petit Prince
 							</code>
 						</p>

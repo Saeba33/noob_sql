@@ -22,7 +22,7 @@ const Logo = () => (
 const Practice = () => (
 	<Link
 		href="/practice"
-		className="group relative transition-all duration-300 px-4 py-2 flex items-center gap-2.5 whitespace-nowrap rounded-lg border border-gray-300 hover:border-gray-400 bg-white hover:bg-gray-50 hover:shadow-md h-[40px] max-h-[40px]"
+		className=" squircle group relative transition-all duration-300 px-4 py-2 flex items-center gap-2.5 whitespace-nowrap border border-gray-300 hover:border-gray-400 bg-white hover:bg-gray-50 hover:shadow-md h-[40px] max-h-[40px]"
 	>
 		<Image 
 			src="/practice.png" 
@@ -45,7 +45,7 @@ export default function Header() {
 				<div ref={menuRef} className="relative">
 					<div
 						className={`border border-gray-200/60 shadow-lg overflow-hidden ${
-							isMobile && isMenuOpen ? "rounded-t-lg" : "rounded-lg"
+						isMobile && isMenuOpen ? "squircle-t" : "squircle"
 						} ${isMobile ? "bg-white" : "bg-white/80 backdrop-blur-lg"}`}
 					>
 						<div className="px-6 h-[74px] flex items-center">

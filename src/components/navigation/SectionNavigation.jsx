@@ -29,7 +29,7 @@ export default function SectionNavigation() {
 								style={{ color: colors.theme }}
 								className="w-6 h-6 transition-all duration-200 group-hover:scale-110 opacity-50 group-hover:opacity-100"
 							/>
-							<span className="text-nav uppercase tracking-wider opacity-60 font-medium group-hover:opacity-80">
+							<span className="text-nav uppercase tracking-wider opacity-60 group-hover:opacity-80">
 								Précédent
 							</span>
 						</Link>

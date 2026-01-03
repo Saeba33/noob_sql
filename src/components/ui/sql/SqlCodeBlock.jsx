@@ -74,7 +74,7 @@ export default function SQLCodeBlock({ children, className = "" }) {
 
 	return (
 		<div className={`relative ${className}`}>
-			<div className="bg-gray-900 border-gray-700 border rounded-lg overflow-hidden shadow-lg">
+			<div className="bg-gray-900 border-gray-700 border squircle overflow-hidden shadow-lg">
 				{/* Terminal Header */}
 				<div className="bg-gray-800 px-4 py-2 flex items-center justify-between relative">
 					<div className="flex items-center space-x-2">
@@ -91,7 +91,7 @@ export default function SQLCodeBlock({ children, className = "" }) {
 					{/* Info Icon */}
 					<button
 						onClick={() => setShowPopover(!showPopover)}
-						className="text-gray-400 hover:text-gray-200 transition-colors p-1 rounded hover:bg-gray-700 relative z-10"
+						className="text-gray-400 hover:text-gray-200 transition-colors p-1 squircle-sm hover:bg-gray-700 relative z-10"
 						aria-label="Afficher la légende"
 					>
 						<MdInfoOutline className="w-5 h-5" />

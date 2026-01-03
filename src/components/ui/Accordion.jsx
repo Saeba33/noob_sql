@@ -46,7 +46,7 @@ export default function Accordion({
 				aria-expanded={isOpen}
 				aria-controls={`${accordionId}-content`}
 				className={`w-full text-left px-4 py-3 sm:px-5 sm:py-3.5 md:px-6 md:py-4 bg-white transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 relative cursor-pointer group ${
-					isOpen ? "rounded-t-lg" : "rounded-lg"
+				isOpen ? "squircle-t" : "squircle"
 				}`}
 			>
 				<div className="flex items-center justify-between">
@@ -80,7 +80,7 @@ export default function Accordion({
 				}`}
 			>
 				<div className="overflow-hidden">
-					<div className="px-6 py-5 bg-white flex flex-col space-y-6 rounded-b-lg cursor-auto border-t border-[#e5e7eb]">
+					<div className="px-6 py-5 bg-white flex flex-col space-y-6 squircle-b cursor-auto border-t border-[#e5e7eb]">
 						{/* Description - only show if content exists */}
 						{content && (
 							<div>
@@ -101,7 +101,7 @@ export default function Accordion({
 									// Determine if we need a container (when result exists)
 									const hasResult = example.result !== undefined;
 									const containerClasses = hasResult
-										? "space-y-4 border border-gray-200 rounded-lg p-5 bg-gray-50"
+										? "space-y-4 border border-gray-200 squircle p-5 bg-gray-50"
 										: "space-y-4";
 
 									return (

@@ -14,7 +14,7 @@ export default function SQLLegend({ variant = "default", onClose }) {
 	// Variant compact pour modal
 	if (variant === "popover") {
 		return (
-			<div className="bg-gray-800 border border-gray-700 rounded-lg shadow-2xl w-80">
+			<div className="bg-gray-800 border border-gray-700 squircle shadow-2xl w-80">
 				{/* Header avec titre et croix */}
 				<div className="flex items-center justify-between px-5 py-4 border-b border-gray-600">
 					<h4 className="text-white">
@@ -22,7 +22,7 @@ export default function SQLLegend({ variant = "default", onClose }) {
 					</h4>
 					<button
 						onClick={onClose}
-						className="text-gray-400 hover:text-white transition-colors p-1 hover:bg-gray-700 rounded"
+						className="text-gray-400 hover:text-white transition-colors p-1 hover:bg-gray-700 squircle-sm"
 						aria-label="Fermer"
 					>
 						<MdClose className="w-5 h-5" />

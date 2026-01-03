@@ -22,7 +22,7 @@ export default function BestPractices({
 				{rules.map((rule, index) => (
 					<div
 						key={index}
-						className="bg-white border border-gray-300 rounded-lg p-4 shadow-sm grid gap-3"
+						className="bg-white border border-gray-300 squircle p-4 shadow-sm grid gap-3"
 						style={{ gridRow: "span 7", gridTemplateRows: "subgrid" }}
 					>
 						{/* Rule header */}
@@ -39,7 +39,7 @@ export default function BestPractices({
 						<div></div>
 
 						{/* Recommended */}
-						<div className="bg-green-50 border-l-4 border-green-500 p-3 rounded">
+						<div className="bg-green-50 border-l-4 border-green-500 p-3 squircle-sm">
 							<h6 className=" text-gray-600 font-semibold mb-1 flex items-center gap-1">
 								<IoMdCheckmarkCircleOutline className="w-5 h-5 text-green-600" />{" "}
 								À PRIVILÉGIER
@@ -50,7 +50,7 @@ export default function BestPractices({
 						</div>
 
 						{/* Avoid */}
-						<div className="bg-red-50 border-l-4 border-red-500 p-3 rounded">
+						<div className="bg-red-50 border-l-4 border-red-500 p-3 squircle-sm">
 							<h6 className=" text-gray-600 font-semibold mb-1 flex items-center gap-1">
 								<RiProhibited2Line className="w-5 h-5 text-red-600" /> À ÉVITER
 							</h6>

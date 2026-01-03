@@ -15,7 +15,7 @@ export default function NavbarMobile({
 
 	// Helper functions
 	const getMobileLinkStyle = (active, colors) => ({
-		className: `flex items-center gap-3 px-3 py-3 rounded-lg transition-all duration-300 border-l-4 ${
+		className: `flex items-center gap-3 px-3 py-3 squircle transition-all duration-300 border-l-4 ${
 			active
 				? "bg-[var(--active-bg)] text-gray-900 font-medium border-[var(--active-color)]"
 				: "text-gray-600 hover:bg-[var(--hover-bg)] hover:text-[var(--hover-text)] border-transparent"
@@ -32,7 +32,7 @@ export default function NavbarMobile({
 		<div
 			id="mobile-menu"
 			aria-hidden={!isMenuOpen}
-			className={`absolute top-full left-0 right-0 border-x border-b border-gray-200/60 border-t border-t-gray-200/20 bg-white rounded-b-lg shadow-lg overflow-hidden transition-all duration-300 ease-out ${
+			className={`absolute top-full left-0 right-0 border-x border-b border-gray-200/60 border-t border-t-gray-200/20 bg-white squircle-b shadow-lg overflow-hidden transition-all duration-300 ease-out ${
 				isMenuOpen
 					? "max-h-[600px] opacity-100 translate-y-0"
 					: "max-h-0 opacity-0 -translate-y-1 pointer-events-none"
@@ -71,7 +71,7 @@ export default function NavbarMobile({
 		<>
 			<button
 				onClick={toggleMenu}
-				className="p-1.5 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer h-[40px] w-[40px] flex items-center justify-center"
+				className="p-1.5 squircle hover:bg-gray-100 transition-colors cursor-pointer h-[40px] w-[40px] flex items-center justify-center"
 				aria-label={isMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
 				aria-expanded={isMenuOpen}
 				aria-controls="mobile-menu"
