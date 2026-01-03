@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+:root {
+	--squircle-shape: squircle;
+	--squircle-radius-base: 0.75rem;
+	--squircle-radius-sm: 0.375rem;
+  }
+
 /* Base & Reset */
 * {
 	box-sizing: border-box;
@@ -310,23 +316,24 @@ p.text-body {
 }
 
 .squircle {
-	corner-shape: squircle;
-	border-radius: .75rem;
-}
-
-.squircle-t {
-	border-top-left-radius: .75rem;
-	border-top-right-radius: .75rem;
-	corner-shape: squircle;
-}
-
-.squircle-b {
-	border-bottom-left-radius: .75rem;
-	border-bottom-right-radius: .75rem;
-	corner-shape: squircle;
-}
-
-.squircle-sm {
-	corner-shape: squircle;
-	border-radius: .375rem;
-}
+	corner-shape: var(--squircle-shape);
+	border-radius: var(--squircle-radius-base);
+  }
+  
+  .squircle-t {
+	corner-shape: var(--squircle-shape);
+	border-top-left-radius: var(--squircle-radius-base);
+	border-top-right-radius: var(--squircle-radius-base);
+  }
+  
+  .squircle-b {
+	corner-shape: var(--squircle-shape);
+	border-bottom-left-radius: var(--squircle-radius-base);
+	border-bottom-right-radius: var(--squircle-radius-base);
+  }
+  
+  .squircle-sm {
+	corner-shape: var(--squircle-shape);
+	border-radius: var(--squircle-radius-sm);
+  }
+  
