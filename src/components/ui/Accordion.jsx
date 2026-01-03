@@ -80,7 +80,7 @@ export default function Accordion({
 				}`}
 			>
 				<div className="overflow-hidden">
-					<div className="px-6 py-5 bg-white flex flex-col space-y-6 squircle-b cursor-auto border-t border-[#e5e7eb]">
+					<div className="p-6 bg-white flex flex-col space-y-6 squircle-b cursor-auto border-t border-[#e5e7eb]">
 						{/* Description - only show if content exists */}
 						{content && (
 							<div>
@@ -96,13 +96,13 @@ export default function Accordion({
 
 						{/* Examples structure */}
 						{examples && examples.length > 0 && (
-							<div className="space-y-6">
+							<div className="space-y-8">
 								{examples.map((example, index) => {
 									// Determine if we need a container (when result exists)
 									const hasResult = example.result !== undefined;
 									const containerClasses = hasResult
-										? "space-y-4 border border-gray-200 squircle p-5 bg-gray-50"
-										: "space-y-4";
+										? "border border-gray-200 squircle p-4 bg-gray-50"
+										: "";
 
 									return (
 										<div
@@ -114,42 +114,49 @@ export default function Accordion({
 													: undefined
 											}
 										>
-											{example.label && (
-												<h6 className="font-semibold text-gray-900 flex items-center gap-2 mb-4">
-													<MdCode className="w-4 h-4" />
-													{example.label}
-												</h6>
-											)}
-
-											{/* SQL Query - always displayed */}
-											<SQLCodeBlock>{example.code}</SQLCodeBlock>
-
-											{/* Table Structure - displayed if CREATE TABLE detected */}
-											{example.code?.includes("CREATE TABLE") && (
-												<div className="mt-4">
-													<h6 className="font-semibold text-gray-900 mb-3 flex items-center">
-														<MdAccountTree className="w-4 h-4 mr-2" />
-														Structure des tables
-													</h6>
-													<div className="flex flex-wrap gap-6 items-start">
-														{sqlToTableDiagram(example.code).map(
-															(table, tableIndex) => (
-																<SQLTableDiagram
-																	key={tableIndex}
-																	table={table}
-																/>
-															)
-														)}
+											<div className=" flex flex-col gap-4">
+												{/* Label avec bordure */}
+												{example.label && (
+													<div className="pb-4 border-b border-gray-200">
+														<h6 className="font-semibold text-gray-900 flex items-center gap-2">
+															<MdCode className="w-4 h-4" />
+															{example.label}
+														</h6>
 													</div>
-												</div>
-											)}
+												)}
 
-											{/* Query Result - displayed if result exists */}
-											{hasResult && (
-												<div className="mt-3">
-													{renderSqlResult(example.result)}
+												{/* SQL Query - always displayed */}
+												<div>
+													<SQLCodeBlock>{example.code}</SQLCodeBlock>
 												</div>
-											)}
+
+												{/* Table Structure - displayed if CREATE TABLE detected */}
+												{example.code?.includes("CREATE TABLE") && (
+													<div className="pt-8 border-gray-100">
+														<h6 className="font-semibold text-gray-900 mb-4 flex items-center">
+															<MdAccountTree className="w-4 h-4 mr-2" />
+															Structure des tables
+														</h6>
+														<div className="flex flex-wrap gap-6 items-start">
+															{sqlToTableDiagram(example.code).map(
+																(table, tableIndex) => (
+																	<SQLTableDiagram
+																		key={tableIndex}
+																		table={table}
+																	/>
+																)
+															)}
+														</div>
+													</div>
+												)}
+
+												{/* Query Result - displayed if result exists */}
+												{hasResult && (
+													<div>
+														{renderSqlResult(example.result)}
+													</div>
+												)}
+											</div>
 										</div>
 									);
 								})}

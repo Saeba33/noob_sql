@@ -28,7 +28,7 @@ export default function SQLResultBlock({
 	if (contentType === "message" && message) {
 		return (
 			<div className={`${className}`}>
-				<div className="bg-blue-50 border border-blue-200 squircle overflow-hidden">
+				<div className="bg-blue-50 border border-blue-200 squircle overflow-hidden shadow-md">
 					{/* Header */}
 					<div className="bg-blue-100 px-4 py-3 border-b border-blue-200">
 						<h6 className="text-blue-800 font-semibold text-sm flex items-center">
@@ -76,7 +76,7 @@ export default function SQLResultBlock({
 	// Rendu for tables results
 	return (
 		<div className={`${className}`}>
-			<div className="bg-white border border-gray-200 squircle overflow-hidden shadow-sm">
+			<div className="bg-white border border-gray-200 squircle overflow-hidden shadow-md">
 				{/* Header */}
 				<div className="bg-gray-50 px-4 py-3 border-b border-gray-200">
 					<h6 className="text-gray-800 font-semibold text-sm flex items-center">
