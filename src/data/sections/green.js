@@ -628,7 +628,9 @@ LIMIT 3 OFFSET 2;`,
 -- Opérateurs : = et > | Opérateur logique : AND | Clause : ORDER BY
 SELECT prenom, nom, age, ville 
 FROM utilisateurs 
-WHERE ville = 'Paris' AND age > 25 
+WHERE 
+  ville = 'Paris' 
+  AND age > 25 
 ORDER BY age ASC;`,
 				result: [
 					{ prenom: "Alice", nom: "Dupont", age: 28, ville: "Paris" },
@@ -656,7 +658,9 @@ LIMIT 3;`,
 -- Mots-clés : LIKE et IS NOT NULL | Clause : ORDER BY
 SELECT prenom, nom, telephone 
 FROM utilisateurs 
-WHERE telephone IS NOT NULL AND nom LIKE '%a%' 
+WHERE 
+  telephone IS NOT NULL 
+  AND nom LIKE '%a%' 
 ORDER BY nom;`,
 				result: [
 					{ prenom: "Bob", nom: "Martin", telephone: "07 98 76 54 32" },
@@ -669,7 +673,9 @@ ORDER BY nom;`,
 -- Mots-clés : BETWEEN et NOT IN | Clause : ORDER BY
 SELECT nom, categorie, prix 
 FROM produits 
-WHERE prix BETWEEN 20 AND 500 AND categorie NOT IN ('bureau') 
+WHERE 
+  prix BETWEEN 20 AND 500 
+  AND categorie NOT IN ('bureau') 
 ORDER BY prix DESC;`,
 				result: [
 					{ nom: "Montre Connectée", categorie: "electronique", prix: 349 },

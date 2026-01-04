@@ -138,7 +138,7 @@ WHERE s.total_depense > 500;`,
         section: "CTE récursif - Hiérarchie d'employés",
         code: `WITH RECURSIVE hierarchie_employes AS (
     -- Cas de base : les managers de niveau 1
-    SELECT id, nom, manager_id, 1 as niveau
+    SELECT id, nom, manager_id, 1 AS niveau
     FROM employes 
     WHERE manager_id IS NULL
     
@@ -278,9 +278,9 @@ SELECT 'admin' AS type, nom, email_admin FROM administrateurs;`,
       },
       {
         section: "UNION avec ORDER BY global",
-        code: `SELECT nom, email, age, 'Paris' as ville FROM utilisateurs WHERE id IN (1,2)
+        code: `SELECT nom, email, age, 'Paris' AS ville FROM utilisateurs WHERE id IN (1,2)
 UNION
-SELECT nom, email, age, 'Lyon' as ville FROM utilisateurs WHERE id IN (3,4)
+SELECT nom, email, age, 'Lyon' AS ville FROM utilisateurs WHERE id IN (3,4)
 ORDER BY age DESC;`,
         result: [
           {
