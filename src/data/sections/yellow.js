@@ -17,6 +17,8 @@ const header = {
 const accordions = [
 	{
 		section: "CREATE TABLE",
+		content:
+			"La commande CREATE TABLE permet de définir la structure d'une nouvelle table en spécifiant ses colonnes, leurs types de données et les contraintes associées.\nVous pouvez définir des clés primaires (PRIMARY KEY), des clés étrangères (FOREIGN KEY), des valeurs par défaut (DEFAULT) et des contraintes de validation (CHECK, NOT NULL, UNIQUE).",
 		examples: [
 			{
 				type: "schema",
@@ -51,6 +53,8 @@ CREATE TABLE commande_details (
 	},
 	{
 		section: "ALTER TABLE",
+		content:
+			"La commande ALTER TABLE permet de modifier la structure d'une table existante sans perdre ses données.\nVous pouvez ajouter ou supprimer des colonnes, modifier leurs propriétés, renommer des éléments ou ajouter des contraintes. Cette commande est essentielle pour faire évoluer votre schéma de base au fil du temps.",
 		examples: [
 			{
 				type: "schema",
@@ -83,7 +87,7 @@ DROP COLUMN telephone;`,
 	{
 		section: "DROP TABLE",
 		content:
-			"Attention : l'exécution d'une commande DROP est <strong><u>irréversible</u></strong> ! Soyez vigilant !",
+			"La commande DROP TABLE supprime définitivement une table et toutes ses données. Cette opération est <strong><u>irréversible</u></strong>, soyez extrêmement vigilant !\nVous pouvez utiliser IF EXISTS pour éviter les erreurs si la table n'existe pas, ou CASCADE pour supprimer également les contraintes qui dépendent de cette table. TRUNCATE permet de vider une table sans supprimer sa structure.",
 		examples: [
 			{
 				type: "schema",
