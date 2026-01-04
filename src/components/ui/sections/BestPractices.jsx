@@ -67,7 +67,7 @@ export default function BestPractices({
 							<h6 className="text-gray-700 font-semibold mb-2 flex items-center gap-2 uppercase tracking-wide">
 								Pourquoi ?
 							</h6>
-							<p className="text-gray-600 leading-relaxed">
+							<p className="text-gray-600 leading-relaxed text-[15px]">
 								{rule.reason}
 							</p>
 						</div>

@@ -117,10 +117,10 @@ export default function Accordion({
 											<div className="flex flex-col gap-4">
 												{/* Label */}
 												{example.label && (
-													<h6 className="font-semibold text-gray-900 flex items-center gap-2">
+													<h5 className="font-semibold text-gray-900 flex items-center gap-2">
 														<MdCode className="w-4 h-4" />
 														{example.label}
-													</h6>
+													</h5>
 												)}
 
 												{/* SQL Query - always displayed */}
@@ -131,10 +131,10 @@ export default function Accordion({
 												{/* Table Structure - displayed if CREATE TABLE detected */}
 												{example.code?.includes("CREATE TABLE") && (
 													<div className="pt-8 border-gray-100">
-														<h6 className="font-semibold text-gray-900 mb-4 flex items-center">
+														<h5 className="font-semibold text-gray-900 mb-4 flex items-center">
 															<MdAccountTree className="w-4 h-4 mr-2" />
 															Structure des tables
-														</h6>
+														</h5>
 														<div className="flex flex-wrap gap-6 items-start">
 															{sqlToTableDiagram(example.code).map(
 																(table, tableIndex) => (
