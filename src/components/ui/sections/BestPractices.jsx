@@ -1,6 +1,5 @@
 "use client";
 
-import { BsInfoCircle } from "react-icons/bs";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import { RiProhibited2Line } from "react-icons/ri";
 
@@ -18,43 +17,50 @@ export default function BestPractices({
 				</div>
 			)}
 			{/* Rules section */}
-			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 				{rules.map((rule, index) => (
 					<div
 						key={index}
-						className="bg-white border border-gray-300 squircle p-4 shadow-md grid gap-3"
-						style={{ gridRow: "span 7", gridTemplateRows: "subgrid" }}
+						className="bg-white border border-gray-200 squircle p-6 shadow-sm grid gap-4"
+						style={{ 
+							gridRow: "span 7", 
+							gridTemplateRows: "subgrid"
+						}}
 					>
 						{/* Rule header */}
 						<div className="flex items-center space-x-3">
 							<div
-								className="flex-shrink-0 [&>svg]:w-5 [&>svg]:h-5 sm:[&>svg]:w-6 sm:[&>svg]:h-6"
+								className="flex-shrink-0"
 								style={{ color: iconColor }}
 							>
-								{rule.icon}
+								<div className="[&>svg]:w-6 [&>svg]:h-6">
+									{rule.icon}
+								</div>
 							</div>
-							<h5 className="font-bold text-gray-900">{rule.section}</h5>
+							<h5 className="font-bold text-gray-900 text-lg leading-trim-both">{rule.section}</h5>
 						</div>
-						<p className="text-body text-gray-700">{rule.rule}</p>
+						
+						<p className="text-body text-gray-700 leading-relaxed">{rule.rule}</p>
 						<div></div>
 
 						{/* Recommended */}
-						<div className="bg-green-50 border-l-4 border-green-500 p-3 squircle-sm">
-							<h6 className=" text-gray-600 font-semibold mb-1 flex items-center gap-1">
-								<IoMdCheckmarkCircleOutline className="w-5 h-5 text-green-600" />{" "}
-								À PRIVILÉGIER
+						<div className="bg-gradient-to-br from-green-50 to-emerald-50 border-l-4 border-green-500 p-4 squircle-sm">
+							<h6 className="text-gray-700 font-bold mb-2 flex items-center gap-2 text-sm uppercase tracking-wide">
+								<IoMdCheckmarkCircleOutline className="w-5 h-5 text-green-600" />
+								À privilégier
 							</h6>
-							<code className="text-sm text-green-800 font-mono whitespace-pre-wrap break-words">
+							<code className="text-sm text-green-900 font-mono whitespace-pre-wrap break-words block bg-white/50 p-2 rounded">
 								{rule.good}
 							</code>
 						</div>
 
 						{/* Avoid */}
-						<div className="bg-red-50 border-l-4 border-red-500 p-3 squircle-sm">
-							<h6 className=" text-gray-600 font-semibold mb-1 flex items-center gap-1">
-								<RiProhibited2Line className="w-5 h-5 text-red-600" /> À ÉVITER
+						<div className="bg-gradient-to-br from-red-50 to-rose-50 border-l-4 border-red-500 p-4 squircle-sm">
+							<h6 className="text-gray-700 font-bold mb-2 flex items-center gap-2 text-sm uppercase tracking-wide">
+								<RiProhibited2Line className="w-5 h-5 text-red-600" />
+								À éviter
 							</h6>
-							<code className="text-sm text-red-800 font-mono whitespace-pre-wrap break-words">
+							<code className="text-sm text-red-900 font-mono whitespace-pre-wrap break-words block bg-white/50 p-2 rounded">
 								{rule.bad}
 							</code>
 						</div>
@@ -63,9 +69,10 @@ export default function BestPractices({
 						<div></div>
 
 						{/* Reason */}
-						<div className="text-xs text-gray-600 italic flex items-center gap-1">
-							<BsInfoCircle className="w-5 h-5 mr-1 " />
-							{rule.reason}
+						<div className="bg-amber-50 border-l-2 border-amber-400 p-3 squircle-sm">
+							<p className="text-xs text-gray-700 italic leading-relaxed font-medium">
+								{rule.reason}
+							</p>
 						</div>
 					</div>
 				))}
