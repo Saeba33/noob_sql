@@ -21,27 +21,25 @@ export default function BestPractices({
 				{rules.map((rule, index) => (
 					<div
 						key={index}
-						className="bg-white border border-gray-200 squircle p-6 shadow-sm grid gap-4"
-						style={{ 
-							gridRow: "span 7", 
-							gridTemplateRows: "subgrid"
+						className="bg-white border border-gray-200 squircle px-6 pt-6 pb-2 shadow-sm grid gap-4"
+						style={{
+							gridRow: "span 6",
+							gridTemplateRows: "subgrid",
 						}}
 					>
 						{/* Rule header */}
 						<div className="flex items-center space-x-3">
-							<div
-								className="flex-shrink-0"
-								style={{ color: iconColor }}
-							>
-								<div className="[&>svg]:w-6 [&>svg]:h-6">
-									{rule.icon}
-								</div>
+							<div className="flex-shrink-0" style={{ color: iconColor }}>
+								<div className="[&>svg]:w-6 [&>svg]:h-6">{rule.icon}</div>
 							</div>
-							<h5 className="font-bold text-gray-900 text-lg leading-trim-both">{rule.section}</h5>
+							<h5 className="font-bold text-gray-900 text-lg leading-trim-both">
+								{rule.section}
+							</h5>
 						</div>
-						
-						<p className="text-body text-gray-700 leading-relaxed">{rule.rule}</p>
-						<div></div>
+
+						<p className="text-body text-gray-700 leading-relaxed">
+							{rule.rule}
+						</p>
 
 						{/* Recommended */}
 						<div className="bg-gradient-to-br from-green-50 to-emerald-50 border-l-4 border-green-500 p-4 squircle-sm">
@@ -49,7 +47,7 @@ export default function BestPractices({
 								<IoMdCheckmarkCircleOutline className="w-5 h-5 text-green-600" />
 								À privilégier
 							</h6>
-							<code className="text-sm text-green-900 font-mono whitespace-pre-wrap break-words block bg-white/50 p-2 rounded">
+							<code className="text-sm text-green-900 font-mono whitespace-pre-wrap break-words block bg-white/50 p-2 squircle">
 								{rule.good}
 							</code>
 						</div>
@@ -57,20 +55,19 @@ export default function BestPractices({
 						{/* Avoid */}
 						<div className="bg-gradient-to-br from-red-50 to-rose-50 border-l-4 border-red-500 p-4 squircle-sm">
 							<h6 className="text-gray-700 font-bold mb-2 flex items-center gap-2 text-sm uppercase tracking-wide">
-								<RiProhibited2Line className="w-5 h-5 text-red-600" />
-								À éviter
+								<RiProhibited2Line className="w-5 h-5 text-red-600" />À éviter
 							</h6>
-							<code className="text-sm text-red-900 font-mono whitespace-pre-wrap break-words block bg-white/50 p-2 rounded">
+							<code className="text-sm text-red-900 font-mono whitespace-pre-wrap break-words block bg-white/50 p-2 squircle">
 								{rule.bad}
 							</code>
 						</div>
 
-						{/* Flexible spacer 2 */}
-						<div></div>
-
 						{/* Reason */}
-						<div className="bg-amber-50 border-l-2 border-amber-400 p-3 squircle-sm">
-							<p className="text-xs text-gray-700 italic leading-relaxed font-medium">
+						<div className="bg-gray-50 border-l-4 border-gray-300 p-4 squircle-sm">
+							<h6 className="text-gray-700 font-bold mb-2 text-sm uppercase tracking-wide">
+								Pourquoi ?
+							</h6>
+							<p className="text-xs text-gray-600 italic leading-relaxed">
 								{rule.reason}
 							</p>
 						</div>
