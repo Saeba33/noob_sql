@@ -64,10 +64,10 @@ export default function SGBDDiagram() {
 				</span>
 
 				{/* SGBD Parent Container - wraps everything */}
-				<div className="border-2 border-gray-700 squircle  bg-white">
+				<div className="border border-gray-300 squircle  bg-white">
 					{/* SGBD Header - simple and elegant */}
-					<div className="text-center border-b-2 border-gray-700 py-6">
-						<h2 className="font-bold text-gray-700 tracking-wide">SGBD</h2>
+					<div className="text-center border-b border-gray-300 py-6">
+						<h2 className="font-bold text-gray-600 tracking-wide">SGBD</h2>
 					</div>
 
 					{/* Categories Grid inside SGBD container */}
