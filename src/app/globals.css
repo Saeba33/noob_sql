@@ -191,6 +191,18 @@ p.text-body {
 	}
 }
 
+.text-nav {
+	font-size: 0.8125rem;
+	line-height: 1.5;
+	font-weight: 500;
+}
+@media (min-width: 640px) {
+	.text-nav {
+		font-size: 0.875rem;
+	}
+
+}
+
 .text-footer {
 	font-size: 0.8125rem;
 	line-height: 1.5;
