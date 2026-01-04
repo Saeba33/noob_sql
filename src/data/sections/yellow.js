@@ -4,7 +4,7 @@ import { BELT_COLORS } from "@/config/belts-config";
 
 const menu = {
 	summary: "Langage de définition de données",
-	topics: ["CREATE TABLE", "ALTER TABLE", "DROP TABLE", "Bonnes pratiques"],
+	topics: ["CREATE TABLE", "ALTER TABLE", "DROP TABLE", "Bonnes pratiques DDL"],
 };
 
 const header = {

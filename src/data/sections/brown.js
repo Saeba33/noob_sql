@@ -4,7 +4,7 @@ import JoinsDiagram from "@/components/ui/sections/brown/JoinsDiagram";
 const menu = {
 	summary: "Relations entre les tables",
 	topics: [
-		"Schéma jointures",
+		"Types de jointures",
 		"Clés primaires/étrangères",
 		"INNER JOIN",
 		"LEFT JOIN",

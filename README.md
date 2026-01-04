@@ -2,11 +2,11 @@
 
 ## 🥋 Organisation des Ceintures
 
-### 🤍 Ceinture Blanche - Généralités
+### ⚪ Ceinture Blanche - Généralités
 **Base théorique et concepts fondamentaux**
 - Définition d'un SGBD avec schéma de ramification (SGBD vs NoSQL)
 - Architecture d'une base de données (table, colonne, ligne)
-- Relations entre lestables
+- Relations entre les tables
 - Types de données (INTEGER, TEXT, etc.)
 - Bonnes pratiques
 
@@ -15,14 +15,15 @@
 - CREATE : Création de tables
 - ALTER : Modification de structure
 - DROP : Suppression de tables
-- Bonnes pratiques
+- Bonnes pratiques DDL
 
 ### 🟠 Ceinture Orange - CRUD (Create, Read, Update, Delete)
 **Opérations de base sur les données**
 - SELECT : Lecture de données
 - INSERT : Ajout de données
 - UPDATE : Modification de données
-- DELETE/TRUNCATE : Suppression de données
+- DELETE : Suppression de données
+- Bonnes Pratiques CRUD
 
 ### 🟢 Ceinture Verte - Filtres et Conditions
 **Contrôle et filtrage des données**
@@ -37,14 +38,14 @@
 ### 🔵 Ceinture Bleue - Agrégations
 **Calculs et regroupements**
 - Fonctions d'agrégation (COUNT, SUM, AVG, MIN, MAX)
-- Fontions de texte (UPPER, LOWER, LENGTH, CONCAT, SUBSTRING, TRIM, REPLACE)
+- Fonctions de texte (UPPER, LOWER, LENGTH, CONCAT, SUBSTRING, TRIM, REPLACE)
 - Fonctions numériques (ROUND, CEIL, FLOOR)
 - Fonctions de date (NOW, DATE, DATEDIFF)
 - Fonctions conditionnelles (COALESCE, CASE/WHEN)
 
 ### 🟤 Ceinture Marron - Jointures
 **Relations entre les tables**
-- Schéma récapitulatif visuel des types de jointures
+- Types de jointures
 - Clés primaires et étrangères : Conditions nécessaires aux jointures
 - JOIN (INNER JOIN) : Jointure interne
 - LEFT JOIN (LEFT OUTER JOIN) : Jointure externe gauche

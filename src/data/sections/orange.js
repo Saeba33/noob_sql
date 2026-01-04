@@ -15,8 +15,7 @@ const menu = {
 		"SELECT",
 		"UPDATE",
 		"DELETE",
-		"TRUNCATE",
-		"Bonnes Pratiques",
+		"Bonnes Pratiques CRUD",
 	],
 };
 
