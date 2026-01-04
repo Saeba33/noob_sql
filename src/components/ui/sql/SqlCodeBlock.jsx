@@ -74,7 +74,7 @@ export default function SQLCodeBlock({ children, className = "" }) {
 
 	return (
 		<div className={`relative ${className}`}>
-			<div className="bg-gray-900 border-gray-700 border squircle overflow-hidden shadow-lg">
+			<div className="bg-gray-900 border-gray-700 border squircle overflow-hidden shadow-md">
 				{/* Terminal Header */}
 				<div className="bg-gray-800 px-4 py-2 flex items-center justify-between relative">
 					<div className="flex items-center space-x-2">

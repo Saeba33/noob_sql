@@ -53,7 +53,7 @@ export default function SQLResultBlock({
 	if (contentType === "empty" || !formattedData || !formattedData.rows.length) {
 		return (
 			<div className={`${className}`}>
-				<div className="bg-gray-50 border border-gray-200 squircle overflow-hidden">
+				<div className="bg-gray-50 border border-gray-200 squircle overflow-hidden shadow-sm">
 					{/* Header */}
 					<div className="bg-gray-100 px-4 py-3 border-b border-gray-200">
 						<h6 className="text-gray-700 font-semibold text-sm flex items-center">

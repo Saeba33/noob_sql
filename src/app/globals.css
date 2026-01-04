@@ -266,7 +266,7 @@ p.text-body {
 /* Home Card (version unique, premium, fond blanc) */
 .home-card {
 	corner-shape: var(--squircle-shape);
-	border-radius: var(--squircle-radius-base);
+	border-radius: 1rem;
 	display: block;
 	width: 100%;
 	padding: 1.75rem;

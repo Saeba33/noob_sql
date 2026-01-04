@@ -22,7 +22,7 @@ export default function BestPractices({
 				{rules.map((rule, index) => (
 					<div
 						key={index}
-						className="bg-white border border-gray-300 squircle p-4 shadow-sm grid gap-3"
+						className="bg-white border border-gray-300 squircle p-4 shadow-md grid gap-3"
 						style={{ gridRow: "span 7", gridTemplateRows: "subgrid" }}
 					>
 						{/* Rule header */}
