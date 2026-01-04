@@ -2,9 +2,6 @@
 
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import { RiProhibited2Line } from "react-icons/ri";
-import { BsInfoSquare } from "react-icons/bs";
-import { PiSealQuestionFill } from "react-icons/pi";
-import { RxQuestionMarkCircled } from "react-icons/rx";
 
 export default function BestPractices({
 	introduction,
@@ -24,7 +21,7 @@ export default function BestPractices({
 				{rules.map((rule, index) => (
 					<div
 						key={index}
-						className="bg-white border border-gray-200 squircle px-6 pt-6 pb-2 shadow-sm grid gap-4"
+						className="bg-white border border-gray-200 squircle px-6 pt-6 pb-2 shadow-md grid gap-4"
 						style={{
 							gridRow: "span 6",
 							gridTemplateRows: "subgrid",
@@ -45,31 +42,30 @@ export default function BestPractices({
 						</p>
 
 						{/* Recommended */}
-						<div className="bg-gradient-to-br from-green-50 to-emerald-50 border-l-4 border-green-500 p-4 squircle-sm">
+						<div className="bg-gradient-to-br from-green-50 to-emerald-50 border-l-4 border-green-500 p-4 squircle-sm shadow-md">
 							<h6 className="text-gray-700 font-bold mb-2 flex items-center gap-2 text-sm uppercase tracking-wide">
 								<IoMdCheckmarkCircleOutline className="w-5 h-5 text-green-600" />
 								À privilégier
 							</h6>
-							<code className="text-sm text-green-900 font-mono whitespace-pre-wrap break-words block bg-white/50 p-2 squircle">
+							<code className="text-sm text-green-900 font-mono whitespace-pre-wrap break-words block bg-white/50 p-2 squircle shadow-sm">
 								{rule.good}
 							</code>
 						</div>
 
 						{/* Avoid */}
-						<div className="bg-gradient-to-br from-red-50 to-rose-50 border-l-4 border-red-500 p-4 squircle-sm">
+						<div className="bg-gradient-to-br from-red-50 to-rose-50 border-l-4 border-red-500 p-4 squircle-sm shadow-md">
 							<h6 className="text-gray-700 font-bold mb-2 flex items-center gap-2 text-sm uppercase tracking-wide">
-								<RiProhibited2Line className="w-5 h-5 text-red-600" />À éviter
+								<RiProhibited2Line className="w-5 h-5 text-red-600" /> À éviter
 							</h6>
-							<code className="text-sm text-red-900 font-mono whitespace-pre-wrap break-words block bg-white/50 p-2 squircle">
+							<code className="text-sm text-red-900 font-mono whitespace-pre-wrap break-words block bg-white/50 p-2 squircle shadow-sm">
 								{rule.bad}
 							</code>
 						</div>
 
 						{/* Reason */}
-						<div className="bg-gray-50 border-l-4 border-gray-300 p-4 squircle-sm">
+						<div className="bg-gray-50 border-l-4 border-gray-300 p-4 squircle-sm shadow-md">
 							<h6 className="text-gray-700 font-bold mb-2 flex items-center gap-2 text-sm uppercase tracking-wide">
-								<RxQuestionMarkCircled className="w-5 h-5 text-gray-600" />
-								Raison
+								Pourquoi ?
 							</h6>
 							<p className="text-xs text-gray-600  leading-relaxed">
 								{rule.reason}
