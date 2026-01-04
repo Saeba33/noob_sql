@@ -37,33 +37,33 @@ export default function BestPractices({
 							</h5>
 						</div>
 
-						<p className="text-body text-gray-700 leading-relaxed pb-2">
+						<p className="text-body text-gray-700 leading-relaxed">
 							{rule.rule}
 						</p>
 
 						{/* Recommended */}
-						<div className="bg-gradient-to-br from-green-50 to-emerald-50 border-l-4 border-green-500 p-4 squircle-sm shadow-md">
+						<div className="bg-gradient-to-br from-green-50 to-emerald-50 border-l-4 border-green-500 p-4 squircle-sm shadow-sm">
 							<h6 className="text-gray-700 font-bold mb-2 flex items-center gap-2 text-sm uppercase tracking-wide">
 								<IoMdCheckmarkCircleOutline className="w-5 h-5 text-green-600" />
 								À privilégier
 							</h6>
-							<code className="text-sm text-green-900 font-mono whitespace-pre-wrap break-words block bg-white/50 p-2 squircle shadow-sm">
+							<code className="text-sm text-green-900 font-mono whitespace-pre-wrap break-words block bg-white/50 p-2 squircle shadow-xs">
 								{rule.good}
 							</code>
 						</div>
 
 						{/* Avoid */}
-						<div className="bg-gradient-to-br from-red-50 to-rose-50 border-l-4 border-red-500 p-4 squircle-sm shadow-md">
+						<div className="bg-gradient-to-br from-red-50 to-rose-50 border-l-4 border-red-500 p-4 squircle-sm shadow-sm">
 							<h6 className="text-gray-700 font-bold mb-2 flex items-center gap-2 text-sm uppercase tracking-wide">
 								<RiProhibited2Line className="w-5 h-5 text-red-600" /> À éviter
 							</h6>
-							<code className="text-sm text-red-900 font-mono whitespace-pre-wrap break-words block bg-white/50 p-2 squircle shadow-sm">
+							<code className="text-sm text-red-900 font-mono whitespace-pre-wrap break-words block bg-white/50 p-2 squircle shadow-xs">
 								{rule.bad}
 							</code>
 						</div>
 
 						{/* Reason */}
-						<div className="bg-gray-50 border-l-4 border-gray-300 p-4 squircle-sm shadow-md">
+						<div className="bg-gray-50 border-l-4 border-gray-300 p-4 squircle-sm shadow-sm">
 							<h6 className="text-gray-700 font-bold mb-2 flex items-center gap-2 text-sm uppercase tracking-wide">
 								Pourquoi ?
 							</h6>
