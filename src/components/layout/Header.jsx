@@ -41,7 +41,7 @@ export default function Header() {
 
 	return (
 		<header className="fixed top-6 left-0 right-0 z-50 flex justify-center">
-			<div className="w-full max-w-[1500px] px-6">
+			<div className="w-full max-w-[1500px] px-4 lg:px-6">
 				<div ref={menuRef} className="relative">
 					<div
 						className={`border border-gray-200/60 shadow-lg overflow-hidden ${
