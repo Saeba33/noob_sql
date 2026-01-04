@@ -10,3 +10,8 @@ Google analytics ?
 MAJ README
 
 Ajuster composants white et brown
+
+
+Ceinture blanche / Relations entre les tables, les icones de clé primaire et clé étrangère ne changent pas de taille
+Revoir positionnement et taille des diagram indivduelle dans la ceinture marron
+Pour les tableaux avec résultat de la requetes (x lignes) j'ai le header, de la meme couleur que la première ligne
