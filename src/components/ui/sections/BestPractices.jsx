@@ -2,6 +2,9 @@
 
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import { RiProhibited2Line } from "react-icons/ri";
+import { BsInfoSquare } from "react-icons/bs";
+import { PiSealQuestionFill } from "react-icons/pi";
+import { RxQuestionMarkCircled } from "react-icons/rx";
 
 export default function BestPractices({
 	introduction,
@@ -37,7 +40,7 @@ export default function BestPractices({
 							</h5>
 						</div>
 
-						<p className="text-body text-gray-700 leading-relaxed">
+						<p className="text-body text-gray-700 leading-relaxed pb-2">
 							{rule.rule}
 						</p>
 
@@ -64,10 +67,11 @@ export default function BestPractices({
 
 						{/* Reason */}
 						<div className="bg-gray-50 border-l-4 border-gray-300 p-4 squircle-sm">
-							<h6 className="text-gray-700 font-bold mb-2 text-sm uppercase tracking-wide">
-								Pourquoi ?
+							<h6 className="text-gray-700 font-bold mb-2 flex items-center gap-2 text-sm uppercase tracking-wide">
+								<RxQuestionMarkCircled className="w-5 h-5 text-gray-600" />
+								Raison
 							</h6>
-							<p className="text-xs text-gray-600 italic leading-relaxed">
+							<p className="text-xs text-gray-600  leading-relaxed">
 								{rule.reason}
 							</p>
 						</div>
