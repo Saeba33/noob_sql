@@ -20,61 +20,61 @@ export default function PrimaryForeignKeys() {
 				{/* Primary Keys */}
 				<div className="bg-white squircle border border-gray-200 p-6">
 					<div className="flex items-center gap-3 mb-4">
-						<MdKey className="w-8 h-8 min-w-[32px] text-yellow-600" />
-					<h5 className="font-bold text-gray-900">
-						Clé Primaire (PRIMARY KEY)
-					</h5>
+						<MdKey className="w-6 h-6 sm:w-8 sm:h-8 min-w-[24px] sm:min-w-[32px] text-yellow-600" />
+						<h5 className="font-bold text-gray-900">
+							Clé Primaire (PRIMARY KEY)
+						</h5>
+					</div>
+
+					<div className="space-y-3">
+						<p className="text-body text-gray-700">
+							Identifiant <strong>unique</strong> de chaque ligne dans une
+							table.
+						</p>
+						<ul className="list-disc list-inside space-y-1 text-sm text-gray-600">
+							<li>Toujours unique</li>
+							<li>Ne peut jamais être NULL</li>
+							<li>Ne doit pas changer</li>
+							<li>Une seule par table</li>
+						</ul>
+					</div>
 				</div>
 
-				<div className="space-y-3">
-					<p className="text-body text-gray-700">
-						Identifiant <strong>unique</strong> de chaque ligne dans une
-						table.
-					</p>
-					<ul className="list-disc list-inside space-y-1 text-sm text-gray-600">
-						<li>Toujours unique</li>
-						<li>Ne peut jamais être NULL</li>
-						<li>Ne doit pas changer</li>
-						<li>Une seule par table</li>
-					</ul>
+				{/* Foreign Keys */}
+				<div className="bg-white squircle border border-gray-200 p-6">
+					<div className="flex items-center gap-3 mb-4">
+						<MdLink className="w-6 h-6 sm:w-8 sm:h-8 min-w-[24px] sm:min-w-[32px] text-red-600 opacity-80" />
+						<h5 className="font-bold text-gray-900">
+							Clé Étrangère (FOREIGN KEY)
+						</h5>
+					</div>
+
+					<div className="space-y-3">
+						<p className="text-body text-gray-700">
+							Référence vers la clé primaire d'une <strong>autre table</strong>.
+						</p>
+						<ul className="list-disc list-inside space-y-1 text-sm text-gray-600">
+							<li>Crée un lien entre tables</li>
+							<li>Garantit l'intégrité des données</li>
+							<li>Empêche les relations invalides</li>
+							<li>Maintient la cohérence</li>
+						</ul>
+					</div>
 				</div>
 			</div>
 
-			{/* Foreign Keys */}
-			<div className="bg-white squircle border border-gray-200 p-6">
-				<div className="flex items-center gap-3 mb-4">
-					<MdLink className="w-8 h-8 min-w-[32px] text-red-600 opacity-80" />
-					<h5 className="font-bold text-gray-900">
-						Clé Étrangère (FOREIGN KEY)
-					</h5>
-				</div>
+			{/* Example */}
+			<div className="bg-white border border-gray-300 squircle p-6">
+				<h5 className="font-bold text-gray-900 mb-4">
+					Comment les relations fonctionnent ?
+				</h5>
 
-				<div className="space-y-3">
-					<p className="text-body text-gray-700">
-						Référence vers la clé primaire d'une <strong>autre table</strong>.
-					</p>
-					<ul className="list-disc list-inside space-y-1 text-sm text-gray-600">
-						<li>Crée un lien entre tables</li>
-						<li>Garantit l'intégrité des données</li>
-						<li>Empêche les relations invalides</li>
-						<li>Maintient la cohérence</li>
-					</ul>
-				</div>
-			</div>
-		</div>
+				<p className="text-body text-gray-700 mb-2">
+					En prenant pour exemple les tables vues dans la section précédente :
+				</p>
 
-		{/* Example */}
-		<div className="bg-white border border-gray-300 squircle p-6">
-			<h5 className="font-bold text-gray-900 mb-4">
-				Comment les relations fonctionnent ?
-			</h5>
-
-			<p className="text-body text-gray-700 mb-2">
-				En prenant pour exemple les tables vues dans la section précédente :
-			</p>
-
-			<div className="mb-8">
-				<ul className="space-y-2 text-gray-800">
+				<div className="mb-8">
+					<ul className="space-y-2 text-gray-800">
 						<li>
 							<code className="bg-gray-100 px-2 py-1 squircle-sm font-mono text-sm">
 								utilisateur_id
