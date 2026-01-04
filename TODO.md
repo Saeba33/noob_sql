@@ -9,6 +9,4 @@ Google analytics ?
 
 MAJ README
 
-
-Refonte carte bestpractices
 Ajuster composants white et brown

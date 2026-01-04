@@ -31,7 +31,7 @@ export default function SQLResultBlock({
 				<div className="bg-blue-50 border border-blue-200 squircle overflow-hidden shadow-sm">
 					{/* Header */}
 					<div className="bg-blue-100 px-4 py-3 border-b border-blue-200">
-						<h6 className="text-blue-800 font-semibold text-sm flex items-center">
+						<h6 className="text-blue-800 font-semibold flex items-center">
 							<MdCheckCircle className="w-4 h-4 mr-2" />
 							{title}
 						</h6>
@@ -39,7 +39,7 @@ export default function SQLResultBlock({
 
 					{/* Message Content */}
 					<div className="p-4">
-						<p className="text-blue-700 font-mono text-sm">{message}</p>
+					<p className="text-blue-700 font-mono text-sm">{message}</p>
 					</div>
 				</div>
 			</div>
@@ -56,7 +56,7 @@ export default function SQLResultBlock({
 				<div className="bg-gray-50 border border-gray-200 squircle overflow-hidden shadow-sm">
 					{/* Header */}
 					<div className="bg-gray-100 px-4 py-3 border-b border-gray-200">
-						<h6 className="text-gray-700 font-semibold text-sm flex items-center">
+						<h6 className="text-gray-700 font-semibold flex items-center">
 							<MdInfo className="w-4 h-4 mr-2" />
 							{title}
 						</h6>
@@ -64,7 +64,7 @@ export default function SQLResultBlock({
 
 					{/* Empty Content */}
 					<div className="p-4">
-						<p className="text-gray-500 text-center italic text-sm">
+					<p className="text-gray-500 text-center italic text-sm">
 							Aucun résultat
 						</p>
 					</div>
@@ -79,7 +79,7 @@ export default function SQLResultBlock({
 			<div className="bg-white border border-gray-200 squircle overflow-hidden shadow-sm">
 				{/* Header */}
 				<div className="bg-gray-50 px-4 py-3 border-b border-gray-200">
-					<h6 className="text-gray-800 font-semibold text-sm flex items-center">
+					<h6 className="text-gray-800 font-semibold flex items-center">
 						<MdTableChart className="w-4 h-4 mr-2" />
 						{title} ({formattedData.rows.length} ligne
 						{formattedData.rows.length > 1 ? "s" : ""})

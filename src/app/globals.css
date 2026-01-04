@@ -147,15 +147,6 @@ h6 {
 	}
 }
 
-p {
-	font-size: 0.875rem;
-	line-height: 1.6;
-}
-@media (min-width: 640px) {
-	p {
-		font-size: 1rem;
-	}
-}
 
 p.text-intro {
 	font-size: 1.0625rem;
