@@ -63,7 +63,7 @@ export default function SGBDDiagram() {
 
 			{/* Hierarchy diagram */}
 			<span className="text-xs italic -mb-6 pl-1 mt-3">
-			Exemples de SGBD (liste non exhaustive)&nbsp;:
+			Exemples de SGBD (liste non exhaustive)&nbsp;
 			</span>
 			<div className="border border-gray-300 squircle bg-gray-50 py-6 px-4">
 				{/* Root - SGBD */}
