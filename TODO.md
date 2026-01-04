@@ -8,3 +8,7 @@ Cohérence taille des polices en full responsive (y compris popup) entre les dif
 Google analytics ?
 
 MAJ README
+
+
+Refonte carte bestpractices
+Ajuster composants white et brown

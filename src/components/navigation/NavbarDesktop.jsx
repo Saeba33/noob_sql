@@ -25,8 +25,8 @@ export default function NavbarDesktop() {
 							aria-current={active ? "page" : undefined}
 							className={`navbar-item bg-transparent squircle transition-all duration-200 px-2 py-2 flex items-center gap-2 h-[40px] max-h-[40px] ${
 								active
-									? "font-bold text-gray-900"
-									: "font-light text-gray-600 hover:text-gray-900"
+									? "font-extrabold text-gray-900"
+									: "font-light text-gray-500 hover:text-gray-900"
 							} whitespace-nowrap focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-400 squircle`}
 						>
 							<BeltIcon
@@ -35,7 +35,7 @@ export default function NavbarDesktop() {
 								className="block translate-y-[3px]"
 							/>
 							<span className="relative tracking-wide">
-								<span className="invisible font-bold" aria-hidden="true">
+								<span className="invisible font-extrabold" aria-hidden="true">
 									{item.title}
 								</span>
 								<span className="absolute inset-0">{item.title}</span>
