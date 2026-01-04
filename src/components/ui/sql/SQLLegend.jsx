@@ -22,7 +22,7 @@ export default function SQLLegend({ variant = "default", onClose }) {
 					</h4>
 					<button
 						onClick={onClose}
-						className="text-gray-400 hover:text-white transition-colors p-1 hover:bg-gray-700 squircle-sm"
+						className="cursor-pointer text-gray-400 hover:text-white transition-colors p-1 hover:bg-gray-700 squircle-sm"
 						aria-label="Fermer"
 					>
 						<MdClose className="w-5 h-5" />

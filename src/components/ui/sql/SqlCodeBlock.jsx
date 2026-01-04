@@ -91,7 +91,7 @@ export default function SQLCodeBlock({ children, className = "" }) {
 					{/* Info Icon */}
 					<button
 						onClick={() => setShowPopover(!showPopover)}
-						className="text-gray-400 hover:text-gray-200 transition-colors p-1 squircle-sm hover:bg-gray-700 relative z-10"
+						className="text-gray-400 hover:text-gray-200 transition-colors p-1 squircle-sm hover:bg-gray-700 relative z-10 cursor-pointer"
 						aria-label="Afficher la légende"
 					>
 						<MdInfoOutline className="w-5 h-5" />
