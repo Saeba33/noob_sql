@@ -8,5 +8,4 @@ Google analytics ?
 
 MAJ README
 
-Revoir positionnement et taille des diagram indivduelle dans la ceinture marron
-Pour les tableaux avec résultat de la requetes (x lignes) j'ai le header, de la meme couleur que la première ligne
+

@@ -20,9 +20,13 @@ export default function JoinDiagramSingle({ type = "inner" }) {
 	const uniqueId = `single-${type}`;
 
 	return (
-		<div className="flex justify-center py-4">
-			<svg width="180" height="120" viewBox="0 0 100 70">
-				<defs>
+		<div className="flex justify-center items-center py-6">
+			<div className="w-full max-w-xs sm:max-w-sm md:max-w-md">
+				<svg 
+					viewBox="0 0 100 70" 
+					className="w-full h-auto"
+				>
+					<defs>
 					{/* Mask to exclude intersection from circle A */}
 					<mask id={`maskA-${uniqueId}`}>
 						<rect width="100" height="70" fill="white" />
@@ -108,6 +112,7 @@ export default function JoinDiagramSingle({ type = "inner" }) {
 					B
 				</text>
 			</svg>
+		</div>
 		</div>
 	);
 }
