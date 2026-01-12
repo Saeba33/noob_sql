@@ -34,8 +34,8 @@ const accordions = [
 		examples: [
 			{
 				label: "Insertion d'un seul utilisateur",
-				code: `INSERT INTO utilisateurs (prenom, nom, email, age) VALUES 
-('Alice', 'Dupont', 'alice@email.com', 28);`,
+				code: `INSERT INTO utilisateurs (prenom, nom, email, age, ville) VALUES 
+('Alice', 'Dupont', 'alice@email.com', 28, 'Paris');`,
 				result: {
 					message: "1 ligne insérée avec succès",
 					type: "message",
@@ -44,10 +44,10 @@ const accordions = [
 			{
 				label: "Insertion de plusieurs utilisateurs",
 				code: `-- Insertion de plusieurs utilisateurs en une seule requête
-INSERT INTO utilisateurs (prenom, nom, email, age) VALUES 
-('Bob', 'Martin', 'bob@gmail.com', 32),
-('Claire', 'Durand', 'claire@email.com', 25),
-('David', 'Moreau', 'david@email.com', 45);`,
+INSERT INTO utilisateurs (prenom, nom, email, age, ville) VALUES 
+('Bob', 'Martin', 'bob@gmail.com', 32, 'Paris'),
+('Claire', 'Durand', 'claire@email.com', 25, 'Toulouse'),
+('David', 'Moreau', 'david@email.com', 45, 'Lyon');`,
 				result: {
 					message: "3 lignes insérées avec succès",
 					type: "message",
@@ -173,9 +173,9 @@ WHERE age > 30;`,
 		examples: [
 			{
 				label: "Modifier une ligne spécifique",
-				code: `-- Modifier l'âge d'un utilisateur spécifique
+				code: `-- Modifier l'email d'un utilisateur spécifique
 UPDATE utilisateurs 
-SET age = 29 
+SET email = 'alice.new@email.com' 
 WHERE prenom = 'Alice' AND nom = 'Dupont';`,
 				result: {
 					message: "1 ligne mise à jour avec succès",
@@ -184,9 +184,9 @@ WHERE prenom = 'Alice' AND nom = 'Dupont';`,
 			},
 			{
 				label: "Modifier plusieurs lignes avec condition",
-				code: `-- Changer la ville de tous les utilisateurs de plus de 40 ans
+				code: `-- Attribuer le statut 'VIP' aux utilisateurs de plus de 40 ans
 UPDATE utilisateurs 
-SET ville = 'Nice' 
+SET statut = 'VIP' 
 WHERE age >= 40;`,
 				result: {
 					message: "1 ligne mise à jour avec succès",
@@ -195,9 +195,9 @@ WHERE age >= 40;`,
 			},
 			{
 				label: "Modifier toutes les lignes (sans WHERE)",
-				code: `-- Augmenter l'âge de tous les utilisateurs d'un an
+				code: `-- Activer le compte de tous les utilisateurs
 UPDATE utilisateurs 
-SET age = age + 1;`,
+SET statut = 'actif';`,
 				result: {
 					message: "6 lignes mises à jour avec succès",
 					type: "message",

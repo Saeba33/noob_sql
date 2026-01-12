@@ -25,9 +25,11 @@ const accordions = [
 				code: `-- Création d'une table avec colonnes typées et contraintes de base
 CREATE TABLE utilisateurs (
     id INTEGER PRIMARY KEY,
+    prenom VARCHAR(100),
     nom VARCHAR(100) NOT NULL,
     email VARCHAR(255) UNIQUE,
     age INTEGER,
+    ville VARCHAR(50),
     date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -80,7 +82,7 @@ RENAME COLUMN nom TO nom_complet;
 
 -- Supprimer une colonne devenue inutile
 ALTER TABLE utilisateurs 
-DROP COLUMN telephone;`,
+DROP COLUMN fax;`,
 			},
 		],
 	},

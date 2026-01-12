@@ -267,7 +267,7 @@ export const dataTypes = [
       {
         name: "JSON",
         description: "Données structurées JSON",
-        examples: ["{'nom': 'Marie', 'age': 30}"],
+        examples: [`{"nom": "Marie", "age": 30}`],
         usage: "Configurations, métadonnées flexibles",
       },
     ],
@@ -387,7 +387,7 @@ export const exampleTypes = [
     column: "preferences",
     type: "JSON NULL",
     reason: "Données structurées flexibles",
-    example: "{'theme': 'dark'}",
+    example: '{"theme": "dark"}',
     benefit: "Extensibilité",
   },
 ];
