@@ -1,3 +1,13 @@
+import BestPractices from "@/components/ui/sections/BestPractices";
+import { BELT_COLORS } from "@/config/belts-config";
+import {
+  MdDataset,
+  MdSpeed,
+  MdSync,
+  MdTableView,
+  MdViewList,
+} from "react-icons/md";
+
 const menu = {
   summary: "Techniques avancées et optimisation",
   topics: [
@@ -12,58 +22,34 @@ const menu = {
 
 const header = {
   tag: "Ceinture Noire",
-  title: "Requêtes Avancées",
+  title: "Requêtes Avancées & Optimisation",
   description:
-    "La ceinture noire vous enseigne les techniques SQL les plus sophistiquées. Maîtrisez les sous-requêtes complexes, les CTE (Common Table Expressions), les vues, les opérations d'union, l'optimisation avec les index et la gestion des transactions. Ces compétences vous permettront de résoudre les problèmes les plus complexes.",
+    "La ceinture noire valide votre expertise SQL. Au-delà de récupérer des données, vous apprenez à structurer des requêtes complexes, à optimiser les performances via l'indexation, et à garantir l'intégrité des données critiques avec les transactions. Des compétences indispensables pour les environnements de production.",
 };
 
 const accordions = [
   {
     section: "Sous-requêtes",
-    content: "Utilisez des requêtes imbriquées pour des analyses complexes.",
+    content: "Les sous-requêtes permettent d'utiliser le résultat d'une requête à l'intérieur d'une autre. C'est utile pour filtrer des données sur la base de critères dynamiques.",
     examples: [
       {
-        label: "Sous-requête dans WHERE",
-        code: `SELECT nom, age 
-FROM utilisateurs 
-WHERE age > (SELECT AVG(age) FROM utilisateurs);`,
-        result: [
-          { nom: "Bob Martin", age: 32 },
-          { nom: "David Moreau", age: 45 },
-        ],
-      },
-      {
-        section: "Sous-requête dans SELECT",
-        code: `SELECT 
-    nom,
-    age,
-    (SELECT COUNT(*) FROM commandes WHERE utilisateur_id = u.id) AS nb_commandes
-FROM utilisateurs u;`,
-        result: [
-          { nom: "Alice Dupont", age: 28, nb_commandes: 1 },
-          { nom: "Bob Martin", age: 32, nb_commandes: 1 },
-          { nom: "Claire Durand", age: 25, nb_commandes: 1 },
-          { nom: "David Moreau", age: 45, nb_commandes: 1 },
-          { nom: "Emma Bernard", age: 30, nb_commandes: 0 },
-        ],
-      },
-      {
-        section: "Sous-requête avec IN",
-        code: `SELECT nom, email 
-FROM utilisateurs 
-WHERE id IN (
-    SELECT utilisateur_id 
-    FROM commandes 
-    WHERE prix > 100
+        label: "Filtrer avec un résultat agrégé",
+        code: `-- Trouver les produits plus chers que la moyenne
+SELECT nom, prix 
+FROM produits 
+WHERE prix > (
+    SELECT AVG(prix) 
+    FROM produits
 );`,
         result: [
-          { nom: "Alice Dupont", email: "alice@email.com" },
-          { nom: "David Moreau", email: "david@email.com" },
+          { nom: "Smartphone Pro", prix: 1299 },
+          { nom: "Ordinateur Portable", prix: 899 },
         ],
       },
       {
-        section: "Sous-requête avec EXISTS",
-        code: `SELECT nom, email 
+        label: "EXISTS : Performance et vérification",
+        code: `-- Trouver les utilisateurs ayant passé au moins une commande récente (Optimisé)
+SELECT nom, email 
 FROM utilisateurs u
 WHERE EXISTS (
     SELECT 1 
@@ -74,367 +60,257 @@ WHERE EXISTS (
         result: [
           { nom: "Alice Dupont", email: "alice@email.com" },
           { nom: "Bob Martin", email: "bob@email.com" },
-          { nom: "Claire Durand", email: "claire@email.com" },
-          { nom: "David Moreau", email: "david@email.com" },
         ],
       },
     ],
   },
   {
-    section: "CTE (Common Table Expression)",
+    section: "WITH (CTE)",
     content:
-      "Organisez vos requêtes complexes avec des expressions de table commune.",
+      "Les CTE (Common Table Expressions) agissent comme des tables temporaires définies juste avant votre requête. Idéal pour isoler une logique complexe. Ici, nous reprenons les exemples des 'Sous-requêtes' pour montrer l'alternative.",
     examples: [
       {
-        label: "CTE simple",
-        code: `WITH utilisateurs_actifs AS (
-    SELECT id, nom, email, age 
-    FROM utilisateurs 
-    WHERE age >= 30
+        label: "Analogie 1 : Calcul de moyenne",
+        code: `-- Version CTE de "Produits > Moyenne"
+-- 1. On définit d'abord la moyenne dans une "boîte" nommée MoyennePrix
+WITH MoyennePrix AS (
+    SELECT AVG(prix) as valeur_moyenne 
+    FROM produits
 )
-SELECT * FROM utilisateurs_actifs
-ORDER BY age;`,
+-- 2. On utilise cette boîte dans la requête principale
+SELECT nom, prix 
+FROM produits, MoyennePrix 
+WHERE prix > MoyennePrix.valeur_moyenne;`,
         result: [
-          { id: 2, nom: "Bob Martin", email: "bob@email.com", age: 32 },
-          { id: 5, nom: "Emma Bernard", email: "emma@email.com", age: 30 },
-          { id: 4, nom: "David Moreau", email: "david@email.com", age: 45 },
+          { nom: "Smartphone Pro", prix: 1299 },
+          { nom: "Ordinateur Portable", prix: 899 },
         ],
       },
       {
-        section: "CTE avec calculs d'agrégation",
-        code: `WITH statistiques_commandes AS (
-    SELECT 
-        utilisateur_id,
-        COUNT(*) AS nb_commandes,
-        SUM(prix) AS total_depense,
-        AVG(prix) AS panier_moyen
-    FROM commandes
-    GROUP BY utilisateur_id
+        label: "Analogie 2 : Filtrage (Equivalent EXISTS)",
+        code: `-- Version CTE de "Utilisateurs avec commande récente"
+-- 1. On isole d'abord les IDs des acheteurs récents
+WITH AcheteursRecents AS (
+    SELECT DISTINCT utilisateur_id 
+    FROM commandes 
+    WHERE date_commande > '2024-01-01'
 )
-SELECT 
-    u.nom,
-    s.nb_commandes,
-    s.total_depense,
-    s.panier_moyen
+-- 2. On fait une simple jointure avec cette liste
+SELECT u.nom, u.email 
 FROM utilisateurs u
-JOIN statistiques_commandes s ON u.id = s.utilisateur_id
-WHERE s.total_depense > 500;`,
+JOIN AcheteursRecents ar ON u.id = ar.utilisateur_id;`,
         result: [
-          {
-            nom: "Alice Dupont",
-            nb_commandes: 1,
-            total_depense: 1299,
-            panier_moyen: 1299.0,
-          },
-          {
-            nom: "David Moreau",
-            nb_commandes: 1,
-            total_depense: 799,
-            panier_moyen: 799.0,
-          },
-        ],
-      },
-      {
-        section: "CTE récursif - Hiérarchie d'employés",
-        code: `WITH RECURSIVE hierarchie_employes AS (
-    -- Cas de base : les managers de niveau 1
-    SELECT id, nom, manager_id, 1 AS niveau
-    FROM employes 
-    WHERE manager_id IS NULL
-    
-    UNION ALL
-    
-    -- Cas récursif : les employés sous chaque manager
-    SELECT e.id, e.nom, e.manager_id, h.niveau + 1
-    FROM employes e
-    JOIN hierarchie_employes h ON e.manager_id = h.id
-)
-SELECT nom, niveau, 
-       REPEAT('  ', niveau - 1) || nom AS nom_indente
-FROM hierarchie_employes
-ORDER BY niveau, nom;`,
-        result: [
-          { nom: "Alice Dupont", niveau: 1, nom_indente: "Alice Dupont" },
-          { nom: "Bob Martin", niveau: 2, nom_indente: "  Bob Martin" },
-          {
-            nom: "Claire Durand",
-            niveau: 3,
-            nom_indente: "    Claire Durand",
-          },
-          { nom: "David Moreau", niveau: 3, nom_indente: "    David Moreau" },
-          { nom: "Emma Bernard", niveau: 3, nom_indente: "    Emma Bernard" },
+          { nom: "Alice Dupont", email: "alice@email.com" },
+          { nom: "Bob Martin", email: "bob@email.com" },
         ],
       },
     ],
   },
   {
     section: "VIEW - Vues",
-    content: "Créez des vues pour simplifier et sécuriser l'accès aux données.",
+    content: "Une vue est une 'table virtuelle' basée sur une requête SQL. Elle permet de simplifier l'accès aux données complexes ou de restreindre l'accès à certaines colonnes sensibles.",
     examples: [
       {
-        label: "Création d'une vue simple",
-        code: `CREATE VIEW vue_utilisateurs_actifs AS
-SELECT id, nom, email, age
-FROM utilisateurs 
-WHERE age >= 25;`,
-        result: {
-          message: "Vue 'vue_utilisateurs_actifs' créée avec succès",
-          type: "message",
-        },
-      },
-      {
-        label: "Vue avec jointures complexes",
-        code: `CREATE VIEW vue_commandes_detaillees AS
+        label: "Création d'une vue reporting",
+        code: `-- Créer une vue qui consolide les informations de commande
+CREATE VIEW vue_details_commandes AS
 SELECT 
-    c.id,
-    u.nom AS client,
+    c.numero_commande,
+    c.date_commande,
+    u.nom as client,
     u.email,
-    p.nom AS produit,
-    c.prix,
-    c.date_commande
+    p.nom as produit,
+    c.montant
 FROM commandes c
 JOIN utilisateurs u ON c.utilisateur_id = u.id
-JOIN produits p ON c.produit_id = p.id;`,
+LEFT JOIN produits p ON c.produit_id = p.id;`,
         result: {
-          message: "Vue 'vue_commandes_detaillees' créée avec succès",
+          message: "Vue 'vue_details_commandes' créée avec succès",
           type: "message",
         },
       },
       {
-        label: "Utilisation des vues",
-        code: `SELECT * FROM vue_utilisateurs_actifs
-WHERE age > 30;`,
+        label: "Interrogation de la vue",
+        code: `-- L'utilisateur final n'a plus besoin de connaître les jointures !
+SELECT client, produit, montant
+FROM vue_details_commandes
+WHERE montant > 1000;`,
         result: [
-          { id: 2, nom: "Bob Martin", email: "bob@email.com", age: 32 },
-          { id: 4, nom: "David Moreau", email: "david@email.com", age: 45 },
-          { id: 5, nom: "Emma Bernard", email: "emma@email.com", age: 30 },
-        ],
-      },
-      {
-        section: "Requête sur vue avec jointures",
-        code: `SELECT client, produit, prix
-FROM vue_commandes_detaillees 
-WHERE prix > 100
-ORDER BY prix DESC;`,
-        result: [
-          { client: "Alice Dupont", produit: "Laptop Pro", prix: 1299 },
-          { client: "David Moreau", produit: "Smartphone", prix: 799 },
+          { client: "Alice Dupont", produit: "Smartphone Pro", montant: 1299 },
         ],
       },
     ],
   },
   {
     section: "UNION & UNION ALL",
-    content: "Combinez les résultats de plusieurs requêtes avec UNION.",
+    content: "Permet de combiner les résultats de deux tables ayant la même structure (mêmes colonnes). UNION supprime les doublons, UNION ALL les conserve (plus rapide).",
     examples: [
       {
-        label: "UNION - Combine et élimine les doublons",
-        code: `SELECT nom, email FROM utilisateurs WHERE age < 30
-UNION
-SELECT nom, email FROM utilisateurs WHERE nom LIKE 'A%';`,
-        result: [
-          { nom: "Alice Dupont", email: "alice@email.com" },
-          { nom: "Claire Durand", email: "claire@email.com" },
-        ],
-      },
-      {
-        section: "UNION ALL - Combine sans éliminer les doublons",
-        code: `SELECT 'utilisateur' AS type, nom, email FROM utilisateurs
+        label: "Archivage : UNION ALL",
+        code: `-- Combiner les commandes en cours et les archives
+SELECT numero_commande, date_commande, montant, 'En Cours' as source
+FROM commandes
 UNION ALL
-SELECT 'admin' AS type, nom, email_admin FROM administrateurs;`,
+SELECT numero_commande, date_commande, montant_final, 'Archive' as source
+FROM archives_commandes;`,
         result: [
           {
-            type: "utilisateur",
-            nom: "Alice Dupont",
-            email: "alice@email.com",
-          },
-          { type: "utilisateur", nom: "Bob Martin", email: "bob@email.com" },
-          {
-            type: "utilisateur",
-            nom: "Claire Durand",
-            email: "claire@email.com",
+            numero_commande: "CMD002",
+            date_commande: "2024-01-15",
+            montant: 899,
+            source: "En Cours",
           },
           {
-            type: "utilisateur",
-            nom: "David Moreau",
-            email: "david@email.com",
-          },
-          {
-            type: "utilisateur",
-            nom: "Emma Bernard",
-            email: "emma@email.com",
-          },
-          {
-            type: "admin",
-            nom: "Admin Système",
-            email: "admin@entreprise.com",
-          },
-          {
-            type: "admin",
-            nom: "Super Admin",
-            email: "superadmin@entreprise.com",
+            numero_commande: "ARC999",
+            date_commande: "2022-12-10",
+            montant: 120,
+            source: "Archive",
           },
         ],
       },
       {
-        section: "UNION avec ORDER BY global",
-        code: `SELECT nom, email, age, 'Paris' AS ville FROM utilisateurs WHERE id IN (1,2)
+        label: "Consolidation : UNION",
+        code: `-- Liste unique de tous les emails (clients + prospects)
+SELECT email FROM utilisateurs
 UNION
-SELECT nom, email, age, 'Lyon' AS ville FROM utilisateurs WHERE id IN (3,4)
-ORDER BY age DESC;`,
+SELECT email FROM prospects_newsletter;`,
         result: [
-          {
-            nom: "David Moreau",
-            email: "david@email.com",
-            age: 45,
-            ville: "Lyon",
-          },
-          {
-            nom: "Bob Martin",
-            email: "bob@email.com",
-            age: 32,
-            ville: "Paris",
-          },
-          {
-            nom: "Alice Dupont",
-            email: "alice@email.com",
-            age: 28,
-            ville: "Paris",
-          },
-          {
-            nom: "Claire Durand",
-            email: "claire@email.com",
-            age: 25,
-            ville: "Lyon",
-          },
+          { email: "alice@email.com" },
+          { email: "bob@email.com" },
+          { email: "prospect@gmail.com" },
         ],
       },
     ],
   },
   {
     section: "INDEX - Optimisation",
-    content: "Optimisez vos requêtes avec des index stratégiquement placés.",
+    content: "Sans index, la base doit lire toute la table (SCAN) pour trouver une ligne. Avec un index, elle va directement au but (SEARCH). EXPLAIN QUERY PLAN permet de voir quelle méthode est utilisée.",
     examples: [
       {
-        label: "Index simple sur une colonne",
-        code: `CREATE INDEX idx_utilisateurs_email ON utilisateurs(email);`,
+        label: "Création d'Index",
+        code: `-- Créer un index sur le nom pour accélérer les recherches
+CREATE INDEX idx_utilisateurs_nom 
+ON utilisateurs(nom);`,
         result: {
-          message: "Index 'idx_utilisateurs_email' créé avec succès",
+          message: "Index créé. La base a maintenant un 'sommaire' trié par nom.",
           type: "message",
         },
       },
       {
-        label: "Index composé sur plusieurs colonnes",
-        code: `CREATE INDEX idx_commandes_user_date 
-ON commandes(utilisateur_id, date_commande);`,
-        result: {
-          message: "Index composé 'idx_commandes_user_date' créé avec succès",
-          type: "message",
-        },
-      },
-      {
-        label: "Index unique pour contraintes",
-        code: `CREATE UNIQUE INDEX idx_produits_sku ON produits(sku);`,
-        result: {
-          message: "Index unique 'idx_produits_sku' créé avec succès",
-          type: "message",
-        },
-      },
-      {
-        label: "Index partiel avec condition",
-        code: `CREATE INDEX idx_commandes_recentes 
-ON commandes(date_commande) 
-WHERE date_commande > '2024-01-01';`,
-        result: {
-          message: "Index partiel 'idx_commandes_recentes' créé avec succès",
-          type: "message",
-        },
-      },
-      {
-        label: "Analyser l'utilisation des index",
-        code: `EXPLAIN QUERY PLAN 
-SELECT * FROM utilisateurs WHERE email = 'alice@email.com';`,
+        label: "Comprendre le QUERY PLAN",
+        code: `-- 1. Sans Index (= SCAN TABLE) : La base lit tout le livre. (LENT)
+-- EXPLAIN QUERY PLAN SELECT * FROM utilisateurs WHERE age = 25;
+-- Résultat : SCAN TABLE utilisateurs
+
+-- 2. Avec Index (= SEARCH TABLE) : Accès direct via l'index. (RAPIDE)
+EXPLAIN QUERY PLAN 
+SELECT * FROM utilisateurs WHERE nom = 'Dupont';`,
         result: [
           {
-            selectid: 0,
-            order: 0,
-            from: 0,
-            detail:
-              "SEARCH utilisateurs USING INDEX idx_utilisateurs_email (email=?)",
+            detail: "SEARCH TABLE utilisateurs USING INDEX idx_utilisateurs_nom (nom=?)",
+            explication: "SEARCH = La base a utilisé l'index. C'est ce qu'on veut !",
           },
         ],
+      },
+      {
+        label: "Index Unique (Contrainte)",
+        code: `-- Un index unique sert aussi de validation de données
+CREATE UNIQUE INDEX idx_produits_sku 
+ON produits(sku);`,
+        result: {
+          message: "Index unique créé. Rejettera tout doublon de SKU.",
+          type: "message",
+        },
       },
     ],
   },
   {
     section: "Transactions",
-    content: "Gérez l'intégrité des données avec les transactions.",
+    content: "Une transaction garantit qu'une série d'opérations est exécutée entièrement ou pas du tout (Atomicité). C'est crucial pour l'intégrité des données (paiements, stocks).",
     examples: [
       {
-        label: "Transaction simple",
-        code: `BEGIN TRANSACTION;
-    INSERT INTO utilisateurs (nom, email, age) 
-    VALUES ('Nouvel Utilisateur', 'nouveau@email.com', 35);
+        label: "Transaction E-commerce (Succès)",
+        code: `-- Scénario : Nouvelle commande (= Création commande + Baisse stock)
+BEGIN TRANSACTION;
+
+    -- 1. Créer la commande
+    INSERT INTO commandes (utilisateur_id, montant, date_commande) 
+    VALUES (1, 899, NOW());
     
-    INSERT INTO commandes (utilisateur_id, produit_id, prix) 
-    VALUES (LAST_INSERT_ROWID(), 1, 99.99);
-COMMIT;`,
+    -- 2. Décrémenter le stock du produit acheté
+    UPDATE produits 
+    SET stock = stock - 1 
+    WHERE id = 5;
+
+COMMIT; -- Valide définitivement les deux changements`,
         result: {
-          message:
-            "Transaction validée : utilisateur et commande créés avec succès",
+          message: "Transaction validée : Commande créée et stock mis à jour.",
           type: "message",
         },
       },
       {
-        label: "Transaction avec vérification",
-        code: `BEGIN TRANSACTION;
-    UPDATE utilisateurs SET age = age + 1 WHERE id = 1;
+        label: "Transaction annulée (ROLLBACK)",
+        code: `-- Scénario : Erreur de paiement en plein processus
+BEGIN TRANSACTION;
+
+    UPDATE produits SET stock = stock - 1 WHERE id = 5;
     
-    -- Vérifier que l'âge reste dans une plage acceptable
-    SELECT CASE 
-        WHEN age > 120 THEN RAISE(ABORT, 'Âge non réaliste')
-        ELSE 'OK'
-    END 
-    FROM utilisateurs WHERE id = 1;
-COMMIT;`,
-        result: {
-          message: "Transaction validée : âge mis à jour avec vérification",
-          type: "message",
-        },
-      },
-      {
-        label: "Transaction de transfert bancaire",
-        code: `BEGIN TRANSACTION;
-    UPDATE comptes SET solde = solde - 200 WHERE id = 1;
-    UPDATE comptes SET solde = solde + 200 WHERE id = 2;
-    
-    -- Vérifier qu'aucun compte n'est en négatif
-    SELECT CASE 
-        WHEN EXISTS(SELECT 1 FROM comptes WHERE solde < 0) 
-        THEN RAISE(ABORT, 'Solde insuffisant')
-        ELSE 'Transfert OK'
-    END;
-COMMIT;`,
-        result: {
-          message:
-            "Transaction validée : transfert de 200€ effectué avec succès",
-          type: "message",
-        },
-      },
-      {
-        label: "Transaction avec ROLLBACK",
-        code: `BEGIN TRANSACTION;
-    DELETE FROM logs WHERE date_creation < '2024-01-01';
-    
-    -- Après réflexion, on garde les logs...
+    -- Oups ! Erreur détectée (ex: paiement refusé)
+    -- On annule tout pour ne pas fausser le stock
 ROLLBACK;`,
         result: {
-          message: "Transaction annulée : aucune suppression effectuée",
+          message: "Transaction annulée : Le stock est revenu à sa valeur initiale.",
           type: "message",
         },
       },
     ],
   },
+  {
+		section: "Bonnes pratiques Avancées",
+		externalComponent: (
+			<BestPractices
+				iconColor={BELT_COLORS.black.theme}
+				introduction="Avec la puissance vient la responsabilité. Les requêtes complexes peuvent ralentir tout un système si elles sont mal écrites. Voici les règles d'or de l'optimisation."
+				rules={[
+					{
+						section: "Indexation intelligente",
+						icon: <MdSpeed />,
+						rule: "N'indexez pas tout ! Les index accélèrent la lecture (SELECT) mais ralentissent l'écriture (INSERT/UPDATE).",
+						good: "Index sur les colonnes de recherche (WHERE) et de jointure (JOIN)",
+						bad: "Index sur chaque colonne de la table",
+						reason:
+							"Compromis performance lecture/écriture.",
+					},
+					{
+						section: "Transactions courtes",
+						icon: <MdSync />,
+						rule: "Gardez les transactions aussi courtes que possible pour ne pas verrouiller la base de données.",
+						good: "BEGIN; INSERT; UPDATE; COMMIT;",
+						bad: "BEGIN; ... traitement long ou attente utilisateur ... COMMIT;",
+						reason: "Évite les blocages (locks) qui gèlent l'application.",
+					},
+					{
+						section: "Éviter SELECT *",
+						icon: <MdViewList />,
+						rule: "Dans les vues et le code de production, listez explicitement les colonnes.",
+						good: "SELECT id, nom, email FROM utilisateurs",
+						bad: "SELECT * FROM utilisateurs",
+						reason:
+							"Performance réseau et stabilité si la structure change.",
+					},
+                    {
+						section: "Utilisation des CTE",
+						icon: <MdTableView />,
+						rule: "Préférez les CTE aux sous-requêtes imbriquées pour la lisibilité.",
+						good: "WITH Sales AS (...) SELECT ... FROM Sales",
+						bad: "SELECT ... FROM (SELECT ... FROM (SELECT ...))",
+						reason:
+							"Le code est lu plus souvent qu'il n'est écrit.",
+					},
+				]}
+			/>
+		),
+	},
 ];
 
 export const beltContent = {
