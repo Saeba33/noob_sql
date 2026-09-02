@@ -1,11 +1,19 @@
-# NoobSQL — présentation du projet
+# CONTEXT — NoobSQL
 
-## But
+> **Rôle de ce fichier** : donner à une nouvelle conversation Claude ce qui ne change pas d'une session à l'autre (but, stack, décisions, conventions). L'état courant et le journal sont dans `docs/PLAN.md`. `CLAUDE.md` (carte du code, commandes) est chargé automatiquement.
+
+## 1. But du projet
+
 Apprendre SQL de zéro, en français, par paliers inspirés des ceintures d'arts martiaux. Chaque ceinture est une page composée d'accordéons ; chaque accordéon contient une explication, des exemples SQL colorés, leurs résultats sous forme de table, et parfois un composant pédagogique dédié (diagrammes SVG, tableaux de types, etc.). Une section « FIGHT » (1ère DAN, `/practice`) est prévue pour des exercices interactifs mais n'est encore qu'un placeholder.
 
 Public : débutants complets. Ton : pédagogique, tutoiement absent (vouvoiement), vocabulaire expliqué.
 
-## Ceintures (ordre de navigation = ordre des clés de `BELTS_CONFIG`)
+## 2. Stack et architecture
+
+Next 16.3 · React 19.2 · Tailwind 4.3 (PostCSS) · ESLint 9.39 · react-icons 5.7 · React Compiler · JavaScript (pas de TypeScript, choix assumé) · Node 24 global (Homebrew) · pnpm 11.
+
+### Ceintures (ordre de navigation = ordre des clés de `BELTS_CONFIG`)
+
 | Clé | Titre nav | Thème | Fichier data |
 |---|---|---|---|
 | white | Généralités | SGBD, architecture, types, clés, bonnes pratiques | `white.js` (+ composants `sections/white/*`) |
@@ -19,7 +27,8 @@ Public : débutants complets. Ton : pédagogique, tutoiement absent (vouvoiement
 
 Base d'exemple récurrente : bibliothèque (`utilisateurs`, `livres`, `emprunts`), parfois `commandes`/`produits`.
 
-## Architecture et flux de rendu
+### Architecture et flux de rendu
+
 1. `app/[belt]/page.jsx` (Server Component) → `getBeltData(belt)` (import dynamique de `data/sections/<belt>.js`, `notFound()` si clé inconnue) → injecte `colors` depuis `BELTS_CONFIG`.
 2. `SectionHeader` (tag / titre / description) puis `AccordionList` → un `Accordion` (client) par entrée.
 3. `Accordion` affiche, dans l'ordre : `content` (HTML via `dangerouslySetInnerHTML`, balises `<code>` stylées par `.content-html code`), `externalComponent`, puis chaque `example` :
@@ -32,7 +41,8 @@ Accueil : `Introduction.jsx` + `HomeNavigation` (cartes par ceinture, lit `summa
 
 Header : `Header.jsx` fixe, bascule desktop/mobile à 1500 px via `useNavbar` (`matchMedia` + `useSyncExternalStore`).
 
-## Modèle de données `beltContent`
+### Modèle de données `beltContent`
+
 ```js
 export const beltContent = {
 	summary: "phrase courte (carte d'accueil)",
@@ -59,21 +69,31 @@ export const beltContent = {
 ```
 `white.js` exporte en plus `dataTypes`, `constraints`, `exampleTypes` consommés par `sections/white/DataTypes.jsx`.
 
-## Fichiers de configuration
+### Fichiers de configuration
+
 - `next.config.mjs` : `reactCompiler: true` (stable en Next 16).
 - `eslint.config.mjs` : `eslint-config-next/core-web-vitals` en flat config, règle `react/no-unescaped-entities` désactivée.
 - `postcss.config.mjs` : `@tailwindcss/postcss`.
 - `jsconfig.json` : alias `@/*` → `src/*`.
 - `pnpm-workspace.yaml` : `allowBuilds` pour `unrs-resolver`.
 
-## Points d'attention connus
-- `HomeNavigation` importe les 8 fichiers de contenu côté client (poids JS de l'accueil).
-- `AccordionList` transmet des props (`sqlCode`, `sqlQueries`, `sqlResult`, `colors`) que `Accordion` n'utilise pas.
-- La coloration SQL est heuristique (regex + priorités) ; voir la section « Conventions » de `docs/CONTEXT.md` et le skill `/sql-highlight`.
+## 3. Documents de référence
 
----
+- `CLAUDE.md` — carte du code, commandes, règles de travail (chargé automatiquement).
+- `docs/PLAN.md` — état courant, phases, journal des sessions.
+- Outillage : skills `.claude/skills/` (`resume`, `deps`, `verify` + skills métier), agents `.claude/agents/` (`code-scout` lecture seule, `dev` implémentation, `build-checker` validation).
 
-## Conventions de code et de contenu
+## 4. Décisions actées
+
+| Date | Décision |
+|------|----------|
+| 2026-09-02 | Projet repris : **pnpm uniquement** (jamais npm/yarn), Node 24 global via Homebrew, versions épinglées pour next / react / react-dom / eslint-config-next. |
+| 2026-09-02 | **ESLint reste en 9.x** (ESLint 10 casse eslint-config-next) ; **pas de TypeScript** (projet JS assumé, JSDoc au besoin). |
+| 2026-09-02 | Next 16 : `eslint .` remplace `next lint`, React Compiler activé, polices via `next/font` (plus d'appel Google Fonts), aucun `setState` synchrone dans un `useEffect` (`useSyncExternalStore`). |
+| 2026-09-02 | **Aucune modification de code sans accord explicite de l'utilisateur** — proposer un plan d'abord. |
+| 2026-09-02 | Doc de reprise = `docs/CONTEXT.md` + `docs/PLAN.md` ; outillage Claude harmonisé avec portfolio_v5 et routine-board (skills `/resume` `/deps` `/verify`, agents `code-scout` `dev` `build-checker`). |
+
+## 5. Conventions
 
 ### Outils
 - **pnpm** uniquement (`pnpm-lock.yaml` versionné ; ne jamais recréer `package-lock.json`).

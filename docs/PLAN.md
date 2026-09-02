@@ -1,8 +1,22 @@
-# Feuille de route et axes d'amélioration
+# PLAN — NoobSQL
 
-État au 2026-09-02 : contenu des 7 ceintures rédigé, migration Next 16 / pnpm faite, aucun test, page FIGHT vide.
+> Suivi : cocher les cases au fil de l'eau et reporter l'avancement dans « État courant » et « Journal des sessions » ci-dessous. Une phase = un commit dédié.
+
+## État courant & prochaines étapes
+
+**Où on en est** : contenu des 7 ceintures rédigé, migration Next 16 / pnpm faite, aucun test, page FIGHT vide. (dernière mise à jour 2026-09-02)
+
+**Prochaine étape** : Phase 0 — dette immédiate (petit, sans risque).
+
+**Points d'attention connus** :
+- `HomeNavigation` importe les 8 fichiers de contenu côté client (poids JS de l'accueil).
+- `AccordionList` transmet des props (`sqlCode`, `sqlQueries`, `sqlResult`, `colors`) que `Accordion` n'utilise pas.
+- La coloration SQL est heuristique (regex + priorités) ; voir la section « Conventions » de `docs/CONTEXT.md` et le skill `/sql-highlight`.
+
+**Git & méthode** : branche `main` ; validations `/verify` avant tout commit ; aucune modification de code sans accord explicite ; commits par l'utilisateur ou sur sa demande, trailer Claude-Session.
 
 ## Phase 0 — dette immédiate (petit, sans risque)
+
 - [ ] Nettoyer `AccordionList` (props `sqlCode`, `sqlQueries`, `sqlResult`, `colors` inutilisées par `Accordion`).
 - [ ] `SQLCodeBlock` : supprimer l'import `MdClose` inutilisé ; passer les imports relatifs en `@/`.
 - [ ] `SQLLegend` variante `default` : `item.examples` n'existe pas dans la config → soit ajouter `examples` à `sqlSyntaxConfig.types`, soit retirer la variante.
@@ -12,11 +26,13 @@
 - [ ] Vérifier `next.config.mjs` : ajouter `images.formats`/`metadataBase` si déploiement Vercel.
 
 ## Phase 1 — qualité du contenu (issu de TODO.md historique)
+
 - [ ] Relire le contenu de chaque ceinture (cohérence SQL ↔ résultats affichés, fautes, vouvoiement). Utiliser l'agent `content-reviewer` ceinture par ceinture.
 - [ ] Menus en table des matières : ancre par accordéon (`id` déjà généré : `accordion-<section>`), sommaire en haut de page ou dans le header mobile.
 - [ ] Décider pour Google Analytics (ou Vercel Analytics / Plausible, plus léger et RGPD-friendly).
 
 ## Phase 2 — performance et robustesse
+
 - [ ] `HomeNavigation` importe les 8 fichiers de contenu côté client : déplacer `summary`/`topics` dans `BELTS_CONFIG` (ou un `belts-meta.js`) pour alléger le bundle de l'accueil.
 - [ ] `getBeltData` : remplacer l'import dynamique par template string par une map statique (`{ white: () => import("@/data/sections/white") }`) pour un tree-shaking fiable.
 - [ ] Ajouter `sitemap.js` et `robots.js` dans `app/` (Next les génère), `metadataBase` dans `layout`.
@@ -24,6 +40,7 @@
 - [ ] `prefers-reduced-motion` pour les transitions (`home-card`, accordéons, menu mobile).
 
 ## Phase 3 — FIGHT (1ère DAN, `/practice`)
+
 Objectif : exercices SQL exécutés dans le navigateur, sans backend.
 - [ ] Moteur : `sql.js` (SQLite compilé en WASM) chargé côté client ; base bibliothèque pré-remplie à partir des données de référence existantes.
 - [ ] Modèle d'exercice : `{ belt, title, statement, expected: rows | (rows) => bool, hints[] }` dans `data/exercises/<belt>.js`.
@@ -31,6 +48,7 @@ Objectif : exercices SQL exécutés dans le navigateur, sans backend.
 - [ ] Filtrer par ceinture, badge « 1ère DAN » quand tout est validé.
 
 ## Idées non planifiées
+
 - Mode sombre (les tokens de couleur sont déjà centralisés dans `globals.css`).
 - Export PDF / impression d'une ceinture.
 - Recherche plein texte dans les accordéons.
@@ -38,9 +56,17 @@ Objectif : exercices SQL exécutés dans le navigateur, sans backend.
 
 ---
 
-## Journal des décisions techniques
+---
 
-### 2026-09-02 — Reprise du projet : migration des dépendances et passage à pnpm
+## Journal des sessions
+
+### 2026-09-02 — Session : harmonisation de l'outillage Claude ✅
+- Squelette commun aux trois projets (noob_sql, portfolio_v5, routine-board) : `CONTEXT.md` = but / stack et architecture / documents de référence / décisions actées / conventions ; `PLAN.md` = état courant / phases / journal des sessions.
+- Skills `/resume`, `/deps`, `/verify` et agent `build-checker` générés depuis un gabarit unique + bloc « Spécificités du projet » ; agents `code-scout` (Haiku, lecture seule) et `dev` (Sonnet, implémentation) sur les trois projets ; `.claude/settings.json` identique.
+- Règle « aucune modification de code sans accord explicite » inscrite dans les trois `CLAUDE.md`.
+- Aucun code applicatif modifié.
+
+### 2026-09-02 — Session 1 : reprise du projet : migration des dépendances et passage à pnpm
 Contexte : projet dormant depuis janvier 2026 (Next 15.3, React 19.0, Tailwind 4.1, ESLint 9, npm).
 
 | Paquet | Avant | Après | Note |

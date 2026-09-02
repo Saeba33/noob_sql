@@ -1,16 +1,19 @@
 {
   "permissions": {
     "allow": [
+      "Bash(pnpm test)",
       "Bash(pnpm lint)",
-      "Bash(pnpm lint:fix)",
+      "Bash(pnpm typecheck)",
       "Bash(pnpm build)",
       "Bash(pnpm install)",
       "Bash(pnpm add:*)",
       "Bash(pnpm outdated)",
+      "Bash(pnpm audit:*)",
       "Bash(pnpm why:*)",
       "Bash(git status:*)",
       "Bash(git diff:*)",
       "Bash(git log:*)",
+      "Bash(git branch:*)",
       "Bash(grep:*)",
       "Bash(rg:*)",
       "Bash(sed -n:*)",

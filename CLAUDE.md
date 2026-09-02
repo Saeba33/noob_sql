@@ -24,6 +24,7 @@ Next 16.3 · React 19.2 · Tailwind 4.3 (PostCSS) · ESLint 9.39 · react-icons 
 - `app/globals.css` — typographie (h1–h6, .text-*), classes `.squircle*`, `.home-card`, `.border-accordion`
 
 ## Règles de travail
+- **Aucune modification de code sans accord explicite de l'utilisateur** — proposer un plan d'abord.
 - Économie de tokens : ne jamais lire un fichier `data/sections/*.js` en entier ; utiliser `grep -n "section:"` puis `sed -n a,b p`. Voir skill `/belt-content`.
 - Style : tabulations, guillemets doubles, composants fonctionnels, `"use client"` seulement si hooks/état/événements.
 - Les données de contenu sont des `.js` contenant du JSX (icônes, composants externes) : c'est voulu.
@@ -33,9 +34,9 @@ Next 16.3 · React 19.2 · Tailwind 4.3 (PostCSS) · ESLint 9.39 · react-icons 
 - Ne pas committer sans demande explicite.
 
 ## Documentation de reprise
-- `docs/CONTEXT.md` — but, architecture, modèle de données `beltContent` ; section « Conventions » : règles de code et de contenu
-- `docs/PLAN.md` — axes d'amélioration et plan par phases ; « Journal des décisions techniques » en fin de fichier (dont la migration 2026-09)
+- `docs/CONTEXT.md` — 1. but, 2. stack et architecture, 3. documents de référence, 4. décisions actées, 5. conventions. Stable ; à compléter quand une décision est prise.
+- `docs/PLAN.md` — état courant et prochaines étapes, phases (cases à cocher), journal des sessions. **À mettre à jour en fin de session.**
 
-## Skills et agents disponibles
-Skills : `/resume` (reprendre le contexte), `/deps` (bilan des mises à jour), `/belt-content`, `/sql-highlight`, `/section-component`, `/verify`.
-Agents : `code-scout` (recherche read-only, modèle léger), `content-reviewer` (relecture SQL/pédagogie), `build-checker` (lint+build+smoke, ne remonte que les erreurs).
+## Skills et agents
+Skills communs : `/resume` (reprise de contexte, à lancer en début de session), `/deps` (bilan des mises à jour, lecture seule), `/verify` (validation standard). Skills du projet : `/belt-content` (contenu d'une ceinture), `/sql-highlight` (coloration SQL), `/section-component` (composant pédagogique).
+Agents : `code-scout` (Haiku, exploration en lecture seule — l'utiliser pour toute recherche dans le code), `dev` (Sonnet, implémentation d'un lot validé par l'utilisateur), `build-checker` (Haiku, validation complète, ne renvoie que les erreurs).
