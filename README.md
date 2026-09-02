@@ -66,3 +66,16 @@
 ### 🟣 1ère DAN - Mise en Pratique
 **Application pratique des connaissances acquises**
 *(Développement ultérieur)*
+## 🛠️ Développement
+
+Projet Next.js 16 (App Router, JavaScript) géré avec **pnpm**.
+
+```bash
+pnpm install   # dépendances
+pnpm dev       # http://localhost:3000
+pnpm lint      # ESLint
+pnpm build     # build de production (pages statiques)
+pnpm start     # sert le build
+```
+
+Documentation de reprise dans `docs/` (`PROJECT.md`, `CONVENTIONS.md`, `ROADMAP.md`, `DECISIONS.md`) et `CLAUDE.md` pour le travail assisté.

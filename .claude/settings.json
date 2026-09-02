@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pnpm lint)",
+      "Bash(pnpm lint:fix)",
+      "Bash(pnpm build)",
+      "Bash(pnpm install)",
+      "Bash(pnpm add:*)",
+      "Bash(pnpm outdated)",
+      "Bash(pnpm why:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(grep:*)",
+      "Bash(rg:*)",
+      "Bash(sed -n:*)",
+      "Bash(wc:*)",
+      "Bash(curl -s -o /dev/null:*)"
+    ]
+  }
+}

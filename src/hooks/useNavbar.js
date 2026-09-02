@@ -1,57 +1,52 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
 
 // Default breakpoint for mobile/desktop detection
 const DEFAULT_BREAKPOINT = 1500;
 
+// Subscribe to a media query without setState-in-effect (SSR-safe: desktop by default)
+function useIsMobile(breakpoint) {
+	const query = `(max-width: ${breakpoint - 1}px)`;
+	const subscribe = useCallback(
+		(callback) => {
+			const mql = window.matchMedia(query);
+			mql.addEventListener("change", callback);
+			return () => mql.removeEventListener("change", callback);
+		},
+		[query]
+	);
+	return useSyncExternalStore(
+		subscribe,
+		() => window.matchMedia(query).matches,
+		() => false
+	);
+}
+
 export function useNavbar(breakpoint = DEFAULT_BREAKPOINT) {
-	const [isMenuOpen, setIsMenuOpen] = useState(false);
-	const [isMobile, setIsMobile] = useState(false);
+	const [menuRequested, setMenuRequested] = useState(false);
+	const isMobile = useIsMobile(breakpoint);
 	const menuRef = useRef(null);
 
-	// Check screen size and update mobile state
-	useEffect(() => {
-		const checkScreenSize = () => {
-			setIsMobile(window.innerWidth < breakpoint);
-		};
-
-		checkScreenSize();
-		window.addEventListener("resize", checkScreenSize);
-
-		return () => window.removeEventListener("resize", checkScreenSize);
-	}, [breakpoint]);
-
-	// Close menu when switching to desktop mode
-	useEffect(() => {
-		if (!isMobile && isMenuOpen) {
-			setIsMenuOpen(false);
-		}
-	}, [isMobile, isMenuOpen]);
+	// Derived state: the menu can only be open on mobile
+	const isMenuOpen = isMobile && menuRequested;
 
 	// Close menu when clicking outside
 	useEffect(() => {
+		if (!isMenuOpen) return;
+
 		const handleClickOutside = (event) => {
-			if (
-				isMenuOpen &&
-				menuRef.current &&
-				!menuRef.current.contains(event.target)
-			) {
-				setIsMenuOpen(false);
+			if (menuRef.current && !menuRef.current.contains(event.target)) {
+				setMenuRequested(false);
 			}
 		};
 
-		if (isMenuOpen) {
-			document.addEventListener("mousedown", handleClickOutside);
-		}
-
-		return () => {
-			document.removeEventListener("mousedown", handleClickOutside);
-		};
+		document.addEventListener("mousedown", handleClickOutside);
+		return () => document.removeEventListener("mousedown", handleClickOutside);
 	}, [isMenuOpen]);
 
-	const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-	const closeMenu = () => setIsMenuOpen(false);
+	const toggleMenu = () => setMenuRequested((open) => !open);
+	const closeMenu = () => setMenuRequested(false);
 
 	return {
 		isMenuOpen,

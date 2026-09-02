@@ -1,5 +1,27 @@
 import Header from "@/components/layout/Header";
+import { IBM_Plex_Sans, Outfit, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
+
+const plusJakarta = Plus_Jakarta_Sans({
+	subsets: ["latin"],
+	weight: ["300", "400", "500", "600", "700", "800"],
+	variable: "--font-plus-jakarta",
+	display: "swap",
+});
+
+const ibmPlex = IBM_Plex_Sans({
+	subsets: ["latin"],
+	weight: ["400", "500", "600", "700"],
+	variable: "--font-ibm-plex",
+	display: "swap",
+});
+
+const outfit = Outfit({
+	subsets: ["latin"],
+	weight: ["600", "700", "800"],
+	variable: "--font-outfit",
+	display: "swap",
+});
 
 export const metadata = {
 	title: "NoobSQL",
@@ -11,19 +33,10 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
 	return (
-		<html lang="fr">
-			<head>
-				<link rel="preconnect" href="https://fonts.googleapis.com" />
-				<link
-					rel="preconnect"
-					href="https://fonts.gstatic.com"
-					crossOrigin="anonymous"
-				/>
-				<link
-					href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Outfit:wght@600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
-					rel="stylesheet"
-				/>
-			</head>
+		<html
+			lang="fr"
+			className={`${plusJakarta.variable} ${ibmPlex.variable} ${outfit.variable}`}
+		>
 			<body>
 				<div className="min-h-screen flex flex-col">
 					<Header />
