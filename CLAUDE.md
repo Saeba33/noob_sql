@@ -37,5 +37,5 @@ Next 16.3 · React 19.2 · Tailwind 4.3 (PostCSS) · ESLint 9.39 · react-icons 
 - `docs/PLAN.md` — axes d'amélioration et plan par phases ; « Journal des décisions techniques » en fin de fichier (dont la migration 2026-09)
 
 ## Skills et agents disponibles
-Skills : `/resume` (reprendre le contexte), `/belt-content`, `/sql-highlight`, `/section-component`, `/verify`.
+Skills : `/resume` (reprendre le contexte), `/deps` (bilan des mises à jour), `/belt-content`, `/sql-highlight`, `/section-component`, `/verify`.
 Agents : `code-scout` (recherche read-only, modèle léger), `content-reviewer` (relecture SQL/pédagogie), `build-checker` (lint+build+smoke, ne remonte que les erreurs).
