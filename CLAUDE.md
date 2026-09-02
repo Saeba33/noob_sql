@@ -39,5 +39,5 @@ Next 16.3 · React 19.2 · Tailwind 4.3 (PostCSS) · ESLint 9.39 · react-icons 
 - `docs/PLAN.md` — état courant et prochaines étapes, phases (cases à cocher), journal des sessions. **À mettre à jour en fin de session.**
 
 ## Skills et agents
-Skills communs : `/resume` (reprise de contexte, à lancer en début de session), `/deps` (bilan des mises à jour, lecture seule), `/verify` (validation standard). Skills du projet : `/belt-content` (contenu d'une ceinture), `/sql-highlight` (coloration SQL), `/section-component` (composant pédagogique).
+Skills communs : `/resume` (reprise de contexte + bilan des versions, à lancer en début de session), `/deps` (bilan des mises à jour, lecture seule), `/verify` (validation standard). Skills du projet : `/belt-content` (contenu d'une ceinture), `/sql-highlight` (coloration SQL), `/section-component` (composant pédagogique).
 Agents : `code-scout` (Haiku, exploration en lecture seule — l'utiliser pour toute recherche dans le code), `dev` (Sonnet, implémentation d'un lot validé par l'utilisateur), `build-checker` (Haiku, validation complète, ne renvoie que les erreurs).
