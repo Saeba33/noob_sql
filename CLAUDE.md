@@ -33,9 +33,9 @@ Next 16.3 · React 19.2 · Tailwind 4.3 (PostCSS) · ESLint 9.39 · react-icons 
 - Ne pas committer sans demande explicite.
 
 ## Documentation de reprise
-- `docs/PROJECT.md` — but, architecture, modèle de données `beltContent`
+- `docs/CONTEXT.md` — but, architecture, modèle de données `beltContent`
 - `docs/CONVENTIONS.md` — règles de code et de contenu
-- `docs/ROADMAP.md` — axes d'amélioration et plan par phases
+- `docs/PLAN.md` — axes d'amélioration et plan par phases
 - `docs/DECISIONS.md` — journal des décisions techniques (dont la migration 2026-09)
 
 ## Skills et agents disponibles
