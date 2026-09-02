@@ -90,7 +90,7 @@ export const beltContent = {
 | 2026-09-02 | Projet repris : **pnpm uniquement** (jamais npm/yarn), Node 24 global via Homebrew, versions épinglées pour next / react / react-dom / eslint-config-next. |
 | 2026-09-02 | **ESLint reste en 9.x** (ESLint 10 casse eslint-config-next) ; **pas de TypeScript** (projet JS assumé, JSDoc au besoin). |
 | 2026-09-02 | Next 16 : `eslint .` remplace `next lint`, React Compiler activé, polices via `next/font` (plus d'appel Google Fonts), aucun `setState` synchrone dans un `useEffect` (`useSyncExternalStore`). |
-| 2026-09-02 | **Aucune modification de code sans accord explicite de l'utilisateur** — proposer un plan d'abord. |
+| 2026-09-02 | **Premier prompt d'une session = lecture seule** (prise de contexte). Ensuite, un point validé dans la conversation s'implémente directement, sans redemander. **Journalisation au fil de la session** dans `docs/PLAN.md` (journal, état courant) et `docs/CONTEXT.md` (décisions). |
 | 2026-09-02 | Doc de reprise = `docs/CONTEXT.md` + `docs/PLAN.md` ; outillage Claude harmonisé avec portfolio_v5 et routine-board (skills `/resume` `/deps` `/verify`, agents `code-scout` `dev` `build-checker`). |
 
 ## 5. Conventions

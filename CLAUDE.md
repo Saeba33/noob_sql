@@ -24,7 +24,8 @@ Next 16.3 · React 19.2 · Tailwind 4.3 (PostCSS) · ESLint 9.39 · react-icons 
 - `app/globals.css` — typographie (h1–h6, .text-*), classes `.squircle*`, `.home-card`, `.border-accordion`
 
 ## Règles de travail
-- **Aucune modification de code sans accord explicite de l'utilisateur** — proposer un plan d'abord.
+- **Premier prompt d'une session = lecture seule** (prise de contexte via `/resume`, aucun code). Ensuite, dès qu'un point est validé dans la conversation, implémenter directement sans redemander d'accord ; ne redemander que si le périmètre change.
+- **Consigner au fil de la session**, pas seulement à la fin : après chaque lot livré ou décision prise, compléter l'entrée du jour dans « Journal des sessions » (`docs/PLAN.md`), mettre à jour « État courant », et ajouter une ligne dans « Décisions actées » (`docs/CONTEXT.md`) si c'est une décision structurante.
 - Économie de tokens : ne jamais lire un fichier `data/sections/*.js` en entier ; utiliser `grep -n "section:"` puis `sed -n a,b p`. Voir skill `/belt-content`.
 - Style : tabulations, guillemets doubles, composants fonctionnels, `"use client"` seulement si hooks/état/événements.
 - Les données de contenu sont des `.js` contenant du JSX (icônes, composants externes) : c'est voulu.

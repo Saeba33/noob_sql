@@ -13,7 +13,7 @@ Objectif : recharger l'essentiel sans ouvrir `src/`. `CLAUDE.md` est déjà char
 4. Résumer à l'utilisateur en 5 lignes max : état, dernière décision, tâche suggérée, puis **attendre la consigne**.
 5. Ne vérifier les versions (`/deps`) que si l'utilisateur le demande ou si la dernière entrée du journal a plus d'un mois.
 
-Règles communes : **aucune modification de code sans accord explicite** (proposer un plan). Explorer le code via l'agent `code-scout`, jamais en relisant les fichiers soi-même. Ne pas lancer `pnpm build` « pour voir » (`/verify` quand il y a une modification à valider). En fin de session : mettre à jour « État courant » et « Journal des sessions » dans `docs/PLAN.md`, et « Décisions actées » dans `docs/CONTEXT.md` si une décision a été prise.
+Règles communes : **ce premier prompt est en lecture seule** ; ensuite, tout point validé dans la conversation s'implémente directement, sans redemander. Explorer le code via l'agent `code-scout`, jamais en relisant les fichiers soi-même. Ne pas lancer `pnpm build` « pour voir » (`/verify` quand il y a une modification à valider). **Consigner au fil de la session** : après chaque lot livré ou décision, compléter l'entrée du jour du « Journal des sessions » et « État courant » dans `docs/PLAN.md`, et « Décisions actées » dans `docs/CONTEXT.md` pour une décision structurante — ne pas attendre la fin de session.
 
 ## Spécificités du projet
 - Ne jamais lire un fichier `src/data/sections/*.js` en entier (180–810 lignes) : `grep -n "section:"` puis `sed -n a,b p` — voir `/belt-content`.

@@ -13,7 +13,7 @@
 - `AccordionList` transmet des props (`sqlCode`, `sqlQueries`, `sqlResult`, `colors`) que `Accordion` n'utilise pas.
 - La coloration SQL est heuristique (regex + priorités) ; voir la section « Conventions » de `docs/CONTEXT.md` et le skill `/sql-highlight`.
 
-**Git & méthode** : branche `main` ; validations `/verify` avant tout commit ; aucune modification de code sans accord explicite ; commits par l'utilisateur ou sur sa demande, trailer Claude-Session.
+**Git & méthode** : branche `main` ; validations `/verify` avant tout commit ; premier prompt en lecture seule puis implémentation directe des points validés ; journal complété au fil de la session ; commits par l'utilisateur ou sur sa demande, trailer Claude-Session.
 
 ## Phase 0 — dette immédiate (petit, sans risque)
 
@@ -65,6 +65,7 @@ Objectif : exercices SQL exécutés dans le navigateur, sans backend.
 - Skills `/resume`, `/deps`, `/verify` et agent `build-checker` générés depuis un gabarit unique + bloc « Spécificités du projet » ; agents `code-scout` (Haiku, lecture seule) et `dev` (Sonnet, implémentation) sur les trois projets ; `.claude/settings.json` identique.
 - Règle « aucune modification de code sans accord explicite » inscrite dans les trois `CLAUDE.md`.
 - Aucun code applicatif modifié.
+- Règle de travail précisée le même jour par l'utilisateur : **seul le premier prompt de reprise est en lecture seule** ; un point validé dans la conversation s'implémente sans redemander. Journalisation **au fil de la session** (journal, état courant, décisions), plus seulement en fin de session.
 
 ### 2026-09-02 — Session 1 : reprise du projet : migration des dépendances et passage à pnpm
 Contexte : projet dormant depuis janvier 2026 (Next 15.3, React 19.0, Tailwind 4.1, ESLint 9, npm).
