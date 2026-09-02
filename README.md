@@ -78,4 +78,4 @@ pnpm build     # build de production (pages statiques)
 pnpm start     # sert le build
 ```
 
-Documentation de reprise dans `docs/` (`CONTEXT.md`, `CONVENTIONS.md`, `PLAN.md`, `DECISIONS.md`) et `CLAUDE.md` pour le travail assisté.
+Documentation de reprise dans `docs/` (`CONTEXT.md` : but, architecture, conventions ; `PLAN.md` : feuille de route et journal des décisions) et `CLAUDE.md` pour le travail assisté.
